@@ -11,6 +11,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
+import { useState } from 'react'
 import './App.css'
 
 const revenueData = [
@@ -45,6 +46,13 @@ const catalysts = [
   { name: 'KTV-3', status: 'Phase III', days: 88, type: 'Clinical cure' },
 ]
 
+const comparables = [
+  { name: 'Readout Therapeutics', ticker: 'RDO', stage: 'Phase III', value: '$2.8B', change: '+18.4%' },
+  { name: 'Northvale Bio', ticker: 'NVB', stage: 'Filed', value: '$1.9B', change: '+11.2%' },
+  { name: 'Altiora Genomics', ticker: 'ATL', stage: 'Phase II', value: '$1.4B', change: '-2.6%' },
+  { name: 'Kestrel Pharma', ticker: 'KTV', stage: 'Approved', value: '$3.6B', change: '+24.8%' },
+]
+
 const summary = [
   { label: 'Pipeline value', value: '$2.8B', delta: '+18.4%' },
   { label: 'Cash runway', value: '22.6 mo', delta: '+3.1 mo' },
@@ -53,21 +61,30 @@ const summary = [
 ]
 
 function App() {
-  return (
-    <main className="dashboard-shell">
-      <header className="top-bar">
-        <div>
-          <p className="eyebrow">Biotech intelligence</p>
-          <h1>Readout</h1>
-        </div>
-        <nav className="nav-pills" aria-label="Main navigation">
-          <button className="nav-pill active">Overview</button>
-          <button className="nav-pill">Pipeline</button>
-          <button className="nav-pill">Catalysts</button>
-          <button className="nav-pill">Comparables</button>
-        </nav>
-      </header>
+  const [activeTab, setActiveTab] = useState('Overview')
 
+  const CatalystList = () => (
+    <section className="panel lower-panel">
+      <div className="panel-header">
+        <div>
+          <p className="eyebrow">Catalyst watch</p>
+          <h2>Readouts in the next 90 days</h2>
+        </div>
+      </div>
+      <div className="catalyst-list">
+        {catalysts.map((item) => (
+          <div className="catalyst-item" key={item.name}>
+            <div><strong>{item.name}</strong><span>{item.type}</span></div>
+            <span className="status-pill">{item.status}</span>
+            <span className="days">{item.days} days</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+
+  const renderOverview = () => (
+    <>
       <section className="summary-grid">
         {summary.map((item) => (
           <article className="summary-card" key={item.label}>
@@ -81,44 +98,25 @@ function App() {
       <section className="panel-grid">
         <article className="panel panel-large">
           <div className="panel-header">
-            <div>
-              <p className="eyebrow">Revenue track</p>
-              <h2>Commercial momentum</h2>
-            </div>
+            <div><p className="eyebrow">Revenue track</p><h2>Commercial momentum</h2></div>
             <span className="badge positive">+24.1%</span>
           </div>
-
           <div className="chart-wrap chart-tall">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={revenueData} margin={{ top: 10, right: 12, left: 0, bottom: 0 }}>
-                <defs>
-                  <linearGradient id="revenueFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#55d6d1" stopOpacity={0.7} />
-                    <stop offset="100%" stopColor="#55d6d1" stopOpacity={0.08} />
-                  </linearGradient>
-                </defs>
+                <defs><linearGradient id="revenueFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#55d6d1" stopOpacity={0.7} /><stop offset="100%" stopColor="#55d6d1" stopOpacity={0.08} /></linearGradient></defs>
                 <CartesianGrid stroke="#dfeaf2" strokeDasharray="4 4" vertical={false} />
                 <XAxis dataKey="month" tickLine={false} axisLine={false} tick={{ fill: '#58707d', fontSize: 12 }} />
                 <YAxis tickLine={false} axisLine={false} tick={{ fill: '#58707d', fontSize: 12 }} />
-                <Tooltip
-                  formatter={(value) => [`$${value}M`, '']}
-                  contentStyle={{ borderRadius: 12, border: '1px solid #dfeaf2', background: '#fff' }}
-                />
+                <Tooltip formatter={(value) => [`$${value}M`, '']} contentStyle={{ borderRadius: 12, border: '1px solid #dfeaf2', background: '#fff' }} />
                 <Area type="monotone" dataKey="revenue" stroke="#0d9488" strokeWidth={3} fill="url(#revenueFill)" />
                 <Line type="monotone" dataKey="target" stroke="#7c3aed" strokeWidth={2} dot={false} strokeDasharray="6 6" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
         </article>
-
         <article className="panel">
-          <div className="panel-header">
-            <div>
-              <p className="eyebrow">Stage mix</p>
-              <h2>Pipeline by phase</h2>
-            </div>
-          </div>
-
+          <div className="panel-header"><div><p className="eyebrow">Stage mix</p><h2>Pipeline by phase</h2></div></div>
           <div className="chart-wrap compact">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={pipelineData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
@@ -132,28 +130,46 @@ function App() {
           </div>
         </article>
       </section>
+      <CatalystList />
+    </>
+  )
 
-      <section className="panel lower-panel">
-        <div className="panel-header">
-          <div>
-            <p className="eyebrow">Catalyst watch</p>
-            <h2>Readouts in the next 90 days</h2>
-          </div>
-        </div>
+  const renderPipeline = () => (
+    <section className="panel page-panel">
+      <div className="panel-header"><div><p className="eyebrow">Asset inventory</p><h2>Pipeline by development phase</h2></div><span className="badge positive">{pipelineData.reduce((total, item) => total + item.value, 0)} assets</span></div>
+      <div className="data-table">
+        {pipelineData.map((item) => <div className="data-row" key={item.name}><strong>{item.name}</strong><div className="progress-track"><span style={{ width: `${item.value * 2.5}%` }} /></div><span className="row-value">{item.value}%</span></div>)}
+      </div>
+    </section>
+  )
 
-        <div className="catalyst-list">
-          {catalysts.map((item) => (
-            <div className="catalyst-item" key={item.name}>
-              <div>
-                <strong>{item.name}</strong>
-                <span>{item.type}</span>
-              </div>
-              <span className="status-pill">{item.status}</span>
-              <span className="days">{item.days} days</span>
-            </div>
-          ))}
+  const renderCatalysts = () => <CatalystList />
+
+  const renderComparables = () => (
+    <section className="panel page-panel">
+      <div className="panel-header"><div><p className="eyebrow">Market context</p><h2>Comparable companies</h2></div></div>
+      <div className="data-table comparable-table">
+        {comparables.map((company) => <div className="data-row" key={company.ticker}><div><strong>{company.name}</strong><span>{company.ticker} · {company.stage}</span></div><strong>{company.value}</strong><span className={company.change.startsWith('+') ? 'change-up' : 'change-down'}>{company.change}</span></div>)}
+      </div>
+    </section>
+  )
+
+  return (
+    <main className="dashboard-shell">
+      <header className="top-bar">
+        <div>
+          <p className="eyebrow">Biotech intelligence</p>
+          <h1>Readout</h1>
         </div>
-      </section>
+        <nav className="nav-pills" aria-label="Main navigation">
+          {['Overview', 'Pipeline', 'Catalysts', 'Comparables'].map((tab) => <button className={`nav-pill ${activeTab === tab ? 'active' : ''}`} key={tab} onClick={() => setActiveTab(tab)}>{tab}</button>)}
+        </nav>
+      </header>
+
+      {activeTab === 'Overview' && renderOverview()}
+      {activeTab === 'Pipeline' && renderPipeline()}
+      {activeTab === 'Catalysts' && renderCatalysts()}
+      {activeTab === 'Comparables' && renderComparables()}
     </main>
   )
 }
