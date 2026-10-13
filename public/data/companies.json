@@ -1,0 +1,1298 @@
+{
+ "meta": {
+  "generatedAt": "2026-10-13T07:11:38.372Z",
+  "sources": [
+   "SEC EDGAR XBRL company facts",
+   "SEC EDGAR filing index",
+   "ClinicalTrials.gov API v2",
+   "Yahoo Finance"
+  ],
+  "warnings": [
+   "CRNX: ticker not found in SEC's company list. Skipped.",
+   "SRRK: no active trials found for sponsor \"Scholar Rock Holding\" (set \"sponsor\" in assumptions.json). Skipped.",
+   "APGE: ticker not found in SEC's company list. Skipped.",
+   "NUVL: ticker not found in SEC's company list. Skipped.",
+   "ACLX: ticker not found in SEC's company list. Skipped."
+  ]
+ },
+ "companies": [
+  {
+   "t": "VKTX",
+   "n": "Viking Therapeutics",
+   "area": "Metabolic",
+   "mcap": 3305.9,
+   "ev": 2804.3,
+   "cash": 501.7,
+   "debt": 0,
+   "burn": 34.87,
+   "rev": 0,
+   "shares": 116.65,
+   "own": null,
+   "emp": null,
+   "partners": [],
+   "patentYrs": 10,
+   "diff": 0.6,
+   "mkt": 0.6,
+   "pipeline": [
+    {
+     "d": "VK2735",
+     "ind": "Weight Loss",
+     "tgt": "GLP-1/GIP",
+     "moa": "Dual receptor agonist",
+     "ph": "Phase III",
+     "n": 1100,
+     "ro": "2027-07-01",
+     "roType": "ESTIMATED",
+     "ep": "Percent change in body weight from baseline to Week 78 in body weight",
+     "peak": 800,
+     "launch": 2.5,
+     "cost": 260,
+     "est": true,
+     "nct": "NCT07104383",
+     "trials": 8,
+     "activeTrials": 5
+    },
+    {
+     "d": "SC VK3019",
+     "ind": "Obese Adults",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase I",
+     "n": 56,
+     "ro": "2026-10-02",
+     "roType": "ESTIMATED",
+     "ep": "Evaluate the safety of single doses of subcutaneous administration of VK3019",
+     "peak": 500,
+     "launch": 7,
+     "cost": 90,
+     "est": true,
+     "nct": "NCT07846033",
+     "trials": 1,
+     "activeTrials": 1
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2027-07-01",
+     "kind": "readout",
+     "drug": "VK2735",
+     "est": true,
+     "label": "VK2735 Phase III primary completion (registry estimate)"
+    },
+    {
+     "date": "2026-10-02",
+     "kind": "readout",
+     "drug": "SC VK3019",
+     "est": true,
+     "label": "SC VK3019 Phase I primary completion (registry estimate)"
+    },
+    {
+     "date": "2026-10-28",
+     "kind": "earnings",
+     "drug": null,
+     "est": true,
+     "label": "Next quarterly report (estimated)"
+    }
+   ],
+   "financings": [
+    {
+     "date": "2026-09-25",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1607678/000119312526401385/vktx-20260925.htm"
+    },
+    {
+     "date": "2026-09-23",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1607678/000119312526399628/vktx-2026-09-23-424b5_co.htm"
+    },
+    {
+     "date": "2024-03-01",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1607678/000095017024023848/vktx-2024-03-01-424b5.htm"
+    },
+    {
+     "date": "2024-02-27",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1607678/000095017024021420/vktx-2024-02-29-424b5_v2.htm"
+    }
+   ],
+   "note": "",
+   "dil24": 5.3,
+   "cashFlowPositive": false,
+   "src": {
+    "cik": "1607678",
+    "asOf": "2026-06-30",
+    "cashParts": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent"
+    ],
+    "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
+    "sharesAsOf": "2026-07-15",
+    "filing": {
+     "form": "10-Q",
+     "date": "2026-07-29",
+     "url": "https://www.sec.gov/Archives/edgar/data/1607678/000119312526324219/vktx-20260630.htm"
+    },
+    "price": 28.34,
+    "priceDate": "2026-10-12",
+    "priceSource": "Yahoo Finance",
+    "sponsor": "Viking Therapeutics",
+    "trials": 13,
+    "defaults": [
+     "differentiation",
+     "market opportunity",
+     "patent life",
+     "peak sales"
+    ]
+   }
+  },
+  {
+   "t": "ARWR",
+   "n": "Arrowhead Pharmaceuticals",
+   "area": "RNAi",
+   "mcap": 8578.4,
+   "ev": 7659.1,
+   "cash": 1602,
+   "debt": 682.7,
+   "burn": 4.92,
+   "rev": 669.5,
+   "shares": 141.25,
+   "own": null,
+   "emp": null,
+   "partners": [],
+   "patentYrs": 10,
+   "diff": 0.6,
+   "mkt": 0.6,
+   "pipeline": [
+    {
+     "d": "Zodasiran",
+     "ind": "Homozygous Familial Hypercholesterolemia",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase III",
+     "n": 70,
+     "ro": "2027-08-20",
+     "roType": "ESTIMATED",
+     "ep": "Percent Change from Baseline to Month 12 in Fasting Low Density Lipoprotein Cholesterol (LDL-C) (Randomized pe",
+     "peak": 800,
+     "launch": 2.5,
+     "cost": 260,
+     "est": true,
+     "nct": "NCT07037771",
+     "trials": 2,
+     "activeTrials": 2
+    },
+    {
+     "d": "Plozasiran",
+     "ind": "Hypertriglyceridemia",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase III",
+     "n": 710,
+     "ro": "2028-07-15",
+     "roType": "ESTIMATED",
+     "ep": "Number of Participants with Treatment-Emergent Adverse Events (TEAEs)",
+     "peak": 800,
+     "launch": 2.5,
+     "cost": 260,
+     "est": true,
+     "nct": "NCT06822790",
+     "trials": 6,
+     "activeTrials": 2
+    },
+    {
+     "d": "ARO-DIMERPA",
+     "ind": "Hyperlipidemia; Mixed",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase II",
+     "n": 78,
+     "ro": "2026-09-30",
+     "roType": "ESTIMATED",
+     "ep": "Number of Participants with Treatment-Emergent Adverse Events (TEAEs)",
+     "peak": 600,
+     "launch": 4.5,
+     "cost": 160,
+     "est": true,
+     "nct": "NCT07223658",
+     "trials": 1,
+     "activeTrials": 1
+    },
+    {
+     "d": "ARO-ALK7",
+     "ind": "Obesity",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase II",
+     "n": 150,
+     "ro": "2027-02-15",
+     "roType": "ESTIMATED",
+     "ep": "Number of Participants with Treatment-Emergent Adverse Events (TEAEs)",
+     "peak": 600,
+     "launch": 4.5,
+     "cost": 160,
+     "est": true,
+     "nct": "NCT06937203",
+     "trials": 1,
+     "activeTrials": 1
+    },
+    {
+     "d": "ARO-MAPT-SC",
+     "ind": "Alzheimer Disease",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase II",
+     "n": 112,
+     "ro": "2027-06-15",
+     "roType": "ESTIMATED",
+     "ep": "Number of Participants with Treatment-Emergent Adverse Events (TEAEs) Over Time",
+     "peak": 600,
+     "launch": 4.5,
+     "cost": 160,
+     "est": true,
+     "nct": "NCT07221344",
+     "trials": 1,
+     "activeTrials": 1
+    },
+    {
+     "d": "ARO-INHBE",
+     "ind": "Obesity",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase II",
+     "n": 180,
+     "ro": "2027-09-17",
+     "roType": "ESTIMATED",
+     "ep": "Number of Participants with Treatment-Emergent Adverse Events (TEAEs)",
+     "peak": 600,
+     "launch": 4.5,
+     "cost": 160,
+     "est": true,
+     "nct": "NCT06700538",
+     "trials": 2,
+     "activeTrials": 2
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2027-08-20",
+     "kind": "readout",
+     "drug": "Zodasiran",
+     "est": true,
+     "label": "Zodasiran Phase III primary completion (registry estimate)"
+    },
+    {
+     "date": "2028-07-15",
+     "kind": "readout",
+     "drug": "Plozasiran",
+     "est": true,
+     "label": "Plozasiran Phase III primary completion (registry estimate)"
+    },
+    {
+     "date": "2026-09-30",
+     "kind": "readout",
+     "drug": "ARO-DIMERPA",
+     "est": true,
+     "label": "ARO-DIMERPA Phase II primary completion (registry estimate)"
+    },
+    {
+     "date": "2027-02-15",
+     "kind": "readout",
+     "drug": "ARO-ALK7",
+     "est": true,
+     "label": "ARO-ALK7 Phase II primary completion (registry estimate)"
+    },
+    {
+     "date": "2027-06-15",
+     "kind": "readout",
+     "drug": "ARO-MAPT-SC",
+     "est": true,
+     "label": "ARO-MAPT-SC Phase II primary completion (registry estimate)"
+    },
+    {
+     "date": "2027-09-17",
+     "kind": "readout",
+     "drug": "ARO-INHBE",
+     "est": true,
+     "label": "ARO-INHBE Phase II primary completion (registry estimate)"
+    },
+    {
+     "date": "2026-11-03",
+     "kind": "earnings",
+     "drug": null,
+     "est": true,
+     "label": "Next quarterly report (estimated)"
+    }
+   ],
+   "financings": [
+    {
+     "date": "2026-01-09",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/879407/000119312526007968/d13080d424b5.htm"
+    },
+    {
+     "date": "2026-01-07",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/879407/000119312526005087/d13080d424b5.htm"
+    },
+    {
+     "date": "2024-01-04",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/879407/000119312524002527/d681719d424b5.htm"
+    }
+   ],
+   "note": "",
+   "dil24": 13.6,
+   "cashFlowPositive": false,
+   "src": {
+    "cik": "879407",
+    "asOf": "2026-06-30",
+    "cashParts": [
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent"
+    ],
+    "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
+    "sharesAsOf": "2026-07-30",
+    "filing": {
+     "form": "10-Q",
+     "date": "2026-08-04",
+     "url": "https://www.sec.gov/Archives/edgar/data/879407/000087940726000057/arwr-20260630.htm"
+    },
+    "price": 60.73,
+    "priceDate": "2026-10-12",
+    "priceSource": "Yahoo Finance",
+    "sponsor": "ARROWHEAD PHARMACEUTICALS",
+    "trials": 49,
+    "defaults": [
+     "differentiation",
+     "market opportunity",
+     "patent life",
+     "peak sales"
+    ]
+   }
+  },
+  {
+   "t": "RCKT",
+   "n": "Rocket Pharmaceuticals",
+   "area": "Gene therapy",
+   "mcap": 272.2,
+   "ev": -11.5,
+   "cash": 283.7,
+   "debt": 0,
+   "burn": 14.19,
+   "rev": 0,
+   "shares": 109.77,
+   "own": null,
+   "emp": null,
+   "partners": [],
+   "patentYrs": 10,
+   "diff": 0.6,
+   "mkt": 0.6,
+   "pipeline": [
+    {
+     "d": "RP-L102",
+     "ind": "Fanconi Anemia Complementation Group A",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase II",
+     "n": 5,
+     "ro": "2026-05-05",
+     "roType": "ESTIMATED",
+     "ep": "Bone Marrow (BM) Colony-Forming Cell (CFC) Mitomycin-C (MMC) resistance",
+     "peak": 600,
+     "launch": 4.5,
+     "cost": 160,
+     "est": true,
+     "nct": "NCT04248439",
+     "trials": 3,
+     "activeTrials": 1
+    },
+    {
+     "d": "RP-A501",
+     "ind": "Danon Disease",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase II",
+     "n": 18,
+     "ro": "2028-06-15",
+     "roType": "ESTIMATED",
+     "ep": "Evaluation of Efficacy: Improvement as assessed via primary endpoint comprised of LAMP2 myocardial tissue expr",
+     "peak": 600,
+     "launch": 4.5,
+     "cost": 160,
+     "est": true,
+     "nct": "NCT06092034",
+     "trials": 2,
+     "activeTrials": 1
+    },
+    {
+     "d": "RP-A601",
+     "ind": "PKP2 Arrhythmogenic Cardiomyopathy (PKP2-ACM)",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase I",
+     "n": 9,
+     "ro": "2028-09-15",
+     "roType": "ESTIMATED",
+     "ep": "Evaluation of safety associated with RP-A601",
+     "peak": 500,
+     "launch": 7,
+     "cost": 90,
+     "est": true,
+     "nct": "NCT05885412",
+     "trials": 1,
+     "activeTrials": 1
+    },
+    {
+     "d": "RP-A701",
+     "ind": "Dilated Cardiomyopathy (DCM)",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase I",
+     "n": 8,
+     "ro": "2029-06-15",
+     "roType": "ESTIMATED",
+     "ep": "Incidence of Treatment-emergent Adverse Events (TEAE)",
+     "peak": 500,
+     "launch": 7,
+     "cost": 90,
+     "est": true,
+     "nct": "NCT07137338",
+     "trials": 1,
+     "activeTrials": 1
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2028-06-15",
+     "kind": "readout",
+     "drug": "RP-A501",
+     "est": true,
+     "label": "RP-A501 Phase II primary completion (registry estimate)"
+    },
+    {
+     "date": "2028-09-15",
+     "kind": "readout",
+     "drug": "RP-A601",
+     "est": true,
+     "label": "RP-A601 Phase I primary completion (registry estimate)"
+    },
+    {
+     "date": "2026-11-09",
+     "kind": "earnings",
+     "drug": null,
+     "est": true,
+     "label": "Next quarterly report (estimated)"
+    }
+   ],
+   "financings": [
+    {
+     "date": "2026-03-10",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1281895/000114036126008849/ny20066752x3_424b5.htm"
+    },
+    {
+     "date": "2024-12-12",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1281895/000114036124049074/ny20039717x3_424b5.htm"
+    },
+    {
+     "date": "2024-12-10",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1281895/000114036124048911/ny20039717x1_424b5.htm"
+    }
+   ],
+   "note": "",
+   "dil24": 20.7,
+   "cashFlowPositive": false,
+   "src": {
+    "cik": "1281895",
+    "asOf": "2026-06-30",
+    "cashParts": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "ShortTermInvestments"
+    ],
+    "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
+    "sharesAsOf": "2026-07-31",
+    "filing": {
+     "form": "10-Q",
+     "date": "2026-08-10",
+     "url": "https://www.sec.gov/Archives/edgar/data/1281895/000119312526342348/rckt-20260630.htm"
+    },
+    "price": 2.48,
+    "priceDate": "2026-10-12",
+    "priceSource": "Yahoo Finance",
+    "sponsor": "ROCKET PHARMACEUTICALS",
+    "trials": 12,
+    "defaults": [
+     "differentiation",
+     "market opportunity",
+     "patent life",
+     "peak sales"
+    ]
+   }
+  },
+  {
+   "t": "IDYA",
+   "n": "Ideaya Biosciences",
+   "area": "Oncology",
+   "mcap": 3479.4,
+   "ev": 2236.5,
+   "cash": 1242.9,
+   "debt": 0,
+   "burn": 9.31,
+   "rev": 31.3,
+   "shares": 96.49,
+   "own": null,
+   "emp": null,
+   "partners": [],
+   "patentYrs": 10,
+   "diff": 0.6,
+   "mkt": 0.6,
+   "pipeline": [
+    {
+     "d": "Crizotinib",
+     "ind": "Metastatic Uveal Melanoma",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase III",
+     "n": 420,
+     "ro": "2027-01-15",
+     "roType": "ESTIMATED",
+     "ep": "Phase 2a: To determine the optimal dose of IDE196 + Crizotinib combination for Phase 2B and Phase 3 by evaluat",
+     "peak": 800,
+     "launch": 2.5,
+     "cost": 260,
+     "est": true,
+     "nct": "NCT05987332",
+     "trials": 2,
+     "activeTrials": 2
+    },
+    {
+     "d": "Darovasertib",
+     "ind": "Uveal Melanoma",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase III",
+     "n": 520,
+     "ro": "2030-10-15",
+     "roType": "ESTIMATED",
+     "ep": "Cohort 1: To demonstrate that the proportion of subjects with vision loss is lower for subjects in the Treatme",
+     "peak": 800,
+     "launch": 2.5,
+     "cost": 260,
+     "est": true,
+     "nct": "NCT07015190",
+     "trials": 3,
+     "activeTrials": 3
+    },
+    {
+     "d": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase II",
+     "n": 262,
+     "ro": "2029-07-15",
+     "roType": "ESTIMATED",
+     "ep": "Part 1A: Safety and Tolerability of IDE849 (Monotherapy)",
+     "peak": 600,
+     "launch": 4.5,
+     "cost": 160,
+     "est": true,
+     "nct": "NCT07174583",
+     "trials": 1,
+     "activeTrials": 1
+    },
+    {
+     "d": "Pembrolizumab",
+     "ind": "Advanced or Metastatic Solid Tumors",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase I",
+     "n": 216,
+     "ro": "2026-10-15",
+     "roType": "ESTIMATED",
+     "ep": "Part 1 (Dose Escalation): To characterize the safety and tolerability of IDE161 monotherapy or in combination ",
+     "peak": 500,
+     "launch": 7,
+     "cost": 90,
+     "est": true,
+     "nct": "NCT05787587",
+     "trials": 1,
+     "activeTrials": 1
+    },
+    {
+     "d": "IDE397",
+     "ind": "Solid Tumor",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase I",
+     "n": 169,
+     "ro": "2027-01-07",
+     "roType": "ESTIMATED",
+     "ep": "Dose-limiting Toxicities (DLTs) of IDE397",
+     "peak": 500,
+     "launch": 7,
+     "cost": 90,
+     "est": true,
+     "nct": "NCT04794699",
+     "trials": 2,
+     "activeTrials": 2
+    },
+    {
+     "d": "IDE034",
+     "ind": "Esophageal Squamous Cell Carcinoma",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase I",
+     "n": 150,
+     "ro": "2027-07-30",
+     "roType": "ESTIMATED",
+     "ep": "Safety and tolerability of IDE034 in Part 1 dose escalation",
+     "peak": 500,
+     "launch": 7,
+     "cost": 90,
+     "est": true,
+     "nct": "NCT07503808",
+     "trials": 1,
+     "activeTrials": 1
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2027-01-15",
+     "kind": "readout",
+     "drug": "Crizotinib",
+     "est": true,
+     "label": "Crizotinib Phase III primary completion (registry estimate)"
+    },
+    {
+     "date": "2026-10-15",
+     "kind": "readout",
+     "drug": "Pembrolizumab",
+     "est": true,
+     "label": "Pembrolizumab Phase I primary completion (registry estimate)"
+    },
+    {
+     "date": "2027-01-07",
+     "kind": "readout",
+     "drug": "IDE397",
+     "est": true,
+     "label": "IDE397 Phase I primary completion (registry estimate)"
+    },
+    {
+     "date": "2027-07-30",
+     "kind": "readout",
+     "drug": "IDE034",
+     "est": true,
+     "label": "IDE034 Phase I primary completion (registry estimate)"
+    },
+    {
+     "date": "2026-11-03",
+     "kind": "earnings",
+     "drug": null,
+     "est": true,
+     "label": "Next quarterly report (estimated)"
+    }
+   ],
+   "financings": [
+    {
+     "date": "2026-06-09",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526264032/d160204d424b5.htm"
+    },
+    {
+     "date": "2026-06-08",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526261756/d160204d424b5.htm"
+    },
+    {
+     "date": "2026-05-05",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526206788/d30692d424b5.htm"
+    },
+    {
+     "date": "2024-07-10",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312524177309/d856352d424b5.htm"
+    },
+    {
+     "date": "2024-07-09",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312524176798/d856352d424b5.htm"
+    },
+    {
+     "date": "2024-01-19",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312524011343/d735447d424b5.htm"
+    },
+    {
+     "date": "2023-10-26",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312523263354/d559315d424b5.htm"
+    },
+    {
+     "date": "2023-10-24",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312523261771/d559315d424b5.htm"
+    }
+   ],
+   "note": "",
+   "dil24": 14.2,
+   "cashFlowPositive": false,
+   "src": {
+    "cik": "1676725",
+    "asOf": "2026-06-30",
+    "cashParts": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "MarketableSecuritiesCurrent",
+     "MarketableSecuritiesNoncurrent"
+    ],
+    "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
+    "sharesAsOf": "2026-07-31",
+    "filing": {
+     "form": "10-Q",
+     "date": "2026-08-04",
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526332774/idya-20260630.htm"
+    },
+    "price": 36.06,
+    "priceDate": "2026-10-12",
+    "priceSource": "Yahoo Finance",
+    "sponsor": "IDEAYA Biosciences",
+    "trials": 11,
+    "defaults": [
+     "differentiation",
+     "market opportunity",
+     "patent life",
+     "peak sales"
+    ]
+   }
+  },
+  {
+   "t": "KYMR",
+   "n": "Kymera Therapeutics",
+   "area": "Immunology",
+   "mcap": 9319.5,
+   "ev": 7814.6,
+   "cash": 1504.9,
+   "debt": 0,
+   "burn": 19.73,
+   "rev": 105,
+   "shares": 83.15,
+   "own": null,
+   "emp": null,
+   "partners": [],
+   "patentYrs": 10,
+   "diff": 0.6,
+   "mkt": 0.6,
+   "pipeline": [
+    {
+     "d": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase II",
+     "n": 200,
+     "ro": "2027-06-15",
+     "roType": "ESTIMATED",
+     "ep": "Change from baseline in Eczema Area and Severity Index (EASI) score",
+     "peak": 600,
+     "launch": 4.5,
+     "cost": 160,
+     "est": true,
+     "nct": "NCT07217015",
+     "trials": 6,
+     "activeTrials": 4
+    },
+    {
+     "d": "KT-579",
+     "ind": "Healthy Participants",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase I",
+     "n": 96,
+     "ro": "2026-12-15",
+     "roType": "ESTIMATED",
+     "ep": "Incidence of adverse events",
+     "peak": 500,
+     "launch": 7,
+     "cost": 90,
+     "est": true,
+     "nct": "NCT07412288",
+     "trials": 1,
+     "activeTrials": 1
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2027-06-15",
+     "kind": "readout",
+     "drug": "KT-621",
+     "est": true,
+     "label": "KT-621 Phase II primary completion (registry estimate)"
+    },
+    {
+     "date": "2026-12-15",
+     "kind": "readout",
+     "drug": "KT-579",
+     "est": true,
+     "label": "KT-579 Phase I primary completion (registry estimate)"
+    },
+    {
+     "date": "2026-11-04",
+     "kind": "earnings",
+     "drug": null,
+     "est": true,
+     "label": "Next quarterly report (estimated)"
+    }
+   ],
+   "financings": [
+    {
+     "date": "2026-02-26",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312526073542/d108564d424b5.htm"
+    },
+    {
+     "date": "2025-12-10",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312525314256/d848302d424b5.htm"
+    },
+    {
+     "date": "2025-12-08",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312525311268/d848302d424b5.htm"
+    },
+    {
+     "date": "2025-06-27",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312525151288/d909559d424b5.htm"
+    },
+    {
+     "date": "2025-06-25",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312525146933/d909559d424b5.htm"
+    },
+    {
+     "date": "2024-08-20",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312524203691/d875859d424b5.htm"
+    },
+    {
+     "date": "2024-08-19",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312524202805/d875859d424b5.htm"
+    },
+    {
+     "date": "2024-01-05",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312524003347/d625325d424b5.htm"
+    }
+   ],
+   "note": "",
+   "dil24": 34.6,
+   "cashFlowPositive": false,
+   "src": {
+    "cik": "1815442",
+    "asOf": "2026-06-30",
+    "cashParts": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+     "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"
+    ],
+    "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
+    "sharesAsOf": "2026-07-31",
+    "filing": {
+     "form": "10-Q",
+     "date": "2026-08-05",
+     "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312526333849/kymr-20260630.htm"
+    },
+    "price": 112.08,
+    "priceDate": "2026-10-12",
+    "priceSource": "Yahoo Finance",
+    "sponsor": "Kymera Therapeutics",
+    "trials": 11,
+    "defaults": [
+     "differentiation",
+     "market opportunity",
+     "patent life",
+     "peak sales"
+    ]
+   }
+  },
+  {
+   "t": "DYN",
+   "n": "Dyne Therapeutics",
+   "area": "Neuromuscular",
+   "mcap": 2980.5,
+   "ev": 2281.3,
+   "cash": 898.5,
+   "debt": 199.3,
+   "burn": 39.82,
+   "rev": 0,
+   "shares": 186.75,
+   "own": null,
+   "emp": null,
+   "partners": [],
+   "patentYrs": 10,
+   "diff": 0.6,
+   "mkt": 0.6,
+   "pipeline": [
+    {
+     "d": "zeleciment basivarsen",
+     "ind": "Myotonic Dystrophy Type 1 (DM1)",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase III",
+     "n": 150,
+     "ro": "2028-07-15",
+     "roType": "ESTIMATED",
+     "ep": "5 Times Sit-To-Stand (5×STS) Time",
+     "peak": 800,
+     "launch": 2.5,
+     "cost": 260,
+     "est": true,
+     "nct": "NCT07486934",
+     "trials": 1,
+     "activeTrials": 1
+    },
+    {
+     "d": "Zeleciment Rostudirsen",
+     "ind": "Duchenne Muscular Dystrophy (DMD)",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase III",
+     "n": 90,
+     "ro": "2030-12-15",
+     "roType": "ESTIMATED",
+     "ep": "Rise From Floor (RFF) velocity",
+     "peak": 800,
+     "launch": 2.5,
+     "cost": 260,
+     "est": true,
+     "nct": "NCT07608432",
+     "trials": 1,
+     "activeTrials": 1
+    },
+    {
+     "d": "DYNE-101",
+     "ind": "Myotonic Dystrophy Type 1 (DM1)",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase II",
+     "n": 127,
+     "ro": "2029-07-15",
+     "roType": "ESTIMATED",
+     "ep": "MAD Cohorts: Number of Participants With Treatment-Emergent Adverse Events (TEAEs)",
+     "peak": 600,
+     "launch": 4.5,
+     "cost": 160,
+     "est": true,
+     "nct": "NCT05481879",
+     "trials": 1,
+     "activeTrials": 1
+    },
+    {
+     "d": "DYNE-251",
+     "ind": "Duchenne Muscular Dystrophy (DMD)",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase II",
+     "n": 86,
+     "ro": "2031-09-15",
+     "roType": "ESTIMATED",
+     "ep": "Number of Participants With Treatment-Emergent Adverse Events (TEAEs)",
+     "peak": 600,
+     "launch": 4.5,
+     "cost": 160,
+     "est": true,
+     "nct": "NCT05524883",
+     "trials": 1,
+     "activeTrials": 1
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2028-07-15",
+     "kind": "readout",
+     "drug": "zeleciment basivarsen",
+     "est": true,
+     "label": "zeleciment basivarsen Phase III primary completion (registry estimate)"
+    },
+    {
+     "date": "2026-10-28",
+     "kind": "earnings",
+     "drug": null,
+     "est": true,
+     "label": "Next quarterly report (estimated)"
+    }
+   ],
+   "financings": [
+    {
+     "date": "2026-07-22",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312526312576/d98164d424b5.htm"
+    },
+    {
+     "date": "2026-07-21",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312526310573/d98164d424b5.htm"
+    },
+    {
+     "date": "2025-12-10",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312525314307/d72555d424b5.htm"
+    },
+    {
+     "date": "2025-12-08",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312525311254/d72555d424b5.htm"
+    },
+    {
+     "date": "2025-07-01",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312525154084/d21859d424b5.htm"
+    },
+    {
+     "date": "2025-06-30",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312525152815/d21859d424b5.htm"
+    },
+    {
+     "date": "2024-11-12",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312524255255/d865641d424b5.htm"
+    },
+    {
+     "date": "2024-05-22",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312524144991/d839833d424b5.htm"
+    }
+   ],
+   "note": "",
+   "dil24": 86,
+   "cashFlowPositive": false,
+   "src": {
+    "cik": "1818794",
+    "asOf": "2026-06-30",
+    "cashParts": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent"
+    ],
+    "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
+    "sharesAsOf": "2026-07-24",
+    "filing": {
+     "form": "10-Q",
+     "date": "2026-07-29",
+     "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312526323639/dyn-20260630.htm"
+    },
+    "price": 15.96,
+    "priceDate": "2026-10-12",
+    "priceSource": "Yahoo Finance",
+    "sponsor": "Dyne Therapeutics",
+    "trials": 4,
+    "defaults": [
+     "differentiation",
+     "market opportunity",
+     "patent life",
+     "peak sales"
+    ]
+   }
+  },
+  {
+   "t": "VERA",
+   "n": "Vera Therapeutics",
+   "area": "Nephrology",
+   "mcap": 1997.6,
+   "ev": 1573.7,
+   "cash": 499.2,
+   "debt": 75.2,
+   "burn": 28.22,
+   "rev": 0,
+   "shares": 72.06,
+   "own": null,
+   "emp": null,
+   "partners": [],
+   "patentYrs": 10,
+   "diff": 0.6,
+   "mkt": 0.6,
+   "pipeline": [
+    {
+     "d": "Atacicept",
+     "ind": "IgA Nephropathy",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase III",
+     "n": 428,
+     "ro": "2025-05-15",
+     "roType": "ACTUAL",
+     "ep": "Percentage Change From Baseline in Urine Protein to Creatinine Ratio (UPCR)",
+     "peak": 800,
+     "launch": 2.5,
+     "cost": 260,
+     "est": true,
+     "nct": "NCT04716231",
+     "trials": 5,
+     "activeTrials": 4
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2026-11-09",
+     "kind": "earnings",
+     "drug": null,
+     "est": true,
+     "label": "Next quarterly report (estimated)"
+    }
+   ],
+   "financings": [
+    {
+     "date": "2025-12-10",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312525314244/d79646d424b5.htm"
+    },
+    {
+     "date": "2025-12-08",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312525311219/d79646d424b5.htm"
+    },
+    {
+     "date": "2025-08-05",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312525173588/d905096d424b5.htm"
+    },
+    {
+     "date": "2024-10-30",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312524247568/d846833d424b5.htm"
+    },
+    {
+     "date": "2024-10-29",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312524245751/d846833d424b5.htm"
+    },
+    {
+     "date": "2024-01-30",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312524019492/d729909d424b5.htm"
+    },
+    {
+     "date": "2024-01-29",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312524017530/d729909d424b5.htm"
+    }
+   ],
+   "note": "",
+   "dil24": 31.4,
+   "cashFlowPositive": false,
+   "src": {
+    "cik": "1831828",
+    "asOf": "2026-06-30",
+    "cashParts": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "MarketableSecuritiesCurrent"
+    ],
+    "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
+    "sharesAsOf": "2026-07-29",
+    "filing": {
+     "form": "10-Q",
+     "date": "2026-08-10",
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312526342380/vera-20260630.htm"
+    },
+    "price": 27.72,
+    "priceDate": "2026-10-12",
+    "priceSource": "Yahoo Finance",
+    "sponsor": "Vera Therapeutics",
+    "trials": 6,
+    "defaults": [
+     "differentiation",
+     "market opportunity",
+     "patent life",
+     "peak sales"
+    ]
+   }
+  }
+ ]
+}
