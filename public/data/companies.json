@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-10-13T07:14:11.075Z",
+  "generatedAt": "2026-10-13T07:16:59.775Z",
   "sources": [
    "SEC EDGAR XBRL company facts",
    "SEC EDGAR filing index",
@@ -703,10 +703,10 @@
    "mkt": 0.6,
    "pipeline": [
     {
-     "d": "IDE196",
+     "d": "Darovasertib",
      "ind": "Metastatic Uveal Melanoma",
-     "tgt": "—",
-     "moa": "—",
+     "tgt": "PKC",
+     "moa": "Small-molecule inhibitor",
      "ph": "Phase III",
      "n": 420,
      "ro": "2027-01-15",
@@ -717,26 +717,8 @@
      "cost": 260,
      "est": true,
      "nct": "NCT05987332",
-     "trials": 2,
-     "activeTrials": 2
-    },
-    {
-     "d": "Darovasertib",
-     "ind": "Uveal Melanoma",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase III",
-     "n": 520,
-     "ro": "2030-10-15",
-     "roType": "ESTIMATED",
-     "ep": "Cohort 1: To demonstrate that the proportion of subjects with vision loss is lower for subjects in the Treatme",
-     "peak": 800,
-     "launch": 2.5,
-     "cost": 260,
-     "est": true,
-     "nct": "NCT07015190",
-     "trials": 3,
-     "activeTrials": 3
+     "trials": 5,
+     "activeTrials": 5
     },
     {
      "d": "IDE849",
@@ -809,15 +791,33 @@
      "nct": "NCT07503808",
      "trials": 1,
      "activeTrials": 1
+    },
+    {
+     "d": "IDE574",
+     "ind": "ER+, HER 2- Breast Cancer",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase I",
+     "n": 160,
+     "ro": "2030-03-30",
+     "roType": "ESTIMATED",
+     "ep": "Safety and Tolerability of IDE574 in Part 1 A Monotherapy Dose escalation",
+     "peak": 500,
+     "launch": 7,
+     "cost": 90,
+     "est": true,
+     "nct": "NCT07540572",
+     "trials": 1,
+     "activeTrials": 1
     }
    ],
    "catalysts": [
     {
      "date": "2027-01-15",
      "kind": "readout",
-     "drug": "IDE196",
+     "drug": "Darovasertib",
      "est": true,
-     "label": "IDE196 Phase III primary completion (registry estimate)"
+     "label": "Darovasertib Phase III primary completion (registry estimate)"
     },
     {
      "date": "2026-10-15",
