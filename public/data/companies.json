@@ -1,19 +1,13 @@
 {
  "meta": {
-  "generatedAt": "2026-10-13T07:11:38.372Z",
+  "generatedAt": "2026-10-13T07:14:11.075Z",
   "sources": [
    "SEC EDGAR XBRL company facts",
    "SEC EDGAR filing index",
    "ClinicalTrials.gov API v2",
    "Yahoo Finance"
   ],
-  "warnings": [
-   "CRNX: ticker not found in SEC's company list. Skipped.",
-   "SRRK: no active trials found for sponsor \"Scholar Rock Holding\" (set \"sponsor\" in assumptions.json). Skipped.",
-   "APGE: ticker not found in SEC's company list. Skipped.",
-   "NUVL: ticker not found in SEC's company list. Skipped.",
-   "ACLX: ticker not found in SEC's company list. Skipped."
-  ]
+  "warnings": []
  },
  "companies": [
   {
@@ -53,7 +47,7 @@
      "activeTrials": 5
     },
     {
-     "d": "SC VK3019",
+     "d": "VK3019",
      "ind": "Obese Adults",
      "tgt": "—",
      "moa": "—",
@@ -82,9 +76,9 @@
     {
      "date": "2026-10-02",
      "kind": "readout",
-     "drug": "SC VK3019",
+     "drug": "VK3019",
      "est": true,
-     "label": "SC VK3019 Phase I primary completion (registry estimate)"
+     "label": "VK3019 Phase I primary completion (registry estimate)"
     },
     {
      "date": "2026-10-28",
@@ -553,6 +547,144 @@
    }
   },
   {
+   "t": "SRRK",
+   "n": "Scholar Rock Holding",
+   "area": "Neuromuscular",
+   "mcap": 5107.7,
+   "ev": 4811.8,
+   "cash": 492.1,
+   "debt": 196.2,
+   "burn": 24.74,
+   "rev": 0,
+   "shares": 121.79,
+   "own": null,
+   "emp": null,
+   "partners": [],
+   "patentYrs": 10,
+   "diff": 0.6,
+   "mkt": 0.6,
+   "pipeline": [
+    {
+     "d": "Apitegromab",
+     "ind": "Spinal Muscular Atrophy",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase III",
+     "n": 238,
+     "ro": "2026-11-01",
+     "roType": "ESTIMATED",
+     "ep": "Evaluate the long-term safety and tolerability of apitegromab in patients with Type 2 and Type 3 SMA",
+     "peak": 800,
+     "launch": 2.5,
+     "cost": 260,
+     "est": true,
+     "nct": "NCT05626855",
+     "trials": 5,
+     "activeTrials": 3
+    },
+    {
+     "d": "SRK-439",
+     "ind": "Healthy",
+     "tgt": "—",
+     "moa": "—",
+     "ph": "Phase I",
+     "n": 76,
+     "ro": "2026-12-17",
+     "roType": "ESTIMATED",
+     "ep": "Evaluate the safety and tolerability of single and multiple SRK-439 SC dose administration in healthy adult pa",
+     "peak": 500,
+     "launch": 7,
+     "cost": 90,
+     "est": true,
+     "nct": "NCT07444294",
+     "trials": 1,
+     "activeTrials": 1
+    }
+   ],
+   "catalysts": [
+    {
+     "date": "2026-11-01",
+     "kind": "readout",
+     "drug": "Apitegromab",
+     "est": true,
+     "label": "Apitegromab Phase III primary completion (registry estimate)"
+    },
+    {
+     "date": "2026-12-17",
+     "kind": "readout",
+     "drug": "SRK-439",
+     "est": true,
+     "label": "SRK-439 Phase I primary completion (registry estimate)"
+    },
+    {
+     "date": "2026-11-05",
+     "kind": "earnings",
+     "drug": null,
+     "est": true,
+     "label": "Next quarterly report (estimated)"
+    }
+   ],
+   "financings": [
+    {
+     "date": "2026-08-06",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1727196/000110465926091699/tm2622083-1_424b5.htm"
+    },
+    {
+     "date": "2025-11-14",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1727196/000110465925111955/tm2530774-1_424b5.htm"
+    },
+    {
+     "date": "2024-10-09",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1727196/000110465924107346/tm2425688-13_424b5.htm"
+    },
+    {
+     "date": "2024-10-07",
+     "type": "Shelf takedown or ATM (424B5)",
+     "amt": null,
+     "dil": null,
+     "url": "https://www.sec.gov/Archives/edgar/data/1727196/000110465924106713/tm2425688-11_424b5.htm"
+    }
+   ],
+   "note": "",
+   "dil24": 52.2,
+   "cashFlowPositive": false,
+   "src": {
+    "cik": "1727196",
+    "asOf": "2026-06-30",
+    "cashParts": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "MarketableSecuritiesCurrent"
+    ],
+    "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
+    "sharesAsOf": "2026-08-03",
+    "filing": {
+     "form": "10-Q",
+     "date": "2026-08-06",
+     "url": "https://www.sec.gov/Archives/edgar/data/1727196/000119312526336732/srrk-20260630.htm"
+    },
+    "price": 41.94,
+    "priceDate": "2026-10-12",
+    "priceSource": "Yahoo Finance",
+    "sponsor": "Scholar Rock",
+    "trials": 8,
+    "defaults": [
+     "differentiation",
+     "market opportunity",
+     "patent life",
+     "peak sales"
+    ]
+   }
+  },
+  {
    "t": "IDYA",
    "n": "Ideaya Biosciences",
    "area": "Oncology",
@@ -571,7 +703,7 @@
    "mkt": 0.6,
    "pipeline": [
     {
-     "d": "Crizotinib",
+     "d": "IDE196",
      "ind": "Metastatic Uveal Melanoma",
      "tgt": "—",
      "moa": "—",
@@ -625,7 +757,7 @@
      "activeTrials": 1
     },
     {
-     "d": "Pembrolizumab",
+     "d": "IDE-161",
      "ind": "Advanced or Metastatic Solid Tumors",
      "tgt": "—",
      "moa": "—",
@@ -683,16 +815,16 @@
     {
      "date": "2027-01-15",
      "kind": "readout",
-     "drug": "Crizotinib",
+     "drug": "IDE196",
      "est": true,
-     "label": "Crizotinib Phase III primary completion (registry estimate)"
+     "label": "IDE196 Phase III primary completion (registry estimate)"
     },
     {
      "date": "2026-10-15",
      "kind": "readout",
-     "drug": "Pembrolizumab",
+     "drug": "IDE-161",
      "est": true,
-     "label": "Pembrolizumab Phase I primary completion (registry estimate)"
+     "label": "IDE-161 Phase I primary completion (registry estimate)"
     },
     {
      "date": "2027-01-07",
@@ -991,10 +1123,28 @@
    "mkt": 0.6,
    "pipeline": [
     {
-     "d": "zeleciment basivarsen",
-     "ind": "Myotonic Dystrophy Type 1 (DM1)",
+     "d": "z-rostudirsen (DYNE-251)",
+     "ind": "Duchenne muscular dystrophy, exon 51 amenable",
      "tgt": "—",
-     "moa": "—",
+     "moa": "Antibody-oligonucleotide conjugate (FORCE platform)",
+     "ph": "Filed",
+     "n": 90,
+     "ro": "2030-12-15",
+     "roType": "ESTIMATED",
+     "ep": "Rise From Floor (RFF) velocity",
+     "peak": 900,
+     "launch": 0.8,
+     "cost": 30,
+     "est": true,
+     "nct": "NCT07608432",
+     "trials": 2,
+     "activeTrials": 2
+    },
+    {
+     "d": "z-basivarsen (DYNE-101)",
+     "ind": "Myotonic dystrophy type 1",
+     "tgt": "—",
+     "moa": "Antibody-oligonucleotide conjugate (FORCE platform)",
      "ph": "Phase III",
      "n": 150,
      "ro": "2028-07-15",
@@ -1005,71 +1155,17 @@
      "cost": 260,
      "est": true,
      "nct": "NCT07486934",
-     "trials": 1,
-     "activeTrials": 1
-    },
-    {
-     "d": "Zeleciment Rostudirsen",
-     "ind": "Duchenne Muscular Dystrophy (DMD)",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase III",
-     "n": 90,
-     "ro": "2030-12-15",
-     "roType": "ESTIMATED",
-     "ep": "Rise From Floor (RFF) velocity",
-     "peak": 800,
-     "launch": 2.5,
-     "cost": 260,
-     "est": true,
-     "nct": "NCT07608432",
-     "trials": 1,
-     "activeTrials": 1
-    },
-    {
-     "d": "DYNE-101",
-     "ind": "Myotonic Dystrophy Type 1 (DM1)",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase II",
-     "n": 127,
-     "ro": "2029-07-15",
-     "roType": "ESTIMATED",
-     "ep": "MAD Cohorts: Number of Participants With Treatment-Emergent Adverse Events (TEAEs)",
-     "peak": 600,
-     "launch": 4.5,
-     "cost": 160,
-     "est": true,
-     "nct": "NCT05481879",
-     "trials": 1,
-     "activeTrials": 1
-    },
-    {
-     "d": "DYNE-251",
-     "ind": "Duchenne Muscular Dystrophy (DMD)",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase II",
-     "n": 86,
-     "ro": "2031-09-15",
-     "roType": "ESTIMATED",
-     "ep": "Number of Participants With Treatment-Emergent Adverse Events (TEAEs)",
-     "peak": 600,
-     "launch": 4.5,
-     "cost": 160,
-     "est": true,
-     "nct": "NCT05524883",
-     "trials": 1,
-     "activeTrials": 1
+     "trials": 2,
+     "activeTrials": 2
     }
    ],
    "catalysts": [
     {
      "date": "2028-07-15",
      "kind": "readout",
-     "drug": "zeleciment basivarsen",
+     "drug": "z-basivarsen (DYNE-101)",
      "est": true,
-     "label": "zeleciment basivarsen Phase III primary completion (registry estimate)"
+     "label": "z-basivarsen (DYNE-101) Phase III primary completion (registry estimate)"
     },
     {
      "date": "2026-10-28",
@@ -1077,6 +1173,19 @@
      "drug": null,
      "est": true,
      "label": "Next quarterly report (estimated)"
+    },
+    {
+     "drug": "z-rostudirsen (DYNE-251)",
+     "date": "2027-01-21",
+     "kind": "regulatory",
+     "label": "z-rostudirsen PDUFA target action date"
+    },
+    {
+     "drug": "z-basivarsen (DYNE-101)",
+     "date": "2027-03-31",
+     "kind": "readout",
+     "label": "z-basivarsen ACHIEVE topline data (guided Q1 2027)",
+     "est": true
     }
    ],
    "financings": [
