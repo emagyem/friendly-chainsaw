@@ -19,7 +19,10 @@
   "ARWR": { "area": "RNAi" },
   "RCKT": { "area": "Gene therapy" },
   "SRRK": { "area": "Neuromuscular", "sponsor": "Scholar Rock" },
-  "IDYA": { "area": "Oncology" },
+  "IDYA": {
+    "area": "Oncology",
+    "programs": { "Darovasertib": { "aliases": ["IDE196"], "tgt": "PKC", "moa": "Small-molecule inhibitor" } }
+  },
   "KYMR": { "area": "Immunology" },
   "DYN": {
     "area": "Neuromuscular",
