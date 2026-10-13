@@ -3,10 +3,13 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   ScatterChart, Scatter, ZAxis, ReferenceLine, BarChart, Bar, Cell
 } from "recharts";
+import { COMPANIES, META } from "./data.js";
 
 /* ------------------------------------------------------------------
-   READOUT — biotech intelligence terminal (MVP)
-   Sample data only. Companies and figures are fictional.
+   READOUT — biotech intelligence terminal
+   Data comes from public/data/companies.json (SEC EDGAR, ClinicalTrials.gov,
+   stock prices, plus config/assumptions.json), refreshed nightly.
+   Falls back to a fictional sample dataset when that file is absent.
 ------------------------------------------------------------------- */
 
 const PHASES = ["Discovery", "Preclinical", "Phase I", "Phase II", "Phase III", "Filed", "Approved"];
@@ -25,157 +28,6 @@ const CAT_KIND = {
   conference: { label: "Conference", c: "#5A6B76" },
 };
 
-const C = (t, n, area, mcap, ev, cash, debt, burn, rev, shares, own, emp, partners, patentYrs, diff, mkt, pipeline, catalysts, financings, note) =>
-  ({ t, n, area, mcap, ev, cash, debt, burn, rev, shares, own, emp, partners, patentYrs, diff, mkt, pipeline, catalysts, financings, note });
-
-const COMPANIES = [
-  C("NVRA", "Novara Therapeutics", "Oncology", 1240, 880, 412, 30, 21.5, 0, 74.2, 61, 640, ["Takeda-style regional partner"], 11, 0.8, 0.85,
-    [
-      { d: "NVR-214", ind: "2L metastatic colorectal cancer", tgt: "KRAS G12D", moa: "Covalent inhibitor", ph: "Phase III", n: 612, ro: "2026-11-18", ep: "Progression-free survival", peak: 1400, launch: 2.5, cost: 240 },
-      { d: "NVR-330", ind: "Pancreatic adenocarcinoma", tgt: "KRAS G12D", moa: "Covalent inhibitor", ph: "Phase II", n: 180, ro: "2027-04-02", ep: "Objective response rate", peak: 750, launch: 4.5, cost: 150 },
-      { d: "NVR-402", ind: "Solid tumors, basket", tgt: "SOS1", moa: "Allosteric modulator", ph: "Phase I", n: 48, ro: "2027-06-15", ep: "Safety, MTD", peak: 400, launch: 7, cost: 95 },
-    ],
-    [
-      { date: "2026-11-18", kind: "readout", label: "NVR-214 Phase III interim PFS", drug: "NVR-214" },
-      { date: "2026-10-29", kind: "earnings", label: "Q3 results", drug: null },
-      { date: "2027-04-02", kind: "readout", label: "NVR-330 Phase II ORR", drug: "NVR-330" },
-    ],
-    [{ date: "2025-03-11", type: "Follow-on offering", amt: 230, dil: 12.4 }, { date: "2024-06-02", type: "ATM program", amt: 75, dil: 5.1 }],
-    "Lead program is the entire equity story; interim look lands before year-end."),
-
-  C("CRLX", "Cerelix Bio", "Neurology", 486, 300, 198, 12, 9.4, 0, 44.8, 38, 310, [], 13, 0.7, 0.6,
-    [
-      { d: "CRX-101", ind: "Focal onset seizures", tgt: "Kv7.2/7.3", moa: "Potassium channel opener", ph: "Phase II", n: 240, ro: "2027-01-22", ep: "Seizure frequency reduction", peak: 900, launch: 4, cost: 175 },
-      { d: "CRX-118", ind: "Essential tremor", tgt: "Kv7.2/7.3", moa: "Potassium channel opener", ph: "Phase I", n: 60, ro: "2026-12-09", ep: "Safety, PK", peak: 520, launch: 6.5, cost: 80 },
-    ],
-    [
-      { date: "2026-12-09", kind: "readout", label: "CRX-118 Phase I safety and PK", drug: "CRX-118" },
-      { date: "2027-01-22", kind: "readout", label: "CRX-101 Phase II topline", drug: "CRX-101" },
-    ],
-    [{ date: "2025-09-30", type: "Private placement", amt: 120, dil: 18.9 }],
-    "Two shots on goal from one channel; both readouts inside five months."),
-
-  C("ATLM", "Atlomen Sciences", "Rare disease", 2180, 1790, 520, 130, 26.0, 18.5, 58.9, 71, 780, ["Regional commercialization partner, EU"], 14, 0.9, 0.7,
-    [
-      { d: "ATL-Gx1", ind: "Fabry disease", tgt: "GLA", moa: "AAV gene therapy", ph: "Filed", n: 66, ro: "2027-02-14", ep: "PDUFA decision", peak: 1100, launch: 0.6, cost: 60 },
-      { d: "ATL-Gx4", ind: "Pompe disease", tgt: "GAA", moa: "AAV gene therapy", ph: "Phase III", n: 132, ro: "2027-08-20", ep: "6-minute walk distance", peak: 860, launch: 2.8, cost: 210 },
-      { d: "ATL-207", ind: "Hereditary angioedema", tgt: "Kallikrein", moa: "Base editing", ph: "Phase I", n: 24, ro: "2027-05-11", ep: "Attack rate", peak: 640, launch: 6, cost: 120 },
-    ],
-    [
-      { date: "2027-02-14", kind: "regulatory", label: "ATL-Gx1 PDUFA target action date", drug: "ATL-Gx1" },
-      { date: "2026-09-25", kind: "conference", label: "Rare disease investor day", drug: null },
-      { date: "2027-08-20", kind: "readout", label: "ATL-Gx4 Phase III topline", drug: "ATL-Gx4" },
-    ],
-    [{ date: "2026-01-20", type: "Convertible notes", amt: 300, dil: 0 }, { date: "2024-11-05", type: "Follow-on offering", amt: 260, dil: 9.8 }],
-    "First approval decision converts the company from clinical to commercial."),
-
-  C("VYNT", "Vyantis Pharma", "Immunology", 740, 610, 142, 0, 13.8, 0, 44, 52, 265, [], 9, 0.5, 0.75,
-    [
-      { d: "VYN-8", ind: "Ulcerative colitis", tgt: "TL1A", moa: "Monoclonal antibody", ph: "Phase II", n: 310, ro: "2026-10-07", ep: "Clinical remission at wk 12", peak: 1600, launch: 4.2, cost: 260 },
-      { d: "VYN-15", ind: "Atopic dermatitis", tgt: "OX40L", moa: "Monoclonal antibody", ph: "Phase I", n: 72, ro: "2027-03-30", ep: "EASI-75", peak: 980, launch: 6.5, cost: 130 },
-    ],
-    [
-      { date: "2026-10-07", kind: "readout", label: "VYN-8 Phase II induction data", drug: "VYN-8" },
-      { date: "2026-11-12", kind: "earnings", label: "Q3 results", drug: null },
-    ],
-    [{ date: "2025-05-14", type: "Follow-on offering", amt: 165, dil: 15.2 }],
-    "Crowded target, narrow runway. Readout and financing need are close together."),
-
-  C("HLXR", "Helixar Therapeutics", "Cell therapy", 395, 210, 121, 8, 11.2, 4.4, 36.0, 29, 240, ["Manufacturing alliance"], 10, 0.6, 0.55,
-    [
-      { d: "HLX-CAR7", ind: "Relapsed multiple myeloma", tgt: "GPRC5D", moa: "Autologous CAR-T", ph: "Phase II", n: 96, ro: "2027-02-27", ep: "Overall response rate", peak: 700, launch: 3.8, cost: 195 },
-      { d: "HLX-NK2", ind: "AML, post-transplant", tgt: "CD33", moa: "Allogeneic NK", ph: "Phase I", n: 36, ro: "2026-12-18", ep: "Safety, expansion", peak: 430, launch: 6.2, cost: 105 },
-    ],
-    [
-      { date: "2026-12-18", kind: "readout", label: "HLX-NK2 dose escalation update", drug: "HLX-NK2" },
-      { date: "2026-10-16", kind: "financing", label: "ATM capacity refresh filed", drug: null },
-    ],
-    [{ date: "2026-04-08", type: "ATM program", amt: 60, dil: 14.1 }, { date: "2024-09-19", type: "Private placement", amt: 95, dil: 21.0 }],
-    "Under 12 months of cash with an ATM already open. Assume dilution."),
-
-  C("PMBR", "Pembra Biosciences", "Metabolic", 3120, 2740, 690, 210, 32.5, 41.2, 96, 64, 820, ["Global obesity co-development"], 12, 0.8, 0.95,
-    [
-      { d: "PMB-40", ind: "Obesity", tgt: "GLP-1/GIP", moa: "Oral small molecule", ph: "Phase III", n: 1480, ro: "2027-05-28", ep: "Percent weight loss at wk 68", peak: 3200, launch: 2.4, cost: 640 },
-      { d: "PMB-52", ind: "MASH with fibrosis", tgt: "FGF21", moa: "Fc fusion", ph: "Phase II", n: 220, ro: "2026-11-05", ep: "Fibrosis improvement", peak: 1250, launch: 4.4, cost: 230 },
-    ],
-    [
-      { date: "2026-11-05", kind: "readout", label: "PMB-52 Phase IIb biopsy data", drug: "PMB-52" },
-      { date: "2027-05-28", kind: "readout", label: "PMB-40 Phase III topline", drug: "PMB-40" },
-      { date: "2026-10-22", kind: "earnings", label: "Q3 results", drug: null },
-    ],
-    [{ date: "2026-02-26", type: "Follow-on offering", amt: 450, dil: 8.2 }],
-    "Largest market opportunity in the sample universe, priced accordingly."),
-
-  C("ORNS", "Orionis Medicines", "Oncology", 168, 96, 74, 0, 6.8, 0, 22.5, 19, 120, [], 8, 0.7, 0.5,
-    [
-      { d: "ORN-11", ind: "HR+/HER2- breast cancer", tgt: "CDK2", moa: "Selective inhibitor", ph: "Phase II", n: 128, ro: "2027-03-12", ep: "Objective response rate", peak: 620, launch: 4.6, cost: 145 },
-      { d: "ORN-24", ind: "Small cell lung cancer", tgt: "DLL3", moa: "T-cell engager", ph: "Phase I", n: 40, ro: "2027-07-08", ep: "Safety, RP2D", peak: 510, launch: 7, cost: 100 },
-    ],
-    [
-      { date: "2027-03-12", kind: "readout", label: "ORN-11 Phase II expansion data", drug: "ORN-11" },
-    ],
-    [{ date: "2025-11-13", type: "Registered direct", amt: 48, dil: 24.6 }],
-    "Micro-cap with credible data but a balance sheet that forces a raise."),
-
-  C("KTVA", "Kestrava Bio", "Infectious disease", 912, 705, 260, 55, 12.0, 34.5, 51.0, 66, 330, ["Government procurement agreement"], 12, 0.6, 0.65,
-    [
-      { d: "KTV-3", ind: "Multidrug-resistant gram-negative infection", tgt: "PBP3", moa: "Beta-lactamase inhibitor combo", ph: "Phase III", n: 420, ro: "2027-01-15", ep: "Clinical cure at test-of-cure", peak: 540, launch: 2.2, cost: 180 },
-      { d: "KTV-9", ind: "RSV in older adults", tgt: "F protein", moa: "Prefusion vaccine", ph: "Phase II", n: 900, ro: "2027-06-04", ep: "Immunogenicity", peak: 1150, launch: 4.1, cost: 300 },
-    ],
-    [
-      { date: "2027-01-15", kind: "readout", label: "KTV-3 Phase III topline", drug: "KTV-3" },
-      { date: "2026-09-30", kind: "regulatory", label: "End-of-Phase-II meeting, KTV-9", drug: "KTV-9" },
-    ],
-    [{ date: "2025-07-22", type: "Term loan", amt: 55, dil: 0 }],
-    "Revenue from procurement contracts softens the burn relative to peers."),
-
-  C("SYNQ", "Synquell Therapeutics", "Ophthalmology", 254, 150, 104, 0, 7.6, 0, 31.0, 24, 145, [], 10, 0.8, 0.45,
-    [
-      { d: "SYN-6", ind: "Geographic atrophy", tgt: "Complement C3", moa: "Intravitreal implant", ph: "Phase II", n: 156, ro: "2026-12-03", ep: "Lesion growth rate", peak: 820, launch: 4.3, cost: 165 },
-    ],
-    [
-      { date: "2026-12-03", kind: "readout", label: "SYN-6 Phase II 12-month lesion data", drug: "SYN-6" },
-      { date: "2026-11-06", kind: "earnings", label: "Q3 results", drug: null },
-    ],
-    [{ date: "2026-03-05", type: "Follow-on offering", amt: 85, dil: 19.4 }],
-    "Single-asset company. The December readout is binary for the equity."),
-
-  C("DRVN", "Daravin Labs", "Cardiometabolic", 1410, 1120, 336, 45, 16.4, 8.0, 63.0, 58, 390, ["Cardiology device co-promote"], 11, 0.5, 0.8,
-    [
-      { d: "DRV-77", ind: "Hypertrophic cardiomyopathy", tgt: "Cardiac myosin", moa: "Allosteric inhibitor", ph: "Phase III", n: 380, ro: "2027-04-21", ep: "Peak VO2 change", peak: 1050, launch: 2.6, cost: 260 },
-      { d: "DRV-91", ind: "Lp(a)-driven ASCVD", tgt: "Lp(a)", moa: "siRNA", ph: "Phase II", n: 300, ro: "2027-09-10", ep: "Lp(a) reduction", peak: 1450, launch: 4.8, cost: 290 },
-    ],
-    [
-      { date: "2027-04-21", kind: "readout", label: "DRV-77 Phase III topline", drug: "DRV-77" },
-      { date: "2026-10-30", kind: "earnings", label: "Q3 results", drug: null },
-    ],
-    [{ date: "2025-12-09", type: "Follow-on offering", amt: 310, dil: 10.6 }],
-    "Well capitalized into its pivotal readout; little near-term financing pressure."),
-
-  C("LUMV", "Lumeva Bio", "Respiratory", 318, 205, 88, 10, 8.9, 0, 27.5, 21, 160, [], 9, 0.4, 0.5,
-    [
-      { d: "LMV-2", ind: "Chronic cough", tgt: "P2X3", moa: "Antagonist", ph: "Phase II", n: 260, ro: "2027-02-05", ep: "24-hour cough frequency", peak: 700, launch: 4.4, cost: 160 },
-      { d: "LMV-14", ind: "Severe asthma", tgt: "TSLP", moa: "Inhaled antibody fragment", ph: "Preclinical", n: 0, ro: "2027-10-01", ep: "IND enabling", peak: 890, launch: 8, cost: 140 },
-    ],
-    [
-      { date: "2027-02-05", kind: "readout", label: "LMV-2 Phase IIb topline", drug: "LMV-2" },
-      { date: "2026-10-09", kind: "conference", label: "Respiratory partnering summit", drug: null },
-    ],
-    [{ date: "2026-06-18", type: "ATM program", amt: 40, dil: 13.7 }],
-    "Me-too mechanism in a class where two competitors already failed."),
-
-  C("AXBN", "Axabion Therapeutics", "Autoimmune", 665, 430, 235, 0, 14.6, 0, 47.5, 53, 290, ["Academic discovery alliance"], 13, 0.9, 0.7,
-    [
-      { d: "AXB-5", ind: "Systemic lupus erythematosus", tgt: "CD19", moa: "Autologous CAR-T", ph: "Phase II", n: 84, ro: "2027-03-19", ep: "Drug-free remission at 12 mo", peak: 1350, launch: 4.1, cost: 240 },
-      { d: "AXB-12", ind: "Myasthenia gravis", tgt: "FcRn", moa: "Subcutaneous antibody", ph: "Phase I", n: 54, ro: "2026-11-27", ep: "IgG reduction", peak: 760, launch: 6, cost: 115 },
-    ],
-    [
-      { date: "2026-11-27", kind: "readout", label: "AXB-12 Phase I PD data", drug: "AXB-12" },
-      { date: "2027-03-19", kind: "readout", label: "AXB-5 Phase II remission data", drug: "AXB-5" },
-    ],
-    [{ date: "2026-05-07", type: "Private placement", amt: 180, dil: 16.3 }],
-    "Differentiated mechanism in autoimmune, where cell therapy data has moved fast."),
-];
 
 /* ---------------------------- calculations ---------------------------- */
 
@@ -183,9 +35,16 @@ const TODAY = new Date();
 const days = (iso) => Math.round((new Date(iso + "T00:00:00") - TODAY) / 86400000);
 const fmtDate = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 const money = (m) => (m >= 1000 ? `$${(m / 1000).toFixed(2)}B` : `$${Math.round(m)}M`);
-const num = (n, d = 1) => n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+const num = (n, d = 1) => (n == null || !isFinite(n) ? "—" : n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }));
+const LIVE = META.live;
+// Share-count growth: measured from SEC filings when live, summed from the financing table otherwise.
+const shareGrowth = (c) => (c.dil24 != null ? c.dil24 : c.financings.reduce((s, f) => s + (f.dil || 0), 0));
+const dilutionPhrase = (c) => (c.dil24 != null ? "over the last two years of SEC filings" : "across the financings on file");
+const leadProgram = (c) => [...c.pipeline].sort((a, b) => phaseRank(b.ph) - phaseRank(a.ph))[0];
+const ExtLink = ({ href, children }) => (href ? <a className="src" href={href} target="_blank" rel="noreferrer">{children}</a> : children);
 
-function runway(c) { return c.cash / c.burn; }
+// Capped at ten years so cash-flow-positive companies do not show absurd figures.
+function runway(c) { return Math.min(c.cash / c.burn, 120); }
 
 function rnpv(p, { discount = 0.11, margin = 0.42, patentYrs = 11, posOverride = null } = {}) {
   const pos = posOverride ?? POS[p.ph];
@@ -267,8 +126,9 @@ function alertsFor(c) {
   else if (nc && days(nc.date) <= 120) out.push({ sev: "low", text: `${nc.label} in ${days(nc.date)} days.` });
   const atm = c.financings.find((f) => f.type === "ATM program" && days(f.date) > -540);
   if (atm) out.push({ sev: "med", text: `ATM program open since ${fmtDate(atm.date)}. Dilution can arrive without an announcement.` });
-  const dil = c.financings.reduce((s, f) => s + f.dil, 0);
-  if (dil > 25) out.push({ sev: "med", text: `Share count up roughly ${num(dil, 0)}% across the last two financings.` });
+  const dil = shareGrowth(c);
+  if (dil > 25) out.push({ sev: "med", text: `Share count up roughly ${num(dil, 0)}% ${dilutionPhrase(c)}.` });
+  if (c.stale) out.push({ sev: "low", text: "The latest refresh could not update this company, so these figures are from an earlier run." });
   const evpv = c.ev / Math.max(pipelineValue(c), 1);
   if (evpv < 0.8) out.push({ sev: "low", text: `Enterprise value is ${num((1 - evpv) * 100, 0)}% below the modeled risk-adjusted pipeline value. Check the peak sales assumption before reading that as cheap.` });
   return out;
@@ -276,7 +136,7 @@ function alertsFor(c) {
 
 /* ------------------------------ trace UI ------------------------------ */
 
-function Trace({ value, unit, source, calc, reading, tone }) {
+function Trace({ value, unit, source, calc, reading, tone, link }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   useEffect(() => {
@@ -292,7 +152,7 @@ function Trace({ value, unit, source, calc, reading, tone }) {
       </button>
       {open && (
         <span className="tr-pop" role="dialog">
-          <span className="tr-row"><b>From</b>{source}</span>
+          <span className="tr-row"><b>From</b><ExtLink href={link}>{source}</ExtLink></span>
           <span className="tr-row"><b>Calculated</b>{calc}</span>
           <span className="tr-row"><b>Reading</b>{reading}</span>
         </span>
@@ -414,7 +274,8 @@ function Screen({ go }) {
   const [q, setQ] = useState("");
   const [area, setArea] = useState("All");
   const [minPhase, setMinPhase] = useState("Phase I");
-  const [maxCap, setMaxCap] = useState(4000);
+  const capCeiling = useMemo(() => Math.max(4000, Math.ceil(Math.max(...COMPANIES.map((c) => c.mcap)) / 500) * 500), []);
+  const [maxCap, setMaxCap] = useState(capCeiling);
   const [minRun, setMinRun] = useState(0);
   const [within, setWithin] = useState(365);
   const [sort, setSort] = useState("bis");
@@ -455,13 +316,13 @@ function Screen({ go }) {
         <header className="ph"><h2>Screen the universe</h2><span className="ph-note">Every filter maps to a question an analyst already asks out loud.</span></header>
         <div className="filters">
           <label className="f"><span>Company, drug, or target</span>
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="KRAS, obesity, NVRA" /></label>
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={`obesity, KRAS, ${COMPANIES[0].t}`} /></label>
           <label className="f"><span>Therapeutic area</span>
             <select value={area} onChange={(e) => setArea(e.target.value)}>{areas.map((a) => <option key={a}>{a}</option>)}</select></label>
           <label className="f"><span>Most advanced program at least</span>
             <select value={minPhase} onChange={(e) => setMinPhase(e.target.value)}>{PHASES.map((p) => <option key={p}>{p}</option>)}</select></label>
           <label className="f"><span>Market cap at or below {money(maxCap)}</span>
-            <input type="range" min="100" max="4000" step="50" value={maxCap} onChange={(e) => setMaxCap(+e.target.value)} /></label>
+            <input type="range" min="100" max={capCeiling} step="50" value={maxCap} onChange={(e) => setMaxCap(+e.target.value)} /></label>
           <label className="f"><span>Runway of at least {minRun} months</span>
             <input type="range" min="0" max="36" value={minRun} onChange={(e) => setMinRun(+e.target.value)} /></label>
           <label className="f"><span>Next catalyst within {within} days</span>
@@ -484,7 +345,7 @@ function Screen({ go }) {
               </tr></thead>
               <tbody>
                 {rows.map(({ c, bis: s, run, nd, nc, pv }) => {
-                  const lead = [...c.pipeline].sort((a, b) => phaseRank(b.ph) - phaseRank(a.ph))[0];
+                  const lead = leadProgram(c);
                   return (
                     <tr key={c.t} onClick={() => go("company", c.t)}>
                       <td><span className="tick">{c.t}</span></td>
@@ -544,7 +405,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
         <div>
           <div className="cohead-t"><span className="tick lg">{c.t}</span><h1>{c.n}</h1>
             <button className={"star " + (watch.includes(c.t) ? "on" : "")} onClick={() => toggleWatch(c.t)}>★</button></div>
-          <p className="cohead-note">{c.note}</p>
+          <p className="cohead-note">{c.note || (LIVE ? "No thesis note yet. Add one for this ticker in config/assumptions.json." : "")}</p>
         </div>
         <div className="cohead-stats">
           <div><span>Market cap</span><b className="mono">{money(c.mcap)}</b></div>
@@ -565,39 +426,42 @@ function Company({ ticker, go, watch, toggleWatch }) {
             <div className="metrics">
               <div className="metric"><span>Cash runway</span>
                 <Trace value={num(r)} unit=" months" tone={r < 12 ? "warn" : ""}
-                  source={`Cash of ${money(c.cash)} and quarterly operating cash use, latest filing`}
+                  source={c.src ? `${c.src.filing?.form || "SEC filing"} balance sheet as of ${fmtDate(c.src.asOf)}: cash plus marketable securities` : `Cash of ${money(c.cash)} and quarterly operating cash use, latest filing`}
+                  link={c.src?.filing?.url}
                   calc={`${money(c.cash)} ÷ ${num(c.burn)}M per month`}
                   reading={r < 12 ? "Financing is likely needed before the next major catalyst." : r < 18 ? "Enough to reach the next event, not enough to negotiate from strength after it." : "Funded through the next catalyst with room to spare."} />
               </div>
               <div className="metric"><span>Monthly cash burn</span>
                 <Trace value={num(c.burn)} unit="M"
-                  source="Operating cash flow and capital expenditure, trailing four quarters"
-                  calc="Trailing twelve-month net cash use ÷ 12"
-                  reading={c.burn > 20 ? "Heavy spend, consistent with a late-stage trial running." : "Burn is in line with a mid-stage clinical program."} />
+                  source={c.src ? "Operating cash flow from SEC XBRL filings, trailing twelve months" : "Operating cash flow and capital expenditure, trailing four quarters"}
+                  link={c.src?.filing?.url}
+                  calc={c.src?.burnHow ? `Trailing twelve-month operating cash use (${c.src.burnHow}) ÷ 12` : "Trailing twelve-month net cash use ÷ 12"}
+                  reading={c.cashFlowPositive ? "Operating cash flow is positive, so runway is not the constraint here." : c.burn > 20 ? "Heavy spend, consistent with a late-stage trial running." : "Burn is in line with a mid-stage clinical program."} />
               </div>
               <div className="metric"><span>Enterprise value</span>
                 <Trace value={money(c.ev)}
-                  source="Market capitalization, cash, and debt"
+                  source={c.src ? `Share price $${num(c.src.price, 2)} (${c.src.priceSource}, ${fmtDate(c.src.priceDate)}) × ${num(c.shares, 1)}M shares, less cash, plus debt` : "Market capitalization, cash, and debt"}
                   calc={`${money(c.mcap)} − ${money(c.cash)} + ${money(c.debt)}`}
                   reading={`The market is paying ${money(c.ev)} for the pipeline itself.`} />
               </div>
               <div className="metric"><span>Pipeline rNPV</span>
                 <Trace value={money(pv)}
-                  source="Per-program peak sales, phase, and development cost estimates"
+                  source={c.pipeline.some((p) => p.est) ? "Phase from ClinicalTrials.gov; peak sales and cost are placeholders until set in config/assumptions.json" : "Per-program peak sales, phase, and development cost estimates"}
                   calc="Risk-adjusted NPV summed across programs, 11% discount rate"
                   reading={c.ev / pv < 0.85 ? "Enterprise value sits under the modeled pipeline value. Either the market disputes these assumptions or it is discounting execution." : "Enterprise value already matches or exceeds the modeled pipeline value, so the assumptions need to be right."} />
               </div>
               <div className="metric"><span>Next catalyst</span>
                 <Trace value={nc ? `${days(nc.date)}` : "—"} unit=" days"
-                  source="Company guidance, trial registry, and regulatory calendar"
+                  source={nc?.est ? "Estimated: trial primary completion date from ClinicalTrials.gov, or the usual quarterly filing cadence" : "Company guidance, trial registry, and regulatory calendar"}
                   calc={nc ? `${fmtDate(nc.date)} minus today` : "No dated event"}
                   reading={nc ? nc.label : "Nothing dated in the current window."} />
               </div>
               <div className="metric"><span>Shares outstanding</span>
                 <Trace value={num(c.shares, 0)} unit="M"
-                  source="Cover page of the most recent periodic filing"
+                  source={c.src ? `Cover page of the latest SEC filing, as of ${fmtDate(c.src.sharesAsOf)}` : "Cover page of the most recent periodic filing"}
+                  link={c.src?.filing?.url}
                   calc="As reported"
-                  reading={`Up roughly ${num(c.financings.reduce((s, f) => s + f.dil, 0), 0)}% from the financings on file.`} />
+                  reading={`Up roughly ${num(shareGrowth(c), 0)}% ${dilutionPhrase(c)}.`} />
               </div>
             </div>
           </section>
@@ -612,12 +476,14 @@ function Company({ ticker, go, watch, toggleWatch }) {
             <dl className="facts">
               <dt>Therapeutic area</dt><dd>{c.area}</dd>
               <dt>Programs</dt><dd>{c.pipeline.length}</dd>
-              <dt>Employees</dt><dd className="mono">{c.emp}</dd>
-              <dt>Institutional ownership</dt><dd className="mono">{num(c.own, 0)}%</dd>
+              <dt>Employees</dt><dd className="mono">{c.emp ?? "—"}</dd>
+              <dt>Institutional ownership</dt><dd className="mono">{c.own == null ? "—" : `${num(c.own, 0)}%`}</dd>
               <dt>Revenue, trailing</dt><dd className="mono">{c.rev ? money(c.rev) : "None"}</dd>
               <dt>Debt</dt><dd className="mono">{c.debt ? money(c.debt) : "None"}</dd>
               <dt>Partnerships</dt><dd>{c.partners.length ? c.partners.join("; ") : "None disclosed"}</dd>
-              <dt>Patent life, lead asset</dt><dd className="mono">{c.patentYrs} years</dd>
+              <dt>Patent life, lead asset</dt><dd className="mono">{c.patentYrs} years{c.src?.defaults?.includes("patent life") ? " (default)" : ""}</dd>
+              {c.src && <><dt>SEC filer</dt><dd><ExtLink href={`https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${c.src.cik}&type=10-Q`}>CIK {c.src.cik}</ExtLink></dd></>}
+              {c.src?.defaults?.length > 0 && <><dt>Placeholder inputs</dt><dd>{c.src.defaults.join(", ")}</dd></>}
             </dl>
           </section>
         </div>
@@ -668,9 +534,10 @@ function Company({ ticker, go, watch, toggleWatch }) {
               <table className="grid plain">
                 <thead><tr><th>Date</th><th>Instrument</th><th className="r">Size</th><th className="r">Share count impact</th></tr></thead>
                 <tbody>
+                  {c.financings.length === 0 && <tr><td colSpan="4" className="empty">No offering filings in the last three years.</td></tr>}
                   {c.financings.map((f, i) => (
-                    <tr key={i}><td className="mono">{fmtDate(f.date)}</td><td>{f.type}</td>
-                      <td className="r mono">{money(f.amt)}</td><td className="r mono">{f.dil ? `+${num(f.dil)}%` : "—"}</td></tr>
+                    <tr key={i}><td className="mono">{fmtDate(f.date)}</td><td><ExtLink href={f.url}>{f.type}</ExtLink></td>
+                      <td className="r mono">{f.amt != null ? money(f.amt) : "—"}</td><td className="r mono">{f.dil ? `+${num(f.dil)}%` : "—"}</td></tr>
                   ))}
                 </tbody>
               </table>
@@ -696,13 +563,14 @@ function Company({ ticker, go, watch, toggleWatch }) {
                   </div>
                   <PhaseTrack ph={p.ph} />
                   <dl className="facts small">
-                    <dt>Target</dt><dd>{p.tgt}</dd>
-                    <dt>Mechanism</dt><dd>{p.moa}</dd>
+                    <dt>Target</dt><dd>{p.tgt || "—"}</dd>
+                    <dt>Mechanism</dt><dd>{p.moa || "—"}</dd>
                     <dt>Primary endpoint</dt><dd>{p.ep}</dd>
                     <dt>Enrollment</dt><dd className="mono">{p.n ? p.n : "—"}</dd>
-                    <dt>Expected readout</dt><dd className="mono">{fmtDate(p.ro)} <span className="sub inline">({days(p.ro)}d)</span></dd>
+                    <dt>Expected readout</dt><dd className="mono">{fmtDate(p.ro)} <span className="sub inline">({days(p.ro)}d{p.roType === "ESTIMATED" ? ", registry estimate" : ""})</span></dd>
+                    {p.nct && <><dt>Registry</dt><dd className="mono"><ExtLink href={`https://clinicaltrials.gov/study/${p.nct}`}>{p.nct}</ExtLink>{p.trials > 1 ? <span className="sub inline"> +{p.trials - 1} more</span> : null}</dd></>}
                     <dt>Probability of approval</dt><dd className="mono">{Math.round(POS[p.ph] * 100)}%</dd>
-                    <dt>Peak sales estimate</dt><dd className="mono">{money(p.peak)}</dd>
+                    <dt>Peak sales estimate</dt><dd className="mono">{money(p.peak)}{p.est ? <span className="sub inline"> placeholder</span> : null}</dd>
                     <dt>Risk-adjusted value</dt><dd className="mono strong">{money(v)}</dd>
                   </dl>
                 </article>
@@ -724,7 +592,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
                   <div className="tl-date mono">{fmtDate(x.date)}</div>
                   <div className="tl-body">
                     <div className="tl-label">{x.label}</div>
-                    <div className="sub">{CAT_KIND[x.kind].label}{x.drug ? ` · ${x.drug}` : ""}</div>
+                    <div className="sub">{CAT_KIND[x.kind].label}{x.drug ? ` · ${x.drug}` : ""}{x.est ? " · estimated date" : ""}</div>
                   </div>
                   <div className={"tl-days mono " + (d >= 0 && d <= 45 ? "warn" : "")}>{d < 0 ? "reported" : `${d}d`}</div>
                 </div>
@@ -848,13 +716,13 @@ function Catalysts({ go }) {
 }
 
 function Compare() {
-  const [sel, setSel] = useState(["NVRA", "ATLM", "HLXR"]);
+  const [sel, setSel] = useState(() => COMPANIES.slice(0, 3).map((c) => c.t));
   const set = (i, v) => setSel(sel.map((s, j) => (j === i ? v : s)));
   const cols = sel.map((t) => COMPANIES.find((c) => c.t === t)).filter(Boolean);
 
   const rows = [
     ["Therapeutic area", (c) => c.area],
-    ["Most advanced program", (c) => [...c.pipeline].sort((a, b) => phaseRank(b.ph) - phaseRank(a.ph))[0].ph],
+    ["Most advanced program", (c) => leadProgram(c).ph],
     ["Programs", (c) => c.pipeline.length],
     ["Market cap", (c) => money(c.mcap), 1],
     ["Enterprise value", (c) => money(c.ev), 1],
@@ -865,7 +733,7 @@ function Compare() {
     ["Next catalyst", (c) => (nextCatalyst(c) ? `${days(nextCatalyst(c).date)}d` : "—"), 1],
     ["Pipeline rNPV", (c) => money(pipelineValue(c)), 1],
     ["EV / rNPV", (c) => `${num((c.ev / pipelineValue(c)) * 100, 0)}%`, 1],
-    ["Institutional ownership", (c) => `${num(c.own, 0)}%`, 1],
+    ["Institutional ownership", (c) => (c.own == null ? "—" : `${num(c.own, 0)}%`), 1],
     ["Score", (c) => bis(c), 1],
   ];
 
@@ -905,7 +773,7 @@ function Ask() {
 
   const suggestions = [
     "Which companies may need financing within 12 months?",
-    "Compare NVRA, ATLM and DRVN on financing risk.",
+    `Compare ${COMPANIES.slice(0, 3).map((c) => c.t).join(", ").replace(/, ([^,]*)$/, " and $1")} on financing risk.`,
     "Which Phase III oncology programs read out first?",
     "Where is enterprise value furthest below modeled pipeline value?",
   ];
@@ -918,7 +786,9 @@ function Ask() {
     pipeline_rnpv_musd: Math.round(pipelineValue(c)),
     programs: c.pipeline.map((p) => ({ drug: p.d, indication: p.ind, target: p.tgt, phase: p.ph, expected_readout: p.ro, peak_sales_musd: p.peak })),
     catalysts: c.catalysts.map((x) => ({ date: x.date, days_away: days(x.date), event: x.label })),
-    financings: c.financings,
+    financings: c.financings.map(({ date, type, amt }) => ({ date, type, amount_musd: amt })),
+    share_count_change_24m_pct: c.dil24 ?? null,
+    placeholder_inputs: c.src?.defaults || [],
   }));
 
   const local = (question) => {
@@ -950,25 +820,15 @@ function Ask() {
     setLog((l) => [...l, { role: "user", text }]);
     setBusy(true);
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      // The API key lives in the serverless function (api/ask.js), never in the browser.
+      const res = await fetch("/api/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-6",
-          max_tokens: 1000,
-          messages: [{
-            role: "user",
-            content: `You are the research assistant inside a biotech investment research terminal. Answer only from the JSON dataset below. Never invent a company, number, or date that is not present. Cite the specific figures you used inline, in plain prose, e.g. "$412M cash against $21.5M monthly burn". If the data cannot answer the question, say exactly what is missing. Keep the answer under 180 words, no markdown headers, no bullet symbols other than plain hyphens. End with one line beginning "Worth checking:" naming the single assumption that most affects the conclusion.
-
-DATA (all dollar figures in millions USD; this is sample data for a prototype):
-${JSON.stringify(facts())}
-
-QUESTION: ${text}`
-          }],
-        }),
+        body: JSON.stringify({ question: text, live: LIVE, asOf: META.generatedAt || null, data: facts() }),
       });
+      if (!res.ok) throw new Error(`ask endpoint returned ${res.status}`);
       const data = await res.json();
-      const out = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
+      const out = (data.text || "").trim();
       setLog((l) => [...l, { role: "ai", text: out || local(text), traced: true }]);
     } catch (e) {
       setLog((l) => [...l, { role: "ai", text: local(text), fallback: true }]);
@@ -1009,8 +869,8 @@ QUESTION: ${text}`
 
 export default function App() {
   const [view, setView] = useState("scan");
-  const [ticker, setTicker] = useState("NVRA");
-  const [watch, setWatch] = useState(["NVRA", "ATLM"]);
+  const [ticker, setTicker] = useState(COMPANIES[0].t);
+  const [watch, setWatch] = useState(() => COMPANIES.slice(0, 2).map((c) => c.t));
   const [omni, setOmni] = useState("");
 
   const go = (v, t) => { if (t) setTicker(t); setView(v); window.scrollTo({ top: 0, behavior: "smooth" }); };
@@ -1031,6 +891,9 @@ export default function App() {
           <span className="mark" aria-hidden="true" />
           <span className="bname">Readout</span>
           <span className="btag">biotech intelligence terminal</span>
+          <span className={"dstamp " + (LIVE ? "live" : "")} title={LIVE ? META.sources?.join(" · ") : "public/data/companies.json not found"}>
+            {LIVE ? `Data as of ${new Date(META.generatedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}` : "Sample data"}
+          </span>
         </div>
 
         <div className="omni">
@@ -1055,7 +918,7 @@ export default function App() {
         <aside className="rail">
           <div className="railhead">Watchlist</div>
           {watch.length === 0 && <p className="railempty">Star a company to follow its runway and catalysts here.</p>}
-          {watch.map((t) => {
+          {watch.filter((t) => COMPANIES.some((x) => x.t === t)).map((t) => {
             const c = COMPANIES.find((x) => x.t === t);
             const nc = nextCatalyst(c);
             return (
@@ -1084,7 +947,12 @@ export default function App() {
           {view === "compare" && <Compare />}
           {view === "ask" && <Ask />}
           <footer className="foot">
-            Prototype built on sample data. Companies, figures, and dates are fictional and are here to exercise the calculations, not to describe any real security.
+            {LIVE ? (
+              <>Financials from SEC EDGAR filings, trial data from ClinicalTrials.gov, prices from {META.sources?.at(-1) || "a market data feed"}; refreshed {new Date(META.generatedAt).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })}.
+                {" "}Readout dates are registry estimates unless marked otherwise, and peak sales marked as placeholders are defaults, not forecasts.{" "}</>
+            ) : (
+              <>Showing the built-in sample dataset: companies, figures, and dates are fictional. Run the data refresh to load real companies.{" "}</>
+            )}
             Research and screening tool only; nothing here is investment advice.
           </footer>
         </main>
@@ -1098,6 +966,10 @@ export default function App() {
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
+.dstamp{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:2px 8px;border-radius:3px;background:#F3E6D2;color:#8A5609;white-space:nowrap}
+.dstamp.live{background:#DDEDEA;color:#0E5A56}
+a.src{color:inherit;text-decoration:underline;text-decoration-color:rgba(18,112,107,.45);text-underline-offset:2px}
+a.src:hover{color:#12706B}
 .app{--ink:#10202E;--bg:#E6E9EA;--paper:#FFFFFF;--rule:#CBD3D7;--rule2:#E1E6E8;
 --teal:#12706B;--deep:#0C5670;--indigo:#123E6B;--amber:#B8730F;--crimson:#9E2140;--moss:#2F6B3A;--mut:#5A6B76;
 font-family:'Archivo',system-ui,sans-serif;color:var(--ink);background:var(--bg);min-height:100vh;font-size:14px;line-height:1.45;

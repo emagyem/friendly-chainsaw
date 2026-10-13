@@ -1,0 +1,30 @@
+{
+  "_readme": [
+    "Your analyst inputs: the things no public API can tell you. Everything here is optional.",
+    "Company-level keys: area, note, sponsor, partners, patentYrs, diff (0-1), mkt (0-1), own (% institutional), emp, price, catalysts, financings, programs.",
+    "sponsor: the lead-sponsor name used on ClinicalTrials.gov, if it differs from the SEC company name.",
+    "catalysts: dated events you know from press releases, e.g. {\"date\": \"2027-02-14\", \"kind\": \"regulatory\", \"label\": \"PDUFA date\"}. kind is one of readout, regulatory, earnings, financing, conference.",
+    "financings: replaces the auto-detected SEC offering list, e.g. {\"date\": \"2026-03-05\", \"type\": \"Follow-on offering\", \"amt\": 85, \"dil\": 19.4}. Use type \"ATM program\" to trigger the ATM alert.",
+    "programs: keyed by the drug name as it appears on ClinicalTrials.gov. Keys: name, aliases, tgt, moa, ph (override, e.g. Filed or Approved), ind, ep, ro (readout date guided by the company), peak, launch (years to launch), cost (remaining development cost). All dollar figures in millions USD.",
+    "Programs without a peak sales figure get a placeholder by phase, and the app labels it as a placeholder."
+  ],
+
+  "VKTX": {
+    "area": "Metabolic",
+    "note": "",
+    "programs": {
+      "VK2735": { "tgt": "GLP-1/GIP", "moa": "Dual receptor agonist" }
+    }
+  },
+  "CRNX": { "area": "Endocrinology" },
+  "ARWR": { "area": "RNAi" },
+  "RCKT": { "area": "Gene therapy" },
+  "SRRK": { "area": "Neuromuscular" },
+  "APGE": { "area": "Immunology" },
+  "IDYA": { "area": "Oncology" },
+  "NUVL": { "area": "Oncology" },
+  "KYMR": { "area": "Immunology" },
+  "DYN":  { "area": "Neuromuscular" },
+  "VERA": { "area": "Nephrology" },
+  "ACLX": { "area": "Cell therapy" }
+}
