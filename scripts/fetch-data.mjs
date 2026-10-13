@@ -47,6 +47,17 @@ const PHASE_MAP = { EARLY_PHASE1: "Phase I", PHASE1: "Phase I", PHASE2: "Phase I
 const PHASE_ORDER = ["Phase I", "Phase II", "Phase III", "Filed", "Approved"];
 const NOT_AN_ASSET = /placebo|vehicle|sham|saline|standard of care|standard-of-care|best supportive|usual care|no intervention|investigator'?s choice|physician'?s choice/i;
 const ASSET_TYPES = new Set(["DRUG", "BIOLOGICAL", "GENETIC", "COMBINATION_PRODUCT"]);
+// Marketed drugs that biotechs commonly combine their own asset with. They are never the
+// sponsor's program, so they rank last and a trial using only these is ignored.
+const COMMON_PARTNERS = new RegExp("^(" + [
+  "pembrolizumab", "nivolumab", "atezolizumab", "durvalumab", "ipilimumab", "cemiplimab", "tislelizumab",
+  "crizotinib", "osimertinib", "trastuzumab", "pertuzumab", "bevacizumab", "cetuximab", "panitumumab", "rituximab",
+  "docetaxel", "paclitaxel", "nab-paclitaxel", "carboplatin", "cisplatin", "oxaliplatin", "gemcitabine", "pemetrexed",
+  "capecitabine", "fluorouracil", "5-fu", "irinotecan", "folfox", "folfiri", "etoposide", "cyclophosphamide",
+  "fulvestrant", "letrozole", "anastrozole", "palbociclib", "ribociclib", "abemaciclib", "enzalutamide", "abiraterone",
+  "lenalidomide", "pomalidomide", "dexamethasone", "prednisone", "bortezomib", "daratumumab", "azacitidine", "venetoclax",
+  "semaglutide", "tirzepatide", "liraglutide", "metformin", "insulin", "chemotherapy", "standard chemotherapy",
+].join("|") + ")$", "i");
 
 /* ------------------------------ helpers ------------------------------ */
 
@@ -281,6 +292,7 @@ async function trialsFor(sponsor) {
 const cleanDrug = (name) => {
   const s = name
     .replace(/\(.*?\)/g, " ")
+    .replace(/^\s*(sc|iv|po|oral|subcutaneous|intravenous|inhaled|topical)\s+/i, "")
     .replace(/\b\d+(\.\d+)?\s*(mg|mcg|µg|ug|g|ml|mg\/kg|iu|units?)\b.*$/i, "")
     .replace(/\s+(oral|subcutaneous|intravenous|iv|sc|injection|tablets?|capsules?|for injection|low dose|high dose)\b.*$/i, "")
     .replace(/\s+/g, " ").trim();
@@ -298,6 +310,7 @@ function trialRow(p) {
   const drugs = (p.armsInterventionsModule?.interventions || [])
     .filter((i) => ASSET_TYPES.has(i.type) && i.name && !NOT_AN_ASSET.test(i.name))
     .map((i) => cleanDrug(i.name)).filter(Boolean);
+  const own = drugs.filter((d) => !COMMON_PARTNERS.test(d));
   return {
     nct: p.identificationModule?.nctId,
     title: p.identificationModule?.briefTitle,
@@ -306,7 +319,7 @@ function trialRow(p) {
     n: p.designModule?.enrollmentInfo?.count || 0,
     ind: p.conditionsModule?.conditions?.[0] || "—",
     ep: (p.outcomesModule?.primaryOutcomes?.[0]?.measure || "—").slice(0, 110),
-    drugs,
+    drugs: own,
   };
 }
 

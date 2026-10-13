@@ -2,16 +2,12 @@
   "_readme": "Tickers to track. Add or remove US-listed tickers here; the nightly refresh picks them up. Tickers EDGAR or ClinicalTrials.gov cannot resolve are skipped and listed in the run log.",
   "tickers": [
     "VKTX",
-    "CRNX",
     "ARWR",
     "RCKT",
     "SRRK",
-    "APGE",
     "IDYA",
-    "NUVL",
     "KYMR",
     "DYN",
-    "VERA",
-    "ACLX"
+    "VERA"
   ]
 }

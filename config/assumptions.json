@@ -16,15 +16,32 @@
       "VK2735": { "tgt": "GLP-1/GIP", "moa": "Dual receptor agonist" }
     }
   },
-  "CRNX": { "area": "Endocrinology" },
   "ARWR": { "area": "RNAi" },
   "RCKT": { "area": "Gene therapy" },
-  "SRRK": { "area": "Neuromuscular" },
-  "APGE": { "area": "Immunology" },
+  "SRRK": { "area": "Neuromuscular", "sponsor": "Scholar Rock" },
   "IDYA": { "area": "Oncology" },
-  "NUVL": { "area": "Oncology" },
   "KYMR": { "area": "Immunology" },
-  "DYN":  { "area": "Neuromuscular" },
-  "VERA": { "area": "Nephrology" },
-  "ACLX": { "area": "Cell therapy" }
+  "DYN": {
+    "area": "Neuromuscular",
+    "programs": {
+      "DYNE-251": {
+        "name": "z-rostudirsen (DYNE-251)",
+        "aliases": ["zeleciment rostudirsen", "z-rostudirsen"],
+        "ph": "Filed",
+        "ind": "Duchenne muscular dystrophy, exon 51 amenable",
+        "moa": "Antibody-oligonucleotide conjugate (FORCE platform)"
+      },
+      "DYNE-101": {
+        "name": "z-basivarsen (DYNE-101)",
+        "aliases": ["zeleciment basivarsen", "z-basivarsen"],
+        "ind": "Myotonic dystrophy type 1",
+        "moa": "Antibody-oligonucleotide conjugate (FORCE platform)"
+      }
+    },
+    "catalysts": [
+      { "date": "2027-01-21", "kind": "regulatory", "label": "z-rostudirsen PDUFA target action date", "drug": "z-rostudirsen (DYNE-251)" },
+      { "date": "2027-03-31", "kind": "readout", "label": "z-basivarsen ACHIEVE topline data (guided Q1 2027)", "drug": "z-basivarsen (DYNE-101)", "est": true }
+    ]
+  },
+  "VERA": { "area": "Nephrology" }
 }
