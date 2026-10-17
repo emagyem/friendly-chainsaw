@@ -216,6 +216,53 @@ function financialsFromFacts(facts) {
   };
 }
 
+// Plain-English labels for SEC forms and 8-K items, used for the filings news feed.
+const FORM_LABEL = {
+  "10-Q": "Quarterly report", "10-K": "Annual report", "8-K": "Current report",
+  "424B4": "Priced stock offering", "424B5": "Stock offering prospectus", "S-3": "Shelf registration",
+  "S-3ASR": "Shelf registration", "S-1": "Registration statement", "DEF 14A": "Proxy statement",
+  "SC 13D": "Activist stake disclosed", "SCHEDULE 13D": "Activist stake disclosed",
+};
+const ITEM_LABEL = {
+  "1.01": "signs a material agreement", "1.02": "ends a material agreement", "2.01": "completes an acquisition or sale",
+  "2.02": "reports quarterly results", "2.03": "takes on new debt", "2.05": "announces restructuring costs",
+  "3.02": "sells unregistered shares", "5.02": "announces a leadership change", "5.03": "amends its bylaws",
+  "5.07": "reports shareholder vote results", "7.01": "issues an investor update", "8.01": "makes a company announcement",
+};
+const FEED_FORMS = new Set(Object.keys(FORM_LABEL));
+
+function filingHeadline(name, form, items) {
+  if (form === "8-K") {
+    const codes = (items || "").split(",").map((x) => x.trim()).filter((x) => ITEM_LABEL[x]);
+    const order = ["2.02", "1.01", "2.01", "5.02", "1.02", "2.03", "3.02", "2.05", "8.01", "7.01", "5.07", "5.03"];
+    codes.sort((a, b) => order.indexOf(a) - order.indexOf(b));
+    return `${name} ${codes.length ? ITEM_LABEL[codes[0]] : "files a current report"}`;
+  }
+  const verb = { "10-Q": "files its quarterly report", "10-K": "files its annual report", "424B4": "prices a stock offering",
+    "424B5": "files a stock offering prospectus", "S-3": "registers shares for future sale", "S-3ASR": "registers shares for future sale",
+    "S-1": "files a registration statement", "DEF 14A": "files its proxy statement" }[form];
+  return verb ? `${name} ${verb}` : `${name}: ${FORM_LABEL[form]}`;
+}
+
+function newsFromSubmissions(sub, cik, name) {
+  const r = sub?.filings?.recent;
+  if (!r) return [];
+  const out = [];
+  for (let i = 0; i < r.form.length && out.length < 10; i++) {
+    const form = r.form[i];
+    if (!FEED_FORMS.has(form)) continue;
+    out.push({
+      date: r.filingDate[i],
+      time: r.acceptanceDateTime?.[i] || null,
+      form,
+      formLabel: FORM_LABEL[form],
+      headline: filingHeadline(name, form, r.items?.[i]),
+      url: `https://www.sec.gov/Archives/edgar/data/${Number(cik)}/${r.accessionNumber[i].replace(/-/g, "")}/${r.primaryDocument[i]}`,
+    });
+  }
+  return out;
+}
+
 function filingsFromSubmissions(sub, cik) {
   const r = sub?.filings?.recent;
   if (!r) return { financings: [], lastPeriodic: null };
@@ -243,25 +290,50 @@ function filingsFromSubmissions(sub, cik) {
 
 /* ---------------------------- stock price ---------------------------- */
 
+// Yahoo's chart endpoint gives the latest price plus a year of daily closes for the quote chart.
+async function yahooQuote(ticker) {
+  const j = await getJSON(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?range=1y&interval=1d`,
+    { "User-Agent": "Mozilla/5.0 (READOUT data refresh)" });
+  const res = j?.chart?.result?.[0];
+  const m = res?.meta;
+  if (!(m?.regularMarketPrice > 0)) return null;
+  const ts = res.timestamp || [];
+  const closes = res.indicators?.quote?.[0]?.close || [];
+  const history = [];
+  for (let i = 0; i < ts.length; i++) {
+    if (closes[i] == null) continue;
+    history.push([new Date(ts[i] * 1000).toISOString().slice(0, 10), Math.round(closes[i] * 100) / 100]);
+  }
+  const date = new Date(m.regularMarketTime * 1000).toISOString().slice(0, 10);
+  // Previous close: the last full session before the latest price.
+  const prior = history.filter(([d]) => d < date);
+  const prev = prior.length ? prior.at(-1)[1] : (m.chartPreviousClose || null);
+  const closesOnly = history.map(([, c]) => c);
+  return {
+    price: m.regularMarketPrice, date, source: "Yahoo Finance", prev, history,
+    hi52: m.fiftyTwoWeekHigh || (closesOnly.length ? Math.max(...closesOnly) : null),
+    lo52: m.fiftyTwoWeekLow || (closesOnly.length ? Math.min(...closesOnly) : null),
+    volume: m.regularMarketVolume || null,
+  };
+}
+
 async function priceFor(ticker) {
+  let y = null;
+  try { y = await yahooQuote(ticker); } catch (e) { warn(`Yahoo price failed for ${ticker}: ${e.message}`); }
+  if (y) return y;
   if (AV_KEY) {
     try {
       await sleep(1300); // free tier allows roughly one request per second
       const j = await getJSON(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${encodeURIComponent(ticker)}&apikey=${AV_KEY}`);
       const q = j?.["Global Quote"];
       const p = parseFloat(q?.["05. price"]);
-      if (p > 0) return { price: p, date: q["07. latest trading day"], source: "Alpha Vantage" };
+      if (p > 0) {
+        const prev = parseFloat(q["08. previous close"]);
+        return { price: p, date: q["07. latest trading day"], source: "Alpha Vantage", prev: prev > 0 ? prev : null, history: [], hi52: null, lo52: null, volume: parseInt(q["06. volume"]) || null };
+      }
       if (j?.Note || j?.Information) warn(`Alpha Vantage limit reached for ${ticker}: ${(j.Note || j.Information).slice(0, 90)}`);
     } catch (e) { warn(`Alpha Vantage failed for ${ticker}: ${e.message}`); }
   }
-  try {
-    const j = await getJSON(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?range=5d&interval=1d`,
-      { "User-Agent": "Mozilla/5.0 (READOUT data refresh)" });
-    const m = j?.chart?.result?.[0]?.meta;
-    if (m?.regularMarketPrice > 0) {
-      return { price: m.regularMarketPrice, date: new Date(m.regularMarketTime * 1000).toISOString().slice(0, 10), source: "Yahoo Finance" };
-    }
-  } catch (e) { warn(`Yahoo price failed for ${ticker}: ${e.message}`); }
   return null;
 }
 
@@ -408,7 +480,7 @@ async function buildCompany(ticker, a, cikByTicker) {
   const name = a.name || titleCase(shortName(sub?.name || facts.entityName || ticker));
   const { financings, lastPeriodic } = filingsFromSubmissions(sub, cik);
 
-  const px = a.price ? { price: a.price, date: TODAY_ISO, source: "config/assumptions.json" } : await priceFor(ticker);
+  const px = a.price ? { price: a.price, date: TODAY_ISO, source: "config/assumptions.json", prev: null, history: [] } : await priceFor(ticker);
   if (!px) throw new Error("no stock price available");
   const mcap = px.price * fin.shares;
 
@@ -459,6 +531,18 @@ async function buildCompany(ticker, a, cikByTicker) {
     financings: mergedFinancings,
     note: a.note || "",
     dil24: round(fin.dil24, 1),
+    quote: {
+      price: round(px.price, 2),
+      prev: round(px.prev, 2),
+      chg: px.prev ? round(px.price - px.prev, 2) : null,
+      chgPct: px.prev ? round(((px.price / px.prev) - 1) * 100, 2) : null,
+      hi52: round(px.hi52, 2),
+      lo52: round(px.lo52, 2),
+      volume: px.volume,
+      date: px.date,
+      history: px.history || [],
+    },
+    news: newsFromSubmissions(sub, cik, name),
     cashFlowPositive: fin.cashFlowPositive,
     src: {
       cik: String(cik),
@@ -524,7 +608,7 @@ async function main() {
   const out = {
     meta: {
       generatedAt: new Date().toISOString(),
-      sources: ["SEC EDGAR XBRL company facts", "SEC EDGAR filing index", "ClinicalTrials.gov API v2", AV_KEY ? "Alpha Vantage" : "Yahoo Finance"],
+      sources: ["SEC EDGAR XBRL company facts", "SEC EDGAR filing index", "ClinicalTrials.gov API v2", "Yahoo Finance"],
       warnings,
     },
     companies,
@@ -535,7 +619,7 @@ async function main() {
 }
 
 // Export internals for tests; run only when invoked directly.
-export { financialsFromFacts, trailing12, programsFromTrials, filingsFromSubmissions, shareHistory, main };
+export { financialsFromFacts, trailing12, programsFromTrials, filingsFromSubmissions, newsFromSubmissions, shareHistory, main };
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((e) => { console.error(e); process.exit(1); });
 }
