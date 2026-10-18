@@ -22,10 +22,12 @@
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
+import { computeFPS } from "../src/fps.js";
 
 const ROOT = new URL("../", import.meta.url);
 const OUT_DIR = new URL("public/data/", ROOT);
 const OUT_FILE = new URL("companies.json", OUT_DIR);
+const HISTORY_FILE = new URL("fps-history.json", OUT_DIR);
 
 const UA = process.env.SEC_USER_AGENT;
 const AV_KEY = process.env.ALPHA_VANTAGE_KEY;
@@ -95,6 +97,14 @@ async function sec(url) {
   return getJSON(url, { "User-Agent": UA, "Accept": "application/json" });
 }
 
+async function secText(url) {
+  await sleep(200);
+  try {
+    const res = await fetch(url, { headers: { "User-Agent": UA, "Accept": "text/html,text/plain" } });
+    return res.ok ? await res.text() : null;
+  } catch { return null; }
+}
+
 /* ------------------------------- EDGAR ------------------------------- */
 
 // The same period is often re-reported in later filings. Keep the most recent filing's value.
@@ -134,10 +144,15 @@ function valueAt(facts, tags, date) {
 
 // Trailing twelve months for a flow item (cash flow, revenue).
 // 10-Qs report year-to-date figures, so TTM = last fiscal year + current YTD − prior-year YTD.
-function trailing12(s) {
+function trailing12(s, targetEnd = null) {
   if (!s) return null;
   const rows = s.rows;
-  const latestEnd = rows.at(-1).end;
+  let latestEnd = rows.at(-1).end;
+  if (targetEnd) {
+    const hit = [...rows].reverse().find((r) => near(r.end, targetEnd, 20));
+    if (!hit) return null;
+    latestEnd = hit.end;
+  }
   const cur = rows.filter((r) => r.end === latestEnd)
     .reduce((a, b) => (monthsBetween(a.start, a.end) >= monthsBetween(b.start, b.end) ? a : b));
   const dur = monthsBetween(cur.start, cur.end);
@@ -185,7 +200,20 @@ function financialsFromFacts(facts) {
   const lt = valueAt(facts, LT_INV, asOf);
   const debt = valueAt(facts, DEBT, asOf);
 
-  const ocf = trailing12(pickSeries(facts, ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"]));
+  const ocfS = pickSeries(facts, ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"]);
+  const ocf = trailing12(ocfS);
+  const ocfPrior = ocf ? trailing12(ocfS, shiftYears(ocf.end, -1)) : null;
+
+  // Debt coming due within 24 months: the larger of debt classed as current on the latest balance
+  // sheet and the scheduled principal repayments for the next two years (reported in the 10-K).
+  const CUR_DEBT = ["LongTermDebtCurrent", "DebtCurrent", "ConvertibleNotesPayableCurrent", "ConvertibleDebtCurrent", "NotesPayableCurrent", "LoansPayableCurrent"];
+  const curDebt = valueAt(facts, CUR_DEBT, asOf)?.val || 0;
+  const y1 = pickSeries(facts, ["LongTermDebtMaturitiesRepaymentsOfPrincipalInNextTwelveMonths"], { instant: true });
+  const y2 = pickSeries(facts, ["LongTermDebtMaturitiesRepaymentsOfPrincipalInYearTwo"], { instant: true });
+  let sched = 0;
+  if (y1 && monthsBetween(y1.rows.at(-1).end, asOf) < 15) {
+    sched = y1.rows.at(-1).val + (y2 && y2.rows.at(-1).end === y1.rows.at(-1).end ? y2.rows.at(-1).val : 0);
+  }
   const revS = pickSeries(facts, ["Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax", "RevenueFromContractWithCustomerIncludingAssessedTax"]);
   let rev = trailing12(revS);
   if (rev && monthsBetween(rev.end, asOf) > 15) rev = null; // stale tag, company no longer reports it
@@ -209,6 +237,8 @@ function financialsFromFacts(facts) {
     burn: ocfM == null ? null : Math.max(0.1, -ocfM / 12),
     cashFlowPositive: ocfM != null && ocfM > 0,
     burnHow: ocf?.how || null,
+    burnPrior: ocfPrior ? -M(ocfPrior.val) / 12 : null,
+    debtDue24: M(Math.max(curDebt, sched)),
     rev: rev ? Math.max(0, M(rev.val)) : 0,
     shares: sharesNow ? sharesNow.val / 1e6 : null,
     sharesAsOf: sharesNow?.end || null,
@@ -285,7 +315,30 @@ function filingsFromSubmissions(sub, cik) {
       });
     }
   }
-  return { financings: financings.slice(0, 8), lastPeriodic };
+  // Raise-ready capacity: the latest shelf registration (S-3, valid for three years) and recent
+  // prospectus supplements, which are where at-the-market (ATM) programs are disclosed.
+  let shelf = null;
+  const supplements = [];
+  for (let i = 0; i < r.form.length; i++) {
+    const form = r.form[i], date = r.filingDate[i];
+    if (date < cutoff) break;
+    if (!shelf && (form === "S-3" || form === "S-3ASR")) shelf = { form, date, url: docUrl(i) };
+    if (form === "424B5" && date >= shiftYears(TODAY_ISO, -2) && supplements.length < 3) supplements.push({ form, date, url: docUrl(i) });
+  }
+  return { financings: financings.slice(0, 8), lastPeriodic, shelf, supplements };
+}
+
+// ATM programs are set up under a sales agreement with a broker; the prospectus names it as a
+// capitalized defined term. A base shelf prospectus only mentions "at the market" in passing.
+const ATM_TERMS = /\b(Open Market Sale Agreement|Equity Distribution Agreement|Controlled Equity Offering|At[- ]the[- ]Market (?:Offering |Sales |Issuance )?(?:Sales )?Agreement|ATM (?:Sales )?Agreement|(?:Equity |Common Stock )?Sales Agreement)\b/;
+
+async function raiseCapacity({ shelf, supplements }) {
+  for (const doc of [...supplements, ...(shelf ? [shelf] : [])]) {
+    const text = await secText(doc.url);
+    const m = text && text.match(ATM_TERMS);
+    if (m) return { capacity: "atm", atm: { ...doc, phrase: m[1] }, shelf };
+  }
+  return { capacity: shelf ? "shelf" : "none", atm: null, shelf };
 }
 
 /* ---------------------------- stock price ---------------------------- */
@@ -478,7 +531,9 @@ async function buildCompany(ticker, a, cikByTicker) {
   if (!fin.shares) throw new Error("no shares outstanding figure");
 
   const name = a.name || titleCase(shortName(sub?.name || facts.entityName || ticker));
-  const { financings, lastPeriodic } = filingsFromSubmissions(sub, cik);
+  const filed = filingsFromSubmissions(sub, cik);
+  const { financings, lastPeriodic } = filed;
+  const raise = await raiseCapacity(filed);
 
   const px = a.price ? { price: a.price, date: TODAY_ISO, source: "config/assumptions.json", prev: null, history: [] } : await priceFor(ticker);
   if (!px) throw new Error("no stock price available");
@@ -531,6 +586,9 @@ async function buildCompany(ticker, a, cikByTicker) {
     financings: mergedFinancings,
     note: a.note || "",
     dil24: round(fin.dil24, 1),
+    burnPrior: round(fin.burnPrior, 2),
+    debtDue24: round(fin.debtDue24, 1),
+    raise,
     quote: {
       price: round(px.price, 2),
       prev: round(px.prev, 2),
@@ -615,6 +673,18 @@ async function main() {
   };
   await mkdir(OUT_DIR, { recursive: true });
   await writeFile(OUT_FILE, JSON.stringify(out, null, 1) + "\n");
+
+  // Keep a daily record of every score. It is the raw material for the public track record:
+  // which companies were flagged, and whether they went on to raise money.
+  let history = { snapshots: [] };
+  try { history = JSON.parse(await readFile(HISTORY_FILE, "utf8")); } catch { /* first run */ }
+  const snap = { date: TODAY_ISO, scores: {} };
+  for (const c of companies) {
+    const f = computeFPS(c, TODAY);
+    snap.scores[c.t] = { fps: f.score, band: f.band };
+  }
+  history.snapshots = history.snapshots.filter((x) => x.date !== TODAY_ISO).concat(snap).slice(-500);
+  await writeFile(HISTORY_FILE, JSON.stringify(history) + "\n");
   console.log(`\nWrote ${companies.length} companies to public/data/companies.json (${warnings.length} warnings).`);
 }
 

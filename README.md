@@ -1,5 +1,7 @@
 # Helixora
 
+Helixora tells you which biotechs have to raise money, and when. Know who has to raise, before they do.
+
 A biotech research terminal. It puts the three clocks a biotech investor watches on one screen: **when the trial reads out, when the cash runs out, and when the next raise dilutes shareholders.**
 
 - **Scan**: upcoming catalysts across the universe, plus a runway-vs-catalyst chart that shows who may need to raise first
@@ -9,6 +11,27 @@ A biotech research terminal. It puts the three clocks a biotech investor watches
 - **Ask**: plain-English questions answered only from the terminal's own data
 
 Built with React, Vite and Recharts.
+
+## The Financing Pressure Score
+
+Helixora's signature metric: one number from 0 to 100 for one question, *how likely is this company to need new money before its next major catalyst?* It is research, not a buy or sell signal.
+
+| Component | Weight | Scored from |
+|---|---|---|
+| Runway-to-catalyst gap | 35% | Cash ÷ monthly burn, minus (months to next clinical/regulatory event + 6-month buffer) |
+| Burn trend | 15% | Trailing-twelve-month burn vs a year earlier (SEC XBRL) |
+| Raise-ready capacity | 20% | Shelf (S-3) and at-the-market sales agreements found in SEC filings |
+| Debt due within 24 months | 10% | Current debt and scheduled maturities vs cash |
+| Market access | 10% | Annual burn as a share of market value |
+| Pipeline concentration | 10% | Number of clinical programs |
+
+Bands: 0–39 Low, 40–69 Elevated, 70–100 High. The formula lives in `src/fps.js`, which both the site and the nightly data job use, and the site's Methodology page is generated from it. Change the weights there and add an entry to `FPS_CHANGELOG`.
+
+Every weekday the data job appends each company's score to `public/data/fps-history.json`. The Methodology page turns that into the public track record: every company that reaches 70, and whether it filed an offering (424B4/424B5) within six months.
+
+## Waitlist
+
+The "Get the Financing Pressure Report by email" form uses Netlify Forms. `public/__forms.html` registers the form at deploy time; sign-ups appear in Netlify under **Forms → waitlist**, where you can also turn on email notifications.
 
 ## Where the data comes from
 

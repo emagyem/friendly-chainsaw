@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8" /><title>Forms</title><meta name="robots" content="noindex" /></head>
+<body>
+  <!-- Netlify reads this hidden form at deploy time to register the waitlist form the app submits to. -->
+  <form name="waitlist" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="waitlist" />
+    <input type="email" name="email" />
+    <input type="text" name="role" />
+    <input name="bot-field" />
+  </form>
+</body>
+</html>

@@ -3,7 +3,8 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   ScatterChart, Scatter, ZAxis, ReferenceLine, BarChart, Bar, Cell, AreaChart, Area
 } from "recharts";
-import { COMPANIES, META } from "./data.js";
+import { COMPANIES, META, HISTORY } from "./data.js";
+import { computeFPS, nextMajorCatalyst, FPS_COMPONENTS, FPS_BANDS, FPS_CHANGELOG, FPS_VERSION, FPS_UPDATED, BUFFER_MONTHS, NO_CATALYST_MONTHS } from "./fps.js";
 
 /* ------------------------------------------------------------------
    HELIXORA — biotech markets terminal
@@ -71,12 +72,15 @@ function pipelineValue(c, opts) { return c.pipeline.reduce((s, p) => s + rnpv(p,
 
 // The next clinical or regulatory event. Estimated earnings dates only count when nothing else is dated.
 function nextCatalyst(c) {
-  const up = c.catalysts.filter((x) => days(x.date) >= 0).sort((a, b) => days(a.date) - days(b.date));
-  return up.find((x) => x.kind !== "earnings") || up[0] || null;
+  const major = nextMajorCatalyst(c, TODAY);
+  if (major) return major;
+  return c.catalysts.filter((x) => days(x.date) >= 0).sort((a, b) => days(a.date) - days(b.date))[0] || null;
 }
 // "VK2735 Phase III primary completion (registry estimate)" -> "VK2735 Phase III data (est.)"
 const shortLabel = (l) => (l || "").replace(/ primary completion \(registry estimate\)/i, " data (est.)").replace(/ primary completion/i, " data")
   .replace(/Next quarterly report \(estimated\)/i, "Quarterly report (est.)");
+// For use inside sentences, where "(est.)" reads badly.
+const plainLabel = (l) => shortLabel(l).replace(/ \(est\.\)$/, "");
 const fmtRunway = (r, unit = "mo") => (r >= 120 ? "10+ yrs" : `${num(r)} ${unit}`);
 // Capitalize a sentence, but leave drug names like "z-rostudirsen" as written.
 const cap = (t) => (t && /^[a-z]+[\s,]/.test(t) ? t.charAt(0).toUpperCase() + t.slice(1) : t);
@@ -362,7 +366,22 @@ function briefs() {
       dek: `Shares outstanding now total ${num(dil.shares, 1)} million, according to its latest SEC filing. ${dil.financings.length} offering ${dil.financings.length === 1 ? "filing" : "filings"} in the past three years.`,
     });
   }
-  return out.sort((a, b) => b.weight - a.weight);
+  // Financing pressure leads the page: the company most likely to need money before its next catalyst.
+  const pressed = [...COMPANIES].map((c) => ({ c, f: fpsOf(c) })).filter((x) => x.f.score != null).sort((a, b) => b.f.score - a.f.score);
+  pressed.slice(0, 2).forEach(({ c, f }, i) => {
+    const cat = f.catalyst;
+    add({
+      kind: "pressure", c, weight: (i === 0 ? 300 : 90) + f.score,
+      headline: c.cashFlowPositive ? `${c.n} faces little financing pressure`
+        : `${c.n} has ${num(f.runway, 0)} months of cash${cat ? ` and ${cat.kind === "regulatory" ? "an FDA decision" : `a ${(c.pipeline.find((p) => p.d === cat.drug)?.ph || "trial")} readout`} in ${num(f.monthsToCatalyst, 0)}` : ""}`,
+      dek: `Its Financing Pressure Score is ${f.score}, in the ${f.band} band. ${Math.round(f.gap) < 0
+        ? `Counting a ${BUFFER_MONTHS}-month buffer after ${cat ? plainLabel(cat.label) : "its next catalyst"}, its cash falls about ${Math.round(-f.gap)} months short.`
+        : Math.round(f.gap) === 0 ? `Counting a ${BUFFER_MONTHS}-month buffer after ${cat ? plainLabel(cat.label) : "its next catalyst"}, it has almost nothing to spare.`
+          : `Counting a ${BUFFER_MONTHS}-month buffer after ${cat ? plainLabel(cat.label) : "its next catalyst"}, it has about ${Math.round(f.gap)} months to spare.`}${c.raise?.capacity === "atm" ? " An at-the-market program is on file, so it can sell shares at any time." : c.raise?.capacity === "shelf" ? " A shelf registration is on file." : ""}`,
+    });
+  });
+  return out.filter((b) => !(b.kind === "runway" && out.some((x) => x.kind === "pressure" && x.c.t === b.c.t)))
+    .sort((a, b) => b.weight - a.weight);
 }
 
 function wire() {
@@ -412,6 +431,16 @@ function Home({ go, watch, toggleWatch }) {
 
   return (
     <div className="front-wrap">
+      <section className="idbar">
+        <div>
+          <h1 className="id-line">The platform that tells you who has to raise money, and when.</h1>
+          <p className="id-sub">Cash, catalysts and the capacity to raise, for {COMPANIES.length} clinical-stage biotechs. Every number traced to its filing.</p>
+        </div>
+        <div className="id-ctas">
+          <button className="btn primary" onClick={() => go("report")}>Read the Financing Pressure Report</button>
+          <button className="btn" onClick={() => go("method")}>How the score works</button>
+        </div>
+      </section>
       <div className="front">
         <section className="lead" aria-labelledby="lead-h">
           {lead ? (
@@ -484,6 +513,16 @@ function Home({ go, watch, toggleWatch }) {
             <button className="morelink" onClick={() => go("catalysts")}>Full calendar</button>
           </section>
 
+          <section aria-labelledby="rl-h-home">
+            <h2 id="rl-h-home" className="colhead">Financing pressure</h2>
+            <ul className="mini-fps">
+              {byPressure().slice(0, 5).map((c) => (
+                <li key={c.t}><button onClick={() => go("company", c.t, "pressure")}><b>{c.t}</b><span>{fmtRunway(fpsOf(c).runway)} cash</span><BandBadge c={c} /></button></li>
+              ))}
+            </ul>
+            <button className="morelink" onClick={() => go("report")}>Full report</button>
+          </section>
+
           <section aria-labelledby="wl-h">
             <h2 id="wl-h" className="colhead">Your watchlist</h2>
             {watch.length === 0 && <p className="colnote">Star a company on its quote page to follow it here.</p>}
@@ -499,6 +538,15 @@ function Home({ go, watch, toggleWatch }) {
             </ul>
           </section>
         </aside>
+      </div>
+
+      <div className="two wide-left">
+        <section className="panel">
+          <header className="ph"><h2>Financing Pressure Score</h2>
+            <span className="ph-note">How likely each company is to need new money before its next major catalyst. Dashed lines mark the Elevated (40) and High (70) bands.</span></header>
+          <FpsChart go={go} />
+        </section>
+        <section className="panel"><RaiseList go={go} /></section>
       </div>
 
       <div className="two">
@@ -555,8 +603,9 @@ function Screen({ go }) {
   const capCeiling = useMemo(() => Math.max(4000, Math.ceil(Math.max(...COMPANIES.map((c) => c.mcap)) / 500) * 500), []);
   const [maxCap, setMaxCap] = useState(capCeiling);
   const [minRun, setMinRun] = useState(0);
-  const [within, setWithin] = useState(365);
-  const [sort, setSort] = useState("bis");
+  const [within, setWithin] = useState(730);
+  const [sort, setSort] = useState("fps");
+  const [band, setBand] = useState("All");
   const [dir, setDir] = useState(-1);
 
   const areas = ["All", ...Array.from(new Set(COMPANIES.map((c) => c.area)))];
@@ -568,19 +617,20 @@ function Screen({ go }) {
       if (!c.pipeline.some((p) => phaseRank(p.ph) >= phaseRank(minPhase))) return false;
       if (c.mcap > maxCap) return false;
       if (runway(c) < minRun) return false;
+      if (band !== "All" && fpsOf(c).band !== band) return false;
       const nc = nextCatalyst(c);
       if (!nc || days(nc.date) > within) return false;
       return true;
     }).map((c) => {
       const nc = nextCatalyst(c);
-      return { c, bis: bis(c), run: runway(c), nd: nc ? days(nc.date) : 9999, nc, pv: pipelineValue(c) };
+      return { c, bis: bis(c), fps: fpsOf(c).score ?? -1, run: runway(c), nd: nc ? days(nc.date) : 9999, nc, pv: pipelineValue(c) };
     });
-    const key = { bis: (r) => r.bis, run: (r) => r.run, cap: (r) => r.c.mcap, cash: (r) => r.c.cash, next: (r) => -r.nd, pv: (r) => r.pv, ticker: (r) => r.c.t };
+    const key = { fps: (r) => r.fps, bis: (r) => r.bis, run: (r) => r.run, cap: (r) => r.c.mcap, cash: (r) => r.c.cash, next: (r) => -r.nd, pv: (r) => r.pv, ticker: (r) => r.c.t };
     return out.sort((a, b) => {
       const A = key[sort](a), B = key[sort](b);
       return (typeof A === "string" ? A.localeCompare(B) : A - B) * dir;
     });
-  }, [q, area, minPhase, maxCap, minRun, within, sort, dir]);
+  }, [q, area, minPhase, maxCap, minRun, within, sort, dir, band]);
 
   const th = (k, label, align) => (
     <th className={align} onClick={() => { if (sort === k) setDir(-dir); else { setSort(k); setDir(-1); } }}>
@@ -603,14 +653,16 @@ function Screen({ go }) {
             <input type="range" min="100" max={capCeiling} step="50" value={maxCap} onChange={(e) => setMaxCap(+e.target.value)} /></label>
           <label className="f"><span>Runway of at least {minRun} months</span>
             <input type="range" min="0" max="36" value={minRun} onChange={(e) => setMinRun(+e.target.value)} /></label>
+          <label className="f"><span>Financing pressure band</span>
+            <select value={band} onChange={(e) => setBand(e.target.value)}>{["All", "High", "Elevated", "Low"].map((b) => <option key={b}>{b}</option>)}</select></label>
           <label className="f"><span>Next catalyst within {within} days</span>
-            <input type="range" min="30" max="365" step="15" value={within} onChange={(e) => setWithin(+e.target.value)} /></label>
+            <input type="range" min="30" max="730" step="15" value={within} onChange={(e) => setWithin(+e.target.value)} /></label>
         </div>
       </section>
 
       <section className="panel">
         <header className="ph"><h2>{rows.length} matches</h2>
-          <span className="ph-note">Helixora score weights: pipeline 25%, financial strength 20%, catalysts 15%, market 15%, valuation 15%, strategic position 10%.</span></header>
+          <span className="ph-note">Sorted by Financing Pressure Score. Select a column to re-sort.</span></header>
         {rows.length === 0 ? (
           <div className="empty">Nothing clears those filters. Widen the market cap ceiling or push the catalyst window out.</div>
         ) : (
@@ -619,10 +671,10 @@ function Screen({ go }) {
               <thead><tr>
                 {th("ticker", "Ticker")}<th>Company</th><th>Lead program</th>
                 {th("cap", "Market cap", "r")}{th("cash", "Cash", "r")}{th("run", "Runway", "r")}
-                {th("next", "Next catalyst", "r")}{th("pv", "Pipeline rNPV", "r")}{th("bis", "Score", "r")}
+                {th("next", "Next catalyst", "r")}{th("pv", "Pipeline rNPV", "r")}{th("fps", "Financing pressure", "r")}
               </tr></thead>
               <tbody>
-                {rows.map(({ c, bis: s, run, nd, nc, pv }) => {
+                {rows.map(({ c, run, nd, nc, pv }) => {
                   const lead = leadProgram(c);
                   return (
                     <tr key={c.t} onClick={() => go("company", c.t)}>
@@ -634,7 +686,7 @@ function Screen({ go }) {
                       <td className={"r mono nowrap " + (run < 12 ? "warn" : "")}>{fmtRunway(run)}</td>
                       <td className="r mono">{nd > 9000 ? "—" : `${nd}d`}<span className="sub r clip" title={nc?.label}>{nc ? shortLabel(nc.label) : ""}</span></td>
                       <td className="r mono">{money(pv)}</td>
-                      <td className="r"><span className="bisnum">{s}</span><Bar100 v={s} /></td>
+                      <td className="r"><BandBadge c={c} /></td>
                     </tr>
                   );
                 })}
@@ -647,9 +699,9 @@ function Screen({ go }) {
   );
 }
 
-function Company({ ticker, go, watch, toggleWatch }) {
+function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
   const c = COMPANIES.find((x) => x.t === ticker) || COMPANIES[0];
-  const [tab, setTab] = useState("overview");
+  const [tab, setTab] = useState(initialTab);
   const [newShares, setNewShares] = useState(0);
   const [raise, setRaise] = useState(0);
   const [disc, setDisc] = useState(11);
@@ -675,7 +727,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
     return { post, pct: newShares === 0 ? 0 : (newShares / post) * 100, proceeds: newShares * (c.mcap / c.shares) * 0.88 };
   }, [c, newShares]);
 
-  const tabs = [["overview", "Overview"], ["financials", "Financials"], ["pipeline", "Pipeline"], ["catalysts", "Catalysts"], ["valuation", "Valuation"], ["score", "Score"]];
+  const tabs = [["overview", "Overview"], ["pressure", "Financing pressure"], ["financials", "Financials"], ["pipeline", "Pipeline"], ["catalysts", "Catalysts"], ["valuation", "Valuation"], ["score", "Score"]];
 
   return (
     <div className="stack">
@@ -702,6 +754,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
         <div className="q-body">
           <div className="q-chart"><PriceChart c={c} /></div>
           <dl className="q-key">
+            <dt>Financing Pressure Score</dt><dd><button className="linkish" onClick={() => setTab("pressure")}><BandBadge c={c} /></button></dd>
             <dt>Previous close</dt><dd className="num">{fmtPx(c.quote?.prev)}</dd>
             <dt>52-week range</dt><dd><RangeBar lo={c.quote?.lo52} hi={c.quote?.hi52} v={c.quote?.price} />{c.quote?.hi52 == null && "—"}</dd>
             <dt>Market value</dt><dd className="num">{money(c.mcap)}</dd>
@@ -710,7 +763,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
             <dt>Cash and investments</dt><dd className="num">{money(c.cash)}</dd>
             <dt>Cash runway</dt><dd className={"num " + (r < 12 ? "warn" : "")}>{c.cashFlowPositive ? "Cash flow positive" : fmtRunway(r, "months")}</dd>
             <dt>Next catalyst</dt><dd>{nc ? <>{fmtDate(nc.date)} <span className="sub inline">({days(nc.date)} days)</span></> : "None dated"}</dd>
-            <dt>Helixora score</dt><dd className="num">{score} <span className="sub inline">of 100</span></dd>
+            <dt>Research score</dt><dd className="num">{score} <span className="sub inline">of 100</span></dd>
           </dl>
         </div>
         {c.note && <p className="q-note">{c.note}</p>}
@@ -729,6 +782,8 @@ function Company({ ticker, go, watch, toggleWatch }) {
       <nav className="tabs">
         {tabs.map(([k, l]) => <button key={k} className={tab === k ? "on" : ""} onClick={() => setTab(k)}>{l}</button>)}
       </nav>
+
+      {tab === "pressure" && <FpsPanel c={c} go={go} />}
 
       {tab === "overview" && (
         <div className="two">
@@ -1045,7 +1100,10 @@ function Compare() {
     ["Pipeline rNPV", (c) => money(pipelineValue(c)), 1],
     ["EV / rNPV", (c) => `${num((c.ev / pipelineValue(c)) * 100, 0)}%`, 1],
     ["Institutional ownership", (c) => (c.own == null ? "—" : `${num(c.own, 0)}%`), 1],
-    ["Score", (c) => bis(c), 1],
+    ["Financing Pressure Score", (c) => <BandBadge c={c} />],
+    ["Runway-to-catalyst gap", (c) => fmtGap(fpsOf(c).gap), 1],
+    ["Raise-ready capacity", (c) => capacityLabel(c)],
+    ["Research score", (c) => bis(c), 1],
   ];
 
   return (
@@ -1095,6 +1153,8 @@ function Ask() {
     monthly_burn_musd: c.burn, runway_months: +runway(c).toFixed(1),
     revenue_ttm_musd: c.rev, shares_out_m: c.shares, score: bis(c),
     pipeline_rnpv_musd: Math.round(pipelineValue(c)),
+    financing_pressure_score: fpsOf(c).score, financing_pressure_band: fpsOf(c).band, runway_to_catalyst_gap_months: fpsOf(c).gap,
+    raise_capacity: c.raise?.capacity || null,
     programs: c.pipeline.map((p) => ({ drug: p.d, indication: p.ind, target: p.tgt, phase: p.ph, expected_readout: p.ro, peak_sales_musd: p.peak })),
     catalysts: c.catalysts.map((x) => ({ date: x.date, days_away: days(x.date), event: x.label })),
     financings: c.financings.map(({ date, type, amt }) => ({ date, type, amount_musd: amt })),
@@ -1176,6 +1236,387 @@ function Ask() {
   );
 }
 
+/* ------------------------- financing pressure -------------------------
+   The Financing Pressure Score (see src/fps.js) and everything built on it:
+   the Raise List, the Pressure Report, the methodology page, the public
+   track record and the waitlist.                                        */
+
+const FPS_CACHE = new Map();
+const fpsOf = (c) => {
+  if (!FPS_CACHE.has(c.t)) FPS_CACHE.set(c.t, computeFPS(c, TODAY));
+  return FPS_CACHE.get(c.t);
+};
+const BAND_COLOR = { High: "#9E2140", Elevated: "#B8730F", Low: "#12706B" };
+const capacityLabel = (c) => (!c.raise ? "—" : c.raise.capacity === "atm" ? "Active ATM" : c.raise.capacity === "shelf" ? "Shelf only" : "None found");
+const byPressure = () => [...COMPANIES].sort((a, b) => (fpsOf(b).score ?? -1) - (fpsOf(a).score ?? -1));
+const fmtGap = (g) => `${g > 0 ? "+" : g < 0 ? "−" : ""}${Math.abs(g).toFixed(0)} mo`;
+const OFFERING = /424B4|424B5|Priced offering|Shelf takedown/;
+
+function BandBadge({ c, size }) {
+  const f = fpsOf(c);
+  if (f.score == null) return <span className="sub inline">—</span>;
+  return (
+    <span className={"fps fps-" + f.band.toLowerCase() + (size === "lg" ? " lg" : "")} title={`Financing Pressure Score ${f.score} of 100, ${f.band} band`}>
+      <b>{f.score}</b><span>{f.band}</span>
+    </span>
+  );
+}
+
+function FpsChart({ go, height }) {
+  const data = byPressure().map((c) => ({ t: c.t, n: c.n, s: fpsOf(c).score ?? 0, band: fpsOf(c).band }));
+  return (
+    <ResponsiveContainer width="100%" height={height || Math.max(220, data.length * 34 + 40)}>
+      <BarChart data={data} layout="vertical" margin={{ top: 4, right: 36, bottom: 18, left: 4 }} barCategoryGap={6}>
+        <CartesianGrid stroke="#E4E9EB" horizontal={false} />
+        <XAxis type="number" domain={[0, 100]} ticks={[0, 20, 40, 60, 70, 80, 100]} tick={{ fontSize: 11, fill: "#5E6B73" }}
+          label={{ value: "Financing Pressure Score", position: "insideBottom", offset: -10, fontSize: 11, fill: "#5E6B73" }} />
+        <YAxis type="category" dataKey="t" width={52} tick={{ fontSize: 12, fill: "#151D22", fontWeight: 700 }} axisLine={false} tickLine={false} />
+        <ReferenceLine x={40} stroke="#B8730F" strokeDasharray="4 3" label={{ value: "Elevated", position: "top", fontSize: 10, fill: "#8A5609" }} />
+        <ReferenceLine x={70} stroke="#9E2140" strokeDasharray="4 3" label={{ value: "High", position: "top", fontSize: 10, fill: "#9E2140" }} />
+        <Tooltip cursor={{ fill: "rgba(14,42,46,.05)" }} content={({ payload }) => {
+          if (!payload || !payload.length) return null;
+          const d = payload[0].payload;
+          return <div className="rtip"><b>{d.t}</b> {d.n}<br />Score {d.s} of 100, {d.band}</div>;
+        }} />
+        <Bar dataKey="s" radius={[0, 3, 3, 0]} onClick={(d) => go && go("company", d.t, "pressure")} style={{ cursor: go ? "pointer" : "default" }}
+          label={{ position: "right", fontSize: 12, fill: "#151D22", fontWeight: 600 }} isAnimationActive={false}>
+          {data.map((d) => <Cell key={d.t} fill={BAND_COLOR[d.band]} />)}
+        </Bar>
+      </BarChart>
+    </ResponsiveContainer>
+  );
+}
+
+function RaiseList({ go }) {
+  const ranked = byPressure();
+  const high = ranked.filter((c) => fpsOf(c).band === "High");
+  const elevated = ranked.filter((c) => fpsOf(c).band === "Elevated");
+  const row = (c) => {
+    const f = fpsOf(c);
+    return (
+      <li key={c.t}>
+        <button onClick={() => go("company", c.t, "pressure")}>
+          <span className="rl-t">{c.t}</span>
+          <span className="rl-n">{c.n}<em>{fmtRunway(f.runway, "months")} of cash, {f.catalyst ? `${plainLabel(f.catalyst.label)} in ${Math.round(f.monthsToCatalyst)} months` : "no dated catalyst"}</em></span>
+          <BandBadge c={c} />
+        </button>
+      </li>
+    );
+  };
+  return (
+    <div className="raiselist">
+      <h3 className="rl-h">Raise List</h3>
+      <p className="rl-note">Companies scoring 70 or higher. We check six months later whether each one raised money, and publish the result.</p>
+      {high.length ? <ul>{high.map(row)}</ul> : <p className="rl-empty">No company scores 70 or higher today.</p>}
+      {elevated.length > 0 && (<><h4 className="rl-sub">Elevated, 40 to 69</h4><ul>{elevated.map(row)}</ul></>)}
+    </div>
+  );
+}
+
+function FpsPanel({ c, go }) {
+  const f = fpsOf(c);
+  if (f.score == null) return <section className="panel"><p className="empty">Not enough data to score this company yet.</p></section>;
+  const q = c.src?.filing;
+  const cat = f.catalyst;
+  const prog = cat ? c.pipeline.find((p) => p.d === cat.drug) : null;
+  const atmUrl = c.raise?.atm?.url || c.raise?.shelf?.url;
+  const interp = f.band === "High"
+    ? "High likelihood of an equity raise around the next catalyst; existing holders face dilution risk."
+    : f.band === "Elevated"
+      ? "A raise before or soon after the next catalyst is plausible; watch for offering filings."
+      : "Cash covers the next catalyst with room to spare; near-term financing pressure is low.";
+  const steps = [
+    ["Source data", `Cash and investments: ${money(c.cash)}`, q ? <ExtLink href={q.url}>{q.form} balance sheet, {fmtDate(c.src.asOf)}</ExtLink> : "Latest filing"],
+    ["Source data", c.cashFlowPositive ? "Operating cash flow is positive" : `Operating cash burn: ${money(c.burn * 3)} a quarter (${money(c.burn)} a month)`, q ? <ExtLink href={q.url}>Cash-flow statement, trailing twelve months</ExtLink> : "Latest filing"],
+    ["Calculated", `Runway ≈ ${fmtRunway(f.runway, "months")}`, c.cashFlowPositive ? "Cash flow positive" : `${money(c.cash)} ÷ ${money(c.burn)} a month`],
+    ["Source data", cat ? `${shortLabel(cat.label)}: ${fmtDate(cat.date)}` : `No dated catalyst; ${NO_CATALYST_MONTHS} months assumed`, prog?.nct ? <ExtLink href={`https://clinicaltrials.gov/study/${prog.nct}`}>ClinicalTrials.gov {prog.nct}</ExtLink> : cat ? "Company guidance" : "Methodology default"],
+    ["Calculated", `Catalyst gap ≈ ${fmtGap(f.gap)}`, `${num(f.runway, 0)} − (${num(f.monthsToCatalyst, 0)} + ${BUFFER_MONTHS})`],
+    ["Source data", c.raise ? (c.raise.capacity === "atm" ? `Active ATM program (${c.raise.atm.phrase})` : c.raise.capacity === "shelf" ? "Shelf registration, no ATM found" : "No shelf or ATM found") : "Not available", atmUrl ? <ExtLink href={atmUrl}>{c.raise.capacity === "atm" ? c.raise.atm.form : c.raise.shelf.form} filing</ExtLink> : "SEC filing index, past three years"],
+    ["Interpretation", interp, "Generated from the figures above; no buy or sell view"],
+  ];
+  return (
+    <div className="stack">
+      <section className="panel">
+        <header className="ph"><h2>Financing Pressure Score</h2>
+          <span className="ph-note">How likely {c.n} is to need new money before its next major catalyst.</span></header>
+        <div className="fps-head">
+          <BandBadge c={c} size="lg" />
+          <p>{interp} {f.missing.length > 0 && <span className="sub inline">Scored on {f.coverage}% of the weights; not available: {f.missing.join(", ").toLowerCase()}.</span>}</p>
+        </div>
+        <h3 className="subhead">How the score traces to the filings</h3>
+        <div className="tablewrap">
+          <table className="grid plain trace">
+            <thead><tr><th>Step</th><th>Value</th><th>Where it comes from</th></tr></thead>
+            <tbody>{steps.map(([a, b, d], i) => <tr key={i}><td className="sub-c">{a}</td><td>{b}</td><td className="sub-c">{d}</td></tr>)}</tbody>
+          </table>
+        </div>
+        <h3 className="subhead">Score breakdown</h3>
+        <div className="tablewrap">
+          <table className="grid plain">
+            <thead><tr><th>Component</th><th className="r">Weight</th><th className="r">Component score</th><th className="r">Contribution</th><th>Basis</th></tr></thead>
+            <tbody>
+              {f.parts.map((p) => (
+                <tr key={p.key} className={p.present ? "" : "dim"}>
+                  <td>{p.label}</td>
+                  <td className="r mono">{Math.round(p.weight * 100)}%</td>
+                  <td className="r mono">{p.present ? p.score : "—"}</td>
+                  <td className="r mono">{p.present ? num(p.contribution) : "—"}</td>
+                  <td className="sub-c">{p.present ? (p.url ? <ExtLink href={p.url}>{p.detail}</ExtLink> : p.detail) : "Not available"}</td>
+                </tr>
+              ))}
+              <tr className="total"><td>Total</td><td className="r mono">100%</td><td /><td className="r mono">{f.score}</td><td /></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section className="panel">
+        <header className="ph"><h2>What to watch next quarter</h2></header>
+        <ul className="watch">
+          <li>Any 8-K announcing an offering, private placement or ATM sales.</li>
+          <li>Whether burn rises further ahead of {cat ? shortLabel(cat.label) : "the next catalyst"}{f.parts.find((p) => p.key === "trend")?.present ? ` (currently ${f.parts.find((p) => p.key === "trend").value > 0 ? "+" : ""}${num(f.parts.find((p) => p.key === "trend").value, 0)}% year on year)` : ""}.</li>
+          <li>Changes to the catalyst date, which would move the gap and the score.</li>
+          <li>New partnerships or non-dilutive funding that would lower pressure.</li>
+        </ul>
+        {go && <button className="morelink" onClick={() => go("method")}>How the score is calculated</button>}
+      </section>
+    </div>
+  );
+}
+
+function Waitlist({ compact }) {
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
+  const [state, setState] = useState("idle");
+  const submit = async (e) => {
+    e.preventDefault();
+    setState("sending");
+    try {
+      const res = await fetch("/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ "form-name": "waitlist", email, role, "bot-field": "" }).toString(),
+      });
+      setState(res.ok ? "done" : "error");
+    } catch { setState("error"); }
+  };
+  if (state === "done") return <div className={"waitlist" + (compact ? " compact" : "")}><p className="wl-done">You're on the list. The next Financing Pressure Report will come to {email}.</p></div>;
+  return (
+    <form className={"waitlist" + (compact ? " compact" : "")} name="waitlist" onSubmit={submit}>
+      <input type="hidden" name="form-name" value="waitlist" />
+      <h3>Get the Financing Pressure Report by email</h3>
+      {!compact && <p>A short note when the Raise List changes, with every number linked to its filing. No hype, no stock picks.</p>}
+      <div className="wl-fields">
+        <label className="sr" htmlFor={"wl-email" + (compact ? "-c" : "")}>Email</label>
+        <input id={"wl-email" + (compact ? "-c" : "")} type="email" name="email" required placeholder="you@fund.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label className="sr" htmlFor={"wl-role" + (compact ? "-c" : "")}>Your role</label>
+        <select id={"wl-role" + (compact ? "-c" : "")} name="role" value={role} onChange={(e) => setRole(e.target.value)}>
+          <option value="">Your role (optional)</option>
+          <option>Fund analyst or PM</option>
+          <option>Family office</option>
+          <option>Independent investor</option>
+          <option>Biotech operator</option>
+          <option>Other</option>
+        </select>
+        <button type="submit" disabled={state === "sending"}>{state === "sending" ? "Joining…" : "Join the waitlist"}</button>
+      </div>
+      {state === "error" && <p className="wl-err">That didn't go through. Check your connection and try again.</p>}
+      <p className="wl-fine">We'll only email you about Helixora. Unsubscribe any time.</p>
+    </form>
+  );
+}
+
+// Public track record: every company flagged at 70+, and whether it filed an offering within six months.
+function trackRecord() {
+  const firstFlag = {};
+  for (const snap of HISTORY.snapshots || []) {
+    for (const [t, v] of Object.entries(snap.scores || {})) {
+      if (v.fps != null && v.fps >= 70 && !firstFlag[t]) firstFlag[t] = snap.date;
+    }
+  }
+  const rows = Object.entries(firstFlag).map(([t, date]) => {
+    const c = COMPANIES.find((x) => x.t === t);
+    const due = new Date(Date.parse(date) + 183 * 86400000).toISOString().slice(0, 10);
+    const raise = (c?.financings || []).filter((f) => f.date >= date && f.date <= due && OFFERING.test(f.type || "")).sort((a, b) => (a.date < b.date ? -1 : 1))[0];
+    const status = raise ? "raised" : TODAY.toISOString().slice(0, 10) > due ? "missed" : "pending";
+    return { t, n: c?.n || t, date, due, raise, status, daysToRaise: raise ? Math.round((Date.parse(raise.date) - Date.parse(date)) / 86400000) : null };
+  });
+  const q = (d) => `Q${Math.floor(new Date(d).getUTCMonth() / 3) + 1} ${new Date(d).getUTCFullYear()}`;
+  const quarters = {};
+  rows.forEach((r) => { (quarters[q(r.date)] = quarters[q(r.date)] || []).push(r); });
+  return { rows, quarters, since: (HISTORY.snapshots || [])[0]?.date };
+}
+
+function TrackRecord({ go }) {
+  const { rows, quarters, since } = trackRecord();
+  const median = (a) => { if (!a.length) return null; const s = [...a].sort((x, y) => x - y); return s[Math.floor((s.length - 1) / 2)]; };
+  return (
+    <section className="panel" id="track-record">
+      <header className="ph"><h2>Track record</h2>
+        <span className="ph-note">Every company that reaches the Raise List, and whether it filed an equity offering within six months. Misses stay on the page.</span></header>
+      <div className="tablewrap">
+        <table className="grid plain">
+          <thead><tr><th>Quarter flagged</th><th className="r">Companies flagged (70+)</th><th className="r">Raised within 6 months</th><th className="r">Still open</th><th className="r">Hit rate</th><th className="r">Median days to raise</th></tr></thead>
+          <tbody>
+            {Object.keys(quarters).length === 0 && <tr><td colSpan="6" className="empty">No company has reached 70 since scoring began{since ? ` on ${fmtDate(since)}` : ""}. The first flags will appear here.</td></tr>}
+            {Object.entries(quarters).map(([qt, list]) => {
+              const decided = list.filter((r) => r.status !== "pending");
+              const hits = list.filter((r) => r.status === "raised");
+              return (
+                <tr key={qt}>
+                  <td>{qt}</td><td className="r mono">{list.length}</td><td className="r mono">{hits.length}</td>
+                  <td className="r mono">{list.length - decided.length}</td>
+                  <td className="r mono">{decided.length ? `${Math.round((hits.length / decided.length) * 100)}%` : "Due " + fmtDate(list.map((r) => r.due).sort().at(-1))}</td>
+                  <td className="r mono">{median(hits.map((r) => r.daysToRaise)) ?? "—"}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      {rows.length > 0 && (
+        <ul className="tr-list">
+          {rows.map((r) => (
+            <li key={r.t}>
+              <button className="tick" onClick={() => go("company", r.t, "pressure")}>{r.t}</button> flagged {fmtDate(r.date)}:{" "}
+              {r.status === "raised" ? <>raised, <ExtLink href={r.raise.url}>{r.raise.type}</ExtLink> filed {fmtDate(r.raise.date)}</> : r.status === "missed" ? "no offering filed within six months (a miss)" : `open until ${fmtDate(r.due)}`}
+            </li>
+          ))}
+        </ul>
+      )}
+      <p className="colnote">Scores are recorded every weekday{since ? ` since ${fmtDate(since)}` : ""}. A hit is any priced offering or prospectus supplement (424B4 or 424B5) filed within 183 days of the first flag.</p>
+    </section>
+  );
+}
+
+function PressureReport({ go }) {
+  const ranked = byPressure().filter((c) => fpsOf(c).score != null);
+  const high = ranked.filter((c) => fpsOf(c).band === "High");
+  const top = ranked[0];
+  const tf = top ? fpsOf(top) : null;
+  const edition = LIVE ? fmtDate(META.generatedAt.slice(0, 10)) : fmtDate(TODAY.toISOString().slice(0, 10));
+  const headline = top
+    ? `${top.n} has about ${num(tf.runway, 0)} months of cash${tf.catalyst ? ` and its ${plainLabel(tf.catalyst.label)} is ${Math.round(tf.monthsToCatalyst)} months away` : ""}, ${Math.round(tf.gap) <= 0 ? "leaving almost no buffer once the data is in" : `leaving about ${Math.round(tf.gap)} months of cash after a ${BUFFER_MONTHS}-month buffer`}${top.raise?.capacity === "atm" ? ", and it already has an at-the-market program it can sell shares through" : top.raise?.capacity === "shelf" ? ", with a shelf registration on file" : ""}.`
+    : "";
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">The Financing Pressure Report, edition of {edition}</p>
+        <h1 className="report-h">{high.length} of {ranked.length} companies {high.length === 1 ? "has" : "have"} high financing pressure</h1>
+        <p className="lead-dek">{headline}</p>
+        <p className="byline">Built from SEC filings, ClinicalTrials.gov and market prices. Every figure links to its source on the company pages.</p>
+      </section>
+
+      <div className="two wide-left">
+        <section className="panel">
+          <header className="ph"><h2>Financing Pressure Score by company</h2><span className="ph-note">Dashed lines mark the Elevated (40) and High (70) bands.</span></header>
+          <FpsChart go={go} />
+        </section>
+        <section className="panel"><RaiseList go={go} /></section>
+      </div>
+
+      <section className="panel">
+        <header className="ph"><h2>Ranked table</h2></header>
+        <div className="tablewrap">
+          <table className="grid">
+            <thead><tr><th>Company</th><th>Area and stage</th><th className="r">Cash</th><th className="r">Qtr burn</th><th className="r">Runway</th><th>Next catalyst</th><th className="r">Gap</th><th>Raise capacity</th><th className="r">Score</th></tr></thead>
+            <tbody>
+              {ranked.map((c) => {
+                const f = fpsOf(c);
+                return (
+                  <tr key={c.t} onClick={() => go("company", c.t, "pressure")}>
+                    <td><span className="tick">{c.t}</span><span className="sub">{c.n}</span></td>
+                    <td>{c.area}<span className="sub">{leadProgram(c)?.ph}</span></td>
+                    <td className="r mono">{money(c.cash)}</td>
+                    <td className="r mono">{c.cashFlowPositive ? "Positive" : money(c.burn * 3)}</td>
+                    <td className="r mono nowrap">{fmtRunway(f.runway)}</td>
+                    <td>{f.catalyst ? <>{shortLabel(f.catalyst.label)}<span className="sub">in {num(f.monthsToCatalyst, 0)} mo</span></> : <span className="sub inline">None dated</span>}</td>
+                    <td className={"r mono nowrap " + (f.gap < 0 ? "neg" : "")}>{fmtGap(f.gap)}</td>
+                    <td>{capacityLabel(c)}</td>
+                    <td className="r"><BandBadge c={c} /></td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p className="colnote">Gap = runway minus (months to catalyst + {BUFFER_MONTHS}-month buffer). Negative means the company is likely to need money before, or soon after, its catalyst.</p>
+      </section>
+
+      {top && (<><h2 className="section-h">Company spotlight: {top.n}</h2><FpsPanel c={top} go={go} /></>)}
+
+      <Waitlist />
+      <p className="disclaimer">This report is general research about companies' financing situations. It is not investment advice, is not tailored to any reader, and does not recommend buying or selling any security.</p>
+    </div>
+  );
+}
+
+const PILLARS = [
+  ["Financing risk first", "We tell you who has to raise, and when.", "The Financing Pressure Score and the Raise List"],
+  ["Every number traced", "Select any figure and see the filing it came from.", "Source links on every metric and a published methodology"],
+  ["Built for the middle", "Terminal-grade biotech analysis without a terminal-sized bill.", "Free to use while in early access"],
+  ["Honest about uncertainty", "We publish our misses as well as our hits.", "A public, scored track record"],
+];
+
+function Methodology({ go }) {
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">About Helixora</p>
+        <h1 className="report-h">The platform that tells you who has to raise money, and when.</h1>
+        <p className="lead-dek">Catalyst calendars show dates. Enterprise terminals cost a fortune. Helixora connects cash, catalysts and the capacity to raise capital, for funds, family offices and serious independent investors, with every number traced to its filing.</p>
+      </section>
+
+      <section className="pillars">
+        {PILLARS.map(([h, m, p]) => (
+          <div key={h} className="pillar"><h3>{h}</h3><p>{m}</p><span>{p}</span></div>
+        ))}
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>The Financing Pressure Score</h2><span className="ph-note">Version {FPS_VERSION}, updated {fmtDate(FPS_UPDATED)}</span></header>
+        <p className="prose">One number from 0 to 100 for one question: how likely is a company to need new money before its next major catalyst? It describes a financing situation. It never says buy or sell.</p>
+        <div className="tablewrap">
+          <table className="grid plain">
+            <thead><tr><th>Component</th><th className="r">Weight</th><th>What it measures</th><th>How it is scored</th></tr></thead>
+            <tbody>{FPS_COMPONENTS.map((k) => <tr key={k.key}><td>{k.label}</td><td className="r mono">{Math.round(k.weight * 100)}%</td><td>{k.measures}</td><td className="sub-c">{k.rule}</td></tr>)}</tbody>
+          </table>
+        </div>
+        <div className="bands">
+          {FPS_BANDS.map((b) => <span key={b.label} className={"fps fps-" + b.label.toLowerCase()}><b>{b.min}–{b.max}</b><span>{b.label}</span></span>)}
+        </div>
+        <h3 className="subhead">Definitions</h3>
+        <dl className="facts defs">
+          <dt>Runway</dt><dd>Cash, cash equivalents and marketable securities divided by monthly operating cash burn. Burn is the trailing twelve months of operating cash flow from SEC filings, divided by twelve, which smooths out lumpy quarters.</dd>
+          <dt>Next catalyst</dt><dd>The next dated clinical or regulatory event: a trial's primary completion date on ClinicalTrials.gov, or a date the company has guided to, such as a PDUFA date. Earnings dates do not count. If nothing is dated, we assume {NO_CATALYST_MONTHS} months.</dd>
+          <dt>Gap</dt><dd>Runway minus (months to catalyst + a {BUFFER_MONTHS}-month buffer). The buffer reflects that companies rarely wait until the cash is gone to raise.</dd>
+          <dt>Raise-ready capacity</dt><dd>An at-the-market program is identified from a sales agreement disclosed in a prospectus supplement (424B5) or shelf registration (S-3) filed in the past three years. Each company page links to the filing used.</dd>
+          <dt>Missing data</dt><dd>If a component can't be calculated from filings, it is left out and the remaining weights are scaled up. The company page says which components were used.</dd>
+        </dl>
+        <p className="colnote">Weights are a starting hypothesis. We will backtest them against historical offerings and publish every change below.</p>
+      </section>
+
+      <TrackRecord go={go} />
+
+      <section className="panel">
+        <header className="ph"><h2>Change log</h2></header>
+        <ul className="watch">{FPS_CHANGELOG.map((x) => <li key={x.version}><b>Version {x.version}, {fmtDate(x.date)}.</b> {x.note}</li>)}</ul>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Sources</h2></header>
+        <ul className="watch">
+          <li><ExtLink href="https://www.sec.gov/search-filings/edgar-application-programming-interfaces">SEC EDGAR</ExtLink>: balance sheets, cash flows, share counts, offering filings, shelf registrations.</li>
+          <li><ExtLink href="https://clinicaltrials.gov/data-api/api">ClinicalTrials.gov</ExtLink>: trial phase, enrollment, endpoints and primary completion dates.</li>
+          <li>Yahoo Finance: previous closing prices, used for market value.</li>
+        </ul>
+      </section>
+
+      <Waitlist />
+      <p className="disclaimer">Helixora publishes general research about companies' financing situations. It is not investment advice, is not tailored to any reader, and does not recommend buying or selling any security.</p>
+    </div>
+  );
+}
+
 /* -------------------------------- logo --------------------------------
    The "x" in helixora is one turn of a double helix: two strands crossing,
    with base-pair rungs at the open ends. The masthead version adds a thin
@@ -1230,14 +1671,15 @@ export default function App() {
 
   useEffect(() => { try { localStorage.setItem(WATCH_KEY, JSON.stringify(watch)); } catch { /* ignore */ } }, [watch]);
 
-  const go = (v, t) => { if (t) setTicker(t); setView(v); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const [companyTab, setCompanyTab] = useState("overview");
+  const go = (v, t, tab) => { if (t) setTicker(t); setCompanyTab(tab || "overview"); setView(v); window.scrollTo({ top: 0, behavior: "smooth" }); };
   const toggleWatch = (t) => setWatch((w) => (w.includes(t) ? w.filter((x) => x !== t) : [...w, t]));
 
   const matches = omni.trim()
     ? COMPANIES.filter((c) => (c.t + " " + c.n).toLowerCase().includes(omni.toLowerCase())).slice(0, 6)
     : [];
 
-  const nav = [["home", "Markets"], ["screen", "Screener"], ["company", "Quotes"], ["catalysts", "Calendar"], ["compare", "Compare"], ["ask", "Ask"]];
+  const nav = [["home", "Markets"], ["report", "Pressure Report"], ["screen", "Screener"], ["company", "Quotes"], ["catalysts", "Calendar"], ["compare", "Compare"], ["ask", "Ask"], ["method", "Methodology"]];
   const dateline = TODAY.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
 
   return (
@@ -1250,7 +1692,7 @@ export default function App() {
           <button className="wordmark" onClick={() => go("home")} aria-label="Helixora home">
             <Wordmark underline />
           </button>
-          <span className="mast-tag">Biotech markets, read from the filings</span>
+          <span className="mast-tag">Know who has to raise, before they do.</span>
           <div className="omni">
             <input value={omni} onChange={(e) => setOmni(e.target.value)} placeholder="Search a company or ticker" aria-label="Search a company or ticker"
               onKeyDown={(e) => { if (e.key === "Enter" && matches[0]) { go("company", matches[0].t); setOmni(""); } }} />
@@ -1278,7 +1720,9 @@ export default function App() {
       <main className="main" id="main">
         {view === "home" && <Home go={go} watch={watch} toggleWatch={toggleWatch} />}
         {view === "screen" && <Screen go={go} />}
-        {view === "company" && <Company ticker={ticker} go={go} watch={watch} toggleWatch={toggleWatch} />}
+        {view === "company" && <Company key={ticker + companyTab} ticker={ticker} initialTab={companyTab} go={go} watch={watch} toggleWatch={toggleWatch} />}
+        {view === "report" && <PressureReport go={go} />}
+        {view === "method" && <Methodology go={go} />}
         {view === "catalysts" && <Catalysts go={go} />}
         {view === "compare" && <Compare />}
         {view === "ask" && <Ask />}
@@ -1294,7 +1738,7 @@ export default function App() {
             ) : (
               <>Showing the built-in sample dataset: companies, figures, and dates are fictional.{" "}</>
             )}
-            Research and screening tool only; nothing here is investment advice.
+            Helixora publishes general research about companies' financing situations. It is not investment advice, is not tailored to any reader, and does not recommend buying or selling any security.
           </p>
         </div>
       </footer>
@@ -1632,11 +2076,98 @@ button.tick:hover{color:var(--teal) !important;}
 .foot-in{display:flex;gap:24px;align-items:flex-start;padding-top:20px;padding-bottom:28px;}
 .foot p{margin:0;font-size:12.5px;color:var(--mut);max-width:100ch;line-height:1.55;}
 
+
+/* financing pressure */
+.fps{display:inline-flex;align-items:baseline;gap:6px;padding:2px 8px 2px 7px;border-radius:3px;border:1px solid;white-space:nowrap;font-variant-numeric:tabular-nums;line-height:1.35;}
+.fps b{font-weight:700;font-size:13.5px;}
+.fps span{font-size:12px;font-weight:600;}
+.fps-high{background:#FBEFF2;border-color:#E7B9C5;color:#8A1C37;}
+.fps-elevated{background:#FCF4E6;border-color:#EBCF9C;color:#7A4E08;}
+.fps-low{background:#EAF4F2;border-color:#B5D9D3;color:#0C5652;}
+.fps.lg{padding:6px 12px;gap:10px;}
+.fps.lg b{font-size:34px;letter-spacing:-.02em;line-height:1;}
+.fps.lg span{font-size:15px;}
+.linkish{background:none;border:0;padding:0;cursor:pointer;}
+.fps-head{display:flex;gap:18px;align-items:center;margin:0 0 18px;}
+.fps-head p{margin:0;font-size:15px;max-width:70ch;}
+.subhead{font-size:14px;font-weight:700;margin:20px 0 8px;}
+.sub-c{color:var(--mut);font-size:13px;}
+.grid.plain tr.dim td{color:#9AA6AD;}
+.grid.plain tr.total td{font-weight:700;border-top:1px solid var(--ink);border-bottom:0;}
+.grid td.neg{color:var(--crimson);}
+.watch{margin:0;padding-left:18px;display:grid;gap:7px;font-size:14px;}
+.raiselist ul{list-style:none;margin:0;padding:0;}
+.raiselist li button{display:grid;grid-template-columns:52px 1fr auto;gap:10px;align-items:center;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--rule2);padding:9px 0;}
+.raiselist li button:hover{background:var(--bg);}
+.rl-h{font-size:16px;font-weight:700;margin:0 0 4px;}
+.rl-note{font-size:13px;color:var(--mut);margin:0 0 10px;}
+.rl-empty{font-size:14px;margin:0 0 6px;padding:10px 12px;background:#F6F8F8;border-left:3px solid var(--teal);}
+.rl-sub{font-size:13px;font-weight:600;color:var(--mut);margin:14px 0 4px;}
+.rl-t{font-weight:700;}
+.rl-n{font-size:13.5px;}
+.rl-n em{display:block;font-style:normal;font-size:12px;color:var(--mut);}
+.mini-fps{list-style:none;margin:0;padding:0;}
+.mini-fps button{display:grid;grid-template-columns:50px 1fr auto;gap:8px;align-items:center;width:100%;background:none;border:0;border-top:1px solid var(--rule2);padding:7px 0;text-align:left;font-size:13px;}
+.mini-fps button:hover{background:var(--bg);}
+.mini-fps span{color:var(--mut);}
+.two.wide-left{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);}
+
+/* identity bar */
+.idbar{display:flex;justify-content:space-between;align-items:center;gap:24px;background:var(--paper);border:1px solid var(--rule);border-left:4px solid var(--teal);padding:18px 22px;}
+.id-line{font-family:var(--display);font-size:clamp(22px,2.3vw,29px);font-weight:700;font-stretch:90%;letter-spacing:-.012em;line-height:1.15;margin:0;}
+.id-sub{margin:6px 0 0;color:var(--mut);font-size:14.5px;}
+.id-ctas{display:flex;gap:10px;flex-wrap:wrap;flex:none;}
+.btn{background:#fff;border:1px solid var(--rule);border-radius:2px;padding:9px 14px;font-size:14px;font-weight:600;white-space:nowrap;}
+.btn:hover{border-color:var(--teal);}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:#fff !important;}
+.btn.primary:hover{background:var(--teal-d);}
+
+/* report + methodology */
+.report-head{padding:24px 26px;}
+.kicker-static{font-size:13px;font-weight:600;color:var(--teal);margin:0 0 6px;}
+.report-h{font-family:var(--display);font-size:clamp(28px,3.2vw,40px);font-weight:700;font-stretch:90%;letter-spacing:-.015em;line-height:1.08;margin:0 0 12px;max-width:26ch;}
+.section-h{font-size:18px;font-weight:700;margin:8px 0 -4px;}
+.disclaimer{font-size:12.5px;color:var(--mut);margin:0;max-width:100ch;}
+.prose{font-size:15px;max-width:72ch;margin:0 0 14px;}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--paper);border:1px solid var(--rule);}
+.pillar{padding:18px 20px;border-left:1px solid var(--rule2);}
+.pillar:first-child{border-left:0;}
+.pillar h3{font-size:15px;font-weight:700;margin:0 0 6px;}
+.pillar p{margin:0 0 10px;font-size:14.5px;}
+.pillar span{font-size:12.5px;color:var(--mut);}
+.bands{display:flex;gap:10px;margin:14px 0 4px;flex-wrap:wrap;}
+.facts.defs{grid-template-columns:170px 1fr;gap:10px 18px;font-size:14px;}
+.facts.defs dd{max-width:80ch;}
+.tr-list{margin:12px 0 0;padding-left:18px;font-size:14px;display:grid;gap:5px;}
+.trace td:first-child{white-space:nowrap;}
+
+/* waitlist */
+.waitlist{background:var(--paper);border:1px solid var(--rule);border-top:3px solid var(--teal);padding:18px 20px;}
+.waitlist h3{font-size:16px;font-weight:700;margin:0 0 4px;}
+.waitlist p{margin:0 0 12px;font-size:14px;color:var(--ink2);}
+.wl-fields{display:flex;gap:8px;flex-wrap:wrap;}
+.wl-fields input,.wl-fields select{font:inherit;font-size:14px;padding:9px 11px;border:1px solid var(--rule);border-radius:2px;background:#fff;color:var(--ink);}
+.wl-fields input{flex:1 1 220px;}
+.wl-fields button{background:var(--teal);color:#fff !important;border:0;border-radius:2px;padding:9px 18px;font-size:14px;font-weight:600;}
+.wl-fields button:disabled{opacity:.6;}
+.wl-fine{font-size:12px !important;color:var(--mut) !important;margin:8px 0 0 !important;}
+.wl-err{color:var(--crimson) !important;margin:8px 0 0 !important;}
+.wl-done{font-weight:600;margin:0 !important;}
+.waitlist.compact{border:0;border-top:1px solid var(--ink);padding:10px 0 0;background:none;}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 @media (max-width:1180px){
+  .pillars{grid-template-columns:1fr 1fr;}
+  .pillar:nth-child(3){border-left:0;}
   .front{grid-template-columns:minmax(0,1fr) 300px;}
   .front>.side{grid-column:1/-1;border-left:0;border-top:1px solid var(--rule2);display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
 }
 @media (max-width:860px){
+  .idbar{flex-direction:column;align-items:flex-start;}
+  .two.wide-left,.pillars{grid-template-columns:1fr;}
+  .pillar{border-left:0;border-top:1px solid var(--rule2);}
+  .pillar:first-child{border-top:0;}
+  .fps-head{flex-direction:column;align-items:flex-start;}
+  .facts.defs{grid-template-columns:1fr;}
   .front{grid-template-columns:1fr;}
   .front>.wire{border-left:0;border-top:1px solid var(--rule2);}
   .front>.side{grid-template-columns:1fr;}

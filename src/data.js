@@ -12,6 +12,7 @@ import { SAMPLE_COMPANIES } from "./sampleData.js";
 
 export let COMPANIES = SAMPLE_COMPANIES;
 export let META = { live: false };
+export let HISTORY = { snapshots: [] };
 
 export async function loadData() {
   try {
@@ -21,6 +22,10 @@ export async function loadData() {
     if (!Array.isArray(json.companies) || json.companies.length === 0) throw new Error("no companies in file");
     COMPANIES = json.companies;
     META = { ...json.meta, live: true };
+    try {
+      const h = await fetch(`${import.meta.env.BASE_URL}data/fps-history.json`, { cache: "no-cache" });
+      if (h.ok) HISTORY = await h.json();
+    } catch { /* no history yet */ }
   } catch (e) {
     COMPANIES = SAMPLE_COMPANIES;
     META = { live: false, reason: e.message };
