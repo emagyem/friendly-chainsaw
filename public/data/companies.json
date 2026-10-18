@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-10-18T03:40:21.749Z",
+  "generatedAt": "2026-10-18T03:49:20.133Z",
   "sources": [
    "SEC EDGAR XBRL company facts",
    "SEC EDGAR filing index",
@@ -9088,18 +9088,18 @@
    "mkt": 0.6,
    "pipeline": [
     {
-     "d": "Atacicept",
+     "d": "Trutakna (atacicept)",
      "ind": "IgA Nephropathy",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase III",
+     "tgt": "BAFF/APRIL",
+     "moa": "Dual BAFF/APRIL inhibitor fusion protein",
+     "ph": "Approved",
      "n": 428,
      "ro": "2025-05-15",
      "roType": "ACTUAL",
      "ep": "Percentage Change From Baseline in Urine Protein to Creatinine Ratio (UPCR)",
-     "peak": 800,
-     "launch": 2.5,
-     "cost": 260,
+     "peak": 900,
+     "launch": 0,
+     "cost": 0,
      "est": true,
      "nct": "NCT04716231",
      "trials": 5,
@@ -9166,7 +9166,7 @@
      "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312524017530/d729909d424b5.htm"
     }
    ],
-   "note": "",
+   "note": "Trutakna (atacicept) won FDA accelerated approval for IgA nephropathy on July 7, 2026 (8-K filed that day); the company is now funding a U.S. launch.",
    "dil24": 31.4,
    "burnPrior": 15.44,
    "debtDue24": 0,
