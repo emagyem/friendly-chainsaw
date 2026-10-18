@@ -1,4 +1,4 @@
-# Readout
+# Helixora
 
 A biotech research terminal. It puts the three clocks a biotech investor watches on one screen: **when the trial reads out, when the cash runs out, and when the next raise dilutes shareholders.**
 
@@ -74,7 +74,7 @@ SEC_USER_AGENT="Your Name you@example.com" npm run fetch-data
 
 ## Known limits
 
-- Readout dates are trial *primary completion* dates from the registry, which are estimates. Topline data usually follows by weeks to months. Override them with company guidance in `assumptions.json`.
+- Trial readout dates are *primary completion* dates from the registry, which are estimates. Topline data usually follows by weeks to months. Override them with company guidance in `assumptions.json`.
 - Offering filings show when a company raised, not how much; add sizes in `assumptions.json` if you need them.
 - XBRL tagging varies between companies. If a figure looks off, the popover links to the filing it came from.
 

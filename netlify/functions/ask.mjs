@@ -33,7 +33,7 @@ export default async function handler(req) {
   }
 
   const provenance = live
-    ? `Figures come from SEC EDGAR filings, ClinicalTrials.gov and a stock price feed, refreshed ${asOf || "recently"}. Readout dates are registry estimates. Any input listed in a company's placeholder_inputs is a default, not research; say so if your answer depends on one.`
+    ? `Figures come from SEC EDGAR filings, ClinicalTrials.gov and a stock price feed, refreshed ${asOf || "recently"}. Trial readout dates are registry estimates. Any input listed in a company's placeholder_inputs is a default, not research; say so if your answer depends on one.`
     : "This is a fictional sample dataset for a prototype.";
 
   const prompt = `You are the research assistant inside a biotech investment research terminal. Answer only from the JSON dataset below. Never invent a company, number, or date that is not present. Cite the specific figures you used inline, in plain prose, e.g. "$412M cash against $21.5M monthly burn". If the data cannot answer the question, say exactly what is missing. Do not give buy or sell recommendations. Keep the answer under 180 words, no markdown headers, no bullet symbols other than plain hyphens. End with one line beginning "Worth checking:" naming the single assumption that most affects the conclusion.

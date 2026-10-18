@@ -33,7 +33,7 @@ jobs:
         env:
           # The SEC requires a name and contact email on automated requests.
           # Set SEC_CONTACT_EMAIL under Settings → Secrets and variables → Actions → Variables.
-          SEC_USER_AGENT: "Readout research ${{ vars.SEC_CONTACT_EMAIL }}"
+          SEC_USER_AGENT: "Helixora research ${{ vars.SEC_CONTACT_EMAIL }}"
           # Optional. Without it, prices come from Yahoo Finance's public endpoint.
           ALPHA_VANTAGE_KEY: ${{ secrets.ALPHA_VANTAGE_KEY }}
         run: node scripts/fetch-data.mjs

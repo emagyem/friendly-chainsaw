@@ -6,7 +6,7 @@ import {
 import { COMPANIES, META } from "./data.js";
 
 /* ------------------------------------------------------------------
-   READOUT — biotech intelligence terminal
+   HELIXORA — biotech markets terminal
    Data comes from public/data/companies.json (SEC EDGAR, ClinicalTrials.gov,
    stock prices, plus config/assumptions.json), refreshed nightly.
    Falls back to a fictional sample dataset when that file is absent.
@@ -695,7 +695,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
             <dt>Cash and investments</dt><dd className="num">{money(c.cash)}</dd>
             <dt>Cash runway</dt><dd className={"num " + (r < 12 ? "warn" : "")}>{c.cashFlowPositive ? "Cash flow positive" : r >= 120 ? "10+ years" : `${num(r)} months`}</dd>
             <dt>Next catalyst</dt><dd>{nc ? <>{fmtDate(nc.date)} <span className="sub inline">({days(nc.date)} days)</span></> : "None dated"}</dd>
-            <dt>Readout score</dt><dd className="num">{score} <span className="sub inline">of 100</span></dd>
+            <dt>Helixora score</dt><dd className="num">{score} <span className="sub inline">of 100</span></dd>
           </dl>
         </div>
         {(c.note || LIVE) && <p className="q-note">{c.note || "No thesis note yet. Add one for this ticker in config/assumptions.json."}</p>}
@@ -1197,8 +1197,8 @@ export default function App() {
 
       <header className="mast">
         <div className="mast-in">
-          <button className="wordmark" onClick={() => go("home")} aria-label="Readout home">
-            <span className="wm-dot" aria-hidden="true" />Readout
+          <button className="wordmark" onClick={() => go("home")} aria-label="Helixora home">
+            <span className="wm-dot" aria-hidden="true" />Helixora
           </button>
           <span className="mast-tag">Biotech markets, read from the filings</span>
           <div className="omni">
@@ -1236,11 +1236,11 @@ export default function App() {
 
       <footer className="foot">
         <div className="foot-in">
-          <span className="wordmark small"><span className="wm-dot" aria-hidden="true" />Readout</span>
+          <span className="wordmark small"><span className="wm-dot" aria-hidden="true" />Helixora</span>
           <p>
             {LIVE ? (
               <>Financials from SEC EDGAR filings, trial data from ClinicalTrials.gov, prices from Yahoo Finance at the previous close. Refreshed {new Date(META.generatedAt).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })}.
-                {" "}Headlines on the front page are written automatically from these figures. Readout dates are registry estimates unless marked otherwise, and peak sales marked as placeholders are defaults, not forecasts.{" "}</>
+                {" "}Headlines on the front page are written automatically from these figures. Trial readout dates are registry estimates unless marked otherwise, and peak sales marked as placeholders are defaults, not forecasts.{" "}</>
             ) : (
               <>Showing the built-in sample dataset: companies, figures, and dates are fictional.{" "}</>
             )}

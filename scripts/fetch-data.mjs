@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* ------------------------------------------------------------------
-   READOUT data refresh
+   HELIXORA data refresh
 
    Builds public/data/companies.json from public sources:
      - SEC EDGAR          cash, investments, debt, revenue, operating cash
@@ -293,7 +293,7 @@ function filingsFromSubmissions(sub, cik) {
 // Yahoo's chart endpoint gives the latest price plus a year of daily closes for the quote chart.
 async function yahooQuote(ticker) {
   const j = await getJSON(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?range=1y&interval=1d`,
-    { "User-Agent": "Mozilla/5.0 (READOUT data refresh)" });
+    { "User-Agent": "Mozilla/5.0 (Helixora data refresh)" });
   const res = j?.chart?.result?.[0];
   const m = res?.meta;
   if (!(m?.regularMarketPrice > 0)) return null;
