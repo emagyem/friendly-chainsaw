@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-10-18T01:44:35.096Z",
+  "generatedAt": "2026-10-18T03:40:21.749Z",
   "sources": [
    "SEC EDGAR XBRL company facts",
    "SEC EDGAR filing index",
@@ -120,6 +120,22 @@
    ],
    "note": "",
    "dil24": 5.3,
+   "burnPrior": 12.71,
+   "debtDue24": 0,
+   "raise": {
+    "capacity": "atm",
+    "atm": {
+     "form": "424B5",
+     "date": "2026-09-25",
+     "url": "https://www.sec.gov/Archives/edgar/data/1607678/000119312526401385/vktx-20260925.htm",
+     "phrase": "Sales Agreement"
+    },
+    "shelf": {
+     "form": "S-3ASR",
+     "date": "2026-07-30",
+     "url": "https://www.sec.gov/Archives/edgar/data/1607678/000119312526324455/vktx-20260730.htm"
+    }
+   },
    "quote": {
     "price": 25.17,
     "prev": 27.37,
@@ -1449,6 +1465,22 @@
    ],
    "note": "",
    "dil24": 13.6,
+   "burnPrior": -1.82,
+   "debtDue24": 0,
+   "raise": {
+    "capacity": "atm",
+    "atm": {
+     "form": "424B5",
+     "date": "2026-01-09",
+     "url": "https://www.sec.gov/Archives/edgar/data/879407/000119312526007968/d13080d424b5.htm",
+     "phrase": "Open Market Sale Agreement"
+    },
+    "shelf": {
+     "form": "S-3ASR",
+     "date": "2025-12-11",
+     "url": "https://www.sec.gov/Archives/edgar/data/879407/000119312525314755/d16145ds3asr.htm"
+    }
+   },
    "quote": {
     "price": 55.9,
     "prev": 58.5,
@@ -2714,6 +2746,17 @@
    ],
    "note": "",
    "dil24": 20.7,
+   "burnPrior": 16.98,
+   "debtDue24": 0,
+   "raise": {
+    "capacity": "shelf",
+    "atm": null,
+    "shelf": {
+     "form": "S-3",
+     "date": "2026-03-02",
+     "url": "https://www.sec.gov/Archives/edgar/data/1281895/000114036126007341/ny20066752x1_s3.htm"
+    }
+   },
    "quote": {
     "price": 2.18,
     "prev": 2.36,
@@ -3950,6 +3993,22 @@
    ],
    "note": "",
    "dil24": 52.2,
+   "burnPrior": 21.47,
+   "debtDue24": 0,
+   "raise": {
+    "capacity": "atm",
+    "atm": {
+     "form": "424B5",
+     "date": "2026-08-06",
+     "url": "https://www.sec.gov/Archives/edgar/data/1727196/000110465926091699/tm2622083-1_424b5.htm",
+     "phrase": "Open Market Sale Agreement"
+    },
+    "shelf": {
+     "form": "S-3ASR",
+     "date": "2024-10-07",
+     "url": "https://www.sec.gov/Archives/edgar/data/1727196/000110465924106660/tm2425688-4_s3asr.htm"
+    }
+   },
    "quote": {
     "price": 39.9,
     "prev": 40.64,
@@ -5300,6 +5359,22 @@
    ],
    "note": "",
    "dil24": 14.2,
+   "burnPrior": 24.48,
+   "debtDue24": 0,
+   "raise": {
+    "capacity": "atm",
+    "atm": {
+     "form": "424B5",
+     "date": "2026-06-09",
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526264032/d160204d424b5.htm",
+     "phrase": "Open Market Sale Agreement"
+    },
+    "shelf": {
+     "form": "S-3ASR",
+     "date": "2026-05-05",
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526206523/d83661ds3asr.htm"
+    }
+   },
    "quote": {
     "price": 32.85,
     "prev": 33.85,
@@ -6565,6 +6640,22 @@
    ],
    "note": "",
    "dil24": 34.6,
+   "burnPrior": 20.92,
+   "debtDue24": 0,
+   "raise": {
+    "capacity": "atm",
+    "atm": {
+     "form": "424B5",
+     "date": "2026-02-26",
+     "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312526073542/d108564d424b5.htm",
+     "phrase": "Sales Agreement"
+    },
+    "shelf": {
+     "form": "S-3ASR",
+     "date": "2024-10-31",
+     "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312524248179/d834487ds3asr.htm"
+    }
+   },
    "quote": {
     "price": 104.78,
     "prev": 108.14,
@@ -7836,6 +7927,22 @@
    ],
    "note": "",
    "dil24": 86,
+   "burnPrior": 29.96,
+   "debtDue24": 0,
+   "raise": {
+    "capacity": "atm",
+    "atm": {
+     "form": "424B5",
+     "date": "2026-07-22",
+     "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312526312576/d98164d424b5.htm",
+     "phrase": "Open Market Sale Agreement"
+    },
+    "shelf": {
+     "form": "S-3ASR",
+     "date": "2024-03-05",
+     "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312524058723/d932983ds3asr.htm"
+    }
+   },
    "quote": {
     "price": 14.25,
     "prev": 15.29,
@@ -9061,6 +9168,22 @@
    ],
    "note": "",
    "dil24": 31.4,
+   "burnPrior": 15.44,
+   "debtDue24": 0,
+   "raise": {
+    "capacity": "atm",
+    "atm": {
+     "form": "424B5",
+     "date": "2025-12-10",
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312525314244/d79646d424b5.htm",
+     "phrase": "Sales Agreement"
+    },
+    "shelf": {
+     "form": "S-3ASR",
+     "date": "2024-10-28",
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312524245701/d900457ds3asr.htm"
+    }
+   },
    "quote": {
     "price": 27.88,
     "prev": 28.57,
