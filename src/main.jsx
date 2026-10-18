@@ -1,5 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import '@fontsource-variable/bricolage-grotesque/standard.css'
+import '@fontsource-variable/instrument-sans/wdth.css'
 import './index.css'
 import { loadData } from './data.js'
 
