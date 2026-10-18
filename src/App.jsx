@@ -69,10 +69,17 @@ function rnpv(p, { discount = 0.11, margin = 0.42, patentYrs = 11, posOverride =
 
 function pipelineValue(c, opts) { return c.pipeline.reduce((s, p) => s + rnpv(p, opts), 0); }
 
+// The next clinical or regulatory event. Estimated earnings dates only count when nothing else is dated.
 function nextCatalyst(c) {
   const up = c.catalysts.filter((x) => days(x.date) >= 0).sort((a, b) => days(a.date) - days(b.date));
-  return up[0] || null;
+  return up.find((x) => x.kind !== "earnings") || up[0] || null;
 }
+// "VK2735 Phase III primary completion (registry estimate)" -> "VK2735 Phase III data (est.)"
+const shortLabel = (l) => (l || "").replace(/ primary completion \(registry estimate\)/i, " data (est.)").replace(/ primary completion/i, " data")
+  .replace(/Next quarterly report \(estimated\)/i, "Quarterly report (est.)");
+const fmtRunway = (r, unit = "mo") => (r >= 120 ? "10+ yrs" : `${num(r)} ${unit}`);
+// Capitalize a sentence, but leave drug names like "z-rostudirsen" as written.
+const cap = (t) => (t && /^[a-z]+[\s,]/.test(t) ? t.charAt(0).toUpperCase() + t.slice(1) : t);
 
 function phaseRank(ph) { return PHASES.indexOf(ph); }
 
@@ -123,9 +130,9 @@ function alertsFor(c) {
   else if (r < 18) out.push({ sev: "med", text: `Cash runway of ${num(r)} months. Watch for an opportunistic raise.` });
   const nc = nextCatalyst(c);
   // A routine quarterly report is worth noting, not a reason to act.
-  if (nc && nc.kind === "earnings") out.push({ sev: "low", text: `${nc.label} in ${days(nc.date)} days.` });
-  else if (nc && days(nc.date) <= 45) out.push({ sev: "high", text: `${nc.label} in ${days(nc.date)} days.` });
-  else if (nc && days(nc.date) <= 120) out.push({ sev: "low", text: `${nc.label} in ${days(nc.date)} days.` });
+  if (nc && nc.kind === "earnings") out.push({ sev: "low", text: `${shortLabel(nc.label)} in ${days(nc.date)} days.` });
+  else if (nc && days(nc.date) <= 45) out.push({ sev: "high", text: `${shortLabel(nc.label)} in ${days(nc.date)} days.` });
+  else if (nc && days(nc.date) <= 120) out.push({ sev: "low", text: `${shortLabel(nc.label)} in ${days(nc.date)} days.` });
   const atm = c.financings.find((f) => f.type === "ATM program" && days(f.date) > -540);
   if (atm) out.push({ sev: "med", text: `ATM program open since ${fmtDate(atm.date)}. Dilution can arrive without an announcement.` });
   const dil = shareGrowth(c);
@@ -306,7 +313,7 @@ function briefs() {
   reg.sort((a, b) => a.d - b.d).forEach(({ c, x, d }) => add({
     kind: "reg", c, weight: 100 - d / 10,
     headline: `${c.n} faces an FDA decision ${d <= 1 ? "this week" : `in ${d} days`}`,
-    dek: `${x.label} falls on ${fmtDate(x.date)}. ${runwayLine(c)}`,
+    dek: `The FDA's target action date for ${x.drug || "its application"} is ${fmtDate(x.date)}. ${runwayLine(c)}`,
   }));
 
   // Biggest price moves
@@ -342,7 +349,7 @@ function briefs() {
     add({
       kind: "runway", c: tight, weight: 70 - runway(tight),
       headline: `${tight.n} has the shortest cash runway in the group`,
-      dek: `${runwayLine(tight)}${nc ? ` Its next dated event is ${nc.label.toLowerCase()} on ${fmtDate(nc.date)}.` : ""}`,
+      dek: `${runwayLine(tight)}${nc ? ` Its next dated event, ${shortLabel(nc.label)}, is due ${fmtDate(nc.date)}.` : ""}`,
     });
   }
 
@@ -366,7 +373,7 @@ function wire() {
     const key = c.t + n.form + n.date;
     if (!seen.has(key)) { seen.add(key); all.push({ ...n, c }); }
   }));
-  return all.sort((a, b) => (b.date === a.date ? (b.time || "").localeCompare(a.time || "") : b.date.localeCompare(a.date))).slice(0, 14);
+  return all.sort((a, b) => (b.date === a.date ? (b.time || "").localeCompare(a.time || "") : b.date.localeCompare(a.date))).slice(0, 11);
 }
 
 /* --------------------------------- home --------------------------------- */
@@ -386,8 +393,11 @@ function Home({ go, watch, toggleWatch }) {
 
   const upcoming = useMemo(() => {
     const all = [];
+    // Clinical and regulatory events lead; estimated earnings dates fill in only if there are few.
     COMPANIES.forEach((c) => c.catalysts.forEach((x) => { const d = days(x.date); if (d >= 0) all.push({ ...x, c, d }); }));
-    return all.sort((a, b) => a.d - b.d).slice(0, 6);
+    const main = all.filter((x) => x.kind !== "earnings").sort((a, b) => a.d - b.d);
+    const filler = all.filter((x) => x.kind === "earnings").sort((a, b) => a.d - b.d);
+    return [...main, ...filler].slice(0, 6).sort((a, b) => a.d - b.d);
   }, []);
 
   const flagged = useMemo(() =>
@@ -408,7 +418,7 @@ function Home({ go, watch, toggleWatch }) {
             <>
               <Kicker c={lead.c} go={go} />
               <h1 id="lead-h" className="lead-h"><button onClick={() => go("company", lead.c.t)}>{lead.headline}</button></h1>
-              <p className="lead-dek">{lead.dek}</p>
+              <p className="lead-dek">{cap(lead.dek)}</p>
               <div className="lead-chart">
                 {lead.c.quote?.history?.length > 1
                   ? <><div className="lead-px"><b>{fmtPx(lead.c.quote.price)}</b><Change c={lead.c} abs /></div><PriceChart c={lead.c} height={150} compact /></>
@@ -423,7 +433,7 @@ function Home({ go, watch, toggleWatch }) {
               <article key={i} className="brief">
                 <Kicker c={b.c} go={go} />
                 <h2><button onClick={() => go("company", b.c.t)}>{b.headline}</button></h2>
-                <p>{b.dek}</p>
+                <p>{cap(b.dek)}</p>
               </article>
             ))}
           </div>
@@ -467,7 +477,7 @@ function Home({ go, watch, toggleWatch }) {
               {upcoming.map((e, i) => (
                 <li key={i}>
                   <span className="up-d"><b>{e.d}</b>days</span>
-                  <button onClick={() => go("company", e.c.t)}><span className="up-t">{e.c.t}</span>{e.label}{e.est && !/estimate/i.test(e.label) ? <em> (estimated)</em> : null}</button>
+                  <button onClick={() => go("company", e.c.t)}><span className="up-t">{e.c.t}</span>{shortLabel(e.label)}{e.est && !/est/i.test(shortLabel(e.label)) ? <em> (est.)</em> : null}</button>
                 </li>
               ))}
             </ul>
@@ -493,8 +503,8 @@ function Home({ go, watch, toggleWatch }) {
 
       <div className="two">
         <section className="panel">
-          <header className="ph"><h2>Runway against the next catalyst</h2>
-            <span className="ph-note">Lower left is the pressure zone: an event coming soon and less than a year of cash. Bubble size is market value.</span></header>
+          <header className="ph"><h2>Cash runway vs. next catalyst</h2>
+            <span className="ph-note">Lower left: less than a year of cash with an event coming soon. Bubble size shows market value.</span></header>
           <div className="chart">
             <ResponsiveContainer width="100%" height={300}>
               <ScatterChart margin={{ top: 12, right: 16, bottom: 28, left: 4 }}>
@@ -519,7 +529,7 @@ function Home({ go, watch, toggleWatch }) {
         </section>
 
         <section className="panel">
-          <header className="ph"><h2>Needs a decision</h2><span className="ph-note">Flags from runway, catalyst timing and dilution rules.</span></header>
+          <header className="ph"><h2>Risk flags</h2><span className="ph-note">Based on cash runway, catalyst timing and share dilution.</span></header>
           <div className="alist">
             {flagged.length === 0 && <p className="empty">No company trips a runway, timing or dilution rule today.</p>}
             {flagged.map(({ c, a }) => (
@@ -581,7 +591,7 @@ function Screen({ go }) {
   return (
     <div className="stack">
       <section className="panel">
-        <header className="ph"><h2>Screen the universe</h2><span className="ph-note">Every filter maps to a question an analyst already asks out loud.</span></header>
+        <header className="ph"><h2>Screener</h2></header>
         <div className="filters">
           <label className="f"><span>Company, drug, or target</span>
             <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={`obesity, KRAS, ${COMPANIES[0].t}`} /></label>
@@ -600,7 +610,7 @@ function Screen({ go }) {
 
       <section className="panel">
         <header className="ph"><h2>{rows.length} matches</h2>
-          <span className="ph-note">Score weights follow the plan: pipeline 25, financial 20, catalyst 15, market 15, valuation 15, strategic 10.</span></header>
+          <span className="ph-note">Helixora score weights: pipeline 25%, financial strength 20%, catalysts 15%, market 15%, valuation 15%, strategic position 10%.</span></header>
         {rows.length === 0 ? (
           <div className="empty">Nothing clears those filters. Widen the market cap ceiling or push the catalyst window out.</div>
         ) : (
@@ -621,8 +631,8 @@ function Screen({ go }) {
                       <td><PhaseTrack ph={lead.ph} /><span className="sub">{lead.d} · {lead.ind}</span></td>
                       <td className="r mono">{money(c.mcap)}</td>
                       <td className="r mono">{money(c.cash)}</td>
-                      <td className={"r mono " + (run < 12 ? "warn" : run > 24 ? "good" : "")}>{num(run)} mo</td>
-                      <td className="r mono">{nd}d<span className="sub r">{nc ? nc.label.slice(0, 26) : "—"}</span></td>
+                      <td className={"r mono nowrap " + (run < 12 ? "warn" : "")}>{fmtRunway(run)}</td>
+                      <td className="r mono">{nd > 9000 ? "—" : `${nd}d`}<span className="sub r clip" title={nc?.label}>{nc ? shortLabel(nc.label) : ""}</span></td>
                       <td className="r mono">{money(pv)}</td>
                       <td className="r"><span className="bisnum">{s}</span><Bar100 v={s} /></td>
                     </tr>
@@ -698,17 +708,17 @@ function Company({ ticker, go, watch, toggleWatch }) {
             <dt>Enterprise value</dt><dd className="num">{money(c.ev)}</dd>
             <dt>Shares outstanding</dt><dd className="num">{num(c.shares, 1)}M</dd>
             <dt>Cash and investments</dt><dd className="num">{money(c.cash)}</dd>
-            <dt>Cash runway</dt><dd className={"num " + (r < 12 ? "warn" : "")}>{c.cashFlowPositive ? "Cash flow positive" : r >= 120 ? "10+ years" : `${num(r)} months`}</dd>
+            <dt>Cash runway</dt><dd className={"num " + (r < 12 ? "warn" : "")}>{c.cashFlowPositive ? "Cash flow positive" : fmtRunway(r, "months")}</dd>
             <dt>Next catalyst</dt><dd>{nc ? <>{fmtDate(nc.date)} <span className="sub inline">({days(nc.date)} days)</span></> : "None dated"}</dd>
             <dt>Helixora score</dt><dd className="num">{score} <span className="sub inline">of 100</span></dd>
           </dl>
         </div>
-        {(c.note || LIVE) && <p className="q-note">{c.note || "No thesis note yet. Add one for this ticker in config/assumptions.json."}</p>}
+        {c.note && <p className="q-note">{c.note}</p>}
         {c.news?.length > 0 && (
           <div className="q-news">
             <h2 className="colhead">Recent filings</h2>
             <ul>
-              {c.news.slice(0, 5).map((n, i) => (
+              {c.news.filter((n, i, all) => all.findIndex((m) => m.form === n.form && m.date === n.date) === i).slice(0, 4).map((n, i) => (
                 <li key={i}><span className="wire-meta"><span>{fmtDate(n.date)}</span><span>{n.form}</span></span><a href={n.url} target="_blank" rel="noreferrer">{n.headline}</a></li>
               ))}
             </ul>
@@ -723,10 +733,10 @@ function Company({ ticker, go, watch, toggleWatch }) {
       {tab === "overview" && (
         <div className="two">
           <section className="panel">
-            <header className="ph"><h2>What the numbers say</h2><span className="ph-note">Click any underlined figure to see where it came from.</span></header>
+            <header className="ph"><h2>Key figures</h2><span className="ph-note">Select a figure to see its source and calculation.</span></header>
             <div className="metrics">
               <div className="metric"><span>Cash runway</span>
-                <Trace value={num(r)} unit=" months" tone={r < 12 ? "warn" : ""}
+                <Trace value={r >= 120 ? "10+" : num(r)} unit={r >= 120 ? " years" : " months"} tone={r < 12 ? "warn" : ""}
                   source={c.src ? `${c.src.filing?.form || "SEC filing"} balance sheet as of ${fmtDate(c.src.asOf)}: cash plus marketable securities` : `Cash of ${money(c.cash)} and quarterly operating cash use, latest filing`}
                   link={c.src?.filing?.url}
                   calc={`${money(c.cash)} ÷ ${num(c.burn)}M per month`}
@@ -747,7 +757,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
               </div>
               <div className="metric"><span>Pipeline rNPV</span>
                 <Trace value={money(pv)}
-                  source={c.pipeline.some((p) => p.est) ? "Phase from ClinicalTrials.gov; peak sales and cost are placeholders until set in config/assumptions.json" : "Per-program peak sales, phase, and development cost estimates"}
+                  source={c.pipeline.some((p) => p.est) ? "Phase from ClinicalTrials.gov. Peak sales and development cost are standard assumptions by phase, not company-specific forecasts" : "Per-program peak sales, phase, and development cost estimates"}
                   calc="Risk-adjusted NPV summed across programs, 11% discount rate"
                   reading={c.ev / pv < 0.85 ? "Enterprise value sits under the modeled pipeline value. Either the market disputes these assumptions or it is discounting execution." : "Enterprise value already matches or exceeds the modeled pipeline value, so the assumptions need to be right."} />
               </div>
@@ -768,7 +778,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
           </section>
 
           <section className="panel">
-            <header className="ph"><h2>Open flags</h2><span className="ph-note">Generated from the same rules that drive alerts.</span></header>
+            <header className="ph"><h2>Risk flags</h2></header>
             <div className="alist tight">
               {alertsFor(c).length === 0 && <div className="empty">No rules fired. Cash, timing, and dilution all sit inside normal bands.</div>}
               {alertsFor(c).map((x, i) => <div key={i} className={"alert " + x.sev}>{x.text}</div>)}
@@ -793,17 +803,17 @@ function Company({ ticker, go, watch, toggleWatch }) {
       {tab === "financials" && (
         <div className="stack">
           <section className="panel">
-            <header className="ph"><h2>When the cash runs out</h2>
-              <span className="ph-note">Straight-line burn against reported cash. Drag the raise to test a financing.</span></header>
+            <header className="ph"><h2>Cash runway</h2>
+              <span className="ph-note">Straight-line burn against reported cash. Use the slider to model a financing.</span></header>
             <label className="f wide"><span>Model a raise of {money(raise)} in month 6</span>
               <input type="range" min="0" max="400" step="10" value={raise} onChange={(e) => setRaise(+e.target.value)} /></label>
             <div className="chart">
               <ResponsiveContainer width="100%" height={280}>
                 <LineChart data={cashCurve} margin={{ top: 10, right: 20, bottom: 24, left: 8 }}>
-                  <CartesianGrid stroke="#DCE2E5" />
-                  <XAxis dataKey="m" tick={{ fontSize: 11, fill: "#5A6B76", fontFamily: "IBM Plex Mono" }}
+                  <CartesianGrid stroke="#E4E9EB" vertical={false} />
+                  <XAxis dataKey="m" interval={5} tick={{ fontSize: 11, fill: "#5A6B76" }}
                     label={{ value: "months from today", position: "insideBottom", offset: -12, fontSize: 11, fill: "#5A6B76" }} />
-                  <YAxis tick={{ fontSize: 11, fill: "#5A6B76", fontFamily: "IBM Plex Mono" }} tickFormatter={(v) => `$${v}M`} />
+                  <YAxis tick={{ fontSize: 11, fill: "#5A6B76" }} tickFormatter={(v) => `$${v}M`} />
                   <Tooltip formatter={(v, n) => [`$${Math.round(v)}M`, n === "cash" ? "Current plan" : "With the modeled raise"]}
                     labelFormatter={(l) => `Month ${l}`} />
                   {nc && days(nc.date) / 30.4 < 36 && (
@@ -819,7 +829,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
 
           <div className="two">
             <section className="panel">
-              <header className="ph"><h2>Dilution estimator</h2><span className="ph-note">What a raise costs the shares you already own.</span></header>
+              <header className="ph"><h2>Dilution estimator</h2><span className="ph-note">Effect of a new share issue on existing holders.</span></header>
               <label className="f wide"><span>Issue {num(newShares, 0)}M new shares</span>
                 <input type="range" min="0" max={Math.round(c.shares * 0.5)} value={newShares} onChange={(e) => setNewShares(+e.target.value)} /></label>
               <div className="metrics two-up">
@@ -831,7 +841,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
             </section>
 
             <section className="panel">
-              <header className="ph"><h2>Financing history</h2><span className="ph-note">How this company has raised before is the best guide to how it will raise next.</span></header>
+              <header className="ph"><h2>Financing history</h2><span className="ph-note">Offering filings from the past three years.</span></header>
               <table className="grid plain">
                 <thead><tr><th>Date</th><th>Instrument</th><th className="r">Size</th><th className="r">Share count impact</th></tr></thead>
                 <tbody>
@@ -849,7 +859,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
 
       {tab === "pipeline" && (
         <section className="panel">
-          <header className="ph"><h2>Pipeline</h2><span className="ph-note">Each program valued on its own, then summed.</span></header>
+          <header className="ph"><h2>Pipeline</h2><span className="ph-note">Risk-adjusted value by program.</span></header>
           <div className="prog-list">
             {c.pipeline.map((p) => {
               const v = rnpv(p, { discount: disc / 100 });
@@ -883,7 +893,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
 
       {tab === "catalysts" && (
         <section className="panel">
-          <header className="ph"><h2>Catalyst calendar</h2><span className="ph-note">Dated events only. Guidance without a date is not a catalyst.</span></header>
+          <header className="ph"><h2>Catalyst calendar</h2><span className="ph-note">Dated events only.</span></header>
           <div className="timeline">
             {[...c.catalysts].sort((a, b) => days(a.date) - days(b.date)).map((x, i) => {
               const d = days(x.date);
@@ -907,7 +917,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
         <div className="stack">
           <section className="panel">
             <header className="ph"><h2>Risk-adjusted pipeline value</h2>
-              <span className="ph-note">Assumptions are yours to move. The output is a range to argue with, not a price target.</span></header>
+              <span className="ph-note">Adjust the assumptions to test the model. This is not a price target.</span></header>
             <div className="two">
               <label className="f wide"><span>Discount rate {disc}%</span>
                 <input type="range" min="6" max="20" value={disc} onChange={(e) => setDisc(+e.target.value)} /></label>
@@ -922,8 +932,8 @@ function Company({ ticker, go, watch, toggleWatch }) {
                   ph: p.ph,
                 }))} margin={{ top: 10, right: 16, bottom: 10, left: 8 }}>
                   <CartesianGrid stroke="#DCE2E5" vertical={false} />
-                  <XAxis dataKey="name" tick={{ fontSize: 11, fill: "#5A6B76", fontFamily: "IBM Plex Mono" }} />
-                  <YAxis tick={{ fontSize: 11, fill: "#5A6B76", fontFamily: "IBM Plex Mono" }} tickFormatter={(v) => `$${v}M`} />
+                  <XAxis dataKey="name" tick={{ fontSize: 11, fill: "#5A6B76" }} />
+                  <YAxis tick={{ fontSize: 11, fill: "#5A6B76" }} tickFormatter={(v) => `$${v}M`} />
                   <Tooltip formatter={(v) => [`$${Math.round(v)}M`, "Risk-adjusted value"]} />
                   <Bar dataKey="value">
                     {c.pipeline.map((p) => <Cell key={p.d} fill={PHASE_COLOR[p.ph]} />)}
@@ -944,7 +954,7 @@ function Company({ ticker, go, watch, toggleWatch }) {
       {tab === "score" && (
         <section className="panel">
           <header className="ph"><h2>Score breakdown</h2>
-            <span className="ph-note">A research framework, not a prediction. Every component is reproducible from the inputs above.</span></header>
+            <span className="ph-note">A research framework, not a prediction.</span></header>
           <div className="scorewrap">
             <div className="bigscore"><span className="mono">{score}</span><small>out of 100</small></div>
             <div className="scorelist">
@@ -984,7 +994,7 @@ function Catalysts({ go }) {
   return (
     <div className="stack">
       <section className="panel">
-        <header className="ph"><h2>Catalyst calendar</h2><span className="ph-note">Everything dated across the universe, grouped by month.</span></header>
+        <header className="ph"><h2>Catalyst calendar</h2><span className="ph-note">All dated events, by month.</span></header>
         <div className="chips">
           {["All", ...Object.keys(CAT_KIND)].map((k) => (
             <button key={k} className={"chip " + (kind === k ? "on" : "")} onClick={() => setKind(k)}
@@ -1040,7 +1050,7 @@ function Compare() {
 
   return (
     <section className="panel">
-      <header className="ph"><h2>Compare</h2><span className="ph-note">Three companies, one set of definitions.</span></header>
+      <header className="ph"><h2>Compare</h2><span className="ph-note">Up to three companies side by side.</span></header>
       <table className="grid compare">
         <thead>
           <tr>
@@ -1140,8 +1150,8 @@ function Ask() {
   return (
     <div className="stack">
       <section className="panel">
-        <header className="ph"><h2>Ask the data</h2>
-          <span className="ph-note">Answers are restricted to the figures in this terminal, so you can check every one.</span></header>
+        <header className="ph"><h2>Ask</h2>
+          <span className="ph-note">Answers use only the figures on this site.</span></header>
         {log.length === 0 && (
           <div className="sugg">
             {suggestions.map((s) => <button key={s} onClick={() => send(s)}>{s}</button>)}
@@ -1300,8 +1310,11 @@ const CSS = `
 --rule:#D3DADD;--rule2:#E6EAEC;--teal:#12706B;--teal-d:#0C5652;--up:#0A7D4F;--down:#C2272D;
 --amber:#B8730F;--crimson:#9E2140;--moss:#2F6B3A;--deep:#0C5670;--indigo:#123E6B;
 --display:'Bricolage Grotesque Variable','Arial Narrow',system-ui,sans-serif;--sans:'Instrument Sans Variable',system-ui,sans-serif;
-font-family:var(--sans);color:var(--ink);background:var(--bg);min-height:100vh;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;font-optical-sizing:auto;}
-.app h1,.app h2,.app h3{font-family:var(--display);}
+font-family:var(--sans);color:var(--ink);background:var(--bg);min-height:100vh;font-size:14.5px;line-height:1.5;-webkit-font-smoothing:antialiased;font-optical-sizing:auto;}
+.app h1{font-family:var(--display);}
+.app h2,.app h3{font-family:var(--sans);}
+.nowrap{white-space:nowrap;}
+.clip{max-width:170px;margin-left:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .app *{box-sizing:border-box;}
 .app :where(button){font-family:inherit;cursor:pointer;color:inherit;}
 .app :focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
@@ -1347,7 +1360,7 @@ a.src:hover{color:var(--teal);}
 
 .nav{background:var(--mast2);border-top:1px solid #23494E;}
 .nav-in{display:flex;align-items:center;gap:2px;overflow-x:auto;}
-.nav button{background:none;border:0;color:#BFD3D3;padding:11px 14px;font-size:15px;font-weight:600;letter-spacing:.005em;border-bottom:3px solid transparent;white-space:nowrap;}
+.nav button{background:none;border:0;color:#BFD3D3;padding:11px 14px;font-size:14px;font-weight:500;border-bottom:3px solid transparent;white-space:nowrap;}
 .nav button:hover{color:#fff;}
 .nav button.on{color:#fff;border-bottom-color:#2FB3A3;}
 .dateline{margin-left:auto;font-size:12.5px;color:#8FAEAF;white-space:nowrap;padding-left:16px;}
@@ -1358,9 +1371,9 @@ a.src:hover{color:var(--teal);}
 .strip:hover .strip-track,.strip:focus-within .strip-track{animation-play-state:paused;}
 .strip-half{display:flex;}
 @keyframes tape{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.tk{display:flex;align-items:baseline;gap:9px;background:none;border:0;border-right:1px solid var(--rule2);padding:10px 20px;white-space:nowrap;font-size:14px;}
+.tk{display:flex;align-items:baseline;gap:8px;background:none;border:0;border-right:1px solid var(--rule2);padding:9px 18px;white-space:nowrap;font-size:13.5px;}
 .tk:hover{background:var(--bg);}
-.tk b{font-family:var(--display);font-weight:800;font-stretch:85%;font-size:15px;letter-spacing:-.01em;}
+.tk b{font-weight:700;font-size:13.5px;letter-spacing:.01em;}
 .tk-px{font-variant-numeric:tabular-nums;}
 .samplebar{background:#FBF1DF;color:#7A4E08;font-size:12.5px;padding:6px 20px;text-align:center;}
 
@@ -1379,51 +1392,51 @@ a.src:hover{color:var(--teal);}
 .front{display:grid;grid-template-columns:minmax(0,1fr) 290px 330px;gap:0;background:var(--paper);border:1px solid var(--rule);}
 .front>section,.front>aside{padding:20px 22px 22px;}
 .front>.wire,.front>.side{border-left:1px solid var(--rule2);}
-.colhead{font-family:var(--display);font-size:24px;font-weight:800;font-stretch:80%;margin:0 0 10px;padding-bottom:8px;border-bottom:3px solid var(--ink);letter-spacing:-.02em;line-height:1;}
+.colhead{font-family:var(--sans);font-size:15px;font-weight:700;margin:0 0 4px;padding-bottom:9px;border-bottom:1px solid var(--ink);letter-spacing:.005em;line-height:1.2;}
 .colnote{font-size:12px;color:var(--mut);margin:8px 0 0;}
 
 /* lead story */
-.kicker{background:none;border:0;padding:0;font-size:14px;font-weight:600;color:var(--teal) !important;display:inline-flex;gap:6px;align-items:baseline;}
+.kicker{background:none;border:0;padding:0;font-size:13px;font-weight:600;color:var(--teal) !important;display:inline-flex;gap:6px;align-items:baseline;}
 .kicker:hover{text-decoration:underline;}
 .kicker-t{font-weight:500;color:var(--mut);}
-.lead-h{font-family:var(--display);font-size:clamp(40px,4.9vw,66px);line-height:.96;font-weight:800;font-stretch:78%;letter-spacing:-.018em;margin:8px 0 14px;max-width:16ch;}
+.lead-h{font-family:var(--display);font-size:clamp(32px,3.6vw,46px);line-height:1.06;font-weight:700;font-stretch:88%;letter-spacing:-.015em;margin:8px 0 12px;max-width:20ch;}
 .lead-h button,.brief h2 button{background:none;border:0;padding:0;font:inherit;text-align:left;letter-spacing:inherit;}
 .lead-h button:hover,.brief h2 button:hover{color:var(--teal);}
-.lead-dek{font-size:19px;line-height:1.5;color:var(--ink2);margin:0 0 16px;max-width:56ch;}
+.lead-dek{font-size:17px;line-height:1.55;color:var(--ink2);margin:0 0 16px;max-width:60ch;}
 .lead-chart{border-top:1px solid var(--rule2);padding-top:10px;}
 .lead-px{display:flex;gap:10px;align-items:baseline;margin-bottom:4px;}
-.lead-px b{font-family:var(--display);font-size:30px;font-weight:700;font-stretch:90%;letter-spacing:-.02em;}
+.lead-px b{font-size:22px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;}
 .byline{font-size:12px;color:var(--mut);margin:10px 0 0;}
-.briefs{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin-top:24px;border-top:3px solid var(--ink);}
-.brief{padding:16px 0 18px;border-bottom:1px solid var(--rule2);}
-.brief h2{font-family:var(--display);font-size:25px;line-height:1.02;font-weight:800;font-stretch:80%;margin:5px 0 8px;letter-spacing:-.02em;}
-.brief p{margin:0;font-size:14.5px;color:var(--ink2);line-height:1.5;}
+.briefs{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin-top:22px;border-top:1px solid var(--ink);}
+.brief{padding:15px 0 16px;border-bottom:1px solid var(--rule2);}
+.brief h2{font-size:17px;line-height:1.3;font-weight:650;margin:4px 0 6px;letter-spacing:-.005em;}
+.brief p{margin:0;font-size:14px;color:var(--mut);line-height:1.5;}
 
 /* filings wire */
 .wire-list{list-style:none;margin:0;padding:0;}
 .wire-list li{padding:10px 0;border-bottom:1px solid var(--rule2);}
 .wire-list li:last-child{border-bottom:0;}
-.wire-meta{display:flex;gap:10px;font-size:12.5px;color:var(--mut);margin-bottom:4px;}
-.wire-t{background:none;border:0;padding:0;font-weight:700;color:var(--teal) !important;font-size:12.5px;}
-.wire-list a,.q-news a{font-family:var(--display);font-size:18px;line-height:1.12;font-weight:700;font-stretch:88%;letter-spacing:-.01em;text-decoration:none;}
+.wire-meta{display:flex;gap:10px;font-size:12px;color:var(--mut);margin-bottom:3px;}
+.wire-t{background:none;border:0;padding:0;font-weight:700;color:var(--teal) !important;font-size:12px;}
+.wire-list a,.q-news a{font-size:14.5px;line-height:1.38;font-weight:600;text-decoration:none;}
 .wire-list a:hover,.q-news a:hover{color:var(--teal);text-decoration:underline;}
 
 /* side column */
 .side{display:flex;flex-direction:column;gap:26px;}
-.mtable{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums;}
+.mtable{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums;}
 .mtable th{font-weight:500;font-size:12px;color:var(--mut);text-align:left;padding:0 0 6px 10px;}
 .mtable th:first-child,.mtable td:first-child{padding-left:0;}
 .mtable th.r,.mtable td.r{text-align:right;}
 .mtable td{padding:7px 0 7px 10px;border-top:1px solid var(--rule2);vertical-align:baseline;}
 .mtable tbody tr{cursor:pointer;}
 .mtable tbody tr:hover{background:var(--bg);}
-.mt-t{background:none;border:0;padding:0;font-family:var(--display);font-weight:800;font-stretch:85%;font-size:15px;margin-right:6px;}
+.mt-t{background:none;border:0;padding:0;font-weight:700;font-size:13.5px;margin-right:6px;}
 .mt-n{font-size:12px;color:var(--mut);display:block;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .uplist{list-style:none;margin:0;padding:0;}
 .uplist li{display:grid;grid-template-columns:48px 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--rule2);align-items:start;}
 .up-d{font-size:11px;color:var(--mut);line-height:1.1;}
-.up-d b{display:block;font-family:var(--display);font-size:26px;font-stretch:80%;color:var(--ink);font-weight:800;line-height:.95;}
-.uplist button{background:none;border:0;padding:0;text-align:left;font-size:14px;line-height:1.35;}
+.up-d b{display:block;font-size:18px;color:var(--ink);font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums;}
+.uplist button{background:none;border:0;padding:0;text-align:left;font-size:13.5px;line-height:1.4;}
 .uplist button:hover{color:var(--teal);}
 .uplist em{color:var(--mut);font-style:normal;font-size:12px;}
 .up-t{font-weight:600;margin-right:6px;}
@@ -1440,22 +1453,22 @@ a.src:hover{color:var(--teal);}
 .quote{background:var(--paper);border:1px solid var(--rule);padding:20px 22px 22px;}
 .q-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;}
 .q-id{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
-.q-id h1{font-family:var(--display);font-size:clamp(36px,4.2vw,52px);font-weight:800;font-stretch:78%;margin:0;letter-spacing:-.016em;line-height:.98;}
-.q-tk{font-family:var(--display);font-size:20px;font-weight:700;font-stretch:85%;color:var(--ink2);}
+.q-id h1{font-family:var(--display);font-size:clamp(28px,3vw,36px);font-weight:700;font-stretch:90%;margin:0;letter-spacing:-.012em;line-height:1.1;}
+.q-tk{font-size:15px;font-weight:600;color:var(--mut);}
 .q-area{font-size:13px;color:var(--mut);}
 .watchbtn{background:#fff;border:1px solid var(--rule);padding:7px 12px;font-size:13px;font-weight:500;border-radius:2px;}
 .watchbtn:hover{border-color:var(--teal);}
 .watchbtn.on{background:#E6F2F0;border-color:#9CCAC3;color:var(--teal-d) !important;}
 .q-px{display:flex;align-items:baseline;gap:14px;margin:10px 0 16px;flex-wrap:wrap;}
-.q-price{font-family:var(--display);font-size:clamp(48px,5.4vw,72px);font-weight:700;font-stretch:88%;letter-spacing:-.022em;line-height:.95;}
-.q-px .chg{font-size:21px;font-weight:600;}
+.q-price{font-size:clamp(36px,3.6vw,44px);font-weight:600;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums;}
+.q-px .chg{font-size:18px;font-weight:600;}
 .q-asof{font-size:12.5px;color:var(--mut);}
 .q-body{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:28px;align-items:start;}
-.q-key{display:grid;grid-template-columns:auto 1fr;margin:0;font-size:14.5px;border-top:3px solid var(--ink);font-variant-numeric:tabular-nums;}
+.q-key{display:grid;grid-template-columns:auto 1fr;margin:0;font-size:14px;border-top:1px solid var(--ink);font-variant-numeric:tabular-nums;}
 .q-key dt,.q-key dd{padding:8px 0;border-bottom:1px solid var(--rule2);margin:0;}
 .q-key dt{color:var(--mut);}
 .q-key dd{text-align:right;font-weight:500;}
-.q-note{font-size:16px;color:var(--ink2);margin:16px 0 0;max-width:70ch;}
+.q-note{font-size:14.5px;color:var(--mut);margin:16px 0 0;max-width:70ch;}
 .q-news{margin-top:18px;}
 .q-news ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0 24px;}
 .q-news li{padding:9px 0;border-bottom:1px solid var(--rule2);}
@@ -1476,9 +1489,9 @@ a.src:hover{color:var(--teal);}
 
 /* panels (analysis views) */
 .panel{background:var(--paper);border:1px solid var(--rule);padding:18px 20px 20px;}
-.ph{display:flex;align-items:baseline;gap:14px;margin:0 0 16px;padding-bottom:9px;border-bottom:3px solid var(--ink);flex-wrap:wrap;}
+.ph{display:flex;align-items:baseline;gap:14px;margin:0 0 16px;padding-bottom:10px;border-bottom:1px solid var(--rule);flex-wrap:wrap;}
 .ph.mt{margin-top:22px;}
-.ph h2{font-family:var(--display);font-size:24px;font-weight:800;font-stretch:80%;margin:0;letter-spacing:-.02em;line-height:1;}
+.ph h2{font-size:16px;font-weight:700;margin:0;letter-spacing:.005em;line-height:1.2;}
 .ph-note{font-size:13px;color:var(--mut);}
 .empty{font-size:13.5px;color:var(--mut);padding:12px 0;margin:0;}
 
@@ -1491,8 +1504,9 @@ a.src:hover{color:var(--teal);}
 .alert.high{border-left-color:var(--crimson);background:#FBF3F4;}
 .alert.med{border-left-color:var(--amber);background:#FBF7EF;}
 .alert.low{border-left-color:var(--deep);background:#F2F7F9;}
-.tick{font-weight:600;font-size:12.5px;background:var(--mast);color:#fff !important;padding:2px 6px;border-radius:2px;border:0;}
-.tick.lg{font-size:15px;padding:3px 8px;}
+.tick{font-weight:700;font-size:13px;background:none;color:var(--ink) !important;padding:0;border:0;letter-spacing:.01em;}
+button.tick:hover{color:var(--teal) !important;}
+.tick.lg{font-size:15px;}
 .star{background:none;border:0;color:var(--rule);font-size:16px;line-height:1;padding:2px;}
 .star.on,.star:hover{color:var(--amber) !important;}
 
@@ -1528,7 +1542,7 @@ a.src:hover{color:var(--teal);}
 
 /* tabs */
 .tabs{display:flex;gap:2px;border-bottom:1px solid var(--rule);overflow-x:auto;}
-.tabs button{background:none;border:0;padding:10px 16px;font-size:15px;color:var(--mut) !important;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap;font-weight:500;}
+.tabs button{background:none;border:0;padding:10px 16px;font-size:14px;color:var(--mut) !important;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap;font-weight:500;}
 .tabs button:hover{color:var(--ink) !important;}
 .tabs button.on{color:var(--ink) !important;border-bottom-color:var(--teal);}
 
@@ -1536,9 +1550,9 @@ a.src:hover{color:var(--teal);}
 .metrics{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px;}
 .metrics.two-up{grid-template-columns:1fr 1fr;}
 .metric>span{display:block;font-size:12.5px;color:var(--mut);margin-bottom:2px;}
-.metric b{font-family:var(--display);font-size:28px;font-weight:700;font-stretch:88%;letter-spacing:-.02em;}
+.metric b{font-size:21px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;}
 .tr-wrap{position:relative;display:inline-block;}
-.tr-val{font-family:var(--display);font-size:28px;font-weight:700;font-stretch:88%;letter-spacing:-.02em;background:none;border:0;padding:0;color:var(--ink);border-bottom:1px dotted var(--teal);font-variant-numeric:tabular-nums;}
+.tr-val{font-size:21px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;background:none;border:0;padding:0;color:var(--ink);border-bottom:1px dotted var(--teal);font-variant-numeric:tabular-nums;}
 .tr-val.warn{color:var(--amber) !important;border-bottom-color:var(--amber);}
 .tr-unit{font-size:13px;font-weight:400;color:var(--mut);}
 .tr-pop{position:absolute;top:32px;left:0;width:320px;background:var(--mast);color:#DCE9E9;padding:12px 14px;border-radius:2px;z-index:30;display:grid;gap:8px;box-shadow:0 14px 30px rgba(14,42,46,.3);}
@@ -1556,7 +1570,7 @@ a.src:hover{color:var(--teal);}
 .prog-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .prog{border:1px solid var(--rule2);padding:14px 15px;}
 .prog-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:8px;}
-.prog h3{margin:0;font-family:var(--display);font-size:22px;font-weight:800;font-stretch:82%;letter-spacing:-.015em;}
+.prog h3{margin:0;font-size:16px;font-weight:700;}
 .prog-ind{font-size:13px;color:var(--mut);margin-top:2px;}
 
 /* timeline */
@@ -1573,7 +1587,7 @@ a.src:hover{color:var(--teal);}
 .chip{font-size:12.5px;padding:5px 12px;border:1px solid var(--rule);background:#fff;border-radius:99px;color:var(--mut) !important;}
 .chip.on{background:var(--ink);border-color:var(--ink);color:#fff !important;}
 .month{margin-bottom:20px;}
-.monthhead{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--display);font-size:22px;font-weight:800;font-stretch:80%;margin:0 0 4px;padding-bottom:5px;border-bottom:1px solid var(--rule);}
+.monthhead{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--sans);font-size:15px;font-weight:700;margin:0 0 4px;padding-bottom:5px;border-bottom:1px solid var(--rule);}
 .monthhead .mono{font-family:var(--sans);font-size:12.5px;color:var(--mut);font-weight:400;}
 .evrow{display:grid;grid-template-columns:72px 8px auto 1fr auto auto;gap:12px;align-items:center;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--rule2);padding:9px 2px;}
 .evrow:hover{background:#F6F8F8;}
@@ -1587,7 +1601,7 @@ a.src:hover{color:var(--teal);}
 /* score */
 .scorewrap{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center;}
 .bigscore{text-align:center;}
-.bigscore span{font-family:var(--display);font-size:84px;font-weight:800;font-stretch:78%;line-height:.9;letter-spacing:-.04em;}
+.bigscore span{font-size:56px;font-weight:600;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;}
 .bigscore small{display:block;font-size:12.5px;color:var(--mut);margin-top:4px;}
 .scorelist{display:grid;gap:12px;}
 .scorerow{display:grid;grid-template-columns:200px 1fr 34px;gap:14px;align-items:center;}
@@ -1633,7 +1647,7 @@ a.src:hover{color:var(--teal);}
   .omni{width:auto;flex:1;}
   .front>section,.front>aside,.quote,.panel{padding-left:16px;padding-right:16px;}
   .main{padding:16px 12px 32px;}
-  .q-price{font-size:46px;}
+  .q-price{font-size:34px;}
   .scorewrap{grid-template-columns:1fr;}
   .scorerow{grid-template-columns:130px 1fr 30px;}
   .evrow{grid-template-columns:60px 8px auto 1fr;}
