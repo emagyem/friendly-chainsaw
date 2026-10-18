@@ -1166,6 +1166,41 @@ function Ask() {
   );
 }
 
+/* -------------------------------- logo --------------------------------
+   The "x" in helixora is one turn of a double helix: two strands crossing,
+   with base-pair rungs at the open ends. The masthead version adds a thin
+   helix running under the whole word.                                     */
+
+const HELIX_A = "M0.0,6.0 L1.2,6.6 L2.5,7.2 L3.8,7.8 L5.0,8.3 L6.2,8.7 L7.5,9.0 L8.8,9.1 L10.0,9.2 L11.2,9.1 L12.5,9.0 L13.8,8.7 L15.0,8.3 L16.2,7.8 L17.5,7.2 L18.8,6.6 L20.0,6.0 L21.2,5.4 L22.5,4.8 L23.8,4.2 L25.0,3.7 L26.2,3.3 L27.5,3.0 L28.8,2.9 L30.0,2.8 L31.2,2.9 L32.5,3.0 L33.8,3.3 L35.0,3.7 L36.2,4.2 L37.5,4.8 L38.8,5.4 L40.0,6.0 L41.2,6.6 L42.5,7.2 L43.8,7.8 L45.0,8.3 L46.2,8.7 L47.5,9.0 L48.8,9.1 L50.0,9.2 L51.2,9.1 L52.5,9.0 L53.8,8.7 L55.0,8.3 L56.2,7.8 L57.5,7.2 L58.8,6.6 L60.0,6.0 L61.2,5.4 L62.5,4.8 L63.8,4.2 L65.0,3.7 L66.2,3.3 L67.5,3.0 L68.8,2.9 L70.0,2.8 L71.2,2.9 L72.5,3.0 L73.8,3.3 L75.0,3.7 L76.2,4.2 L77.5,4.8 L78.8,5.4 L80.0,6.0 L81.2,6.6 L82.5,7.2 L83.8,7.8 L85.0,8.3 L86.2,8.7 L87.5,9.0 L88.8,9.1 L90.0,9.2 L91.2,9.1 L92.5,9.0 L93.8,8.7 L95.0,8.3 L96.2,7.8 L97.5,7.2 L98.8,6.6 L100.0,6.0 L101.2,5.4 L102.5,4.8 L103.8,4.2 L105.0,3.7 L106.2,3.3 L107.5,3.0 L108.8,2.9 L110.0,2.8 L111.2,2.9 L112.5,3.0 L113.8,3.3 L115.0,3.7 L116.2,4.2 L117.5,4.8 L118.8,5.4 L120.0,6.0 L121.2,6.6 L122.5,7.2 L123.8,7.8 L125.0,8.3 L126.2,8.7 L127.5,9.0 L128.8,9.1 L130.0,9.2 L131.2,9.1 L132.5,9.0 L133.8,8.7 L135.0,8.3 L136.2,7.8 L137.5,7.2 L138.8,6.6 L140.0,6.0 L141.2,5.4 L142.5,4.8 L143.8,4.2 L145.0,3.7 L146.2,3.3 L147.5,3.0 L148.8,2.9 L150.0,2.8 L151.2,2.9 L152.5,3.0 L153.8,3.3 L155.0,3.7 L156.2,4.2 L157.5,4.8 L158.8,5.4 L160.0,6.0 L161.2,6.6 L162.5,7.2 L163.8,7.8 L165.0,8.3 L166.2,8.7 L167.5,9.0 L168.8,9.1 L170.0,9.2 L171.2,9.1 L172.5,9.0 L173.8,8.7 L175.0,8.3 L176.2,7.8 L177.5,7.2 L178.8,6.6 L180.0,6.0 L181.2,5.4 L182.5,4.8 L183.8,4.2 L185.0,3.7 L186.2,3.3 L187.5,3.0 L188.8,2.9 L190.0,2.8 L191.2,2.9 L192.5,3.0 L193.8,3.3 L195.0,3.7 L196.2,4.2 L197.5,4.8 L198.8,5.4 L200.0,6.0";
+const HELIX_B = "M0.0,6.0 L1.2,5.4 L2.5,4.8 L3.8,4.2 L5.0,3.7 L6.2,3.3 L7.5,3.0 L8.8,2.9 L10.0,2.8 L11.2,2.9 L12.5,3.0 L13.8,3.3 L15.0,3.7 L16.2,4.2 L17.5,4.8 L18.8,5.4 L20.0,6.0 L21.2,6.6 L22.5,7.2 L23.8,7.8 L25.0,8.3 L26.2,8.7 L27.5,9.0 L28.8,9.1 L30.0,9.2 L31.2,9.1 L32.5,9.0 L33.8,8.7 L35.0,8.3 L36.2,7.8 L37.5,7.2 L38.8,6.6 L40.0,6.0 L41.2,5.4 L42.5,4.8 L43.8,4.2 L45.0,3.7 L46.2,3.3 L47.5,3.0 L48.8,2.9 L50.0,2.8 L51.2,2.9 L52.5,3.0 L53.8,3.3 L55.0,3.7 L56.2,4.2 L57.5,4.8 L58.8,5.4 L60.0,6.0 L61.2,6.6 L62.5,7.2 L63.8,7.8 L65.0,8.3 L66.2,8.7 L67.5,9.0 L68.8,9.1 L70.0,9.2 L71.2,9.1 L72.5,9.0 L73.8,8.7 L75.0,8.3 L76.2,7.8 L77.5,7.2 L78.8,6.6 L80.0,6.0 L81.2,5.4 L82.5,4.8 L83.8,4.2 L85.0,3.7 L86.2,3.3 L87.5,3.0 L88.8,2.9 L90.0,2.8 L91.2,2.9 L92.5,3.0 L93.8,3.3 L95.0,3.7 L96.2,4.2 L97.5,4.8 L98.8,5.4 L100.0,6.0 L101.2,6.6 L102.5,7.2 L103.8,7.8 L105.0,8.3 L106.2,8.7 L107.5,9.0 L108.8,9.1 L110.0,9.2 L111.2,9.1 L112.5,9.0 L113.8,8.7 L115.0,8.3 L116.2,7.8 L117.5,7.2 L118.8,6.6 L120.0,6.0 L121.2,5.4 L122.5,4.8 L123.8,4.2 L125.0,3.7 L126.2,3.3 L127.5,3.0 L128.8,2.9 L130.0,2.8 L131.2,2.9 L132.5,3.0 L133.8,3.3 L135.0,3.7 L136.2,4.2 L137.5,4.8 L138.8,5.4 L140.0,6.0 L141.2,6.6 L142.5,7.2 L143.8,7.8 L145.0,8.3 L146.2,8.7 L147.5,9.0 L148.8,9.1 L150.0,9.2 L151.2,9.1 L152.5,9.0 L153.8,8.7 L155.0,8.3 L156.2,7.8 L157.5,7.2 L158.8,6.6 L160.0,6.0 L161.2,5.4 L162.5,4.8 L163.8,4.2 L165.0,3.7 L166.2,3.3 L167.5,3.0 L168.8,2.9 L170.0,2.8 L171.2,2.9 L172.5,3.0 L173.8,3.3 L175.0,3.7 L176.2,4.2 L177.5,4.8 L178.8,5.4 L180.0,6.0 L181.2,6.6 L182.5,7.2 L183.8,7.8 L185.0,8.3 L186.2,8.7 L187.5,9.0 L188.8,9.1 L190.0,9.2 L191.2,9.1 L192.5,9.0 L193.8,8.7 L195.0,8.3 L196.2,7.8 L197.5,7.2 L198.8,6.6 L200.0,6.0";
+const HELIX_RUNGS = [[10.0, 3.4, 8.6], [30.0, 3.4, 8.6], [50.0, 3.4, 8.6], [70.0, 3.4, 8.6], [90.0, 3.4, 8.6], [110.0, 3.4, 8.6], [130.0, 3.4, 8.6], [150.0, 3.4, 8.6], [170.0, 3.4, 8.6], [190.0, 3.4, 8.6]];
+
+function HelixX() {
+  return (
+    <svg className="xg" viewBox="0 0 30 30" aria-hidden="true">
+      <line x1="4.3" y1="5.7" x2="4.3" y2="24.3" className="xg-rung" />
+      <line x1="25.7" y1="5.7" x2="25.7" y2="24.3" className="xg-rung" />
+      <path d="M26.9,3.1 C15,3.1 15,26.9 3.1,26.9" className="xg-b" />
+      <path d="M3.1,3.1 C15,3.1 15,26.9 26.9,26.9" className="xg-a" />
+    </svg>
+  );
+}
+
+function Wordmark({ underline = false }) {
+  return (
+    <span className="wm">
+      heli<HelixX />ora
+      {underline && (
+        <svg className="wm-ul" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
+          {HELIX_RUNGS.map(([x, y1, y2]) => <line key={x} x1={x} y1={y1} x2={x} y2={y2} className="ul-rung" />)}
+          <path d={HELIX_B} className="ul-b" />
+          <path d={HELIX_A} className="ul-a" />
+        </svg>
+      )}
+    </span>
+  );
+}
+
 /* ------------------------------- shell ------------------------------- */
 
 const WATCH_KEY = "readout-watchlist";
@@ -1203,7 +1238,7 @@ export default function App() {
       <header className="mast">
         <div className="mast-in">
           <button className="wordmark" onClick={() => go("home")} aria-label="Helixora home">
-            <span className="wm-dot" aria-hidden="true" />Helixora
+            <Wordmark underline />
           </button>
           <span className="mast-tag">Biotech markets, read from the filings</span>
           <div className="omni">
@@ -1241,7 +1276,7 @@ export default function App() {
 
       <footer className="foot">
         <div className="foot-in">
-          <span className="wordmark small"><span className="wm-dot" aria-hidden="true" />Helixora</span>
+          <span className="wordmark small" aria-label="Helixora"><Wordmark /></span>
           <p>
             {LIVE ? (
               <>Financials from SEC EDGAR filings, trial data from ClinicalTrials.gov, prices from Yahoo Finance at the previous close. Refreshed {new Date(META.generatedAt).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })}.
@@ -1286,10 +1321,20 @@ a.src:hover{color:var(--teal);}
 .mast{background:var(--mast);color:#E8F0F0;}
 .mast-in,.nav-in,.foot-in{max-width:1280px;margin:0 auto;padding:0 20px;}
 .mast-in{display:flex;align-items:center;gap:18px;height:74px;}
-.wordmark{display:inline-flex;align-items:center;gap:10px;background:none;border:0;padding:0 0 3px;font-family:var(--display);font-weight:800;font-stretch:75%;font-size:38px;letter-spacing:-.045em;color:#fff !important;line-height:1;text-transform:lowercase;}
-.wm-dot{width:13px;height:13px;border-radius:50%;background:#2FB3A3;flex:none;margin-top:5px;}
-.wordmark.small{font-size:24px;color:var(--ink) !important;}
-.wordmark.small .wm-dot{background:var(--teal);width:9px;height:9px;}
+.wordmark{display:inline-flex;align-items:center;background:none;border:0;padding:0 0 8px;font-family:var(--display);font-weight:800;font-stretch:75%;font-size:40px;letter-spacing:-.03em;color:#fff !important;line-height:1;--strand2:#2FB3A3;--rung:#8FE0D5;}
+.wm{position:relative;display:inline-block;white-space:nowrap;}
+.xg{display:inline-block;height:.53em;width:.5em;vertical-align:baseline;margin:0 .015em 0 .02em;overflow:visible;}
+.xg-a,.xg-b{fill:none;stroke-width:6.2;stroke-linecap:round;}
+.xg-a{stroke:currentColor;}
+.xg-b{stroke:var(--strand2);}
+.xg-rung{stroke:var(--rung);stroke-width:2.6;stroke-linecap:round;}
+.wm-ul{position:absolute;left:0;bottom:-.24em;height:.26em;width:calc(100% - .05em);overflow:visible;}
+.ul-a,.ul-b{fill:none;stroke-width:1.8;vector-effect:non-scaling-stroke;}
+.ul-a{stroke:currentColor;opacity:.9;}
+.ul-b{stroke:var(--strand2);}
+.ul-rung{stroke:var(--rung);stroke-width:1.2;opacity:.6;vector-effect:non-scaling-stroke;}
+.wordmark:hover .xg-b,.wordmark:hover .ul-b{stroke:#5FD6C6;}
+.wordmark.small{font-size:24px;color:var(--ink) !important;padding:0;--strand2:var(--teal);--rung:#7CC4BA;}
 .mast-tag{font-size:14px;font-stretch:90%;color:#9FBDBD;padding-left:16px;border-left:1px solid #2A5258;line-height:1.2;}
 .omni{position:relative;margin-left:auto;width:min(340px,40vw);}
 .omni input{width:100%;background:var(--mast2);border:1px solid #2A5258;color:#fff;border-radius:2px;padding:8px 11px;font:inherit;font-size:13.5px;}
@@ -1584,7 +1629,7 @@ a.src:hover{color:var(--teal);}
   .briefs,.two,.filters,.prog-list,.metrics,.sugg,.q-body{grid-template-columns:1fr;}
   .mast-tag,.dateline{display:none;}
   .mast-in{gap:12px;}
-  .wordmark{font-size:30px;}
+  .wordmark{font-size:32px;}
   .omni{width:auto;flex:1;}
   .front>section,.front>aside,.quote,.panel{padding-left:16px;padding-right:16px;}
   .main{padding:16px 12px 32px;}
