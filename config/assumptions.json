@@ -46,5 +46,11 @@
       { "date": "2027-03-31", "kind": "readout", "label": "z-basivarsen ACHIEVE topline data (guided Q1 2027)", "drug": "z-basivarsen (DYNE-101)", "est": true }
     ]
   },
-  "VERA": { "area": "Nephrology" }
+  "VERA": {
+    "area": "Nephrology",
+    "note": "Trutakna (atacicept) won FDA accelerated approval for IgA nephropathy on July 7, 2026 (8-K filed that day); the company is now funding a U.S. launch.",
+    "programs": {
+      "Atacicept": { "name": "Trutakna (atacicept)", "ph": "Approved", "tgt": "BAFF/APRIL", "moa": "Dual BAFF/APRIL inhibitor fusion protein" }
+    }
+  }
 }

@@ -1249,7 +1249,7 @@ const fpsOf = (c) => {
 const BAND_COLOR = { High: "#9E2140", Elevated: "#B8730F", Low: "#12706B" };
 const capacityLabel = (c) => (!c.raise ? "—" : c.raise.capacity === "atm" ? "Active ATM" : c.raise.capacity === "shelf" ? "Shelf only" : "None found");
 const byPressure = () => [...COMPANIES].sort((a, b) => (fpsOf(b).score ?? -1) - (fpsOf(a).score ?? -1));
-const fmtGap = (g) => `${g > 0 ? "+" : g < 0 ? "−" : ""}${Math.abs(g).toFixed(0)} mo`;
+const fmtGap = (g) => { const r = Math.round(g); return `${r > 0 ? "+" : r < 0 ? "−" : ""}${Math.abs(r)} mo`; };
 const OFFERING = /424B4|424B5|Priced offering|Shelf takedown/;
 
 function BandBadge({ c, size }) {
