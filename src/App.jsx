@@ -374,7 +374,9 @@ function briefs() {
       kind: "pressure", c, weight: (i === 0 ? 300 : 90) + f.score,
       headline: c.cashFlowPositive ? `${c.n} faces little financing pressure`
         : `${c.n} has ${num(f.runway, 0)} months of cash${cat ? ` and ${cat.kind === "regulatory" ? "an FDA decision" : `a ${(c.pipeline.find((p) => p.d === cat.drug)?.ph || "trial")} readout`} in ${num(f.monthsToCatalyst, 0)}` : ""}`,
-      dek: `Its Financing Pressure Score is ${f.score}, in the ${f.band} band. ${Math.round(f.gap) < 0
+      dek: `Its Financing Pressure Score is ${f.score}, in the ${f.band} band. ${!cat
+        ? `No clinical or regulatory event is dated, so the score assumes one ${NO_CATALYST_MONTHS} months out${(() => { const t = f.parts.find((p) => p.key === "trend"); return t?.present && t.value > 10 ? `, and burn is up ${Math.round(t.value)}% from a year earlier` : ""; })()}.`
+        : Math.round(f.gap) < 0
         ? `Counting a ${BUFFER_MONTHS}-month buffer after ${cat ? plainLabel(cat.label) : "its next catalyst"}, its cash falls about ${Math.round(-f.gap)} months short.`
         : Math.round(f.gap) === 0 ? `Counting a ${BUFFER_MONTHS}-month buffer after ${cat ? plainLabel(cat.label) : "its next catalyst"}, it has almost nothing to spare.`
           : `Counting a ${BUFFER_MONTHS}-month buffer after ${cat ? plainLabel(cat.label) : "its next catalyst"}, it has about ${Math.round(f.gap)} months to spare.`}${c.raise?.capacity === "atm" ? " An at-the-market program is on file, so it can sell shares at any time." : c.raise?.capacity === "shelf" ? " A shelf registration is on file." : ""}`,
@@ -1494,7 +1496,11 @@ function PressureReport({ go }) {
   const top = ranked[0];
   const tf = top ? fpsOf(top) : null;
   const edition = LIVE ? fmtDate(META.generatedAt.slice(0, 10)) : fmtDate(TODAY.toISOString().slice(0, 10));
-  const headline = top
+  const topTrend = tf?.parts.find((p) => p.key === "trend");
+  const capPhrase = top?.raise?.capacity === "atm" ? ", and it already has an at-the-market program it can sell shares through" : top?.raise?.capacity === "shelf" ? ", with a shelf registration on file" : "";
+  const headline = top && !tf.catalyst
+    ? `${top.n} has about ${Math.round(tf.runway)} months of cash and no dated clinical or regulatory event. ${topTrend?.present && topTrend.value > 10 ? `Its burn is up ${Math.round(topTrend.value)}% from a year earlier` : "Its burn is steady"}${capPhrase.replace(", and it already has", ", and it already has").replace(", with a shelf", ", and it has a shelf")}.`
+    : top
     ? `${top.n} has about ${num(tf.runway, 0)} months of cash${tf.catalyst ? ` and its ${plainLabel(tf.catalyst.label)} is ${Math.round(tf.monthsToCatalyst)} months away` : ""}, ${Math.round(tf.gap) <= 0 ? "leaving almost no buffer once the data is in" : `leaving about ${Math.round(tf.gap)} months of cash after a ${BUFFER_MONTHS}-month buffer`}${top.raise?.capacity === "atm" ? ", and it already has an at-the-market program it can sell shares through" : top.raise?.capacity === "shelf" ? ", with a shelf registration on file" : ""}.`
     : "";
   return (
