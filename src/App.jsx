@@ -1146,23 +1146,9 @@ function Ask() {
     "Which companies may need financing within 12 months?",
     `Compare ${COMPANIES.slice(0, 3).map((c) => c.t).join(", ").replace(/, ([^,]*)$/, " and $1")} on financing risk.`,
     "Which Phase III oncology programs read out first?",
-    "Where is enterprise value furthest below modeled pipeline value?",
+    "Which companies have an at-the-market program and under 18 months of cash?",
   ];
 
-  const facts = () => COMPANIES.map((c) => ({
-    ticker: c.t, name: c.n, area: c.area,
-    market_cap_musd: c.mcap, enterprise_value_musd: c.ev, cash_musd: c.cash, debt_musd: c.debt,
-    monthly_burn_musd: c.burn, runway_months: +runway(c).toFixed(1),
-    revenue_ttm_musd: c.rev, shares_out_m: c.shares, score: bis(c),
-    pipeline_rnpv_musd: Math.round(pipelineValue(c)),
-    financing_pressure_score: fpsOf(c).score, financing_pressure_band: fpsOf(c).band, runway_to_catalyst_gap_months: fpsOf(c).gap,
-    raise_capacity: c.raise?.capacity || null,
-    programs: c.pipeline.map((p) => ({ drug: p.d, indication: p.ind, target: p.tgt, phase: p.ph, expected_readout: p.ro, peak_sales_musd: p.peak })),
-    catalysts: c.catalysts.map((x) => ({ date: x.date, days_away: days(x.date), event: x.label })),
-    financings: c.financings.map(({ date, type, amt }) => ({ date, type, amount_musd: amt })),
-    share_count_change_24m_pct: c.dil24 ?? null,
-    placeholder_inputs: c.src?.defaults || [],
-  }));
 
   const local = (question) => {
     const ql = question.toLowerCase();
@@ -1197,8 +1183,14 @@ function Ask() {
       const res = await fetch("/api/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: text, live: LIVE, asOf: META.generatedAt || null, data: facts() }),
+        // Only the question is sent; the server builds the data from the published data file.
+        body: JSON.stringify({ question: text }),
       });
+      if (res.status === 429) {
+        setLog((l) => [...l, { role: "ai", text: "That's a lot of questions in a short time. Wait a minute and ask again.", fallback: true }]);
+        setBusy(false);
+        return;
+      }
       if (!res.ok) throw new Error(`ask endpoint returned ${res.status}`);
       const data = await res.json();
       const out = (data.text || "").trim();
