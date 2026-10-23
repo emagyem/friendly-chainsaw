@@ -31,7 +31,7 @@ Every weekday the data job appends each company's score to `public/data/fps-hist
 
 ## Waitlist
 
-The "Get the Financing Pressure Report by email" form uses Netlify Forms. `public/__forms.html` registers the form at deploy time; sign-ups appear in Netlify under **Forms → waitlist**, where you can also turn on email notifications.
+The "Get the Financing Pressure Report by email" form posts to `/api/waitlist`, which stores sign-ups in a Cloudflare D1 database (see Deploy). If that endpoint doesn't exist (the old Netlify site), the form falls back to Netlify Forms.
 
 ## Where the data comes from
 
@@ -69,15 +69,19 @@ src/sampleData.js              fictional sample dataset
 3. Go to **Settings → Actions → General → Workflow permissions** and select **Read and write permissions**, so the workflow can commit the data file.
 4. On the **Actions** tab, open **Refresh data** and click **Run workflow**. The log lists each company, plus any ticker it had to skip and why.
 
-### 2. Deploy on Netlify
+### 2. Deploy on Cloudflare Pages
 
-The site and the Ask function both run on Netlify's free tier. Build settings live in `netlify.toml`, so there is nothing to configure by hand.
+The site, the Ask function (`functions/api/ask.js`) and the waitlist (`functions/api/waitlist.js`) all run on Cloudflare Pages' free plan.
 
-1. In Netlify, **Add new site → Import an existing project → GitHub**, and pick this repo.
-2. Under **Site configuration → Environment variables**, add `ANTHROPIC_API_KEY` (from [console.anthropic.com](https://console.anthropic.com)). Set a monthly spend limit on that key, since anyone with the site link can use the Ask tab.
-3. Each nightly data commit triggers a rebuild, so the live site stays current.
+1. In the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect to Git**, pick this repo.
+2. Build settings: framework preset **Vite** (or none), build command `npm run build`, output directory `dist`. Node 22 is picked up from `.nvmrc`.
+3. **Settings → Variables and Secrets**: add `ANTHROPIC_API_KEY` as a **Secret**. Set a monthly spend limit on that key in the Anthropic Console.
+4. **Storage & Databases → D1 → Create** a database (for example `helixora-waitlist`), then in the Pages project **Settings → Bindings → Add → D1 database** with variable name `WAITLIST`. Redeploy. The table is created on the first sign-up.
+5. Each data-refresh commit triggers a new build automatically.
 
-Without the API key, everything still works; the Ask tab answers from built-in rules instead of the model.
+To read sign-ups: D1 → the database → **Console**, run `SELECT email, role, created_at FROM waitlist ORDER BY created_at DESC;`
+
+Security and caching headers live in `public/_headers`. The `netlify/` folder, `netlify.toml` and `public/__forms.html` are only needed while the old Netlify site is still running.
 
 ### 3. Run locally
 

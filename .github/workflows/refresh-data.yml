@@ -1,7 +1,7 @@
 name: Refresh data
 
 # Rebuilds public/data/companies.json from SEC EDGAR, ClinicalTrials.gov and a
-# stock price feed, then commits it. Netlify rebuilds the site on each commit.
+# stock price feed, then commits it. The host (Cloudflare Pages) rebuilds the site on each commit.
 
 on:
   schedule:

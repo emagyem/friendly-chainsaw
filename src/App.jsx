@@ -1385,11 +1385,20 @@ function Waitlist({ compact }) {
     e.preventDefault();
     setState("sending");
     try {
-      const res = await fetch("/__forms.html", {
+      // Cloudflare Pages stores sign-ups via /api/waitlist. While the old Netlify site is still up,
+      // that path doesn't exist there, so fall back to Netlify Forms.
+      let res = await fetch("/api/waitlist", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({ "form-name": "waitlist", email, role, "bot-field": "" }).toString(),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, role, botField: "" }),
       });
+      if (res.status === 404) {
+        res = await fetch("/__forms.html", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ "form-name": "waitlist", email, role, "bot-field": "" }).toString(),
+        });
+      }
       setState(res.ok ? "done" : "error");
     } catch { setState("error"); }
   };
