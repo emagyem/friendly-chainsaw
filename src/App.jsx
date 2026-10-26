@@ -1716,6 +1716,9 @@ export default function App() {
   const [ticker, setTicker] = useState(COMPANIES[0].t);
   const [watch, setWatch] = useState(loadWatch);
   const [omni, setOmni] = useState("");
+  // Menu down the left side ("side") or across the top ("top"); remembered per visitor.
+  const [layout, setLayout] = useState(() => { try { return localStorage.getItem("helixora-layout") === "top" ? "top" : "side"; } catch { return "side"; } });
+  useEffect(() => { try { localStorage.setItem("helixora-layout", layout); } catch { /* ignore */ } }, [layout]);
 
   useEffect(() => { try { localStorage.setItem(WATCH_KEY, JSON.stringify(watch)); } catch { /* ignore */ } }, [watch]);
 
@@ -1731,7 +1734,7 @@ export default function App() {
   const dateline = TODAY.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
 
   return (
-    <div className="app">
+    <div className={"app lay-" + layout}>
       <style>{CSS}</style>
       <a className="skip" href="#main">Skip to content</a>
 
@@ -1759,6 +1762,13 @@ export default function App() {
           <div className="side-foot">
             <span className="dateline">{dateline}</span>
             {LIVE && <span className="side-asof">Data refreshed {new Date(META.generatedAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}</span>}
+            <button className="layout-btn" onClick={() => setLayout(layout === "side" ? "top" : "side")}
+              aria-label={layout === "side" ? "Move the menu to the top" : "Move the menu to the side"} title={layout === "side" ? "Move the menu to the top" : "Move the menu to the side"}>
+              <svg viewBox="0 0 20 20" aria-hidden="true">{layout === "side"
+                ? <><rect x="2.5" y="3.5" width="15" height="13" rx="2.5" /><path d="M2.5 7.5h15" /></>
+                : <><rect x="2.5" y="3.5" width="15" height="13" rx="2.5" /><path d="M7.5 3.5v13" /></>}</svg>
+              <span>{layout === "side" ? "Menu on top" : "Menu on side"}</span>
+            </button>
           </div>
         </div>
       </header>
@@ -1853,6 +1863,31 @@ a.src:hover{color:var(--teal);}
 .nav button.on{color:var(--mast);background:var(--mint);font-weight:600;}
 .side-foot{margin-top:auto;display:grid;gap:4px;padding:16px 8px 0;border-top:1px solid rgba(255,255,255,.09);font-size:12px;color:#7E9E9D;}
 .side-foot .dateline{font-size:12.5px;font-weight:600;color:#A9C4C3;}
+.layout-btn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;justify-self:start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#CFE2E1 !important;border-radius:999px;padding:6px 12px 6px 9px;font-size:12.5px;font-weight:600;transition:background .15s,border-color .15s;}
+.layout-btn:hover{background:rgba(255,255,255,.12);border-color:var(--mint);}
+.layout-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;}
+
+/* menu across the top */
+.app.lay-top{display:block;}
+.app.lay-top .mast{position:sticky;top:0;z-index:50;height:auto;overflow:visible;border-right:0;border-bottom:1px solid rgba(110,231,210,.12);background:rgba(7,43,46,.95);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);}
+.app.lay-top .mast-in{flex-direction:row;align-items:center;gap:20px;min-height:66px;max-width:1320px;margin:0 auto;padding:0 24px;}
+.app.lay-top .wordmark{margin-left:0;}
+.app.lay-top .nav{flex-direction:row;flex:1;min-width:0;order:2;overflow-x:auto;scrollbar-width:none;}
+.app.lay-top .nav::-webkit-scrollbar{display:none;}
+.app.lay-top .nav button{border-radius:999px;padding:8px 12px;font-size:14px;}
+.app.lay-top .omni{order:3;width:230px;}
+.app.lay-top .side-foot{order:4;margin:0;padding:0;border:0;display:block;}
+.app.lay-top .side-foot .dateline,.app.lay-top .side-asof{display:none;}
+.app.lay-top .layout-btn{margin:0;padding:7px;}
+.app.lay-top .layout-btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+.app.lay-top .tape{position:static;}
+@media (max-width:1320px){
+  .app.lay-top .mast{position:static;}
+  .app.lay-top .mast-in{flex-wrap:wrap;gap:0 16px;padding-top:10px;}
+  .app.lay-top .omni{order:2;margin-left:auto;}
+  .app.lay-top .side-foot{order:3;}
+  .app.lay-top .nav{order:4;flex-basis:100%;margin:6px -12px 8px;padding:0 12px;}
+}
 
 .omni{position:relative;flex:none;width:100%;}
 .omni input{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:999px;padding:9px 14px;font:inherit;font-size:14px;transition:background .15s,border-color .15s;}
@@ -2277,7 +2312,10 @@ button.tick:hover{color:var(--teal) !important;}
   .nav{flex-direction:row;flex-basis:100%;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px 8px;}
   .nav::-webkit-scrollbar{display:none;}
   .nav button{border-radius:999px;padding:8px 12px;font-size:14px;}
-  .side-foot{display:none;}
+  .side-foot,.app.lay-top .side-foot{display:none;}
+  .app.lay-top .mast-in{padding:12px 16px 4px;min-height:0;gap:8px 16px;}
+  .app.lay-top .omni{flex:1;width:auto;min-width:140px;margin-left:0;}
+  .app.lay-top .nav{margin:0 -16px;padding:2px 16px 8px;}
 }
 @media (max-width:860px){
   .two.wide-left,.pillars{grid-template-columns:1fr;}
