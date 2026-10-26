@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-10-23T15:46:12.315Z",
+  "generatedAt": "2026-10-26T17:25:24.246Z",
   "sources": [
    "SEC EDGAR XBRL company facts",
    "SEC EDGAR filing index",
@@ -14,8 +14,8 @@
    "t": "VKTX",
    "n": "Viking Therapeutics",
    "area": "Metabolic",
-   "mcap": 2905.2,
-   "ev": 2403.6,
+   "mcap": 2835.8,
+   "ev": 2334.2,
    "cash": 501.7,
    "debt": 0,
    "burn": 34.87,
@@ -137,23 +137,15 @@
     }
    },
    "quote": {
-    "price": 24.91,
-    "prev": 25.83,
-    "chg": -0.92,
-    "chgPct": -3.58,
+    "price": 24.31,
+    "prev": 24.4,
+    "chg": -0.09,
+    "chgPct": -0.37,
     "hi52": 43.15,
-    "lo52": 24.48,
-    "volume": 1523199,
-    "date": "2026-10-23",
+    "lo52": 24.13,
+    "volume": 1805763,
+    "date": "2026-10-26",
     "history": [
-     [
-      "2025-10-23",
-      33.92
-     ],
-     [
-      "2025-10-24",
-      34.42
-     ],
      [
       "2025-10-27",
       35.93
@@ -1152,7 +1144,11 @@
      ],
      [
       "2026-10-23",
-      24.91
+      24.4
+     ],
+     [
+      "2026-10-26",
+      24.31
      ]
     ]
    },
@@ -1253,8 +1249,8 @@
      "date": "2026-07-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1607678/000119312526324219/vktx-20260630.htm"
     },
-    "price": 24.91,
-    "priceDate": "2026-10-23",
+    "price": 24.31,
+    "priceDate": "2026-10-26",
     "priceSource": "Yahoo Finance",
     "sponsor": "Viking Therapeutics",
     "trials": 13,
@@ -1270,8 +1266,8 @@
    "t": "ARWR",
    "n": "Arrowhead Pharmaceuticals",
    "area": "RNAi",
-   "mcap": 8188.5,
-   "ev": 7269.3,
+   "mcap": 8341.1,
+   "ev": 7421.8,
    "cash": 1602,
    "debt": 682.7,
    "burn": 4.92,
@@ -1486,23 +1482,15 @@
     }
    },
    "quote": {
-    "price": 57.97,
-    "prev": 58.36,
-    "chg": -0.39,
-    "chgPct": -0.67,
+    "price": 59.05,
+    "prev": 58.02,
+    "chg": 1.03,
+    "chgPct": 1.78,
     "hi52": 95.49,
-    "lo52": 36.88,
-    "volume": 238437,
-    "date": "2026-10-23",
+    "lo52": 37.06,
+    "volume": 358728,
+    "date": "2026-10-26",
     "history": [
-     [
-      "2025-10-23",
-      37.35
-     ],
-     [
-      "2025-10-24",
-      38
-     ],
      [
       "2025-10-27",
       39.48
@@ -2501,7 +2489,11 @@
      ],
      [
       "2026-10-23",
-      57.97
+      58.02
+     ],
+     [
+      "2026-10-26",
+      59.05
      ]
     ]
    },
@@ -2602,8 +2594,8 @@
      "date": "2026-08-04",
      "url": "https://www.sec.gov/Archives/edgar/data/879407/000087940726000057/arwr-20260630.htm"
     },
-    "price": 57.97,
-    "priceDate": "2026-10-23",
+    "price": 59.05,
+    "priceDate": "2026-10-26",
     "priceSource": "Yahoo Finance",
     "sponsor": "ARROWHEAD PHARMACEUTICALS",
     "trials": 49,
@@ -2619,8 +2611,8 @@
    "t": "RCKT",
    "n": "Rocket Pharmaceuticals",
    "area": "Gene therapy",
-   "mcap": 244.2,
-   "ev": -39.5,
+   "mcap": 246.4,
+   "ev": -37.3,
    "cash": 283.7,
    "debt": 0,
    "burn": 14.19,
@@ -2766,23 +2758,15 @@
     }
    },
    "quote": {
-    "price": 2.23,
-    "prev": 2.31,
-    "chg": -0.08,
-    "chgPct": -3.68,
+    "price": 2.25,
+    "prev": 2.29,
+    "chg": -0.04,
+    "chgPct": -1.97,
     "hi52": 5.45,
     "lo52": 2.17,
-    "volume": 851152,
-    "date": "2026-10-23",
+    "volume": 704299,
+    "date": "2026-10-26",
     "history": [
-     [
-      "2025-10-23",
-      3.74
-     ],
-     [
-      "2025-10-24",
-      3.85
-     ],
      [
       "2025-10-27",
       3.94
@@ -3781,14 +3765,18 @@
      ],
      [
       "2026-10-23",
-      2.22
+      2.29
+     ],
+     [
+      "2026-10-26",
+      2.24
      ]
     ]
    },
    "news": [
     {
      "date": "2026-10-06",
-     "time": "2026-10-07T01:15:44.000Z",
+     "time": "2026-10-06T21:15:44.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Rocket Pharmaceuticals signs a material agreement",
@@ -3796,7 +3784,7 @@
     },
     {
      "date": "2026-09-15",
-     "time": "2026-09-15T15:06:51.000Z",
+     "time": "2026-09-15T11:06:51.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Rocket Pharmaceuticals issues an investor update",
@@ -3804,7 +3792,7 @@
     },
     {
      "date": "2026-08-27",
-     "time": "2026-08-28T00:06:27.000Z",
+     "time": "2026-08-27T20:06:27.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Rocket Pharmaceuticals announces a leadership change",
@@ -3812,7 +3800,7 @@
     },
     {
      "date": "2026-08-10",
-     "time": "2026-08-11T00:17:18.000Z",
+     "time": "2026-08-10T20:17:18.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Rocket Pharmaceuticals reports quarterly results",
@@ -3820,7 +3808,7 @@
     },
     {
      "date": "2026-08-10",
-     "time": "2026-08-11T00:05:55.000Z",
+     "time": "2026-08-10T20:05:55.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
      "headline": "Rocket Pharmaceuticals files its quarterly report",
@@ -3828,7 +3816,7 @@
     },
     {
      "date": "2026-08-03",
-     "time": "2026-08-03T15:41:33.000Z",
+     "time": "2026-08-03T11:41:33.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Rocket Pharmaceuticals issues an investor update",
@@ -3836,7 +3824,7 @@
     },
     {
      "date": "2026-06-30",
-     "time": "2026-07-01T01:16:14.000Z",
+     "time": "2026-06-30T21:16:14.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Rocket Pharmaceuticals announces a leadership change",
@@ -3844,7 +3832,7 @@
     },
     {
      "date": "2026-06-12",
-     "time": "2026-06-12T15:10:43.000Z",
+     "time": "2026-06-12T11:10:43.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Rocket Pharmaceuticals completes an acquisition or sale",
@@ -3852,7 +3840,7 @@
     },
     {
      "date": "2026-05-21",
-     "time": "2026-05-21T14:02:22.000Z",
+     "time": "2026-05-21T10:02:22.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Rocket Pharmaceuticals reports shareholder vote results",
@@ -3860,7 +3848,7 @@
     },
     {
      "date": "2026-05-07",
-     "time": "2026-05-08T00:45:57.000Z",
+     "time": "2026-05-07T20:45:57.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Rocket Pharmaceuticals reports quarterly results",
@@ -3882,8 +3870,8 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1281895/000119312526342348/rckt-20260630.htm"
     },
-    "price": 2.23,
-    "priceDate": "2026-10-23",
+    "price": 2.25,
+    "priceDate": "2026-10-26",
     "priceSource": "Yahoo Finance",
     "sponsor": "ROCKET PHARMACEUTICALS",
     "trials": 12,
@@ -3899,8 +3887,8 @@
    "t": "SRRK",
    "n": "Scholar Rock Holding",
    "area": "Neuromuscular",
-   "mcap": 5010.9,
-   "ev": 4715,
+   "mcap": 5045.6,
+   "ev": 4749.7,
    "cash": 492.1,
    "debt": 196.2,
    "burn": 24.74,
@@ -4022,23 +4010,15 @@
     }
    },
    "quote": {
-    "price": 41.15,
-    "prev": 41.96,
-    "chg": -0.81,
-    "chgPct": -1.94,
+    "price": 41.43,
+    "prev": 41.49,
+    "chg": -0.06,
+    "chgPct": -0.14,
     "hi52": 61.76,
     "lo52": 27.07,
-    "volume": 241648,
-    "date": "2026-10-23",
+    "volume": 351525,
+    "date": "2026-10-26",
     "history": [
-     [
-      "2025-10-23",
-      28.66
-     ],
-     [
-      "2025-10-24",
-      29.68
-     ],
      [
       "2025-10-27",
       30.5
@@ -5037,7 +5017,11 @@
      ],
      [
       "2026-10-23",
-      41.15
+      41.49
+     ],
+     [
+      "2026-10-26",
+      41.43
      ]
     ]
    },
@@ -5138,8 +5122,8 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1727196/000119312526336732/srrk-20260630.htm"
     },
-    "price": 41.15,
-    "priceDate": "2026-10-23",
+    "price": 41.43,
+    "priceDate": "2026-10-26",
     "priceSource": "Yahoo Finance",
     "sponsor": "Scholar Rock",
     "trials": 8,
@@ -5155,8 +5139,8 @@
    "t": "IDYA",
    "n": "Ideaya Biosciences",
    "area": "Oncology",
-   "mcap": 3408.5,
-   "ev": 2165.6,
+   "mcap": 3169.7,
+   "ev": 1926.8,
    "cash": 1242.9,
    "debt": 0,
    "burn": 9.31,
@@ -5364,13 +5348,6 @@
      "amt": null,
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312523263354/d559315d424b5.htm"
-    },
-    {
-     "date": "2023-10-24",
-     "type": "Shelf takedown or ATM (424B5)",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312523261771/d559315d424b5.htm"
     }
    ],
    "note": "",
@@ -5392,23 +5369,15 @@
     }
    },
    "quote": {
-    "price": 35.33,
-    "prev": 36.12,
-    "chg": -0.79,
-    "chgPct": -2.2,
+    "price": 32.85,
+    "prev": 34.71,
+    "chg": -1.86,
+    "chgPct": -5.36,
     "hi52": 42.68,
     "lo52": 26.81,
-    "volume": 167469,
-    "date": "2026-10-23",
+    "volume": 635687,
+    "date": "2026-10-26",
     "history": [
-     [
-      "2025-10-23",
-      28.42
-     ],
-     [
-      "2025-10-24",
-      29.18
-     ],
      [
       "2025-10-27",
       32.37
@@ -6407,14 +6376,18 @@
      ],
      [
       "2026-10-23",
-      35.33
+      34.71
+     ],
+     [
+      "2026-10-26",
+      32.85
      ]
     ]
    },
    "news": [
     {
      "date": "2026-08-04",
-     "time": "2026-08-05T00:05:40.000Z",
+     "time": "2026-08-04T20:05:40.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
      "headline": "Ideaya Biosciences files its quarterly report",
@@ -6422,7 +6395,7 @@
     },
     {
      "date": "2026-08-04",
-     "time": "2026-08-04T14:01:39.000Z",
+     "time": "2026-08-04T10:01:39.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Ideaya Biosciences reports quarterly results",
@@ -6430,7 +6403,7 @@
     },
     {
      "date": "2026-06-23",
-     "time": "2026-06-24T00:05:20.000Z",
+     "time": "2026-06-23T20:05:20.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Ideaya Biosciences makes a company announcement",
@@ -6438,7 +6411,7 @@
     },
     {
      "date": "2026-06-10",
-     "time": "2026-06-11T00:10:24.000Z",
+     "time": "2026-06-10T20:10:24.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Ideaya Biosciences makes a company announcement",
@@ -6446,7 +6419,7 @@
     },
     {
      "date": "2026-06-09",
-     "time": "2026-06-10T01:16:39.000Z",
+     "time": "2026-06-09T21:16:39.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
      "headline": "Ideaya Biosciences files a stock offering prospectus",
@@ -6454,7 +6427,7 @@
     },
     {
      "date": "2026-06-08",
-     "time": "2026-06-09T00:13:41.000Z",
+     "time": "2026-06-08T20:13:41.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
      "headline": "Ideaya Biosciences files a stock offering prospectus",
@@ -6462,7 +6435,7 @@
     },
     {
      "date": "2026-06-03",
-     "time": "2026-06-03T14:01:45.000Z",
+     "time": "2026-06-03T10:01:45.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Ideaya Biosciences makes a company announcement",
@@ -6470,7 +6443,7 @@
     },
     {
      "date": "2026-06-01",
-     "time": "2026-06-02T00:05:32.000Z",
+     "time": "2026-06-01T20:05:32.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Ideaya Biosciences makes a company announcement",
@@ -6478,7 +6451,7 @@
     },
     {
      "date": "2026-05-05",
-     "time": "2026-05-06T01:21:54.000Z",
+     "time": "2026-05-05T21:21:54.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Ideaya Biosciences makes a company announcement",
@@ -6486,7 +6459,7 @@
     },
     {
      "date": "2026-05-05",
-     "time": "2026-05-06T01:19:31.000Z",
+     "time": "2026-05-05T21:19:31.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
      "headline": "Ideaya Biosciences files a stock offering prospectus",
@@ -6509,8 +6482,8 @@
      "date": "2026-08-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526332774/idya-20260630.htm"
     },
-    "price": 35.33,
-    "priceDate": "2026-10-23",
+    "price": 32.85,
+    "priceDate": "2026-10-26",
     "priceSource": "Yahoo Finance",
     "sponsor": "IDEAYA Biosciences",
     "trials": 11,
@@ -6526,8 +6499,8 @@
    "t": "KYMR",
    "n": "Kymera Therapeutics",
    "area": "Immunology",
-   "mcap": 9176.5,
-   "ev": 7671.6,
+   "mcap": 9524.1,
+   "ev": 8019.2,
    "cash": 1504.9,
    "debt": 0,
    "burn": 19.73,
@@ -6677,23 +6650,15 @@
     }
    },
    "quote": {
-    "price": 110.36,
-    "prev": 110.85,
-    "chg": -0.49,
-    "chgPct": -0.44,
+    "price": 114.54,
+    "prev": 110.76,
+    "chg": 3.78,
+    "chgPct": 3.41,
     "hi52": 130.05,
     "lo52": 55.66,
-    "volume": 74471,
-    "date": "2026-10-23",
+    "volume": 148573,
+    "date": "2026-10-26",
     "history": [
-     [
-      "2025-10-23",
-      57.76
-     ],
-     [
-      "2025-10-24",
-      58.56
-     ],
      [
       "2025-10-27",
       60.85
@@ -7692,7 +7657,11 @@
      ],
      [
       "2026-10-23",
-      110.36
+      110.76
+     ],
+     [
+      "2026-10-26",
+      114.54
      ]
     ]
    },
@@ -7794,8 +7763,8 @@
      "date": "2026-08-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312526333849/kymr-20260630.htm"
     },
-    "price": 110.36,
-    "priceDate": "2026-10-23",
+    "price": 114.54,
+    "priceDate": "2026-10-26",
     "priceSource": "Yahoo Finance",
     "sponsor": "Kymera Therapeutics",
     "trials": 11,
@@ -7811,8 +7780,8 @@
    "t": "DYN",
    "n": "Dyne Therapeutics",
    "area": "Neuromuscular",
-   "mcap": 2898.3,
-   "ev": 2199.2,
+   "mcap": 2948.7,
+   "ev": 2249.6,
    "cash": 898.5,
    "debt": 199.3,
    "burn": 39.82,
@@ -7968,23 +7937,15 @@
     }
    },
    "quote": {
-    "price": 15.52,
-    "prev": 15.77,
-    "chg": -0.25,
-    "chgPct": -1.59,
+    "price": 15.79,
+    "prev": 15.62,
+    "chg": 0.17,
+    "chgPct": 1.09,
     "hi52": 27.31,
     "lo52": 14,
-    "volume": 338545,
-    "date": "2026-10-23",
+    "volume": 730861,
+    "date": "2026-10-26",
     "history": [
-     [
-      "2025-10-23",
-      16.49
-     ],
-     [
-      "2025-10-24",
-      17.12
-     ],
      [
       "2025-10-27",
       24.17
@@ -8983,14 +8944,18 @@
      ],
      [
       "2026-10-23",
-      15.52
+      15.62
+     ],
+     [
+      "2026-10-26",
+      15.79
      ]
     ]
    },
    "news": [
     {
      "date": "2026-09-29",
-     "time": "2026-09-30T00:10:18.000Z",
+     "time": "2026-09-29T20:10:18.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Dyne Therapeutics makes a company announcement",
@@ -8998,7 +8963,7 @@
     },
     {
      "date": "2026-07-29",
-     "time": "2026-07-30T00:35:16.000Z",
+     "time": "2026-07-29T20:35:16.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Dyne Therapeutics reports quarterly results",
@@ -9006,7 +8971,7 @@
     },
     {
      "date": "2026-07-29",
-     "time": "2026-07-30T00:05:36.000Z",
+     "time": "2026-07-29T20:05:36.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
      "headline": "Dyne Therapeutics files its quarterly report",
@@ -9014,7 +8979,7 @@
     },
     {
      "date": "2026-07-22",
-     "time": "2026-07-23T01:21:07.000Z",
+     "time": "2026-07-22T21:21:07.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
      "headline": "Dyne Therapeutics files a stock offering prospectus",
@@ -9022,7 +8987,7 @@
     },
     {
      "date": "2026-07-22",
-     "time": "2026-07-23T01:19:38.000Z",
+     "time": "2026-07-22T21:19:38.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Dyne Therapeutics signs a material agreement",
@@ -9030,7 +8995,7 @@
     },
     {
      "date": "2026-07-21",
-     "time": "2026-07-22T01:22:10.000Z",
+     "time": "2026-07-21T21:22:10.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
      "headline": "Dyne Therapeutics files a stock offering prospectus",
@@ -9038,7 +9003,7 @@
     },
     {
      "date": "2026-07-20",
-     "time": "2026-07-20T15:35:14.000Z",
+     "time": "2026-07-20T11:35:14.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Dyne Therapeutics makes a company announcement",
@@ -9046,7 +9011,7 @@
     },
     {
      "date": "2026-06-22",
-     "time": "2026-06-23T00:15:29.000Z",
+     "time": "2026-06-22T20:15:29.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Dyne Therapeutics announces a leadership change",
@@ -9054,7 +9019,7 @@
     },
     {
      "date": "2026-06-17",
-     "time": "2026-06-17T15:35:15.000Z",
+     "time": "2026-06-17T11:35:15.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Dyne Therapeutics signs a material agreement",
@@ -9062,7 +9027,7 @@
     },
     {
      "date": "2026-06-08",
-     "time": "2026-06-09T00:05:15.000Z",
+     "time": "2026-06-08T20:05:15.000Z",
      "form": "8-K",
      "formLabel": "Current report",
      "headline": "Dyne Therapeutics reports shareholder vote results",
@@ -9084,8 +9049,8 @@
      "date": "2026-07-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312526323639/dyn-20260630.htm"
     },
-    "price": 15.52,
-    "priceDate": "2026-10-23",
+    "price": 15.79,
+    "priceDate": "2026-10-26",
     "priceSource": "Yahoo Finance",
     "sponsor": "Dyne Therapeutics",
     "trials": 4,
@@ -9101,8 +9066,8 @@
    "t": "VERA",
    "n": "Vera Therapeutics",
    "area": "Nephrology",
-   "mcap": 2090.6,
-   "ev": 1666.6,
+   "mcap": 2014.5,
+   "ev": 1590.6,
    "cash": 499.2,
    "debt": 75.2,
    "burn": 28.22,
@@ -9213,23 +9178,15 @@
     }
    },
    "quote": {
-    "price": 29.01,
-    "prev": 29.05,
+    "price": 27.96,
+    "prev": 27.99,
     "chg": -0.04,
-    "chgPct": -0.14,
+    "chgPct": -0.13,
     "hi52": 56.05,
     "lo52": 23.05,
-    "volume": 473020,
-    "date": "2026-10-23",
+    "volume": 462006,
+    "date": "2026-10-26",
     "history": [
-     [
-      "2025-10-23",
-      28.2
-     ],
-     [
-      "2025-10-24",
-      29.22
-     ],
      [
       "2025-10-27",
       30.41
@@ -10228,7 +10185,11 @@
      ],
      [
       "2026-10-23",
-      29.01
+      27.99
+     ],
+     [
+      "2026-10-26",
+      27.95
      ]
     ]
    },
@@ -10329,8 +10290,8 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312526342380/vera-20260630.htm"
     },
-    "price": 29.01,
-    "priceDate": "2026-10-23",
+    "price": 27.96,
+    "priceDate": "2026-10-26",
     "priceSource": "Yahoo Finance",
     "sponsor": "Vera Therapeutics",
     "trials": 6,
