@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-10-26T17:25:24.246Z",
+  "generatedAt": "2026-10-27T16:42:38.089Z",
   "sources": [
    "SEC EDGAR XBRL company facts",
    "SEC EDGAR filing index",
@@ -14,8 +14,8 @@
    "t": "VKTX",
    "n": "Viking Therapeutics",
    "area": "Metabolic",
-   "mcap": 2835.8,
-   "ev": 2334.2,
+   "mcap": 2860.9,
+   "ev": 2359.3,
    "cash": 501.7,
    "debt": 0,
    "burn": 34.87,
@@ -34,15 +34,15 @@
      "tgt": "GLP-1/GIP",
      "moa": "Dual receptor agonist",
      "ph": "Phase III",
-     "n": 4500,
+     "n": 1100,
      "ro": "2027-07-01",
      "roType": "ESTIMATED",
-     "ep": "Percentage change in body weight from baseline for participants receiving VK2735 after 78 weeks of treatment",
+     "ep": "Percent change in body weight from baseline to Week 78 in body weight",
      "peak": 800,
      "launch": 2.5,
      "cost": 260,
      "est": true,
-     "nct": "NCT07104500",
+     "nct": "NCT07104383",
      "trials": 8,
      "activeTrials": 5
     },
@@ -137,14 +137,14 @@
     }
    },
    "quote": {
-    "price": 24.31,
-    "prev": 24.4,
-    "chg": -0.09,
-    "chgPct": -0.37,
+    "price": 24.53,
+    "prev": 24.21,
+    "chg": 0.31,
+    "chgPct": 1.3,
     "hi52": 43.15,
-    "lo52": 24.13,
-    "volume": 1805763,
-    "date": "2026-10-26",
+    "lo52": 23.82,
+    "volume": 1569765,
+    "date": "2026-10-27",
     "history": [
      [
       "2025-10-27",
@@ -1148,7 +1148,11 @@
      ],
      [
       "2026-10-26",
-      24.31
+      24.21
+     ],
+     [
+      "2026-10-27",
+      24.52
      ]
     ]
    },
@@ -1249,8 +1253,8 @@
      "date": "2026-07-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1607678/000119312526324219/vktx-20260630.htm"
     },
-    "price": 24.31,
-    "priceDate": "2026-10-26",
+    "price": 24.53,
+    "priceDate": "2026-10-27",
     "priceSource": "Yahoo Finance",
     "sponsor": "Viking Therapeutics",
     "trials": 13,
@@ -1266,8 +1270,8 @@
    "t": "ARWR",
    "n": "Arrowhead Pharmaceuticals",
    "area": "RNAi",
-   "mcap": 8341.1,
-   "ev": 7421.8,
+   "mcap": 8449.8,
+   "ev": 7530.6,
    "cash": 1602,
    "debt": 682.7,
    "burn": 4.92,
@@ -1281,7 +1285,7 @@
    "mkt": 0.6,
    "pipeline": [
     {
-     "d": "zodasiran",
+     "d": "Zodasiran",
      "ind": "Homozygous Familial Hypercholesterolemia",
      "tgt": "—",
      "moa": "—",
@@ -1393,9 +1397,9 @@
     {
      "date": "2027-08-20",
      "kind": "readout",
-     "drug": "zodasiran",
+     "drug": "Zodasiran",
      "est": true,
-     "label": "zodasiran Phase III primary completion (registry estimate)"
+     "label": "Zodasiran Phase III primary completion (registry estimate)"
     },
     {
      "date": "2028-07-15",
@@ -1482,14 +1486,14 @@
     }
    },
    "quote": {
-    "price": 59.05,
-    "prev": 58.02,
-    "chg": 1.03,
-    "chgPct": 1.78,
+    "price": 59.82,
+    "prev": 58.98,
+    "chg": 0.84,
+    "chgPct": 1.42,
     "hi52": 95.49,
     "lo52": 37.06,
-    "volume": 358728,
-    "date": "2026-10-26",
+    "volume": 712950,
+    "date": "2026-10-27",
     "history": [
      [
       "2025-10-27",
@@ -2493,7 +2497,11 @@
      ],
      [
       "2026-10-26",
-      59.05
+      58.98
+     ],
+     [
+      "2026-10-27",
+      59.82
      ]
     ]
    },
@@ -2594,8 +2602,8 @@
      "date": "2026-08-04",
      "url": "https://www.sec.gov/Archives/edgar/data/879407/000087940726000057/arwr-20260630.htm"
     },
-    "price": 59.05,
-    "priceDate": "2026-10-26",
+    "price": 59.82,
+    "priceDate": "2026-10-27",
     "priceSource": "Yahoo Finance",
     "sponsor": "ARROWHEAD PHARMACEUTICALS",
     "trials": 49,
@@ -2611,8 +2619,8 @@
    "t": "RCKT",
    "n": "Rocket Pharmaceuticals",
    "area": "Gene therapy",
-   "mcap": 246.4,
-   "ev": -37.3,
+   "mcap": 268.9,
+   "ev": -14.8,
    "cash": 283.7,
    "debt": 0,
    "burn": 14.19,
@@ -2758,14 +2766,14 @@
     }
    },
    "quote": {
-    "price": 2.25,
-    "prev": 2.29,
-    "chg": -0.04,
-    "chgPct": -1.97,
+    "price": 2.45,
+    "prev": 2.28,
+    "chg": 0.17,
+    "chgPct": 7.46,
     "hi52": 5.45,
     "lo52": 2.17,
-    "volume": 704299,
-    "date": "2026-10-26",
+    "volume": 781803,
+    "date": "2026-10-27",
     "history": [
      [
       "2025-10-27",
@@ -3769,7 +3777,11 @@
      ],
      [
       "2026-10-26",
-      2.24
+      2.28
+     ],
+     [
+      "2026-10-27",
+      2.45
      ]
     ]
    },
@@ -3870,8 +3882,8 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1281895/000119312526342348/rckt-20260630.htm"
     },
-    "price": 2.25,
-    "priceDate": "2026-10-26",
+    "price": 2.45,
+    "priceDate": "2026-10-27",
     "priceSource": "Yahoo Finance",
     "sponsor": "ROCKET PHARMACEUTICALS",
     "trials": 12,
@@ -3887,8 +3899,8 @@
    "t": "SRRK",
    "n": "Scholar Rock Holding",
    "area": "Neuromuscular",
-   "mcap": 5045.6,
-   "ev": 4749.7,
+   "mcap": 5166.7,
+   "ev": 4870.9,
    "cash": 492.1,
    "debt": 196.2,
    "burn": 24.74,
@@ -4010,14 +4022,14 @@
     }
    },
    "quote": {
-    "price": 41.43,
-    "prev": 41.49,
-    "chg": -0.06,
-    "chgPct": -0.14,
+    "price": 42.43,
+    "prev": 41.71,
+    "chg": 0.71,
+    "chgPct": 1.71,
     "hi52": 61.76,
     "lo52": 27.07,
-    "volume": 351525,
-    "date": "2026-10-26",
+    "volume": 250448,
+    "date": "2026-10-27",
     "history": [
      [
       "2025-10-27",
@@ -5021,7 +5033,11 @@
      ],
      [
       "2026-10-26",
-      41.43
+      41.71
+     ],
+     [
+      "2026-10-27",
+      42.42
      ]
     ]
    },
@@ -5122,8 +5138,8 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1727196/000119312526336732/srrk-20260630.htm"
     },
-    "price": 41.43,
-    "priceDate": "2026-10-26",
+    "price": 42.43,
+    "priceDate": "2026-10-27",
     "priceSource": "Yahoo Finance",
     "sponsor": "Scholar Rock",
     "trials": 8,
@@ -5139,8 +5155,8 @@
    "t": "IDYA",
    "n": "Ideaya Biosciences",
    "area": "Oncology",
-   "mcap": 3169.7,
-   "ev": 1926.8,
+   "mcap": 3228.5,
+   "ev": 1985.6,
    "cash": 1242.9,
    "debt": 0,
    "burn": 9.31,
@@ -5341,13 +5357,6 @@
      "amt": null,
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312524011343/d735447d424b5.htm"
-    },
-    {
-     "date": "2023-10-26",
-     "type": "Shelf takedown or ATM (424B5)",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312523263354/d559315d424b5.htm"
     }
    ],
    "note": "",
@@ -5369,14 +5378,14 @@
     }
    },
    "quote": {
-    "price": 32.85,
-    "prev": 34.71,
-    "chg": -1.86,
-    "chgPct": -5.36,
+    "price": 33.46,
+    "prev": 32.88,
+    "chg": 0.58,
+    "chgPct": 1.76,
     "hi52": 42.68,
     "lo52": 26.81,
-    "volume": 635687,
-    "date": "2026-10-26",
+    "volume": 118971,
+    "date": "2026-10-27",
     "history": [
      [
       "2025-10-27",
@@ -6380,7 +6389,11 @@
      ],
      [
       "2026-10-26",
-      32.85
+      32.88
+     ],
+     [
+      "2026-10-27",
+      33.46
      ]
     ]
    },
@@ -6482,8 +6495,8 @@
      "date": "2026-08-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526332774/idya-20260630.htm"
     },
-    "price": 32.85,
-    "priceDate": "2026-10-26",
+    "price": 33.46,
+    "priceDate": "2026-10-27",
     "priceSource": "Yahoo Finance",
     "sponsor": "IDEAYA Biosciences",
     "trials": 11,
@@ -6499,8 +6512,8 @@
    "t": "KYMR",
    "n": "Kymera Therapeutics",
    "area": "Immunology",
-   "mcap": 9524.1,
-   "ev": 8019.2,
+   "mcap": 9799.7,
+   "ev": 8294.8,
    "cash": 1504.9,
    "debt": 0,
    "burn": 19.73,
@@ -6650,14 +6663,14 @@
     }
    },
    "quote": {
-    "price": 114.54,
-    "prev": 110.76,
-    "chg": 3.78,
-    "chgPct": 3.41,
+    "price": 117.86,
+    "prev": 114.84,
+    "chg": 3.02,
+    "chgPct": 2.63,
     "hi52": 130.05,
     "lo52": 55.66,
-    "volume": 148573,
-    "date": "2026-10-26",
+    "volume": 284760,
+    "date": "2026-10-27",
     "history": [
      [
       "2025-10-27",
@@ -7661,7 +7674,11 @@
      ],
      [
       "2026-10-26",
-      114.54
+      114.84
+     ],
+     [
+      "2026-10-27",
+      117.86
      ]
     ]
    },
@@ -7763,8 +7780,8 @@
      "date": "2026-08-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312526333849/kymr-20260630.htm"
     },
-    "price": 114.54,
-    "priceDate": "2026-10-26",
+    "price": 117.86,
+    "priceDate": "2026-10-27",
     "priceSource": "Yahoo Finance",
     "sponsor": "Kymera Therapeutics",
     "trials": 11,
@@ -7780,8 +7797,8 @@
    "t": "DYN",
    "n": "Dyne Therapeutics",
    "area": "Neuromuscular",
-   "mcap": 2948.7,
-   "ev": 2249.6,
+   "mcap": 3133.6,
+   "ev": 2434.5,
    "cash": 898.5,
    "debt": 199.3,
    "burn": 39.82,
@@ -7937,14 +7954,14 @@
     }
    },
    "quote": {
-    "price": 15.79,
-    "prev": 15.62,
-    "chg": 0.17,
-    "chgPct": 1.09,
+    "price": 16.78,
+    "prev": 15.72,
+    "chg": 1.06,
+    "chgPct": 6.74,
     "hi52": 27.31,
     "lo52": 14,
-    "volume": 730861,
-    "date": "2026-10-26",
+    "volume": 903738,
+    "date": "2026-10-27",
     "history": [
      [
       "2025-10-27",
@@ -8948,7 +8965,11 @@
      ],
      [
       "2026-10-26",
-      15.79
+      15.72
+     ],
+     [
+      "2026-10-27",
+      16.78
      ]
     ]
    },
@@ -9049,8 +9070,8 @@
      "date": "2026-07-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312526323639/dyn-20260630.htm"
     },
-    "price": 15.79,
-    "priceDate": "2026-10-26",
+    "price": 16.78,
+    "priceDate": "2026-10-27",
     "priceSource": "Yahoo Finance",
     "sponsor": "Dyne Therapeutics",
     "trials": 4,
@@ -9066,8 +9087,8 @@
    "t": "VERA",
    "n": "Vera Therapeutics",
    "area": "Nephrology",
-   "mcap": 2014.5,
-   "ev": 1590.6,
+   "mcap": 2133.1,
+   "ev": 1709.1,
    "cash": 499.2,
    "debt": 75.2,
    "burn": 28.22,
@@ -9178,14 +9199,14 @@
     }
    },
    "quote": {
-    "price": 27.96,
-    "prev": 27.99,
-    "chg": -0.04,
-    "chgPct": -0.13,
+    "price": 29.6,
+    "prev": 28.3,
+    "chg": 1.3,
+    "chgPct": 4.59,
     "hi52": 56.05,
     "lo52": 23.05,
-    "volume": 462006,
-    "date": "2026-10-26",
+    "volume": 329932,
+    "date": "2026-10-27",
     "history": [
      [
       "2025-10-27",
@@ -10189,7 +10210,11 @@
      ],
      [
       "2026-10-26",
-      27.95
+      28.3
+     ],
+     [
+      "2026-10-27",
+      29.6
      ]
     ]
    },
@@ -10290,8 +10315,8 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312526342380/vera-20260630.htm"
     },
-    "price": 27.96,
-    "priceDate": "2026-10-26",
+    "price": 29.6,
+    "priceDate": "2026-10-27",
     "priceSource": "Yahoo Finance",
     "sponsor": "Vera Therapeutics",
     "trials": 6,
