@@ -1654,7 +1654,7 @@ function Research({ go }) {
           <span className="ph-note">An event study of {n} offerings in the past year, found from 424B prospectus filings on SEC EDGAR. Day 0 is the last close before the first filing. {study.useAbn ? `Returns are measured relative to ${study.benchmark.symbol} (${study.benchmark.name}), so sector-wide moves are taken out.` : "Returns are raw price changes for now; a biotech benchmark (XBI) is added at the next data refresh."}</span></header>
         {n === 0 ? <p className="empty">No offerings fall inside the price history yet.</p> : (
           <>
-            <p className="finding">On {upDay1} of {n} offerings the stock rose on the filing day, a sign that companies often raise right after good news. Over the next 20 trading days, {down20} of {n20} ended lower{study.useAbn ? ` than ${study.benchmark.symbol}` : ""}.</p>
+            <p className="finding">On {upDay1} of {n} offerings the stock {study.useAbn ? `beat ${study.benchmark.symbol}` : "rose"} on the filing day, a sign that companies often raise right after good news. Over the next 20 trading days, {down20} of {n20} ended lower{study.useAbn ? ` than ${study.benchmark.symbol}` : ""}.</p>
             <div className="metrics four">
               <div className="metric"><span>Filing day, average</span><b className={pctCls(study.d1.mean)}>{pct(study.d1.mean)}</b><em>median {pct(study.d1.median)}</em></div>
               <div className="metric"><span>After 5 trading days</span><b className={pctCls(study.d5.mean)}>{pct(study.d5.mean)}</b><em>median {pct(study.d5.median)}</em></div>
