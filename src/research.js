@@ -4,7 +4,9 @@
    offeringStudy  An event study of share prices around stock offerings
                   (424B prospectus filings), measured against the XBI
                   biotech ETF when the benchmark is available.
-   momentum       3-, 6- and 12-month price returns, ranked.
+   raiseRunway    How many months of cash each company had left when it
+                  raised, using only the last balance sheet filed BEFORE
+                  the offering (what investors could have known).
 
    Both are descriptive. With a handful of companies they show what
    happened, not a tested trading signal; the page says so.
@@ -92,18 +94,29 @@ export function offeringStudy(companies, benchmark) {
   return { rows, path, useAbn, benchmark: bench ? benchmark : null, d1: sum("d1"), d5: sum("d5"), d20: sum("d20") };
 }
 
-// Price return over the last n trading days, and the same for the benchmark.
-function ret(history, n) {
-  if (!history || history.length <= n) return null;
-  return history.at(-1)[1] / history.at(-1 - n)[1] - 1;
-}
+export const RUNWAY_BINS = [
+  { label: "Under 12 months", lo: -Infinity, hi: 12 },
+  { label: "12 to 18 months", lo: 12, hi: 18 },
+  { label: "18 to 24 months", lo: 18, hi: 24 },
+  { label: "24 to 36 months", lo: 24, hi: 36 },
+  { label: "36 months or more", lo: 36, hi: Infinity },
+];
+const CAP = 120;
 
-export function momentum(companies, benchmark) {
-  const b = benchmark?.history || null;
-  const bm = { m3: ret(b, 63), m6: ret(b, 126), m12: ret(b, Math.min(251, (b?.length || 1) - 1)) };
-  const rows = companies.map((c) => {
-    const h = c.quote?.history || [];
-    return { c, m3: ret(h, 63), m6: ret(h, 126), m12: ret(h, Math.min(251, h.length - 1)) };
-  }).sort((a, b2) => (b2.m6 ?? -9) - (a.m6 ?? -9));
-  return { rows, bench: b ? bm : null };
+// For each offering: the last runway figure filed before it, less the months that had passed
+// since that balance sheet date (burn kept running in between).
+export function raiseRunway(companies) {
+  const rows = [];
+  for (const e of offeringEvents(companies)) {
+    const hist = (e.c.runwayHist || []).filter((r) => r.filed && r.filed < e.date);
+    const last = hist.at(-1);
+    if (!last) continue;
+    const elapsed = dayDiff(last.end, e.date) / 30.44;
+    const left = last.runway == null ? null : Math.min(CAP, Math.max(0, last.runway - elapsed));
+    rows.push({ ...e, basis: last, left, positive: last.runway == null });
+  }
+  const known = rows.filter((r) => r.left != null);
+  const bins = RUNWAY_BINS.map((b) => ({ ...b, n: known.filter((r) => r.left >= b.lo && r.left < b.hi).length }));
+  const under24 = known.filter((r) => r.left < 24).length;
+  return { rows, bins, n: known.length, median: median(known.map((r) => r.left)), under24 };
 }
