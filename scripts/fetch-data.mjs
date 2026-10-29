@@ -230,6 +230,23 @@ function financialsFromFacts(facts) {
 
   const cash = cashOnly + (st?.val || 0) + (lt?.val || 0);
   const ocfM = ocf ? M(ocf.val) : null;
+
+  // Runway as it stood at each past balance sheet, dated by when that figure was FIRST filed,
+  // so the Research page only uses what investors could actually have known at the time.
+  const firstFiled = new Map();
+  for (const tag of CASH) for (const r of facts?.["us-gaap"]?.[tag]?.units?.USD || []) {
+    if (r.start || !r.filed) continue;
+    if (!firstFiled.has(r.end) || r.filed < firstFiled.get(r.end)) firstFiled.set(r.end, r.filed);
+  }
+  const runwayHist = [];
+  for (const r of cashS.rows.slice(-20)) {
+    const t = trailing12(ocfS, r.end);
+    if (!t || !near(t.end, r.end, 20)) continue;
+    const total = r.val + (valueAt(facts, ST_INV, r.end)?.val || 0) + (valueAt(facts, LT_INV, r.end)?.val || 0);
+    const burnM = -M(t.val) / 12;
+    runwayHist.push({ end: r.end, filed: firstFiled.get(r.end) || r.filed, cash: Math.round(M(total)), burn: Math.round(burnM * 10) / 10,
+      runway: burnM > 0 ? Math.round((M(total) / burnM) * 10) / 10 : null });
+  }
   return {
     asOf,
     cash: M(cash),
@@ -244,6 +261,7 @@ function financialsFromFacts(facts) {
     shares: sharesNow ? sharesNow.val / 1e6 : null,
     sharesAsOf: sharesNow?.end || null,
     dil24,
+    runwayHist,
   };
 }
 
@@ -587,6 +605,7 @@ async function buildCompany(ticker, a, cikByTicker) {
     financings: mergedFinancings,
     note: a.note || "",
     dil24: round(fin.dil24, 1),
+    runwayHist: fin.runwayHist || [],
     burnPrior: round(fin.burnPrior, 2),
     debtDue24: round(fin.debtDue24, 1),
     raise,
