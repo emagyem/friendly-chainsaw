@@ -28,6 +28,7 @@ const ROOT = new URL("../", import.meta.url);
 const OUT_DIR = new URL("public/data/", ROOT);
 const OUT_FILE = new URL("companies.json", OUT_DIR);
 const HISTORY_FILE = new URL("fps-history.json", OUT_DIR);
+const BENCHMARK = { symbol: "XBI", name: "SPDR S&P Biotech ETF" };
 
 const UA = process.env.SEC_USER_AGENT;
 const AV_KEY = process.env.ALPHA_VANTAGE_KEY;
@@ -663,9 +664,17 @@ async function main() {
     process.exit(1);
   }
 
+  // Sector benchmark for the Research page's event study: the SPDR S&P Biotech ETF.
+  let benchmark = null;
+  try {
+    const y = await yahooQuote(BENCHMARK.symbol);
+    if (y?.history?.length) benchmark = { ...BENCHMARK, history: y.history };
+  } catch (e) { warn(`Benchmark ${BENCHMARK.symbol} price failed: ${e.message}`); }
+
   const out = {
     meta: {
       generatedAt: new Date().toISOString(),
+      benchmark,
       sources: ["SEC EDGAR XBRL company facts", "SEC EDGAR filing index", "ClinicalTrials.gov API v2", "Yahoo Finance"],
       warnings,
     },

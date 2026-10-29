@@ -4,6 +4,7 @@ import {
   ScatterChart, Scatter, ZAxis, ReferenceLine, BarChart, Bar, Cell, AreaChart, Area
 } from "recharts";
 import { COMPANIES, META, HISTORY } from "./data.js";
+import { offeringStudy, momentum, PRE, POST } from "./research.js";
 import { computeFPS, nextMajorCatalyst, FPS_COMPONENTS, FPS_BANDS, FPS_CHANGELOG, FPS_VERSION, FPS_UPDATED, BUFFER_MONTHS, NO_CATALYST_MONTHS } from "./fps.js";
 
 /* ------------------------------------------------------------------
@@ -1605,6 +1606,169 @@ const PILLARS = [
   ["Honest about uncertainty", "We publish our misses as well as our hits.", "A public, scored track record"],
 ];
 
+/* ------------------------------ research ------------------------------ */
+
+const pct = (x, d = 1) => (x == null || !isFinite(x) ? "—" : `${signed(x * 100, d)}%`);
+const pctCls = (x) => (x == null ? "" : x > 0 ? "chg up" : x < 0 ? "chg down" : "chg flat");
+
+const PITFALLS = [
+  ["Look-ahead bias", "Using information that wasn't public yet.", "Each event is measured from the last close before the first offering filing. Scores are saved each day as published and never recalculated backward."],
+  ["Survivorship bias", "Studying only companies that are still around.", "The study covers today's tracked companies, so failed or acquired ones are missing. That's a known gap; names that leave the list will stay in the history."],
+  ["Overfitting", "Tuning a model until it fits the past.", "The score's weights are a published starting point (version 1.0). Any change is logged and judged on data that comes after it."],
+  ["Small samples", "Treating a few cases as a pattern.", "Every result shows how many events it rests on. Nothing here is called a signal before it holds across far more companies and years."],
+  ["Trading costs", "Ignoring spreads, fees and borrow costs.", "The studies measure price moves only. Helixora makes no claim about returns after costs."],
+];
+
+const FAMILIES = [
+  ["Event-driven", "Measure how prices react to events like trial results, FDA decisions and stock offerings.", "Yes: the offering study on this page."],
+  ["Momentum and trend", "Rank stocks by recent returns and see whether strength continues.", "Tracked: the momentum table, beside each score."],
+  ["Factor investing", "Rank companies on traits linked to risk or return.", "In spirit: the Financing Pressure Score ranks one trait, the need to raise."],
+  ["Financial distress and dilution", "Ask whether short runway and repeat raises go with weaker returns.", "Being tested: the Raise List and daily score history."],
+  ["Mean reversion and pairs", "Bet that prices drifting apart from a usual relationship come back.", "Not used."],
+  ["Machine learning", "Train models to rank stocks or classify conditions.", "Not used. More complex models aren't automatically better."],
+  ["Volatility and options", "Compare implied and realized volatility.", "Not yet. Options around catalysts are a possible next study."],
+  ["Macro, market making, high-frequency", "Trade across asset classes or on very short-term order flow.", "Outside Helixora's scope."],
+];
+
+function Research({ go }) {
+  const study = useMemo(() => offeringStudy(COMPANIES, META.benchmark), []);
+  const mom = useMemo(() => momentum(COMPANIES, META.benchmark), []);
+  const n = study.rows.length;
+  const upDay1 = study.rows.filter((r) => r.d1 > 0).length;
+  const down20 = study.rows.filter((r) => r.d20 != null && r.d20 < 0).length;
+  const n20 = study.rows.filter((r) => r.d20 != null).length;
+  const snaps = HISTORY.snapshots || [];
+  const firstSnap = snaps[0]?.date;
+  const firstCheck = firstSnap ? new Date(Date.parse(firstSnap) + 182 * 86400000).toISOString().slice(0, 10) : null;
+
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">Research</p>
+        <h1 className="report-h">Testing what moves biotech stocks around financing</h1>
+        <p className="prose">The Financing Pressure Score rests on assumptions about how companies raise money and how their shares react. This page tests them in the open, on the same data the site publishes. With {COMPANIES.length} companies and a year of prices, these results describe what happened. They aren't a proven trading signal.</p>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Stock offerings: what happened to the share price</h2>
+          <span className="ph-note">An event study of {n} offerings in the past year, found from 424B prospectus filings on SEC EDGAR. Day 0 is the last close before the first filing. {study.useAbn ? `Returns are measured relative to ${study.benchmark.symbol} (${study.benchmark.name}), so sector-wide moves are taken out.` : "Returns are raw price changes for now; a biotech benchmark (XBI) is added at the next data refresh."}</span></header>
+        {n === 0 ? <p className="empty">No offerings fall inside the price history yet.</p> : (
+          <>
+            <p className="finding">On {upDay1} of {n} offerings the stock rose on the filing day, a sign that companies often raise right after good news. Over the next 20 trading days, {down20} of {n20} ended lower{study.useAbn ? ` than ${study.benchmark.symbol}` : ""}.</p>
+            <div className="metrics four">
+              <div className="metric"><span>Filing day, average</span><b className={pctCls(study.d1.mean)}>{pct(study.d1.mean)}</b><em>median {pct(study.d1.median)}</em></div>
+              <div className="metric"><span>After 5 trading days</span><b className={pctCls(study.d5.mean)}>{pct(study.d5.mean)}</b><em>median {pct(study.d5.median)}</em></div>
+              <div className="metric"><span>After 20 trading days</span><b className={pctCls(study.d20.mean)}>{pct(study.d20.mean)}</b><em>median {pct(study.d20.median)}</em></div>
+              <div className="metric"><span>Lower after 20 days</span><b>{study.d20.down == null ? "—" : `${Math.round(study.d20.down * 100)}%`}</b><em>of {study.d20.n} offerings</em></div>
+            </div>
+            <div className="chart">
+              <ResponsiveContainer width="100%" height={280}>
+                <LineChart data={study.path} margin={{ top: 16, right: 16, bottom: 24, left: 4 }}>
+                  <CartesianGrid stroke="#E4E9EB" vertical={false} />
+                  <XAxis dataKey="k" type="number" domain={[-PRE, POST]} ticks={[-10, -5, 0, 5, 10, 15, 20]} tick={{ fontSize: 11, fill: "#5E6B73" }}
+                    label={{ value: "trading days from the offering", position: "insideBottom", offset: -12, fontSize: 11, fill: "#5E6B73" }} />
+                  <YAxis tickFormatter={(v) => `${v > 0 ? "+" : ""}${Math.round(v)}%`} tick={{ fontSize: 11, fill: "#5E6B73" }} width={48} />
+                  <ReferenceLine y={0} stroke="#8A979E" />
+                  <ReferenceLine x={0} stroke="#0E7C74" strokeDasharray="4 3" label={{ value: "Day 0", position: "insideTopLeft", fontSize: 11, fill: "#0E7C74" }} />
+                  <Tooltip content={({ payload }) => {
+                    if (!payload || !payload.length) return null;
+                    const d = payload[0].payload;
+                    return <div className="rtip"><b>{d.avg > 0 ? "+" : ""}{num(d.avg)}%</b> average on day {d.k > 0 ? "+" : ""}{d.k}<br />{d.n} offerings</div>;
+                  }} />
+                  <Line type="linear" dataKey="avg" stroke="#0E7C74" strokeWidth={2.5} dot={false} activeDot={{ r: 4 }} isAnimationActive={false} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+            <p className="colnote">Average {study.useAbn ? `return relative to ${study.benchmark.symbol}` : "price change"} from day 0, across all {n} offerings. One large move can pull the average a long way, so read it with the medians above.</p>
+            <h3 className="subhead">Each offering</h3>
+            <div className="tablewrap">
+              <table className="grid">
+                <thead><tr><th>First filing</th><th>Company</th><th className="r">10 days before</th><th className="r">Filing day</th><th className="r">+5 days</th><th className="r">+20 days</th></tr></thead>
+                <tbody>
+                  {study.rows.map((r, i) => (
+                    <tr key={i} onClick={() => go("company", r.c.t)}>
+                      <td className="nowrap"><a className="src" href={r.url} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>{fmtDate(r.date)}</a></td>
+                      <td><b>{r.c.t}</b><span className="sub">{r.c.n}</span></td>
+                      <td className="r"><span className={pctCls(r.pre)}>{pct(r.pre)}</span></td>
+                      <td className="r"><span className={pctCls(r.d1)}>{pct(r.d1)}</span></td>
+                      <td className="r"><span className={pctCls(r.d5)}>{pct(r.d5)}</span></td>
+                      <td className="r"><span className={pctCls(r.d20)}>{r.d20 == null ? "not yet" : pct(r.d20)}</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Momentum beside financing pressure</h2>
+          <span className="ph-note">Momentum research ranks stocks on their last 6 to 12 months of returns. Here it sits next to each score, so you can see whether weak stocks are also the ones under pressure to raise.{mom.bench ? ` ${META.benchmark.symbol} returned ${pct(mom.bench.m6)} over 6 months.` : ""}</span></header>
+        <div className="tablewrap">
+          <table className="grid">
+            <thead><tr><th>Rank</th><th>Company</th><th className="r">3 months</th><th className="r">6 months</th><th className="r">12 months</th>{mom.bench && <th className="r">6 months vs {META.benchmark.symbol}</th>}<th className="r">Financing pressure</th></tr></thead>
+            <tbody>
+              {mom.rows.map((r, i) => (
+                <tr key={r.c.t} onClick={() => go("company", r.c.t, "pressure")}>
+                  <td>{i + 1}</td>
+                  <td><b>{r.c.t}</b><span className="sub">{r.c.n}</span></td>
+                  <td className="r"><span className={pctCls(r.m3)}>{pct(r.m3, 0)}</span></td>
+                  <td className="r"><span className={pctCls(r.m6)}>{pct(r.m6, 0)}</span></td>
+                  <td className="r"><span className={pctCls(r.m12)}>{pct(r.m12, 0)}</span></td>
+                  {mom.bench && <td className="r"><span className={pctCls(r.m6 - mom.bench.m6)}>{pct(r.m6 == null ? null : r.m6 - mom.bench.m6, 0)}</span></td>}
+                  <td className="r"><BandBadge c={r.c} /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="colnote">Ranked by 6-month return. With {COMPANIES.length} stocks this is a watch list, not a momentum strategy.</p>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Does financing pressure come true?</h2>
+          <span className="ph-note">The central test: are companies with high scores more likely to raise money, and do their shares do worse afterward?</span></header>
+        <ol className="tr-list">
+          <li>Companies scoring 70 or higher should file an equity offering within six months more often than companies scoring under 40.</li>
+          <li>Shares of high scorers should trail the biotech sector over the following six months, after accounting for company size.</li>
+          <li>The score should add information beyond cash runway alone; if runway explains everything, the other parts get cut.</li>
+        </ol>
+        <p className="prose" style={{ marginTop: 14 }}>
+          {firstSnap
+            ? <>Scores have been saved every weekday since {fmtDate(firstSnap)} ({snaps.length} snapshots so far). The first six-month check is due around {fmtDate(firstCheck)}, and results will be published whether they support the score or not.</>
+            : <>Daily score snapshots start with the next data refresh.</>}
+          {" "}<button className="morelink" onClick={() => go("method")}>See the track record</button>
+        </p>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>How these studies avoid fooling themselves</h2>
+          <span className="ph-note">A strategy can look great on past data and fail with real money. These are the usual reasons, and what Helixora does about each.</span></header>
+        <div className="tablewrap">
+          <table className="grid plain">
+            <thead><tr><th>Pitfall</th><th>What it means</th><th>What Helixora does</th></tr></thead>
+            <tbody>{PITFALLS.map(([a, b, c]) => <tr key={a}><td className="nowrap"><b>{a}</b></td><td>{b}</td><td>{c}</td></tr>)}</tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Where Helixora fits among quant strategies</h2>
+          <span className="ph-note">Quant investing finds patterns across many stocks; biotech research judges one company, its drugs and its evidence. Helixora sits where the two meet: systematic rules about financing, applied to clinical-stage companies.</span></header>
+        <div className="tablewrap">
+          <table className="grid plain">
+            <thead><tr><th>Strategy family</th><th>The idea</th><th>At Helixora</th></tr></thead>
+            <tbody>{FAMILIES.map(([a, b, c]) => <tr key={a}><td className="nowrap"><b>{a}</b></td><td>{b}</td><td>{c}</td></tr>)}</tbody>
+          </table>
+        </div>
+      </section>
+
+      <p className="disclaimer">Research on past price moves and financing filings. It is not investment advice and does not recommend buying or selling any security. Past patterns may not repeat.</p>
+    </div>
+  );
+}
+
 function Methodology({ go }) {
   return (
     <div className="stack">
@@ -1730,7 +1894,7 @@ export default function App() {
     ? COMPANIES.filter((c) => (c.t + " " + c.n).toLowerCase().includes(omni.toLowerCase())).slice(0, 6)
     : [];
 
-  const nav = [["home", "Markets"], ["report", "Pressure Report"], ["screen", "Screener"], ["company", "Quotes"], ["catalysts", "Calendar"], ["compare", "Compare"], ["ask", "Ask"], ["method", "Methodology"]];
+  const nav = [["home", "Markets"], ["report", "Pressure Report"], ["screen", "Screener"], ["company", "Quotes"], ["catalysts", "Calendar"], ["compare", "Compare"], ["ask", "Ask"], ["research", "Research"], ["method", "Methodology"]];
   const dateline = TODAY.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
 
   return (
@@ -1788,6 +1952,7 @@ export default function App() {
         {view === "catalysts" && <Catalysts go={go} />}
         {view === "compare" && <Compare />}
         {view === "ask" && <Ask />}
+        {view === "research" && <Research go={go} />}
       </main>
 
       <footer className="foot">
@@ -2133,6 +2298,10 @@ button.tick:hover{color:var(--teal) !important;}
 .metrics.two-up{grid-template-columns:1fr 1fr;}
 .metric{background:var(--tint);border-radius:var(--r-md);padding:12px 14px;}
 .metric>span{display:block;font-size:12.5px;color:var(--mut);margin-bottom:3px;}
+.metrics.four{grid-template-columns:repeat(4,1fr);margin:0 0 18px;}
+.metric em{display:block;font-style:normal;font-size:12.5px;color:var(--mut);margin-top:2px;}
+.metric b.chg{font-size:22px;}
+.finding{font-family:var(--display);font-size:clamp(19px,1.8vw,23px);font-weight:600;font-stretch:92%;letter-spacing:-.012em;line-height:1.3;margin:0 0 18px;max-width:52ch;text-wrap:balance;}
 .metric b{font-size:22px;font-weight:600;letter-spacing:-.015em;font-variant-numeric:tabular-nums;}
 .tr-wrap{position:relative;display:inline-block;}
 .tr-val{font-size:22px;font-weight:600;letter-spacing:-.015em;background:none;border:0;padding:0;color:var(--ink);border-bottom:1px dotted var(--teal);font-variant-numeric:tabular-nums;}
@@ -2323,6 +2492,7 @@ button.tick:hover{color:var(--teal) !important;}
   .facts.defs{grid-template-columns:1fr;}
   .front,.front>.side{grid-template-columns:1fr;}
   .briefs,.two,.filters,.prog-list,.metrics,.sugg,.q-body{grid-template-columns:1fr;}
+  .metrics.four{grid-template-columns:1fr 1fr;}
   .wordmark{font-size:30px;}
   .lead,.quote,.panel,.report-head{padding:22px 18px;}
   .hero{padding:28px 20px;border-radius:var(--r-lg);}
