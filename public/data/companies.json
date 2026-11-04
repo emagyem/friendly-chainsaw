@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-04T04:13:57.116Z",
+  "generatedAt": "2026-11-04T04:26:08.621Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -2113,6 +2113,7 @@
      "trials": 8,
      "activeTrials": 5,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07104500",
       "title": "VK2735 for Weight Management Phase 3",
@@ -2145,6 +2146,14 @@
      "modality": "Peptide",
      "area": "Metabolic",
      "pathway": "NDA",
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 500 or more patients",
@@ -2200,6 +2209,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07846033",
       "title": "A Phase 1 Study of VK3019 in Overweight and Obese Adults Without Comorbidities",
@@ -2231,7 +2241,16 @@
       "ph": "Phase I",
       "ind": "Obese Adults"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Metabolic",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -2258,11 +2277,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.1548,
+      "loa": 0.1511,
       "base": 0.1548,
       "area": "Metabolic",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -3936,6 +3957,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07037771",
       "title": "A Phase 3 Study of Zodasiran in Adolescent and Adult Subjects With Homozygous Familial Hypercholesterolemia (YOSEMITE)",
@@ -3976,6 +3998,13 @@
      "modality": "siRNA/RNAi",
      "area": "Cardiovascular",
      "rare": true,
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "set by hand",
+      "biomarker": "no marker named"
+     },
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, under 100 patients",
@@ -4034,6 +4063,7 @@
      "trials": 6,
      "activeTrials": 2,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06880770",
       "title": "Study of Plozasiran in Adults With Severe Hypertriglyceridemia at Risk of Acute Pancreatitis",
@@ -4073,6 +4103,14 @@
      },
      "modality": "siRNA/RNAi",
      "area": "Cardiovascular",
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -4136,6 +4174,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06937203",
       "title": "A First-In-Human Study of ARO-ALK7 in Adults With Obesity With and Without Type 2 Diabetes Mellitus",
@@ -4167,6 +4206,14 @@
      },
      "modality": "siRNA/RNAi",
      "area": "Metabolic",
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
@@ -4224,6 +4271,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07221344",
       "title": "Study of ARO-MAPT-SC in Healthy Participants and Participants With Early Alzheimer's Disease",
@@ -4253,6 +4301,14 @@
      },
      "modality": "siRNA/RNAi",
      "area": "Neurology",
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
@@ -4310,6 +4366,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07223658",
       "title": "Study of ARO-DIMERPA in Adult Participants With Mixed Hyperlipidemia",
@@ -4342,6 +4399,14 @@
      },
      "modality": "siRNA/RNAi",
      "area": "Cardiovascular",
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -4399,6 +4464,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06700538",
       "title": "A First-In-Human Study of ARO-INHBE in Adults With Obesity With and Without Type 2 Diabetes Mellitus",
@@ -4436,6 +4502,14 @@
      },
      "modality": "siRNA/RNAi",
      "area": "Metabolic",
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
@@ -6160,6 +6234,7 @@
      "trials": 3,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "BIOLOGICAL",
      "trial": {
       "nct": "NCT04248439",
       "title": "Gene Therapy for Fanconi Anemia, Complementation Group A",
@@ -6188,6 +6263,13 @@
      "modality": "Gene therapy",
      "area": "Hematology",
      "rare": true,
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "set by hand",
+      "biomarker": "no marker named"
+     },
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -6258,6 +6340,7 @@
      "trials": 2,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "GENETIC",
      "trial": {
       "nct": "NCT06092034",
       "title": "A Gene Therapy Study of RP-A501 in Male Patients With Danon Disease",
@@ -6289,6 +6372,13 @@
      "modality": "Gene therapy",
      "area": "Cardiovascular",
      "rare": true,
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "set by hand",
+      "biomarker": "no marker named"
+     },
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -6353,6 +6443,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "GENETIC",
      "trial": {
       "nct": "NCT05885412",
       "title": "A Phase 1, Dose Escalation Trial of RP-A601 in Subjects With PKP2 Variant-Mediated Arrhythmogenic Cardiomyopathy (PKP2-ACM)",
@@ -6381,6 +6472,13 @@
      "modality": "Gene therapy",
      "area": "Cardiovascular",
      "rare": true,
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "set by hand",
+      "biomarker": "no marker named"
+     },
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -6428,6 +6526,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "GENETIC",
      "trial": {
       "nct": "NCT07137338",
       "title": "A Phase 1 AAV Gene Therapy Trial Evaluating Safety and Preliminary Efficacy of RP-A701 in Subjects With BAG3 Dilated Cardiomyopathy",
@@ -6455,6 +6554,14 @@
      },
      "modality": "Gene therapy",
      "area": "Cardiovascular",
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -7895,6 +8002,7 @@
      "trials": 5,
      "activeTrials": 3,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07435129",
       "title": "Phase 2 Study Evaluating Apitegromab for the Treatment of FSHD",
@@ -7924,6 +8032,13 @@
      "modality": "Monoclonal antibody",
      "area": "Neurology",
      "rare": true,
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "set by hand",
+      "biomarker": "no marker named"
+     },
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -7982,6 +8097,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07444294",
       "title": "A Single- and Multiple-Ascending Dose Study of SRK-439 in Healthy Adults",
@@ -8008,7 +8124,16 @@
       "ph": "Phase I",
       "ind": "Healthy"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "not identified",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": null,
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -8028,11 +8153,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0787,
+      "loa": 0.0768,
       "base": 0.0787,
       "area": "All indications",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -9554,6 +9681,7 @@
      "trials": 5,
      "activeTrials": 5,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05987332",
       "title": "IDE196 (Darovasertib) in Combination With Crizotinib as First-line Therapy in Metastatic Uveal Melanoma",
@@ -9595,6 +9723,13 @@
      "modality": "Small molecule",
      "area": "Oncology",
      "rare": true,
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "set by hand",
+      "biomarker": "no marker named"
+     },
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -9663,6 +9798,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07174583",
       "title": "A Study of IDE849 in Patients With DLL3 Expressing Tumors Including Small Cell Lung Cancer",
@@ -9699,6 +9835,14 @@
      "modality": "Antibody-drug conjugate",
      "area": "Oncology",
      "pathway": "BLA",
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
@@ -9765,6 +9909,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05787587",
       "title": "A Study of PARG Inhibitor IDE161 in Participants With Advanced Solid Tumors",
@@ -9795,6 +9940,14 @@
      },
      "modality": "Small molecule",
      "area": "Oncology",
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -9841,6 +9994,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT04794699",
       "title": "Study of IDE397 in Participants With Solid Tumors Harboring MTAP Deletion",
@@ -9878,6 +10032,13 @@
      "modality": "Small molecule",
      "area": "Oncology",
      "biomarker": true,
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "not on the rare-disease list",
+      "biomarker": "set by hand"
+     },
+     "rare": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -9925,6 +10086,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07503808",
       "title": "A Study of IDE034 in Adult Participants With Locally Advanced/Metastatic Solid Tumors Types",
@@ -9954,6 +10116,14 @@
      "modality": "Antibody-drug conjugate",
      "area": "Oncology",
      "pathway": "BLA",
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -9998,6 +10168,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07540572",
       "title": "A Study to Investigate the Safety, Pharmacokinetics, and Preliminary Efficacy of IDE574 Therapy in Adult Participants With Advanced Solid Tumors",
@@ -10026,7 +10197,16 @@
       "ph": "Phase I",
       "ind": "ER+, HER 2- Breast Cancer"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -10046,11 +10226,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0527,
+      "loa": 0.0514,
       "base": 0.0527,
       "area": "Oncology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -11788,6 +11970,7 @@
      "trials": 6,
      "activeTrials": 4,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07217015",
       "title": "A Study of KT-621 Administered Orally to Participants With Moderate to Severe Atopic Dermatitis",
@@ -11825,6 +12008,14 @@
      },
      "modality": "Small molecule",
      "area": "Autoimmune",
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
@@ -13334,6 +13525,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07608432",
       "title": "Efficacy, Safety, and Tolerability of Zeleciment Rostudirsen (DYNE-251) Administered Intravenously Every 4 Weeks in Ambulatory Participants With Duchenne Muscular Dystrophy (FORZETTO)",
@@ -13365,6 +13557,12 @@
      "area": "Neurology",
      "rare": true,
      "biomarker": true,
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "set by hand",
+      "biomarker": "set by hand"
+     },
      "slips": 0,
      "duration": {
       "key": "Phase III, under 100 patients",
@@ -13414,6 +13612,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07486934",
       "title": "Efficacy, Safety, and Tolerability of Zeleciment Basivarsen (DYNE-101) in Participants With Myotonic Dystrophy Type 1",
@@ -13454,6 +13653,13 @@
      "modality": "Antisense",
      "area": "Neurology",
      "rare": true,
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "set by hand",
+      "biomarker": "no marker named"
+     },
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -15034,6 +15240,7 @@
      "trials": 5,
      "activeTrials": 4,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "BIOLOGICAL",
      "trial": {
       "nct": "NCT04716231",
       "title": "Atacicept in Subjects With IgA Nephropathy",
@@ -15065,6 +15272,13 @@
      "pathway": "BLA",
      "rare": true,
      "approval": "2026-07-07",
+     "labels": {
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "set by hand",
+      "biomarker": "no marker named"
+     },
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -16716,6 +16930,7 @@
      "trials": 3,
      "activeTrials": 3,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06538480",
       "title": "Zopa Retreatment and Vector Shedding in Adults With RRP",
@@ -16742,7 +16957,16 @@
       "ph": "Approved",
       "ind": "Recurrent Respiratory Papillomatosis"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Infectious disease",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": null,
@@ -16754,9 +16978,12 @@
      "odds": {
       "loa": 1,
       "base": 1,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
+      "area": "Infectious disease",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     },
     {
@@ -16777,6 +17004,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "BIOLOGICAL",
      "trial": {
       "nct": "NCT06157151",
       "title": "PRGN-2009 in Combination With Pembrolizumab in Patients With Recurrent or Metastatic Cervical Cancer",
@@ -16802,7 +17030,16 @@
       "ph": "Phase II",
       "ind": "Cervical Cancer"
      },
-     "modality": null,
+     "modality": "Biologic",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as biological",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -16864,6 +17101,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT03927261",
       "title": "PRGN-3006 Adoptive Cellular Therapy for CD33-Positive Relapsed or Refractory AML, MRD Positive AML or Higher Risk MDS",
@@ -16889,7 +17127,16 @@
       "ph": "Phase I",
       "ind": "Acute Myeloid Leukemia"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "trial names a marker or mutation"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": true,
      "slips": 0,
      "duration": null,
      "window": {
@@ -16915,11 +17162,14 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.0527,
+      "loa": 0.0731,
       "base": 0.0527,
       "area": "Oncology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Patients selected by biomarker"
+      ]
      }
     },
     {
@@ -16940,6 +17190,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "BIOLOGICAL",
      "trial": {
       "nct": "NCT03907527",
       "title": "Modified Immune Cells (Autologous CAR T Cells) in Treating Patients with Advanced, Recurrent Platinum Resistant Ovarian, Fallopian Tube or Primary Peritoneal Cancer",
@@ -16966,7 +17217,16 @@
       "ph": "Phase I",
       "ind": "Platinum-Resistant Fallopian Tube Carcinoma"
      },
-     "modality": null,
+     "modality": "Biologic",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as biological",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -18687,6 +18947,7 @@
      "trials": 3,
      "activeTrials": 3,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06903338",
       "title": "A Study to Evaluate Tobevibart + Elebsiran in Chronic HDV Infection",
@@ -18722,7 +18983,16 @@
       "ph": "Phase III",
       "ind": "Viral Hepatitis"
      },
-     "modality": null,
+     "modality": "Monoclonal antibody",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (-bart / -tug / -mig / -ment)",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Infectious disease",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -18764,11 +19034,13 @@
       "level": "Some flags"
      },
      "odds": {
-      "loa": 0.5946,
+      "loa": 0.6622,
       "base": 0.5946,
       "area": "Infectious disease",
-      "modality": null,
-      "factors": []
+      "modality": "Monoclonal antibody",
+      "factors": [
+       "Monoclonal antibody"
+      ]
      }
     },
     {
@@ -18789,6 +19061,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05356741",
       "title": "To Access the Safety and Effects of Intravenous Administration of VIR-5818 Alone and in Combination With Pembrolizumab in Adult Participants With Locally Advanced or Metastatic HER2-Expressing Cancers",
@@ -18821,7 +19094,16 @@
       "ph": "Phase II",
       "ind": "Locally Advanced or Metastatic HER2-Expressing Cancers"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "trial names a marker or mutation"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": true,
      "slips": 0,
      "duration": {
       "key": "Phase II, 500 or more patients",
@@ -18863,11 +19145,14 @@
       "level": "Some flags"
      },
      "odds": {
-      "loa": 0.108,
+      "loa": 0.1483,
       "base": 0.108,
       "area": "Oncology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Patients selected by biomarker"
+      ]
      }
     },
     {
@@ -18888,6 +19173,7 @@
      "trials": 7,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05461170",
       "title": "SOLSTICE: Combination Therapy for the Treatment of Chronic Hepatitis D Infection.",
@@ -18929,7 +19215,16 @@
       "ph": "Phase II",
       "ind": "Hepatitis D, Chronic"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Infectious disease",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -18960,11 +19255,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.1513,
-      "base": 0.1513,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
+      "loa": 0.2216,
+      "base": 0.2283,
+      "area": "Infectious disease",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -18985,6 +19282,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06960395",
       "title": "Safety and Preliminary Efficacy of VIR-5525 and VIR-5525 + Pembrolizumab in Participants With Locally Advanced or Metastatic Solid Tumors",
@@ -19014,7 +19312,16 @@
       "ph": "Phase I",
       "ind": "Solid Tumor Malignancies"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -19034,11 +19341,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0527,
+      "loa": 0.0514,
       "base": 0.0527,
       "area": "Oncology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -20665,6 +20974,7 @@
      "trials": 3,
      "activeTrials": 3,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05544552",
       "title": "Safety and Preliminary Anti-Tumor Activity of TYRA-300 in Advanced Urothelial Carcinoma and Other Solid Tumors With FGFR3 Gene Alterations",
@@ -20695,7 +21005,16 @@
       "ph": "Phase II",
       "ind": "Locally Advanced Urothelial Carcinoma"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "trial names a marker or mutation"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": true,
      "slips": 0,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
@@ -20737,11 +21056,14 @@
       "level": "Some flags"
      },
      "odds": {
-      "loa": 0.1513,
-      "base": 0.1513,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
+      "loa": 0.1483,
+      "base": 0.108,
+      "area": "Oncology",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Patients selected by biomarker"
+      ]
      }
     },
     {
@@ -20762,6 +21084,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07265947",
       "title": "Phase 2A/B Efficacy and Safety of Dabogratinib in Participants With Low Grade Upper Tract Urothelial Carcinoma",
@@ -20791,7 +21114,16 @@
       "ph": "Phase II",
       "ind": "Low Grade Upper Tract Urothelial Carcinoma"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (small-molecule stem)",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
@@ -20828,11 +21160,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.108,
+      "loa": 0.1048,
       "base": 0.108,
       "area": "Oncology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -20853,6 +21187,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06006702",
       "title": "A Relative Bioavailability and Food Effect Study of TYRA-300-B01 Capsule and Tablet Formulations in Healthy Adult Participants",
@@ -20881,7 +21216,16 @@
       "ph": "Phase I",
       "ind": "Healthy"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "not identified",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": null,
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -20913,11 +21257,13 @@
       "level": "Some flags"
      },
      "odds": {
-      "loa": 0.0787,
+      "loa": 0.0768,
       "base": 0.0787,
       "area": "All indications",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -20938,6 +21284,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06160752",
       "title": "Safety and Anti-Tumor Activity of TYRA-200 in Advanced Cholangiocarcinoma With Activating FGFR2 Gene Alterations",
@@ -20963,7 +21310,16 @@
       "ph": "Phase I",
       "ind": "Locally Advanced Cholangiocarcinoma"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "trial names a marker or mutation"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": true,
      "slips": 0,
      "duration": null,
      "window": {
@@ -20983,11 +21339,14 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0527,
+      "loa": 0.0731,
       "base": 0.0527,
       "area": "Oncology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Patients selected by biomarker"
+      ]
      }
     },
     {
@@ -21008,6 +21367,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06915753",
       "title": "Safety and Preliminary Anti-Tumor Activity of TYRA-430 in Advanced Hepatocellular Carcinoma and Other Solid Tumors With Activating FGF/FGFR Pathway Aberrations",
@@ -21038,7 +21398,16 @@
       "ph": "Phase I",
       "ind": "Metastatic Hepatocellular Carcinoma"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "trial names a marker or mutation"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": true,
      "slips": 0,
      "duration": null,
      "window": {
@@ -21058,11 +21427,14 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0527,
+      "loa": 0.0731,
       "base": 0.0527,
       "area": "Oncology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Patients selected by biomarker"
+      ]
      }
     }
    ],
@@ -22482,6 +22854,7 @@
      "trials": 5,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT03013517",
       "title": "Follow-up of the PEPITES Study to Evaluate Long-term Efficacy and Safety of Viaskin Peanut in Children",
@@ -22511,7 +22884,16 @@
       "ph": "Phase III",
       "ind": "Peanut Allergy"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Allergy",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -22563,11 +22945,13 @@
       "level": "Many flags"
      },
      "odds": {
-      "loa": 0.5237,
-      "base": 0.5237,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
+      "loa": 0.6227,
+      "base": 0.647,
+      "area": "Allergy",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -22588,6 +22972,7 @@
      "trials": 4,
      "activeTrials": 2,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05741476",
       "title": "Safety and Efficacy Study of Viaskin Peanut in Peanut-allergic Children 4-7 Years of Age",
@@ -22623,7 +23008,16 @@
       "ph": "Phase III",
       "ind": "Allergy, Peanut"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Allergy",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 500 or more patients",
@@ -22654,11 +23048,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.5237,
-      "base": 0.5237,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
+      "loa": 0.6227,
+      "base": 0.647,
+      "area": "Allergy",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -24094,6 +24490,7 @@
      "trials": 6,
      "activeTrials": 3,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05201638",
       "title": "Study to Evaluate the Efficacy, Safety and Tolerability of IMU-838 in Patients With Relapsing Multiple Sclerosis",
@@ -24131,7 +24528,16 @@
       "ph": "Phase III",
       "ind": "Multiple Sclerosis, Relapsing-Remitting"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 500 or more patients",
@@ -24162,11 +24568,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.4604,
+      "loa": 0.454,
       "base": 0.4604,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -25625,6 +26033,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06616974",
       "title": "A Study of TX000045 in Patients With Pulmonary Hypertension Secondary to Heart Failure With Preserved Ejection Fraction (the APEX Study)",
@@ -25663,7 +26072,16 @@
       "ph": "Phase II",
       "ind": "Pulmonary Hypertension"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Cardiovascular",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
@@ -25700,11 +26118,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.0956,
+      "loa": 0.0928,
       "base": 0.0956,
       "area": "Cardiovascular",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -27340,6 +27760,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06100276",
       "title": "Safety, Tolerability, and Exploratory Efficacy Study of Intrathecally Administered Gene Therapy AMT-162 in Adult Participants With SOD1 Amyotrophic Lateral Sclerosis (SOD1-ALS)",
@@ -27367,7 +27788,16 @@
       "ph": "Phase II",
       "ind": "Amyotrophic Lateral Sclerosis"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -27415,11 +27845,14 @@
       "level": "Many flags"
      },
      "odds": {
-      "loa": 0.1234,
+      "loa": 0.1448,
       "base": 0.1234,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     },
     {
@@ -27440,6 +27873,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "GENETIC",
      "trial": {
       "nct": "NCT06063850",
       "title": "AMT-260 Gene Therapy Study in Adults With Unilateral Refractory Mesial Temporal Lobe Epilepsy",
@@ -27465,7 +27899,16 @@
       "ph": "Phase II",
       "ind": "Mesial Temporal Lobe Epilepsy"
      },
-     "modality": null,
+     "modality": "Gene therapy",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as genetic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -27502,11 +27945,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.1234,
+      "loa": 0.1393,
       "base": 0.1234,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Gene therapy",
+      "factors": [
+       "Gene therapy"
+      ]
      }
     },
     {
@@ -27527,6 +27972,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06270316",
       "title": "Safety, PK/PD, and Exploratory Efficacy Study of AMT-191 in Classic Fabry Disease",
@@ -27554,7 +28000,16 @@
       "ph": "Phase II",
       "ind": "Fabry Disease"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Metabolic",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -27591,11 +28046,14 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.1513,
-      "base": 0.1513,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
+      "loa": 0.2939,
+      "base": 0.2504,
+      "area": "Metabolic",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     },
     {
@@ -27616,6 +28074,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "GENETIC",
      "trial": {
       "nct": "NCT05243017",
       "title": "Safety and Efficacy of AMT-130 in European Adults With Early Manifest Huntington's Disease",
@@ -27644,7 +28103,16 @@
       "ph": "Phase II",
       "ind": "Huntington Disease"
      },
-     "modality": null,
+     "modality": "Gene therapy",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as genetic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -27692,11 +28160,14 @@
       "level": "Some flags"
      },
      "odds": {
-      "loa": 0.1234,
+      "loa": 0.1684,
       "base": 0.1234,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Gene therapy",
+      "factors": [
+       "Gene therapy",
+       "Rare disease"
+      ]
      }
     }
    ],
@@ -29396,6 +29867,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07160634",
       "title": "A Study of SGT-003 Gene Therapy in Ambulant Males With Duchenne Muscular Dystrophy (IMPACT DUCHENNE)",
@@ -29424,7 +29896,16 @@
       "ph": "Phase III",
       "ind": "Duchenne Muscular Dystrophy"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, under 100 patients",
@@ -29453,24 +29934,22 @@
       "flags": [
        {
         "sev": "med",
-        "label": "Small for a late-stage trial",
-        "detail": "80 patients planned or enrolled. Small late-stage trials can miss real but modest effects."
-       },
-       {
-        "sev": "med",
         "label": "No control arm",
         "detail": "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment. Common, and sometimes unavoidable, in very rare diseases."
        }
       ],
-      "points": 4,
-      "level": "Some flags"
+      "points": 2,
+      "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.4604,
+      "loa": 0.4591,
       "base": 0.4604,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     },
     {
@@ -29491,6 +29970,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "GENETIC",
      "trial": {
       "nct": "NCT03368742",
       "title": "Microdystrophin Gene Transfer Study in Adolescents and Children With DMD",
@@ -29518,7 +29998,16 @@
       "ph": "Phase II",
       "ind": "Duchenne Muscular Dystrophy"
      },
-     "modality": null,
+     "modality": "Gene therapy",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as genetic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -29549,11 +30038,14 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.1234,
+      "loa": 0.1684,
       "base": 0.1234,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Gene therapy",
+      "factors": [
+       "Gene therapy",
+       "Rare disease"
+      ]
      }
     },
     {
@@ -29574,6 +30066,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07148089",
       "title": "A Study of SGT-501 Gene Therapy in Catecholaminergic Polymorphic Ventricular Tachycardia (CPVT)",
@@ -29602,7 +30095,16 @@
       "ph": "Phase I",
       "ind": "Catecholaminergic Polymorphic Ventricular Tachycardia"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "not identified",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": null,
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -29622,11 +30124,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0787,
+      "loa": 0.0768,
       "base": 0.0787,
       "area": "All indications",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -29647,6 +30151,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07180355",
       "title": "A Study of SGT-212 Gene Therapy in Friedreich's Ataxia",
@@ -29674,7 +30179,16 @@
       "ph": "Phase I",
       "ind": "Friedreich's Ataxia (FA)"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -29694,11 +30208,14 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0589,
+      "loa": 0.0777,
       "base": 0.0589,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     }
    ],
@@ -31382,6 +31899,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06007690",
       "title": "A Phase 3 Randomized, Masked, Controlled Trial to Evaluate Efficacy and Safety of Belzupacap Sarotalocan (AU-011) Treatment Compared to Sham Control in Subjects With Primary Indeterminate Lesions or Small Choroidal Melanoma",
@@ -31420,7 +31938,16 @@
       "ph": "Phase III",
       "ind": "Choroidal Melanoma"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -31451,11 +31978,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.4388,
+      "loa": 0.4328,
       "base": 0.4388,
       "area": "Oncology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -31476,6 +32005,7 @@
      "trials": 3,
      "activeTrials": 2,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06643884",
       "title": "Suprachoroidal Administration in Subjects With Metastases to the Choroid",
@@ -31507,7 +32037,16 @@
       "ph": "Phase II",
       "ind": "Eye Cancer"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -31538,11 +32077,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.108,
+      "loa": 0.1048,
       "base": 0.108,
       "area": "Oncology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -32944,6 +33485,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07656727",
       "title": "A Phase 2 Study to Evaluate the Pharmacodynamics, Safety and Tolerability of BGE-102 in Participants With Obesity and Cardiovascular Risk Factors",
@@ -32973,7 +33515,16 @@
       "ph": "Phase II",
       "ind": "Obesity and Cardiovascular Risk"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Cardiovascular",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
@@ -33016,11 +33567,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.0956,
+      "loa": 0.0928,
       "base": 0.0956,
       "area": "Cardiovascular",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -34376,6 +34929,7 @@
      "trials": 6,
      "activeTrials": 5,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "BIOLOGICAL",
      "trial": {
       "nct": "NCT06799247",
       "title": "Investigating an mRNA CAR T-cell Therapy, Known as Descartes-08, as a Potential Approach to Treat Myasthenia Gravis",
@@ -34409,7 +34963,16 @@
       "ph": "Phase III",
       "ind": "Myasthaenia Gravis"
      },
-     "modality": null,
+     "modality": "Biologic",
+     "labels": {
+      "area": "not identified",
+      "modality": "registry lists it as biological",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": null,
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -34440,11 +35003,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.5237,
+      "loa": 0.5295,
       "base": 0.5237,
       "area": "All indications",
       "modality": null,
-      "factors": []
+      "factors": [
+       "Rare disease"
+      ]
      }
     }
    ],
@@ -35836,6 +36401,7 @@
      "trials": 7,
      "activeTrials": 3,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07546500",
       "title": "A Study of Azenosertib (ZN-c3) Versus Investigator's Choice Chemotherapy in Subjects With Platinum-Resistant High-Grade Serous Ovarian, Primary Peritoneal, or Fallopian Tube Cancers Positive for Cyclin E1 Protein Expression",
@@ -35873,7 +36439,16 @@
       "ph": "Phase III",
       "ind": "Ovarian Cancer"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (small-molecule stem)",
+      "rare": "not on the rare-disease list",
+      "biomarker": "trial names a marker or mutation"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": true,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -35910,11 +36485,14 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.4388,
+      "loa": 0.4839,
       "base": 0.4388,
       "area": "Oncology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Patients selected by biomarker"
+      ]
      }
     }
    ],
@@ -37572,6 +38150,7 @@
      "trials": 3,
      "activeTrials": 3,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05371613",
       "title": "A Study to Determine the Efficacy and Safety of Tividenofusp Alfa (DNL310) vs Idursulfase in Pediatric and Young Adult Participants With Neuronopathic (nMPS II) or Non-Neuronopathic Mucopolysaccharidosis Type II (nnMPS II)",
@@ -37610,7 +38189,16 @@
       "ph": "Phase III",
       "ind": "Mucopolysaccharidosis II"
      },
-     "modality": null,
+     "modality": "Protein",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (protein suffix)",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Metabolic",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, under 100 patients",
@@ -37639,24 +38227,21 @@
       "flags": [
        {
         "sev": "med",
-        "label": "Small for a late-stage trial",
-        "detail": "65 patients planned or enrolled. Small late-stage trials can miss real but modest effects."
-       },
-       {
-        "sev": "med",
         "label": "No control arm",
         "detail": "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment. Common, and sometimes unavoidable, in very rare diseases."
        }
       ],
-      "points": 4,
-      "level": "Some flags"
+      "points": 2,
+      "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.5237,
-      "base": 0.5237,
-      "area": "All indications",
+      "loa": 0.5627,
+      "base": 0.5565,
+      "area": "Metabolic",
       "modality": null,
-      "factors": []
+      "factors": [
+       "Rare disease"
+      ]
      }
     },
     {
@@ -37677,6 +38262,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05262023",
       "title": "A Study to Evaluate the Safety, Tolerability, Pharmacokinetics, and Pharmacodynamics of DNL593 in Healthy Participants and Participants With Frontotemporal Dementia (FTD-GRN)",
@@ -37716,7 +38302,16 @@
       "ph": "Phase II",
       "ind": "Frontotemporal Dementia"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "not identified",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": null,
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -37742,11 +38337,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.1513,
+      "loa": 0.1469,
       "base": 0.1513,
       "area": "All indications",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -37767,6 +38364,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06602193",
       "title": "Safety and Pharmacodynamic Effects of BIIB122 in Participants With LRRK2-Associated Parkinson's Disease (LRRK2-PD)",
@@ -37796,7 +38394,16 @@
       "ph": "Phase II",
       "ind": "Parkinson Disease"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -37827,11 +38434,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.1234,
+      "loa": 0.1198,
       "base": 0.1234,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -37852,6 +38461,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06181136",
       "title": "Study of DNL126 in Pediatric Participants With Mucopolysaccharidosis Type IIIA (Sanfilippo Syndrome Type A)",
@@ -37882,7 +38492,16 @@
       "ph": "Phase II",
       "ind": "Mucopolysaccharidosis Type IIIA"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Metabolic",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -37919,11 +38538,14 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.1513,
-      "base": 0.1513,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
+      "loa": 0.2939,
+      "base": 0.2504,
+      "area": "Metabolic",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     },
     {
@@ -37944,6 +38566,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07328451",
       "title": "A Study to Evaluate the Safety, Tolerability, Pharmacokinetics, and Pharmacodynamics of DNL628 in Participants With Early Alzheimer's Disease",
@@ -37971,7 +38594,16 @@
       "ph": "Phase I",
       "ind": "Alzheimer Disease, Early Onset"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -37991,11 +38623,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0589,
+      "loa": 0.0575,
       "base": 0.0589,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -38016,6 +38650,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07354724",
       "title": "A Study to Evaluate the Safety, Pharmacokinetics, and Pharmacodynamics of DNL952 in Adult Participants With Late-Onset Pompe Disease",
@@ -38046,7 +38681,16 @@
       "ph": "Phase I",
       "ind": "Late-onset Pompe Disease"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Metabolic",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -38066,11 +38710,14 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0787,
-      "base": 0.0787,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
+      "loa": 0.2043,
+      "base": 0.1548,
+      "area": "Metabolic",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     }
    ],
@@ -39743,6 +40390,7 @@
      "trials": 8,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT03701399",
       "title": "Troriluzole in Adult Participants With Spinocerebellar Ataxia",
@@ -39770,7 +40418,16 @@
       "ph": "Phase III",
       "ind": "Spinocerebellar Ataxias"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (small-molecule stem)",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -39801,11 +40458,14 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.4604,
+      "loa": 0.4591,
       "base": 0.4604,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     },
     {
@@ -39826,6 +40486,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05337553",
       "title": "A Study to Evaluate the Efficacy and Safety of Taldefgrobep Alfa in Participants With Spinal Muscular Atrophy",
@@ -39860,7 +40521,16 @@
       "ph": "Phase III",
       "ind": "Spinal Muscular Atrophy"
      },
-     "modality": null,
+     "modality": "Protein",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (protein suffix)",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -39886,11 +40556,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.4604,
+      "loa": 0.4655,
       "base": 0.4604,
       "area": "Neurology",
       "modality": null,
-      "factors": []
+      "factors": [
+       "Rare disease"
+      ]
      }
     },
     {
@@ -39911,6 +40583,7 @@
      "trials": 9,
      "activeTrials": 4,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06309966",
       "title": "Study to Determine if BHV-7000 is Effective and Safe in Adults With Refractory Focal Onset Epilepsy",
@@ -39949,7 +40622,16 @@
       "ph": "Phase III",
       "ind": "Focal Epilepsy"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -39980,11 +40662,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.4604,
+      "loa": 0.454,
       "base": 0.4604,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -40005,6 +40689,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06976268",
       "title": "A Study to Determine if BHV-8000 is Effective, Safe and Tolerable as a Treatment for Adults Living With Early Parkinson's Disease",
@@ -40032,7 +40717,16 @@
       "ph": "Phase III",
       "ind": "Parkinson Disease"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 500 or more patients",
@@ -40063,11 +40757,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.4604,
+      "loa": 0.454,
       "base": 0.4604,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -40088,6 +40784,7 @@
      "trials": 3,
      "activeTrials": 3,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07661056",
       "title": "Study to Determine if BHV-1300 is Effective and Safe in Adults With Graves' Disease",
@@ -40116,7 +40813,16 @@
       "ph": "Phase III",
       "ind": "Graves Disease"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Endocrine",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -40147,11 +40853,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.5237,
-      "base": 0.5237,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
+      "loa": 0.5634,
+      "base": 0.5713,
+      "area": "Endocrine",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -40172,6 +40880,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "NOT_YET_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07642050",
       "title": "A Study to Determine if BHV-1400 is Effective and Safe in Adults With IgA Nephropathy",
@@ -40196,7 +40905,16 @@
       "ph": "Phase III",
       "ind": "IgA Nephropathy"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Other (incl. renal, dermatology)",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -40227,11 +40945,14 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.5304,
+      "loa": 0.5289,
       "base": 0.5304,
       "area": "Other (incl. renal, dermatology)",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     }
    ],
@@ -41807,6 +42528,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05855083",
       "title": "Efficacy and Safety Study of Narsoplimab in Pediatric Patients With High-Risk Hematopoietic Stem Cell Transplant TMA",
@@ -41836,7 +42558,16 @@
       "ph": "Phase II",
       "ind": "Thrombotic Microangiopathies"
      },
-     "modality": null,
+     "modality": "Monoclonal antibody",
+     "labels": {
+      "area": "not identified",
+      "modality": "from the drug name (-mab)",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": null,
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -41884,11 +42615,13 @@
       "level": "Many flags"
      },
      "odds": {
-      "loa": 0.1513,
+      "loa": 0.1831,
       "base": 0.1513,
       "area": "All indications",
-      "modality": null,
-      "factors": []
+      "modality": "Monoclonal antibody",
+      "factors": [
+       "Monoclonal antibody"
+      ]
      }
     },
     {
@@ -41909,6 +42642,7 @@
      "trials": 4,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06298955",
       "title": "Long-Term Safety, Tolerability and Efficacy of OMS906 in Paroxysmal Nocturnal Hemoglobinuria",
@@ -41937,7 +42671,16 @@
       "ph": "Phase II",
       "ind": "Paroxysmal Nocturnal Hemoglobinuria"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Hematology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -41963,11 +42706,14 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.1513,
-      "base": 0.1513,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
+      "loa": 0.4036,
+      "base": 0.3439,
+      "area": "Hematology",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     }
    ],
@@ -43616,6 +44362,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06502964",
       "title": "Study of ALTO-101 in Patients With Schizophrenia",
@@ -43642,7 +44389,16 @@
       "ph": "Phase II",
       "ind": "Schizophrenia"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Psychiatry",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -43680,11 +44436,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.1376,
+      "loa": 0.1336,
       "base": 0.1376,
       "area": "Psychiatry",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -43705,6 +44463,7 @@
      "trials": 3,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05922878",
       "title": "Study of ALTO-300 in MDD",
@@ -43731,7 +44490,16 @@
       "ph": "Phase II",
       "ind": "Major Depressive Disorder"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Psychiatry",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -43757,11 +44525,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.1376,
+      "loa": 0.1336,
       "base": 0.1376,
       "area": "Psychiatry",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -43782,6 +44552,7 @@
      "trials": 4,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06656416",
       "title": "ALTO-100 in Bipolar Disorder With Depression (BD-D)",
@@ -43809,7 +44580,16 @@
       "ph": "Phase II",
       "ind": "Bipolar Disorder I or II With a Major Depressive Episode"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Psychiatry",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
@@ -43840,11 +44620,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.1376,
+      "loa": 0.1336,
       "base": 0.1376,
       "area": "Psychiatry",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -43865,6 +44647,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07553637",
       "title": "ALTO-207 in Adults With Treatment-resistant Depression (TRD)",
@@ -43892,7 +44675,16 @@
       "ph": "Phase II",
       "ind": "Treatment-resistant Depression (TRD)"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Psychiatry",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
@@ -43923,11 +44715,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.1376,
+      "loa": 0.1336,
       "base": 0.1376,
       "area": "Psychiatry",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -45518,6 +46312,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06874010",
       "title": "A Multiple Ascending Dose Study of DT-216P2 in Patients With Friedreich's Ataxia",
@@ -45543,7 +46338,16 @@
       "ph": "Phase II",
       "ind": "Friedreich Ataxia"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -45586,11 +46390,14 @@
       "level": "Some flags"
      },
      "odds": {
-      "loa": 0.1234,
+      "loa": 0.1448,
       "base": 0.1234,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     },
     {
@@ -45611,6 +46418,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07024693",
       "title": "DT-168 in Keratoplasty Patients With Fuchs Endothelial Corneal Dystrophy",
@@ -45636,7 +46444,16 @@
       "ph": "Phase II",
       "ind": "Fuchs Endothelial Corneal Dystrophy"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Ophthalmology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -45673,11 +46490,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.1234,
-      "base": 0.1234,
-      "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "loa": 0.1607,
+      "base": 0.1656,
+      "area": "Ophthalmology",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -47152,6 +47971,7 @@
      "trials": 3,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05065216",
       "title": "Treatment of Acute Ischemic Stroke (ReMEDy2 Trial)",
@@ -47187,7 +48007,16 @@
       "ph": "Phase III",
       "ind": "Acute Stroke"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 500 or more patients",
@@ -47218,11 +48047,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.5237,
-      "base": 0.5237,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
+      "loa": 0.454,
+      "base": 0.4604,
+      "area": "Neurology",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -48803,6 +49634,7 @@
      "trials": 2,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07037277",
       "title": "C-Forward: Efficacy and Safety of BEM/RZR vs SOF/VEL in Subjects With Chronic HCV",
@@ -48840,7 +49672,16 @@
       "ph": "Phase III",
       "ind": "HEPATITIS C VIRUS CHRONIC INFECTION"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (small-molecule stem)",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Infectious disease",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 500 or more patients",
@@ -48871,11 +49712,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.5946,
+      "loa": 0.5863,
       "base": 0.5946,
       "area": "Infectious disease",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -48896,6 +49739,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07728487",
       "title": "Study of AT-587 in Healthy Subjects",
@@ -48934,7 +49778,16 @@
       "ph": "Phase I",
       "ind": "Hepatitis E"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Infectious disease",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -48954,11 +49807,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0787,
-      "base": 0.0787,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
+      "loa": 0.1288,
+      "base": 0.132,
+      "area": "Infectious disease",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -50335,6 +51190,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "GENETIC",
      "trial": {
       "nct": "NCT06109181",
       "title": "Gene Therapy for ACM Due to a PKP2 Pathogenic Variant",
@@ -50360,7 +51216,16 @@
       "ph": "Phase II",
       "ind": "Arrhythmogenic Cardiomyopathy"
      },
-     "modality": null,
+     "modality": "Gene therapy",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as genetic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Cardiovascular",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -50397,11 +51262,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.0956,
+      "loa": 0.108,
       "base": 0.0956,
       "area": "Cardiovascular",
-      "modality": null,
-      "factors": []
+      "modality": "Gene therapy",
+      "factors": [
+       "Gene therapy"
+      ]
      }
     },
     {
@@ -50422,6 +51289,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "GENETIC",
      "trial": {
       "nct": "NCT05445323",
       "title": "Gene Therapy for Cardiomyopathy Associated With Friedreich's Ataxia",
@@ -50447,7 +51315,16 @@
       "ph": "Phase II",
       "ind": "Friedreich Ataxia"
      },
-     "modality": null,
+     "modality": "Gene therapy",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as genetic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -50484,11 +51361,14 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.1234,
+      "loa": 0.1684,
       "base": 0.1234,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Gene therapy",
+      "factors": [
+       "Gene therapy",
+       "Rare disease"
+      ]
      }
     },
     {
@@ -50509,6 +51389,7 @@
      "trials": 2,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "BIOLOGICAL",
      "trial": {
       "nct": "NCT05400330",
       "title": "Long-Term Follow-up of Gene Therapy for APOE4 Homozygote Alzheimer's Disease",
@@ -50534,7 +51415,16 @@
       "ph": "Phase I",
       "ind": "Alzheimer Disease"
      },
-     "modality": null,
+     "modality": "Biologic",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as biological",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -52017,6 +52907,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06910943",
       "title": "Study of Choline Chloride for Injection in Adolescent and Adult Patients With Intestinal Failure Receiving Long Term Parenteral Support",
@@ -52054,7 +52945,16 @@
       "ph": "Phase III",
       "ind": "Choline Deficiency"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "not identified",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "trial names a marker or mutation"
+     },
+     "area": null,
+     "rare": false,
+     "biomarker": true,
      "slips": 0,
      "duration": null,
      "window": {
@@ -52080,11 +52980,14 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.5237,
+      "loa": 0.5774,
       "base": 0.5237,
       "area": "All indications",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Patients selected by biomarker"
+      ]
      }
     },
     {
@@ -52105,6 +53008,7 @@
      "trials": 5,
      "activeTrials": 3,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07480356",
       "title": "Efficacy and Safety of Intravesical TARA-002 Compared With Investigator's Choice of Intravesical Chemotherapy in Participants With BCG-naïve High-grade Non-muscle Invasive Bladder Cancer",
@@ -52132,7 +53036,16 @@
       "ph": "Phase III",
       "ind": "Bladder (Urothelial, Transitional Cell) Cancer"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -52169,11 +53082,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.4388,
+      "loa": 0.4328,
       "base": 0.4388,
       "area": "Oncology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -53624,6 +54539,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06274801",
       "title": "Open-label Extension Study of Seralutinib in Adult Subjects With PAH (PROSERA-EXT)",
@@ -53660,7 +54576,16 @@
       "ph": "Phase III",
       "ind": "Pulmonary Arterial Hypertension"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (small-molecule stem)",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Cardiovascular",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -53686,11 +54611,14 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.4554,
+      "loa": 0.4541,
       "base": 0.4554,
       "area": "Cardiovascular",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     }
    ],
@@ -55343,6 +56271,7 @@
      "trials": 4,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "BIOLOGICAL",
      "trial": {
       "nct": "NCT04229979",
       "title": "Galinpepimut-S Versus Investigator's Choice of Best Available Therapy for Maintenance in AML CR2/CRp2",
@@ -55378,7 +56307,16 @@
       "ph": "Phase III",
       "ind": "Acute Myeloid Leukemia"
      },
-     "modality": null,
+     "modality": "Biologic",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as biological",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -55451,6 +56389,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT04588922",
       "title": "Study of SLS009 (Formerly GFH009) a Potent Highly Selective CDK9 Inhibitor in Patients With Hematologic Malignancies and High-Risk Newly Diagnosed AML",
@@ -55487,7 +56426,16 @@
       "ph": "Phase II",
       "ind": "Hematologic Malignancies"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Oncology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
@@ -55524,11 +56472,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.3439,
-      "base": 0.3439,
-      "area": "Hematology",
-      "modality": null,
-      "factors": []
+      "loa": 0.1048,
+      "base": 0.108,
+      "area": "Oncology",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -57240,6 +58190,7 @@
      "trials": 10,
      "activeTrials": 5,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06641076",
       "title": "Evaluation of Sonelokimab in Patients With Active Psoriatic Arthritis Naive to Biologic Disease-Modifying Antirheumatic Drug",
@@ -57278,7 +58229,16 @@
       "ph": "Phase III",
       "ind": "Arthritis, Psoriatic"
      },
-     "modality": null,
+     "modality": "Monoclonal antibody",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (-mab)",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Autoimmune",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 500 or more patients",
@@ -57309,11 +58269,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.6145,
+      "loa": 0.6844,
       "base": 0.6145,
       "area": "Autoimmune",
-      "modality": null,
-      "factors": []
+      "modality": "Monoclonal antibody",
+      "factors": [
+       "Monoclonal antibody"
+      ]
      }
     }
    ],
@@ -58939,6 +59901,7 @@
      "trials": 6,
      "activeTrials": 3,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05540860",
       "title": "A Study of EDG-5506 in Children With Duchenne Muscular Dystrophy (LYNX)",
@@ -58969,7 +59932,16 @@
       "ph": "Phase II",
       "ind": "Duchenne Muscular Dystrophy"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (small-molecule stem)",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -59006,11 +59978,14 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.1234,
+      "loa": 0.1448,
       "base": 0.1234,
       "area": "Neurology",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Rare disease"
+      ]
      }
     },
     {
@@ -59031,6 +60006,7 @@
      "trials": 5,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06347159",
       "title": "A Study of EDG-7500 in Adults With Hypertrophic Cardiomyopathy (CIRRUS-HCM)",
@@ -59059,7 +60035,16 @@
       "ph": "Phase II",
       "ind": "Hypertrophic Cardiomyopathy"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Cardiovascular",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -59096,11 +60081,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.0956,
+      "loa": 0.0928,
       "base": 0.0956,
       "area": "Cardiovascular",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -59121,6 +60108,7 @@
      "trials": 2,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07795814",
       "title": "A Study of EDG-15400 in Adults With Heart Failure With Preserved Ejection Fraction (EQUINOX-HFpEF)",
@@ -59148,7 +60136,16 @@
       "ph": "Phase II",
       "ind": "Heart Failure With Preserved Ejection Fraction"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Cardiovascular",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase II, under 100 patients",
@@ -59179,11 +60176,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0956,
+      "loa": 0.0928,
       "base": 0.0956,
       "area": "Cardiovascular",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -60824,6 +61823,7 @@
      "trials": 11,
      "activeTrials": 9,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06775379",
       "title": "A Randomized Study of Azetukalner Versus Placebo in Major Depressive Disorder",
@@ -60850,7 +61850,16 @@
       "ph": "Phase III",
       "ind": "Major Depressive Disorder"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Psychiatry",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -60881,11 +61890,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.5135,
+      "loa": 0.5063,
       "base": 0.5135,
       "area": "Psychiatry",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -62376,6 +63387,7 @@
      "trials": 22,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT06481891",
       "title": "A Study to Evaluate the Efficacy and Safety of Sotagliflozin in Symptomatic Obstructive and Non-obstructive Hypertrophic Cardiomyopathy",
@@ -62413,7 +63425,16 @@
       "ph": "Phase III",
       "ind": "Obstructive Cardiomyopathy, Hypertrophic"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (small-molecule stem)",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Cardiovascular",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 500 or more patients",
@@ -62450,11 +63471,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.4554,
+      "loa": 0.4491,
       "base": 0.4554,
       "area": "Cardiovascular",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
@@ -63939,6 +64962,7 @@
      "trials": 6,
      "activeTrials": 2,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07778836",
       "title": "A Study to Evaluate the Efficacy and Safety of Subcutaneous Nomlabofusp in Subjects With Friedreich's Ataxia",
@@ -63965,7 +64989,16 @@
       "ph": "Phase III",
       "ind": "Friedreich Ataxia"
      },
-     "modality": null,
+     "modality": "Protein",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (protein suffix)",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Neurology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -64002,11 +65035,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.4604,
+      "loa": 0.4655,
       "base": 0.4604,
       "area": "Neurology",
       "modality": null,
-      "factors": []
+      "factors": [
+       "Rare disease"
+      ]
      }
     }
    ],
@@ -65512,6 +66547,7 @@
      "trials": 6,
      "activeTrials": 3,
      "status": "NOT_YET_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT07835581",
       "title": "Study of Tegoprubart Efficacy and Safety Compared With Tacrolimus in Kidney Transplantation",
@@ -65536,7 +66572,16 @@
       "ph": "Phase III",
       "ind": "Kidney Transplant Rejection"
      },
-     "modality": null,
+     "modality": "Monoclonal antibody",
+     "labels": {
+      "area": "from the disease",
+      "modality": "from the drug name (-bart / -tug / -mig / -ment)",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Other (incl. renal, dermatology)",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 500 or more patients",
@@ -65573,11 +66618,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.5304,
+      "loa": 0.5908,
       "base": 0.5304,
       "area": "Other (incl. renal, dermatology)",
-      "modality": null,
-      "factors": []
+      "modality": "Monoclonal antibody",
+      "factors": [
+       "Monoclonal antibody"
+      ]
      }
     }
    ],
@@ -67028,6 +68075,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05956626",
       "title": "A Phase 2/3 Trial to Assess the Efficacy and Safety of OCU410ST for Stargardt Disease",
@@ -67054,7 +68102,16 @@
       "ph": "Phase III",
       "ind": "Stargardt Disease"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "not identified",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": null,
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, under 100 patients",
@@ -67097,11 +68154,13 @@
       "level": "Some flags"
      },
      "odds": {
-      "loa": 0.5237,
+      "loa": 0.5164,
       "base": 0.5237,
       "area": "All indications",
-      "modality": null,
-      "factors": []
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     },
     {
@@ -67122,6 +68181,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "ACTIVE_NOT_RECRUITING",
+     "itype": "GENETIC",
      "trial": {
       "nct": "NCT06388200",
       "title": "A Phase 3 Study Of OCU400 Gene Therapy for the Treatment Of Retinitis Pigmentosa",
@@ -67151,7 +68211,16 @@
       "ph": "Phase III",
       "ind": "Retinitis Pigmentosa"
      },
-     "modality": null,
+     "modality": "Gene therapy",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as genetic",
+      "rare": "on Helixora's rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Ophthalmology",
+     "rare": true,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -67182,11 +68251,14 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.4664,
+      "loa": 0.4585,
       "base": 0.4664,
       "area": "Ophthalmology",
-      "modality": null,
-      "factors": []
+      "modality": "Gene therapy",
+      "factors": [
+       "Gene therapy",
+       "Rare disease"
+      ]
      }
     },
     {
@@ -67207,6 +68279,7 @@
      "trials": 2,
      "activeTrials": 2,
      "status": "RECRUITING",
+     "itype": "BIOLOGICAL",
      "trial": {
       "nct": "NCT07770828",
       "title": "Phase 3 Study to Assess Efficacy, Safety & Tolerability of OCU410 For Geographic Atrophy Secondary to Dry AMD",
@@ -67233,7 +68306,16 @@
       "ph": "Phase III",
       "ind": "Dry Age-related Macular Degeneration"
      },
-     "modality": null,
+     "modality": "Biologic",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as biological",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Ophthalmology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": {
       "key": "Phase III, 100 to 499 patients",
@@ -67295,6 +68377,7 @@
      "trials": 1,
      "activeTrials": 1,
      "status": "RECRUITING",
+     "itype": "DRUG",
      "trial": {
       "nct": "NCT05802329",
       "title": "Phase I Study to Assess the Safety and Efficacy of OCU200 for Center-Involved Diabetic Macular Edema (DME)",
@@ -67323,7 +68406,16 @@
       "ph": "Phase I",
       "ind": "Center Involved Diabetic Macular Edema"
      },
-     "modality": null,
+     "modality": "Small molecule",
+     "labels": {
+      "area": "from the disease",
+      "modality": "registry lists it as a drug, not a biologic",
+      "rare": "not on the rare-disease list",
+      "biomarker": "no marker named"
+     },
+     "area": "Ophthalmology",
+     "rare": false,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -67350,11 +68442,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.1548,
-      "base": 0.1548,
-      "area": "Metabolic",
-      "modality": null,
-      "factors": []
+      "loa": 0.1157,
+      "base": 0.1186,
+      "area": "Ophthalmology",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
      }
     }
    ],
