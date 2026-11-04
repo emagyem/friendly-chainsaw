@@ -1,0 +1,16 @@
+name: Universe draft
+on:
+  push:
+    branches: [universe-draft]
+    paths: ["scripts/universe.mjs", ".github/workflows/universe.yml"]
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node scripts/universe.mjs
+        env:
+          SEC_USER_AGENT: "Helixora research ${{ vars.SEC_CONTACT_EMAIL }}"
