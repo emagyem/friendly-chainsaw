@@ -82,6 +82,42 @@ for (const r of c) {
 c = withTrials; funnel.push(["Has an active company-sponsored Phase II or III trial", c.length]);
 c.sort((a, b) => (a.next || "9999") < (b.next || "9999") ? -1 : 1);
 const out = { asOf: today, funnel, qualified: c.length, ranked: c.map((r) => ({ t: r.ticker, n: r.name, mcap: Math.round(r.mcap), adv: Math.round(r.adv * 10) / 10, trials: r.trials, phase3: r.phase3, next: r.next, conds: r.conds })) };
-const { writeFile } = await import("node:fs/promises");
+const { writeFile, readFile } = await import("node:fs/promises");
 await writeFile(new URL("../public/data/universe.json", import.meta.url), JSON.stringify(out) + "\n");
 console.log(funnel.map(([a, b]) => `${a}: ${b}`).join("\n"));
+
+/* ---------------------------- turnover ----------------------------
+   Approved policy: the original companies always stay. A selected company stays
+   while it still qualifies and ranks in the top KEEP_RANK; otherwise it leaves.
+   Open places are filled, in rank order, up to TARGET. Every change is logged. */
+const TARGET = 30, KEEP_RANK = 45, MIN_QUALIFIED = 50;
+const uniFile = new URL("../config/universe.json", import.meta.url);
+const cfgFile = new URL("../config/companies.json", import.meta.url);
+const uni = JSON.parse(await readFile(uniFile, "utf8"));
+const cfg = JSON.parse(await readFile(cfgFile, "utf8"));
+if (c.length < MIN_QUALIFIED) {
+  console.log(`Only ${c.length} companies qualified; that looks like a data problem, so coverage is left unchanged.`);
+} else {
+  const rank = new Map(c.map((r, i) => [r.ticker, i]));
+  const original = new Set(uni.originalCoverage || []);
+  const removed = [], added = [];
+  const keep = (uni.selected || []).filter((t) => {
+    if (!rank.has(t)) { removed.push({ t, why: "no longer meets the coverage rules" }); return false; }
+    if (rank.get(t) >= KEEP_RANK) { removed.push({ t, why: `next Phase II/III completion now ranks ${rank.get(t) + 1} of ${c.length}` }); return false; }
+    return true;
+  });
+  for (const r of c) {
+    if (keep.length >= TARGET) break;
+    if (keep.includes(r.ticker) || original.has(r.ticker)) continue;
+    keep.push(r.ticker); added.push({ t: r.ticker, why: `ranks ${rank.get(r.ticker) + 1} of ${c.length} by soonest Phase II/III completion` });
+  }
+  uni.funnel = funnel; uni.screenedOn = today; uni.selected = keep;
+  if (added.length || removed.length) {
+    uni.changes = [...(uni.changes || []), { date: today, added, removed }];
+    cfg.tickers = [...(uni.originalCoverage || []), ...keep.filter((t) => !original.has(t))];
+    await writeFile(cfgFile, JSON.stringify(cfg, null, 2) + "\n");
+    await writeFile(new URL("../.coverage-changed", import.meta.url), "1");
+    console.log(`Coverage: added ${added.map((x) => x.t).join(", ") || "none"}; removed ${removed.map((x) => x.t).join(", ") || "none"}.`);
+  } else console.log("Coverage unchanged.");
+  await writeFile(uniFile, JSON.stringify(uni, null, 2) + "\n");
+}

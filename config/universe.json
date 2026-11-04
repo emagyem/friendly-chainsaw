@@ -1,5 +1,5 @@
 {
-  "_readme": "How Helixora chooses which companies to cover. The screen (scripts/universe.mjs) runs monthly and publishes who qualifies; coverage changes are approved by hand and companies are never silently dropped.",
+  "_readme": "How Helixora chooses which companies to cover. scripts/universe.mjs re-runs the screen monthly. Turnover policy (approved 2026-11-04): the original companies always stay; a selected company stays while it still qualifies and ranks in the top 45 by soonest Phase II/III completion; open places are filled in rank order up to 30. Every change is logged in 'changes'.",
   "approved": "2026-11-04",
   "rules": [
     "Listed on Nasdaq, NYSE or NYSE American (no OTC)",
@@ -89,5 +89,138 @@
     "KYMR",
     "DYN",
     "VERA"
+  ],
+  "policy": {
+    "target": 30,
+    "keepRank": 45,
+    "approved": "2026-11-04"
+  },
+  "changes": [
+    {
+      "date": "2026-11-04",
+      "added": [
+        {
+          "t": "PGEN",
+          "why": "initial selection"
+        },
+        {
+          "t": "VIR",
+          "why": "initial selection"
+        },
+        {
+          "t": "TYRA",
+          "why": "initial selection"
+        },
+        {
+          "t": "DBVT",
+          "why": "initial selection"
+        },
+        {
+          "t": "IMUX",
+          "why": "initial selection"
+        },
+        {
+          "t": "TECX",
+          "why": "initial selection"
+        },
+        {
+          "t": "QURE",
+          "why": "initial selection"
+        },
+        {
+          "t": "SLDB",
+          "why": "initial selection"
+        },
+        {
+          "t": "AURA",
+          "why": "initial selection"
+        },
+        {
+          "t": "BIOA",
+          "why": "initial selection"
+        },
+        {
+          "t": "RNAC",
+          "why": "initial selection"
+        },
+        {
+          "t": "ZNTL",
+          "why": "initial selection"
+        },
+        {
+          "t": "DNLI",
+          "why": "initial selection"
+        },
+        {
+          "t": "BHVN",
+          "why": "initial selection"
+        },
+        {
+          "t": "OMER",
+          "why": "initial selection"
+        },
+        {
+          "t": "ANRO",
+          "why": "initial selection"
+        },
+        {
+          "t": "DSGN",
+          "why": "initial selection"
+        },
+        {
+          "t": "DMAC",
+          "why": "initial selection"
+        },
+        {
+          "t": "AVIR",
+          "why": "initial selection"
+        },
+        {
+          "t": "LXEO",
+          "why": "initial selection"
+        },
+        {
+          "t": "TARA",
+          "why": "initial selection"
+        },
+        {
+          "t": "GOSS",
+          "why": "initial selection"
+        },
+        {
+          "t": "SLS",
+          "why": "initial selection"
+        },
+        {
+          "t": "MLTX",
+          "why": "initial selection"
+        },
+        {
+          "t": "EWTX",
+          "why": "initial selection"
+        },
+        {
+          "t": "XENE",
+          "why": "initial selection"
+        },
+        {
+          "t": "LXRX",
+          "why": "initial selection"
+        },
+        {
+          "t": "LRMR",
+          "why": "initial selection"
+        },
+        {
+          "t": "ELDN",
+          "why": "initial selection"
+        },
+        {
+          "t": "OCGN",
+          "why": "initial selection"
+        }
+      ],
+      "removed": []
+    }
   ]
 }

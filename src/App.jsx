@@ -954,6 +954,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
                     {p.nct && <><dt>Registry</dt><dd className="mono"><ExtLink href={`https://clinicaltrials.gov/study/${p.nct}`}>{p.nct}</ExtLink>{p.trials > 1 ? <span className="sub inline"> +{p.trials - 1} more</span> : null}</dd></>}
                     {p.duration && <><dt>Similar trials</dt><dd>{p.duration.median ? <>Took a median {p.duration.median} months ({p.duration.p25}–{p.duration.p75}); this one plans {p.duration.planned}</> : <>This one plans {p.duration.planned} months</>}<span className="sub">{p.duration.key}, {p.duration.n.toLocaleString("en-US")} trials</span></dd></>}
                     {(() => { const sc = readoutScenario(p); return sc ? <><dt>If this phase succeeds</dt><dd className="mono">{pctW(sc.ifUp)} approval odds <span className="sub">about 0% if it fails; {money(sc.stake)} of value at stake</span></dd></> : null; })()}
+                    {p.labels && <><dt>Labeled as</dt><dd>{[p.odds?.area || p.area, p.modality, p.rare && "rare disease", p.biomarker && "biomarker-selected"].filter(Boolean).join(", ") || "—"}<span className="sub">Disease area {p.labels.area}; drug type {p.labels.modality}; {p.labels.rare}; {p.labels.biomarker}.</span></dd></>}
                     <dt>Probability of approval</dt><dd className="mono">{Math.round((p.odds?.loa ?? POS[p.ph]) * 100)}%{p.odds ? <span className="sub">{p.odds.area}{p.odds.factors.length ? `; ${p.odds.factors.join(", ").toLowerCase()}` : ""}</span> : null}</dd>
                     <dt>Peak sales estimate</dt><dd className="mono">{money(p.peak)}{p.est ? <span className="sub inline"> placeholder</span> : null}</dd>
                     <dt>Risk-adjusted value</dt><dd className="mono strong">{money(v)}</dd>
@@ -2657,7 +2658,21 @@ function CoveragePanel({ go }) {
         </table>
       </div>
       <p className="prose" style={{ marginTop: 14 }}>{UNIVERSE.selection} Helixora also keeps its first {UNIVERSE.originalCoverage.length} companies, including {Object.keys(g).length} that sit outside today's rules: {Object.entries(g).map(([t, why]) => `${t} (${why.toLowerCase()})`).join(", ")}. Companies are never dropped quietly; any change is listed here.</p>
-      <p className="colnote">The screen re-runs monthly and publishes everyone who qualifies: <a className="src" href="/data/universe.json" target="_blank" rel="noreferrer">latest screen</a>.</p>
+      {UNIVERSE.policy && <p className="prose">Turnover (approved {fmtDate(UNIVERSE.policy.approved)}): the screen re-runs on the 3rd of each month. A selected company stays while it still qualifies and ranks in the top {UNIVERSE.policy.keepRank} by soonest Phase II or III completion; otherwise it leaves, and open places are filled in rank order up to {UNIVERSE.policy.target}. Companies that leave keep their full score history.</p>}
+      {(UNIVERSE.changes || []).length > 0 && (
+        <>
+          <h3 className="subhead">Coverage changes</h3>
+          <ul className="watch">
+            {[...UNIVERSE.changes].reverse().map((ch) => (
+              <li key={ch.date}><b>{fmtDate(ch.date)}.</b>{" "}
+                {ch.added.length ? <>Added {ch.added.length === UNIVERSE.selected.length && ch.added.every((a) => a.why === "initial selection") ? `the first ${ch.added.length} companies` : ch.added.map((a) => `${a.t} (${a.why})`).join(", ")}. </> : null}
+                {ch.removed.length ? <>Removed {ch.removed.map((r) => `${r.t} (${r.why})`).join(", ")}.</> : null}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      <p className="colnote">Everyone who qualifies in the latest screen: <a className="src" href="/data/universe.json" target="_blank" rel="noreferrer">download</a>. Program labels (disease area, drug type, rare disease, biomarker) are set automatically from drug names and trial records; each program card shows how.</p>
     </section>
   );
 }

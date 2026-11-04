@@ -1,8 +1,8 @@
 name: Coverage screen
 
-# Monthly: applies Helixora's published coverage rules and publishes who qualifies
-# (public/data/universe.json). Adding or removing covered companies stays a manual,
-# approved change to config/companies.json.
+# Monthly: applies Helixora's published coverage rules, publishes who qualifies
+# (public/data/universe.json), and applies the approved turnover policy
+# (config/universe.json). If coverage changes, the data is rebuilt in the same run.
 
 on:
   schedule:
@@ -19,20 +19,27 @@ concurrency:
 jobs:
   screen:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - run: node scripts/universe.mjs
+      - name: Screen and apply turnover
+        run: node scripts/universe.mjs
         env:
           SEC_USER_AGENT: "Helixora research ${{ vars.SEC_CONTACT_EMAIL }}"
+      - name: Rebuild data if coverage changed
+        run: |
+          if [ -f .coverage-changed ]; then rm .coverage-changed; node scripts/fetch-data.mjs; fi
+        env:
+          SEC_USER_AGENT: "Helixora research ${{ vars.SEC_CONTACT_EMAIL }}"
+          ALPHA_VANTAGE_KEY: ${{ secrets.ALPHA_VANTAGE_KEY }}
       - name: Commit if changed
         run: |
-          git diff --quiet -- public/data/universe.json && [ -z "$(git ls-files --others --exclude-standard public/data/universe.json)" ] && exit 0
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard public/data config)" ]; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/universe.json
+          git add public/data config
           git commit -m "Coverage screen $(date -u +%Y-%m-%d)"
           git pull --rebase
           git push
