@@ -1294,7 +1294,8 @@ function PressureRail({ go }) {
   const lanesEnd = [];
   pts.forEach((p) => {
     let lane = lanesEnd.findIndex((end) => p.s - end >= 9);
-    if (lane === -1) lane = lanesEnd.length < 3 ? lanesEnd.length : 0;
+    if (lane === -1 && lanesEnd.length < 3) lane = lanesEnd.length;
+    if (lane === -1) { p.hide = true; return; } // no room: the dot stays, the label doesn't
     lanesEnd[lane] = p.s;
     p.lane = lane;
   });
@@ -1302,7 +1303,7 @@ function PressureRail({ go }) {
   return (
     <div className="rail" style={{ "--lanes": lanes }}>
       <div className="rail-labels" aria-hidden="true">
-        {pts.map((p) => (
+        {pts.filter((p) => !p.hide).map((p) => (
           <span key={p.c.t} className={"rail-tag b-" + p.band.toLowerCase()} style={{ left: `${p.s}%`, "--lane": p.lane }}>{p.c.t}</span>
         ))}
       </div>
@@ -1319,7 +1320,7 @@ function PressureRail({ go }) {
         ))}
       </div>
       <div className="rail-axis" aria-hidden="true"><span>0</span><span>40</span><span>70</span><span>100</span></div>
-      {dots.length > pts.length && <p className="rail-note">{dots.length} companies; the {pts.length} under the most pressure are named.</p>}
+      {dots.length > pts.length && <p className="rail-note">{dots.length} companies; some of those under the most pressure are named. Hover or select any dot.</p>}
     </div>
   );
 }
@@ -2691,7 +2692,7 @@ function Methodology({ go }) {
         <h3 className="subhead">Definitions</h3>
         <dl className="facts defs">
           <dt>Runway</dt><dd>Cash, cash equivalents and marketable securities divided by monthly operating cash burn. Burn is the trailing twelve months of operating cash flow from SEC filings, divided by twelve, which smooths out lumpy quarters.</dd>
-          <dt>Next catalyst</dt><dd>The next dated clinical or regulatory event: a trial's primary completion date on ClinicalTrials.gov, or a date the company has guided to, such as a PDUFA date. Earnings dates do not count. If nothing is dated, we assume {NO_CATALYST_MONTHS} months.</dd>
+          <dt>Next catalyst</dt><dd>The next clinical or regulatory event: the middle of Helixora's estimated readout window for a trial (built from its ClinicalTrials.gov dates, status and history), or a date the company has guided to, such as a PDUFA date. Earnings, extension studies and readouts with overdue registry dates do not count. If nothing is dated, we assume {NO_CATALYST_MONTHS} months.</dd>
           <dt>Gap</dt><dd>Runway minus (months to catalyst + a {BUFFER_MONTHS}-month buffer). The buffer reflects that companies rarely wait until the cash is gone to raise.</dd>
           <dt>Raise-ready capacity</dt><dd>An at-the-market program is identified from a sales agreement disclosed in a prospectus supplement (424B5) or shelf registration (S-3) filed in the past three years. Each company page links to the filing used.</dd>
           <dt>Missing data</dt><dd>If a component can't be calculated from filings, it is left out and the remaining weights are scaled up. The company page says which components were used.</dd>

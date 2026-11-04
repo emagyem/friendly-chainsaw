@@ -131,3 +131,7 @@ How each program is classified lives in `config/programs.json`; edit it to corre
 - **Valuation scenarios**: bear, base and bull cases and a one-at-a-time sensitivity chart.
 - **Burn forecast** (Holt's exponential smoothing) and the likely size and dilution of the next raise.
 - **Anomaly alerts**: robust z-scores for burn and price moves, plus new offerings, trial slips and score band changes (same score version only).
+
+## Coverage
+
+Helixora covers 38 companies: 30 chosen by published rules (`config/universe.json`: listed, burning cash, clinical stage, drug-developer industry code, $100M–$5B market value, at least $1M a day traded, an active company-sponsored Phase II or III trial; the 30 with the soonest Phase II/III completions) plus the original 8. `scripts/universe.mjs` re-runs the screen monthly and publishes `public/data/universe.json`; changing coverage stays a manual, approved edit to `config/companies.json`.
