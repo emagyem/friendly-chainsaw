@@ -1,0 +1,93 @@
+{
+  "_readme": "How Helixora chooses which companies to cover. The screen (scripts/universe.mjs) runs monthly and publishes who qualifies; coverage changes are approved by hand and companies are never silently dropped.",
+  "approved": "2026-11-04",
+  "rules": [
+    "Listed on Nasdaq, NYSE or NYSE American (no OTC)",
+    "Burned more than $20M of operating cash in the latest fiscal year",
+    "Clinical stage: revenue under $50M, or under a quarter of cash burned",
+    "SEC industry code for drug developers (2834, 2836, 8731)",
+    "Market value $100M to $5B",
+    "Trades at least $1M a day (3-month average)",
+    "At least one active, company-sponsored Phase II or III trial"
+  ],
+  "selection": "The 30 qualifying companies whose next Phase II or III trial finishes soonest.",
+  "funnel": [
+    [
+      "Listed on Nasdaq, NYSE or NYSE American",
+      6040
+    ],
+    [
+      "Burned over $20M in operating cash in 2025",
+      711
+    ],
+    [
+      "Clinical stage (little revenue)",
+      453
+    ],
+    [
+      "Drug developer industry code (2834, 2836, 8731)",
+      250
+    ],
+    [
+      "Market value $100M to $5B",
+      152
+    ],
+    [
+      "Trades at least $1M a day",
+      147
+    ],
+    [
+      "Has an active company-sponsored Phase II or III trial",
+      112
+    ]
+  ],
+  "screenedOn": "2026-11-04",
+  "selected": [
+    "PGEN",
+    "VIR",
+    "TYRA",
+    "DBVT",
+    "IMUX",
+    "TECX",
+    "QURE",
+    "SLDB",
+    "AURA",
+    "BIOA",
+    "RNAC",
+    "ZNTL",
+    "DNLI",
+    "BHVN",
+    "OMER",
+    "ANRO",
+    "DSGN",
+    "DMAC",
+    "AVIR",
+    "LXEO",
+    "TARA",
+    "GOSS",
+    "SLS",
+    "MLTX",
+    "EWTX",
+    "XENE",
+    "LXRX",
+    "LRMR",
+    "ELDN",
+    "OCGN"
+  ],
+  "grandfathered": {
+    "ARWR": "Market value above $5B",
+    "KYMR": "Market value above $5B",
+    "SRRK": "Market value above $5B",
+    "IDYA": "Did not pass the cash-burn or revenue rule (partner payments)"
+  },
+  "originalCoverage": [
+    "VKTX",
+    "ARWR",
+    "RCKT",
+    "SRRK",
+    "IDYA",
+    "KYMR",
+    "DYN",
+    "VERA"
+  ]
+}
