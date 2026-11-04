@@ -1,14 +1,10 @@
 {
  "meta": {
-  "generatedAt": "2026-11-03T18:28:27.454Z",
+  "generatedAt": "2026-11-04T01:53:00.654Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
    "history": [
-    [
-     "2025-11-03",
-     109.86
-    ],
     [
      "2025-11-04",
      108.04
@@ -1008,11 +1004,152 @@
     [
      "2026-11-02",
      152.05
+    ]
+   ]
+  },
+  "fda": {
+   "total": 445,
+   "first": "2009-05-15",
+   "last": "2026-08-07",
+   "byYear": [
+    [
+     "2009",
+     2
     ],
     [
-     "2026-11-03",
-     155.85
+     "2010",
+     2
+    ],
+    [
+     "2011",
+     2
+    ],
+    [
+     "2012",
+     3
+    ],
+    [
+     "2013",
+     12
+    ],
+    [
+     "2014",
+     7
+    ],
+    [
+     "2015",
+     9
+    ],
+    [
+     "2016",
+     20
+    ],
+    [
+     "2017",
+     24
+    ],
+    [
+     "2018",
+     32
+    ],
+    [
+     "2019",
+     36
+    ],
+    [
+     "2020",
+     36
+    ],
+    [
+     "2021",
+     47
+    ],
+    [
+     "2022",
+     25
+    ],
+    [
+     "2023",
+     30
+    ],
+    [
+     "2024",
+     67
+    ],
+    [
+     "2025",
+     59
+    ],
+    [
+     "2026",
+     32
     ]
+   ],
+   "byOffice": [
+    {
+     "office": "Other or not stated",
+     "n": 247,
+     "mfg": 168,
+     "eff": 93
+    },
+    {
+     "office": "Office of Oncologic Diseases",
+     "n": 50,
+     "mfg": 41,
+     "eff": 10
+    },
+    {
+     "office": "Office of Neuroscience",
+     "n": 45,
+     "mfg": 31,
+     "eff": 5
+    },
+    {
+     "office": "Office of Immunology and Inflammation",
+     "n": 32,
+     "mfg": 26,
+     "eff": 7
+    },
+    {
+     "office": "Office of Infectious Diseases",
+     "n": 31,
+     "mfg": 18,
+     "eff": 6
+    },
+    {
+     "office": "Office of Cardiology, Hematology, Endocrinology and Nephrology",
+     "n": 29,
+     "mfg": 23,
+     "eff": 8
+    },
+    {
+     "office": "Office of Specialty Medicine",
+     "n": 11,
+     "mfg": 9,
+     "eff": 4
+    }
+   ],
+   "reasons": [
+    {
+     "label": "Labeling or device",
+     "n": 442
+    },
+    {
+     "label": "Safety",
+     "n": 397
+    },
+    {
+     "label": "Manufacturing or facility",
+     "n": 316
+    },
+    {
+     "label": "Clinical efficacy evidence",
+     "n": 133
+    },
+    {
+     "label": "Bioequivalence or pharmacology",
+     "n": 84
+    }
    ]
   },
   "sources": [
@@ -1028,8 +1165,8 @@
    "t": "VKTX",
    "n": "Viking Therapeutics",
    "area": "Metabolic",
-   "mcap": 3384.4,
-   "ev": 2424.6,
+   "mcap": 3327.1,
+   "ev": 2367.2,
    "cash": 959.8,
    "debt": 0,
    "burn": 38.55,
@@ -1058,7 +1195,62 @@
      "est": true,
      "nct": "NCT07104500",
      "trials": 8,
-     "activeTrials": 5
+     "activeTrials": 5,
+     "status": "ACTIVE_NOT_RECRUITING",
+     "trial": {
+      "nct": "NCT07104500",
+      "title": "VK2735 for Weight Management Phase 3",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "ext": false,
+      "n": 4500,
+      "nType": "ESTIMATED",
+      "alloc": "RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "TRIPLE",
+      "arms": [
+       "PLACEBO_COMPARATOR",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL"
+      ],
+      "primary": "Percentage change in body weight from baseline for participants receiving VK2735 after 78 weeks of treatment",
+      "primaryCount": 1,
+      "sites": 137,
+      "countries": [
+       "United States",
+       "Puerto Rico"
+      ],
+      "start": "2025-06-23",
+      "startType": "ACTUAL",
+      "lastUpdate": "2025-11-24"
+     },
+     "modality": "Peptide",
+     "area": "Metabolic",
+     "pathway": "NDA",
+     "slips": 0,
+     "window": {
+      "lo": "2027-07-16",
+      "hi": "2028-01-14",
+      "mid": "2027-10-15",
+      "reg": "2027-07-01",
+      "width": 6,
+      "basis": "Registry estimate",
+      "why": [
+       "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [],
+      "points": 0,
+      "level": "No flags"
+     },
+     "odds": {
+      "loa": 0.5565,
+      "base": 0.5565,
+      "area": "Metabolic",
+      "modality": null,
+      "factors": []
+     }
     },
     {
      "d": "VK3019",
@@ -1076,23 +1268,92 @@
      "est": true,
      "nct": "NCT07846033",
      "trials": 1,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT07846033",
+      "title": "A Phase 1 Study of VK3019 in Overweight and Obese Adults Without Comorbidities",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 56,
+      "nType": "ESTIMATED",
+      "alloc": "RANDOMIZED",
+      "model": "SEQUENTIAL",
+      "masking": "DOUBLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL"
+      ],
+      "primary": "Evaluate the safety of single doses of subcutaneous administration of VK3019",
+      "primaryCount": 1,
+      "sites": 1,
+      "countries": [
+       "United States"
+      ],
+      "start": "2026-07-06",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-09-29"
+     },
+     "modality": null,
+     "slips": 0,
+     "window": {
+      "lo": "2026-11-04",
+      "hi": "2027-07-18",
+      "mid": "2027-03-12",
+      "reg": "2026-10-02",
+      "width": 8.4,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "med",
+        "label": "Estimated completion date has passed",
+        "detail": "The registry still shows an estimated date that is now in the past."
+       }
+      ],
+      "points": 2,
+      "level": "Minor flags"
+     },
+     "odds": {
+      "loa": 0.1548,
+      "base": 0.1548,
+      "area": "Metabolic",
+      "modality": null,
+      "factors": []
+     }
     }
    ],
    "catalysts": [
     {
-     "date": "2027-07-01",
+     "date": "2027-10-15",
      "kind": "readout",
      "drug": "VK2735",
      "est": true,
-     "label": "VK2735 Phase III primary completion (registry estimate)"
+     "lo": "2027-07-16",
+     "hi": "2028-01-14",
+     "reg": "2027-07-01",
+     "nct": "NCT07104500",
+     "label": "VK2735 Phase III data (estimated)"
     },
     {
-     "date": "2026-10-02",
+     "date": "2027-03-12",
      "kind": "readout",
      "drug": "VK3019",
      "est": true,
-     "label": "VK3019 Phase I primary completion (registry estimate)"
+     "lo": "2026-11-04",
+     "hi": "2027-07-18",
+     "reg": "2026-10-02",
+     "nct": "NCT07846033",
+     "label": "VK3019 Phase I data (estimated)"
     },
     {
      "date": "2027-01-28",
@@ -1276,6 +1537,293 @@
      "runway": 24.9
     }
    ],
+   "revQ": [
+    [
+     "2023-12-31",
+     0
+    ],
+    [
+     "2024-03-31",
+     0
+    ],
+    [
+     "2024-06-30",
+     0
+    ],
+    [
+     "2024-09-30",
+     0
+    ],
+    [
+     "2024-12-31",
+     0
+    ],
+    [
+     "2025-03-31",
+     0
+    ],
+    [
+     "2025-06-30",
+     0
+    ],
+    [
+     "2025-09-30",
+     0
+    ],
+    [
+     "2025-12-31",
+     0
+    ],
+    [
+     "2026-03-31",
+     0
+    ],
+    [
+     "2026-06-30",
+     0
+    ],
+    [
+     "2026-09-30",
+     0
+    ]
+   ],
+   "rivals": [
+    {
+     "nct": "NCT07882654",
+     "sponsor": "EktaH",
+     "title": "A PHASE 2A, EXPLORATORY, RANDOMIZED, SINGLE-BLIND, PLACEBO-CONTROLLED STUDY TO EVALUATE THE EFFICACY OF WEIGHT LOSS INDUCED BY NKS-3 IN OBESE ADULTS.",
+     "ph": "Phase II",
+     "pcd": "2027-02-05",
+     "n": 31,
+     "drugs": [
+      "Investigational product is a modified linoleic acid, named NKS-3. This non-caloric agent, synthetized from linoleic acid, is a fat taste receptors agonist, targeting CD36 with also an impact on GPR120"
+     ],
+     "forDrug": "VK2735",
+     "ind": "Weight Loss",
+     "countries": [
+      "Tunisia"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT07011667",
+     "sponsor": "Novo Nordisk A/S",
+     "title": "A Research Study to Look at How Well CagriSema Helps People Living With Obesity Lose Weight and Maintain Weight Loss in the Long-term",
+     "ph": "Phase III",
+     "pcd": "2027-03-01",
+     "n": 609,
+     "drugs": [
+      "CagriSema"
+     ],
+     "forDrug": "VK2735",
+     "ind": "Weight Loss",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT07220642",
+     "sponsor": "Novo Nordisk A/S",
+     "title": "Weight Loss in People Living With Overweight or Obesity Following Treatment With Cagrilintide",
+     "ph": "Phase III",
+     "pcd": "2027-05-11",
+     "n": 300,
+     "drugs": [
+      "Cagrilintide"
+     ],
+     "forDrug": "VK2735",
+     "ind": "Weight Loss",
+     "countries": [
+      "United States",
+      "Argentina",
+      "Australia",
+      "Canada",
+      "France",
+      "Germany"
+     ],
+     "nCountries": 10,
+     "china": null
+    },
+    {
+     "nct": "NCT07220759",
+     "sponsor": "Novo Nordisk A/S",
+     "title": "Weight Loss in People Living With Overweight or Obesity and Type 2 Diabetes Following Treatment With Cagrilintide",
+     "ph": "Phase III",
+     "pcd": "2027-05-12",
+     "n": 330,
+     "drugs": [
+      "Cagrilintide"
+     ],
+     "forDrug": "VK2735",
+     "ind": "Weight Loss",
+     "countries": [
+      "United States",
+      "Argentina",
+      "Canada",
+      "Croatia",
+      "Czechia",
+      "Hungary"
+     ],
+     "nCountries": 11,
+     "china": null
+    },
+    {
+     "nct": "NCT06517797",
+     "sponsor": "S1 Biopharma, Inc.",
+     "title": "One-Year Study of S1B-509 vs Placebo for Weight Loss",
+     "ph": "Phase II",
+     "pcd": "2027-06-15",
+     "n": 210,
+     "drugs": [
+      "S1B-509"
+     ],
+     "forDrug": "VK2735",
+     "ind": "Weight Loss",
+     "countries": [],
+     "nCountries": 0,
+     "china": null
+    },
+    {
+     "nct": "NCT07411378",
+     "sponsor": "Biophytis",
+     "title": "Testing the Efficacy, Safety, and PK of 20E in Patients With Obesity Who Are Starting Treatment With the GLP-1 Agonist Semaglutide for Weight Loss.",
+     "ph": "Phase II",
+     "pcd": "2027-06-15",
+     "n": 164,
+     "drugs": [
+      "BIO101",
+      "Semaglutide"
+     ],
+     "forDrug": "VK2735",
+     "ind": "Weight Loss",
+     "countries": [],
+     "nCountries": 0,
+     "china": null
+    },
+    {
+     "nct": "NCT07837973",
+     "sponsor": "Alveus Therapeutics, Inc.",
+     "title": "Study to Assess the Effect and Safety of ALV-100 on Maintenance of Weight Loss",
+     "ph": "Phase II",
+     "pcd": "2027-08-24",
+     "n": 220,
+     "drugs": [
+      "ALV-100"
+     ],
+     "forDrug": "VK2735",
+     "ind": "Weight Loss",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT07292441",
+     "sponsor": "Gan & Lee Pharmaceuticals.",
+     "title": "Extension Study of the Phase 3 Clinical Study of GZR18 Injection for Weight Loss",
+     "ph": "Phase III",
+     "pcd": "2027-09-15",
+     "n": 500,
+     "drugs": [
+      "GZR18"
+     ],
+     "forDrug": "VK2735",
+     "ind": "Weight Loss",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT07446998",
+     "sponsor": "Veru Inc.",
+     "title": "Proof-of-Concept Study Evaluating Total Body Weight, Physical Function & Safety of Enobosarm in Patients Treated With GLP-1 Receptor Agonist, for Weight Loss",
+     "ph": "Phase II",
+     "pcd": "2027-10-15",
+     "n": 239,
+     "drugs": [
+      "Enobosarm",
+      "Semaglutide weekly"
+     ],
+     "forDrug": "VK2735",
+     "ind": "Weight Loss",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT06937177",
+     "sponsor": "Endevica Bio",
+     "title": "Safely Optimizing Body Weight With Mifomelatide (TCMCB07) in Patients With Newly Diagnosed Colorectal Cancer (CRC) or Pancreatic Ductal Adenocarcinoma (PDAC) Un",
+     "ph": "Phase II",
+     "pcd": "2027-10-15",
+     "n": 120,
+     "drugs": [
+      "TCMCB07"
+     ],
+     "forDrug": "VK2735",
+     "ind": "Weight Loss",
+     "countries": [
+      "United States",
+      "Canada"
+     ],
+     "nCountries": 2,
+     "china": null
+    },
+    {
+     "nct": "NCT06989437",
+     "sponsor": "Pfizer",
+     "title": "A Study to Learn About the Medicine Ponsegromab in Adults With Cancer of the Pancreas Which Has Spread and Caused Significant Body Weight Loss and Fatigue",
+     "ph": "Phase III",
+     "pcd": "2028-01-23",
+     "n": 982,
+     "drugs": [
+      "ponsegromab"
+     ],
+     "forDrug": "VK2735",
+     "ind": "Weight Loss",
+     "countries": [
+      "United States",
+      "Australia",
+      "Belgium",
+      "Brazil",
+      "Bulgaria",
+      "Canada"
+     ],
+     "nCountries": 21,
+     "china": "some"
+    },
+    {
+     "nct": "NCT07770841",
+     "sponsor": "Novo Nordisk A/S",
+     "title": "Research Study on How Well Oral Semaglutide Works for Weight Loss in Adults With Excess Body Weight",
+     "ph": "Phase III",
+     "pcd": "2028-02-22",
+     "n": 450,
+     "drugs": [
+      "Semaglutide"
+     ],
+     "forDrug": "VK2735",
+     "ind": "Weight Loss",
+     "countries": [
+      "United States",
+      "Belgium",
+      "Bulgaria",
+      "Denmark",
+      "France",
+      "Greece"
+     ],
+     "nCountries": 10,
+     "china": null
+    }
+   ],
    "burnPrior": 18.71,
    "debtDue24": 0,
    "raise": {
@@ -1293,19 +1841,15 @@
     }
    },
    "quote": {
-    "price": 26.54,
+    "price": 26.09,
     "prev": 26.83,
-    "chg": -0.29,
-    "chgPct": -1.08,
+    "chg": -0.74,
+    "chgPct": -2.76,
     "hi52": 43.15,
     "lo52": 23.82,
-    "volume": 1190352,
+    "volume": 2723503,
     "date": "2026-11-03",
     "history": [
-     [
-      "2025-11-03",
-      36
-     ],
      [
       "2025-11-04",
       34.63
@@ -2305,10 +2849,6 @@
      [
       "2026-11-02",
       26.83
-     ],
-     [
-      "2026-11-03",
-      26.54
      ]
     ]
    },
@@ -2409,7 +2949,7 @@
      "date": "2026-10-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1607678/000119312526436432/vktx-20260930.htm"
     },
-    "price": 26.54,
+    "price": 26.09,
     "priceDate": "2026-11-03",
     "priceSource": "Yahoo Finance",
     "sponsor": "Viking Therapeutics",
@@ -2426,8 +2966,8 @@
    "t": "ARWR",
    "n": "Arrowhead Pharmaceuticals",
    "area": "RNAi",
-   "mcap": 8502.1,
-   "ev": 7582.9,
+   "mcap": 8408.9,
+   "ev": 7489.6,
    "cash": 1602,
    "debt": 682.7,
    "burn": 4.92,
@@ -2456,25 +2996,161 @@
      "est": true,
      "nct": "NCT07037771",
      "trials": 2,
-     "activeTrials": 2
+     "activeTrials": 2,
+     "status": "ACTIVE_NOT_RECRUITING",
+     "trial": {
+      "nct": "NCT07037771",
+      "title": "A Phase 3 Study of Zodasiran in Adolescent and Adult Subjects With Homozygous Familial Hypercholesterolemia (YOSEMITE)",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "ext": false,
+      "n": 70,
+      "nType": "ACTUAL",
+      "alloc": "RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "QUADRUPLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR"
+      ],
+      "primary": "Percent Change from Baseline to Month 12 in Fasting Low Density Lipoprotein Cholesterol (LDL-C) (Randomized period)",
+      "primaryCount": 1,
+      "sites": 43,
+      "countries": [
+       "United States",
+       "Australia",
+       "Austria",
+       "Belgium",
+       "Brazil",
+       "Canada",
+       "Czechia",
+       "France",
+       "Georgia",
+       "Germany",
+       "Israel",
+       "Japan"
+      ],
+      "start": "2025-06-17",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-08-12"
+     },
+     "modality": "siRNA/RNAi",
+     "area": "Cardiovascular",
+     "rare": true,
+     "slips": 0,
+     "window": {
+      "lo": "2027-09-04",
+      "hi": "2028-03-04",
+      "mid": "2027-12-04",
+      "reg": "2027-08-20",
+      "width": 6,
+      "basis": "Registry estimate",
+      "why": [
+       "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [],
+      "points": 0,
+      "level": "No flags"
+     },
+     "odds": {
+      "loa": 0.5197,
+      "base": 0.4554,
+      "area": "Cardiovascular",
+      "modality": "siRNA/RNAi",
+      "factors": [
+       "siRNA/RNAi",
+       "Rare disease"
+      ]
+     }
     },
     {
      "d": "Plozasiran",
-     "ind": "Hypertriglyceridemia",
+     "ind": "Severe Hypertriglyceridemia",
      "tgt": "—",
      "moa": "—",
      "ph": "Phase III",
-     "n": 710,
-     "ro": "2028-07-15",
+     "n": 288,
+     "ro": "2029-03-15",
      "roType": "ESTIMATED",
-     "ep": "Number of Participants with Treatment-Emergent Adverse Events (TEAEs)",
+     "ep": "Time to First Occurrence of Positively Adjudicated AP Event (Event Occurring More Than 10 Days After First Dos",
      "peak": 800,
      "launch": 2.5,
      "cost": 260,
      "est": true,
-     "nct": "NCT06822790",
+     "nct": "NCT06880770",
      "trials": 6,
-     "activeTrials": 2
+     "activeTrials": 2,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT06880770",
+      "title": "Study of Plozasiran in Adults With Severe Hypertriglyceridemia at Risk of Acute Pancreatitis",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 288,
+      "nType": "ESTIMATED",
+      "alloc": "RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "QUADRUPLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "EXPERIMENTAL"
+      ],
+      "primary": "Time to First Occurrence of Positively Adjudicated AP Event (Event Occurring More Than 10 Days After First Dose of Study Drug)",
+      "primaryCount": 1,
+      "sites": 140,
+      "countries": [
+       "United States",
+       "Argentina",
+       "Austria",
+       "Belgium",
+       "Brazil",
+       "Bulgaria",
+       "Canada",
+       "China",
+       "Colombia",
+       "Croatia",
+       "Czechia",
+       "Georgia"
+      ],
+      "start": "2025-04-24",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-09-21"
+     },
+     "modality": "siRNA/RNAi",
+     "area": "Cardiovascular",
+     "slips": 0,
+     "window": {
+      "lo": "2029-03-30",
+      "hi": "2030-03-30",
+      "mid": "2029-09-28",
+      "reg": "2029-03-15",
+      "width": 12,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+9 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "med",
+        "label": "No control arm",
+        "detail": "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment."
+       }
+      ],
+      "points": 2,
+      "level": "Minor flags"
+     },
+     "odds": {
+      "loa": 0.514,
+      "base": 0.4554,
+      "area": "Cardiovascular",
+      "modality": "siRNA/RNAi",
+      "factors": [
+       "siRNA/RNAi"
+      ]
+     }
     },
     {
      "d": "ARO-ALK7",
@@ -2492,7 +3168,63 @@
      "est": true,
      "nct": "NCT06937203",
      "trials": 1,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT06937203",
+      "title": "A First-In-Human Study of ARO-ALK7 in Adults With Obesity With and Without Type 2 Diabetes Mellitus",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 150,
+      "nType": "ESTIMATED",
+      "alloc": "RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "QUADRUPLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR",
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR"
+      ],
+      "primary": "Number of Participants with Treatment-Emergent Adverse Events (TEAEs)",
+      "primaryCount": 1,
+      "sites": 8,
+      "countries": [
+       "Australia",
+       "New Zealand"
+      ],
+      "start": "2025-05-09",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-07-08"
+     },
+     "modality": "siRNA/RNAi",
+     "area": "Metabolic",
+     "slips": 0,
+     "window": {
+      "lo": "2027-03-02",
+      "hi": "2027-12-01",
+      "mid": "2027-07-17",
+      "reg": "2027-02-15",
+      "width": 9,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [],
+      "points": 0,
+      "level": "No flags"
+     },
+     "odds": {
+      "loa": 0.2826,
+      "base": 0.2504,
+      "area": "Metabolic",
+      "modality": "siRNA/RNAi",
+      "factors": [
+       "siRNA/RNAi"
+      ]
+     }
     },
     {
      "d": "ARO-MAPT-SC",
@@ -2510,7 +3242,61 @@
      "est": true,
      "nct": "NCT07221344",
      "trials": 1,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT07221344",
+      "title": "Study of ARO-MAPT-SC in Healthy Participants and Participants With Early Alzheimer's Disease",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 112,
+      "nType": "ESTIMATED",
+      "alloc": "RANDOMIZED",
+      "model": "SEQUENTIAL",
+      "masking": "QUADRUPLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR"
+      ],
+      "primary": "Number of Participants with Treatment-Emergent Adverse Events (TEAEs) Over Time",
+      "primaryCount": 1,
+      "sites": 4,
+      "countries": [
+       "Canada",
+       "New Zealand"
+      ],
+      "start": "2025-11-18",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-09-18"
+     },
+     "modality": "siRNA/RNAi",
+     "area": "Neurology",
+     "slips": 0,
+     "window": {
+      "lo": "2027-06-30",
+      "hi": "2028-03-30",
+      "mid": "2027-11-14",
+      "reg": "2027-06-15",
+      "width": 9,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [],
+      "points": 0,
+      "level": "No flags"
+     },
+     "odds": {
+      "loa": 0.1392,
+      "base": 0.1234,
+      "area": "Neurology",
+      "modality": "siRNA/RNAi",
+      "factors": [
+       "siRNA/RNAi"
+      ]
+     }
     },
     {
      "d": "ARO-DIMERPA",
@@ -2528,7 +3314,64 @@
      "est": true,
      "nct": "NCT07223658",
      "trials": 1,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT07223658",
+      "title": "Study of ARO-DIMERPA in Adult Participants With Mixed Hyperlipidemia",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 78,
+      "nType": "ESTIMATED",
+      "alloc": "RANDOMIZED",
+      "model": "SEQUENTIAL",
+      "masking": "QUADRUPLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR"
+      ],
+      "primary": "Number of Participants with Treatment-Emergent Adverse Events (TEAEs)",
+      "primaryCount": 1,
+      "sites": 19,
+      "countries": [
+       "Australia",
+       "Canada",
+       "Georgia",
+       "Moldova",
+       "New Zealand"
+      ],
+      "start": "2025-12-22",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-10-13"
+     },
+     "modality": "siRNA/RNAi",
+     "area": "Cardiovascular",
+     "slips": 0,
+     "window": {
+      "lo": "2027-07-30",
+      "hi": "2028-04-29",
+      "mid": "2027-12-14",
+      "reg": "2027-07-15",
+      "width": 9,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [],
+      "points": 0,
+      "level": "No flags"
+     },
+     "odds": {
+      "loa": 0.1079,
+      "base": 0.0956,
+      "area": "Cardiovascular",
+      "modality": "siRNA/RNAi",
+      "factors": [
+       "siRNA/RNAi"
+      ]
+     }
     },
     {
      "d": "ARO-INHBE",
@@ -2546,54 +3389,129 @@
      "est": true,
      "nct": "NCT06700538",
      "trials": 2,
-     "activeTrials": 2
+     "activeTrials": 2,
+     "status": "ACTIVE_NOT_RECRUITING",
+     "trial": {
+      "nct": "NCT06700538",
+      "title": "A First-In-Human Study of ARO-INHBE in Adults With Obesity With and Without Type 2 Diabetes Mellitus",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "ext": false,
+      "n": 190,
+      "nType": "ACTUAL",
+      "alloc": "RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "QUADRUPLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR",
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR",
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR",
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR"
+      ],
+      "primary": "Number of Participants with Treatment-Emergent Adverse Events (TEAEs)",
+      "primaryCount": 1,
+      "sites": 15,
+      "countries": [
+       "Australia",
+       "Canada",
+       "Georgia",
+       "New Zealand"
+      ],
+      "start": "2024-12-04",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-10-30"
+     },
+     "modality": "siRNA/RNAi",
+     "area": "Metabolic",
+     "slips": 0,
+     "window": {
+      "lo": "2027-10-30",
+      "hi": "2028-04-29",
+      "mid": "2028-01-29",
+      "reg": "2027-10-15",
+      "width": 6,
+      "basis": "Registry estimate",
+      "why": [
+       "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [],
+      "points": 0,
+      "level": "No flags"
+     },
+     "odds": {
+      "loa": 0.2826,
+      "base": 0.2504,
+      "area": "Metabolic",
+      "modality": "siRNA/RNAi",
+      "factors": [
+       "siRNA/RNAi"
+      ]
+     }
     }
    ],
    "catalysts": [
     {
-     "date": "2027-08-20",
+     "date": "2027-12-04",
      "kind": "readout",
      "drug": "Zodasiran",
      "est": true,
-     "label": "Zodasiran Phase III primary completion (registry estimate)"
+     "lo": "2027-09-04",
+     "hi": "2028-03-04",
+     "reg": "2027-08-20",
+     "nct": "NCT07037771",
+     "label": "Zodasiran Phase III data (estimated)"
     },
     {
-     "date": "2028-07-15",
-     "kind": "readout",
-     "drug": "Plozasiran",
-     "est": true,
-     "label": "Plozasiran Phase III primary completion (registry estimate)"
-    },
-    {
-     "date": "2027-02-15",
+     "date": "2027-07-17",
      "kind": "readout",
      "drug": "ARO-ALK7",
      "est": true,
-     "label": "ARO-ALK7 Phase II primary completion (registry estimate)"
+     "lo": "2027-03-02",
+     "hi": "2027-12-01",
+     "reg": "2027-02-15",
+     "nct": "NCT06937203",
+     "label": "ARO-ALK7 Phase II data (estimated)"
     },
     {
-     "date": "2027-06-15",
+     "date": "2027-11-14",
      "kind": "readout",
      "drug": "ARO-MAPT-SC",
      "est": true,
-     "label": "ARO-MAPT-SC Phase II primary completion (registry estimate)"
+     "lo": "2027-06-30",
+     "hi": "2028-03-30",
+     "reg": "2027-06-15",
+     "nct": "NCT07221344",
+     "label": "ARO-MAPT-SC Phase II data (estimated)"
     },
     {
-     "date": "2027-07-15",
+     "date": "2027-12-14",
      "kind": "readout",
      "drug": "ARO-DIMERPA",
      "est": true,
-     "label": "ARO-DIMERPA Phase II primary completion (registry estimate)"
+     "lo": "2027-07-30",
+     "hi": "2028-04-29",
+     "reg": "2027-07-15",
+     "nct": "NCT07223658",
+     "label": "ARO-DIMERPA Phase II data (estimated)"
     },
     {
-     "date": "2027-10-15",
+     "date": "2028-01-29",
      "kind": "readout",
      "drug": "ARO-INHBE",
      "est": true,
-     "label": "ARO-INHBE Phase II primary completion (registry estimate)"
+     "lo": "2027-10-30",
+     "hi": "2028-04-29",
+     "reg": "2027-10-15",
+     "nct": "NCT06700538",
+     "label": "ARO-INHBE Phase II data (estimated)"
     },
     {
-     "date": "2026-11-03",
+     "date": "2027-02-02",
      "kind": "earnings",
      "drug": null,
      "est": true,
@@ -2767,6 +3685,281 @@
      "runway": 325.5
     }
    ],
+   "revQ": [
+    [
+     "2023-09-30",
+     16.1
+    ],
+    [
+     "2023-12-31",
+     3.6
+    ],
+    [
+     "2024-03-31",
+     0
+    ],
+    [
+     "2024-06-30",
+     0
+    ],
+    [
+     "2024-09-30",
+     0
+    ],
+    [
+     "2024-12-31",
+     2.5
+    ],
+    [
+     "2025-03-31",
+     542.7
+    ],
+    [
+     "2025-06-30",
+     27.8
+    ],
+    [
+     "2025-09-30",
+     256.5
+    ],
+    [
+     "2025-12-31",
+     264
+    ],
+    [
+     "2026-03-31",
+     73.7
+    ],
+    [
+     "2026-06-30",
+     75.3
+    ]
+   ],
+   "rivals": [
+    {
+     "nct": "NCT07656727",
+     "sponsor": "BioAge Labs, Inc.",
+     "title": "A Phase 2 Study to Evaluate the Pharmacodynamics, Safety and Tolerability of BGE-102 in Participants With Obesity and Cardiovascular Risk Factors",
+     "ph": "Phase II",
+     "pcd": "2026-11-30",
+     "n": 160,
+     "drugs": [
+      "BGE-102"
+     ],
+     "forDrug": "ARO-ALK7",
+     "ind": "Obesity",
+     "countries": [
+      "United States",
+      "Puerto Rico"
+     ],
+     "nCountries": 2,
+     "china": null
+    },
+    {
+     "nct": "NCT07230132",
+     "sponsor": "Beijing QL Biopharmaceutical Co.,Ltd",
+     "title": "Efficacy and Safety of ZT006 in Overweight and Obese Participants",
+     "ph": "Phase II",
+     "pcd": "2026-12-12",
+     "n": 184,
+     "drugs": [
+      "ZT006"
+     ],
+     "forDrug": "ARO-ALK7",
+     "ind": "Obesity",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT06994650",
+     "sponsor": "Fujian Shengdi Pharmaceutical Co., Ltd.",
+     "title": "A Multicenter, Randomized, Double-blind, Placebo-controlled Phase III Clinical Study to Evaluate the Efficacy and Safety of HRS9531 Injection in Subjects With O",
+     "ph": "Phase III",
+     "pcd": "2026-12-15",
+     "n": 140,
+     "drugs": [
+      "HRS9531"
+     ],
+     "forDrug": "ARO-ALK7",
+     "ind": "Obesity",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT06974851",
+     "sponsor": "Fujian Shengdi Pharmaceutical Co., Ltd.",
+     "title": "A Phase III Study Evaluating the Efficacy and Safety of HRS9531 Injection in Subjects With Obstructive Sleep Apnea (OSA) and Obesity",
+     "ph": "Phase III",
+     "pcd": "2026-12-15",
+     "n": 140,
+     "drugs": [
+      "HRS9531"
+     ],
+     "forDrug": "ARO-ALK7",
+     "ind": "Obesity",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT07243171",
+     "sponsor": "Hangzhou Sciwind Biosciences Co., Ltd.",
+     "title": "A Phase Ib/IIa Study to Evaluate the Safety, Tolerability, Pharmacokinetics and Pharmacodynamics of Oral Ecnoglutide Tablets in Chinese Participants With Overwe",
+     "ph": "Phase II",
+     "pcd": "2027-01-05",
+     "n": 126,
+     "drugs": [
+      "ecnoglutide"
+     ],
+     "forDrug": "ARO-ALK7",
+     "ind": "Obesity",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT07205900",
+     "sponsor": "Hanmi Pharmaceutical Company Limited",
+     "title": "Study to Evaluate HM15275 in Obese or Overweight Subjects Without Diabetes Mellitus",
+     "ph": "Phase II",
+     "pcd": "2027-01-15",
+     "n": 267,
+     "drugs": [
+      "HM15275"
+     ],
+     "forDrug": "ARO-ALK7",
+     "ind": "Obesity",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT06858839",
+     "sponsor": "Amgen",
+     "title": "Evaluation of Maridebart Cafraglutide in Adult Participants Without Type 2 Diabetes Mellitus Who Have Obesity or Are Overweight",
+     "ph": "Phase III",
+     "pcd": "2027-01-21",
+     "n": 3853,
+     "drugs": [
+      "Maridebart Cafraglutide"
+     ],
+     "forDrug": "ARO-ALK7",
+     "ind": "Obesity",
+     "countries": [
+      "United States",
+      "Argentina",
+      "Australia",
+      "Belgium",
+      "Canada",
+      "Czechia"
+     ],
+     "nCountries": 17,
+     "china": null
+    },
+    {
+     "nct": "NCT07009171",
+     "sponsor": "NeuroBiogen Co., Ltd",
+     "title": "Study to Evaluate the Efficacy and Safety of KDS2010 in Overweight or Obese Patients",
+     "ph": "Phase II",
+     "pcd": "2027-01-31",
+     "n": 75,
+     "drugs": [
+      "KDS2010"
+     ],
+     "forDrug": "ARO-ALK7",
+     "ind": "Obesity",
+     "countries": [
+      "South Korea"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT07521631",
+     "sponsor": "Hangzhou Zhongmei Huadong Pharmaceutical Co., Ltd.",
+     "title": "Efficacy and Safety of HDM1005 Compared to Tirzepatide in Obese Adults Without Diabetes",
+     "ph": "Phase II",
+     "pcd": "2027-02-04",
+     "n": 372,
+     "drugs": [
+      "HDM1005",
+      "Tirzepatide"
+     ],
+     "forDrug": "ARO-ALK7",
+     "ind": "Obesity",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT07882654",
+     "sponsor": "EktaH",
+     "title": "A PHASE 2A, EXPLORATORY, RANDOMIZED, SINGLE-BLIND, PLACEBO-CONTROLLED STUDY TO EVALUATE THE EFFICACY OF WEIGHT LOSS INDUCED BY NKS-3 IN OBESE ADULTS.",
+     "ph": "Phase II",
+     "pcd": "2027-02-05",
+     "n": 31,
+     "drugs": [
+      "Investigational product is a modified linoleic acid, named NKS-3. This non-caloric agent, synthetized from linoleic acid, is a fat taste receptors agonist, targeting CD36 with also an impact on GPR120"
+     ],
+     "forDrug": "ARO-ALK7",
+     "ind": "Obesity",
+     "countries": [
+      "Tunisia"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT07505745",
+     "sponsor": "Hudson Biotech",
+     "title": "MOTS-c for Improving Insulin Sensitivity in Adults With Prediabetes and Overweight/Obesity",
+     "ph": "Phase II",
+     "pcd": "2027-02-14",
+     "n": 120,
+     "drugs": [
+      "MOTS-c"
+     ],
+     "forDrug": "ARO-ALK7",
+     "ind": "Obesity",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT07481747",
+     "sponsor": "Hudson Biotech",
+     "title": "Efficacy and Safety of Tirzepatide Once Weekly Versus Placebo in Participants Who Are Either Obese or Overweight With Weight-Related Comorbidities (SURMOUNT-1)",
+     "ph": "Phase III",
+     "pcd": "2027-02-14",
+     "n": 2539,
+     "drugs": [
+      "Tirzepatide"
+     ],
+     "forDrug": "ARO-ALK7",
+     "ind": "Obesity",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    }
+   ],
    "burnPrior": -1.82,
    "debtDue24": 0,
    "raise": {
@@ -2784,19 +3977,15 @@
     }
    },
    "quote": {
-    "price": 60.19,
+    "price": 59.53,
     "prev": 59.57,
-    "chg": 0.62,
-    "chgPct": 1.04,
+    "chg": -0.04,
+    "chgPct": -0.07,
     "hi52": 95.49,
     "lo52": 37.06,
-    "volume": 314292,
+    "volume": 1327132,
     "date": "2026-11-03",
     "history": [
-     [
-      "2025-11-03",
-      39.61
-     ],
      [
       "2025-11-04",
       37.85
@@ -3796,10 +4985,6 @@
      [
       "2026-11-02",
       59.57
-     ],
-     [
-      "2026-11-03",
-      60.19
      ]
     ]
    },
@@ -3900,7 +5085,7 @@
      "date": "2026-08-04",
      "url": "https://www.sec.gov/Archives/edgar/data/879407/000087940726000057/arwr-20260630.htm"
     },
-    "price": 60.19,
+    "price": 59.53,
     "priceDate": "2026-11-03",
     "priceSource": "Yahoo Finance",
     "sponsor": "ARROWHEAD PHARMACEUTICALS",
@@ -3917,8 +5102,8 @@
    "t": "RCKT",
    "n": "Rocket Pharmaceuticals",
    "area": "Gene therapy",
-   "mcap": 268.4,
-   "ev": -15.3,
+   "mcap": 275.5,
+   "ev": -8.2,
    "cash": 283.7,
    "debt": 0,
    "burn": 14.19,
@@ -3947,7 +5132,72 @@
      "est": true,
      "nct": "NCT04248439",
      "trials": 3,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "ACTIVE_NOT_RECRUITING",
+     "trial": {
+      "nct": "NCT04248439",
+      "title": "Gene Therapy for Fanconi Anemia, Complementation Group A",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "ext": false,
+      "n": 5,
+      "nType": "ESTIMATED",
+      "alloc": "NA",
+      "model": "SINGLE_GROUP",
+      "masking": "NONE",
+      "arms": [
+       "EXPERIMENTAL"
+      ],
+      "primary": "Bone Marrow (BM) Colony-Forming Cell (CFC) Mitomycin-C (MMC) resistance",
+      "primaryCount": 1,
+      "sites": 2,
+      "countries": [
+       "United States"
+      ],
+      "start": "2020-07-15",
+      "startType": "ACTUAL",
+      "lastUpdate": "2025-12-22"
+     },
+     "modality": "Gene therapy",
+     "area": "Hematology",
+     "rare": true,
+     "slips": 0,
+     "window": {
+      "lo": "2026-11-04",
+      "hi": "2026-11-18",
+      "mid": "2026-11-11",
+      "reg": "2026-05-05",
+      "width": 0.5,
+      "basis": "Registry estimate",
+      "why": [
+       "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "med",
+        "label": "No control arm",
+        "detail": "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment."
+       },
+       {
+        "sev": "med",
+        "label": "Estimated completion date has passed",
+        "detail": "The registry still shows an estimated date that is now in the past."
+       }
+      ],
+      "points": 4,
+      "level": "Some flags"
+     },
+     "odds": {
+      "loa": 0.4571,
+      "base": 0.3439,
+      "area": "Hematology",
+      "modality": "Gene therapy",
+      "factors": [
+       "Gene therapy",
+       "Rare disease"
+      ]
+     }
     },
     {
      "d": "RP-A501",
@@ -3965,7 +5215,70 @@
      "est": true,
      "nct": "NCT06092034",
      "trials": 2,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT06092034",
+      "title": "A Gene Therapy Study of RP-A501 in Male Patients With Danon Disease",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 18,
+      "nType": "ESTIMATED",
+      "alloc": "NA",
+      "model": "SINGLE_GROUP",
+      "masking": "NONE",
+      "arms": [
+       "EXPERIMENTAL"
+      ],
+      "primary": "Evaluation of Efficacy: Improvement as assessed via primary endpoint comprised of LAMP2 myocardial tissue expression and left ventricular mass index (LVMI)",
+      "primaryCount": 1,
+      "sites": 6,
+      "countries": [
+       "United States",
+       "Germany",
+       "Italy",
+       "United Kingdom"
+      ],
+      "start": "2023-09-05",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-10-06"
+     },
+     "modality": "Gene therapy",
+     "area": "Cardiovascular",
+     "rare": true,
+     "slips": 0,
+     "window": {
+      "lo": "2028-06-30",
+      "hi": "2029-03-31",
+      "mid": "2028-11-14",
+      "reg": "2028-06-15",
+      "width": 9,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "med",
+        "label": "No control arm",
+        "detail": "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment."
+       }
+      ],
+      "points": 2,
+      "level": "Minor flags"
+     },
+     "odds": {
+      "loa": 0.1306,
+      "base": 0.0956,
+      "area": "Cardiovascular",
+      "modality": "Gene therapy",
+      "factors": [
+       "Gene therapy",
+       "Rare disease"
+      ]
+     }
     },
     {
      "d": "RP-A601",
@@ -3983,7 +5296,61 @@
      "est": true,
      "nct": "NCT05885412",
      "trials": 1,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT05885412",
+      "title": "A Phase 1, Dose Escalation Trial of RP-A601 in Subjects With PKP2 Variant-Mediated Arrhythmogenic Cardiomyopathy (PKP2-ACM)",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 9,
+      "nType": "ESTIMATED",
+      "alloc": "NA",
+      "model": "SEQUENTIAL",
+      "masking": "NONE",
+      "arms": [
+       "EXPERIMENTAL"
+      ],
+      "primary": "Evaluation of safety associated with RP-A601",
+      "primaryCount": 1,
+      "sites": 3,
+      "countries": [
+       "United States"
+      ],
+      "start": "2023-08-29",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-04-16"
+     },
+     "modality": "Gene therapy",
+     "area": "Cardiovascular",
+     "rare": true,
+     "slips": 0,
+     "window": {
+      "lo": "2028-09-30",
+      "hi": "2029-07-01",
+      "mid": "2029-02-14",
+      "reg": "2028-09-15",
+      "width": 9,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [],
+      "points": 0,
+      "level": "No flags"
+     },
+     "odds": {
+      "loa": 0.0729,
+      "base": 0.0478,
+      "area": "Cardiovascular",
+      "modality": "Gene therapy",
+      "factors": [
+       "Gene therapy",
+       "Rare disease"
+      ]
+     }
     },
     {
      "d": "RP-A701",
@@ -4001,23 +5368,78 @@
      "est": true,
      "nct": "NCT07137338",
      "trials": 1,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT07137338",
+      "title": "A Phase 1 AAV Gene Therapy Trial Evaluating Safety and Preliminary Efficacy of RP-A701 in Subjects With BAG3 Dilated Cardiomyopathy",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 8,
+      "nType": "ESTIMATED",
+      "alloc": "NA",
+      "model": "SEQUENTIAL",
+      "masking": "NONE",
+      "arms": [
+       "EXPERIMENTAL"
+      ],
+      "primary": "Incidence of Treatment-emergent Adverse Events (TEAE)",
+      "primaryCount": 3,
+      "sites": 3,
+      "countries": [
+       "United States"
+      ],
+      "start": "2026-04-17",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-10-01"
+     },
+     "modality": "Gene therapy",
+     "area": "Cardiovascular",
+     "slips": 0,
+     "window": {
+      "lo": "2029-06-30",
+      "hi": "2030-03-31",
+      "mid": "2029-11-14",
+      "reg": "2029-06-15",
+      "width": 9,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "low",
+        "label": "Several primary endpoints",
+        "detail": "3 primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it."
+       }
+      ],
+      "points": 1,
+      "level": "Minor flags"
+     },
+     "odds": {
+      "loa": 0.0539,
+      "base": 0.0478,
+      "area": "Cardiovascular",
+      "modality": "Gene therapy",
+      "factors": [
+       "Gene therapy"
+      ]
+     }
     }
    ],
    "catalysts": [
     {
-     "date": "2028-06-15",
+     "date": "2026-11-11",
      "kind": "readout",
-     "drug": "RP-A501",
+     "drug": "RP-L102",
      "est": true,
-     "label": "RP-A501 Phase II primary completion (registry estimate)"
-    },
-    {
-     "date": "2028-09-15",
-     "kind": "readout",
-     "drug": "RP-A601",
-     "est": true,
-     "label": "RP-A601 Phase I primary completion (registry estimate)"
+     "lo": "2026-11-04",
+     "hi": "2026-11-18",
+     "reg": "2026-05-05",
+     "nct": "NCT04248439",
+     "label": "RP-L102 Phase II data (estimated)"
     },
     {
      "date": "2026-11-09",
@@ -4194,6 +5616,57 @@
      "runway": 20
     }
    ],
+   "revQ": [
+    [
+     "2023-09-30",
+     0
+    ],
+    [
+     "2023-12-31",
+     0
+    ],
+    [
+     "2024-03-31",
+     0
+    ],
+    [
+     "2024-06-30",
+     0
+    ],
+    [
+     "2024-09-30",
+     0
+    ],
+    [
+     "2024-12-31",
+     0
+    ],
+    [
+     "2025-03-31",
+     0
+    ],
+    [
+     "2025-06-30",
+     0
+    ],
+    [
+     "2025-09-30",
+     0
+    ],
+    [
+     "2025-12-31",
+     0
+    ],
+    [
+     "2026-03-31",
+     0
+    ],
+    [
+     "2026-06-30",
+     0
+    ]
+   ],
+   "rivals": [],
    "burnPrior": 16.98,
    "debtDue24": 0,
    "raise": {
@@ -4206,19 +5679,15 @@
     }
    },
    "quote": {
-    "price": 2.44,
+    "price": 2.51,
     "prev": 2.47,
-    "chg": -0.03,
-    "chgPct": -1.01,
+    "chg": 0.04,
+    "chgPct": 1.62,
     "hi52": 5.45,
     "lo52": 2.17,
-    "volume": 732229,
+    "volume": 1286821,
     "date": "2026-11-03",
     "history": [
-     [
-      "2025-11-03",
-      3.56
-     ],
      [
       "2025-11-04",
       3.29
@@ -5218,10 +6687,6 @@
      [
       "2026-11-02",
       2.47
-     ],
-     [
-      "2026-11-03",
-      2.44
      ]
     ]
    },
@@ -5322,7 +6787,7 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1281895/000119312526342348/rckt-20260630.htm"
     },
-    "price": 2.44,
+    "price": 2.51,
     "priceDate": "2026-11-03",
     "priceSource": "Yahoo Finance",
     "sponsor": "ROCKET PHARMACEUTICALS",
@@ -5339,8 +6804,8 @@
    "t": "SRRK",
    "n": "Scholar Rock Holding",
    "area": "Neuromuscular",
-   "mcap": 5341.5,
-   "ev": 5045.6,
+   "mcap": 5356.1,
+   "ev": 5060.2,
    "cash": 492.1,
    "debt": 196.2,
    "burn": 24.74,
@@ -5355,21 +6820,76 @@
    "pipeline": [
     {
      "d": "Apitegromab",
-     "ind": "Spinal Muscular Atrophy",
+     "ind": "Facioscapulohumeral Muscular Dystrophy",
      "tgt": "—",
      "moa": "—",
-     "ph": "Phase III",
-     "n": 238,
-     "ro": "2026-11-01",
+     "ph": "Phase II",
+     "n": 60,
+     "ro": "2028-06-15",
      "roType": "ESTIMATED",
-     "ep": "Evaluate the long-term safety and tolerability of apitegromab in patients with Type 2 and Type 3 SMA",
-     "peak": 800,
-     "launch": 2.5,
-     "cost": 260,
+     "ep": "Assess the efficacy of apitegromab compared with placebo in participants with FSHD",
+     "peak": 600,
+     "launch": 4.5,
+     "cost": 160,
      "est": true,
-     "nct": "NCT05626855",
+     "nct": "NCT07435129",
      "trials": 5,
-     "activeTrials": 3
+     "activeTrials": 3,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT07435129",
+      "title": "Phase 2 Study Evaluating Apitegromab for the Treatment of FSHD",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 60,
+      "nType": "ESTIMATED",
+      "alloc": "RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "TRIPLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR"
+      ],
+      "primary": "Assess the efficacy of apitegromab compared with placebo in participants with FSHD",
+      "primaryCount": 1,
+      "sites": 1,
+      "countries": [
+       "United States"
+      ],
+      "start": "2026-07-30",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-09-02"
+     },
+     "modality": "Monoclonal antibody",
+     "area": "Neurology",
+     "rare": true,
+     "slips": 0,
+     "window": {
+      "lo": "2028-06-30",
+      "hi": "2029-03-31",
+      "mid": "2028-11-14",
+      "reg": "2028-06-15",
+      "width": 9,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [],
+      "points": 0,
+      "level": "No flags"
+     },
+     "odds": {
+      "loa": 0.1805,
+      "base": 0.1234,
+      "area": "Neurology",
+      "modality": "Monoclonal antibody",
+      "factors": [
+       "Monoclonal antibody",
+       "Rare disease"
+      ]
+     }
     },
     {
      "d": "SRK-439",
@@ -5387,23 +6907,76 @@
      "est": true,
      "nct": "NCT07444294",
      "trials": 1,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT07444294",
+      "title": "A Single- and Multiple-Ascending Dose Study of SRK-439 in Healthy Adults",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 76,
+      "nType": "ESTIMATED",
+      "alloc": "RANDOMIZED",
+      "model": "SEQUENTIAL",
+      "masking": "QUADRUPLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "EXPERIMENTAL"
+      ],
+      "primary": "Evaluate the safety and tolerability of single and multiple SRK-439 SC dose administration in healthy adult participants",
+      "primaryCount": 11,
+      "sites": 1,
+      "countries": [
+       "United States"
+      ],
+      "start": "2025-11-21",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-03-02"
+     },
+     "modality": null,
+     "slips": 0,
+     "window": {
+      "lo": "2027-01-01",
+      "hi": "2027-10-02",
+      "mid": "2027-05-18",
+      "reg": "2026-12-17",
+      "width": 9,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "low",
+        "label": "Several primary endpoints",
+        "detail": "11 primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it."
+       }
+      ],
+      "points": 1,
+      "level": "Minor flags"
+     },
+     "odds": {
+      "loa": 0.0787,
+      "base": 0.0787,
+      "area": "All indications",
+      "modality": null,
+      "factors": []
+     }
     }
    ],
    "catalysts": [
     {
-     "date": "2026-11-01",
-     "kind": "readout",
-     "drug": "Apitegromab",
-     "est": true,
-     "label": "Apitegromab Phase III primary completion (registry estimate)"
-    },
-    {
-     "date": "2026-12-17",
+     "date": "2027-05-18",
      "kind": "readout",
      "drug": "SRK-439",
      "est": true,
-     "label": "SRK-439 Phase I primary completion (registry estimate)"
+     "lo": "2027-01-01",
+     "hi": "2027-10-02",
+     "reg": "2026-12-17",
+     "nct": "NCT07444294",
+     "label": "SRK-439 Phase I data (estimated)"
     },
     {
      "date": "2026-11-05",
@@ -5587,6 +7160,120 @@
      "runway": 19.9
     }
    ],
+   "revQ": [
+    [
+     "2020-03-31",
+     5
+    ],
+    [
+     "2020-06-30",
+     3.9
+    ],
+    [
+     "2020-09-30",
+     3
+    ],
+    [
+     "2020-12-31",
+     3.4
+    ],
+    [
+     "2021-03-31",
+     4.7
+    ],
+    [
+     "2021-06-30",
+     4.6
+    ],
+    [
+     "2021-09-30",
+     5.5
+    ],
+    [
+     "2021-12-31",
+     4
+    ],
+    [
+     "2022-03-31",
+     33.2
+    ],
+    [
+     "2022-12-31",
+     0
+    ],
+    [
+     "2025-12-31",
+     0
+    ],
+    [
+     "2026-03-31",
+     0
+    ]
+   ],
+   "rivals": [
+    {
+     "nct": "NCT06907875",
+     "sponsor": "Epicrispr Biotechnologies, Inc.",
+     "title": "A First-in-human Study of EPI-321 in Facioscapulohumeral Muscular Dystrophy",
+     "ph": "Phase II",
+     "pcd": "2027-07-07",
+     "n": 12,
+     "drugs": [
+      "EPI-321"
+     ],
+     "forDrug": "Apitegromab",
+     "ind": "Facioscapulohumeral Muscular Dystrophy",
+     "countries": [
+      "United States",
+      "Australia",
+      "New Zealand"
+     ],
+     "nCountries": 3,
+     "china": null
+    },
+    {
+     "nct": "NCT07798609",
+     "sponsor": "Soufflé Therapeutics, Inc.",
+     "title": "A Trial to Assess Safety, Tolerability, Pharmacokinetics, Pharmacodynamics, and Preliminary Efficacy of SFL-0821 in Adults With FSHD",
+     "ph": "Phase II",
+     "pcd": "2028-03-15",
+     "n": 90,
+     "drugs": [
+      "SFL-0821"
+     ],
+     "forDrug": "Apitegromab",
+     "ind": "Facioscapulohumeral Muscular Dystrophy",
+     "countries": [
+      "Australia",
+      "New Zealand"
+     ],
+     "nCountries": 2,
+     "china": null
+    },
+    {
+     "nct": "NCT07038200",
+     "sponsor": "Avidity Biosciences, Inc.",
+     "title": "A Study to Evaluate Del-brax (Also Referred to as AOC 1020) in Participants With FSHD",
+     "ph": "Phase III",
+     "pcd": "2028-05-15",
+     "n": 200,
+     "drugs": [
+      "AOC-1020"
+     ],
+     "forDrug": "Apitegromab",
+     "ind": "Facioscapulohumeral Muscular Dystrophy",
+     "countries": [
+      "United States",
+      "Canada",
+      "Denmark",
+      "France",
+      "Germany",
+      "Italy"
+     ],
+     "nCountries": 10,
+     "china": null
+    }
+   ],
    "burnPrior": 21.47,
    "debtDue24": 0,
    "raise": {
@@ -5604,19 +7291,15 @@
     }
    },
    "quote": {
-    "price": 43.86,
+    "price": 43.98,
     "prev": 42.91,
-    "chg": 0.95,
-    "chgPct": 2.21,
+    "chg": 1.07,
+    "chgPct": 2.49,
     "hi52": 61.76,
     "lo52": 27.07,
-    "volume": 192665,
+    "volume": 676833,
     "date": "2026-11-03",
     "history": [
-     [
-      "2025-11-03",
-      28.78
-     ],
      [
       "2025-11-04",
       28.05
@@ -6616,10 +8299,6 @@
      [
       "2026-11-02",
       42.91
-     ],
-     [
-      "2026-11-03",
-      43.86
      ]
     ]
    },
@@ -6720,7 +8399,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1727196/000119312526336732/srrk-20260630.htm"
     },
-    "price": 43.86,
+    "price": 43.98,
     "priceDate": "2026-11-03",
     "priceSource": "Yahoo Finance",
     "sponsor": "Scholar Rock",
@@ -6737,13 +8416,13 @@
    "t": "IDYA",
    "n": "Ideaya Biosciences",
    "area": "Oncology",
-   "mcap": 3063.5,
-   "ev": 1820.7,
-   "cash": 1242.9,
+   "mcap": 3029.4,
+   "ev": 1878.6,
+   "cash": 1150.8,
    "debt": 0,
-   "burn": 9.31,
-   "rev": 31.3,
-   "shares": 96.49,
+   "burn": 28.95,
+   "rev": 36.5,
+   "shares": 96.69,
    "own": null,
    "emp": null,
    "partners": [],
@@ -6767,7 +8446,84 @@
      "est": true,
      "nct": "NCT05987332",
      "trials": 5,
-     "activeTrials": 5
+     "activeTrials": 5,
+     "status": "ACTIVE_NOT_RECRUITING",
+     "trial": {
+      "nct": "NCT05987332",
+      "title": "IDE196 (Darovasertib) in Combination With Crizotinib as First-line Therapy in Metastatic Uveal Melanoma",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "ext": false,
+      "n": 420,
+      "nType": "ESTIMATED",
+      "alloc": "RANDOMIZED",
+      "model": "SEQUENTIAL",
+      "masking": "NONE",
+      "arms": [
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "ACTIVE_COMPARATOR"
+      ],
+      "primary": "Phase 2a: To determine the optimal dose of IDE196 + Crizotinib combination for Phase 2B and Phase 3 by evaluating the following:",
+      "primaryCount": 3,
+      "sites": 68,
+      "countries": [
+       "United States",
+       "Australia",
+       "Belgium",
+       "Canada",
+       "France",
+       "Germany",
+       "Israel",
+       "Italy",
+       "Netherlands",
+       "Poland",
+       "Spain",
+       "Switzerland"
+      ],
+      "start": "2023-10-31",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-02-17"
+     },
+     "modality": "Small molecule",
+     "area": "Oncology",
+     "rare": true,
+     "slips": 0,
+     "window": {
+      "lo": "2027-01-30",
+      "hi": "2027-07-31",
+      "mid": "2027-05-01",
+      "reg": "2027-01-15",
+      "width": 6,
+      "basis": "Registry estimate",
+      "why": [
+       "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "low",
+        "label": "Open label",
+        "detail": "Patients and doctors know who gets the drug, which can sway subjective measures."
+       },
+       {
+        "sev": "low",
+        "label": "Several primary endpoints",
+        "detail": "3 primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it."
+       }
+      ],
+      "points": 2,
+      "level": "Minor flags"
+     },
+     "odds": {
+      "loa": 0.4328,
+      "base": 0.4388,
+      "area": "Oncology",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
+     }
     },
     {
      "d": "IDE849",
@@ -6785,7 +8541,77 @@
      "est": true,
      "nct": "NCT07174583",
      "trials": 1,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT07174583",
+      "title": "A Study of IDE849 in Patients With DLL3 Expressing Tumors Including Small Cell Lung Cancer",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 262,
+      "nType": "ESTIMATED",
+      "alloc": "NON_RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "NONE",
+      "arms": [
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL"
+      ],
+      "primary": "Part 1A: Safety and Tolerability of IDE849 (Monotherapy)",
+      "primaryCount": 6,
+      "sites": 13,
+      "countries": [
+       "United States"
+      ],
+      "start": "2025-10-14",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-07-09"
+     },
+     "modality": "Antibody-drug conjugate",
+     "area": "Oncology",
+     "pathway": "BLA",
+     "slips": 0,
+     "window": {
+      "lo": "2029-07-30",
+      "hi": "2030-04-30",
+      "mid": "2029-12-14",
+      "reg": "2029-07-15",
+      "width": 9,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "med",
+        "label": "No control arm",
+        "detail": "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment."
+       },
+       {
+        "sev": "low",
+        "label": "Several primary endpoints",
+        "detail": "6 primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it."
+       }
+      ],
+      "points": 3,
+      "level": "Some flags"
+     },
+     "odds": {
+      "loa": 0.108,
+      "base": 0.108,
+      "area": "Oncology",
+      "modality": null,
+      "factors": []
+     }
     },
     {
      "d": "IDE-161",
@@ -6803,7 +8629,68 @@
      "est": true,
      "nct": "NCT05787587",
      "trials": 1,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "ACTIVE_NOT_RECRUITING",
+     "trial": {
+      "nct": "NCT05787587",
+      "title": "A Study of PARG Inhibitor IDE161 in Participants With Advanced Solid Tumors",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "ext": false,
+      "n": 216,
+      "nType": "ESTIMATED",
+      "alloc": "NON_RANDOMIZED",
+      "model": "SEQUENTIAL",
+      "masking": "NONE",
+      "arms": [
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL"
+      ],
+      "primary": "Part 1 (Dose Escalation): To characterize the safety and tolerability of IDE161 monotherapy or in combination with pembrolizumab to determine the MTD and/or RDE",
+      "primaryCount": 3,
+      "sites": 27,
+      "countries": [
+       "United States"
+      ],
+      "start": "2023-04-18",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-07-13"
+     },
+     "modality": "Small molecule",
+     "area": "Oncology",
+     "slips": 0,
+     "window": {
+      "lo": "2026-11-04",
+      "hi": "2027-04-30",
+      "mid": "2027-01-31",
+      "reg": "2026-10-15",
+      "width": 5.8,
+      "basis": "Registry estimate",
+      "why": [
+       "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "low",
+        "label": "Several primary endpoints",
+        "detail": "3 primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it."
+       }
+      ],
+      "points": 1,
+      "level": "Minor flags"
+     },
+     "odds": {
+      "loa": 0.0514,
+      "base": 0.0527,
+      "area": "Oncology",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
+     }
     },
     {
      "d": "IDE397",
@@ -6821,7 +8708,76 @@
      "est": true,
      "nct": "NCT04794699",
      "trials": 2,
-     "activeTrials": 2
+     "activeTrials": 2,
+     "status": "ACTIVE_NOT_RECRUITING",
+     "trial": {
+      "nct": "NCT04794699",
+      "title": "Study of IDE397 in Participants With Solid Tumors Harboring MTAP Deletion",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "ext": false,
+      "n": 169,
+      "nType": "ACTUAL",
+      "alloc": "NON_RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "NONE",
+      "arms": [
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL"
+      ],
+      "primary": "Dose-limiting Toxicities (DLTs) of IDE397",
+      "primaryCount": 5,
+      "sites": 37,
+      "countries": [
+       "United States",
+       "Australia",
+       "France",
+       "Germany",
+       "South Korea",
+       "Spain",
+       "Taiwan"
+      ],
+      "start": "2021-04-14",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-04-09"
+     },
+     "modality": "Small molecule",
+     "area": "Oncology",
+     "biomarker": true,
+     "slips": 0,
+     "window": {
+      "lo": "2027-01-22",
+      "hi": "2027-07-23",
+      "mid": "2027-04-23",
+      "reg": "2027-01-07",
+      "width": 6,
+      "basis": "Registry estimate",
+      "why": [
+       "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "low",
+        "label": "Several primary endpoints",
+        "detail": "5 primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it."
+       }
+      ],
+      "points": 1,
+      "level": "Minor flags"
+     },
+     "odds": {
+      "loa": 0.0731,
+      "base": 0.0527,
+      "area": "Oncology",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule",
+       "Patients selected by biomarker"
+      ]
+     }
     },
     {
      "d": "IDE034",
@@ -6839,7 +8795,65 @@
      "est": true,
      "nct": "NCT07503808",
      "trials": 1,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT07503808",
+      "title": "A Study of IDE034 in Adult Participants With Locally Advanced/Metastatic Solid Tumors Types",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 150,
+      "nType": "ESTIMATED",
+      "alloc": "NON_RANDOMIZED",
+      "model": "SEQUENTIAL",
+      "masking": "NONE",
+      "arms": [
+       "EXPERIMENTAL",
+       "EXPERIMENTAL"
+      ],
+      "primary": "Safety and tolerability of IDE034 in Part 1 dose escalation",
+      "primaryCount": 4,
+      "sites": 15,
+      "countries": [
+       "United States"
+      ],
+      "start": "2026-02-24",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-06-18"
+     },
+     "modality": "Antibody-drug conjugate",
+     "area": "Oncology",
+     "pathway": "BLA",
+     "slips": 0,
+     "window": {
+      "lo": "2027-08-14",
+      "hi": "2028-05-14",
+      "mid": "2027-12-29",
+      "reg": "2027-07-30",
+      "width": 9,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "low",
+        "label": "Several primary endpoints",
+        "detail": "4 primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it."
+       }
+      ],
+      "points": 1,
+      "level": "Minor flags"
+     },
+     "odds": {
+      "loa": 0.0527,
+      "base": 0.0527,
+      "area": "Oncology",
+      "modality": null,
+      "factors": []
+     }
     },
     {
      "d": "IDE574",
@@ -6857,40 +8871,114 @@
      "est": true,
      "nct": "NCT07540572",
      "trials": 1,
-     "activeTrials": 1
+     "activeTrials": 1,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT07540572",
+      "title": "A Study to Investigate the Safety, Pharmacokinetics, and Preliminary Efficacy of IDE574 Therapy in Adult Participants With Advanced Solid Tumors",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 160,
+      "nType": "ESTIMATED",
+      "alloc": "NON_RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "NONE",
+      "arms": [
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL"
+      ],
+      "primary": "Safety and Tolerability of IDE574 in Part 1 A Monotherapy Dose escalation",
+      "primaryCount": 8,
+      "sites": 11,
+      "countries": [
+       "United States"
+      ],
+      "start": "2026-03-17",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-06-16"
+     },
+     "modality": null,
+     "slips": 0,
+     "window": {
+      "lo": "2030-04-14",
+      "hi": "2031-01-13",
+      "mid": "2030-08-29",
+      "reg": "2030-03-30",
+      "width": 9,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "low",
+        "label": "Several primary endpoints",
+        "detail": "8 primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it."
+       }
+      ],
+      "points": 1,
+      "level": "Minor flags"
+     },
+     "odds": {
+      "loa": 0.0527,
+      "base": 0.0527,
+      "area": "Oncology",
+      "modality": null,
+      "factors": []
+     }
     }
    ],
    "catalysts": [
     {
-     "date": "2027-01-15",
+     "date": "2027-05-01",
      "kind": "readout",
      "drug": "Darovasertib",
      "est": true,
-     "label": "Darovasertib Phase III primary completion (registry estimate)"
+     "lo": "2027-01-30",
+     "hi": "2027-07-31",
+     "reg": "2027-01-15",
+     "nct": "NCT05987332",
+     "label": "Darovasertib Phase III data (estimated)"
     },
     {
-     "date": "2026-10-15",
+     "date": "2027-01-31",
      "kind": "readout",
      "drug": "IDE-161",
      "est": true,
-     "label": "IDE-161 Phase I primary completion (registry estimate)"
+     "lo": "2026-11-04",
+     "hi": "2027-04-30",
+     "reg": "2026-10-15",
+     "nct": "NCT05787587",
+     "label": "IDE-161 Phase I data (estimated)"
     },
     {
-     "date": "2027-01-07",
+     "date": "2027-04-23",
      "kind": "readout",
      "drug": "IDE397",
      "est": true,
-     "label": "IDE397 Phase I primary completion (registry estimate)"
+     "lo": "2027-01-22",
+     "hi": "2027-07-23",
+     "reg": "2027-01-07",
+     "nct": "NCT04794699",
+     "label": "IDE397 Phase I data (estimated)"
     },
     {
-     "date": "2027-07-30",
+     "date": "2027-12-29",
      "kind": "readout",
      "drug": "IDE034",
      "est": true,
-     "label": "IDE034 Phase I primary completion (registry estimate)"
+     "lo": "2027-08-14",
+     "hi": "2028-05-14",
+     "reg": "2027-07-30",
+     "nct": "NCT07503808",
+     "label": "IDE034 Phase I data (estimated)"
     },
     {
-     "date": "2026-11-03",
+     "date": "2027-02-02",
      "kind": "earnings",
      "drug": null,
      "est": true,
@@ -6942,15 +9030,8 @@
     }
    ],
    "note": "",
-   "dil24": 14.2,
+   "dil24": 11.9,
    "runwayHist": [
-    {
-     "end": "2021-09-30",
-     "filed": "2021-11-15",
-     "cash": 386,
-     "burn": 4.2,
-     "runway": 91.3
-    },
     {
      "end": "2021-12-31",
      "filed": "2022-03-18",
@@ -7083,9 +9164,330 @@
      "cash": 1243,
      "burn": 9.3,
      "runway": 133.6
+    },
+    {
+     "end": "2026-09-30",
+     "filed": "2026-11-03",
+     "cash": 1151,
+     "burn": 28.9,
+     "runway": 39.8
     }
    ],
-   "burnPrior": 24.48,
+   "revQ": [
+    [
+     "2023-06-30",
+     3.5
+    ],
+    [
+     "2023-09-30",
+     8
+    ],
+    [
+     "2023-12-31",
+     3.9
+    ],
+    [
+     "2024-03-31",
+     0
+    ],
+    [
+     "2024-06-30",
+     0
+    ],
+    [
+     "2024-09-30",
+     0
+    ],
+    [
+     "2024-12-31",
+     7
+    ],
+    [
+     "2025-09-30",
+     207.8
+    ],
+    [
+     "2025-12-31",
+     10.9
+    ],
+    [
+     "2026-03-31",
+     6.6
+    ],
+    [
+     "2026-06-30",
+     8.9
+    ],
+    [
+     "2026-09-30",
+     10.2
+    ]
+   ],
+   "rivals": [
+    {
+     "nct": "NCT05565378",
+     "sponsor": "GlaxoSmithKline",
+     "title": "A Platform Study of Novel Immunotherapy Combinations in Participants With Previously Untreated, Advanced/Metastatic Non-Small-Cell Lung Cancer",
+     "ph": "Phase II",
+     "pcd": "2026-11-09",
+     "n": 351,
+     "drugs": [
+      "Pembrolizumab",
+      "Dostarlimab",
+      "Belrestotug"
+     ],
+     "forDrug": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "countries": [
+      "United States",
+      "Argentina",
+      "Belgium",
+      "Brazil",
+      "Finland",
+      "France"
+     ],
+     "nCountries": 22,
+     "china": null
+    },
+    {
+     "nct": "NCT06151574",
+     "sponsor": "Boehringer Ingelheim",
+     "title": "Beamion LUNG-2: A Study to Test Whether Zongertinib (BI 1810631) Helps People With Advanced Non-small Cell Lung Cancer With HER2 Mutations Compared With Standar",
+     "ph": "Phase III",
+     "pcd": "2026-12-10",
+     "n": 428,
+     "drugs": [
+      "zongertinib",
+      "pembrolizumab",
+      "cisplatin"
+     ],
+     "forDrug": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "countries": [
+      "United States",
+      "Argentina",
+      "Australia",
+      "Austria",
+      "Belgium",
+      "Brazil"
+     ],
+     "nCountries": 26,
+     "china": "some"
+    },
+    {
+     "nct": "NCT04585750",
+     "sponsor": "PMV Pharmaceuticals, Inc",
+     "title": "The Evaluation of PC14586 in Patients With Advanced Solid Tumors Harboring a TP53 Y220C Mutation (PYNNACLE)",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 300,
+     "drugs": [
+      "rezatapopt",
+      "pembrolizumab"
+     ],
+     "forDrug": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "countries": [
+      "United States",
+      "Australia",
+      "France",
+      "Germany",
+      "Italy",
+      "Singapore"
+     ],
+     "nCountries": 9,
+     "china": null
+    },
+    {
+     "nct": "NCT05669430",
+     "sponsor": "GV20 Therapeutics",
+     "title": "A Study of GV20-0251 Monotherapy and GV20-0251 in Combination With Pembrolizumab in Participants With Solid Tumor Malignancies",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 365,
+     "drugs": [
+      "GV20-0251"
+     ],
+     "forDrug": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT06943820",
+     "sponsor": "Akeso",
+     "title": "AK129 Combination Therapy for Advanced Solid Tumors",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 230,
+     "drugs": [
+      "AK129",
+      "Pemetrexed",
+      "Paclitaxel"
+     ],
+     "forDrug": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT06961201",
+     "sponsor": "Changchun GeneScience Pharmaceutical Co., Ltd.",
+     "title": "Nano-crystalline Megestrol Acetate Combined With Standard Treatment Versus Standard Treatment for First-line Extensive-stage Small Cell Lung Cancer in the Cache",
+     "ph": "Phase III",
+     "pcd": "2026-12-31",
+     "n": 94,
+     "drugs": [
+      "Nano-crystalline Megestrol Acetate",
+      "standard treatment"
+     ],
+     "forDrug": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT04699188",
+     "sponsor": "Novartis Pharmaceuticals",
+     "title": "Study of JDQ443 in Patients With Advanced Solid Tumors Harboring the KRAS G12C Mutation",
+     "ph": "Phase II",
+     "pcd": "2027-01-25",
+     "n": 344,
+     "drugs": [
+      "JDQ443",
+      "TNO155",
+      "tislelizumab"
+     ],
+     "forDrug": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "countries": [
+      "United States",
+      "Australia",
+      "Belgium",
+      "Canada",
+      "China",
+      "Denmark"
+     ],
+     "nCountries": 16,
+     "china": "some"
+    },
+    {
+     "nct": "NCT07467863",
+     "sponsor": "Beijing Biotech",
+     "title": "Dual-Target CAR-NK Cells Directed Against MSLN, EGFR, or HER2 in Advanced NSCLC",
+     "ph": "Phase II",
+     "pcd": "2027-02-14",
+     "n": 48,
+     "drugs": [
+      "Dual-target CAR-NK cells",
+      "Lymphodepleting chemotherapy"
+     ],
+     "forDrug": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT07641023",
+     "sponsor": "Beijing Biotech",
+     "title": "Dual-Target CAR-NK Cells Targeting MSLN, EGFR, or HER2 in Advanced NSCLC",
+     "ph": "Phase II",
+     "pcd": "2027-03-14",
+     "n": 60,
+     "drugs": [
+      "Dual-target CAR-NK cells",
+      "Lymphodepleting chemotherapy"
+     ],
+     "forDrug": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT05186974",
+     "sponsor": "Gilead Sciences",
+     "title": "Study of Sacituzumab Govitecan Combinations in First-line Treatment of Participants With Advanced or Metastatic Non-Small-Cell Lung Cancer (NSCLC)",
+     "ph": "Phase II",
+     "pcd": "2027-03-15",
+     "n": 193,
+     "drugs": [
+      "Sacituzumab Govitecan-hziy",
+      "Pembrolizumab",
+      "Carboplatin"
+     ],
+     "forDrug": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "countries": [
+      "United States",
+      "Australia",
+      "Canada",
+      "France",
+      "Germany",
+      "Hong Kong"
+     ],
+     "nCountries": 12,
+     "china": null
+    },
+    {
+     "nct": "NCT06427941",
+     "sponsor": "BeOne Medicines",
+     "title": "A Phase 1/2 Study of BGB-B2033, Alone or in Combination With Tislelizumab With or Without Bevacizumab, in Participants With Advanced or Metastatic Solid Tumors",
+     "ph": "Phase II",
+     "pcd": "2027-03-31",
+     "n": 630,
+     "drugs": [
+      "BGB-B2033",
+      "Tislelizumab",
+      "Bevacizumab"
+     ],
+     "forDrug": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "countries": [
+      "United States",
+      "Brazil",
+      "China",
+      "France",
+      "Italy",
+      "Japan"
+     ],
+     "nCountries": 9,
+     "china": "some"
+    },
+    {
+     "nct": "NCT06847334",
+     "sponsor": "Shanghai Henlius Biotech",
+     "title": "A Study to Compare the Efficacy, Safety, Immunogenicity, and Pharmacokinetic Profile of HLX17 Vs. Keytruda® in the First-Line Treatment of Advanced Non-squamous",
+     "ph": "Phase III",
+     "pcd": "2027-04-09",
+     "n": 772,
+     "drugs": [
+      "HLX17",
+      "US-sourced Keytruda®",
+      "EU-sourced Keytruda®"
+     ],
+     "forDrug": "IDE849",
+     "ind": "Small-cell Lung Cancer",
+     "countries": [],
+     "nCountries": 0,
+     "china": null
+    }
+   ],
+   "burnPrior": 8.52,
    "debtDue24": 0,
    "raise": {
     "capacity": "atm",
@@ -7102,19 +9504,15 @@
     }
    },
    "quote": {
-    "price": 31.75,
+    "price": 31.33,
     "prev": 31.64,
-    "chg": 0.11,
-    "chgPct": 0.35,
+    "chg": -0.31,
+    "chgPct": -0.98,
     "hi52": 42.68,
     "lo52": 26.81,
-    "volume": 790569,
+    "volume": 1887988,
     "date": "2026-11-03",
     "history": [
-     [
-      "2025-11-03",
-      31.36
-     ],
      [
       "2025-11-04",
       30.48
@@ -8114,14 +10512,18 @@
      [
       "2026-11-02",
       31.64
-     ],
-     [
-      "2026-11-03",
-      31.75
      ]
     ]
    },
    "news": [
+    {
+     "date": "2026-11-03",
+     "time": "2026-11-03T21:00:36.000Z",
+     "form": "10-Q",
+     "formLabel": "Quarterly report",
+     "headline": "Ideaya Biosciences files its quarterly report",
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526445294/idya-20260930.htm"
+    },
     {
      "date": "2026-11-03",
      "time": "2026-11-03T13:04:27.000Z",
@@ -8193,33 +10595,25 @@
      "formLabel": "Current report",
      "headline": "Ideaya Biosciences makes a company announcement",
      "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526251399/d138848d8k.htm"
-    },
-    {
-     "date": "2026-05-05",
-     "time": "2026-05-05T21:21:54.000Z",
-     "form": "8-K",
-     "formLabel": "Current report",
-     "headline": "Ideaya Biosciences makes a company announcement",
-     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526206806/d949251d8k.htm"
     }
    ],
    "cashFlowPositive": false,
    "src": {
     "cik": "1676725",
-    "asOf": "2026-06-30",
+    "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
      "MarketableSecuritiesCurrent",
      "MarketableSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
-    "sharesAsOf": "2026-07-31",
+    "sharesAsOf": "2026-10-31",
     "filing": {
      "form": "10-Q",
-     "date": "2026-08-04",
-     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526332774/idya-20260630.htm"
+     "date": "2026-11-03",
+     "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526445294/idya-20260930.htm"
     },
-    "price": 31.75,
+    "price": 31.33,
     "priceDate": "2026-11-03",
     "priceSource": "Yahoo Finance",
     "sponsor": "IDEAYA Biosciences",
@@ -8236,8 +10630,8 @@
    "t": "KYMR",
    "n": "Kymera Therapeutics",
    "area": "Immunology",
-   "mcap": 11011.2,
-   "ev": 9365.3,
+   "mcap": 10849.9,
+   "ev": 9204,
    "cash": 1645.9,
    "debt": 0,
    "burn": 23.96,
@@ -8266,16 +10660,82 @@
      "est": true,
      "nct": "NCT07217015",
      "trials": 6,
-     "activeTrials": 4
+     "activeTrials": 4,
+     "status": "ACTIVE_NOT_RECRUITING",
+     "trial": {
+      "nct": "NCT07217015",
+      "title": "A Study of KT-621 Administered Orally to Participants With Moderate to Severe Atopic Dermatitis",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "ext": false,
+      "n": 200,
+      "nType": "ESTIMATED",
+      "alloc": "RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "TRIPLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR"
+      ],
+      "primary": "Change from baseline in Eczema Area and Severity Index (EASI) score",
+      "primaryCount": 1,
+      "sites": 61,
+      "countries": [
+       "United States",
+       "Australia",
+       "Canada",
+       "Czechia",
+       "Germany",
+       "Japan",
+       "Poland",
+       "South Korea"
+      ],
+      "start": "2025-11-24",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-10-06"
+     },
+     "modality": "Small molecule",
+     "area": "Autoimmune",
+     "slips": 0,
+     "window": {
+      "lo": "2027-06-30",
+      "hi": "2027-12-29",
+      "mid": "2027-09-29",
+      "reg": "2027-06-15",
+      "width": 6,
+      "basis": "Registry estimate",
+      "why": [
+       "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [],
+      "points": 0,
+      "level": "No flags"
+     },
+     "odds": {
+      "loa": 0.1873,
+      "base": 0.1929,
+      "area": "Autoimmune",
+      "modality": "Small molecule",
+      "factors": [
+       "Small molecule"
+      ]
+     }
     }
    ],
    "catalysts": [
     {
-     "date": "2027-06-15",
+     "date": "2027-09-29",
      "kind": "readout",
      "drug": "KT-621",
      "est": true,
-     "label": "KT-621 Phase II primary completion (registry estimate)"
+     "lo": "2027-06-30",
+     "hi": "2027-12-29",
+     "reg": "2027-06-15",
+     "nct": "NCT07217015",
+     "label": "KT-621 Phase II data (estimated)"
     },
     {
      "date": "2027-01-28",
@@ -8487,6 +10947,286 @@
      "runway": 68.7
     }
    ],
+   "revQ": [
+    [
+     "2023-12-31",
+     47.9
+    ],
+    [
+     "2024-03-31",
+     10.3
+    ],
+    [
+     "2024-06-30",
+     25.7
+    ],
+    [
+     "2024-09-30",
+     3.7
+    ],
+    [
+     "2024-12-31",
+     7.4
+    ],
+    [
+     "2025-03-31",
+     22.1
+    ],
+    [
+     "2025-06-30",
+     11.5
+    ],
+    [
+     "2025-09-30",
+     2.8
+    ],
+    [
+     "2025-12-31",
+     2.9
+    ],
+    [
+     "2026-03-31",
+     34.4
+    ],
+    [
+     "2026-06-30",
+     65
+    ],
+    [
+     "2026-09-30",
+     0
+    ]
+   ],
+   "rivals": [
+    {
+     "nct": "NCT05995964",
+     "sponsor": "Pfizer",
+     "title": "A Study To Learn About Two Study Medicines (PF-07275315 And PF-07264660) In People Who Have Moderate To Severe Atopic Dermatitis",
+     "ph": "Phase II",
+     "pcd": "2026-11-12",
+     "n": 507,
+     "drugs": [
+      "PF-07275315",
+      "PF-07264660"
+     ],
+     "forDrug": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "countries": [
+      "United States",
+      "Australia",
+      "Canada",
+      "China",
+      "Germany",
+      "Japan"
+     ],
+     "nCountries": 7,
+     "china": "some"
+    },
+    {
+     "nct": "NCT07230860",
+     "sponsor": "Janssen Research & Development, LLC",
+     "title": "A Study of JNJ-95597528 in Participants With Moderate to Severe Atopic Dermatitis",
+     "ph": "Phase II",
+     "pcd": "2026-11-19",
+     "n": 189,
+     "drugs": [
+      "JNJ-95597528"
+     ],
+     "forDrug": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "countries": [
+      "United States",
+      "Argentina",
+      "Brazil",
+      "Canada",
+      "China",
+      "Germany"
+     ],
+     "nCountries": 9,
+     "china": "some"
+    },
+    {
+     "nct": "NCT06775860",
+     "sponsor": "Beijing InnoCare Pharma Tech Co., Ltd.",
+     "title": "ICP-332 in Subjects With Moderate to Severe Atopic Dermatitis",
+     "ph": "Phase III",
+     "pcd": "2026-11-25",
+     "n": 552,
+     "drugs": [
+      "ICP-332"
+     ],
+     "forDrug": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT07298395",
+     "sponsor": "Enveda Therapeutics",
+     "title": "Study of ENV-294 in Adults With Moderate-to-Severe Atopic Dermatitis",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 105,
+     "drugs": [
+      "ENV-294"
+     ],
+     "forDrug": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT07173478",
+     "sponsor": "Otsuka Pharmaceutical Co., Ltd.",
+     "title": "A Phase 3 Trial to Demonstrate the Superiority of 1% OPA-15406 Foam to the Vehicle in Adult Patients With Atopic Dermatitis",
+     "ph": "Phase III",
+     "pcd": "2026-12-15",
+     "n": 156,
+     "drugs": [
+      "OPA-15406"
+     ],
+     "forDrug": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "countries": [
+      "Japan"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT06094179",
+     "sponsor": "Bio-Thera Solutions",
+     "title": "Evaluate the Safety, Tolerability of BAT6026",
+     "ph": "Phase II",
+     "pcd": "2026-12-31",
+     "n": 33,
+     "drugs": [
+      "Monoclonal antibody BAT6026",
+      "sodium chloride"
+     ],
+     "forDrug": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT07540442",
+     "sponsor": "Shanghai Mabgeek Biotech.Co.Ltd",
+     "title": "A Phase III Study of MG-K10 in Adolescents With Moderate-to-Severe Atopic Dermatitis",
+     "ph": "Phase III",
+     "pcd": "2027-01-05",
+     "n": 180,
+     "drugs": [
+      "MG-K10"
+     ],
+     "forDrug": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT06701331",
+     "sponsor": "AbbVie",
+     "title": "Safety and Efficacy of Upadacitinib in Combination With Topical Corticosteroids in Children From 2 to Less Than 12 Years of Age in Japan With Moderate to Severe",
+     "ph": "Phase III",
+     "pcd": "2027-01-15",
+     "n": 99,
+     "drugs": [
+      "Upadacitinib"
+     ],
+     "forDrug": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "countries": [
+      "Japan"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT07355075",
+     "sponsor": "Turn Therapeutics",
+     "title": "A Double-Blind, Randomized, Vehicle-Controlled Phase 2 Study to Assess the Efficacy and Safety of GX-03 in Adult Subjects With Moderate to Severe Atopic Dermati",
+     "ph": "Phase III",
+     "pcd": "2027-01-20",
+     "n": 190,
+     "drugs": [
+      "GX-03"
+     ],
+     "forDrug": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT07465120",
+     "sponsor": "Dermavon Holdings Limited",
+     "title": "A Multicenter, Randomized, Double-Blind, Placebo-Controlled, Phase Ⅱ Clinical Study to Evaluate the Efficacy and Safety of CMS-D001 in Adult Patients With Moder",
+     "ph": "Phase II",
+     "pcd": "2027-01-31",
+     "n": 160,
+     "drugs": [
+      "CMS-D001"
+     ],
+     "forDrug": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT07184645",
+     "sponsor": "Otsuka Pharmaceutical Co., Ltd.",
+     "title": "A Phase 3 Trial of OPA-15406 Foam in Children and Infants With Atopic Dermatitis",
+     "ph": "Phase III",
+     "pcd": "2027-02-15",
+     "n": 198,
+     "drugs": [
+      "OPA-15406"
+     ],
+     "forDrug": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "countries": [
+      "Japan"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT07106372",
+     "sponsor": "Keymed Biosciences Co.Ltd",
+     "title": "A Study of Stapokibatrt in Children Subjects With Atopic Dermatitis",
+     "ph": "Phase III",
+     "pcd": "2027-02-15",
+     "n": 240,
+     "drugs": [
+      "Stapokibatrt"
+     ],
+     "forDrug": "KT-621",
+     "ind": "Atopic Dermatitis",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    }
+   ],
    "burnPrior": 18.99,
    "debtDue24": 0,
    "raise": {
@@ -8504,19 +11244,15 @@
     }
    },
    "quote": {
-    "price": 128.98,
+    "price": 127.09,
     "prev": 127.51,
-    "chg": 1.47,
-    "chgPct": 1.15,
+    "chg": -0.42,
+    "chgPct": -0.33,
     "hi52": 133.88,
     "lo52": 55.66,
-    "volume": 638267,
+    "volume": 1395208,
     "date": "2026-11-03",
     "history": [
-     [
-      "2025-11-03",
-      59.72
-     ],
      [
       "2025-11-04",
       59.91
@@ -9516,10 +12252,6 @@
      [
       "2026-11-02",
       127.51
-     ],
-     [
-      "2026-11-03",
-      128.98
      ]
     ]
    },
@@ -9621,7 +12353,7 @@
      "date": "2026-10-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312526436975/kymr-20260930.htm"
     },
-    "price": 128.98,
+    "price": 127.09,
     "priceDate": "2026-11-03",
     "priceSource": "Yahoo Finance",
     "sponsor": "Kymera Therapeutics",
@@ -9638,8 +12370,8 @@
    "t": "DYN",
    "n": "Dyne Therapeutics",
    "area": "Neuromuscular",
-   "mcap": 3346.5,
-   "ev": 2647.3,
+   "mcap": 3370.8,
+   "ev": 2671.6,
    "cash": 898.5,
    "debt": 199.3,
    "burn": 39.82,
@@ -9668,7 +12400,71 @@
      "est": true,
      "nct": "NCT07608432",
      "trials": 2,
-     "activeTrials": 2
+     "activeTrials": 2,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT07608432",
+      "title": "Efficacy, Safety, and Tolerability of Zeleciment Rostudirsen (DYNE-251) Administered Intravenously Every 4 Weeks in Ambulatory Participants With Duchenne Muscular Dystrophy (FORZETTO)",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 90,
+      "nType": "ESTIMATED",
+      "alloc": "RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "QUADRUPLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR",
+       "EXPERIMENTAL"
+      ],
+      "primary": "Rise From Floor (RFF) velocity",
+      "primaryCount": 1,
+      "sites": 1,
+      "countries": [
+       "United States"
+      ],
+      "start": "2026-06",
+      "startType": "ESTIMATED",
+      "lastUpdate": "2026-05-27"
+     },
+     "modality": "Antisense",
+     "area": "Neurology",
+     "rare": true,
+     "biomarker": true,
+     "slips": 0,
+     "window": {
+      "lo": "2030-12-30",
+      "hi": "2031-09-30",
+      "mid": "2031-05-16",
+      "reg": "2030-12-15",
+      "width": 9,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [
+       {
+        "sev": "low",
+        "label": "Few trial sites",
+        "detail": "1 site. Results from very few centers can be harder to reproduce."
+       }
+      ],
+      "points": 1,
+      "level": "Minor flags"
+     },
+     "odds": {
+      "loa": 0.7801,
+      "base": 0.867,
+      "area": "Neurology",
+      "modality": "Antisense",
+      "factors": [
+       "Antisense",
+       "Rare disease",
+       "Patients selected by biomarker"
+      ]
+     }
     },
     {
      "d": "z-basivarsen (DYNE-101)",
@@ -9686,17 +12482,76 @@
      "est": true,
      "nct": "NCT07486934",
      "trials": 2,
-     "activeTrials": 2
+     "activeTrials": 2,
+     "status": "RECRUITING",
+     "trial": {
+      "nct": "NCT07486934",
+      "title": "Efficacy, Safety, and Tolerability of Zeleciment Basivarsen (DYNE-101) in Participants With Myotonic Dystrophy Type 1",
+      "status": "RECRUITING",
+      "ext": false,
+      "n": 150,
+      "nType": "ESTIMATED",
+      "alloc": "RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "QUADRUPLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR",
+       "EXPERIMENTAL"
+      ],
+      "primary": "5 Times Sit-To-Stand (5×STS) Time",
+      "primaryCount": 1,
+      "sites": 43,
+      "countries": [
+       "United States",
+       "Australia",
+       "Belgium",
+       "Denmark",
+       "France",
+       "Germany",
+       "Italy",
+       "Japan",
+       "Netherlands",
+       "Spain",
+       "United Kingdom"
+      ],
+      "start": "2026-05-14",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-10-13"
+     },
+     "modality": "Antisense",
+     "area": "Neurology",
+     "rare": true,
+     "slips": 0,
+     "window": {
+      "lo": "2028-07-30",
+      "hi": "2029-07-30",
+      "mid": "2029-01-28",
+      "reg": "2028-07-15",
+      "width": 12,
+      "basis": "Registry estimate",
+      "why": [
+       "Still enrolling, and enrolling trials often finish late (+9 months on the late end)."
+      ]
+     },
+     "flags": {
+      "flags": [],
+      "points": 0,
+      "level": "No flags"
+     },
+     "odds": {
+      "loa": 0.4213,
+      "base": 0.4604,
+      "area": "Neurology",
+      "modality": "Antisense",
+      "factors": [
+       "Antisense",
+       "Rare disease"
+      ]
+     }
     }
    ],
    "catalysts": [
-    {
-     "date": "2028-07-15",
-     "kind": "readout",
-     "drug": "z-basivarsen (DYNE-101)",
-     "est": true,
-     "label": "z-basivarsen (DYNE-101) Phase III primary completion (registry estimate)"
-    },
     {
      "date": "2027-01-27",
      "kind": "earnings",
@@ -9920,6 +12775,143 @@
      "runway": 22.6
     }
    ],
+   "revQ": [],
+   "rivals": [
+    {
+     "nct": "NCT05004129",
+     "sponsor": "AMO Pharma Limited",
+     "title": "Safety and Efficacy of Tideglusib in Congenital or Childhood Onset Myotonic Dystrophy",
+     "ph": "Phase III",
+     "pcd": "2026-12-31",
+     "n": 76,
+     "drugs": [
+      "Tideglusib"
+     ],
+     "forDrug": "z-basivarsen (DYNE-101)",
+     "ind": "Myotonic dystrophy type 1",
+     "countries": [
+      "United States",
+      "Australia",
+      "Canada",
+      "New Zealand"
+     ],
+     "nCountries": 4,
+     "china": null
+    },
+    {
+     "nct": "NCT06138743",
+     "sponsor": "Sarepta Therapeutics, Inc.",
+     "title": "Study of SRP-1003 in Participants With Type 1 Myotonic Dystrophy",
+     "ph": "Phase II",
+     "pcd": "2026-12-31",
+     "n": 78,
+     "drugs": [
+      "SRP-1003"
+     ],
+     "forDrug": "z-basivarsen (DYNE-101)",
+     "ind": "Myotonic dystrophy type 1",
+     "countries": [
+      "Australia",
+      "Belgium",
+      "Canada",
+      "France",
+      "Germany",
+      "Italy"
+     ],
+     "nCountries": 11,
+     "china": null
+    },
+    {
+     "nct": "NCT06185764",
+     "sponsor": "Vertex Pharmaceuticals Incorporated",
+     "title": "A Phase 1/2 Study of VX-670 in Adult Participants With Myotonic Dystrophy 1 (DM1)",
+     "ph": "Phase II",
+     "pcd": "2027-02-02",
+     "n": 47,
+     "drugs": [
+      "VX-670"
+     ],
+     "forDrug": "z-basivarsen (DYNE-101)",
+     "ind": "Myotonic dystrophy type 1",
+     "countries": [
+      "United States",
+      "Australia",
+      "Belgium",
+      "Canada",
+      "France",
+      "Germany"
+     ],
+     "nCountries": 10,
+     "china": null
+    },
+    {
+     "nct": "NCT06667453",
+     "sponsor": "PepGen Inc",
+     "title": "A Clinical Study of PGN-EDODM1 in People With Myotonic Dystrophy Type 1",
+     "ph": "Phase II",
+     "pcd": "2027-03-15",
+     "n": 24,
+     "drugs": [
+      "PGN-EDODM1"
+     ],
+     "forDrug": "z-basivarsen (DYNE-101)",
+     "ind": "Myotonic dystrophy type 1",
+     "countries": [
+      "Canada",
+      "New Zealand",
+      "South Korea",
+      "United Kingdom"
+     ],
+     "nCountries": 4,
+     "china": null
+    },
+    {
+     "nct": "NCT06523400",
+     "sponsor": "Lupin Ltd.",
+     "title": "The Efficacy and Safety of Once Daily Mexiletine PR in Patients With Myotonic Dystrophy Type 1 and Type 2",
+     "ph": "Phase III",
+     "pcd": "2027-06-15",
+     "n": 176,
+     "drugs": [
+      "Mexiletine granules for prolonged-release"
+     ],
+     "forDrug": "z-basivarsen (DYNE-101)",
+     "ind": "Myotonic dystrophy type 1",
+     "countries": [
+      "Belgium",
+      "Denmark",
+      "Germany",
+      "Italy",
+      "Spain",
+      "United Kingdom"
+     ],
+     "nCountries": 6,
+     "china": null
+    },
+    {
+     "nct": "NCT06300307",
+     "sponsor": "ARTHEx Biotech S.L.",
+     "title": "Study of ATX-01 in Participants With DM1",
+     "ph": "Phase II",
+     "pcd": "2027-07-15",
+     "n": 56,
+     "drugs": [
+      "ATX-01"
+     ],
+     "forDrug": "z-basivarsen (DYNE-101)",
+     "ind": "Myotonic dystrophy type 1",
+     "countries": [
+      "United States",
+      "Canada",
+      "France",
+      "Italy",
+      "Netherlands",
+      "Spain"
+     ],
+     "nCountries": 7,
+     "china": null
+    }
+   ],
    "burnPrior": 29.96,
    "debtDue24": 0,
    "raise": {
@@ -9937,19 +12929,15 @@
     }
    },
    "quote": {
-    "price": 17.92,
+    "price": 18.05,
     "prev": 17.3,
-    "chg": 0.62,
-    "chgPct": 3.58,
+    "chg": 0.75,
+    "chgPct": 4.34,
     "hi52": 27.31,
     "lo52": 14,
-    "volume": 928345,
+    "volume": 2815818,
     "date": "2026-11-03",
     "history": [
-     [
-      "2025-11-03",
-      24.11
-     ],
      [
       "2025-11-04",
       21.52
@@ -10949,10 +13937,6 @@
      [
       "2026-11-02",
       17.3
-     ],
-     [
-      "2026-11-03",
-      17.92
      ]
     ]
    },
@@ -11053,7 +14037,7 @@
      "date": "2026-07-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312526323639/dyn-20260630.htm"
     },
-    "price": 17.92,
+    "price": 18.05,
     "priceDate": "2026-11-03",
     "priceSource": "Yahoo Finance",
     "sponsor": "Dyne Therapeutics",
@@ -11070,8 +14054,8 @@
    "t": "VERA",
    "n": "Vera Therapeutics",
    "area": "Nephrology",
-   "mcap": 2226,
-   "ev": 1802.1,
+   "mcap": 2213.1,
+   "ev": 1789.1,
    "cash": 499.2,
    "debt": 75.2,
    "burn": 28.22,
@@ -11100,7 +14084,64 @@
      "est": true,
      "nct": "NCT04716231",
      "trials": 5,
-     "activeTrials": 4
+     "activeTrials": 4,
+     "status": "ACTIVE_NOT_RECRUITING",
+     "trial": {
+      "nct": "NCT04716231",
+      "title": "Atacicept in Subjects With IgA Nephropathy",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "ext": false,
+      "n": 428,
+      "nType": "ACTUAL",
+      "alloc": "RANDOMIZED",
+      "model": "PARALLEL",
+      "masking": "DOUBLE",
+      "arms": [
+       "EXPERIMENTAL",
+       "PLACEBO_COMPARATOR"
+      ],
+      "primary": "Percentage Change From Baseline in Urine Protein to Creatinine Ratio (UPCR)",
+      "primaryCount": 1,
+      "sites": 1,
+      "countries": [
+       "United States"
+      ],
+      "start": "2023-06-29",
+      "startType": "ACTUAL",
+      "lastUpdate": "2026-10-01"
+     },
+     "modality": "Fusion protein",
+     "area": "Other (incl. renal, dermatology)",
+     "pathway": "BLA",
+     "rare": true,
+     "approval": "2026-07-07",
+     "slips": 0,
+     "window": {
+      "lo": "2026-11-04",
+      "hi": "2027-05-05",
+      "mid": "2027-02-03",
+      "reg": "2025-05-15",
+      "width": 6,
+      "basis": "Registry (actual completion)",
+      "why": [
+       "The trial's primary completion date is recorded as actual, so data usually follows within a few months.",
+       "The expected date has passed without an update, so the window restarts from today."
+      ]
+     },
+     "flags": {
+      "flags": [],
+      "points": 0,
+      "level": "No flags"
+     },
+     "odds": {
+      "loa": 1,
+      "base": 1,
+      "area": "Other (incl. renal, dermatology)",
+      "modality": null,
+      "factors": [
+       "Rare disease"
+      ]
+     }
     }
    ],
    "catalysts": [
@@ -11307,6 +14348,245 @@
      "runway": 17.7
     }
    ],
+   "revQ": [],
+   "rivals": [
+    {
+     "nct": "NCT07616700",
+     "sponsor": "Haisco Pharmaceutical Group Co., Ltd.",
+     "title": "A Study to Evaluate the Long-Term Safety and Efficacy of HSK39297 Tablets in Primary IgA Nephropathy",
+     "ph": "Phase II",
+     "pcd": "2026-12-05",
+     "n": 73,
+     "drugs": [
+      "HSK39297"
+     ],
+     "forDrug": "Trutakna (atacicept)",
+     "ind": "IgA Nephropathy",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT06786338",
+     "sponsor": "Suzhou Sanegene Bio Inc.",
+     "title": "A Study of SGB-9768 in Patients With Complement-mediated Kidney Diseases",
+     "ph": "Phase II",
+     "pcd": "2026-12-29",
+     "n": 45,
+     "drugs": [
+      "SGB-9768"
+     ],
+     "forDrug": "Trutakna (atacicept)",
+     "ind": "IgA Nephropathy",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT06819826",
+     "sponsor": "Biocity Biopharmaceutics Co., Ltd.",
+     "title": "A Study of SC0062 Capsule for the Treatment of IgA Nephropathy with Proteinuria",
+     "ph": "Phase III",
+     "pcd": "2026-12-31",
+     "n": 360,
+     "drugs": [
+      "SC0062"
+     ],
+     "forDrug": "Trutakna (atacicept)",
+     "ind": "IgA Nephropathy",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT05003986",
+     "sponsor": "Travere Therapeutics, Inc.",
+     "title": "Study of Sparsentan Treatment in Pediatrics With Proteinuric Glomerular Diseases",
+     "ph": "Phase II",
+     "pcd": "2027-03-12",
+     "n": 67,
+     "drugs": [
+      "Sparsentan"
+     ],
+     "forDrug": "Trutakna (atacicept)",
+     "ind": "IgA Nephropathy",
+     "countries": [
+      "United States",
+      "Germany",
+      "Italy",
+      "Netherlands",
+      "Poland",
+      "Spain"
+     ],
+     "nCountries": 8,
+     "china": null
+    },
+    {
+     "nct": "NCT06830395",
+     "sponsor": "Keymed Biosciences Co.Ltd",
+     "title": "Study of CM313 in Subject With IgA Nephropathy",
+     "ph": "Phase II",
+     "pcd": "2027-03-15",
+     "n": 106,
+     "drugs": [
+      "CM313"
+     ],
+     "forDrug": "Trutakna (atacicept)",
+     "ind": "IgA Nephropathy",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT06466135",
+     "sponsor": "Walden Biosciences",
+     "title": "Study of WAL0921 in Patients With Glomerular Kidney Diseases",
+     "ph": "Phase II",
+     "pcd": "2027-03-15",
+     "n": 96,
+     "drugs": [
+      "WAL0921"
+     ],
+     "forDrug": "Trutakna (atacicept)",
+     "ind": "IgA Nephropathy",
+     "countries": [
+      "United States",
+      "Australia",
+      "India",
+      "Malaysia",
+      "South Korea",
+      "Sri Lanka"
+     ],
+     "nCountries": 7,
+     "china": null
+    },
+    {
+     "nct": "NCT07354932",
+     "sponsor": "Guangdong Hengrui Pharmaceutical Co., Ltd",
+     "title": "A Study of SHR-2173 in Participants With Primary IgA Nephropathy",
+     "ph": "Phase II",
+     "pcd": "2027-04-15",
+     "n": 84,
+     "drugs": [
+      "SHR-2173"
+     ],
+     "forDrug": "Trutakna (atacicept)",
+     "ind": "IgA Nephropathy",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT06935357",
+     "sponsor": "Biogen",
+     "title": "A Study to Learn About the Effects of Felzartamab Infusions on Adults With Immunoglobulin A Nephropathy (IgAN)",
+     "ph": "Phase III",
+     "pcd": "2027-05-31",
+     "n": 454,
+     "drugs": [
+      "Felzartamab"
+     ],
+     "forDrug": "Trutakna (atacicept)",
+     "ind": "IgA Nephropathy",
+     "countries": [
+      "United States",
+      "Argentina",
+      "Australia",
+      "Belgium",
+      "Brazil",
+      "Bulgaria"
+     ],
+     "nCountries": 28,
+     "china": "some"
+    },
+    {
+     "nct": "NCT05775042",
+     "sponsor": "Keymed Biosciences Co.Ltd",
+     "title": "Clinical Study of CM338 in the Treatment of Immunoglobulin A Nephropathy",
+     "ph": "Phase II",
+     "pcd": "2027-06-30",
+     "n": 70,
+     "drugs": [
+      "CM338"
+     ],
+     "forDrug": "Trutakna (atacicept)",
+     "ind": "IgA Nephropathy",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT07606352",
+     "sponsor": "Sitala Bio LTD",
+     "title": "Safety and Efficacy of STL303 In Patients With Primary Immunoglobulin A (IgA) Nephropathy",
+     "ph": "Phase II",
+     "pcd": "2027-07-15",
+     "n": 15,
+     "drugs": [
+      "STL303"
+     ],
+     "forDrug": "Trutakna (atacicept)",
+     "ind": "IgA Nephropathy",
+     "countries": [
+      "Australia"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT05852938",
+     "sponsor": "Novartis Pharmaceuticals",
+     "title": "A Study of Zigakibart in Adults With IgA Nephropathy",
+     "ph": "Phase III",
+     "pcd": "2027-08-10",
+     "n": 383,
+     "drugs": [
+      "BION-1301"
+     ],
+     "forDrug": "Trutakna (atacicept)",
+     "ind": "IgA Nephropathy",
+     "countries": [
+      "United States",
+      "Argentina",
+      "Australia",
+      "Belgium",
+      "Brazil",
+      "Canada"
+     ],
+     "nCountries": 23,
+     "china": "some"
+    },
+    {
+     "nct": "NCT06774664",
+     "sponsor": "Sinocelltech Ltd.",
+     "title": "A Clinical Study of SCTC21C in Participants With Plasma Cell-driven Autoimmune Diseases",
+     "ph": "Phase II",
+     "pcd": "2027-09-15",
+     "n": 99,
+     "drugs": [
+      "SCTC21C"
+     ],
+     "forDrug": "Trutakna (atacicept)",
+     "ind": "IgA Nephropathy",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    }
+   ],
    "burnPrior": 15.44,
    "debtDue24": 0,
    "raise": {
@@ -11324,19 +14604,15 @@
     }
    },
    "quote": {
-    "price": 30.89,
+    "price": 30.71,
     "prev": 30.25,
-    "chg": 0.64,
-    "chgPct": 2.12,
+    "chg": 0.46,
+    "chgPct": 1.52,
     "hi52": 56.05,
     "lo52": 23.05,
-    "volume": 732843,
+    "volume": 1578039,
     "date": "2026-11-03",
     "history": [
-     [
-      "2025-11-03",
-      25.94
-     ],
      [
       "2025-11-04",
       24.35
@@ -12336,10 +15612,6 @@
      [
       "2026-11-02",
       30.25
-     ],
-     [
-      "2026-11-03",
-      30.89
      ]
     ]
    },
@@ -12440,7 +15712,7 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312526342380/vera-20260630.htm"
     },
-    "price": 30.89,
+    "price": 30.71,
     "priceDate": "2026-11-03",
     "priceSource": "Yahoo Finance",
     "sponsor": "Vera Therapeutics",
