@@ -61,7 +61,7 @@ export function runwaySim(c, { quarters = 12, sims = 10000 } = {}) {
   const curve = outBy.map((k, q) => ({ m: (q + 1) * 3, p: k / sims }));
   const at = (m) => curve.find((x) => x.m === m)?.p ?? null;
   const med = pctile(ends, 0.5);
-  return { curve, p6: at(6), p12: at(12), p18: at(18), p24: at(24), median: isFinite(med) ? med : null, drift, vol, n, horizon: quarters * 3 };
+  return { curve, p6: at(6), p12: at(12), p18: at(18), p24: at(24), p36: at(36), median: isFinite(med) ? med : null, drift, vol, n, horizon: quarters * 3 };
 }
 
 /* ----------------------------- valuation ----------------------------- */

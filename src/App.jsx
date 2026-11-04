@@ -1896,15 +1896,15 @@ function SurvivalMonitor({ go }) {
         <span className="ph-note">The chance each company would run out of cash, from 10,000 simulated burn paths with no new money. The higher it is, the sooner a raise is likely.</span></header>
       <div className="tablewrap">
         <table className="grid">
-          <thead><tr><th>Company</th><th className="r">Cash left</th><th className="r">Out within 12 months</th><th className="r">18 months</th><th className="r">24 months</th><th className="r">Financing pressure</th></tr></thead>
+          <thead><tr><th>Company</th><th className="r">Cash left</th><th className="r">Out within 18 months</th><th className="r">24 months</th><th className="r">36 months</th><th className="r">Financing pressure</th></tr></thead>
           <tbody>
             {rows.map(({ c, s }) => (
               <tr key={c.t} onClick={() => go("company", c.t, "pressure")}>
                 <td><b>{c.t}</b><span className="sub">{c.n}</span></td>
-                <td className="r">{c.cashFlowPositive ? "Cash flow positive" : `${num(fpsOf(c).runway, 1)} months`}</td>
-                <td className="r">{s ? pctW(s.p12) : "—"}</td>
+                <td className="r">{c.cashFlowPositive ? "Cash flow positive" : mo(fpsOf(c).runway)}</td>
                 <td className="r"><b>{s ? pctW(s.p18) : "—"}</b></td>
                 <td className="r">{s ? pctW(s.p24) : "—"}</td>
+                <td className="r">{s ? pctW(s.p36) : "—"}</td>
                 <td className="r"><BandBadge c={c} /></td>
               </tr>
             ))}
