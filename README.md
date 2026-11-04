@@ -25,9 +25,9 @@ Helixora's signature metric: one number from 0 to 100 for one question, *how lik
 | Market access | 10% | Annual burn as a share of market value |
 | Pipeline concentration | 10% | Number of clinical programs |
 
-Bands: 0–39 Low, 40–69 Elevated, 70–100 High. The formula lives in `src/fps.js`, which both the site and the nightly data job use, and the site's Methodology page is generated from it. Change the weights there and add an entry to `FPS_CHANGELOG`.
+Bands: 0–39 Low, 40–69 Elevated, 70–100 High. The formula lives in `src/fps.js`, which both the site and the nightly data job use, and the site's About us page is generated from it. Change the weights there and add an entry to `FPS_CHANGELOG`.
 
-Every weekday the data job appends each company's score to `public/data/fps-history.json`. The Methodology page turns that into the public track record: every company that reaches 70, and whether it filed an offering (424B4/424B5) within six months.
+Every weekday the data job appends each company's score to `public/data/fps-history.json`. The About us page turns that into the public track record: every company that reaches 70, and whether it filed an offering (424B4/424B5) within six months.
 
 ## Waitlist
 

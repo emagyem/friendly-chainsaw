@@ -1260,7 +1260,7 @@ function Ask() {
 
 /* ------------------------- financing pressure -------------------------
    The Financing Pressure Score (see src/fps.js) and everything built on it:
-   the Raise List, the Pressure Report, the methodology page, the public
+   the Raise List, the Pressure Report, the About us page, the public
    track record and the waitlist.                                        */
 
 const FPS_CACHE = new Map();
@@ -2515,13 +2515,32 @@ const JUDGED = [
   ["Equity value range", "How much the range moves when each assumption changes", "Published for each company"],
 ];
 
-function About({ go }) {
+// One page for who Helixora is and how it works (the former About and Methodology pages).
+const ABOUT_SECTIONS = [["problem", "The problem"], ["compare", "How it compares"], ["score", "The score"], ["coverage", "Coverage"], ["track", "Track record"], ["roadmap", "Roadmap"], ["sources", "Sources"]];
+
+function About({ go, anchor }) {
   const rr = useMemo(() => raiseRunway(COMPANIES), []);
+  const jump = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  useEffect(() => { if (anchor) setTimeout(() => jump(anchor), 80); }, [anchor]);
   return (
-    <div className="stack">
+    <div className="stack about">
       <section className="panel report-head">
-        <p className="kicker-static">About Helixora</p>
-        <h1 className="report-h">Biotech investors keep getting hit by stock offerings they could have seen coming.</h1>
+        <p className="kicker-static">About us</p>
+        <h1 className="report-h">The platform that tells you who has to raise money, and when.</h1>
+        <p className="lead-dek">Catalyst calendars show dates. Enterprise terminals cost a fortune. Helixora connects cash, catalysts and the capacity to raise capital, for funds, family offices and serious independent investors, with every number traced to its filing.</p>
+        <nav className="toc" aria-label="On this page">
+          {ABOUT_SECTIONS.map(([id, l]) => <button key={id} onClick={() => jump(id)}>{l}</button>)}
+        </nav>
+      </section>
+
+      <section className="pillars">
+        {PILLARS.map(([h, m, p]) => (
+          <div key={h} className="pillar"><h3>{h}</h3><p>{m}</p><span>{p}</span></div>
+        ))}
+      </section>
+
+      <section className="panel" id="problem">
+        <header className="ph"><h2>Biotech investors keep getting hit by stock offerings they could have seen coming.</h2></header>
         <p className="prose">Clinical-stage biotechs burn cash and earn little, so most of them sell new shares again and again. Each raise dilutes existing shareholders, often at a discount. The warning signs are public, but they sit in three different places, and almost nobody lines them up in time.</p>
         <div className="three">
           <div className="metric"><span>How much cash is left</span><b className="three-b">The quarterly report</b><em>10-Q and 10-K filings on SEC EDGAR</em></div>
@@ -2535,7 +2554,7 @@ function About({ go }) {
         <p className="prose">Helixora puts those three pieces side by side and answers one question for every company: <b>does the cash run out before the next big readout or FDA decision, and can the company sell stock quickly when it wants to?</b> The answer is the Financing Pressure Score, from 0 to 100. Every number links to the filing it came from, and the formula is public.</p>
         <div className="id-ctas" style={{ marginTop: 6 }}>
           <button className="btn primary" onClick={() => go("report")}>See today's Pressure Report</button>
-          <button className="btn" onClick={() => go("method")}>How the score works</button>
+          <button className="btn" onClick={() => jump("score")}>How the score works</button>
         </div>
       </section>
 
@@ -2559,7 +2578,7 @@ function About({ go }) {
         </section>
       </div>
 
-      <section className="panel">
+      <section className="panel" id="compare">
         <header className="ph"><h2>How it compares</h2>
           <span className="ph-note">Other tools cover half of the question. Dilution trackers show how easily a company can raise; catalyst calendars show when its big day is. Helixora joins the two.</span></header>
         <div className="tablewrap">
@@ -2571,7 +2590,7 @@ function About({ go }) {
         <p className="colnote">Other tools are described from their public pages as of October 2026 and may have changed.</p>
       </section>
 
-      <section className="panel">
+      <section className="panel" id="problems">
         <header className="ph"><h2>The problems biotech investors face, and where Helixora is on each</h2>
           <span className="ph-note">Each now has a first version on the site, built from public data with its rules written out. Each card says what comes next.</span></header>
         <div className="probs">
@@ -2587,7 +2606,33 @@ function About({ go }) {
         </div>
       </section>
 
-      <section className="panel">
+      <section className="panel" id="score">
+        <header className="ph"><h2>The Financing Pressure Score</h2><span className="ph-note">Version {FPS_VERSION}, updated {fmtDate(FPS_UPDATED)}</span></header>
+        <p className="prose">One number from 0 to 100 for one question: how likely is a company to need new money before its next major catalyst? It describes a financing situation. It never says buy or sell.</p>
+        <div className="tablewrap">
+          <table className="grid plain">
+            <thead><tr><th>Component</th><th className="r">Weight</th><th>What it measures</th><th>How it is scored</th></tr></thead>
+            <tbody>{FPS_COMPONENTS.map((k) => <tr key={k.key}><td>{k.label}</td><td className="r mono">{Math.round(k.weight * 100)}%</td><td>{k.measures}</td><td className="sub-c">{k.rule}</td></tr>)}</tbody>
+          </table>
+        </div>
+        <div className="bands">
+          {FPS_BANDS.map((b) => <span key={b.label} className={"fps fps-" + b.label.toLowerCase()}><b>{b.min}–{b.max}</b><span>{b.label}</span></span>)}
+        </div>
+        <h3 className="subhead">Definitions</h3>
+        <dl className="facts defs">
+          <dt>Runway</dt><dd>Cash, cash equivalents and marketable securities divided by monthly operating cash burn. Burn is the trailing twelve months of operating cash flow from SEC filings, divided by twelve, which smooths out lumpy quarters.</dd>
+          <dt>Next catalyst</dt><dd>The next clinical or regulatory event: the middle of Helixora's estimated readout window for a trial (built from its ClinicalTrials.gov dates, status and history), or a date the company has guided to, such as a PDUFA date. Earnings, extension studies and readouts with overdue registry dates do not count. If nothing is dated, we assume {NO_CATALYST_MONTHS} months.</dd>
+          <dt>Gap</dt><dd>Runway minus (months to catalyst + a {BUFFER_MONTHS}-month buffer). The buffer reflects that companies rarely wait until the cash is gone to raise.</dd>
+          <dt>Raise-ready capacity</dt><dd>An at-the-market program is identified from a sales agreement disclosed in a prospectus supplement (424B5) or shelf registration (S-3) filed in the past three years. Each company page links to the filing used.</dd>
+          <dt>Missing data</dt><dd>If a component can't be calculated from filings, it is left out and the remaining weights are scaled up. The company page says which components were used.</dd>
+        </dl>
+        <p className="colnote">Weights are a starting hypothesis. We will backtest them against historical offerings and publish every change below.</p>
+      </section>
+
+      <div id="coverage" className="anchor"><CoveragePanel /></div>
+      <div id="track" className="anchor"><TrackRecord go={go} /></div>
+
+      <section className="panel" id="roadmap">
         <header className="ph"><h2>Where Helixora is going</h2>
           <span className="ph-note">The research question behind everything on this site.</span></header>
         <p className="finding">Can we tell when a small biotech's clinical prospects, its chance of surviving financially, or its capital structure imply a value very different from its share price?</p>
@@ -2631,8 +2676,23 @@ function About({ go }) {
         </ul>
       </section>
 
+      <div className="two" id="sources">
+        <section className="panel">
+          <header className="ph"><h2>Change log</h2></header>
+          <ul className="watch">{FPS_CHANGELOG.map((x) => <li key={x.version}><b>Version {x.version}, {fmtDate(x.date)}.</b> {x.note}</li>)}</ul>
+        </section>
+        <section className="panel">
+          <header className="ph"><h2>Sources</h2></header>
+          <ul className="watch">
+            <li><ExtLink href="https://www.sec.gov/search-filings/edgar-application-programming-interfaces">SEC EDGAR</ExtLink>: balance sheets, cash flows, share counts, offering filings, shelf registrations.</li>
+            <li><ExtLink href="https://clinicaltrials.gov/data-api/api">ClinicalTrials.gov</ExtLink>: trial phase, enrollment, endpoints and primary completion dates.</li>
+            <li>Yahoo Finance: previous closing prices, used for market value.</li>
+          </ul>
+        </section>
+      </div>
+
       <Waitlist />
-      <p className="disclaimer">Helixora publishes general research about companies' financing situations. It is not investment advice and does not recommend buying or selling any security.</p>
+      <p className="disclaimer">Helixora publishes general research about companies' financing situations. It is not investment advice, is not tailored to any reader, and does not recommend buying or selling any security.</p>
     </div>
   );
 }
@@ -2666,67 +2726,6 @@ function CoveragePanel() {
       )}
       <p className="colnote">Everyone who qualifies in the latest screen: <a className="src" href="/data/universe.json" target="_blank" rel="noreferrer">download</a>. Program labels (disease area, drug type, rare disease, biomarker) are set automatically from drug names and trial records; each program card shows how.</p>
     </section>
-  );
-}
-
-function Methodology({ go }) {
-  return (
-    <div className="stack">
-      <section className="panel report-head">
-        <p className="kicker-static">About Helixora</p>
-        <h1 className="report-h">The platform that tells you who has to raise money, and when.</h1>
-        <p className="lead-dek">Catalyst calendars show dates. Enterprise terminals cost a fortune. Helixora connects cash, catalysts and the capacity to raise capital, for funds, family offices and serious independent investors, with every number traced to its filing.</p>
-      </section>
-
-      <section className="pillars">
-        {PILLARS.map(([h, m, p]) => (
-          <div key={h} className="pillar"><h3>{h}</h3><p>{m}</p><span>{p}</span></div>
-        ))}
-      </section>
-
-      <section className="panel">
-        <header className="ph"><h2>The Financing Pressure Score</h2><span className="ph-note">Version {FPS_VERSION}, updated {fmtDate(FPS_UPDATED)}</span></header>
-        <p className="prose">One number from 0 to 100 for one question: how likely is a company to need new money before its next major catalyst? It describes a financing situation. It never says buy or sell.</p>
-        <div className="tablewrap">
-          <table className="grid plain">
-            <thead><tr><th>Component</th><th className="r">Weight</th><th>What it measures</th><th>How it is scored</th></tr></thead>
-            <tbody>{FPS_COMPONENTS.map((k) => <tr key={k.key}><td>{k.label}</td><td className="r mono">{Math.round(k.weight * 100)}%</td><td>{k.measures}</td><td className="sub-c">{k.rule}</td></tr>)}</tbody>
-          </table>
-        </div>
-        <div className="bands">
-          {FPS_BANDS.map((b) => <span key={b.label} className={"fps fps-" + b.label.toLowerCase()}><b>{b.min}–{b.max}</b><span>{b.label}</span></span>)}
-        </div>
-        <h3 className="subhead">Definitions</h3>
-        <dl className="facts defs">
-          <dt>Runway</dt><dd>Cash, cash equivalents and marketable securities divided by monthly operating cash burn. Burn is the trailing twelve months of operating cash flow from SEC filings, divided by twelve, which smooths out lumpy quarters.</dd>
-          <dt>Next catalyst</dt><dd>The next clinical or regulatory event: the middle of Helixora's estimated readout window for a trial (built from its ClinicalTrials.gov dates, status and history), or a date the company has guided to, such as a PDUFA date. Earnings, extension studies and readouts with overdue registry dates do not count. If nothing is dated, we assume {NO_CATALYST_MONTHS} months.</dd>
-          <dt>Gap</dt><dd>Runway minus (months to catalyst + a {BUFFER_MONTHS}-month buffer). The buffer reflects that companies rarely wait until the cash is gone to raise.</dd>
-          <dt>Raise-ready capacity</dt><dd>An at-the-market program is identified from a sales agreement disclosed in a prospectus supplement (424B5) or shelf registration (S-3) filed in the past three years. Each company page links to the filing used.</dd>
-          <dt>Missing data</dt><dd>If a component can't be calculated from filings, it is left out and the remaining weights are scaled up. The company page says which components were used.</dd>
-        </dl>
-        <p className="colnote">Weights are a starting hypothesis. We will backtest them against historical offerings and publish every change below.</p>
-      </section>
-
-      <CoveragePanel />
-      <TrackRecord go={go} />
-
-      <section className="panel">
-        <header className="ph"><h2>Change log</h2></header>
-        <ul className="watch">{FPS_CHANGELOG.map((x) => <li key={x.version}><b>Version {x.version}, {fmtDate(x.date)}.</b> {x.note}</li>)}</ul>
-      </section>
-
-      <section className="panel">
-        <header className="ph"><h2>Sources</h2></header>
-        <ul className="watch">
-          <li><ExtLink href="https://www.sec.gov/search-filings/edgar-application-programming-interfaces">SEC EDGAR</ExtLink>: balance sheets, cash flows, share counts, offering filings, shelf registrations.</li>
-          <li><ExtLink href="https://clinicaltrials.gov/data-api/api">ClinicalTrials.gov</ExtLink>: trial phase, enrollment, endpoints and primary completion dates.</li>
-          <li>Yahoo Finance: previous closing prices, used for market value.</li>
-        </ul>
-      </section>
-
-      <Waitlist />
-      <p className="disclaimer">Helixora publishes general research about companies' financing situations. It is not investment advice, is not tailored to any reader, and does not recommend buying or selling any security.</p>
-    </div>
   );
 }
 
@@ -2773,7 +2772,7 @@ const NAV = [
   { k: "risk", l: "Financing Risk", items: [["report", "Pressure Report"], ["research", "Research"]] },
   { k: "trials", l: "Trials & FDA", items: [["outlook", "Outlook"], ["catalysts", "Catalyst Calendar"]] },
   { k: "tools", l: "Tools", items: [["screen", "Screener"], ["compare", "Compare"], ["ask", "Ask Helixora"]] },
-  { k: "about", l: "About", items: [["about", "About Helixora"], ["method", "Methodology"]] },
+  { k: "about", l: "About us", items: [["about", "About us"]] },
 ];
 const groupOf = (v) => NAV.find((g) => g.items.some(([k]) => k === v)) || NAV[0];
 
@@ -2798,7 +2797,14 @@ export default function App() {
   useEffect(() => { try { localStorage.setItem(WATCH_KEY, JSON.stringify(watch)); } catch { /* ignore */ } }, [watch]);
 
   const [companyTab, setCompanyTab] = useState("overview");
-  const go = (v, t, tab) => { if (t) setTicker(t); setCompanyTab(tab || "overview"); setView(v); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  // "method" (the old Methodology page) now opens the About us page at the score section.
+  const [anchor, setAnchor] = useState(null);
+  const go = (v, t, tab) => {
+    const a = v === "method" ? "score" : null;
+    if (a) v = "about";
+    if (t) setTicker(t); setCompanyTab(tab || "overview"); setAnchor(a); setView(v);
+    if (!a) window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   const toggleWatch = (t) => setWatch((w) => (w.includes(t) ? w.filter((x) => x !== t) : [...w, t]));
 
   const matches = omni.trim()
@@ -2834,7 +2840,7 @@ export default function App() {
           </div>
           <nav className="nav" aria-label="Sections">
             {NAV.map((g) => (
-              <div key={g.k} className={"nav-group" + (g === cur ? " cur" : "")}>
+              <div key={g.k} className={"nav-group" + (g === cur ? " cur" : "") + (g.items.length === 1 ? " solo" : "")}>
                 <button className="nav-top" onClick={() => pick(g.items[0][0])}>{g.l}</button>
                 <div className="nav-menu">
                   {g.items.map(([k, l]) => <button key={k} className={view === k ? "on" : ""} aria-current={view === k ? "page" : undefined} onClick={() => pick(k)}>{l}</button>)}
@@ -2860,7 +2866,9 @@ export default function App() {
       <nav className="subnav" aria-label={cur.l + " pages"}>
         <div className="subnav-in">
           <span className="subnav-h">{cur.l}</span>
-          {cur.items.map(([k, l]) => <button key={k} className={view === k ? "on" : ""} aria-current={view === k ? "page" : undefined} onClick={() => go(k)}>{l}</button>)}
+          {cur.items.length > 1
+            ? cur.items.map(([k, l]) => <button key={k} className={view === k ? "on" : ""} aria-current={view === k ? "page" : undefined} onClick={() => go(k)}>{l}</button>)
+            : ABOUT_SECTIONS.map(([id, l]) => <button key={id} onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{l}</button>)}
         </div>
       </nav>
       <div className="tape">
@@ -2873,12 +2881,11 @@ export default function App() {
         {view === "screen" && <Screen go={go} />}
         {view === "company" && <Company key={ticker + companyTab} ticker={ticker} initialTab={companyTab} go={go} watch={watch} toggleWatch={toggleWatch} />}
         {view === "report" && <PressureReport go={go} />}
-        {view === "method" && <Methodology go={go} />}
         {view === "catalysts" && <Catalysts go={go} />}
         {view === "compare" && <Compare />}
         {view === "ask" && <Ask />}
         {view === "research" && <Research go={go} />}
-        {view === "about" && <About go={go} />}
+        {view === "about" && <About key={anchor || "top"} go={go} anchor={anchor} />}
         {view === "outlook" && <Outlook go={go} />}
       </main>
 
@@ -2959,6 +2966,10 @@ a.src:hover{color:var(--teal);}
 .nav .nav-top{padding:2px 14px 4px;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#6F9796;}
 .nav .nav-top:hover{background:none;color:#fff;}
 .nav-group.cur .nav-top{color:var(--mint);}
+.about [id]{scroll-margin-top:150px;}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding-top:18px;border-top:1px solid var(--rule2);}
+.toc button{background:var(--tint);border:1px solid var(--rule);border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600;color:var(--ink2);transition:background .15s,border-color .15s,color .15s;}
+.toc button:hover{background:#E3F5F2;border-color:var(--teal);color:var(--teal-d);}
 .subnav{display:none;background:var(--paper);border-bottom:1px solid var(--rule);}
 .subnav-in{max-width:1320px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;}
 .subnav-in::-webkit-scrollbar{display:none;}
@@ -2986,6 +2997,10 @@ a.src:hover{color:var(--teal);}
 .app.lay-top .nav-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;min-width:210px;padding:6px;background:var(--paper);border:1px solid var(--rule);border-radius:var(--r-md);box-shadow:0 18px 40px rgba(7,43,46,.22);z-index:60;}
 .app.lay-top .nav-menu::before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px;}
 .app.lay-top .nav-group:hover .nav-menu,.app.lay-top .nav-group:focus-within .nav-menu{display:flex;}
+.app.lay-top .nav-group.solo .nav-menu{display:none;}
+.app.lay-top .toc{display:none;}
+@media (min-width:961px){.app.lay-side .solo .nav-top{display:none;}}
+.app.lay-top .nav .solo .nav-top::after{display:none;}
 .app.lay-top .nav-menu button{color:var(--ink2);padding:9px 12px;font-size:14px;border-radius:var(--r-sm);}
 .app.lay-top .nav-menu button:hover{background:var(--tint);color:var(--ink);}
 .app.lay-top .nav-menu button.on{background:#E3F5F2;color:var(--teal-d);}
@@ -3430,7 +3445,7 @@ details.more summary:hover{color:var(--teal);}
 .btn.primary{background:var(--teal);border-color:var(--teal);color:#fff !important;}
 .btn.primary:hover{background:var(--teal-d);border-color:var(--teal-d);}
 
-/* report + methodology */
+/* report + about us */
 .report-head{padding:32px 34px;}
 .kicker-static{font-size:13px;font-weight:600;color:var(--teal);margin:0 0 8px;}
 .report-h{font-family:var(--display);font-size:clamp(30px,3.4vw,46px);font-weight:700;font-stretch:84%;letter-spacing:-.025em;line-height:1.03;margin:0 0 14px;max-width:24ch;text-wrap:balance;}
@@ -3487,6 +3502,7 @@ details.more summary:hover{color:var(--teal);}
   .nav .nav-top::after,.app.lay-top .nav .nav-top::after{display:none;}
   .nav-group.cur .nav-top,.app.lay-top .nav-group.cur .nav-top{color:var(--mast);background:var(--mint);}
   .subnav{display:block;}
+  .toc{display:none;}
   .subnav-in{padding:0 16px;}
   .subnav-h{display:none;}
   .side-foot,.app.lay-top .side-foot{display:none;}
