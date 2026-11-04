@@ -31,7 +31,7 @@ Every weekday the data job appends each company's score to `public/data/fps-hist
 
 ## Waitlist
 
-The "Get the Financing Pressure Report by email" form posts to `/api/waitlist`, which stores sign-ups in a Cloudflare D1 database (see Deploy). If that endpoint doesn't exist (the old Netlify site), the form falls back to Netlify Forms.
+The "Get the Financing Pressure Report by email" form posts to `/api/waitlist`, which stores sign-ups in a Cloudflare D1 database (see Deploy).
 
 ## Where the data comes from
 
@@ -49,14 +49,23 @@ A GitHub Action rebuilds `public/data/companies.json` every weekday morning. If 
 ## Project layout
 
 ```
-config/companies.json          tickers to track
-config/assumptions.json        your analyst inputs (all optional)
-scripts/fetch-data.mjs         builds public/data/companies.json (no dependencies, Node 20+)
-.github/workflows/refresh-data.yml   runs the script on a schedule and commits the result
-netlify/functions/ask.mjs      serverless function for the Ask tab; holds the API key
-netlify.toml                   Netlify build settings
-src/App.jsx                    the terminal UI and all calculations
-src/data.js                    loads the data file, falls back to sample data
+config/companies.json          tickers Helixora covers (set by the coverage screen)
+config/universe.json           coverage rules, turnover policy and change log
+config/programs.json           corrections to the automatic program labels
+config/assumptions.json        your analyst inputs and drug-name aliases (all optional)
+scripts/fetch-data.mjs         builds everything in public/data/ (no dependencies, Node 20+)
+scripts/universe.mjs           the monthly coverage screen
+.github/workflows/refresh-data.yml   runs fetch-data every weekday and commits the result
+.github/workflows/universe.yml       runs the coverage screen on the 3rd of each month
+functions/api/ask.js           Cloudflare function for the Ask tab; holds the API key
+functions/api/waitlist.js      Cloudflare function that stores waitlist sign-ups in D1
+server/ask-core.js             shared logic behind the Ask tab
+src/App.jsx                    the site: pages, navigation and styles
+src/fps.js                     the Financing Pressure Score
+src/trials.js                  readout windows, success odds, exclusivity, program labels
+src/quant.js                   runway and equity simulations, financing model, burn forecast
+src/research.js                offering studies used on the Research page
+src/data.js                    loads the data files, falls back to sample data
 src/sampleData.js              fictional sample dataset
 ```
 
@@ -81,7 +90,7 @@ The site, the Ask function (`functions/api/ask.js`) and the waitlist (`functions
 
 To read sign-ups: D1 → the database → **Console**, run `SELECT email, role, created_at FROM waitlist ORDER BY created_at DESC;`
 
-Security and caching headers live in `public/_headers`. The `netlify/` folder, `netlify.toml` and `public/__forms.html` are only needed while the old Netlify site is still running.
+Security and caching headers live in `public/_headers`.
 
 ### 3. Run locally
 

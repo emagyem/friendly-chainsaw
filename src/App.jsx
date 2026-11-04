@@ -1223,7 +1223,7 @@ function Ask() {
       const data = await res.json();
       const out = (data.text || "").trim();
       setLog((l) => [...l, { role: "ai", text: out || local(text), traced: true }]);
-    } catch (e) {
+    } catch {
       setLog((l) => [...l, { role: "ai", text: local(text), fallback: true }]);
     }
     setBusy(false);
@@ -1455,27 +1455,18 @@ function Waitlist({ compact }) {
     e.preventDefault();
     setState("sending");
     try {
-      // Cloudflare Pages stores sign-ups via /api/waitlist. While the old Netlify site is still up,
-      // that path doesn't exist there, so fall back to Netlify Forms.
-      let res = await fetch("/api/waitlist", {
+      // Sign-ups are stored in Cloudflare D1 by functions/api/waitlist.js.
+      const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, role, botField: "" }),
       });
-      if (res.status === 404) {
-        res = await fetch("/__forms.html", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams({ "form-name": "waitlist", email, role, "bot-field": "" }).toString(),
-        });
-      }
       setState(res.ok ? "done" : "error");
     } catch { setState("error"); }
   };
   if (state === "done") return <div className={"waitlist" + (compact ? " compact" : "")}><p className="wl-done">You're on the list. The next Financing Pressure Report will come to {email}.</p></div>;
   return (
     <form className={"waitlist" + (compact ? " compact" : "")} name="waitlist" onSubmit={submit}>
-      <input type="hidden" name="form-name" value="waitlist" />
       <h3>Get the Financing Pressure Report by email</h3>
       {!compact && <p>A short note when the Raise List changes, with every number linked to its filing. No hype, no stock picks.</p>}
       <div className="wl-fields">
@@ -1961,7 +1952,7 @@ function ScenarioPanel({ c }) {
 function BurnForecastPanel({ c }) {
   const f = useMemo(() => burnForecast(c), [c]);
   const fps = fpsOf(c);
-  const r = useMemo(() => raiseEstimate(c, fps.catalyst ? fps.monthsToCatalyst : null), [c]);
+  const r = useMemo(() => raiseEstimate(c, fps.catalyst ? fps.monthsToCatalyst : null), [c, fps.catalyst, fps.monthsToCatalyst]);
   if (!f) return null;
   const data = [...f.history.map((x) => ({ d: x.d, v: x.v })), ...f.forecast.map((x, i) => ({ d: x.d, fv: x.v, band: [x.lo, x.hi], ...(i === 0 ? {} : {}) }))];
   data[f.history.length - 1].fv = data[f.history.length - 1].v;
@@ -2187,18 +2178,19 @@ function SalesModel() {
     const s0 = 1 / (1 + Math.exp(4)), s1 = 1 / (1 + Math.exp(-4));
     return { y: `Year ${i + 1}`, sales: Math.round(peak * Math.min(1, (s - s0) / (s1 - s0))) };
   });
-  const F = ({ k, label, unit, step = 1 }) => (
-    <label className="f"><span>{label}</span><input type="number" min="0" step={step} value={v[k]} onChange={set(k)} />{unit && <em className="unit">{unit}</em>}</label>
+  // Called as a function, not used as <F/>: a component defined here would remount, and lose focus, on every keystroke.
+  const field = ({ k, label, unit, step = 1 }) => (
+    <label className="f" key={k}><span>{label}</span><input type="number" min="0" step={step} value={v[k]} onChange={set(k)} />{unit && <em className="unit">{unit}</em>}</label>
   );
   return (
     <div className="salesmodel">
       <div className="filters">
-        <F k="pts" label="US patients with the disease" />
-        <F k="dx" label="Diagnosed" unit="%" />
-        <F k="tx" label="Treated with a drug" unit="%" />
-        <F k="share" label="Share this drug wins" unit="%" />
-        <F k="price" label="Net price per patient per year" unit="$ thousands" />
-        <F k="years" label="Years to reach peak" />
+        {field({ k: "pts", label: "US patients with the disease" })}
+        {field({ k: "dx", label: "Diagnosed", unit: "%" })}
+        {field({ k: "tx", label: "Treated with a drug", unit: "%" })}
+        {field({ k: "share", label: "Share this drug wins", unit: "%" })}
+        {field({ k: "price", label: "Net price per patient per year", unit: "$ thousands" })}
+        {field({ k: "years", label: "Years to reach peak" })}
       </div>
       <p className="finding" style={{ marginTop: 18 }}>{Math.round(treated).toLocaleString("en-US")} patients on the drug at peak, worth {money(peak)} a year in US sales.</p>
       <ResponsiveContainer width="100%" height={200}>
@@ -2645,7 +2637,7 @@ function About({ go }) {
   );
 }
 
-function CoveragePanel({ go }) {
+function CoveragePanel() {
   const g = UNIVERSE.grandfathered || {};
   return (
     <section className="panel">
@@ -2715,7 +2707,7 @@ function Methodology({ go }) {
         <p className="colnote">Weights are a starting hypothesis. We will backtest them against historical offerings and publish every change below.</p>
       </section>
 
-      <CoveragePanel go={go} />
+      <CoveragePanel />
       <TrackRecord go={go} />
 
       <section className="panel">
@@ -2775,6 +2767,16 @@ function Wordmark({ underline = false }) {
 
 /* ------------------------------- shell ------------------------------- */
 
+// Sections and their pages, grouped the way a financial news site groups them.
+const NAV = [
+  { k: "markets", l: "Markets", items: [["home", "Overview"], ["company", "Quotes"]] },
+  { k: "risk", l: "Financing Risk", items: [["report", "Pressure Report"], ["research", "Research"]] },
+  { k: "trials", l: "Trials & FDA", items: [["outlook", "Outlook"], ["catalysts", "Catalyst Calendar"]] },
+  { k: "tools", l: "Tools", items: [["screen", "Screener"], ["compare", "Compare"], ["ask", "Ask Helixora"]] },
+  { k: "about", l: "About", items: [["about", "About Helixora"], ["method", "Methodology"]] },
+];
+const groupOf = (v) => NAV.find((g) => g.items.some(([k]) => k === v)) || NAV[0];
+
 const WATCH_KEY = "readout-watchlist";
 function loadWatch() {
   try {
@@ -2790,7 +2792,7 @@ export default function App() {
   const [watch, setWatch] = useState(loadWatch);
   const [omni, setOmni] = useState("");
   // Menu down the left side ("side") or across the top ("top"); remembered per visitor.
-  const [layout, setLayout] = useState(() => { try { return localStorage.getItem("helixora-layout") === "top" ? "top" : "side"; } catch { return "side"; } });
+  const [layout, setLayout] = useState(() => { try { return localStorage.getItem("helixora-layout") === "side" ? "side" : "top"; } catch { return "top"; } });
   useEffect(() => { try { localStorage.setItem("helixora-layout", layout); } catch { /* ignore */ } }, [layout]);
 
   useEffect(() => { try { localStorage.setItem(WATCH_KEY, JSON.stringify(watch)); } catch { /* ignore */ } }, [watch]);
@@ -2803,7 +2805,8 @@ export default function App() {
     ? COMPANIES.filter((c) => (c.t + " " + c.n).toLowerCase().includes(omni.toLowerCase())).slice(0, 6)
     : [];
 
-  const nav = [["home", "Markets"], ["report", "Pressure Report"], ["screen", "Screener"], ["company", "Quotes"], ["catalysts", "Calendar"], ["outlook", "Trials & FDA"], ["compare", "Compare"], ["ask", "Ask"], ["research", "Research"], ["method", "Methodology"], ["about", "About"]];
+  const cur = groupOf(view);
+  const pick = (k) => { go(k); if (document.activeElement) document.activeElement.blur(); };
   const dateline = TODAY.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
 
   return (
@@ -2830,7 +2833,14 @@ export default function App() {
             )}
           </div>
           <nav className="nav" aria-label="Sections">
-            {nav.map(([k, l]) => <button key={k} className={view === k ? "on" : ""} aria-current={view === k ? "page" : undefined} onClick={() => go(k)}>{l}</button>)}
+            {NAV.map((g) => (
+              <div key={g.k} className={"nav-group" + (g === cur ? " cur" : "")}>
+                <button className="nav-top" onClick={() => pick(g.items[0][0])}>{g.l}</button>
+                <div className="nav-menu">
+                  {g.items.map(([k, l]) => <button key={k} className={view === k ? "on" : ""} aria-current={view === k ? "page" : undefined} onClick={() => pick(k)}>{l}</button>)}
+                </div>
+              </div>
+            ))}
           </nav>
           <div className="side-foot">
             <span className="dateline">{dateline}</span>
@@ -2847,6 +2857,12 @@ export default function App() {
       </header>
 
       <div className="content">
+      <nav className="subnav" aria-label={cur.l + " pages"}>
+        <div className="subnav-in">
+          <span className="subnav-h">{cur.l}</span>
+          {cur.items.map(([k, l]) => <button key={k} className={view === k ? "on" : ""} aria-current={view === k ? "page" : undefined} onClick={() => go(k)}>{l}</button>)}
+        </div>
+      </nav>
       <div className="tape">
         <TickerStrip go={go} />
       </div>
@@ -2937,6 +2953,19 @@ a.src:hover{color:var(--teal);}
 .nav button{background:none;border:0;color:#B5CCCB;padding:10px 14px;font-size:14.5px;font-weight:500;text-align:left;border-radius:var(--r-md);white-space:nowrap;transition:background .15s,color .15s;}
 .nav button:hover{color:#fff;background:rgba(255,255,255,.07);}
 .nav button.on{color:var(--mast);background:var(--mint);font-weight:600;}
+.nav{gap:16px;}
+.nav-group{display:flex;flex-direction:column;gap:2px;}
+.nav-menu{display:flex;flex-direction:column;gap:2px;}
+.nav .nav-top{padding:2px 14px 4px;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#6F9796;}
+.nav .nav-top:hover{background:none;color:#fff;}
+.nav-group.cur .nav-top{color:var(--mint);}
+.subnav{display:none;background:var(--paper);border-bottom:1px solid var(--rule);}
+.subnav-in{max-width:1320px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;}
+.subnav-in::-webkit-scrollbar{display:none;}
+.subnav-h{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em;margin-right:18px;padding-right:18px;border-right:1px solid var(--rule);white-space:nowrap;line-height:1.2;}
+.subnav button{background:none;border:0;border-bottom:2px solid transparent;padding:14px 12px 12px;font-size:14px;font-weight:500;color:var(--mut);white-space:nowrap;transition:color .15s,border-color .15s;}
+.subnav button:hover{color:var(--ink);}
+.subnav button.on{color:var(--ink);font-weight:600;border-bottom-color:var(--teal);}
 .side-foot{margin-top:auto;display:grid;gap:4px;padding:16px 8px 0;border-top:1px solid rgba(255,255,255,.09);font-size:12px;color:#7E9E9D;}
 .side-foot .dateline{font-size:12.5px;font-weight:600;color:#A9C4C3;}
 .layout-btn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;justify-self:start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#CFE2E1 !important;border-radius:999px;padding:6px 12px 6px 9px;font-size:12.5px;font-weight:600;transition:background .15s,border-color .15s;}
@@ -2948,9 +2977,19 @@ a.src:hover{color:var(--teal);}
 .app.lay-top .mast{position:sticky;top:0;z-index:50;height:auto;overflow:visible;border-right:0;border-bottom:1px solid rgba(110,231,210,.12);background:rgba(7,43,46,.95);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);}
 .app.lay-top .mast-in{flex-direction:row;align-items:center;gap:20px;min-height:66px;max-width:1320px;margin:0 auto;padding:0 24px;}
 .app.lay-top .wordmark{margin-left:0;}
-.app.lay-top .nav{flex-direction:row;flex:1;min-width:0;order:2;overflow-x:auto;scrollbar-width:none;}
-.app.lay-top .nav::-webkit-scrollbar{display:none;}
-.app.lay-top .nav button{border-radius:999px;padding:8px 12px;font-size:14px;}
+.app.lay-top .nav{flex-direction:row;flex:1;min-width:0;order:2;gap:2px;}
+.app.lay-top .nav-group{position:relative;}
+.app.lay-top .nav .nav-top{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:9px 14px;font-size:14.5px;font-weight:600;letter-spacing:0;text-transform:none;color:#B5CCCB;}
+.app.lay-top .nav .nav-top::after{content:"";width:6px;height:6px;margin-top:-3px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg);opacity:.7;}
+.app.lay-top .nav-group:hover .nav-top,.app.lay-top .nav-group:focus-within .nav-top{color:#fff;background:rgba(255,255,255,.07);}
+.app.lay-top .nav-group.cur .nav-top{color:#fff;box-shadow:inset 0 -2px 0 var(--mint);border-radius:999px 999px 6px 6px;}
+.app.lay-top .nav-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;min-width:210px;padding:6px;background:var(--paper);border:1px solid var(--rule);border-radius:var(--r-md);box-shadow:0 18px 40px rgba(7,43,46,.22);z-index:60;}
+.app.lay-top .nav-menu::before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px;}
+.app.lay-top .nav-group:hover .nav-menu,.app.lay-top .nav-group:focus-within .nav-menu{display:flex;}
+.app.lay-top .nav-menu button{color:var(--ink2);padding:9px 12px;font-size:14px;border-radius:var(--r-sm);}
+.app.lay-top .nav-menu button:hover{background:var(--tint);color:var(--ink);}
+.app.lay-top .nav-menu button.on{background:#E3F5F2;color:var(--teal-d);}
+.app.lay-top .subnav{display:block;}
 .app.lay-top .omni{order:3;width:230px;}
 .app.lay-top .side-foot{order:4;margin:0;padding:0;border:0;display:block;}
 .app.lay-top .side-foot .dateline,.app.lay-top .side-asof{display:none;}
@@ -3193,8 +3232,8 @@ button.tick:hover{color:var(--teal) !important;}
 .phasechip{color:#fff;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap;}
 
 /* filters */
-.filters{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 24px;}
-.f{display:grid;gap:6px;font-size:12.5px;font-weight:500;color:var(--mut);}
+.filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 24px;}
+.f{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;min-width:0;font-size:12.5px;font-weight:500;color:var(--mut);}
 .f.wide{margin-bottom:12px;}
 .f input[type=text],.f input:not([type]),.f select{font-family:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--rule);border-radius:var(--r-md);background:#fff;color:var(--ink);}
 .f input:focus,.f select:focus{border-color:var(--teal);outline:none;box-shadow:0 0 0 3px rgba(14,124,116,.15);}
@@ -3441,9 +3480,15 @@ details.more summary:hover{color:var(--teal);}
   .mast-in{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:12px 16px 4px;min-height:0;}
   .wordmark{margin-left:0;}
   .omni{flex:1;width:auto;min-width:140px;}
-  .nav{flex-direction:row;flex-basis:100%;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px 8px;}
+  .nav,.app.lay-top .nav{flex-direction:row;flex-basis:100%;gap:2px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px 8px;}
   .nav::-webkit-scrollbar{display:none;}
-  .nav button{border-radius:999px;padding:8px 12px;font-size:14px;}
+  .nav-menu,.app.lay-top .nav-menu,.app.lay-top .nav-group:hover .nav-menu,.app.lay-top .nav-group:focus-within .nav-menu{display:none;}
+  .nav .nav-top,.app.lay-top .nav .nav-top{border-radius:999px;padding:8px 13px;font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;color:#B5CCCB;white-space:nowrap;box-shadow:none;}
+  .nav .nav-top::after,.app.lay-top .nav .nav-top::after{display:none;}
+  .nav-group.cur .nav-top,.app.lay-top .nav-group.cur .nav-top{color:var(--mast);background:var(--mint);}
+  .subnav{display:block;}
+  .subnav-in{padding:0 16px;}
+  .subnav-h{display:none;}
   .side-foot,.app.lay-top .side-foot{display:none;}
   .app.lay-top .mast-in{padding:12px 16px 4px;min-height:0;gap:8px 16px;}
   .app.lay-top .omni{flex:1;width:auto;min-width:140px;margin-left:0;}

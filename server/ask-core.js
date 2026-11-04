@@ -1,7 +1,6 @@
 /* ------------------------------------------------------------------
-   Shared logic for the Ask tab, used by both hosts:
-     functions/api/ask.js          Cloudflare Pages
-     netlify/functions/ask.mjs     Netlify (kept during the move)
+   Logic for the Ask tab, served by functions/api/ask.js on
+   Cloudflare Pages.
 
    The browser sends only a question. The data the model sees is built
    here from the site's own published data file, so the endpoint can't be
