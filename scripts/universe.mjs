@@ -7,7 +7,7 @@
 //  5. Market value between $100M and $5B (small and micro cap).
 //  6. Tradable: average daily dollar volume over the last 3 months of at least $1M.
 //  7. At least one active, company-sponsored Phase II or III trial on ClinicalTrials.gov.
-//  Rank: soonest Phase II/III primary completion; keep the first 30.
+//  Rank: soonest Phase II/III primary completion. Coverage changes are approved by hand (config/universe.json).
 const UA = process.env.SEC_USER_AGENT || "Helixora research contact@example.com";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function get(url, sec = false) {
@@ -81,5 +81,7 @@ for (const r of c) {
 }
 c = withTrials; funnel.push(["Has an active company-sponsored Phase II or III trial", c.length]);
 c.sort((a, b) => (a.next || "9999") < (b.next || "9999") ? -1 : 1);
-const out = { asOf: today, funnel, picked: c.slice(0, 30), qualified: c.length, all: c };
-console.log("UNIVERSE_JSON_START" + JSON.stringify(out) + "UNIVERSE_JSON_END");
+const out = { asOf: today, funnel, qualified: c.length, ranked: c.map((r) => ({ t: r.ticker, n: r.name, mcap: Math.round(r.mcap), adv: Math.round(r.adv * 10) / 10, trials: r.trials, phase3: r.phase3, next: r.next, conds: r.conds })) };
+const { writeFile } = await import("node:fs/promises");
+await writeFile(new URL("../public/data/universe.json", import.meta.url), JSON.stringify(out) + "\n");
+console.log(funnel.map(([a, b]) => `${a}: ${b}`).join("\n"));

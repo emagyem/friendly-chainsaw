@@ -4,6 +4,7 @@ import {
   ScatterChart, Scatter, ZAxis, ReferenceLine, BarChart, Bar, Cell, AreaChart, Area, ComposedChart
 } from "recharts";
 import { COMPANIES, META, HISTORY } from "./data.js";
+import UNIVERSE from "../config/universe.json";
 import { offeringStudy, raiseRunway, PRE, POST } from "./research.js";
 import { successOdds, exclusivity, reviewOffice, windowConfidence, ODDS_SOURCE, TRIALS_VERSION } from "./trials.js";
 import { runwaySim, equitySim, financingModel, FEATURES, QUANT_VERSION, burnForecast, raiseEstimate, anomalies } from "./quant.js";
@@ -414,7 +415,8 @@ function Home({ go, watch, toggleWatch }) {
   const lead = stories[0];
   const rest = stories.slice(1, 7);
 
-  const movers = [...COMPANIES].sort((a, b) => quotes ? (b.quote?.chgPct ?? -999) - (a.quote?.chgPct ?? -999) : b.mcap - a.mcap);
+  const movers = [...COMPANIES].sort((a, b) => quotes ? Math.abs(b.quote?.chgPct ?? 0) - Math.abs(a.quote?.chgPct ?? 0) : b.mcap - a.mcap).slice(0, 10)
+    .sort((a, b) => quotes ? (b.quote?.chgPct ?? -999) - (a.quote?.chgPct ?? -999) : 0);
 
   const upcoming = useMemo(() => {
     const all = [];
@@ -507,7 +509,7 @@ function Home({ go, watch, toggleWatch }) {
                 ))}
               </tbody>
             </table>
-            {quotes && <p className="colnote">Change from the previous close.</p>}
+            {quotes && <p className="colnote">The 10 biggest moves from the previous close.</p>}
           </section>
 
           <section aria-labelledby="up-h">
@@ -1283,8 +1285,11 @@ function BandBadge({ c, size }) {
 
 // Every company placed on the 0–100 Financing Pressure scale, with the band zones behind it.
 function PressureRail({ go }) {
-  const pts = byPressure().map((c) => ({ c, s: fpsOf(c).score, band: fpsOf(c).band })).filter((p) => p.s != null)
-    .sort((a, b) => a.s - b.s);
+  const all = byPressure().map((c) => ({ c, s: fpsOf(c).score, band: fpsOf(c).band })).filter((p) => p.s != null);
+  // With many companies, label only the highest-pressure ones; the rest are dots you can hover or select.
+  const labeled = new Set(all.slice(0, all.length > 12 ? 7 : all.length).map((p) => p.c.t));
+  const pts = all.filter((p) => labeled.has(p.c.t)).sort((a, b) => a.s - b.s);
+  const dots = [...all].sort((a, b) => a.s - b.s);
   // Labels that would collide go into a second or third lane.
   const lanesEnd = [];
   pts.forEach((p) => {
@@ -1307,13 +1312,14 @@ function PressureRail({ go }) {
             <em>{b.label}</em>
           </span>
         ))}
-        {pts.map((p) => (
-          <button key={p.c.t} className={"rail-dot b-" + p.band.toLowerCase()} style={{ left: `${p.s}%` }}
+        {dots.map((p) => (
+          <button key={p.c.t} className={"rail-dot b-" + p.band.toLowerCase() + (labeled.has(p.c.t) ? "" : " quiet")} style={{ left: `${p.s}%` }}
             onClick={() => go("company", p.c.t, "pressure")}
             aria-label={`${p.c.n}: Financing Pressure Score ${p.s}, ${p.band}`} title={`${p.c.t} ${p.s} · ${p.band}`} />
         ))}
       </div>
       <div className="rail-axis" aria-hidden="true"><span>0</span><span>40</span><span>70</span><span>100</span></div>
+      {dots.length > pts.length && <p className="rail-note">{dots.length} companies; the {pts.length} under the most pressure are named.</p>}
     </div>
   );
 }
@@ -1652,6 +1658,7 @@ function Research({ go }) {
   const since = rr.rows.length ? rr.rows.at(-1).date.slice(0, 4) : null;
   const zone = COMPANIES.map((c) => ({ c, f: fpsOf(c) })).filter(({ f }) => f.runway < 24)
     .sort((a, b) => a.f.runway - b.f.runway);
+  const [zoneShown, zoneMore] = useMore(zone, 15);
   const snaps = HISTORY.snapshots || [];
   const firstSnap = snaps[0]?.date;
   const firstCheck = firstSnap ? new Date(Date.parse(firstSnap) + 182 * 86400000).toISOString().slice(0, 10) : null;
@@ -1725,7 +1732,7 @@ function Research({ go }) {
             <table className="grid">
               <thead><tr><th>Company</th><th className="r">Cash left</th><th>Next major catalyst</th><th>Can sell shares now?</th><th className="r">Financing pressure</th></tr></thead>
               <tbody>
-                {zone.map(({ c, f }) => (
+                {zoneShown.map(({ c, f }) => (
                   <tr key={c.t} onClick={() => go("company", c.t, "pressure")}>
                     <td><b>{c.t}</b><span className="sub">{c.n}</span></td>
                     <td className="r">{num(f.runway, 1)} months</td>
@@ -1738,6 +1745,7 @@ function Research({ go }) {
             </table>
           </div>
         )}
+        {zoneMore}{" "}
         <button className="morelink" onClick={() => go("report")}>Read the full Financing Pressure Report</button>
       </section>
 
@@ -1830,6 +1838,14 @@ function Research({ go }) {
   );
 }
 
+/* Long lists start short, with a button to show the rest. */
+function useMore(list, n) {
+  const [all, setAll] = useState(false);
+  const shown = all ? list : list.slice(0, n);
+  const more = list.length > n ? <button className="morelink" onClick={() => setAll(!all)}>{all ? "Show fewer" : `Show all ${list.length}`}</button> : null;
+  return [shown, more];
+}
+
 /* ------------------------ readout scenarios (Bayes) ------------------------
    If this phase succeeds, the program's chance of approval becomes
    P(approval | success) = P(approval) / P(success this phase), which is the
@@ -1849,6 +1865,7 @@ function readoutScenario(p) {
 function ReadoutStakes({ go }) {
   const rows = useMemo(() => COMPANIES.flatMap((c) => (c.pipeline || []).filter((p) => ["Phase II", "Phase III", "Filed"].includes(p.ph))
     .map((p) => ({ c, p, s: readoutScenario(p) })).filter((r) => r.s && r.s.stake > 0)).sort((a, b) => b.s.stake / b.c.mcap - a.s.stake / a.c.mcap), []);
+  const [shown, more] = useMore(rows, 15);
   return (
     <section className="panel">
       <header className="ph"><h2>What the next result is worth</h2>
@@ -1857,7 +1874,7 @@ function ReadoutStakes({ go }) {
         <table className="grid">
           <thead><tr><th>Program</th><th className="r">Chance this phase succeeds</th><th className="r">Approval odds now</th><th className="r">If it succeeds</th><th className="r">Value at stake</th><th className="r">Share of market value</th></tr></thead>
           <tbody>
-            {rows.map(({ c, p, s }) => (
+            {shown.map(({ c, p, s }) => (
               <tr key={c.t + p.d} onClick={() => go("company", c.t, "pipeline")}>
                 <td><b>{c.t}</b> {p.d}<span className="sub">{p.ph}{p.window ? ` · data ${fmtDate(p.window.lo)} to ${fmtDate(p.window.hi)}` : ""}</span></td>
                 <td className="r">{pctW(s.pass)}</td>
@@ -1870,6 +1887,7 @@ function ReadoutStakes({ go }) {
           </tbody>
         </table>
       </div>
+      {more}
       <p className="colnote">Value at stake is the gap between the program's risk-adjusted value after a success and after a failure, using the same placeholder peak sales as the Valuation tab. It shows which results matter most to each company, not how its shares will move.</p>
     </section>
   );
@@ -2078,6 +2096,7 @@ function EquityRangePanel({ c }) {
 
 function SurvivalMonitor({ go }) {
   const rows = useMemo(() => COMPANIES.map((c) => ({ c, s: runwaySim(c) })).sort((a, b) => (b.s?.p18 ?? -1) - (a.s?.p18 ?? -1)), []);
+  const [shown, more] = useMore(rows, 15);
   return (
     <section className="panel">
       <header className="ph"><h2>Cash survival monitor</h2>
@@ -2086,7 +2105,7 @@ function SurvivalMonitor({ go }) {
         <table className="grid">
           <thead><tr><th>Company</th><th className="r">Cash left</th><th className="r">Out within 18 months</th><th className="r">24 months</th><th className="r">36 months</th><th className="r">Financing pressure</th></tr></thead>
           <tbody>
-            {rows.map(({ c, s }) => (
+            {shown.map(({ c, s }) => (
               <tr key={c.t} onClick={() => go("company", c.t, "pressure")}>
                 <td><b>{c.t}</b><span className="sub">{c.n}</span></td>
                 <td className="r">{c.cashFlowPositive ? "Cash flow positive" : mo(fpsOf(c).runway)}</td>
@@ -2099,6 +2118,7 @@ function SurvivalMonitor({ go }) {
           </tbody>
         </table>
       </div>
+      {more}
       <p className="colnote">Doesn't count new financing, partner payments or product revenue, so approved companies look tighter than they are.</p>
     </section>
   );
@@ -2207,6 +2227,14 @@ function Outlook({ go }) {
   const china = allRivals.filter(({ r }) => r.china);
   const launched = progs.filter(({ p }) => p.ph === "Approved");
   const officeStat = (name) => fda?.byOffice?.find((o) => o.office === name);
+  const oddsRows = late.filter(({ p }) => p.odds && p.ph !== "Approved");
+  const exRows = late.map(({ c, p }) => { const ea = expectedApproval(c, p); const ex = ea ? exclusivity(p, ea.date) : null; return ex ? { c, p, ea, ex } : null; }).filter(Boolean);
+  const [timedShown, timedMore] = useMore(timed, 20);
+  const [oddsShown, oddsMore] = useMore(oddsRows, 15);
+  const [flagShown, flagMore] = useMore(flagged, 15);
+  const [rivalShown, rivalMore] = useMore(rivals, 20);
+  const [chinaShown, chinaMore] = useMore(china, 12);
+  const [exShown, exMore] = useMore(exRows, 15);
   const yearTicks = [0, 6, 12, 18, 24, 30, 36, 42].map((m) => ({ m, label: new Date(from + m * 30.44 * 86400000).toLocaleDateString("en-US", { month: "short", year: "numeric" }) }));
 
   return (
@@ -2222,13 +2250,14 @@ function Outlook({ go }) {
           <span className="ph-note">Registry dates are plans, and they slip. Each bar is Helixora's estimated readout window; the dot is its middle, which the Financing Pressure Score now uses, and the tick is the date in the registry.</span></header>
         <div className="gantt">
           <div className="gantt-axis"><span />{<span className="gantt-ticks">{yearTicks.map((t) => <em key={t.m} style={{ left: `${(t.m / 42) * 100}%` }}>{t.label}</em>)}</span>}</div>
-          {timed.map(({ c, p }) => (
+          {timedShown.map(({ c, p }) => (
             <button key={c.t + p.d} className="gantt-row" onClick={() => go("company", c.t, "pipeline")}>
               <span className="gantt-label"><b>{c.t}</b> {p.d}<span className="sub">{p.trial?.ph || p.ph}{p.trial?.ind && p.trial.ind !== p.ind ? ` in ${p.trial.ind}` : ""} · {p.window.stale ? "registry date overdue, so a wide window" : `${windowConfidence(p.window).toLowerCase()} window`}, {fmtDate(p.window.lo)} to {fmtDate(p.window.hi)}</span></span>
               <WindowBar w={p.window} from={from} span={span} />
             </button>
           ))}
         </div>
+        {timedMore}
         <details className="more"><summary>How the window is set</summary>
           <ul className="tr-list">
             <li>Start from the trial's primary completion date on ClinicalTrials.gov. Topline data usually follows by 2 weeks to 3.5 months.</li>
@@ -2247,7 +2276,7 @@ function Outlook({ go }) {
           <table className="grid">
             <thead><tr><th>Program</th><th>Phase</th><th>Disease area</th><th>Adjusted for</th><th className="r">Industry average</th><th className="r">Helixora odds</th></tr></thead>
             <tbody>
-              {late.filter(({ p }) => p.odds && p.ph !== "Approved").map(({ c, p }) => (
+              {oddsShown.map(({ c, p }) => (
                 <tr key={c.t + p.d} onClick={() => go("company", c.t, "pipeline")}>
                   <td><b>{c.t}</b> {p.d}<span className="sub">{p.ind}</span></td>
                   <td className="nowrap">{p.ph}</td>
@@ -2260,6 +2289,7 @@ function Outlook({ go }) {
             </tbody>
           </table>
         </div>
+        {oddsMore}
         <p className="colnote">Source: <a className="src" href={ODDS_SOURCE.url} target="_blank" rel="noreferrer">{ODDS_SOURCE.title}</a>. Adjustments are applied at half strength because the published factors overlap. Trial design flags are shown separately rather than folded into the odds, because there's no published rate to weight them by.</p>
       </section>
 
@@ -2271,7 +2301,7 @@ function Outlook({ go }) {
             <table className="grid">
               <thead><tr><th>Program</th><th>Lead trial</th><th>What stands out</th></tr></thead>
               <tbody>
-                {flagged.map(({ c, p }) => (
+                {flagShown.map(({ c, p }) => (
                   <tr key={c.t + p.d} onClick={() => go("company", c.t, "pipeline")}>
                     <td><b>{c.t}</b> {p.d}<span className="sub">{p.ph}</span></td>
                     <td className="nowrap"><a className="src" href={`https://clinicaltrials.gov/study/${p.nct}`} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>{p.nct}</a><span className="sub">{p.trial?.n || "—"} patients</span></td>
@@ -2282,6 +2312,7 @@ function Outlook({ go }) {
             </table>
           </div>
         )}
+        {flagMore}
       </section>
 
       <section className="panel">
@@ -2332,7 +2363,7 @@ function Outlook({ go }) {
             <table className="grid">
               <thead><tr><th>Tracked program</th><th>Rival trial</th><th>Sponsor</th><th>Phase</th><th>Completes</th><th>Where</th></tr></thead>
               <tbody>
-                {rivals.map(({ c, r }) => (
+                {rivalShown.map(({ c, r }) => (
                   <tr key={c.t + r.nct} onClick={() => go("company", c.t, "pipeline")}>
                     <td><b>{c.t}</b> {r.forDrug}<span className="sub">{r.ind}</span></td>
                     <td><a className="src" href={`https://clinicaltrials.gov/study/${r.nct}`} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>{r.drugs.join(", ")}</a><span className="sub">{r.nct}</span></td>
@@ -2346,6 +2377,7 @@ function Outlook({ go }) {
             </table>
           </div>
         )}
+        {rivalMore}
         <p className="colnote">The four soonest per company; each company's Pipeline tab lists more. Matched by disease from ClinicalTrials.gov, industry sponsors only. Helixora doesn't yet estimate how far a rival result should move each stock.</p>
       </section>
 
@@ -2354,11 +2386,12 @@ function Outlook({ go }) {
           <span className="ph-note">More drugs licensed by US companies now come from Chinese biotechs, and their trials are easy to miss. These are rival trials run entirely or partly in China.</span></header>
         {china.length === 0 ? <p className="empty">No China-based rival trials found in the tracked diseases.</p> : (
           <ul className="watch">
-            {china.map(({ c, r }) => (
+            {chinaShown.map(({ c, r }) => (
               <li key={c.t + r.nct}><b>{r.drugs.join(", ")}</b> from {r.sponsor} ({r.ph}, {r.china === "only" ? "China only" : "includes China"}), competing with <button className="linkish tick" onClick={() => go("company", c.t, "pipeline")}>{c.t}</button> {r.forDrug} in {r.ind}. Completes {r.pcd ? fmtDate(r.pcd) : "date not given"}. <a className="src" href={`https://clinicaltrials.gov/study/${r.nct}`} target="_blank" rel="noreferrer">{r.nct}</a></li>
             ))}
           </ul>
         )}
+        {chinaMore}
       </section>
 
       <section className="panel">
@@ -2394,10 +2427,7 @@ function Outlook({ go }) {
           <table className="grid">
             <thead><tr><th>Program</th><th>Pathway</th><th>Expected approval</th><th>Protection</th><th className="r">Earliest competition</th></tr></thead>
             <tbody>
-              {late.map(({ c, p }) => {
-                const ea = expectedApproval(c, p);
-                const ex = ea ? exclusivity(p, ea.date) : null;
-                if (!ex) return null;
+              {exShown.map(({ c, p, ea, ex }) => {
                 return (
                   <tr key={c.t + p.d} onClick={() => go("company", c.t, "pipeline")}>
                     <td><b>{c.t}</b> {p.d}<span className="sub">{p.ph}</span></td>
@@ -2411,6 +2441,7 @@ function Outlook({ go }) {
             </tbody>
           </table>
         </div>
+        {exMore}
         <p className="colnote">Programs whose drug type doesn't map to a pathway are left out. "Expected approval" for unfiled programs is a rough guide.</p>
       </section>
 
@@ -2612,6 +2643,24 @@ function About({ go }) {
   );
 }
 
+function CoveragePanel({ go }) {
+  const g = UNIVERSE.grandfathered || {};
+  return (
+    <section className="panel">
+      <header className="ph"><h2>Which companies Helixora covers, and why</h2>
+        <span className="ph-note">Coverage follows published rules so it can't be picked to flatter results. Screened on {fmtDate(UNIVERSE.screenedOn)}; approved {fmtDate(UNIVERSE.approved)}.</span></header>
+      <div className="tablewrap">
+        <table className="grid plain">
+          <thead><tr><th>Rule</th><th className="r">Companies left</th></tr></thead>
+          <tbody>{UNIVERSE.funnel.map(([rule, n], i) => <tr key={i}><td>{i + 1}. {rule}</td><td className="r">{n.toLocaleString("en-US")}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <p className="prose" style={{ marginTop: 14 }}>{UNIVERSE.selection} Helixora also keeps its first {UNIVERSE.originalCoverage.length} companies, including {Object.keys(g).length} that sit outside today's rules: {Object.entries(g).map(([t, why]) => `${t} (${why.toLowerCase()})`).join(", ")}. Companies are never dropped quietly; any change is listed here.</p>
+      <p className="colnote">The screen re-runs monthly and publishes everyone who qualifies: <a className="src" href="/data/universe.json" target="_blank" rel="noreferrer">latest screen</a>.</p>
+    </section>
+  );
+}
+
 function Methodology({ go }) {
   return (
     <div className="stack">
@@ -2650,6 +2699,7 @@ function Methodology({ go }) {
         <p className="colnote">Weights are a starting hypothesis. We will backtest them against historical offerings and publish every change below.</p>
       </section>
 
+      <CoveragePanel go={go} />
       <TrackRecord go={go} />
 
       <section className="panel">
@@ -2970,6 +3020,8 @@ a.src:hover{color:var(--teal);}
 .z-high{background:rgba(232,97,130,.18);border-radius:0 999px 999px 0;color:#F49AB0;}
 .rail-dot{position:absolute;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;border:3px solid var(--mast);padding:0;transition:transform .15s;}
 .rail-dot:hover,.rail-dot:focus-visible{transform:scale(1.3);}
+.rail-dot.quiet{width:12px;height:12px;margin:-6px 0 0 -6px;border-width:2px;opacity:.85;}
+.rail-note{margin:4px 0 0;font-size:12px;color:#7E9E9D;}
 .rail-dot.b-low{background:var(--mint);}
 .rail-dot.b-elevated{background:#F0B44C;}
 .rail-dot.b-high{background:#F16D8F;}

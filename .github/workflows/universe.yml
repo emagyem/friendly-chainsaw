@@ -1,8 +1,21 @@
-name: Universe draft
+name: Coverage screen
+
+# Monthly: applies Helixora's published coverage rules and publishes who qualifies
+# (public/data/universe.json). Adding or removing covered companies stays a manual,
+# approved change to config/companies.json.
+
 on:
-  push:
-    branches: [universe-draft]
-    paths: ["scripts/universe.mjs", ".github/workflows/universe.yml"]
+  schedule:
+    - cron: "41 12 3 * *"   # the 3rd of each month
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
 jobs:
   screen:
     runs-on: ubuntu-latest
@@ -14,3 +27,12 @@ jobs:
       - run: node scripts/universe.mjs
         env:
           SEC_USER_AGENT: "Helixora research ${{ vars.SEC_CONTACT_EMAIL }}"
+      - name: Commit if changed
+        run: |
+          git diff --quiet -- public/data/universe.json && [ -z "$(git ls-files --others --exclude-standard public/data/universe.json)" ] && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/universe.json
+          git commit -m "Coverage screen $(date -u +%Y-%m-%d)"
+          git pull --rebase
+          git push

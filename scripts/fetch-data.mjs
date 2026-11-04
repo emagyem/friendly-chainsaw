@@ -753,7 +753,8 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
   if (fin.burn == null) throw new Error("no operating cash flow in XBRL data");
   if (!fin.shares) throw new Error("no shares outstanding figure");
 
-  const name = a.name || titleCase(shortName(sub?.name || facts.entityName || ticker));
+  const listed = cikByTicker.titles?.get(ticker);
+  const name = a.name || (listed && listed !== listed.toUpperCase() ? shortName(listed) : titleCase(shortName(sub?.name || facts.entityName || ticker)));
   const filed = filingsFromSubmissions(sub, cik);
   const { financings, lastPeriodic } = filed;
   const raise = await raiseCapacity(filed);
@@ -893,6 +894,8 @@ async function main() {
   console.log("Loading SEC ticker list…");
   const tickers = await sec("https://www.sec.gov/files/company_tickers.json");
   const cikByTicker = new Map(Object.values(tickers || {}).map((r) => [r.ticker.toUpperCase(), r.cik_str]));
+  // The ticker list keeps companies' own capitalization ("DBV Technologies"); EDGAR's filer names are all caps.
+  cikByTicker.titles = new Map(Object.values(tickers || {}).map((r) => [r.ticker.toUpperCase(), r.title]));
 
   let durTables = null;
   try { durTables = await durationTables(); console.log(`Trial-duration tables: ${Object.entries(durTables).map(([k, v]) => `${k} n=${v.n}`).join("; ")}`); }
