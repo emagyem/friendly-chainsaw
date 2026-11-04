@@ -22,8 +22,9 @@
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
-import { computeFPS } from "../src/fps.js";
-import { readoutWindow, designFlags, successOdds, OFFICE_GROUPS } from "../src/trials.js";
+import { computeFPS, FPS_VERSION } from "../src/fps.js";
+import { runwaySim, QUANT_VERSION } from "../src/quant.js";
+import { readoutWindow, designFlags, successOdds, OFFICE_GROUPS, TRIALS_VERSION } from "../src/trials.js";
 
 const ROOT = new URL("../", import.meta.url);
 const OUT_DIR = new URL("public/data/", ROOT);
@@ -31,6 +32,7 @@ const OUT_FILE = new URL("companies.json", OUT_DIR);
 const HISTORY_FILE = new URL("fps-history.json", OUT_DIR);
 const BENCHMARK = { symbol: "XBI", name: "SPDR S&P Biotech ETF" };
 const TRIAL_HISTORY_FILE = new URL("trial-history.json", OUT_DIR);
+const PREDICTIONS_FILE = new URL("predictions.json", OUT_DIR);
 
 const UA = process.env.SEC_USER_AGENT;
 const AV_KEY = process.env.ALPHA_VANTAGE_KEY;
@@ -901,6 +903,25 @@ async function main() {
   }
   history.snapshots = history.snapshots.filter((x) => x.date !== TODAY_ISO).concat(snap).slice(-500);
   await writeFile(HISTORY_FILE, JSON.stringify(history) + "\n");
+
+  // Prediction log: what Helixora published each day, with the model versions that produced it,
+  // so any past figure can be checked against what later happened.
+  let log = { note: "Daily record of Helixora's published predictions. Never edited after the day it was written.", days: [] };
+  try { log = JSON.parse(await readFile(PREDICTIONS_FILE, "utf8")); } catch { /* first run */ }
+  const day = { date: TODAY_ISO, models: { financingPressure: FPS_VERSION, trials: TRIALS_VERSION, quant: QUANT_VERSION }, companies: {} };
+  for (const c of companies) {
+    const f = computeFPS(c, TODAY);
+    const sim = runwaySim(c);
+    day.companies[c.t] = {
+      fps: f.score, band: f.band, runwayMonths: f.runway,
+      outOfCash18m: sim ? round(sim.p18, 3) : null,
+      nextCatalyst: f.catalyst ? { date: f.catalyst.date, label: f.catalyst.label } : null,
+      programs: Object.fromEntries((c.pipeline || []).map((p) => [p.d, { phase: p.ph, approvalOdds: p.odds?.loa ?? null, readoutLikely: p.window?.mid ?? null, readoutWindow: p.window ? [p.window.lo, p.window.hi] : null }])),
+    };
+  }
+  if (!log.days.some((d) => d.date === TODAY_ISO)) log.days.push(day); // the first record of a day stands
+  log.days = log.days.slice(-400);
+  await writeFile(PREDICTIONS_FILE, JSON.stringify(log) + "\n");
   console.log(`\nWrote ${companies.length} companies to public/data/companies.json (${warnings.length} warnings).`);
 }
 

@@ -6,6 +6,7 @@ import {
 import { COMPANIES, META, HISTORY } from "./data.js";
 import { offeringStudy, raiseRunway, PRE, POST } from "./research.js";
 import { successOdds, exclusivity, reviewOffice, windowConfidence, ODDS_SOURCE, TRIALS_VERSION } from "./trials.js";
+import { runwaySim, equitySim, financingModel, FEATURES, QUANT_VERSION } from "./quant.js";
 import { computeFPS, nextMajorCatalyst, FPS_COMPONENTS, FPS_BANDS, FPS_CHANGELOG, FPS_VERSION, FPS_UPDATED, BUFFER_MONTHS, NO_CATALYST_MONTHS } from "./fps.js";
 
 /* ------------------------------------------------------------------
@@ -792,7 +793,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
         {tabs.map(([k, l]) => <button key={k} className={tab === k ? "on" : ""} onClick={() => setTab(k)}>{l}</button>)}
       </nav>
 
-      {tab === "pressure" && <FpsPanel c={c} go={go} />}
+      {tab === "pressure" && <div className="stack"><FpsPanel c={c} go={go} /><RunwaySimPanel c={c} /></div>}
 
       {tab === "overview" && (
         <div className="two">
@@ -1001,7 +1002,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
               <ResponsiveContainer width="100%" height={230}>
                 <BarChart data={c.pipeline.map((p) => ({
                   name: p.d,
-                  value: rnpv(p, { discount: disc / 100, posOverride: Math.max(0.01, POS[p.ph] + posAdj / 100) }),
+                  value: rnpv(p, { discount: disc / 100, posOverride: Math.max(0.01, (p.odds?.loa ?? POS[p.ph]) + posAdj / 100) }),
                   ph: p.ph,
                 }))} margin={{ top: 10, right: 16, bottom: 10, left: 8 }}>
                   <CartesianGrid stroke="#DCE2E5" vertical={false} />
@@ -1015,12 +1016,13 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
               </ResponsiveContainer>
             </div>
             <div className="metrics two-up">
-              <div className="metric"><span>Modeled pipeline value</span><b className="mono">{money(c.pipeline.reduce((s, p) => s + rnpv(p, { discount: disc / 100, posOverride: Math.max(0.01, POS[p.ph] + posAdj / 100) }), 0))}</b></div>
+              <div className="metric"><span>Modeled pipeline value</span><b className="mono">{money(c.pipeline.reduce((s, p) => s + rnpv(p, { discount: disc / 100, posOverride: Math.max(0.01, (p.odds?.loa ?? POS[p.ph]) + posAdj / 100) }), 0))}</b></div>
               <div className="metric"><span>Enterprise value today</span><b className="mono">{money(c.ev)}</b></div>
               <div className="metric"><span>Enterprise value as a share of modeled value</span><b className="mono">{num((c.ev / pv) * 100, 0)}%</b></div>
               <div className="metric"><span>Cash per share</span><b className="mono">${num(c.cash / c.shares, 2)}</b></div>
             </div>
           </section>
+          <EquityRangePanel c={c} />
         </div>
       )}
 
@@ -1602,6 +1604,7 @@ function PressureReport({ go }) {
         <p className="colnote">Gap = runway minus (months to catalyst + {BUFFER_MONTHS}-month buffer). Negative means the company is likely to need money before, or soon after, its catalyst.</p>
       </section>
 
+      <SurvivalMonitor go={go} />
       {top && (<><h2 className="section-h">Company spotlight: {top.n}</h2><FpsPanel c={top} go={go} /></>)}
 
       <Waitlist />
@@ -1802,6 +1805,8 @@ function Research({ go }) {
         </p>
       </section>
 
+      <FinancingModelPanel />
+
       <section className="panel">
         <header className="ph"><h2>How these studies avoid fooling themselves</h2>
           <span className="ph-note">A finding can look strong on past data and still be wrong. These are the usual reasons, and what Helixora does about each.</span></header>
@@ -1815,6 +1820,120 @@ function Research({ go }) {
 
       <p className="disclaimer">Research on past financing filings and price moves. It is not investment advice and does not recommend buying or selling any security. Past patterns may not repeat.</p>
     </div>
+  );
+}
+
+/* ---------------------------- quant panels ---------------------------- */
+
+function RunwaySimPanel({ c }) {
+  const sim = useMemo(() => runwaySim(c), [c]);
+  if (!sim) return (
+    <section className="panel"><header className="ph"><h2>Cash survival simulation</h2></header>
+      <p className="empty">{c.cashFlowPositive ? "Operating cash flow is positive, so cash isn't running down." : "Not enough data to simulate."}</p></section>
+  );
+  return (
+    <section className="panel">
+      <header className="ph"><h2>Cash survival simulation</h2>
+        <span className="ph-note">10,000 simulated paths of quarterly cash, with burn that keeps its recent trend ({sim.drift >= 0 ? "+" : ""}{num(sim.drift * 100, 0)}% a quarter) and swings as much as it has in past filings. No new financing, partner payments or product revenue are assumed.</span></header>
+      <div className="metrics four">
+        <div className="metric"><span>Out of cash within 12 months</span><b>{pctW(sim.p12)}</b></div>
+        <div className="metric"><span>Within 18 months</span><b>{pctW(sim.p18)}</b></div>
+        <div className="metric"><span>Within 24 months</span><b>{pctW(sim.p24)}</b></div>
+        <div className="metric"><span>Median time to empty</span><b>{sim.median ? `${sim.median} months` : `${sim.horizon}+ months`}</b></div>
+      </div>
+      <ResponsiveContainer width="100%" height={220}>
+        <AreaChart data={[{ m: 0, p: 0 }, ...sim.curve].map((d) => ({ ...d, pp: d.p * 100 }))} margin={{ top: 8, right: 16, bottom: 22, left: 0 }}>
+          <CartesianGrid stroke="#E4E9EB" vertical={false} />
+          <XAxis dataKey="m" type="number" domain={[0, sim.horizon]} ticks={[0, 6, 12, 18, 24, 30, 36].filter((t) => t <= sim.horizon)} tick={{ fontSize: 11, fill: "#5E6B73" }}
+            label={{ value: "months from the last balance sheet", position: "insideBottom", offset: -12, fontSize: 11, fill: "#5E6B73" }} />
+          <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fontSize: 11, fill: "#5E6B73" }} width={44} />
+          <Tooltip content={({ payload }) => payload?.length ? <div className="rtip"><b>{num(payload[0].payload.pp, 0)}%</b> of paths out of cash by month {payload[0].payload.m}</div> : null} />
+          <Area type="stepAfter" dataKey="pp" stroke="#B3264A" fill="#B3264A" fillOpacity={0.12} strokeWidth={2} isAnimationActive={false} />
+        </AreaChart>
+      </ResponsiveContainer>
+      <p className="colnote">A scenario, not a prediction: companies almost always raise money or cut spending before cash runs out. Read it as how urgent a raise is. Model version {QUANT_VERSION}.</p>
+    </section>
+  );
+}
+
+function EquityRangePanel({ c }) {
+  const e = useMemo(() => equitySim(c), [c]);
+  if (!e) return null;
+  const data = e.hist.map((h) => ({ ...h, label: money(h.x) }));
+  return (
+    <section className="panel">
+      <header className="ph"><h2>Range of equity values</h2>
+        <span className="ph-note">4,000 simulations. Each program succeeds or fails at its Helixora odds, with uncertain peak sales and launch timing; equity is pipeline value plus cash minus debt. A range, not a price target.</span></header>
+      <div className="metrics four">
+        <div className="metric"><span>Low case (10th percentile)</span><b>{money(e.p10)}</b></div>
+        <div className="metric"><span>Middle (median)</span><b>{money(e.p50)}</b></div>
+        <div className="metric"><span>High case (90th percentile)</span><b>{money(e.p90)}</b></div>
+        <div className="metric"><span>Market value today</span><b>{money(c.mcap)}</b><em>{pctW(e.above)} of simulations above it</em></div>
+      </div>
+      <ResponsiveContainer width="100%" height={220}>
+        <BarChart data={data} margin={{ top: 8, right: 8, bottom: 4, left: 0 }} barCategoryGap={1}>
+          <XAxis dataKey="label" tick={{ fontSize: 10.5, fill: "#5E6B73" }} interval={4} axisLine={false} tickLine={false} />
+          <YAxis hide />
+          <Tooltip cursor={{ fill: "rgba(14,124,116,.06)" }} content={({ payload }) => payload?.length ? <div className="rtip">Around <b>{payload[0].payload.label}</b><br />{payload[0].payload.n} simulations</div> : null} />
+          <Bar dataKey="n" isAnimationActive={false}>{data.map((d) => <Cell key={d.x} fill={d.x > c.mcap ? "#0E7C74" : "#9FB4B6"} />)}</Bar>
+        </BarChart>
+      </ResponsiveContainer>
+      {e.implied != null && (
+        <p className="finding" style={{ marginTop: 14 }}>
+          To justify today's {money(c.mcap)} market value, the tracked programs would need about {money(e.impliedPeak)} in combined peak sales{e.placeholders ? `, ${num(e.implied, 1)} times Helixora's placeholder figures` : ""}.
+        </p>
+      )}
+      <p className="colnote">{e.placeholders ? `${e.placeholders} of ${e.programs} programs use placeholder peak sales, so the range mostly shows the effect of the odds and timing. ` : ""}Programs Helixora doesn't track, partnership income and platform value aren't counted, so a high multiple can reflect them. Teal bars are outcomes above today's market value.</p>
+    </section>
+  );
+}
+
+function SurvivalMonitor({ go }) {
+  const rows = useMemo(() => COMPANIES.map((c) => ({ c, s: runwaySim(c) })).sort((a, b) => (b.s?.p18 ?? -1) - (a.s?.p18 ?? -1)), []);
+  return (
+    <section className="panel">
+      <header className="ph"><h2>Cash survival monitor</h2>
+        <span className="ph-note">The chance each company would run out of cash, from 10,000 simulated burn paths with no new money. The higher it is, the sooner a raise is likely.</span></header>
+      <div className="tablewrap">
+        <table className="grid">
+          <thead><tr><th>Company</th><th className="r">Cash left</th><th className="r">Out within 12 months</th><th className="r">18 months</th><th className="r">24 months</th><th className="r">Financing pressure</th></tr></thead>
+          <tbody>
+            {rows.map(({ c, s }) => (
+              <tr key={c.t} onClick={() => go("company", c.t, "pressure")}>
+                <td><b>{c.t}</b><span className="sub">{c.n}</span></td>
+                <td className="r">{c.cashFlowPositive ? "Cash flow positive" : `${num(fpsOf(c).runway, 1)} months`}</td>
+                <td className="r">{s ? pctW(s.p12) : "—"}</td>
+                <td className="r"><b>{s ? pctW(s.p18) : "—"}</b></td>
+                <td className="r">{s ? pctW(s.p24) : "—"}</td>
+                <td className="r"><BandBadge c={c} /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="colnote">Doesn't count new financing, partner payments or product revenue, so approved companies look tighter than they are.</p>
+    </section>
+  );
+}
+
+function FinancingModelPanel() {
+  const m = useMemo(() => financingModel(COMPANIES, TODAY.toISOString().slice(0, 10)), []);
+  if (!m) return null;
+  const beats = m.skill > 0;
+  return (
+    <section className="panel">
+      <header className="ph"><h2>Can a model predict the next raise? A first test</h2>
+        <span className="ph-note">A logistic regression for "starts a stock offering within 12 months", fit on {m.n} company-quarters ({m.events} followed by an offering), each dated by when its balance sheet was first filed. Every company is predicted by a model that never saw it.</span></header>
+      <p className="finding">{beats
+        ? `The model beats the simple average by ${pctW(m.skill)} on Brier score.`
+        : `Not yet. ${pctW(m.base)} of company-quarters were followed by an offering within a year, so simply assuming the average does better than the model (Brier score ${num(m.brierBase, 3)} vs. ${num(m.brier, 3)}).`}</p>
+      <p className="prose">{beats ? "" : "For these companies, raising within a year is the norm; the open question is timing, which is what the Financing Pressure Score and readout windows address. The model needs a much larger group of companies, including ones that failed or were bought, before it can be judged. "}Inputs: {FEATURES.join(", ").toLowerCase()}. Period: offerings from {fmtDate(m.start)}, judged on balance sheets filed up to {fmtDate(m.cutoff)}.</p>
+      {beats && (
+        <div className="tablewrap"><table className="grid plain"><thead><tr><th>Company</th><th className="r">Chance of an offering in 12 months</th></tr></thead>
+          <tbody>{m.now.map((r) => <tr key={r.t}><td><b>{r.t}</b></td><td className="r">{pctW(r.p)}</td></tr>)}</tbody></table></div>
+      )}
+      <p className="colnote">Brier score: the average squared gap between predicted chance and what happened. Lower is better. Model version {QUANT_VERSION}.</p>
+    </section>
   );
 }
 
@@ -2140,6 +2259,27 @@ const PROBLEMS = [
 ];
 const STATUS = { live: "Live, version 1", next: "Next", later: "Not yet" };
 
+const TRACKS = [
+  ["Valuation", "What a company and its pipeline may be worth under stated assumptions, as a range rather than one price.",
+    "Risk-adjusted pipeline value with drug-specific odds, and a 4,000-run simulation of equity value against market value.",
+    "Updating odds when new trial results arrive, and counting warrants, convertibles and royalties in the share count."],
+  ["Prediction", "The chance of specific events, like a raise or a readout, from what was public at the time.",
+    "Readout windows, a cash survival simulation, and a first financing-risk model, published even though it doesn't yet beat the simple average.",
+    "Time-to-event models for readouts and raises, tested on a much larger group of companies."],
+  ["Market research", "Whether any of this lines up with how share prices actually move.",
+    "An event study of share prices around stock offerings, measured against the biotech index.",
+    "Event studies around trial results and FDA decisions with exact announcement times, and costed, out-of-sample tests."],
+];
+
+const JUDGED = [
+  ["Readout windows", "Share of readouts that land inside the window", "Tracking from November 2026"],
+  ["Financing Pressure Score", "Whether High scorers raise within six months more often than Low scorers", "First check due April 2027"],
+  ["Financing-risk model", "Brier score against simply assuming the average", "First test published: not yet better"],
+  ["Approval odds", "Calibration: of drugs given 70%, about 70% should succeed", "Needs outcomes; starts with each readout"],
+  ["Offering event study", "Abnormal returns with ranges, checked for overlapping news", "Live on the Research page"],
+  ["Equity value range", "How much the range moves when each assumption changes", "Published for each company"],
+];
+
 function About({ go }) {
   const rr = useMemo(() => raiseRunway(COMPANIES), []);
   return (
@@ -2210,6 +2350,42 @@ function About({ go }) {
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Where Helixora is going</h2>
+          <span className="ph-note">The research question behind everything on this site.</span></header>
+        <p className="finding">Can we tell when a small biotech's clinical prospects, its chance of surviving financially, or its capital structure imply a value very different from its share price?</p>
+        <h3 className="subhead">Three research tracks, each judged on its own</h3>
+        <div className="probs">
+          {TRACKS.map(([title, aim, built, next]) => (
+            <article key={title} className="prob">
+              <h3 style={{ marginTop: 0 }}>{title}</h3>
+              <p className="prob-pain">{aim}</p>
+              <p className="prob-where"><b>Built:</b> {built}</p>
+              <p className="prob-where" style={{ marginTop: 6 }}><b>Next:</b> {next}</p>
+            </article>
+          ))}
+        </div>
+        <h3 className="subhead">Three products, in this order</h3>
+        <ol className="tr-list">
+          <li><b>Financial survival and dilution monitor.</b> Live: the Pressure Report, the Financing Pressure Score and the cash survival simulation. <button className="morelink" style={{ padding: 0 }} onClick={() => go("report")}>Open</button></li>
+          <li><b>Clinical catalyst and event intelligence.</b> Live in a first version: readout windows, trial design flags, FDA decisions and rival trials. <button className="morelink" style={{ padding: 0 }} onClick={() => go("outlook")}>Open</button></li>
+          <li><b>Risk-adjusted pipeline valuation engine.</b> Started: drug-specific odds and a simulated range of equity values on each company's Valuation tab.</li>
+        </ol>
+        <h3 className="subhead">How each model will be judged</h3>
+        <div className="tablewrap">
+          <table className="grid plain">
+            <thead><tr><th>Model</th><th>Measured by</th><th>Status</th></tr></thead>
+            <tbody>{JUDGED.map(([a, b, c]) => <tr key={a}><td><b>{a}</b></td><td>{b}</td><td>{c}</td></tr>)}</tbody>
+          </table>
+        </div>
+        <h3 className="subhead">Data rules</h3>
+        <ul className="watch">
+          <li>Every figure carries two dates: what it describes, and when the public could first see it. Past studies use only what was public at the time.</li>
+          <li>Every prediction is logged each day with the version of the model that made it, and never edited afterward. <a className="src" href="/data/predictions.json" target="_blank" rel="noreferrer">Download the prediction log</a></li>
+          <li>Coverage grows from {COMPANIES.length} companies to 50 to 100 U.S.-listed clinical-stage biotechs, picked by published rules, including companies that later fail or are bought so past results aren't flattered.</li>
+        </ul>
       </section>
 
       <Waitlist />
