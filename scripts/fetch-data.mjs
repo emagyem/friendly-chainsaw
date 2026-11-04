@@ -469,6 +469,8 @@ const cleanDrug = (name) => {
   // Development codes like "VK2735 QW" or "ARO-APOC3 cohort 2": the code alone names the program.
   const first = s.split(" ")[0].replace(/[-–]+$/, "");
   if (/[a-z]/i.test(first) && /\d/.test(first) && first.length >= 4) return first.replace(/-\d{3}$/, (m) => (/^[A-Z]+\d{3}-\d{3}$/.test(first) ? "" : m));
+  // A sentence instead of a name ("Phase 1 Part A - dose escalation TYRA-200 ..."): use the development code in it.
+  if (s.length > 40) { const code = s.match(/\b[A-Z]{2,}[A-Z0-9]*-?\d{2,}[A-Z0-9-]*\b/); return code ? code[0] : s.split(/\s+/).slice(0, 4).join(" "); }
   // Biologic names carry a four-letter FDA suffix ("zopapogene imadenovec-drba"); the program is the same drug.
   return s.replace(/-[a-z]{4}$/, "").replace(/[-–]+$/, "").trim();
 };

@@ -111,5 +111,42 @@
         ]
       }
     }
+  },
+  "PGEN": {
+    "programs": {
+      "PRGN-2012": {
+        "aliases": [
+          "Zopapogene imadenovec"
+        ]
+      }
+    }
+  },
+  "XENE": {
+    "programs": {
+      "Azetukalner": {
+        "aliases": [
+          "XEN1101"
+        ]
+      }
+    }
+  },
+  "LRMR": {
+    "programs": {
+      "Nomlabofusp": {
+        "aliases": [
+          "CTI-1601"
+        ]
+      }
+    }
+  },
+  "QURE": {
+    "programs": {
+      "AMT-130": {
+        "aliases": [
+          "intra-striatal rAAV5-miHTT",
+          "rAAV5-miHTT"
+        ]
+      }
+    }
   }
 }
