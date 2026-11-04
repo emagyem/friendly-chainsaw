@@ -131,7 +131,13 @@
     "modality": "Gene therapy"
   },
   "SLDB": {
-    "modality": "Gene therapy"
+    "modality": "Gene therapy",
+    "programs": {
+      "SGT-501": {
+        "area": "Cardiovascular",
+        "rare": true
+      }
+    }
   },
   "PGEN": {
     "programs": {
@@ -214,6 +220,9 @@
     "programs": {
       "TARA-002": {
         "modality": "Biologic"
+      },
+      "Choline Chloride": {
+        "area": "Gastroenterology"
       }
     }
   },
