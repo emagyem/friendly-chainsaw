@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-04T04:29:24.859Z",
+  "generatedAt": "2026-11-04T04:33:26.946Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -30092,14 +30092,14 @@
       "ind": "Catecholaminergic Polymorphic Ventricular Tachycardia"
      },
      "modality": "Gene therapy",
+     "area": "Cardiovascular",
+     "rare": true,
      "labels": {
-      "area": "not identified",
+      "area": "set by hand",
       "modality": "set by hand",
-      "rare": "not on the rare-disease list",
+      "rare": "set by hand",
       "biomarker": "no marker named"
      },
-     "area": null,
-     "rare": false,
      "biomarker": false,
      "slips": 0,
      "duration": null,
@@ -30120,12 +30120,13 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0888,
-      "base": 0.0787,
-      "area": "All indications",
+      "loa": 0.0729,
+      "base": 0.0478,
+      "area": "Cardiovascular",
       "modality": "Gene therapy",
       "factors": [
-       "Gene therapy"
+       "Gene therapy",
+       "Rare disease"
       ]
      }
     },
@@ -52829,13 +52830,13 @@
       "ind": "Choline Deficiency"
      },
      "modality": "Small molecule",
+     "area": "Gastroenterology",
      "labels": {
-      "area": "not identified",
+      "area": "set by hand",
       "modality": "registry lists it as a drug, not a biologic",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
-     "area": null,
      "rare": false,
      "biomarker": false,
      "slips": 0,
@@ -52863,9 +52864,9 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.5164,
-      "base": 0.5237,
-      "area": "All indications",
+      "loa": 0.5118,
+      "base": 0.519,
+      "area": "Gastroenterology",
       "modality": "Small molecule",
       "factors": [
        "Small molecule"
