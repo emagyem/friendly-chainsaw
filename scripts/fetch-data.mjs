@@ -24,7 +24,7 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
 import { runwaySim, QUANT_VERSION } from "../src/quant.js";
-import { readoutWindow, designFlags, successOdds, OFFICE_GROUPS, TRIALS_VERSION, kaplanMeier, stratumKey, durationCheck } from "../src/trials.js";
+import { readoutWindow, designFlags, successOdds, OFFICE_GROUPS, TRIALS_VERSION, kaplanMeier, stratumKey, durationCheck, classify } from "../src/trials.js";
 
 const ROOT = new URL("../", import.meta.url);
 const OUT_DIR = new URL("public/data/", ROOT);
@@ -485,6 +485,8 @@ function trialRow(p) {
     .filter((i) => ASSET_TYPES.has(i.type) && i.name && !NOT_AN_ASSET.test(i.name))
     .map((i) => cleanDrug(i.name)).filter(Boolean);
   const own = drugs.filter((d) => !COMMON_PARTNERS.test(d));
+  const itypes = {};
+  for (const i of p.armsInterventionsModule?.interventions || []) if (i.name && ASSET_TYPES.has(i.type)) itypes[cleanDrug(i.name).toLowerCase()] = i.type;
   const di = p.designModule?.designInfo || {};
   const title = p.identificationModule?.briefTitle || "";
   const official = p.identificationModule?.officialTitle || "";
@@ -500,6 +502,7 @@ function trialRow(p) {
     ind: p.conditionsModule?.conditions?.[0] || "—",
     ep: (prim[0]?.measure || "—").slice(0, 110),
     drugs: own,
+    itypes,
     ext,
     design: {
       nct: p.identificationModule?.nctId, title, status: p.statusModule?.overallStatus, ext,
@@ -572,6 +575,7 @@ function programsFromTrials(trials, assumed = {}) {
       trials: g.trials.length,
       activeTrials: active.length,
       status: best.status,
+      itype: best.itypes?.[g.name.toLowerCase()] || Object.values(best.itypes || {})[0] || null,
       trial: { ...best.design, ph: best.ph, ind: best.ind },
     });
   }
@@ -772,6 +776,13 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
   for (const p of pipeline) {
     const k = (cls.programs || {})[p.d] || {};
     Object.assign(p, { modality: cls.modality || null }, k);
+    // Anything not set by hand is labeled automatically, and the reason is kept for the page.
+    const auto = classify(p);
+    p.labels = auto.why;
+    if (p.area == null) p.area = auto.area === "All indications" ? null : auto.area;
+    if (p.modality == null) p.modality = auto.modality;
+    if (p.rare == null) p.rare = auto.rare;
+    if (p.biomarker == null) p.biomarker = auto.biomarker;
     const seen = trialHist[p.nct] || [];
     p.slips = seen.reduce((n, x, i) => n + (i > 0 && Date.parse(x[1]) - Date.parse(seen[i - 1][1]) > 30 * DAY ? 1 : 0), 0);
     p.duration = durTables ? durationCheck(p, durTables, TODAY_ISO) : null;

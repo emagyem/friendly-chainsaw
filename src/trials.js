@@ -140,34 +140,80 @@ const BIOMARKER = [0.524, 0.463, 0.682, 0.960];
 const STEPS = ["Phase I to II", "Phase II to III", "Phase III to filing", "Filing to approval"];
 const START = { "Phase I": 0, "Phase II": 1, "Phase III": 2, Filed: 3, Approved: 4 };
 
+// Disease area from the indication and trial title. Order matters: specific areas first,
+// so "uveal melanoma" is oncology and "Fuchs corneal dystrophy" is ophthalmology.
 const AREA_WORDS = [
-  ["Oncology", /cancer|tumou?r|carcinoma|melanoma|lymphoma|leukemia|myeloma|sarcoma|neoplasm|glioma/i],
-  ["Hematology", /anemia|anaemia|hemophilia|sickle|thalass|fanconi|thrombocyt|hematolog/i],
-  ["Neurology", /alzheimer|parkinson|amyotrophic|\bALS\b|muscular atrophy|duchenne|dystroph|myotonic|neuropath|epilep|huntington|ataxia|multiple sclerosis|migraine|myasthenia/i],
-  ["Psychiatry", /depress|schizo|bipolar|anxiety|psychiatr/i],
-  ["Cardiovascular", /cardio|heart|arrhythm|hypertension|danon|cholesterol|lipid|triglycer|atheroscl/i],
-  ["Metabolic", /obes|weight|diabet|steatohepatitis|\bnash\b|\bmash\b|metabolic/i],
-  ["Autoimmune", /dermatitis|psoriasis|lupus|arthritis|colitis|crohn|autoimmun|eczema|urticaria|hidradenitis/i],
-  ["Respiratory", /asthma|copd|pulmonary|cystic fibrosis|bronch/i],
-  ["Ophthalmology", /retin|macular|ocular|glaucoma|uveitis/i],
-  ["Infectious disease", /infect|viral|virus|\bhiv\b|hepatitis b|covid|bacteri/i],
-  ["Other (incl. renal, dermatology)", /nephr|kidney|renal|iga/i],
+  ["Oncology", /cancer|tumou?r|carcinoma|melanoma|lymphoma|leukemia|leukaemia|myeloma|sarcoma|neoplasm|glioma|glioblastoma|malignan|myelodysplastic|myelofibrosis|NMIBC/i],
+  ["Ophthalmology", /retin|macular|ocular|glaucoma|uveitis|corneal|fuchs|\beye\b|leber|amaurosis|optic|stargardt/i],
+  ["Hematology", /anemia|anaemia|hemophilia|haemophilia|sickle|thalass|fanconi|thrombocyt|hematolog|hemoglobinuria|neutropenia|polycythemia|thrombotic|microangiopath/i],
+  ["Allergy", /allerg|peanut|anaphyla/i],
+  ["Infectious disease", /infect|viral|virus|\bhiv\b|hepatitis|covid|bacteri|influenza|fungal|papilloma/i],
+  ["Psychiatry", /depress|schizo|bipolar|anxiety|psychiatr|ptsd|stress disorder/i],
+  ["Neurology", /alzheimer|parkinson|amyotrophic|\bALS\b|muscular atrophy|duchenne|becker|dystroph|myotonic|neuropath|epilep|seizure|huntington|ataxia|multiple sclerosis|migraine|myasthe?a?nia|myasthaenia|stroke|rett|lipofuscinosis|dementia|frontotemporal|neuro/i],
+  ["Endocrine", /graves|thyroid|parathyroid|cushing|acromegaly|adrenal|growth hormone/i],
+  ["Cardiovascular", /cardio|heart|arrhythm|hypertension|danon|cholesterol|lipid|triglycer|atheroscl|cardiomyopathy|vascular/i],
+  ["Metabolic", /obes|weight|diabet|steatohepatitis|\bnash\b|\bmash\b|metabolic|mucopolysacch|lysosomal|fabry|gaucher|pompe|urea cycle|phenylketon/i],
+  ["Autoimmune", /dermatitis|psoriasis|psoriatic|lupus|arthritis|colitis|crohn|autoimmun|eczema|urticaria|hidradenitis|vasculitis|myopathy|sjogren|scleroderma|bowel disease/i],
+  ["Respiratory", /asthma|copd|pulmonary|cystic fibrosis|bronch|lung disease|cough/i],
+  ["Other (incl. renal, dermatology)", /nephr|kidney|renal|iga|transplant|alopecia|angiokeratoma|epidermolysis|skin/i],
 ];
 export function diseaseArea(p) {
   if (p.area && AREA_RATES[p.area]) return p.area;
-  const txt = `${p.ind || ""}`;
+  const txt = `${p.ind || ""} ${p.trial?.ind || ""}`;
   for (const [a, re] of AREA_WORDS) if (re.test(txt)) return a;
   return "All indications";
 }
+
+// Drug type from the mechanism text, then the drug's official name (INN stems encode the type),
+// then the registry's intervention type.
 const MODALITY_WORDS = [
-  ["CAR-T", /car-?t\b/i], ["siRNA/RNAi", /sirna|rnai/i], ["Gene therapy", /gene therapy|aav|lentivir/i],
+  ["CAR-T", /car-?t\b/i], ["siRNA/RNAi", /sirna|rnai/i], ["Gene therapy", /gene therapy|\baav|lentivir/i],
   ["Antisense", /antisense|oligonucleotide/i], ["Monoclonal antibody", /antibody|mab\b/i],
   ["Small molecule", /small[- ]molecule|inhibitor|degrader/i],
 ];
+const NAME_STEMS = [
+  ["Monoclonal antibody", /mab\b/i, "-mab"],
+  ["Monoclonal antibody", /(bart|tug|mig|ment)\b/i, "-bart / -tug / -mig / -ment"],
+  ["siRNA/RNAi", /siran\b/i, "-siran"],
+  ["Antisense", /rsen\b/i, "-rsen"],
+  ["Gene therapy", /\b\w*gene\b|vec\b|parvovec/i, "-gene / -vec"],
+  ["Cell therapy", /cel\b|leucel/i, "-cel"],
+  ["Fusion protein", /cept\b/i, "-cept"],
+  ["Peptide", /(glu)?tide\b|tide-/i, "-tide"],
+  ["Protein", /(ase|alfa|beta|fusp)\b|recombinant/i, "protein suffix"],
+  ["Small molecule", /(tinib|rafenib|ciclib|lisib|parib|zomib|sertib|metinib|stat|[^a-z]vir|previr|asvir|buvir|gliflozin|tegravir|lukast|sartan|pril|olol|azole|oxacin|setron|tidine|prazole|dronate|zole|pam|lam|oxetine|piprazole|semten|tegrin|ralin|uzole|xaban)\b/i, "small-molecule stem"],
+];
 export function modalityOf(p) {
-  if (p.modality) return p.modality;
-  for (const [m, re] of MODALITY_WORDS) if (re.test(p.moa || "")) return m;
-  return null;
+  return classifyModality(p).value;
+}
+export function classifyModality(p) {
+  if (p.modality) return { value: p.modality, how: "set by hand" };
+  for (const [m, re] of MODALITY_WORDS) if (re.test(p.moa || "")) return { value: m, how: "from the mechanism" };
+  for (const [m, re, stem] of NAME_STEMS) if (re.test(p.d || "")) return { value: m, how: `from the drug name (${stem})` };
+  if (p.itype === "GENETIC") return { value: "Gene therapy", how: "registry lists it as genetic" };
+  if (p.itype === "BIOLOGICAL") return { value: "Biologic", how: "registry lists it as biological" };
+  if (p.itype === "DRUG") return { value: "Small molecule", how: "registry lists it as a drug, not a biologic" };
+  return { value: null, how: "not identified" };
+}
+
+// Rare: conditions that affect fewer than about 200,000 people in the U.S. (the orphan-drug threshold).
+const RARE_WORDS = /duchenne|becker|spinal muscular|friedreich|huntington|amyotrophic|\bALS\b|myotonic|fanconi|danon|hemophilia|haemophilia|sickle|thalass|mucopolysacch|fabry|gaucher|pompe|lysosomal|retinitis pigmentosa|leber|uveal melanoma|hemoglobinuria|iga nephropathy|cystic fibrosis|myasthenia|pulmonary arterial hypertension|homozygous familial|urea cycle|rett|lipofuscinosis|epidermolysis|hypoparathyroid|wolfram|desmoid|angiokeratoma|proteinosis|myelofibrosis|polycythemia|chronic granulomatous|vasculitis|inflammatory myopathy|neuroendocrine|spinocerebellar|papillomatosis|hepatitis delta|myasthaenia|microangiopath|stargardt|frontotemporal/i;
+// Biomarker: patients picked by a genetic or molecular marker.
+const BIOMARKER_WORDS = /mutation|mutant|mutated|-positive|positive\b|amplif|rearrang|fusion-positive|mismatch repair|\bdMMR\b|\bHRD\b|deleted|altered|\b(KRAS|NRAS|EGFR|HER2|BRAF|FGFR\d?|MTAP|BRCA\d?|ALK|ROS1|MET|PIK3CA|IDH\d?|NTRK|RET|PD-L1)\b|exon \d+|amenable/i;
+
+// Fill in missing labels and record how each was set, so a wrong one is easy to spot and override.
+export function classify(p) {
+  const txt = `${p.ind || ""} ${p.trial?.ind || ""} ${p.trial?.title || ""}`;
+  const why = {};
+  const out = {};
+  if (p.area && AREA_RATES[p.area]) { out.area = p.area; why.area = "set by hand"; }
+  else { out.area = diseaseArea(p); why.area = out.area === "All indications" ? "not identified" : "from the disease"; }
+  const m = classifyModality(p); out.modality = m.value; why.modality = m.how;
+  if (p.rare != null) { out.rare = p.rare; why.rare = "set by hand"; }
+  else { out.rare = RARE_WORDS.test(txt); why.rare = out.rare ? "on Helixora's rare-disease list" : "not on the rare-disease list"; }
+  if (p.biomarker != null) { out.biomarker = p.biomarker; why.biomarker = "set by hand"; }
+  else { out.biomarker = BIOMARKER_WORDS.test(txt); why.biomarker = out.biomarker ? "trial names a marker or mutation" : "no marker named"; }
+  return { ...out, why };
 }
 
 // Each adjustment is applied at half strength (square root of the ratio), because the
@@ -195,12 +241,12 @@ export function successOdds(p) {
 
 /* ----------------------------- exclusivity ----------------------------- */
 
-const BLA_TYPES = new Set(["Monoclonal antibody", "Gene therapy", "CAR-T"]);
+const BLA_TYPES = new Set(["Monoclonal antibody", "Gene therapy", "CAR-T", "Cell therapy", "Fusion protein", "Protein", "Biologic"]);
 export function pathwayOf(p) {
   if (p.pathway) return p.pathway;
   const m = modalityOf(p);
   if (BLA_TYPES.has(m) || /fusion protein|antibody/i.test(p.moa || "")) return "BLA";
-  if (m === "Small molecule" || m === "siRNA/RNAi" || m === "Antisense") return "NDA";
+  if (m === "Small molecule" || m === "siRNA/RNAi" || m === "Antisense" || m === "Peptide") return "NDA";
   return null;
 }
 
@@ -220,7 +266,7 @@ export function exclusivity(p, expectedApproval) {
 
 export function reviewOffice(p) {
   const m = modalityOf(p);
-  if (m === "Gene therapy" || m === "CAR-T") return "Office of Therapeutic Products (CBER)";
+  if (m === "Gene therapy" || m === "CAR-T" || m === "Cell therapy") return "Office of Therapeutic Products (CBER)";
   const a = diseaseArea(p);
   return {
     Neurology: "Office of Neuroscience", Psychiatry: "Office of Neuroscience",

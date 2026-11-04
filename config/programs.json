@@ -1,58 +1,239 @@
 {
   "_readme": [
-    "How each program is classified for the success-odds, exclusivity and FDA models. Edit freely.",
-    "Company-level 'modality' is the default for every program; a program entry overrides it.",
-    "area: one of the disease areas in src/trials.js AREA_RATES. Left out, it is guessed from the indication.",
-    "modality: Small molecule, Monoclonal antibody, siRNA/RNAi, Antisense, Gene therapy, CAR-T, or another word (other types get no adjustment).",
-    "rare: rare-disease indication. biomarker: patients selected by a genetic or molecular marker. orphan: true if FDA orphan designation is confirmed.",
-    "pathway: NDA or BLA, when it differs from the default for the drug type. approval: approval date for approved products. patentExpiry: latest key patent date from the 10-K, if researched."
+    "Programs are labeled automatically: disease area from the disease, drug type from the drug's name (for example -mab, -siran, -tinib) or the registry, rare disease from Helixora's list, biomarker from the trial's wording. Each program card on the site shows how its labels were set.",
+    "Only add an entry here to correct a label. Keys: area (a disease area in src/trials.js AREA_RATES), modality, rare (true/false), biomarker (true/false), orphan, pathway (NDA or BLA), approval (date), patentExpiry.",
+    "Company-level 'modality' applies to all of that company's programs unless a program says otherwise."
   ],
-  "VKTX": { "programs": { "VK2735": { "area": "Metabolic", "modality": "Peptide", "pathway": "NDA" } } },
+  "VKTX": {
+    "programs": {
+      "VK2735": {
+        "area": "Metabolic",
+        "modality": "Peptide",
+        "pathway": "NDA"
+      }
+    }
+  },
   "ARWR": {
     "modality": "siRNA/RNAi",
     "programs": {
-      "Zodasiran": { "area": "Cardiovascular", "rare": true },
-      "Plozasiran": { "area": "Cardiovascular" },
-      "ARO-ALK7": { "area": "Metabolic" },
-      "ARO-INHBE": { "area": "Metabolic" },
-      "ARO-MAPT-SC": { "area": "Neurology" },
-      "ARO-DIMERPA": { "area": "Cardiovascular" }
+      "Zodasiran": {
+        "area": "Cardiovascular",
+        "rare": true
+      },
+      "Plozasiran": {
+        "area": "Cardiovascular"
+      },
+      "ARO-ALK7": {
+        "area": "Metabolic"
+      },
+      "ARO-INHBE": {
+        "area": "Metabolic"
+      },
+      "ARO-MAPT-SC": {
+        "area": "Neurology"
+      },
+      "ARO-DIMERPA": {
+        "area": "Cardiovascular"
+      }
     }
   },
   "RCKT": {
     "modality": "Gene therapy",
     "programs": {
-      "RP-L102": { "area": "Hematology", "rare": true },
-      "RP-A501": { "area": "Cardiovascular", "rare": true },
-      "RP-A601": { "area": "Cardiovascular", "rare": true },
-      "RP-A701": { "area": "Cardiovascular" }
+      "RP-L102": {
+        "area": "Hematology",
+        "rare": true
+      },
+      "RP-A501": {
+        "area": "Cardiovascular",
+        "rare": true
+      },
+      "RP-A601": {
+        "area": "Cardiovascular",
+        "rare": true
+      },
+      "RP-A701": {
+        "area": "Cardiovascular"
+      }
     }
   },
   "SRRK": {
     "programs": {
-      "Apitegromab": { "area": "Neurology", "modality": "Monoclonal antibody", "rare": true }
+      "Apitegromab": {
+        "area": "Neurology",
+        "modality": "Monoclonal antibody",
+        "rare": true
+      }
     }
   },
   "IDYA": {
     "programs": {
-      "Darovasertib": { "area": "Oncology", "modality": "Small molecule", "rare": true },
-      "IDE397": { "area": "Oncology", "modality": "Small molecule", "biomarker": true },
-      "IDE-161": { "area": "Oncology", "modality": "Small molecule" },
-      "IDE849": { "area": "Oncology", "modality": "Antibody-drug conjugate", "pathway": "BLA" },
-      "IDE034": { "area": "Oncology", "modality": "Antibody-drug conjugate", "pathway": "BLA" }
+      "Darovasertib": {
+        "area": "Oncology",
+        "modality": "Small molecule",
+        "rare": true
+      },
+      "IDE397": {
+        "area": "Oncology",
+        "modality": "Small molecule",
+        "biomarker": true
+      },
+      "IDE-161": {
+        "area": "Oncology",
+        "modality": "Small molecule"
+      },
+      "IDE849": {
+        "area": "Oncology",
+        "modality": "Antibody-drug conjugate",
+        "pathway": "BLA"
+      },
+      "IDE034": {
+        "area": "Oncology",
+        "modality": "Antibody-drug conjugate",
+        "pathway": "BLA"
+      }
     }
   },
-  "KYMR": { "modality": "Small molecule", "programs": { "KT-621": { "area": "Autoimmune" } } },
+  "KYMR": {
+    "modality": "Small molecule",
+    "programs": {
+      "KT-621": {
+        "area": "Autoimmune"
+      }
+    }
+  },
   "DYN": {
     "modality": "Antisense",
     "programs": {
-      "z-rostudirsen (DYNE-251)": { "area": "Neurology", "rare": true, "biomarker": true },
-      "z-basivarsen (DYNE-101)": { "area": "Neurology", "rare": true }
+      "z-rostudirsen (DYNE-251)": {
+        "area": "Neurology",
+        "rare": true,
+        "biomarker": true
+      },
+      "z-basivarsen (DYNE-101)": {
+        "area": "Neurology",
+        "rare": true
+      }
     }
   },
   "VERA": {
     "programs": {
-      "Trutakna (atacicept)": { "area": "Other (incl. renal, dermatology)", "modality": "Fusion protein", "pathway": "BLA", "rare": true, "approval": "2026-07-07" }
+      "Trutakna (atacicept)": {
+        "area": "Other (incl. renal, dermatology)",
+        "modality": "Fusion protein",
+        "pathway": "BLA",
+        "rare": true,
+        "approval": "2026-07-07"
+      }
+    }
+  },
+  "QURE": {
+    "modality": "Gene therapy"
+  },
+  "SLDB": {
+    "modality": "Gene therapy",
+    "programs": {
+      "SGT-501": {
+        "area": "Cardiovascular",
+        "rare": true
+      }
+    }
+  },
+  "PGEN": {
+    "programs": {
+      "PRGN-2012": {
+        "modality": "Gene therapy"
+      },
+      "PRGN-2009": {
+        "modality": "Gene therapy"
+      }
+    }
+  },
+  "VIR": {
+    "programs": {
+      "VIR-5818": {
+        "modality": "Monoclonal antibody"
+      },
+      "VIR-2218": {
+        "modality": "siRNA/RNAi"
+      }
+    }
+  },
+  "DBVT": {
+    "programs": {
+      "Viaskin Peanut": {
+        "modality": "Biologic"
+      },
+      "DBV712": {
+        "modality": "Biologic"
+      }
+    }
+  },
+  "AURA": {
+    "programs": {
+      "Bel-sar": {
+        "modality": "Virus-like drug conjugate"
+      }
+    }
+  },
+  "BIOA": {
+    "programs": {
+      "BGE-102": {
+        "area": "Metabolic"
+      }
+    }
+  },
+  "RNAC": {
+    "programs": {
+      "Descartes-08": {
+        "modality": "CAR-T",
+        "area": "Neurology"
+      }
+    }
+  },
+  "DNLI": {
+    "programs": {
+      "DNL593": {
+        "modality": "Protein",
+        "area": "Neurology"
+      },
+      "DNL126": {
+        "modality": "Protein"
+      }
+    }
+  },
+  "OMER": {
+    "programs": {
+      "OMS906": {
+        "modality": "Monoclonal antibody"
+      }
+    }
+  },
+  "TECX": {
+    "programs": {
+      "TX000045": {
+        "modality": "Fusion protein"
+      }
+    }
+  },
+  "TARA": {
+    "programs": {
+      "TARA-002": {
+        "modality": "Biologic"
+      },
+      "Choline Chloride": {
+        "area": "Gastroenterology"
+      }
+    }
+  },
+  "OCGN": {
+    "programs": {
+      "OCU410ST": {
+        "modality": "Gene therapy"
+      },
+      "OCU410": {
+        "modality": "Gene therapy"
+      }
     }
   }
 }
