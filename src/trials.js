@@ -144,12 +144,12 @@ const START = { "Phase I": 0, "Phase II": 1, "Phase III": 2, Filed: 3, Approved:
 // so "uveal melanoma" is oncology and "Fuchs corneal dystrophy" is ophthalmology.
 const AREA_WORDS = [
   ["Oncology", /cancer|tumou?r|carcinoma|melanoma|lymphoma|leukemia|leukaemia|myeloma|sarcoma|neoplasm|glioma|glioblastoma|malignan|myelodysplastic|myelofibrosis|NMIBC/i],
-  ["Ophthalmology", /retin|macular|ocular|glaucoma|uveitis|corneal|fuchs|\beye\b|leber|amaurosis|optic/i],
-  ["Hematology", /anemia|anaemia|hemophilia|haemophilia|sickle|thalass|fanconi|thrombocyt|hematolog|hemoglobinuria|neutropenia|polycythemia/i],
+  ["Ophthalmology", /retin|macular|ocular|glaucoma|uveitis|corneal|fuchs|\beye\b|leber|amaurosis|optic|stargardt/i],
+  ["Hematology", /anemia|anaemia|hemophilia|haemophilia|sickle|thalass|fanconi|thrombocyt|hematolog|hemoglobinuria|neutropenia|polycythemia|thrombotic|microangiopath/i],
   ["Allergy", /allerg|peanut|anaphyla/i],
   ["Infectious disease", /infect|viral|virus|\bhiv\b|hepatitis|covid|bacteri|influenza|fungal|papilloma/i],
   ["Psychiatry", /depress|schizo|bipolar|anxiety|psychiatr|ptsd|stress disorder/i],
-  ["Neurology", /alzheimer|parkinson|amyotrophic|\bALS\b|muscular atrophy|duchenne|becker|dystroph|myotonic|neuropath|epilep|seizure|huntington|ataxia|multiple sclerosis|migraine|myasthenia|stroke|rett|lipofuscinosis|neuro/i],
+  ["Neurology", /alzheimer|parkinson|amyotrophic|\bALS\b|muscular atrophy|duchenne|becker|dystroph|myotonic|neuropath|epilep|seizure|huntington|ataxia|multiple sclerosis|migraine|myasthe?a?nia|myasthaenia|stroke|rett|lipofuscinosis|dementia|frontotemporal|neuro/i],
   ["Endocrine", /graves|thyroid|parathyroid|cushing|acromegaly|adrenal|growth hormone/i],
   ["Cardiovascular", /cardio|heart|arrhythm|hypertension|danon|cholesterol|lipid|triglycer|atheroscl|cardiomyopathy|vascular/i],
   ["Metabolic", /obes|weight|diabet|steatohepatitis|\bnash\b|\bmash\b|metabolic|mucopolysacch|lysosomal|fabry|gaucher|pompe|urea cycle|phenylketon/i],
@@ -180,7 +180,7 @@ const NAME_STEMS = [
   ["Cell therapy", /cel\b|leucel/i, "-cel"],
   ["Fusion protein", /cept\b/i, "-cept"],
   ["Peptide", /(glu)?tide\b|tide-/i, "-tide"],
-  ["Protein", /(ase|alfa|beta|fusp)\b/i, "protein suffix"],
+  ["Protein", /(ase|alfa|beta|fusp)\b|recombinant/i, "protein suffix"],
   ["Small molecule", /(tinib|rafenib|ciclib|lisib|parib|zomib|sertib|metinib|stat|[^a-z]vir|previr|asvir|buvir|gliflozin|tegravir|lukast|sartan|pril|olol|azole|oxacin|setron|tidine|prazole|dronate|zole|pam|lam|oxetine|piprazole|semten|tegrin|ralin|uzole|xaban)\b/i, "small-molecule stem"],
 ];
 export function modalityOf(p) {
@@ -197,9 +197,9 @@ export function classifyModality(p) {
 }
 
 // Rare: conditions that affect fewer than about 200,000 people in the U.S. (the orphan-drug threshold).
-const RARE_WORDS = /duchenne|becker|spinal muscular|friedreich|huntington|amyotrophic|\bALS\b|myotonic|fanconi|danon|hemophilia|haemophilia|sickle|thalass|mucopolysacch|fabry|gaucher|pompe|lysosomal|retinitis pigmentosa|leber|uveal melanoma|hemoglobinuria|iga nephropathy|cystic fibrosis|myasthenia|pulmonary arterial hypertension|homozygous familial|urea cycle|rett|lipofuscinosis|epidermolysis|hypoparathyroid|wolfram|desmoid|angiokeratoma|proteinosis|myelofibrosis|polycythemia|chronic granulomatous|vasculitis|inflammatory myopathy|neuroendocrine|spinocerebellar|papillomatosis|hepatitis delta/i;
+const RARE_WORDS = /duchenne|becker|spinal muscular|friedreich|huntington|amyotrophic|\bALS\b|myotonic|fanconi|danon|hemophilia|haemophilia|sickle|thalass|mucopolysacch|fabry|gaucher|pompe|lysosomal|retinitis pigmentosa|leber|uveal melanoma|hemoglobinuria|iga nephropathy|cystic fibrosis|myasthenia|pulmonary arterial hypertension|homozygous familial|urea cycle|rett|lipofuscinosis|epidermolysis|hypoparathyroid|wolfram|desmoid|angiokeratoma|proteinosis|myelofibrosis|polycythemia|chronic granulomatous|vasculitis|inflammatory myopathy|neuroendocrine|spinocerebellar|papillomatosis|hepatitis delta|myasthaenia|microangiopath|stargardt|frontotemporal/i;
 // Biomarker: patients picked by a genetic or molecular marker.
-const BIOMARKER_WORDS = /mutation|mutant|mutated|-positive|positive\b|amplif|rearrang|fusion-positive|deficien|deleted|altered|\b(KRAS|NRAS|EGFR|HER2|BRAF|FGFR\d?|MTAP|BRCA\d?|ALK|ROS1|MET|PIK3CA|IDH\d?|NTRK|RET|PD-L1)\b|exon \d+|amenable/i;
+const BIOMARKER_WORDS = /mutation|mutant|mutated|-positive|positive\b|amplif|rearrang|fusion-positive|mismatch repair|\bdMMR\b|\bHRD\b|deleted|altered|\b(KRAS|NRAS|EGFR|HER2|BRAF|FGFR\d?|MTAP|BRCA\d?|ALK|ROS1|MET|PIK3CA|IDH\d?|NTRK|RET|PD-L1)\b|exon \d+|amenable/i;
 
 // Fill in missing labels and record how each was set, so a wrong one is easy to spot and override.
 export function classify(p) {

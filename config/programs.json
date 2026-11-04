@@ -126,5 +126,105 @@
         "approval": "2026-07-07"
       }
     }
+  },
+  "QURE": {
+    "modality": "Gene therapy"
+  },
+  "SLDB": {
+    "modality": "Gene therapy"
+  },
+  "PGEN": {
+    "programs": {
+      "PRGN-2012": {
+        "modality": "Gene therapy"
+      },
+      "PRGN-2009": {
+        "modality": "Gene therapy"
+      }
+    }
+  },
+  "VIR": {
+    "programs": {
+      "VIR-5818": {
+        "modality": "Monoclonal antibody"
+      },
+      "VIR-2218": {
+        "modality": "siRNA/RNAi"
+      }
+    }
+  },
+  "DBVT": {
+    "programs": {
+      "Viaskin Peanut": {
+        "modality": "Biologic"
+      },
+      "DBV712": {
+        "modality": "Biologic"
+      }
+    }
+  },
+  "AURA": {
+    "programs": {
+      "Bel-sar": {
+        "modality": "Virus-like drug conjugate"
+      }
+    }
+  },
+  "BIOA": {
+    "programs": {
+      "BGE-102": {
+        "area": "Metabolic"
+      }
+    }
+  },
+  "RNAC": {
+    "programs": {
+      "Descartes-08": {
+        "modality": "CAR-T",
+        "area": "Neurology"
+      }
+    }
+  },
+  "DNLI": {
+    "programs": {
+      "DNL593": {
+        "modality": "Protein",
+        "area": "Neurology"
+      },
+      "DNL126": {
+        "modality": "Protein"
+      }
+    }
+  },
+  "OMER": {
+    "programs": {
+      "OMS906": {
+        "modality": "Monoclonal antibody"
+      }
+    }
+  },
+  "TECX": {
+    "programs": {
+      "TX000045": {
+        "modality": "Fusion protein"
+      }
+    }
+  },
+  "TARA": {
+    "programs": {
+      "TARA-002": {
+        "modality": "Biologic"
+      }
+    }
+  },
+  "OCGN": {
+    "programs": {
+      "OCU410ST": {
+        "modality": "Gene therapy"
+      },
+      "OCU410": {
+        "modality": "Gene therapy"
+      }
+    }
   }
 }
