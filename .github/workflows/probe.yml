@@ -1,5 +1,8 @@
 name: Probe
-on: { workflow_dispatch: {} }
+on:
+  push:
+    branches: [trials-v1]
+    paths: ["scripts/probe.mjs", ".github/workflows/probe.yml"]
 jobs:
   probe:
     runs-on: ubuntu-latest
