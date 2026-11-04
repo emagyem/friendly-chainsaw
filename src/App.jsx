@@ -5,6 +5,7 @@ import {
 } from "recharts";
 import { COMPANIES, META, HISTORY } from "./data.js";
 import { offeringStudy, raiseRunway, PRE, POST } from "./research.js";
+import { successOdds, exclusivity, reviewOffice, windowConfidence, ODDS_SOURCE, TRIALS_VERSION } from "./trials.js";
 import { computeFPS, nextMajorCatalyst, FPS_COMPONENTS, FPS_BANDS, FPS_CHANGELOG, FPS_VERSION, FPS_UPDATED, BUFFER_MONTHS, NO_CATALYST_MONTHS } from "./fps.js";
 
 /* ------------------------------------------------------------------
@@ -28,6 +29,7 @@ const CAT_KIND = {
   earnings: { label: "Earnings", c: "#5A6B76" },
   financing: { label: "Financing", c: "#B8730F" },
   conference: { label: "Conference", c: "#5A6B76" },
+  minor: { label: "Minor update", c: "#9AA6AD" },
 };
 
 
@@ -49,7 +51,7 @@ const ExtLink = ({ href, children }) => (href ? <a className="src" href={href} t
 function runway(c) { return Math.min(c.cash / c.burn, 120); }
 
 function rnpv(p, { discount = 0.11, margin = 0.42, patentYrs = 11, posOverride = null } = {}) {
-  const pos = posOverride ?? POS[p.ph];
+  const pos = posOverride ?? p.odds?.loa ?? POS[p.ph];
   const ramp = 5;
   let pv = 0;
   for (let t = 1; t <= p.launch + patentYrs + 2; t++) {
@@ -940,9 +942,10 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
                     <dt>Mechanism</dt><dd>{p.moa || "—"}</dd>
                     <dt>Primary endpoint</dt><dd>{p.ep}</dd>
                     <dt>Enrollment</dt><dd className="mono">{p.n ? p.n : "—"}</dd>
-                    <dt>Expected readout</dt><dd className="mono">{fmtDate(p.ro)} <span className="sub inline">({days(p.ro)}d{p.roType === "ESTIMATED" ? ", registry estimate" : ""})</span></dd>
+                    <dt>Expected data</dt><dd className="mono">{p.window ? <>{fmtDate(p.window.lo)} to {fmtDate(p.window.hi)} <span className="sub">{windowConfidence(p.window)} window; registry date {fmtDate(p.ro)}{p.roType === "COMPANY GUIDANCE" ? " (company guidance)" : ""}</span></> : <>{fmtDate(p.ro)} <span className="sub inline">({days(p.ro)}d)</span></>}</dd>
+                    {p.flags?.flags?.length ? <><dt>Trial design</dt><dd><div className="flagwrap">{p.flags.flags.map((f) => <span key={f.label} className={"flag " + ({ high: "flag-high", med: "flag-med", low: "flag-low", info: "flag-info" })[f.sev]} title={f.detail}>{f.label}</span>)}</div></dd></> : null}
                     {p.nct && <><dt>Registry</dt><dd className="mono"><ExtLink href={`https://clinicaltrials.gov/study/${p.nct}`}>{p.nct}</ExtLink>{p.trials > 1 ? <span className="sub inline"> +{p.trials - 1} more</span> : null}</dd></>}
-                    <dt>Probability of approval</dt><dd className="mono">{Math.round(POS[p.ph] * 100)}%</dd>
+                    <dt>Probability of approval</dt><dd className="mono">{Math.round((p.odds?.loa ?? POS[p.ph]) * 100)}%{p.odds ? <span className="sub">{p.odds.area}{p.odds.factors.length ? `; ${p.odds.factors.join(", ").toLowerCase()}` : ""}</span> : null}</dd>
                     <dt>Peak sales estimate</dt><dd className="mono">{money(p.peak)}{p.est ? <span className="sub inline"> placeholder</span> : null}</dd>
                     <dt>Risk-adjusted value</dt><dd className="mono strong">{money(v)}</dd>
                   </dl>
@@ -950,6 +953,14 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
               );
             })}
           </div>
+          {(c.rivals || []).length > 0 && (
+            <>
+              <h3 className="subhead">Rival trials that could move {c.t}</h3>
+              <ul className="watch">
+                {c.rivals.slice(0, 6).map((r) => <li key={r.nct}><b>{r.drugs.join(", ")}</b> from {r.sponsor} ({r.ph}{r.china ? `, ${r.china === "only" ? "China only" : "includes China"}` : ""}), in {r.ind}; completes {r.pcd ? fmtDate(r.pcd) : "date not given"}. <a className="src" href={`https://clinicaltrials.gov/study/${r.nct}`} target="_blank" rel="noreferrer">{r.nct}</a></li>)}
+              </ul>
+            </>
+          )}
         </section>
       )}
 
@@ -1075,7 +1086,7 @@ function Catalysts({ go }) {
                   <span className="ev-date mono">{fmtDate(e.date).replace(", " + new Date(e.date + "T00:00:00").getFullYear(), "")}</span>
                   <span className="ev-kind" style={{ background: CAT_KIND[e.kind].c }} />
                   <span className="tick">{e.c.t}</span>
-                  <span className="ev-label">{e.label}</span>
+                  <span className="ev-label">{e.label}{e.lo && e.hi ? <span className="sub">likely {fmtDate(e.lo)} to {fmtDate(e.hi)}{e.reg ? `; registry date ${fmtDate(e.reg)}` : ""}</span> : null}</span>
                   <span className="ev-run mono">{num(runway(e.c), 0)} mo cash</span>
                   <span className={"ev-days mono " + (d >= 0 && d <= 45 ? "warn" : "")}>{d < 0 ? "reported" : `${d}d`}</span>
                 </button>
@@ -1807,6 +1818,296 @@ function Research({ go }) {
   );
 }
 
+/* ---------------------------- trials and FDA ---------------------------- */
+
+const pctW = (x, d = 0) => (x == null ? "—" : `${(x * 100).toFixed(d)}%`);
+const SEV_CLS = { high: "flag-high", med: "flag-med", low: "flag-low", info: "flag-info" };
+
+// When a program could reach the market: the approval date if approved, the FDA decision date if filed,
+// otherwise the estimated data date plus about a year to file and be reviewed (Phase III), or the phase default.
+function expectedApproval(c, p) {
+  if (p.ph === "Approved") return p.approval ? { date: p.approval, basis: "Approved" } : null;
+  const fda = (c.catalysts || []).find((x) => x.kind === "regulatory" && x.drug === p.d && days(x.date) >= 0);
+  if (fda) return { date: fda.date, basis: "FDA decision date" };
+  if (p.ph === "Filed") return null;
+  if (p.ph === "Phase III" && p.window) return { date: new Date(Date.parse(p.window.mid) + 365 * 86400000).toISOString().slice(0, 10), basis: "Data window + 1 year" };
+  if (p.launch != null) return { date: new Date(TODAY.getTime() + p.launch * 365.25 * 86400000).toISOString().slice(0, 10), basis: `${p.ph} typical timeline` };
+  return null;
+}
+
+function WindowBar({ w, from, span }) {
+  if (!w) return null;
+  const x = (iso) => Math.max(0, Math.min(100, ((Date.parse(iso) - from) / span) * 100));
+  return (
+    <span className="wbar" title={`${fmtDate(w.lo)} to ${fmtDate(w.hi)} · registry ${fmtDate(w.reg)}`}>
+      <span className="wbar-band" style={{ left: `${x(w.lo)}%`, width: `${Math.max(1.2, x(w.hi) - x(w.lo))}%` }} />
+      <span className="wbar-mid" style={{ left: `${x(w.mid)}%` }} />
+      {w.reg && <span className="wbar-reg" style={{ left: `${x(w.reg)}%` }} />}
+    </span>
+  );
+}
+
+function SalesModel() {
+  const [v, setV] = useState({ pts: 50000, dx: 60, tx: 50, share: 25, price: 150, years: 5 });
+  const set = (k) => (e) => setV({ ...v, [k]: Number(e.target.value) || 0 });
+  const treated = v.pts * (v.dx / 100) * (v.tx / 100) * (v.share / 100);
+  const peak = (treated * v.price * 1000) / 1e6;
+  const curve = Array.from({ length: Math.max(2, v.years + 2) }, (_, i) => {
+    const t = (i + 1) / v.years;
+    const s = 1 / (1 + Math.exp(-8 * (t - 0.5)));
+    const s0 = 1 / (1 + Math.exp(4)), s1 = 1 / (1 + Math.exp(-4));
+    return { y: `Year ${i + 1}`, sales: Math.round(peak * Math.min(1, (s - s0) / (s1 - s0))) };
+  });
+  const F = ({ k, label, unit, step = 1 }) => (
+    <label className="f"><span>{label}</span><input type="number" min="0" step={step} value={v[k]} onChange={set(k)} />{unit && <em className="unit">{unit}</em>}</label>
+  );
+  return (
+    <div className="salesmodel">
+      <div className="filters">
+        <F k="pts" label="US patients with the disease" />
+        <F k="dx" label="Diagnosed" unit="%" />
+        <F k="tx" label="Treated with a drug" unit="%" />
+        <F k="share" label="Share this drug wins" unit="%" />
+        <F k="price" label="Net price per patient per year" unit="$ thousands" />
+        <F k="years" label="Years to reach peak" />
+      </div>
+      <p className="finding" style={{ marginTop: 18 }}>{Math.round(treated).toLocaleString("en-US")} patients on the drug at peak, worth {money(peak)} a year in US sales.</p>
+      <ResponsiveContainer width="100%" height={200}>
+        <BarChart data={curve} margin={{ top: 8, right: 8, bottom: 4, left: 0 }}>
+          <CartesianGrid stroke="#E4E9EB" vertical={false} />
+          <XAxis dataKey="y" tick={{ fontSize: 11, fill: "#5E6B73" }} axisLine={false} tickLine={false} />
+          <YAxis tickFormatter={(x) => money(x)} tick={{ fontSize: 11, fill: "#5E6B73" }} width={60} axisLine={false} tickLine={false} />
+          <Tooltip cursor={{ fill: "rgba(14,124,116,.06)" }} content={({ payload }) => payload?.length ? <div className="rtip"><b>{money(payload[0].payload.sales)}</b> in {payload[0].payload.y}</div> : null} />
+          <Bar dataKey="sales" fill="#0E7C74" radius={[5, 5, 0, 0]} isAnimationActive={false} />
+        </BarChart>
+      </ResponsiveContainer>
+      <p className="colnote">The starting numbers are an example, not a forecast for any company. Replace them with figures you've researched. Uptake follows an S-shaped launch curve that reaches peak in the years you set.</p>
+    </div>
+  );
+}
+
+function Outlook({ go }) {
+  const progs = useMemo(() => COMPANIES.flatMap((c) => (c.pipeline || []).map((p) => ({ c, p }))), []);
+  const timed = progs.filter(({ p }) => p.window && p.ph !== "Approved" && p.ph !== "Phase I" && !p.trial?.ext)
+    .sort((a, b) => a.p.window.mid.localeCompare(b.p.window.mid));
+  const from = TODAY.getTime(), span = 30 * 30.44 * 86400000;
+  const late = progs.filter(({ p }) => ["Phase II", "Phase III", "Filed", "Approved"].includes(p.ph));
+  const flagged = progs.filter(({ p }) => p.flags?.flags?.length);
+  const fdaEvents = COMPANIES.flatMap((c) => (c.catalysts || []).filter((x) => x.kind === "regulatory" && days(x.date) >= 0).map((x) => ({ c, x, p: (c.pipeline || []).find((p) => p.d === x.drug) })));
+  const fda = META.fda;
+  const rivals = COMPANIES.flatMap((c) => (c.rivals || []).map((r) => ({ c, r })));
+  const china = rivals.filter(({ r }) => r.china);
+  const launched = progs.filter(({ p }) => p.ph === "Approved");
+  const officeStat = (name) => fda?.byOffice?.find((o) => o.office === name);
+  const yearTicks = [0, 6, 12, 18, 24, 30].map((m) => ({ m, label: new Date(from + m * 30.44 * 86400000).toLocaleDateString("en-US", { month: "short", year: "numeric" }) }));
+
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">Trials and FDA</p>
+        <h1 className="report-h">What's coming, how likely it is to work, and what could move it</h1>
+        <p className="prose">Readout windows, trial design warning signs, drug-specific odds of approval, FDA decision patterns, competitor read-through, launch sales and exclusivity, for every tracked program. Each model is version {TRIALS_VERSION}, its rules are written out below, and it will be checked against what happens.</p>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>When the data will actually land</h2>
+          <span className="ph-note">Registry dates are plans, and they slip. Each bar is Helixora's estimated readout window; the dot is its middle, which the Financing Pressure Score now uses, and the tick is the date in the registry.</span></header>
+        <div className="gantt">
+          <div className="gantt-axis"><span />{<span className="gantt-ticks">{yearTicks.map((t) => <em key={t.m} style={{ left: `${(t.m / 30) * 100}%` }}>{t.label}</em>)}</span>}</div>
+          {timed.map(({ c, p }) => (
+            <button key={c.t + p.d} className="gantt-row" onClick={() => go("company", c.t, "pipeline")}>
+              <span className="gantt-label"><b>{c.t}</b> {p.d}<span className="sub">{p.ph} · {windowConfidence(p.window).toLowerCase()} window, {fmtDate(p.window.lo)} to {fmtDate(p.window.hi)}</span></span>
+              <WindowBar w={p.window} from={from} span={span} />
+            </button>
+          ))}
+        </div>
+        <details className="more"><summary>How the window is set</summary>
+          <ul className="tr-list">
+            <li>Start from the trial's primary completion date on ClinicalTrials.gov. Topline data usually follows by 2 weeks to 3.5 months.</li>
+            <li>Enrollment closed: allow 3 more months on the late side. Still enrolling: 6 more (9 for Phase III). Not yet enrolling: shift 3 months later and add a year.</li>
+            <li>Registry not updated in over a year: 6 more months. Each time Helixora sees the date pushed back: 3 more (up to 6).</li>
+            <li>A date the company has guided to replaces the registry date. If the window has already passed with no news, it restarts from today.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Chance of approval, fitted to each drug</h2>
+          <span className="ph-note">Most models use one industry average per phase. Here each program starts from published success rates for its disease area, then adjusts for drug type, rare disease and biomarker-selected patients.</span></header>
+        <div className="tablewrap">
+          <table className="grid">
+            <thead><tr><th>Program</th><th>Phase</th><th>Disease area</th><th>Adjusted for</th><th className="r">Industry average</th><th className="r">Helixora odds</th></tr></thead>
+            <tbody>
+              {late.filter(({ p }) => p.odds && p.ph !== "Approved").map(({ c, p }) => (
+                <tr key={c.t + p.d} onClick={() => go("company", c.t, "pipeline")}>
+                  <td><b>{c.t}</b> {p.d}<span className="sub">{p.ind}</span></td>
+                  <td>{p.ph}</td>
+                  <td>{p.odds.area}</td>
+                  <td>{p.odds.factors.length ? p.odds.factors.join(", ") : <span className="sub inline">Disease area only</span>}</td>
+                  <td className="r">{pctW(successOdds({ ph: p.ph, area: "All indications" })?.loa)}</td>
+                  <td className="r"><b>{pctW(p.odds.loa)}</b></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="colnote">Source: <a className="src" href={ODDS_SOURCE.url} target="_blank" rel="noreferrer">{ODDS_SOURCE.title}</a>. Adjustments are applied at half strength because the published factors overlap. Trial design flags are shown separately rather than folded into the odds, because there's no published rate to weight them by.</p>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Red flags in trial design</h2>
+          <span className="ph-note">Warning signs read from each program's lead trial on ClinicalTrials.gov: size, randomization, blinding, control arm, endpoint type, sites, and date changes.</span></header>
+        {flagged.length === 0 ? <p className="empty">No warning signs found in the lead trials.</p> : (
+          <div className="tablewrap">
+            <table className="grid">
+              <thead><tr><th>Program</th><th>Lead trial</th><th>What stands out</th></tr></thead>
+              <tbody>
+                {flagged.map(({ c, p }) => (
+                  <tr key={c.t + p.d} onClick={() => go("company", c.t, "pipeline")}>
+                    <td><b>{c.t}</b> {p.d}<span className="sub">{p.ph}</span></td>
+                    <td className="nowrap"><a className="src" href={`https://clinicaltrials.gov/study/${p.nct}`} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>{p.nct}</a><span className="sub">{p.trial?.n || "—"} patients</span></td>
+                    <td><div className="flagwrap">{p.flags.flags.map((f) => <span key={f.label} className={"flag " + SEV_CLS[f.sev]} title={f.detail}>{f.label}</span>)}</div></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>FDA decisions</h2>
+          <span className="ph-note">Upcoming decisions with base rates, and what the FDA's own published rejection letters show about why drugs get turned down.</span></header>
+        {fdaEvents.length === 0 ? <p className="empty">No FDA decision dates on file for tracked companies.</p> : (
+          <div className="fdacards">
+            {fdaEvents.map(({ c, x, p }) => {
+              const office = p ? reviewOffice(p) : null;
+              const st = office ? officeStat(office) : null;
+              const odds = p ? successOdds({ ...p, ph: "Filed" }) : null;
+              return (
+                <article key={c.t + x.date} className="fdacard">
+                  <span className="sub">{fmtDate(x.date)} · in {days(x.date)} days</span>
+                  <h3><b>{c.t}</b> {x.drug || x.label}</h3>
+                  <dl className="facts small">
+                    {odds && <><dt>Approval odds</dt><dd><b>{pctW(odds.loa)}</b> <span className="sub inline">({odds.area} average {pctW(odds.steps[0].base)}{odds.factors.length ? `, adjusted for ${odds.factors.join(", ").toLowerCase()}` : ""})</span></dd></>}
+                    {office && <><dt>Likely reviewer</dt><dd>{office}</dd></>}
+                    {st && <><dt>That office's letters</dt><dd>{st.n} published rejections; {pctW(st.mfg / st.n)} cite manufacturing, {pctW(st.eff / st.n)} cite efficacy evidence</dd></>}
+                  </dl>
+                </article>
+              );
+            })}
+          </div>
+        )}
+        {fda ? (
+          <>
+            <h3 className="subhead">Why the FDA says no: {fda.total} published rejection letters, {fda.first?.slice(0, 4)} to {fda.last?.slice(0, 4)}</h3>
+            <ResponsiveContainer width="100%" height={Math.max(160, fda.reasons.length * 38)}>
+              <BarChart data={fda.reasons.map((r) => ({ ...r, share: Math.round((r.n / fda.total) * 100) }))} layout="vertical" margin={{ top: 4, right: 40, bottom: 4, left: 8 }}>
+                <XAxis type="number" hide domain={[0, 100]} />
+                <YAxis type="category" dataKey="label" width={210} tick={{ fontSize: 12.5, fill: "#33434A" }} axisLine={false} tickLine={false} />
+                <Bar dataKey="share" fill="#B3264A" radius={[0, 5, 5, 0]} isAnimationActive={false} label={{ position: "right", fontSize: 12, fill: "#33434A", formatter: (v) => `${v}%` }} />
+              </BarChart>
+            </ResponsiveContainer>
+            <p className="colnote">Share of letters that mention each kind of problem (a letter can name several), found by keyword in the letter text. Source: <a className="src" href="https://open.fda.gov/apis/transparency/completeresponseletters/" target="_blank" rel="noreferrer">openFDA complete response letters</a>. The FDA has published only part of its letters, so this shows patterns, not exact rates. Advisory committee votes aren't covered yet.</p>
+          </>
+        ) : <p className="empty">FDA letter statistics appear after the next data refresh.</p>}
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Read-through: rival trials that could move these stocks</h2>
+          <span className="ph-note">Other companies' Phase II and III trials in the same diseases, finishing in the next 18 months. A rival's result can lift or sink a tracked company's shares before its own data arrives.</span></header>
+        {rivals.length === 0 ? <p className="empty">Rival trials appear after the next data refresh.</p> : (
+          <div className="tablewrap">
+            <table className="grid">
+              <thead><tr><th>Tracked program</th><th>Rival trial</th><th>Sponsor</th><th>Phase</th><th>Completes</th><th>Where</th></tr></thead>
+              <tbody>
+                {rivals.map(({ c, r }) => (
+                  <tr key={c.t + r.nct} onClick={() => go("company", c.t, "pipeline")}>
+                    <td><b>{c.t}</b> {r.forDrug}<span className="sub">{r.ind}</span></td>
+                    <td><a className="src" href={`https://clinicaltrials.gov/study/${r.nct}`} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>{r.drugs.join(", ")}</a><span className="sub">{r.nct}</span></td>
+                    <td>{r.sponsor}</td>
+                    <td>{r.ph || "—"}</td>
+                    <td className="nowrap">{r.pcd ? fmtDate(r.pcd) : "—"}</td>
+                    <td>{r.china === "only" ? <span className="flag flag-med">China only</span> : r.china === "some" ? <span className="flag flag-low">Includes China</span> : <span className="sub inline">{r.countries.slice(0, 2).join(", ")}{r.nCountries > 2 ? ` +${r.nCountries - 2}` : ""}</span>}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        <p className="colnote">Matched by disease from ClinicalTrials.gov; industry sponsors only. Helixora doesn't yet estimate how far a rival result should move each stock.</p>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>China and ex-US programs</h2>
+          <span className="ph-note">More drugs licensed by US companies now come from Chinese biotechs, and their trials are easy to miss. These are rival trials run entirely or partly in China.</span></header>
+        {china.length === 0 ? <p className="empty">No China-based rival trials found in the tracked diseases.</p> : (
+          <ul className="watch">
+            {china.map(({ c, r }) => (
+              <li key={c.t + r.nct}><b>{r.drugs.join(", ")}</b> from {r.sponsor} ({r.ph}, {r.china === "only" ? "China only" : "includes China"}), competing with <button className="linkish tick" onClick={() => go("company", c.t, "pipeline")}>{c.t}</button> {r.forDrug} in {r.ind}. Completes {r.pcd ? fmtDate(r.pcd) : "date not given"}. <a className="src" href={`https://clinicaltrials.gov/study/${r.nct}`} target="_blank" rel="noreferrer">{r.nct}</a></li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Sales after approval</h2>
+          <span className="ph-note">Many approved drugs miss sales expectations. Track what launched products actually sell, and build your own patient-based forecast.</span></header>
+        {launched.length === 0 ? <p className="empty">No tracked company has an approved product yet.</p> : launched.map(({ c, p }) => (
+          <div key={c.t + p.d} className="launch">
+            <h3 className="subhead">{c.t} {p.d}{p.approval ? `, approved ${fmtDate(p.approval)}` : ""}</h3>
+            {(c.revQ || []).length ? (
+              <ResponsiveContainer width="100%" height={200}>
+                <BarChart data={c.revQ.map(([d, v]) => ({ d, v }))} margin={{ top: 8, right: 8, bottom: 4, left: 0 }}>
+                  <CartesianGrid stroke="#E4E9EB" vertical={false} />
+                  <XAxis dataKey="d" tickFormatter={(d) => new Date(d + "T00:00:00").toLocaleDateString("en-US", { month: "short", year: "2-digit" })} tick={{ fontSize: 11, fill: "#5E6B73" }} axisLine={false} tickLine={false} />
+                  <YAxis tickFormatter={(x) => money(x)} tick={{ fontSize: 11, fill: "#5E6B73" }} width={56} axisLine={false} tickLine={false} />
+                  <Tooltip cursor={{ fill: "rgba(14,124,116,.06)" }} content={({ payload }) => payload?.length ? <div className="rtip"><b>{money(payload[0].payload.v)}</b> quarter ending {fmtDate(payload[0].payload.d)}</div> : null} />
+                  <Bar dataKey="v" radius={[5, 5, 0, 0]} isAnimationActive={false}>
+                    {c.revQ.map(([d]) => <Cell key={d} fill={p.approval && d >= p.approval ? "#0E7C74" : "#9FB4B6"} />)}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            ) : <p className="empty">No quarterly revenue reported yet.</p>}
+            <p className="colnote">Total quarterly revenue from SEC filings, including any partnership income; quarters after approval in teal. Product sales from the first full quarter appear once the company files that 10-Q.</p>
+          </div>
+        ))}
+        <h3 className="subhead">Patient-based sales model</h3>
+        <SalesModel />
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>When copies can compete</h2>
+          <span className="ph-note">The earliest date US law lets a generic or biosimilar launch, from the approval pathway. Patents, lawsuits and settlements can push the real date later; those aren't modeled yet.</span></header>
+        <div className="tablewrap">
+          <table className="grid">
+            <thead><tr><th>Program</th><th>Pathway</th><th>Expected approval</th><th>Protection</th><th className="r">Earliest competition</th></tr></thead>
+            <tbody>
+              {late.map(({ c, p }) => {
+                const ea = expectedApproval(c, p);
+                const ex = ea ? exclusivity(p, ea.date) : null;
+                if (!ex) return null;
+                return (
+                  <tr key={c.t + p.d} onClick={() => go("company", c.t, "pipeline")}>
+                    <td><b>{c.t}</b> {p.d}<span className="sub">{p.ph}</span></td>
+                    <td>{ex.path === "BLA" ? "Biologic (BLA)" : "Drug (NDA)"}</td>
+                    <td>{fmtDate(ea.date)}<span className="sub">{ea.basis}</span></td>
+                    <td>{ex.path === "BLA" ? "12 years biologic exclusivity" : "5 years new-drug exclusivity"}{ex.orphan ? <span className="sub">{ex.orphan === "likely" ? "Orphan exclusivity (7 years) if designated" : "Orphan exclusivity, 7 years"}</span> : null}</td>
+                    <td className="r"><b>{new Date(ex.until + "T00:00:00").getFullYear()}</b>{ex.patent ? <span className="sub">patents to {ex.patent}</span> : null}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p className="colnote">Programs whose drug type doesn't map to a pathway are left out. "Expected approval" for unfiled programs is a rough guide.</p>
+      </section>
+
+      <p className="disclaimer">Research models built from public data. They are not investment advice and do not recommend buying or selling any security.</p>
+    </div>
+  );
+}
+
 /* -------------------------------- about -------------------------------- */
 
 const COMPETITORS = [
@@ -2041,7 +2342,7 @@ export default function App() {
     ? COMPANIES.filter((c) => (c.t + " " + c.n).toLowerCase().includes(omni.toLowerCase())).slice(0, 6)
     : [];
 
-  const nav = [["home", "Markets"], ["report", "Pressure Report"], ["screen", "Screener"], ["company", "Quotes"], ["catalysts", "Calendar"], ["compare", "Compare"], ["ask", "Ask"], ["research", "Research"], ["method", "Methodology"], ["about", "About"]];
+  const nav = [["home", "Markets"], ["report", "Pressure Report"], ["screen", "Screener"], ["company", "Quotes"], ["catalysts", "Calendar"], ["outlook", "Trials & FDA"], ["compare", "Compare"], ["ask", "Ask"], ["research", "Research"], ["method", "Methodology"], ["about", "About"]];
   const dateline = TODAY.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
 
   return (
@@ -2101,6 +2402,7 @@ export default function App() {
         {view === "ask" && <Ask />}
         {view === "research" && <Research go={go} />}
         {view === "about" && <About go={go} />}
+        {view === "outlook" && <Outlook go={go} />}
       </main>
 
       <footer className="foot">
@@ -2463,6 +2765,31 @@ button.tick:hover{color:var(--teal) !important;}
 .stchip.st-live{background:#DFF2EE;color:#0A5752;}
 .stchip.st-next{background:#FBF0DA;color:#7A4E08;}
 .stchip.st-later{background:var(--tint);color:var(--mut);}
+.gantt{display:grid;gap:2px;}
+.gantt-axis{display:grid;grid-template-columns:300px 1fr;gap:16px;height:22px;}
+.gantt-ticks{position:relative;}
+.gantt-ticks em{position:absolute;transform:translateX(-50%);font-style:normal;font-size:11px;color:var(--mut);white-space:nowrap;}
+.gantt-ticks em:first-child{transform:none;}
+.gantt-ticks em:last-child{transform:translateX(-100%);}
+.gantt-row{display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:center;background:none;border:0;border-top:1px solid var(--rule2);padding:9px 0;text-align:left;}
+.gantt-row:hover{background:var(--tint);}
+.gantt-label{font-size:14px;}
+.wbar{position:relative;display:block;height:14px;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(20% - 1px),var(--rule2) calc(20% - 1px),var(--rule2) 20%);border-radius:999px;}
+.wbar-band{position:absolute;top:0;bottom:0;background:rgba(14,124,116,.28);border-radius:999px;}
+.wbar-mid{position:absolute;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--teal);border:2px solid #fff;}
+.wbar-reg{position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:var(--ink);opacity:.55;}
+.flagwrap{display:flex;flex-wrap:wrap;gap:5px;}
+.flag{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap;cursor:help;}
+.flag-high{background:#FBE8EE;color:#8F1D3D;}
+.flag-med{background:#FBF0DA;color:#7A4E08;}
+.flag-low{background:#EEF1F2;color:#36434B;}
+.flag-info{background:#E7F1FB;color:#123E6B;}
+.fdacards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:8px;}
+.fdacard{border:1px solid var(--rule2);border-radius:var(--r-md);padding:16px 18px;}
+.fdacard h3{font-size:17px;font-weight:600;margin:4px 0 8px;}
+.salesmodel .f input{width:100%;}
+.unit{font-style:normal;font-size:11.5px;color:var(--mut);}
+.launch{margin-bottom:14px;}
 .neg-strong{color:var(--crimson);font-weight:600;}
 details.more{margin-top:18px;}
 details.more summary{cursor:pointer;font-size:14.5px;font-weight:700;margin-bottom:10px;}
@@ -2660,7 +2987,9 @@ details.more summary:hover{color:var(--teal);}
   .front,.front>.side{grid-template-columns:1fr;}
   .briefs,.two,.filters,.prog-list,.metrics,.sugg,.q-body{grid-template-columns:1fr;}
   .metrics.four{grid-template-columns:1fr 1fr;}
-  .three,.probs{grid-template-columns:1fr;}
+  .three,.probs,.fdacards{grid-template-columns:1fr;}
+  .gantt-axis,.gantt-row{grid-template-columns:1fr;gap:6px;}
+  .gantt-axis>span:first-child{display:none;}
   .wordmark{font-size:30px;}
   .lead,.quote,.panel,.report-head{padding:22px 18px;}
   .hero{padding:28px 20px;border-radius:var(--r-lg);}

@@ -23,12 +23,14 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { computeFPS } from "../src/fps.js";
+import { readoutWindow, designFlags, successOdds, OFFICE_GROUPS } from "../src/trials.js";
 
 const ROOT = new URL("../", import.meta.url);
 const OUT_DIR = new URL("public/data/", ROOT);
 const OUT_FILE = new URL("companies.json", OUT_DIR);
 const HISTORY_FILE = new URL("fps-history.json", OUT_DIR);
 const BENCHMARK = { symbol: "XBI", name: "SPDR S&P Biotech ETF" };
+const TRIAL_HISTORY_FILE = new URL("trial-history.json", OUT_DIR);
 
 const UA = process.env.SEC_USER_AGENT;
 const AV_KEY = process.env.ALPHA_VANTAGE_KEY;
@@ -49,6 +51,7 @@ const ACTIVE = new Set(["RECRUITING", "ACTIVE_NOT_RECRUITING", "NOT_YET_RECRUITI
 const PHASE_MAP = { EARLY_PHASE1: "Phase I", PHASE1: "Phase I", PHASE2: "Phase II", PHASE3: "Phase III", PHASE4: "Approved" };
 const PHASE_ORDER = ["Phase I", "Phase II", "Phase III", "Filed", "Approved"];
 const NOT_AN_ASSET = /placebo|vehicle|sham|saline|standard of care|standard-of-care|best supportive|usual care|no intervention|investigator'?s choice|physician'?s choice/i;
+const EXTENSION = /\bextension\b|long[- ]term (safety|follow)|roll-?over|\bOLE\b|continuation study/i;
 const ASSET_TYPES = new Set(["DRUG", "BIOLOGICAL", "GENETIC", "COMBINATION_PRODUCT"]);
 // Marketed drugs that biotechs commonly combine their own asset with. They are never the
 // sponsor's program, so they rank last and a trial using only these is ignored.
@@ -262,7 +265,23 @@ function financialsFromFacts(facts) {
     sharesAsOf: sharesNow?.end || null,
     dil24,
     runwayHist,
+    revQ: quarterlyRevenue(revS),
   };
+}
+
+// Quarterly revenue: reported 3-month periods, plus Q4 worked out as the fiscal year less nine months year-to-date.
+function quarterlyRevenue(s) {
+  if (!s) return [];
+  const q = new Map();
+  for (const r of s.rows) { const d = monthsBetween(r.start, r.end); if (d > 2.5 && d < 3.5) q.set(r.end, r.val); }
+  for (const r of s.rows) {
+    const d = monthsBetween(r.start, r.end);
+    if (d > 11 && d < 13 && !q.has(r.end)) {
+      const ytd9 = s.rows.find((x) => x.start === r.start && monthsBetween(x.start, x.end) > 8.5 && monthsBetween(x.start, x.end) < 9.5);
+      if (ytd9) q.set(r.end, r.val - ytd9.val);
+    }
+  }
+  return [...q.entries()].sort().slice(-12).map(([end, v]) => [end, Math.round(M(v) * 10) / 10]);
 }
 
 // Plain-English labels for SEC forms and 8-K items, used for the filings news feed.
@@ -455,15 +474,32 @@ function trialRow(p) {
     .filter((i) => ASSET_TYPES.has(i.type) && i.name && !NOT_AN_ASSET.test(i.name))
     .map((i) => cleanDrug(i.name)).filter(Boolean);
   const own = drugs.filter((d) => !COMMON_PARTNERS.test(d));
+  const di = p.designModule?.designInfo || {};
+  const title = p.identificationModule?.briefTitle || "";
+  const official = p.identificationModule?.officialTitle || "";
+  const locs = p.contactsLocationsModule?.locations || [];
+  const prim = p.outcomesModule?.primaryOutcomes || [];
+  const ext = EXTENSION.test(`${title} ${official} ${di.interventionModelDescription || ""}`);
   return {
     nct: p.identificationModule?.nctId,
-    title: p.identificationModule?.briefTitle,
+    title,
     status: p.statusModule?.overallStatus,
     ph, ro, roType: pc?.type || null,
     n: p.designModule?.enrollmentInfo?.count || 0,
     ind: p.conditionsModule?.conditions?.[0] || "—",
-    ep: (p.outcomesModule?.primaryOutcomes?.[0]?.measure || "—").slice(0, 110),
+    ep: (prim[0]?.measure || "—").slice(0, 110),
     drugs: own,
+    ext,
+    design: {
+      nct: p.identificationModule?.nctId, title, status: p.statusModule?.overallStatus, ext,
+      n: p.designModule?.enrollmentInfo?.count || 0, nType: p.designModule?.enrollmentInfo?.type || null,
+      alloc: di.allocation || null, model: di.interventionModel || null, masking: di.maskingInfo?.masking || null,
+      arms: (p.armsInterventionsModule?.armGroups || []).map((a) => a.type).filter(Boolean),
+      primary: (prim[0]?.measure || "").slice(0, 200), primaryCount: prim.length,
+      sites: locs.length, countries: [...new Set(locs.map((l) => l.country).filter(Boolean))].slice(0, 12),
+      start: p.statusModule?.startDateStruct?.date || null, startType: p.statusModule?.startDateStruct?.type || null,
+      lastUpdate: p.statusModule?.lastUpdatePostDateStruct?.date || null,
+    },
   };
 }
 
@@ -499,8 +535,10 @@ function programsFromTrials(trials, assumed = {}) {
     const a = assumed[g.name] || {};
     if (!active.length && !a.ph) continue; // nothing running and not marked filed/approved
     const pool = active.length ? active : g.trials;
+    // An open-label extension finishing is not a pivotal readout: prefer any other trial.
     const best = [...pool].sort((x, y) =>
-      PHASE_ORDER.indexOf(y.ph) - PHASE_ORDER.indexOf(x.ph)
+      (x.ext - y.ext)
+      || PHASE_ORDER.indexOf(y.ph) - PHASE_ORDER.indexOf(x.ph)
       || ((x.ro || "9999") < (y.ro || "9999") ? -1 : 1))[0];
     const ph = a.ph || best.ph;
     const est = a.peak == null;
@@ -521,10 +559,111 @@ function programsFromTrials(trials, assumed = {}) {
       nct: best.nct,
       trials: g.trials.length,
       activeTrials: active.length,
+      status: best.status,
+      trial: best.design,
     });
   }
   programs.sort((x, y) => PHASE_ORDER.indexOf(y.ph) - PHASE_ORDER.indexOf(x.ph) || (x.ro < y.ro ? -1 : 1));
   return programs.slice(0, 6);
+}
+
+/* ---------------------------- read-through ----------------------------
+   Other companies' mid- and late-stage trials in the same diseases, finishing
+   in the next 18 months. Their results can move the tracked company's shares. */
+
+const STOP = new Set(["disease", "diseases", "disorder", "patients", "with", "type", "adult", "adults", "advanced", "metastatic", "chronic", "severe", "moderate", "syndrome", "solid", "amenable", "group", "healthy", "participants", "mixed", "primary", "treatment", "people", "cancer", "tumors", "tumor"]);
+const keyWords = (s) => (s || "").toLowerCase().replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter((w) => w.length >= 4 && !STOP.has(w));
+
+async function rivalsFor(pipeline, sponsor) {
+  const lead = pipeline.filter((p) => ["Phase II", "Phase III", "Filed", "Approved"].includes(p.ph) && p.ind && p.ind !== "—" && !/healthy/i.test(p.ind)).slice(0, 3);
+  const later = addDays(TODAY_ISO, 548);
+  const own = normName(sponsor);
+  const out = new Map();
+  for (const p of lead) {
+    const want = keyWords(p.ind);
+    if (!want.length) continue;
+    try {
+      const u = new URL("https://clinicaltrials.gov/api/v2/studies");
+      u.searchParams.set("query.cond", p.ind);
+      u.searchParams.set("filter.overallStatus", "RECRUITING,ACTIVE_NOT_RECRUITING,NOT_YET_RECRUITING,ENROLLING_BY_INVITATION");
+      u.searchParams.set("filter.advanced", `AREA[Phase](PHASE2 OR PHASE3) AND AREA[PrimaryCompletionDate]RANGE[${TODAY_ISO},${later}] AND AREA[LeadSponsorClass]INDUSTRY`);
+      u.searchParams.set("fields", "NCTId,BriefTitle,LeadSponsorName,Phase,PrimaryCompletionDate,OverallStatus,InterventionName,InterventionType,LocationCountry,Condition,EnrollmentCount");
+      u.searchParams.set("pageSize", "60");
+      const j = await getJSON(u.toString(), { Accept: "application/json" });
+      await sleep(300);
+      for (const st of j?.studies || []) {
+        const ps = st.protocolSection || {};
+        const nct = ps.identificationModule?.nctId;
+        const lead = ps.sponsorCollaboratorsModule?.leadSponsor?.name || "";
+        if (!nct || out.has(nct)) continue;
+        const ln = normName(lead);
+        if (ln && (ln.includes(own) || own.includes(ln))) continue;
+        const conds = (ps.conditionsModule?.conditions || []).join(" ");
+        const have = new Set(keyWords(conds + " " + (ps.identificationModule?.briefTitle || "")));
+        const hits = want.filter((w) => have.has(w)).length;
+        if (hits < Math.min(2, want.length)) continue; // must share the disease, not just one word
+        const drugs = (ps.armsInterventionsModule?.interventions || []).filter((i) => ASSET_TYPES.has(i.type) && !NOT_AN_ASSET.test(i.name || "")).map((i) => cleanDrug(i.name)).filter(Boolean);
+        if (!drugs.length) continue;
+        const countries = (ps.contactsLocationsModule?.locations || []).map((l) => l.country).filter(Boolean);
+        const uniq = [...new Set(countries)];
+        const phs = (ps.designModule?.phases || []).map((x) => PHASE_MAP[x]).filter(Boolean);
+        let pcd = ps.statusModule?.primaryCompletionDateStruct?.date || null;
+        if (pcd && pcd.length === 7) pcd += "-15";
+        out.set(nct, {
+          nct, sponsor: lead, title: (ps.identificationModule?.briefTitle || "").slice(0, 160), ph: phs.at(-1) || null,
+          pcd, n: ps.designModule?.enrollmentInfo?.count || null, drugs: [...new Set(drugs)].slice(0, 3),
+          forDrug: p.d, ind: p.ind, countries: uniq.slice(0, 6), nCountries: uniq.length,
+          china: uniq.length === 1 && uniq[0] === "China" ? "only" : uniq.includes("China") ? "some" : null,
+        });
+      }
+    } catch (e) { warn(`Read-through search failed for ${p.d}: ${e.message}`); }
+  }
+  return [...out.values()].sort((a, b) => (a.pcd || "9") < (b.pcd || "9") ? -1 : 1).slice(0, 12);
+}
+
+/* --------------------------- FDA rejections ---------------------------
+   Every complete response letter the FDA has published (openFDA). Summed
+   by reviewing office and by the kind of problem the letter names. */
+
+const CRL_REASONS = [
+  ["Manufacturing or facility", /manufactur|facility|facilities|inspection|cgmp|chemistry, manufacturing|\bCMC\b|sterility|microbiolog/i],
+  ["Clinical efficacy evidence", /substantial evidence of effectiveness|adequate and well[- ]controlled|failed to demonstrate|did not demonstrate|efficacy/i],
+  ["Safety", /safety concern|risk of|adverse|hepatotox|cardiovascular risk|safety database|exposure/i],
+  ["Bioequivalence or pharmacology", /bioequivalen|bioavailab|pharmacokinetic|clinical pharmacology/i],
+  ["Labeling or device", /labeling|human factors|device|usability/i],
+];
+async function crlSummary() {
+  const rows = [];
+  for (let skip = 0; skip < 3000; skip += 100) {
+    const j = await getJSON(`https://api.fda.gov/transparency/crl.json?search=letter_type:%22COMPLETE+RESPONSE%22&limit=100&skip=${skip}`, { Accept: "application/json" });
+    const res = j?.results || [];
+    rows.push(...res);
+    await sleep(300);
+    if (res.length < 100) break;
+  }
+  if (!rows.length) return null;
+  const byOffice = new Map(), byYear = new Map(), reasons = new Map(CRL_REASONS.map(([k]) => [k, 0]));
+  const officeReasons = new Map();
+  let first = null, last = null;
+  for (const r of rows) {
+    const d = r.letter_date ? r.letter_date.replace(/^(\d\d)\/(\d\d)\/(\d{4})$/, "$3-$1-$2") : null;
+    if (d) { first = !first || d < first ? d : first; last = !last || d > last ? d : last; byYear.set(d.slice(0, 4), (byYear.get(d.slice(0, 4)) || 0) + 1); }
+    const centers = [].concat(r.approver_center || []).join(" | ");
+    const office = (OFFICE_GROUPS.find(([, re]) => re.test(centers)) || ["Other or not stated"])[0];
+    byOffice.set(office, (byOffice.get(office) || 0) + 1);
+    const text = r.text || "";
+    const hit = CRL_REASONS.filter(([, re]) => re.test(text)).map(([k]) => k);
+    for (const k of hit) reasons.set(k, reasons.get(k) + 1);
+    const o = officeReasons.get(office) || { n: 0, mfg: 0, eff: 0 };
+    o.n++; if (hit.includes("Manufacturing or facility")) o.mfg++; if (hit.includes("Clinical efficacy evidence")) o.eff++;
+    officeReasons.set(office, o);
+  }
+  return {
+    total: rows.length, first, last,
+    byYear: [...byYear.entries()].sort(),
+    byOffice: [...byOffice.entries()].sort((a, b) => b[1] - a[1]).map(([office, n]) => ({ office, n, ...officeReasons.get(office) })),
+    reasons: [...reasons.entries()].map(([label, n]) => ({ label, n })).sort((a, b) => b.n - a.n),
+  };
 }
 
 /* ------------------------------ assemble ------------------------------ */
@@ -537,7 +676,7 @@ function titleCase(s) {
   return s.toLowerCase().replace(/\b([a-z])/g, (m) => m.toUpperCase()).replace(/\bInc\b/g, "Inc.");
 }
 
-async function buildCompany(ticker, a, cikByTicker) {
+async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}) {
   const cik = cikByTicker.get(ticker);
   if (!cik) throw new Error(`ticker not found in SEC's company list`);
   const cik10 = String(cik).padStart(10, "0");
@@ -563,13 +702,30 @@ async function buildCompany(ticker, a, cikByTicker) {
   const pipeline = programsFromTrials(trials, a.programs || {});
   if (!pipeline.length) throw new Error(`no active trials found for sponsor "${sponsor}" (set "sponsor" in assumptions.json)`);
 
+  // Classification for the drug-development models, then timing, design and odds per program.
+  for (const p of pipeline) {
+    const k = (cls.programs || {})[p.d] || {};
+    Object.assign(p, { modality: cls.modality || null }, k);
+    const seen = trialHist[p.nct] || [];
+    p.slips = seen.reduce((n, x, i) => n + (i > 0 && Date.parse(x[1]) - Date.parse(seen[i - 1][1]) > 30 * DAY ? 1 : 0), 0);
+    p.window = readoutWindow(p, TODAY_ISO);
+    p.flags = designFlags(p, TODAY_ISO);
+    const odds = successOdds(p);
+    p.odds = odds ? { loa: round(odds.loa, 4), base: round(odds.baseLoa, 4), area: odds.area, modality: odds.modality, factors: odds.factors } : null;
+  }
+
   const catalysts = [];
   for (const p of pipeline) {
-    const dd = (toDate(p.ro) - TODAY) / DAY;
+    if (p.ph === "Approved") continue;
+    const w = p.window;
+    const date = w ? w.mid : p.ro;
+    const dd = (toDate(date) - TODAY) / DAY;
     if (dd > -120 && dd < 730) {
+      const minor = !!p.trial?.ext;
       catalysts.push({
-        date: p.ro, kind: "readout", drug: p.d, est: p.roType !== "ACTUAL",
-        label: `${p.d} ${p.ph} primary completion${p.roType === "ESTIMATED" ? " (registry estimate)" : ""}`,
+        date, kind: minor ? "minor" : "readout", drug: p.d, est: p.roType !== "ACTUAL",
+        lo: w?.lo || null, hi: w?.hi || null, reg: p.ro, nct: p.nct,
+        label: minor ? `${p.d} extension study completes (safety follow-up)` : `${p.d} ${p.ph} data (estimated)`,
       });
     }
   }
@@ -606,6 +762,8 @@ async function buildCompany(ticker, a, cikByTicker) {
     note: a.note || "",
     dil24: round(fin.dil24, 1),
     runwayHist: fin.runwayHist || [],
+    revQ: fin.revQ || [],
+    rivals: await rivalsFor(pipeline, sponsor),
     burnPrior: round(fin.burnPrior, 2),
     debtDue24: round(fin.debtDue24, 1),
     raise,
@@ -649,11 +807,16 @@ async function main() {
   }
   const config = JSON.parse(await readFile(new URL("config/companies.json", ROOT), "utf8"));
   const assumptions = JSON.parse(await readFile(new URL("config/assumptions.json", ROOT), "utf8"));
+  let classes = {};
+  try { classes = JSON.parse(await readFile(new URL("config/programs.json", ROOT), "utf8")); } catch { /* optional */ }
+  let trialHist = {};
+  try { trialHist = JSON.parse(await readFile(TRIAL_HISTORY_FILE, "utf8")); } catch { /* first run */ }
 
   let previous = {};
   try {
     const prev = JSON.parse(await readFile(OUT_FILE, "utf8"));
     for (const c of prev.companies || []) previous[c.t] = c;
+    previous.__meta = prev.meta;
   } catch { /* first run */ }
 
   console.log("Loading SEC ticker list…");
@@ -665,7 +828,7 @@ async function main() {
     const ticker = raw.toUpperCase();
     console.log(`${ticker}…`);
     try {
-      const c = await buildCompany(ticker, assumptions[ticker] || {}, cikByTicker);
+      const c = await buildCompany(ticker, assumptions[ticker] || {}, cikByTicker, classes[ticker] || {}, trialHist);
       companies.push(c);
       console.log(`  ${c.n}: cash $${c.cash}M, burn $${c.burn}M/mo, ${c.pipeline.length} programs, mcap $${c.mcap}M`);
     } catch (e) {
@@ -690,10 +853,25 @@ async function main() {
     if (y?.history?.length) benchmark = { ...BENCHMARK, history: y.history };
   } catch (e) { warn(`Benchmark ${BENCHMARK.symbol} price failed: ${e.message}`); }
 
+  let fda = null;
+  try { fda = await crlSummary(); } catch (e) { warn(`FDA letters download failed: ${e.message}`); }
+  if (!fda && previous.__meta?.fda) fda = previous.__meta.fda;
+
+  // Record each lead trial's registry completion date when it changes, to count slips over time.
+  for (const c of companies) for (const p of c.pipeline || []) {
+    if (!p.nct || !p.ro || p.roType === "COMPANY GUIDANCE") continue;
+    const h = trialHist[p.nct] || [];
+    if (!h.length || h.at(-1)[1] !== p.ro) h.push([TODAY_ISO, p.ro]);
+    trialHist[p.nct] = h.slice(-20);
+  }
+  await mkdir(OUT_DIR, { recursive: true });
+  await writeFile(TRIAL_HISTORY_FILE, JSON.stringify(trialHist) + "\n");
+
   const out = {
     meta: {
       generatedAt: new Date().toISOString(),
       benchmark,
+      fda,
       sources: ["SEC EDGAR XBRL company facts", "SEC EDGAR filing index", "ClinicalTrials.gov API v2", "Yahoo Finance"],
       warnings,
     },

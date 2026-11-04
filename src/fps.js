@@ -10,8 +10,8 @@
    published numbers always come from the same code.
 ------------------------------------------------------------------- */
 
-export const FPS_VERSION = "1.0";
-export const FPS_UPDATED = "2026-10-17";
+export const FPS_VERSION = "1.1";
+export const FPS_UPDATED = "2026-11-03";
 export const BUFFER_MONTHS = 6;
 // When no clinical or regulatory event is dated, assume the next one is this far away.
 export const NO_CATALYST_MONTHS = 18;
@@ -44,6 +44,7 @@ export const FPS_BANDS = [
 ];
 
 export const FPS_CHANGELOG = [
+  { version: "1.1", date: "2026-11-03", note: "Readout dates now use Helixora's estimated readout window (its midpoint) instead of the raw registry date, and an open-label extension study finishing no longer counts as a major catalyst. Weights are unchanged." },
   { version: "1.0", date: "2026-10-17", note: "First published version. Weights are a starting hypothesis and will be backtested against historical offerings; every change will be listed here." },
 ];
 
@@ -58,11 +59,11 @@ const daysUntil = (iso, today) => Math.round((new Date(iso + "T00:00:00") - toda
 const short = (l) => (l || "").replace(/ primary completion \(registry estimate\)/i, " data (est.)").replace(/ primary completion/i, " data");
 const fmtDay = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
-// The next clinical or regulatory event. Estimated earnings dates only count when nothing else is dated.
+// The next clinical or regulatory event. Earnings dates and minor events (like an extension study finishing) don't count.
 export function nextMajorCatalyst(c, today = new Date()) {
   const up = (c.catalysts || []).filter((x) => daysUntil(x.date, today) >= 0)
     .sort((a, b) => daysUntil(a.date, today) - daysUntil(b.date, today));
-  return up.find((x) => x.kind !== "earnings") || null;
+  return up.find((x) => x.kind !== "earnings" && x.kind !== "minor") || null;
 }
 
 export function computeFPS(c, today = new Date()) {
