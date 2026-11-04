@@ -43,7 +43,7 @@ export function readoutWindow(p, todayIso = iso(Date.now())) {
   } else {
     if (status === "ACTIVE_NOT_RECRUITING") { hi += 3; why.push("Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."); }
     else if (status === "RECRUITING" || status === "ENROLLING_BY_INVITATION") {
-      const extra = p.ph === "Phase III" ? 9 : 6;
+      const extra = (t.ph || p.ph) === "Phase III" ? 9 : 6;
       hi += extra; why.push(`Still enrolling, and enrolling trials often finish late (+${extra} months on the late end).`);
     } else if (status === "NOT_YET_RECRUITING") { lo += 3; hi += 12; why.push("Not yet enrolling, so the registry date is a plan, not a schedule (window widened by a year)."); }
     if (t.lastUpdate && monthsBetween(t.lastUpdate, todayIso) > 12) { hi += 6; why.push("The registry record hasn't been updated in over a year (+6 months)."); }
@@ -73,17 +73,18 @@ export function designFlags(p, todayIso = iso(Date.now())) {
   const t = p.trial;
   if (!t) return { flags: [], level: null };
   const flags = [];
-  const late = p.ph === "Phase III" || p.ph === "Filed";
+  const tph = t.ph || p.ph;
+  const late = tph === "Phase III";
   const add = (sev, label, detail) => flags.push({ sev, label, detail });
   if (t.ext) add("info", "Extension study", "This trial mainly tracks long-term safety in patients from earlier studies. Its completion is not a pivotal efficacy readout.");
   if (HALTED.has(t.status)) add("high", "Trial halted", `The registry lists the trial as ${t.status.toLowerCase()}.`);
   if (!t.ext) {
     if (late && t.n && t.n < 100 && !p.rare) add("med", "Small for a late-stage trial", `${t.n} patients planned or enrolled. Small late-stage trials can miss real but modest effects.`);
     if (late && t.alloc && t.alloc !== "RANDOMIZED") add("med", "Not randomized", "Without randomization, differences between groups can come from who was enrolled rather than the drug.");
-    if ((p.ph === "Phase II" || late) && t.arms && t.arms.length && !t.arms.some((a) => CONTROL_ARMS.has(a))) add("med", "No control arm", "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment.");
+    if ((tph === "Phase II" || late) && t.arms && t.arms.length && !t.arms.some((a) => CONTROL_ARMS.has(a))) add("med", "No control arm", "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment. Common, and sometimes unavoidable, in very rare diseases.");
     if (late && t.masking === "NONE") add("low", "Open label", "Patients and doctors know who gets the drug, which can sway subjective measures.");
     if (t.primary && SOFT_ENDPOINT.test(t.primary)) add("low", "Subjective primary endpoint", `The main measure relies on reported symptoms or scales: "${t.primary.slice(0, 90)}${t.primary.length > 90 ? "…" : ""}"`);
-    if (t.primaryCount >= 3) add("low", "Several primary endpoints", `${t.primaryCount} primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it.`);
+    if (tph !== "Phase I" && t.primaryCount >= 3) add("low", "Several primary endpoints", `${t.primaryCount} primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it.`);
     if (late && t.sites != null && t.sites > 0 && t.sites < 5) add("low", "Few trial sites", `${t.sites} site${t.sites === 1 ? "" : "s"}. Results from very few centers can be harder to reproduce.`);
   }
   if (p.slips > 0) add("med", "Completion date pushed back", `Moved later ${p.slips} time${p.slips === 1 ? "" : "s"} since Helixora began tracking it.`);

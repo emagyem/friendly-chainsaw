@@ -1916,7 +1916,7 @@ function Outlook({ go }) {
           <div className="gantt-axis"><span />{<span className="gantt-ticks">{yearTicks.map((t) => <em key={t.m} style={{ left: `${(t.m / 30) * 100}%` }}>{t.label}</em>)}</span>}</div>
           {timed.map(({ c, p }) => (
             <button key={c.t + p.d} className="gantt-row" onClick={() => go("company", c.t, "pipeline")}>
-              <span className="gantt-label"><b>{c.t}</b> {p.d}<span className="sub">{p.ph} · {windowConfidence(p.window).toLowerCase()} window, {fmtDate(p.window.lo)} to {fmtDate(p.window.hi)}</span></span>
+              <span className="gantt-label"><b>{c.t}</b> {p.d}<span className="sub">{p.trial?.ph || p.ph}{p.trial?.ind && p.trial.ind !== p.ind ? ` in ${p.trial.ind}` : ""} · {windowConfidence(p.window).toLowerCase()} window, {fmtDate(p.window.lo)} to {fmtDate(p.window.hi)}</span></span>
               <WindowBar w={p.window} from={from} span={span} />
             </button>
           ))}

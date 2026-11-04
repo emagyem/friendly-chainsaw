@@ -540,18 +540,19 @@ function programsFromTrials(trials, assumed = {}) {
       (x.ext - y.ext)
       || PHASE_ORDER.indexOf(y.ph) - PHASE_ORDER.indexOf(x.ph)
       || ((x.ro || "9999") < (y.ro || "9999") ? -1 : 1))[0];
-    const ph = a.ph || best.ph;
+    const top = [...pool].sort((x, y) => PHASE_ORDER.indexOf(y.ph) - PHASE_ORDER.indexOf(x.ph))[0];
+    const ph = a.ph || top.ph;
     const est = a.peak == null;
     programs.push({
       d: a.name || g.name,
-      ind: a.ind || best.ind,
+      ind: a.ind || top.ind,
       tgt: a.tgt || "—",
       moa: a.moa || "—",
       ph,
       n: best.n,
       ro: a.ro || best.ro || addDays(TODAY_ISO, 365),
       roType: a.ro ? "COMPANY GUIDANCE" : best.roType,
-      ep: a.ep || best.ep,
+      ep: a.ep || top.ep,
       peak: a.peak ?? DEFAULTS.peakByPhase[ph],
       launch: a.launch ?? DEFAULTS.launchByPhase[ph],
       cost: a.cost ?? DEFAULTS.costByPhase[ph],
@@ -560,7 +561,7 @@ function programsFromTrials(trials, assumed = {}) {
       trials: g.trials.length,
       activeTrials: active.length,
       status: best.status,
-      trial: best.design,
+      trial: { ...best.design, ph: best.ph, ind: best.ind },
     });
   }
   programs.sort((x, y) => PHASE_ORDER.indexOf(y.ph) - PHASE_ORDER.indexOf(x.ph) || (x.ro < y.ro ? -1 : 1));
@@ -602,7 +603,8 @@ async function rivalsFor(pipeline, sponsor) {
         const have = new Set(keyWords(conds + " " + (ps.identificationModule?.briefTitle || "")));
         const hits = want.filter((w) => have.has(w)).length;
         if (hits < Math.min(2, want.length)) continue; // must share the disease, not just one word
-        const drugs = (ps.armsInterventionsModule?.interventions || []).filter((i) => ASSET_TYPES.has(i.type) && !NOT_AN_ASSET.test(i.name || "")).map((i) => cleanDrug(i.name)).filter(Boolean);
+        const drugs = (ps.armsInterventionsModule?.interventions || []).filter((i) => ASSET_TYPES.has(i.type) && !NOT_AN_ASSET.test(i.name || "")).map((i) => cleanDrug(i.name)).filter(Boolean)
+          .map((d) => (d.length > 40 ? d.split(/[,;.]/)[0].split(" ").slice(0, 4).join(" ") + "…" : d));
         if (!drugs.length) continue;
         const countries = (ps.contactsLocationsModule?.locations || []).map((l) => l.country).filter(Boolean);
         const uniq = [...new Set(countries)];
@@ -625,12 +627,14 @@ async function rivalsFor(pipeline, sponsor) {
    Every complete response letter the FDA has published (openFDA). Summed
    by reviewing office and by the kind of problem the letter names. */
 
+// Standard closing sections (safety update, labeling, proprietary name) appear in almost every letter,
+// so these patterns look for wording that names an actual deficiency.
 const CRL_REASONS = [
-  ["Manufacturing or facility", /manufactur|facility|facilities|inspection|cgmp|chemistry, manufacturing|\bCMC\b|sterility|microbiolog/i],
-  ["Clinical efficacy evidence", /substantial evidence of effectiveness|adequate and well[- ]controlled|failed to demonstrate|did not demonstrate|efficacy/i],
-  ["Safety", /safety concern|risk of|adverse|hepatotox|cardiovascular risk|safety database|exposure/i],
-  ["Bioequivalence or pharmacology", /bioequivalen|bioavailab|pharmacokinetic|clinical pharmacology/i],
-  ["Labeling or device", /labeling|human factors|device|usability/i],
+  ["Manufacturing or facility", /inspection of the (manufacturing )?facilit|facility inspection|objectionable conditions|Form FDA[- ]483|current good manufacturing practice|\bcGMP\b|product quality (deficienc|issue)|drug substance|sterility assurance|container closure|stability data (are|were) (inadequate|insufficient)/i],
+  ["Clinical efficacy evidence", /substantial evidence of effectiveness|adequate and well[- ]controlled (stud|trial|investigation)s? (to|that)|(did|does) not (demonstrate|establish|provide)|failed to (demonstrate|meet|establish)|not statistically significant|additional (adequate and well[- ]controlled|clinical) (stud|trial)/i],
+  ["Safety concerns", /safety (concern|signal)s?|unacceptable risk|benefit[- ]risk (profile|assessment) (is|was|does)|risks? (outweigh|of .{0,40} outweigh)|not been (shown|demonstrated) to be safe|insufficient (safety|exposure) data|hepatotoxicity|QT prolongation/i],
+  ["Bioequivalence or drug levels", /bioequivalen|comparative bioavailability|relative bioavailability|pharmacokinetic (bridge|bridging|comparability)/i],
+  ["Device or human factors", /human factors (study|validation)|device constituent|usability (study|testing)|use[- ]related risk/i],
 ];
 async function crlSummary() {
   const rows = [];
@@ -649,13 +653,14 @@ async function crlSummary() {
     const d = r.letter_date ? r.letter_date.replace(/^(\d\d)\/(\d\d)\/(\d{4})$/, "$3-$1-$2") : null;
     if (d) { first = !first || d < first ? d : first; last = !last || d > last ? d : last; byYear.set(d.slice(0, 4), (byYear.get(d.slice(0, 4)) || 0) + 1); }
     const centers = [].concat(r.approver_center || []).join(" | ");
-    const office = (OFFICE_GROUPS.find(([, re]) => re.test(centers)) || ["Other or not stated"])[0];
+    const office = (OFFICE_GROUPS.find(([, re]) => re.test(centers)) || ["Office not named in the letter"])[0];
     byOffice.set(office, (byOffice.get(office) || 0) + 1);
     const text = r.text || "";
     const hit = CRL_REASONS.filter(([, re]) => re.test(text)).map(([k]) => k);
     for (const k of hit) reasons.set(k, reasons.get(k) + 1);
     const o = officeReasons.get(office) || { n: 0, mfg: 0, eff: 0 };
     o.n++; if (hit.includes("Manufacturing or facility")) o.mfg++; if (hit.includes("Clinical efficacy evidence")) o.eff++;
+    if (!hit.length) reasons.set("No specific reason matched", (reasons.get("No specific reason matched") || 0) + 1);
     officeReasons.set(office, o);
   }
   return {
@@ -708,15 +713,16 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}) {
     Object.assign(p, { modality: cls.modality || null }, k);
     const seen = trialHist[p.nct] || [];
     p.slips = seen.reduce((n, x, i) => n + (i > 0 && Date.parse(x[1]) - Date.parse(seen[i - 1][1]) > 30 * DAY ? 1 : 0), 0);
-    p.window = readoutWindow(p, TODAY_ISO);
-    p.flags = designFlags(p, TODAY_ISO);
+    const settled = p.ph === "Approved" || p.ph === "Filed";
+    p.window = settled ? null : readoutWindow(p, TODAY_ISO);
+    p.flags = settled ? { flags: [], points: 0, level: null } : designFlags(p, TODAY_ISO);
     const odds = successOdds(p);
     p.odds = odds ? { loa: round(odds.loa, 4), base: round(odds.baseLoa, 4), area: odds.area, modality: odds.modality, factors: odds.factors } : null;
   }
 
   const catalysts = [];
   for (const p of pipeline) {
-    if (p.ph === "Approved") continue;
+    if (p.ph === "Approved" || p.ph === "Filed") continue;
     const w = p.window;
     const date = w ? w.mid : p.ro;
     const dd = (toDate(date) - TODAY) / DAY;
@@ -725,7 +731,8 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}) {
       catalysts.push({
         date, kind: minor ? "minor" : "readout", drug: p.d, est: p.roType !== "ACTUAL",
         lo: w?.lo || null, hi: w?.hi || null, reg: p.ro, nct: p.nct,
-        label: minor ? `${p.d} extension study completes (safety follow-up)` : `${p.d} ${p.ph} data (estimated)`,
+        label: minor ? `${p.d} extension study completes (safety follow-up)`
+          : `${p.d} ${p.trial?.ph || p.ph}${p.trial?.ind && p.trial.ind !== p.ind ? ` (${p.trial.ind})` : ""} data (estimated)`,
       });
     }
   }
