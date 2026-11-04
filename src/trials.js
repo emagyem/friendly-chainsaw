@@ -47,6 +47,9 @@ export function readoutWindow(p, todayIso = iso(Date.now())) {
       hi += extra; why.push(`Still enrolling, and enrolling trials often finish late (+${extra} months on the late end).`);
     } else if (status === "NOT_YET_RECRUITING") { lo += 3; hi += 12; why.push("Not yet enrolling, so the registry date is a plan, not a schedule (window widened by a year)."); }
     if (t.lastUpdate && monthsBetween(t.lastUpdate, todayIso) > 12) { hi += 6; why.push("The registry record hasn't been updated in over a year (+6 months)."); }
+    if (p.duration && p.duration.fasterThan >= 75 && !p.trial?.ext) {
+      hi += 4; why.push(`The registry plan (${p.duration.planned} months from start) is quicker than ${p.duration.fasterThan}% of similar trials took (+4 months on the late end).`);
+    }
     const slips = p.slips || 0;
     if (slips > 0) { hi += 3 * Math.min(slips, 2); why.push(`The completion date has been pushed back ${slips} time${slips === 1 ? "" : "s"} since Helixora began tracking (+${3 * Math.min(slips, 2)} months).`); }
   }
@@ -90,6 +93,7 @@ export function designFlags(p, todayIso = iso(Date.now())) {
     if (tph !== "Phase I" && t.primaryCount >= 3) add("low", "Several primary endpoints", `${t.primaryCount} primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it.`);
     if (late && t.sites != null && t.sites > 0 && t.sites < 5) add("low", "Few trial sites", `${t.sites} site${t.sites === 1 ? "" : "s"}. Results from very few centers can be harder to reproduce.`);
   }
+  if (p.duration && p.duration.fasterThan >= 75 && !t.ext) add("low", "Ambitious timeline", `Plans to finish ${p.duration.planned} months after starting; ${p.duration.fasterThan}% of similar trials (${p.duration.key}) took longer.`);
   if (p.slips > 0) add("med", "Completion date pushed back", `Moved later ${p.slips} time${p.slips === 1 ? "" : "s"} since Helixora began tracking it.`);
   if (t.lastUpdate && monthsBetween(t.lastUpdate, todayIso) > 12 && !HALTED.has(t.status)) add("low", "Registry not updated in over a year", `Last updated ${t.lastUpdate}.`);
   if (p.roType === "ESTIMATED" && p.ro && monthsBetween(p.ro, todayIso) > 1) add("med", "Estimated completion date has passed", "The registry still shows an estimated date that is now in the past.");
@@ -242,3 +246,52 @@ export const OFFICE_GROUPS = [
   ["Office of Specialty Medicine", /specialty|ophthalm|imaging|medical imaging/i],
   ["Office of Therapeutic Products (CBER)", /biologics evaluation|therapeutic products|tissues and advanced/i],
 ];
+
+
+/* ------------------------- trial-duration survival -------------------------
+   Kaplan-Meier curves of how long industry trials take from start to primary
+   completion, by phase and size. Finished trials are events; trials still
+   running are censored at their age today, so slow trials aren't left out. */
+
+export const sizeBucket = (n) => (!n ? null : n < 100 ? "under 100" : n < 500 ? "100 to 499" : "500 or more");
+export const stratumKey = (ph, n) => (ph === "Phase II" || ph === "Phase III") && sizeBucket(n) ? `${ph}, ${sizeBucket(n)} patients` : null;
+
+// rows: [{ m: months, done: true|false }] -> survival S(t) at each whole month up to max
+export function kaplanMeier(rows, max = 144) {
+  const S = new Array(max + 1).fill(1);
+  const sorted = [...rows].filter((r) => r.m > 0).sort((a, b) => a.m - b.m);
+  let atRisk = sorted.length, s = 1, i = 0;
+  for (let t = 1; t <= max; t++) {
+    let d = 0, c = 0;
+    while (i < sorted.length && sorted[i].m <= t) { if (sorted[i].done) d++; else c++; i++; }
+    if (atRisk > 0 && d > 0) s *= 1 - d / atRisk;
+    atRisk -= d + c;
+    S[t] = Math.round(s * 10000) / 10000;
+  }
+  return S;
+}
+const quantileFrom = (S, q, from = 0) => {
+  const base = S[Math.min(from, S.length - 1)] || 1;
+  for (let t = from; t < S.length; t++) if (S[t] / base <= 1 - q) return t;
+  return null;
+};
+
+// How a trial's registry plan compares with similar trials, given how long it has already run.
+export function durationCheck(p, tables, todayIso) {
+  const t = p.trial || {};
+  const key = stratumKey(t.ph || p.ph, t.n);
+  const tab = key && tables?.[key];
+  if (!tab || !t.start || !p.ro || t.ext) return null;
+  const start = t.start.length === 7 ? t.start + "-15" : t.start;
+  const planned = Math.round(monthsBetween(start, p.ro));
+  const elapsed = Math.max(0, Math.floor(monthsBetween(start, todayIso)));
+  if (planned <= 0) return null;
+  const S = tab.S;
+  const fasterThan = Math.round((S[Math.min(planned, S.length - 1)]) * 100); // % of similar trials still running at the planned month
+  return {
+    key, n: tab.n, planned, elapsed,
+    median: quantileFrom(S, 0.5), p25: quantileFrom(S, 0.25), p75: quantileFrom(S, 0.75),
+    condMedian: quantileFrom(S, 0.5, elapsed), condP75: quantileFrom(S, 0.75, elapsed),
+    fasterThan,
+  };
+}

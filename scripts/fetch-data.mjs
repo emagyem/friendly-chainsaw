@@ -24,7 +24,7 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
 import { runwaySim, QUANT_VERSION } from "../src/quant.js";
-import { readoutWindow, designFlags, successOdds, OFFICE_GROUPS, TRIALS_VERSION } from "../src/trials.js";
+import { readoutWindow, designFlags, successOdds, OFFICE_GROUPS, TRIALS_VERSION, kaplanMeier, stratumKey, durationCheck } from "../src/trials.js";
 
 const ROOT = new URL("../", import.meta.url);
 const OUT_DIR = new URL("public/data/", ROOT);
@@ -625,6 +625,54 @@ async function rivalsFor(pipeline, sponsor) {
   return [...out.values()].sort((a, b) => (a.pcd || "9") < (b.pcd || "9") ? -1 : 1).slice(0, 12);
 }
 
+/* ------------------------- trial durations (KM) -------------------------
+   Industry Phase II and III trials started 2012 to 2024: months from start to
+   primary completion. Finished trials are events; running ones are censored. */
+
+async function durationTables() {
+  const rows = [];
+  for (const [status, done] of [["COMPLETED", true], ["ACTIVE_NOT_RECRUITING,RECRUITING,ENROLLING_BY_INVITATION", false]]) {
+    for (const phase of ["PHASE2", "PHASE3"]) {
+      let token = null, pages = 0;
+      do {
+        const u = new URL("https://clinicaltrials.gov/api/v2/studies");
+        u.searchParams.set("filter.overallStatus", status);
+        u.searchParams.set("filter.advanced", `AREA[Phase]${phase} AND AREA[LeadSponsorClass]INDUSTRY AND AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2012-01-01,2024-12-31]`);
+        u.searchParams.set("fields", "NCTId,Phase,StartDate,PrimaryCompletionDate,EnrollmentCount");
+        u.searchParams.set("pageSize", "1000");
+        if (token) u.searchParams.set("pageToken", token);
+        const j = await getJSON(u.toString(), { Accept: "application/json" });
+        for (const st of j?.studies || []) {
+          const ps = st.protocolSection || {};
+          const phs = ps.designModule?.phases || [];
+          if (phs.length !== 1) continue; // skip combined Phase I/II and II/III trials
+          const ph = PHASE_MAP[phs[0]];
+          const n = ps.designModule?.enrollmentInfo?.count;
+          let sd = ps.statusModule?.startDateStruct?.date; if (!sd) continue; if (sd.length === 7) sd += "-15";
+          let m;
+          if (done) {
+            let pc = ps.statusModule?.primaryCompletionDateStruct;
+            if (!pc?.date || pc.type !== "ACTUAL") continue;
+            const pd = pc.date.length === 7 ? pc.date + "-15" : pc.date;
+            m = monthsBetween(sd, pd);
+          } else m = monthsBetween(sd, TODAY_ISO);
+          const key = stratumKey(ph, n);
+          if (key && m > 0 && m < 200) rows.push({ key, m: Math.ceil(m), done });
+        }
+        token = j?.nextPageToken || null;
+        pages++;
+        await sleep(250);
+      } while (token && pages < 8);
+    }
+  }
+  const tables = {};
+  for (const key of [...new Set(rows.map((r) => r.key))]) {
+    const rs = rows.filter((r) => r.key === key);
+    tables[key] = { n: rs.length, events: rs.filter((r) => r.done).length, S: kaplanMeier(rs) };
+  }
+  return tables;
+}
+
 /* --------------------------- FDA rejections ---------------------------
    Every complete response letter the FDA has published (openFDA). Summed
    by reviewing office and by the kind of problem the letter names. */
@@ -683,7 +731,7 @@ function titleCase(s) {
   return s.toLowerCase().replace(/\b([a-z])/g, (m) => m.toUpperCase()).replace(/\bInc\b/g, "Inc.");
 }
 
-async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}) {
+async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, durTables = null) {
   const cik = cikByTicker.get(ticker);
   if (!cik) throw new Error(`ticker not found in SEC's company list`);
   const cik10 = String(cik).padStart(10, "0");
@@ -715,6 +763,7 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}) {
     Object.assign(p, { modality: cls.modality || null }, k);
     const seen = trialHist[p.nct] || [];
     p.slips = seen.reduce((n, x, i) => n + (i > 0 && Date.parse(x[1]) - Date.parse(seen[i - 1][1]) > 30 * DAY ? 1 : 0), 0);
+    p.duration = durTables ? durationCheck(p, durTables, TODAY_ISO) : null;
     const settled = p.ph === "Approved" || p.ph === "Filed";
     p.window = settled ? null : readoutWindow(p, TODAY_ISO);
     p.flags = settled ? { flags: [], points: 0, level: null } : designFlags(p, TODAY_ISO);
@@ -835,12 +884,16 @@ async function main() {
   const tickers = await sec("https://www.sec.gov/files/company_tickers.json");
   const cikByTicker = new Map(Object.values(tickers || {}).map((r) => [r.ticker.toUpperCase(), r.cik_str]));
 
+  let durTables = null;
+  try { durTables = await durationTables(); console.log(`Trial-duration tables: ${Object.entries(durTables).map(([k, v]) => `${k} n=${v.n}`).join("; ")}`); }
+  catch (e) { warn(`Trial-duration download failed: ${e.message}`); durTables = previous.__meta?.durations || null; }
+
   const companies = [];
   for (const raw of config.tickers) {
     const ticker = raw.toUpperCase();
     console.log(`${ticker}…`);
     try {
-      const c = await buildCompany(ticker, assumptions[ticker] || {}, cikByTicker, classes[ticker] || {}, trialHist);
+      const c = await buildCompany(ticker, assumptions[ticker] || {}, cikByTicker, classes[ticker] || {}, trialHist, durTables);
       companies.push(c);
       console.log(`  ${c.n}: cash $${c.cash}M, burn $${c.burn}M/mo, ${c.pipeline.length} programs, mcap $${c.mcap}M`);
     } catch (e) {
@@ -884,6 +937,7 @@ async function main() {
       generatedAt: new Date().toISOString(),
       benchmark,
       fda,
+      durations: durTables,
       sources: ["SEC EDGAR XBRL company facts", "SEC EDGAR filing index", "ClinicalTrials.gov API v2", "Yahoo Finance"],
       warnings,
     },
