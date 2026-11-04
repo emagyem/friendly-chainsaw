@@ -44,7 +44,7 @@ export const FPS_BANDS = [
 ];
 
 export const FPS_CHANGELOG = [
-  { version: "1.1", date: "2026-11-03", note: "Readout dates now use Helixora's estimated readout window (its midpoint) instead of the raw registry date, and an open-label extension study finishing no longer counts as a major catalyst. Weights are unchanged." },
+  { version: "1.1", date: "2026-11-03", note: "Readout dates now use Helixora's estimated readout window (its midpoint) instead of the raw registry date, an open-label extension study finishing no longer counts as a major catalyst, and neither does a readout whose registry date is overdue (an unreliable date shouldn't lower a company's pressure). Weights are unchanged." },
   { version: "1.0", date: "2026-10-17", note: "First published version. Weights are a starting hypothesis and will be backtested against historical offerings; every change will be listed here." },
 ];
 

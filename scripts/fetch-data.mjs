@@ -727,12 +727,15 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}) {
     const date = w ? w.mid : p.ro;
     const dd = (toDate(date) - TODAY) / DAY;
     if (dd > -120 && dd < 730) {
-      const minor = !!p.trial?.ext;
+      // Extension studies aren't pivotal, and an overdue registry date can't be relied on:
+      // both appear on the calendar but don't count toward the Financing Pressure Score.
+      const minor = !!p.trial?.ext || !!w?.stale;
       catalysts.push({
         date, kind: minor ? "minor" : "readout", drug: p.d, est: p.roType !== "ACTUAL",
         lo: w?.lo || null, hi: w?.hi || null, reg: p.ro, nct: p.nct,
-        label: minor ? `${p.d} extension study completes (safety follow-up)`
-          : `${p.d} ${p.trial?.ph || p.ph}${p.trial?.ind && p.trial.ind !== p.ind ? ` (${p.trial.ind})` : ""} data (estimated)`,
+        label: p.trial?.ext ? `${p.d} extension study completes (safety follow-up)`
+          : w?.stale ? `${p.d} ${p.trial?.ph || p.ph} data (registry date overdue)`
+          : `${p.d} ${p.trial?.ph || p.ph}${p.trial?.ind && p.trial.ind.toLowerCase() !== (p.ind || "").toLowerCase() ? ` (${p.trial.ind})` : ""} data (estimated)`,
       });
     }
   }

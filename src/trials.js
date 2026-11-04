@@ -51,14 +51,17 @@ export function readoutWindow(p, todayIso = iso(Date.now())) {
     if (slips > 0) { hi += 3 * Math.min(slips, 2); why.push(`The completion date has been pushed back ${slips} time${slips === 1 ? "" : "s"} since Helixora began tracking (+${3 * Math.min(slips, 2)} months).`); }
   }
   let L = addMonths(anchor, lo), H = addMonths(anchor, hi);
-  if (H < todayIso) {
-    // The expected window has passed with no update: data could come any time, or the trial may have stalled.
-    L = todayIso; H = addMonths(todayIso, 6);
-    why.push("The expected date has passed without an update, so the window restarts from today.");
+  const stale = p.roType !== "ACTUAL" && monthsBetween(reg, todayIso) > 1;
+  if (stale || H < todayIso) {
+    // The registry's own estimate has passed without an update. The date can't be trusted,
+    // so the window restarts from today and stays wide: data could come soon, or the trial may have stalled.
+    L = todayIso; H = addMonths(todayIso, 9);
+    why.length = 0;
+    why.push("The registry's estimated completion date has passed without an update, so the date can't be relied on. The window restarts from today and runs 9 months.");
   } else if (L < todayIso) L = todayIso;
   const mid = iso((Date.parse(L) + Date.parse(H)) / 2);
   const width = Math.round(monthsBetween(L, H) * 10) / 10;
-  return { lo: L, hi: H, mid, reg, width, basis: p.roType === "ACTUAL" ? "Registry (actual completion)" : "Registry estimate", why };
+  return { lo: L, hi: H, mid, reg, width, stale: stale || undefined, basis: stale ? "Registry date overdue" : p.roType === "ACTUAL" ? "Registry (actual completion)" : "Registry estimate", why };
 }
 
 export const windowConfidence = (w) => (!w ? null : w.width <= 4 ? "Tight" : w.width <= 9 ? "Moderate" : "Wide");
