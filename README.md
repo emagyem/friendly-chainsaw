@@ -106,3 +106,16 @@ SEC_USER_AGENT="Your Name you@example.com" npm run fetch-data
 - XBRL tagging varies between companies. If a figure looks off, the popover links to the filing it came from.
 
 Research and screening tool only; nothing here is investment advice.
+
+## Trials and FDA models
+
+`src/trials.js` holds the drug-development models, shared by the site and the data refresh:
+
+- **Readout windows**: from each trial's ClinicalTrials.gov status, staleness and recorded date slips (`public/data/trial-history.json`). The window's midpoint feeds the Financing Pressure Score.
+- **Trial design flags**: size, randomization, blinding, control arm, endpoint type, sites and date changes.
+- **Success odds**: published phase-transition rates by disease area (BIO/Informa/QLS 2021), adjusted at half strength for drug type, rare disease and biomarker selection.
+- **FDA**: base rates plus a summary of every published complete response letter (openFDA), by office and reason.
+- **Read-through**: rival Phase II/III trials in the same diseases, with China-based trials flagged.
+- **Exclusivity**: the statutory floor from the approval pathway (12 years BLA, 5 years NCE, 7 years orphan).
+
+How each program is classified lives in `config/programs.json`; edit it to correct a disease area, drug type or rare-disease flag.
