@@ -196,3 +196,104 @@ export function financingModel(companies, todayIso) {
   }).filter(Boolean).sort((a, b) => b.p - a.p);
   return { n: train.length, events: train.filter((r) => r.y).length, companies: tickers.length, base, brier, brierBase, skill: 1 - brier / brierBase, weights: model.w, now, start, cutoff };
 }
+
+/* --------------------------- burn forecast ---------------------------
+   Holt's linear exponential smoothing on quarterly burn (from trailing
+   twelve-month figures in past filings), with a widening interval. */
+
+export function burnForecast(c, quarters = 4, alpha = 0.5, beta = 0.3) {
+  const hist = (c.runwayHist || []).filter((r) => r.burn > 0).slice(-12);
+  if (hist.length < 4 || c.cashFlowPositive) return null;
+  const y = hist.map((r) => r.burn * 3);
+  let level = y[0], trend = y[1] - y[0];
+  const resid = [];
+  for (let i = 1; i < y.length; i++) {
+    const fc = level + trend;
+    resid.push(y[i] - fc);
+    const prevLevel = level;
+    level = alpha * y[i] + (1 - alpha) * (level + trend);
+    trend = beta * (level - prevLevel) + (1 - beta) * trend;
+  }
+  const sd = Math.sqrt(resid.reduce((s, e) => s + e * e, 0) / Math.max(1, resid.length - 1));
+  const last = hist.at(-1).end;
+  const fc = Array.from({ length: quarters }, (_, h) => {
+    const v = Math.max(0, level + (h + 1) * trend);
+    const band = 1.28 * sd * Math.sqrt(h + 1);
+    const d = new Date(Date.parse(last) + (h + 1) * 91.3 * DAY).toISOString().slice(0, 10);
+    return { d, v, lo: Math.max(0, v - band), hi: v + band };
+  });
+  return { history: hist.map((r) => ({ d: r.end, v: r.burn * 3 })), forecast: fc, sd };
+}
+
+/* ---------------------------- raise estimate ----------------------------
+   Money needed to fund operations to 12 months past the next major catalyst
+   (plus the score's 6-month buffer), at forecast burn. A scenario, not a call. */
+
+export function raiseEstimate(c, monthsToCatalyst, { discount = 0.12, after = 12, buffer = 6 } = {}) {
+  if (c.cashFlowPositive || !(c.burn > 0) || !c.quote?.price) return null;
+  const f = burnForecast(c);
+  const months = (monthsToCatalyst ?? 18) + after + buffer;
+  // Forecast burn for the first year, then hold the last forecast quarter flat.
+  let need = 0;
+  for (let m = 0; m < months; m++) {
+    const q = Math.floor(m / 3);
+    const qb = f ? (f.forecast[Math.min(q, f.forecast.length - 1)].v) : c.burn * 3;
+    need += qb / 3;
+  }
+  const gap = need - c.cash;
+  if (gap <= 0) return { gap: 0, months, need };
+  const price = c.quote.price * (1 - discount);
+  const newShares = gap / price;
+  return { gap, months, need, newShares, dilution: newShares / (c.shares + newShares), price, discount };
+}
+
+/* ---------------------------- anomaly alerts ----------------------------
+   Robust z-scores (median and median absolute deviation) so one wild value
+   doesn't hide the next. Flags only what is unusual for that company. */
+
+const median = (xs) => { const s = [...xs].sort((a, b) => a - b); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+const robustZ = (x, xs) => { const m = median(xs); const mad = median(xs.map((v) => Math.abs(v - m))) * 1.4826; return mad > 0 ? (x - m) / mad : 0; };
+
+export function anomalies(c, { benchmark, history, todayIso } = {}) {
+  const out = [];
+  const today = todayIso || new Date().toISOString().slice(0, 10);
+  const daysAgo = (d) => Math.round((Date.parse(today) - Date.parse(d)) / DAY);
+  // 1. Burn jump in the latest filing
+  const b = (c.runwayHist || []).filter((r) => r.burn > 0);
+  if (b.length >= 6) {
+    const ch = b.slice(1).map((r, i) => Math.log(r.burn / b[i].burn));
+    const last = ch.at(-1), z = robustZ(last, ch.slice(0, -1));
+    if (Math.abs(z) >= 3 && Math.abs(last) >= 0.15) out.push({ kind: "burn", sev: last > 0 ? "med" : "low", date: b.at(-1).filed, text: `Burn ${last > 0 ? "jumped" : "fell"} ${Math.round(Math.abs(Math.exp(last) - 1) * 100)}% in the latest filing, far outside its usual quarter-to-quarter change.` });
+  }
+  // 2. Unusual price move against the biotech index in the last week
+  const h = c.quote?.history || [];
+  const bm = benchmark?.history ? new Map(benchmark.history) : null;
+  if (h.length > 60) {
+    const ar = [];
+    for (let i = 1; i < h.length; i++) {
+      const r = h[i][1] / h[i - 1][1] - 1;
+      const b0 = bm?.get(h[i - 1][0]), b1 = bm?.get(h[i][0]);
+      ar.push({ d: h[i][0], v: r - (b0 && b1 ? b1 / b0 - 1 : 0) });
+    }
+    const base = ar.slice(0, -5).map((x) => x.v);
+    for (const x of ar.slice(-5)) {
+      const z = robustZ(x.v, base);
+      if (Math.abs(z) >= 4 && Math.abs(x.v) >= 0.08) out.push({ kind: "price", sev: "med", date: x.d, text: `Shares moved ${x.v > 0 ? "+" : "−"}${Math.round(Math.abs(x.v) * 100)}% against the biotech index on ${x.d}, an unusually large move for this stock.` });
+    }
+  }
+  // 3. New offering filings
+  for (const f of (c.financings || []).filter((f) => daysAgo(f.date) >= 0 && daysAgo(f.date) <= 21)) {
+    out.push({ kind: "offering", sev: "high", date: f.date, url: f.url, text: `New offering filing: ${f.type}.` });
+  }
+  // 4. Trial dates pushed back
+  for (const p of c.pipeline || []) if (p.slips > 0) out.push({ kind: "trial", sev: "med", date: null, text: `${p.d}: completion date pushed back ${p.slips} time${p.slips === 1 ? "" : "s"} since tracking began.` });
+  // 5. Financing Pressure band change in the last two weeks of snapshots
+  const snaps = (history?.snapshots || []).filter((s) => s.scores?.[c.t]);
+  if (snaps.length >= 2) {
+    const recent = snaps.filter((s) => daysAgo(s.date) <= 14);
+    const before = snaps.filter((s) => daysAgo(s.date) > 14).at(-1) || recent[0];
+    const now = snaps.at(-1);
+    if (before && now && before.scores[c.t].band !== now.scores[c.t].band) out.push({ kind: "score", sev: "med", date: now.date, text: `Financing pressure moved from ${before.scores[c.t].band} to ${now.scores[c.t].band}.` });
+  }
+  return out.map((a) => ({ ...a, t: c.t }));
+}

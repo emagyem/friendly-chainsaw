@@ -651,8 +651,9 @@ async function durationTables() {
           let sd = ps.statusModule?.startDateStruct?.date; if (!sd) continue; if (sd.length === 7) sd += "-15";
           let m;
           if (done) {
-            let pc = ps.statusModule?.primaryCompletionDateStruct;
-            if (!pc?.date || pc.type !== "ACTUAL") continue;
+            // A completed trial's primary completion date is the actual one (the API omits the type when fields are filtered).
+            const pc = ps.statusModule?.primaryCompletionDateStruct;
+            if (!pc?.date || pc.type === "ESTIMATED") continue;
             const pd = pc.date.length === 7 ? pc.date + "-15" : pc.date;
             m = monthsBetween(sd, pd);
           } else m = monthsBetween(sd, TODAY_ISO);
