@@ -58,6 +58,7 @@ const ASSET_TYPES = new Set(["DRUG", "BIOLOGICAL", "GENETIC", "COMBINATION_PRODU
 // Marketed drugs that biotechs commonly combine their own asset with. They are never the
 // sponsor's program, so they rank last and a trial using only these is ignored.
 const COMMON_PARTNERS = new RegExp("^(" + [
+  "tacrolimus", "mycophenolate", "mycophenolate mofetil", "prednisone", "prednisolone", "methylprednisolone", "dexamethasone", "basiliximab", "thymoglobulin", "everolimus", "cyclosporine", "metformin", "semaglutide", "insulin",
   "pembrolizumab", "nivolumab", "atezolizumab", "durvalumab", "ipilimumab", "cemiplimab", "tislelizumab",
   "crizotinib", "osimertinib", "trastuzumab", "pertuzumab", "bevacizumab", "cetuximab", "panitumumab", "rituximab",
   "docetaxel", "paclitaxel", "nab-paclitaxel", "carboplatin", "cisplatin", "oxaliplatin", "gemcitabine", "pemetrexed",
@@ -456,14 +457,20 @@ async function trialsFor(sponsor) {
 
 const cleanDrug = (name) => {
   const s = name
+    .replace(/^\s*(drug|biological|genetic|combination product|device|other)\s*:\s*/i, "")
+    .replace(/^\s*(sub-?retinal|intravitreal|intrathecal|intravenous|subcutaneous|oral)?\s*administration of\s+/i, "")
+    .replace(/^\s*(low|high|mid|medium|middle)[- ]dose\s+/i, "")
+    .replace(/\s+(dose|cohort|arm|part|level)\s*[0-9a-z]?\s*$/i, "")
     .replace(/\(.*?\)/g, " ")
     .replace(/^\s*(sc|iv|po|oral|subcutaneous|intravenous|inhaled|topical)\s+/i, "")
     .replace(/\b\d+(\.\d+)?\s*(mg|mcg|µg|ug|g|ml|mg\/kg|iu|units?)\b.*$/i, "")
     .replace(/\s+(oral|subcutaneous|intravenous|iv|sc|injection|tablets?|capsules?|for injection|low dose|high dose)\b.*$/i, "")
     .replace(/\s+/g, " ").trim();
   // Development codes like "VK2735 QW" or "ARO-APOC3 cohort 2": the code alone names the program.
-  const first = s.split(" ")[0];
-  return /[a-z]/i.test(first) && /\d/.test(first) && first.length >= 4 ? first : s;
+  const first = s.split(" ")[0].replace(/[-–]+$/, "");
+  if (/[a-z]/i.test(first) && /\d/.test(first) && first.length >= 4) return first.replace(/-\d{3}$/, (m) => (/^[A-Z]+\d{3}-\d{3}$/.test(first) ? "" : m));
+  // Biologic names carry a four-letter FDA suffix ("zopapogene imadenovec-drba"); the program is the same drug.
+  return s.replace(/-[a-z]{4}$/, "").replace(/[-–]+$/, "").trim();
 };
 
 function trialRow(p) {
