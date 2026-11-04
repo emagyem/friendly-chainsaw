@@ -119,3 +119,7 @@ Research and screening tool only; nothing here is investment advice.
 - **Exclusivity**: the statutory floor from the approval pathway (12 years BLA, 5 years NCE, 7 years orphan).
 
 How each program is classified lives in `config/programs.json`; edit it to correct a disease area, drug type or rare-disease flag.
+
+## Quant models and prediction log
+
+`src/quant.js`: a Monte Carlo cash survival simulation (burn trend and volatility from past filings, no new financing), a Monte Carlo range of equity values (program success at Helixora's odds, uncertain peak sales and timing) with the peak sales the market price implies, and a logistic financing-risk model tested by leaving each company out. The refresh writes `public/data/predictions.json`, a daily record of published predictions with model versions, never edited after the day it was written.
