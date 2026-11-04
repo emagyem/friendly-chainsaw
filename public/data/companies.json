@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-04T04:26:08.621Z",
+  "generatedAt": "2026-11-04T04:29:24.859Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -16957,10 +16957,10 @@
       "ph": "Approved",
       "ind": "Recurrent Respiratory Papillomatosis"
      },
-     "modality": "Small molecule",
+     "modality": "Gene therapy",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
@@ -16979,9 +16979,9 @@
       "loa": 1,
       "base": 1,
       "area": "Infectious disease",
-      "modality": "Small molecule",
+      "modality": "Gene therapy",
       "factors": [
-       "Small molecule",
+       "Gene therapy",
        "Rare disease"
       ]
      }
@@ -17030,10 +17030,10 @@
       "ph": "Phase II",
       "ind": "Cervical Cancer"
      },
-     "modality": "Biologic",
+     "modality": "Gene therapy",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as biological",
+      "modality": "set by hand",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
@@ -17076,11 +17076,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.108,
+      "loa": 0.1219,
       "base": 0.108,
       "area": "Oncology",
-      "modality": null,
-      "factors": []
+      "modality": "Gene therapy",
+      "factors": [
+       "Gene therapy"
+      ]
      }
     },
     {
@@ -19094,10 +19096,10 @@
       "ph": "Phase II",
       "ind": "Locally Advanced or Metastatic HER2-Expressing Cancers"
      },
-     "modality": "Small molecule",
+     "modality": "Monoclonal antibody",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "not on the rare-disease list",
       "biomarker": "trial names a marker or mutation"
      },
@@ -19145,12 +19147,12 @@
       "level": "Some flags"
      },
      "odds": {
-      "loa": 0.1483,
+      "loa": 0.1845,
       "base": 0.108,
       "area": "Oncology",
-      "modality": "Small molecule",
+      "modality": "Monoclonal antibody",
       "factors": [
-       "Small molecule",
+       "Monoclonal antibody",
        "Patients selected by biomarker"
       ]
      }
@@ -19215,10 +19217,10 @@
       "ph": "Phase II",
       "ind": "Hepatitis D, Chronic"
      },
-     "modality": "Small molecule",
+     "modality": "siRNA/RNAi",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
@@ -19255,12 +19257,12 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.2216,
+      "loa": 0.2561,
       "base": 0.2283,
       "area": "Infectious disease",
-      "modality": "Small molecule",
+      "modality": "siRNA/RNAi",
       "factors": [
-       "Small molecule"
+       "siRNA/RNAi"
       ]
      }
     },
@@ -22884,10 +22886,10 @@
       "ph": "Phase III",
       "ind": "Peanut Allergy"
      },
-     "modality": "Small molecule",
+     "modality": "Biologic",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
@@ -22945,13 +22947,11 @@
       "level": "Many flags"
      },
      "odds": {
-      "loa": 0.6227,
+      "loa": 0.6276,
       "base": 0.647,
       "area": "Allergy",
-      "modality": "Small molecule",
-      "factors": [
-       "Small molecule"
-      ]
+      "modality": null,
+      "factors": []
      }
     },
     {
@@ -23008,10 +23008,10 @@
       "ph": "Phase III",
       "ind": "Allergy, Peanut"
      },
-     "modality": "Small molecule",
+     "modality": "Biologic",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
@@ -23048,13 +23048,11 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.6227,
+      "loa": 0.6276,
       "base": 0.647,
       "area": "Allergy",
-      "modality": "Small molecule",
-      "factors": [
-       "Small molecule"
-      ]
+      "modality": null,
+      "factors": []
      }
     }
    ],
@@ -26072,10 +26070,10 @@
       "ph": "Phase II",
       "ind": "Pulmonary Hypertension"
      },
-     "modality": "Small molecule",
+     "modality": "Fusion protein",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
@@ -26118,13 +26116,11 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.0928,
+      "loa": 0.0956,
       "base": 0.0956,
       "area": "Cardiovascular",
-      "modality": "Small molecule",
-      "factors": [
-       "Small molecule"
-      ]
+      "modality": null,
+      "factors": []
      }
     }
    ],
@@ -27788,10 +27784,10 @@
       "ph": "Phase II",
       "ind": "Amyotrophic Lateral Sclerosis"
      },
-     "modality": "Small molecule",
+     "modality": "Gene therapy",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
@@ -27845,12 +27841,12 @@
       "level": "Many flags"
      },
      "odds": {
-      "loa": 0.1448,
+      "loa": 0.1684,
       "base": 0.1234,
       "area": "Neurology",
-      "modality": "Small molecule",
+      "modality": "Gene therapy",
       "factors": [
-       "Small molecule",
+       "Gene therapy",
        "Rare disease"
       ]
      }
@@ -27902,7 +27898,7 @@
      "modality": "Gene therapy",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as genetic",
+      "modality": "set by hand",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
@@ -28000,10 +27996,10 @@
       "ph": "Phase II",
       "ind": "Fabry Disease"
      },
-     "modality": "Small molecule",
+     "modality": "Gene therapy",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
@@ -28046,12 +28042,12 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.2939,
+      "loa": 0.3419,
       "base": 0.2504,
       "area": "Metabolic",
-      "modality": "Small molecule",
+      "modality": "Gene therapy",
       "factors": [
-       "Small molecule",
+       "Gene therapy",
        "Rare disease"
       ]
      }
@@ -28106,7 +28102,7 @@
      "modality": "Gene therapy",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as genetic",
+      "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
@@ -29896,10 +29892,10 @@
       "ph": "Phase III",
       "ind": "Duchenne Muscular Dystrophy"
      },
-     "modality": "Small molecule",
+     "modality": "Gene therapy",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
@@ -29942,12 +29938,12 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.4591,
+      "loa": 0.4549,
       "base": 0.4604,
       "area": "Neurology",
-      "modality": "Small molecule",
+      "modality": "Gene therapy",
       "factors": [
-       "Small molecule",
+       "Gene therapy",
        "Rare disease"
       ]
      }
@@ -30001,7 +29997,7 @@
      "modality": "Gene therapy",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as genetic",
+      "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
@@ -30095,10 +30091,10 @@
       "ph": "Phase I",
       "ind": "Catecholaminergic Polymorphic Ventricular Tachycardia"
      },
-     "modality": "Small molecule",
+     "modality": "Gene therapy",
      "labels": {
       "area": "not identified",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
@@ -30124,12 +30120,12 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0768,
+      "loa": 0.0888,
       "base": 0.0787,
       "area": "All indications",
-      "modality": "Small molecule",
+      "modality": "Gene therapy",
       "factors": [
-       "Small molecule"
+       "Gene therapy"
       ]
      }
     },
@@ -30179,10 +30175,10 @@
       "ph": "Phase I",
       "ind": "Friedreich's Ataxia (FA)"
      },
-     "modality": "Small molecule",
+     "modality": "Gene therapy",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
@@ -30208,12 +30204,12 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.0777,
+      "loa": 0.0898,
       "base": 0.0589,
       "area": "Neurology",
-      "modality": "Small molecule",
+      "modality": "Gene therapy",
       "factors": [
-       "Small molecule",
+       "Gene therapy",
        "Rare disease"
       ]
      }
@@ -31896,8 +31892,8 @@
      "cost": 260,
      "est": true,
      "nct": "NCT06007690",
-     "trials": 1,
-     "activeTrials": 1,
+     "trials": 4,
+     "activeTrials": 3,
      "status": "ACTIVE_NOT_RECRUITING",
      "itype": "DRUG",
      "trial": {
@@ -31938,10 +31934,10 @@
       "ph": "Phase III",
       "ind": "Choroidal Melanoma"
      },
-     "modality": "Small molecule",
+     "modality": "Virus-like drug conjugate",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
@@ -31978,112 +31974,11 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.4328,
+      "loa": 0.4388,
       "base": 0.4388,
       "area": "Oncology",
-      "modality": "Small molecule",
-      "factors": [
-       "Small molecule"
-      ]
-     }
-    },
-    {
-     "d": "AU-011",
-     "ind": "Eye Cancer",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase II",
-     "n": 24,
-     "ro": "2026-11-30",
-     "roType": "ESTIMATED",
-     "ep": "Change from baseline in choroidal tumor thickness on B-scan ultrasonography (B-scan) 4 weeks after completion ",
-     "peak": 600,
-     "launch": 4.5,
-     "cost": 160,
-     "est": true,
-     "nct": "NCT06643884",
-     "trials": 3,
-     "activeTrials": 2,
-     "status": "RECRUITING",
-     "itype": "DRUG",
-     "trial": {
-      "nct": "NCT06643884",
-      "title": "Suprachoroidal Administration in Subjects With Metastases to the Choroid",
-      "status": "RECRUITING",
-      "ext": false,
-      "n": 24,
-      "nType": "ESTIMATED",
-      "alloc": "NON_RANDOMIZED",
-      "model": "SEQUENTIAL",
-      "masking": "NONE",
-      "arms": [
-       "EXPERIMENTAL",
-       "EXPERIMENTAL",
-       "EXPERIMENTAL",
-       "EXPERIMENTAL",
-       "NO_INTERVENTION",
-       "EXPERIMENTAL",
-       "EXPERIMENTAL"
-      ],
-      "primary": "Change from baseline in choroidal tumor thickness on B-scan ultrasonography (B-scan) 4 weeks after completion of treatment.",
-      "primaryCount": 2,
-      "sites": 13,
-      "countries": [
-       "United States"
-      ],
-      "start": "2024-12-16",
-      "startType": "ACTUAL",
-      "lastUpdate": "2026-10-08",
-      "ph": "Phase II",
-      "ind": "Eye Cancer"
-     },
-     "modality": "Small molecule",
-     "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
-      "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
-     },
-     "area": "Oncology",
-     "rare": false,
-     "biomarker": false,
-     "slips": 0,
-     "duration": {
-      "key": "Phase II, under 100 patients",
-      "n": 3787,
-      "planned": 23,
-      "elapsed": 22,
-      "median": 20,
-      "p25": 11,
-      "p75": 36,
-      "condMedian": 39,
-      "condP75": 60,
-      "fasterThan": 43
-     },
-     "window": {
-      "lo": "2026-12-15",
-      "hi": "2027-09-15",
-      "mid": "2027-05-01",
-      "reg": "2026-11-30",
-      "width": 9,
-      "basis": "Registry estimate",
-      "why": [
-       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
-      ]
-     },
-     "flags": {
-      "flags": [],
-      "points": 0,
-      "level": "No flags"
-     },
-     "odds": {
-      "loa": 0.1048,
-      "base": 0.108,
-      "area": "Oncology",
-      "modality": "Small molecule",
-      "factors": [
-       "Small molecule"
-      ]
+      "modality": null,
+      "factors": []
      }
     }
    ],
@@ -32098,17 +31993,6 @@
      "reg": "2027-11-15",
      "nct": "NCT06007690",
      "label": "Bel-sar Phase III data (estimated)"
-    },
-    {
-     "date": "2027-05-01",
-     "kind": "readout",
-     "drug": "AU-011",
-     "est": true,
-     "lo": "2026-12-15",
-     "hi": "2027-09-15",
-     "reg": "2026-11-30",
-     "nct": "NCT06643884",
-     "label": "AU-011 Phase II data (estimated)"
     },
     {
      "date": "2026-11-10",
@@ -33516,13 +33400,13 @@
       "ind": "Obesity and Cardiovascular Risk"
      },
      "modality": "Small molecule",
+     "area": "Metabolic",
      "labels": {
-      "area": "from the disease",
+      "area": "set by hand",
       "modality": "registry lists it as a drug, not a biologic",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
-     "area": "Cardiovascular",
      "rare": false,
      "biomarker": false,
      "slips": 0,
@@ -33567,9 +33451,9 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.0928,
-      "base": 0.0956,
-      "area": "Cardiovascular",
+      "loa": 0.2431,
+      "base": 0.2504,
+      "area": "Metabolic",
       "modality": "Small molecule",
       "factors": [
        "Small molecule"
@@ -34963,14 +34847,14 @@
       "ph": "Phase III",
       "ind": "Myasthaenia Gravis"
      },
-     "modality": "Biologic",
+     "modality": "CAR-T",
+     "area": "Neurology",
      "labels": {
-      "area": "not identified",
-      "modality": "registry lists it as biological",
+      "area": "set by hand",
+      "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
-     "area": null,
      "rare": true,
      "biomarker": false,
      "slips": 0,
@@ -35003,11 +34887,12 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.5295,
-      "base": 0.5237,
-      "area": "All indications",
-      "modality": null,
+      "loa": 0.5254,
+      "base": 0.4604,
+      "area": "Neurology",
+      "modality": "CAR-T",
       "factors": [
+       "CAR-T",
        "Rare disease"
       ]
      }
@@ -38302,15 +38187,15 @@
       "ph": "Phase II",
       "ind": "Frontotemporal Dementia"
      },
-     "modality": "Small molecule",
+     "modality": "Protein",
+     "area": "Neurology",
      "labels": {
-      "area": "not identified",
-      "modality": "registry lists it as a drug, not a biologic",
-      "rare": "not on the rare-disease list",
+      "area": "set by hand",
+      "modality": "set by hand",
+      "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
-     "area": null,
-     "rare": false,
+     "rare": true,
      "biomarker": false,
      "slips": 0,
      "duration": null,
@@ -38337,12 +38222,12 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.1469,
-      "base": 0.1513,
-      "area": "All indications",
-      "modality": "Small molecule",
+      "loa": 0.1492,
+      "base": 0.1234,
+      "area": "Neurology",
+      "modality": null,
       "factors": [
-       "Small molecule"
+       "Rare disease"
       ]
      }
     },
@@ -38492,10 +38377,10 @@
       "ph": "Phase II",
       "ind": "Mucopolysaccharidosis Type IIIA"
      },
-     "modality": "Small molecule",
+     "modality": "Protein",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
@@ -38538,12 +38423,11 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.2939,
+      "loa": 0.3028,
       "base": 0.2504,
       "area": "Metabolic",
-      "modality": "Small molecule",
+      "modality": null,
       "factors": [
-       "Small molecule",
        "Rare disease"
       ]
      }
@@ -42560,13 +42444,13 @@
      },
      "modality": "Monoclonal antibody",
      "labels": {
-      "area": "not identified",
+      "area": "from the disease",
       "modality": "from the drug name (-mab)",
-      "rare": "not on the rare-disease list",
+      "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
-     "area": null,
-     "rare": false,
+     "area": "Hematology",
+     "rare": true,
      "biomarker": false,
      "slips": 0,
      "duration": {
@@ -42615,12 +42499,13 @@
       "level": "Many flags"
      },
      "odds": {
-      "loa": 0.1831,
-      "base": 0.1513,
-      "area": "All indications",
+      "loa": 0.5014,
+      "base": 0.3439,
+      "area": "Hematology",
       "modality": "Monoclonal antibody",
       "factors": [
-       "Monoclonal antibody"
+       "Monoclonal antibody",
+       "Rare disease"
       ]
      }
     },
@@ -42671,10 +42556,10 @@
       "ph": "Phase II",
       "ind": "Paroxysmal Nocturnal Hemoglobinuria"
      },
-     "modality": "Small molecule",
+     "modality": "Monoclonal antibody",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
@@ -42706,12 +42591,12 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.4036,
+      "loa": 0.5014,
       "base": 0.3439,
       "area": "Hematology",
-      "modality": "Small molecule",
+      "modality": "Monoclonal antibody",
       "factors": [
-       "Small molecule",
+       "Monoclonal antibody",
        "Rare disease"
       ]
      }
@@ -48007,10 +47892,10 @@
       "ph": "Phase III",
       "ind": "Acute Stroke"
      },
-     "modality": "Small molecule",
+     "modality": "Protein",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "from the drug name (protein suffix)",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
@@ -48047,13 +47932,11 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.454,
+      "loa": 0.4604,
       "base": 0.4604,
       "area": "Neurology",
-      "modality": "Small molecule",
-      "factors": [
-       "Small molecule"
-      ]
+      "modality": null,
+      "factors": []
      }
     }
    ],
@@ -52950,11 +52833,11 @@
       "area": "not identified",
       "modality": "registry lists it as a drug, not a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "trial names a marker or mutation"
+      "biomarker": "no marker named"
      },
      "area": null,
      "rare": false,
-     "biomarker": true,
+     "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
@@ -52980,13 +52863,12 @@
       "level": "No flags"
      },
      "odds": {
-      "loa": 0.5774,
+      "loa": 0.5164,
       "base": 0.5237,
       "area": "All indications",
       "modality": "Small molecule",
       "factors": [
-       "Small molecule",
-       "Patients selected by biomarker"
+       "Small molecule"
       ]
      }
     },
@@ -53036,10 +52918,10 @@
       "ph": "Phase III",
       "ind": "Bladder (Urothelial, Transitional Cell) Cancer"
      },
-     "modality": "Small molecule",
+     "modality": "Biologic",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "set by hand",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
@@ -53082,13 +52964,11 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.4328,
+      "loa": 0.4388,
       "base": 0.4388,
       "area": "Oncology",
-      "modality": "Small molecule",
-      "factors": [
-       "Small molecule"
-      ]
+      "modality": null,
+      "factors": []
      }
     }
    ],
@@ -68102,15 +67982,15 @@
       "ph": "Phase III",
       "ind": "Stargardt Disease"
      },
-     "modality": "Small molecule",
+     "modality": "Gene therapy",
      "labels": {
-      "area": "not identified",
-      "modality": "registry lists it as a drug, not a biologic",
-      "rare": "not on the rare-disease list",
+      "area": "from the disease",
+      "modality": "set by hand",
+      "rare": "on Helixora's rare-disease list",
       "biomarker": "no marker named"
      },
-     "area": null,
-     "rare": false,
+     "area": "Ophthalmology",
+     "rare": true,
      "biomarker": false,
      "slips": 0,
      "duration": {
@@ -68141,25 +68021,21 @@
       "flags": [
        {
         "sev": "med",
-        "label": "Small for a late-stage trial",
-        "detail": "51 patients planned or enrolled. Small late-stage trials can miss real but modest effects."
-       },
-       {
-        "sev": "med",
         "label": "Estimated completion date has passed",
         "detail": "The registry still shows an estimated date that is now in the past."
        }
       ],
-      "points": 4,
-      "level": "Some flags"
+      "points": 2,
+      "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.5164,
-      "base": 0.5237,
-      "area": "All indications",
-      "modality": "Small molecule",
+      "loa": 0.4585,
+      "base": 0.4664,
+      "area": "Ophthalmology",
+      "modality": "Gene therapy",
       "factors": [
-       "Small molecule"
+       "Gene therapy",
+       "Rare disease"
       ]
      }
     },
@@ -68306,10 +68182,10 @@
       "ph": "Phase III",
       "ind": "Dry Age-related Macular Degeneration"
      },
-     "modality": "Biologic",
+     "modality": "Gene therapy",
      "labels": {
       "area": "from the disease",
-      "modality": "registry lists it as biological",
+      "modality": "set by hand",
       "rare": "not on the rare-disease list",
       "biomarker": "no marker named"
      },
@@ -68352,11 +68228,13 @@
       "level": "Minor flags"
      },
      "odds": {
-      "loa": 0.4664,
+      "loa": 0.4558,
       "base": 0.4664,
       "area": "Ophthalmology",
-      "modality": null,
-      "factors": []
+      "modality": "Gene therapy",
+      "factors": [
+       "Gene therapy"
+      ]
      }
     },
     {
