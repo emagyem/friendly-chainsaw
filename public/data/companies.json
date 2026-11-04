@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-04T04:01:50.299Z",
+  "generatedAt": "2026-11-04T04:05:10.628Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -10548,7 +10548,7 @@
      "pcd": "2027-03-15",
      "n": 193,
      "drugs": [
-      "Sacituzumab Govitecan-hziy",
+      "Sacituzumab Govitecan",
       "Pembrolizumab",
       "Carboplatin"
      ],
@@ -16713,8 +16713,8 @@
      "cost": 0,
      "est": true,
      "nct": "NCT06538480",
-     "trials": 1,
-     "activeTrials": 1,
+     "trials": 2,
+     "activeTrials": 2,
      "status": "RECRUITING",
      "trial": {
       "nct": "NCT06538480",
@@ -16754,113 +16754,6 @@
      "odds": {
       "loa": 1,
       "base": 1,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
-     }
-    },
-    {
-     "d": "Zopapogene imadenovec-drba",
-     "ind": "Recurrent Respiratory Papillomatosis (RRP)",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase III",
-     "n": 15,
-     "ro": "2029-01-15",
-     "roType": "ESTIMATED",
-     "ep": "Complete response rate",
-     "peak": 800,
-     "launch": 2.5,
-     "cost": 260,
-     "est": true,
-     "nct": "NCT07901738",
-     "trials": 1,
-     "activeTrials": 1,
-     "status": "NOT_YET_RECRUITING",
-     "trial": {
-      "nct": "NCT07901738",
-      "title": "Zopapogene Imadenovec for the Treatment of Recurrent Respiratory Papillomatosis in Children",
-      "status": "NOT_YET_RECRUITING",
-      "ext": false,
-      "n": 15,
-      "nType": "ESTIMATED",
-      "alloc": "NA",
-      "model": "SINGLE_GROUP",
-      "masking": "NONE",
-      "arms": [
-       "EXPERIMENTAL"
-      ],
-      "primary": "Complete response rate",
-      "primaryCount": 1,
-      "sites": 1,
-      "countries": [
-       "United States"
-      ],
-      "start": "2026-12-31",
-      "startType": "ESTIMATED",
-      "lastUpdate": "2026-10-28",
-      "ph": "Phase III",
-      "ind": "Recurrent Respiratory Papillomatosis (RRP)"
-     },
-     "modality": null,
-     "slips": 0,
-     "duration": {
-      "key": "Phase III, under 100 patients",
-      "n": 1451,
-      "planned": 25,
-      "elapsed": 0,
-      "median": 22,
-      "p25": 12,
-      "p75": 42,
-      "condMedian": 22,
-      "condP75": 42,
-      "fasterThan": 44
-     },
-     "window": {
-      "lo": "2029-05-01",
-      "hi": "2030-05-01",
-      "mid": "2029-10-30",
-      "reg": "2029-01-15",
-      "width": 12,
-      "basis": "Registry estimate",
-      "why": [
-       "Not yet enrolling, so the registry date is a plan, not a schedule (window widened by a year)."
-      ]
-     },
-     "flags": {
-      "flags": [
-       {
-        "sev": "med",
-        "label": "Small for a late-stage trial",
-        "detail": "15 patients planned or enrolled. Small late-stage trials can miss real but modest effects."
-       },
-       {
-        "sev": "med",
-        "label": "Not randomized",
-        "detail": "Without randomization, differences between groups can come from who was enrolled rather than the drug."
-       },
-       {
-        "sev": "med",
-        "label": "No control arm",
-        "detail": "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment. Common, and sometimes unavoidable, in very rare diseases."
-       },
-       {
-        "sev": "low",
-        "label": "Open label",
-        "detail": "Patients and doctors know who gets the drug, which can sway subjective measures."
-       },
-       {
-        "sev": "low",
-        "label": "Few trial sites",
-        "detail": "1 site. Results from very few centers can be harder to reproduce."
-       }
-      ],
-      "points": 8,
-      "level": "Many flags"
-     },
-     "odds": {
-      "loa": 0.5237,
-      "base": 0.5237,
       "area": "All indications",
       "modality": null,
       "factors": []
@@ -17470,7 +17363,261 @@
      55
     ]
    ],
-   "rivals": [],
+   "rivals": [
+    {
+     "nct": "NCT06505551",
+     "sponsor": "SCG Cell Therapy Pte. Ltd.",
+     "title": "Phase 1/2 Study of Autologous SCG142 TCR T Cells in Patients With HPV16/52-positive Carcinoma",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 66,
+     "drugs": [
+      "SCG142",
+      "Cyclophosphamide",
+      "Fludarabine"
+     ],
+     "forDrug": "PRGN-2009",
+     "ind": "Cervical Cancer",
+     "countries": [],
+     "nCountries": 0,
+     "china": null
+    },
+    {
+     "nct": "NCT07572396",
+     "sponsor": "Amplexd Therapeutics, Inc.",
+     "title": "Phase II Study of Dysplasix™ Intravaginal Suppositories in Patients Patients With High-Risk HPV and Mild Cervical Cytologic Abnormalities",
+     "ph": "Phase II",
+     "pcd": "2026-12-27",
+     "n": 45,
+     "drugs": [
+      "EGCG and Quinine Sulfate…"
+     ],
+     "forDrug": "PRGN-2009",
+     "ind": "Cervical Cancer",
+     "countries": [
+      "Hong Kong"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT06769152",
+     "sponsor": "Shanghai Henlius Biotech",
+     "title": "A Phase II Clinical Study to Evaluate the Efficacy and Safety of HLX43 (Anti-PD-L1 ADC) in Patients With Advanced Gynecological Malignant Tumors",
+     "ph": "Phase II",
+     "pcd": "2026-12-31",
+     "n": 190,
+     "drugs": [
+      "HLX43"
+     ],
+     "forDrug": "PRGN-2009",
+     "ind": "Cervical Cancer",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT04140526",
+     "sponsor": "OncoC4, Inc.",
+     "title": "Safety, PK and Efficacy of ONC-392 in Monotherapy and in Combination of Anti-PD-1 in Advanced Solid Tumors and NSCLC",
+     "ph": "Phase II",
+     "pcd": "2026-12-31",
+     "n": 733,
+     "drugs": [
+      "ONC-392",
+      "Pembrolizumab",
+      "Docetaxel"
+     ],
+     "forDrug": "PRGN-2009",
+     "ind": "Cervical Cancer",
+     "countries": [
+      "United States",
+      "Australia"
+     ],
+     "nCountries": 2,
+     "china": null
+    },
+    {
+     "nct": "NCT06047379",
+     "sponsor": "Neonc Technologies, Inc.",
+     "title": "Safety and Efficacy of NEO212 in Patients With Astrocytoma IDH-mutant, Glioblastoma IDH-wildtype or Brain Metastasis",
+     "ph": "Phase II",
+     "pcd": "2027-02-28",
+     "n": 134,
+     "drugs": [
+      "NEO212",
+      "Ipilimumab",
+      "Pembrolizumab"
+     ],
+     "forDrug": "PRGN-2009",
+     "ind": "Cervical Cancer",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT04482309",
+     "sponsor": "AstraZeneca",
+     "title": "A Phase 2 Study of T-DXd in Patients With Selected HER2 Expressing Tumors",
+     "ph": "Phase II",
+     "pcd": "2027-03-23",
+     "n": 477,
+     "drugs": [
+      "Trastuzumab deruxtecan"
+     ],
+     "forDrug": "PRGN-2009",
+     "ind": "Cervical Cancer",
+     "countries": [
+      "United States",
+      "Australia",
+      "Belgium",
+      "Brazil",
+      "Canada",
+      "Czechia"
+     ],
+     "nCountries": 17,
+     "china": null
+    },
+    {
+     "nct": "NCT04644068",
+     "sponsor": "AstraZeneca",
+     "title": "Study of AZD5305 as Monotherapy and in Combination With Anti-cancer Agents in Patients With Advanced Solid Malignancies",
+     "ph": "Phase II",
+     "pcd": "2027-05-28",
+     "n": 702,
+     "drugs": [
+      "AZD5305",
+      "Paclitaxel",
+      "Carboplatin"
+     ],
+     "forDrug": "PRGN-2009",
+     "ind": "Cervical Cancer",
+     "countries": [
+      "United States",
+      "Australia",
+      "Canada",
+      "China",
+      "Czechia",
+      "Hungary"
+     ],
+     "nCountries": 14,
+     "china": "some"
+    },
+    {
+     "nct": "NCT06155396",
+     "sponsor": "RemeGen Co., Ltd.",
+     "title": "A Study of RC48-ADC Combination With Zimberelimab Injection Therapies at Least First-line Platinum-containing Standard Therapy Failed With Recurrent or Metastat",
+     "ph": "Phase II",
+     "pcd": "2027-06-30",
+     "n": 116,
+     "drugs": [
+      "Disitamab Vedotin",
+      "Zimberelimab"
+     ],
+     "forDrug": "PRGN-2009",
+     "ind": "Cervical Cancer",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT05579366",
+     "sponsor": "Genmab",
+     "title": "Rinatabart Sesutecan (Rina-S, PRO1184, GEN1184) for Advanced Solid Tumors (GCT1184-01/ PRO1184-001)",
+     "ph": "Phase II",
+     "pcd": "2027-07-15",
+     "n": 952,
+     "drugs": [
+      "Rina-S",
+      "Carboplatin",
+      "Bevacizumab"
+     ],
+     "forDrug": "PRGN-2009",
+     "ind": "Cervical Cancer",
+     "countries": [
+      "United States",
+      "China",
+      "Japan"
+     ],
+     "nCountries": 3,
+     "china": "some"
+    },
+    {
+     "nct": "NCT07080216",
+     "sponsor": "Suzhou Zelgen Biopharmaceuticals Co.,Ltd",
+     "title": "Study of ZG005 in Combination With Gecacitinib in Participants With Advanced Cervical Cancer",
+     "ph": "Phase II",
+     "pcd": "2027-08-15",
+     "n": 120,
+     "drugs": [
+      "ZG005",
+      "Gecacitinib",
+      "Bevacizumab"
+     ],
+     "forDrug": "PRGN-2009",
+     "ind": "Cervical Cancer",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT05081609",
+     "sponsor": "Ascendis Pharma Oncology Division A/S",
+     "title": "A Study to Investigate Safety and Tolerability of TransCon IL-2 β/γ Alone or in Combination With Pembrolizumab and/or TransCon TLR7/8 Agonist or Other Anticance",
+     "ph": "Phase II",
+     "pcd": "2027-08-15",
+     "n": 320,
+     "drugs": [
+      "TransCon IL-2 β/γ",
+      "Pembrolizumab",
+      "Chemotherapy drug"
+     ],
+     "forDrug": "PRGN-2009",
+     "ind": "Cervical Cancer",
+     "countries": [
+      "United States",
+      "Australia",
+      "Belgium",
+      "Canada",
+      "Italy",
+      "Poland"
+     ],
+     "nCountries": 10,
+     "china": null
+    },
+    {
+     "nct": "NCT05910827",
+     "sponsor": "Hummingbird Bioscience",
+     "title": "A Phase Ib/II Study of an Anti-HER3 Antibody, HMBD-001, With Cetuximab +/- Docetaxel in Advanced Squamous Cell Cancers",
+     "ph": "Phase II",
+     "pcd": "2027-12-01",
+     "n": 398,
+     "drugs": [
+      "HMBD-001",
+      "Docetaxel",
+      "Cetuximab"
+     ],
+     "forDrug": "PRGN-2009",
+     "ind": "Cervical Cancer",
+     "countries": [
+      "Australia",
+      "Moldova",
+      "Singapore",
+      "South Korea",
+      "Taiwan"
+     ],
+     "nCountries": 5,
+     "china": null
+    }
+   ],
    "burnPrior": 5.52,
    "debtDue24": 0,
    "raise": {
@@ -25566,7 +25713,7 @@
    "mkt": 0.6,
    "pipeline": [
     {
-     "d": "TX000045-",
+     "d": "TX000045",
      "ind": "Pulmonary Hypertension",
      "tgt": "—",
      "moa": "—",
@@ -25670,13 +25817,13 @@
     {
      "date": "2027-03-10",
      "kind": "readout",
-     "drug": "TX000045-",
+     "drug": "TX000045",
      "est": true,
      "lo": "2026-12-09",
      "hi": "2027-06-09",
      "reg": "2026-11-24",
      "nct": "NCT06616974",
-     "label": "TX000045- Phase II data (estimated)"
+     "label": "TX000045 Phase II data (estimated)"
     },
     {
      "date": "2026-11-05",
@@ -25872,7 +26019,7 @@
      "drugs": [
       "Seralutinib"
      ],
-     "forDrug": "TX000045-",
+     "forDrug": "TX000045",
      "ind": "Pulmonary Hypertension",
      "countries": [
       "United States",
@@ -25895,7 +26042,7 @@
      "drugs": [
       "Ralinepag"
      ],
-     "forDrug": "TX000045-",
+     "forDrug": "TX000045",
      "ind": "Pulmonary Hypertension",
      "countries": [
       "United States",
@@ -25918,7 +26065,7 @@
      "drugs": [
       "mosliciguat"
      ],
-     "forDrug": "TX000045-",
+     "forDrug": "TX000045",
      "ind": "Pulmonary Hypertension",
      "countries": [
       "United States"
@@ -25936,7 +26083,7 @@
      "drugs": [
       "Treprostinil Palmitil"
      ],
-     "forDrug": "TX000045-",
+     "forDrug": "TX000045",
      "ind": "Pulmonary Hypertension",
      "countries": [
       "United States",
@@ -25961,7 +26108,7 @@
       "Selexipag",
       "Macitentan/Tadalafil FDC"
      ],
-     "forDrug": "TX000045-",
+     "forDrug": "TX000045",
      "ind": "Pulmonary Hypertension",
      "countries": [
       "Belarus",
@@ -25984,7 +26131,7 @@
      "drugs": [
       "ROC-101"
      ],
-     "forDrug": "TX000045-",
+     "forDrug": "TX000045",
      "ind": "Pulmonary Hypertension",
      "countries": [
       "United States",
@@ -26007,7 +26154,7 @@
      "drugs": [
       "APL-9796"
      ],
-     "forDrug": "TX000045-",
+     "forDrug": "TX000045",
      "ind": "Pulmonary Hypertension",
      "countries": [
       "United Kingdom"
@@ -26025,7 +26172,7 @@
      "drugs": [
       "TX000045"
      ],
-     "forDrug": "TX000045-",
+     "forDrug": "TX000045",
      "ind": "Pulmonary Hypertension",
      "countries": [
       "United States",
@@ -26048,7 +26195,7 @@
      "drugs": [
       "DIAG723"
      ],
-     "forDrug": "TX000045-",
+     "forDrug": "TX000045",
      "ind": "Pulmonary Hypertension",
      "countries": [
       "Australia",
@@ -26068,7 +26215,7 @@
      "drugs": [
       "Mirivadelgat"
      ],
-     "forDrug": "TX000045-",
+     "forDrug": "TX000045",
      "ind": "Pulmonary Hypertension",
      "countries": [
       "Bosnia and Herzegovina",
@@ -26087,7 +26234,7 @@
      "drugs": [
       "REGN13335"
      ],
-     "forDrug": "TX000045-",
+     "forDrug": "TX000045",
      "ind": "Pulmonary Hypertension",
      "countries": [
       "United States",
@@ -26110,7 +26257,7 @@
      "drugs": [
       "HS235"
      ],
-     "forDrug": "TX000045-",
+     "forDrug": "TX000045",
      "ind": "Pulmonary Hypertension",
      "countries": [
       "United States",
@@ -29951,9 +30098,7 @@
      "pcd": "2027-01-15",
      "n": 76,
      "drugs": [
-      "Sevasemten Dose 1",
-      "Sevasemten Dose 2",
-      "Sevasemten Dose 3"
+      "Sevasemten"
      ],
      "forDrug": "SGT-003",
      "ind": "Duchenne Muscular Dystrophy",
@@ -30012,9 +30157,7 @@
      "pcd": "2027-03-15",
      "n": 43,
      "drugs": [
-      "Sevasemten Dose 1",
-      "Sevasemten Dose 2",
-      "Sevasemten Dose 3"
+      "Sevasemten"
      ],
      "forDrug": "SGT-003",
      "ind": "Duchenne Muscular Dystrophy",
@@ -34321,7 +34464,7 @@
    "mkt": 0.6,
    "pipeline": [
     {
-     "d": "Decartes-08",
+     "d": "Descartes-08",
      "ind": "Myasthaenia Gravis",
      "tgt": "—",
      "moa": "—",
@@ -34335,8 +34478,8 @@
      "cost": 260,
      "est": true,
      "nct": "NCT06799247",
-     "trials": 1,
-     "activeTrials": 1,
+     "trials": 6,
+     "activeTrials": 5,
      "status": "ACTIVE_NOT_RECRUITING",
      "trial": {
       "nct": "NCT06799247",
@@ -34408,114 +34551,19 @@
       "modality": null,
       "factors": []
      }
-    },
-    {
-     "d": "Descartes-08",
-     "ind": "Childhood-onset Systemic Lupus Erythematous",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase II",
-     "n": 30,
-     "ro": "2026-01-05",
-     "roType": "ACTUAL",
-     "ep": "Maximum tolerated dose in Part 1, type and frequency of treatment related SAE's in Part 2",
-     "peak": 600,
-     "launch": 4.5,
-     "cost": 160,
-     "est": true,
-     "nct": "NCT04146051",
-     "trials": 5,
-     "activeTrials": 4,
-     "status": "ACTIVE_NOT_RECRUITING",
-     "trial": {
-      "nct": "NCT04146051",
-      "title": "Descartes-08 CAR-T Cells in Generalized Myasthenia Gravis (MG)",
-      "status": "ACTIVE_NOT_RECRUITING",
-      "ext": false,
-      "n": 30,
-      "nType": "ESTIMATED",
-      "alloc": "RANDOMIZED",
-      "model": "CROSSOVER",
-      "masking": "QUADRUPLE",
-      "arms": [
-       "EXPERIMENTAL",
-       "EXPERIMENTAL",
-       "PLACEBO_COMPARATOR"
-      ],
-      "primary": "Proportion of patients with MG Composite improvement of ≥5 points.",
-      "primaryCount": 1,
-      "sites": 15,
-      "countries": [
-       "United States",
-       "Canada"
-      ],
-      "start": "2019-12-04",
-      "startType": "ACTUAL",
-      "lastUpdate": "2026-08-14",
-      "ph": "Phase II",
-      "ind": "Myasthenia Gravis, Generalized"
-     },
-     "modality": null,
-     "slips": 0,
-     "duration": {
-      "key": "Phase II, under 100 patients",
-      "n": 3787,
-      "planned": 73,
-      "elapsed": 83,
-      "median": 20,
-      "p25": 11,
-      "p75": 36,
-      "condMedian": 134,
-      "condP75": null,
-      "fasterThan": 7
-     },
-     "window": {
-      "lo": "2026-11-04",
-      "hi": "2027-08-04",
-      "mid": "2027-03-20",
-      "reg": "2026-01-05",
-      "width": 9,
-      "basis": "Registry (actual completion)",
-      "why": [
-       "The registry's estimated completion date has passed without an update, so the date can't be relied on. The window restarts from today and runs 9 months."
-      ]
-     },
-     "flags": {
-      "flags": [],
-      "points": 0,
-      "level": "No flags"
-     },
-     "odds": {
-      "loa": 0.1929,
-      "base": 0.1929,
-      "area": "Autoimmune",
-      "modality": null,
-      "factors": []
-     }
     }
    ],
    "catalysts": [
     {
      "date": "2027-04-15",
      "kind": "readout",
-     "drug": "Decartes-08",
+     "drug": "Descartes-08",
      "est": true,
      "lo": "2027-01-14",
      "hi": "2027-07-15",
      "reg": "2026-12-30",
      "nct": "NCT06799247",
-     "label": "Decartes-08 Phase III data (estimated)"
-    },
-    {
-     "date": "2027-03-20",
-     "kind": "readout",
-     "drug": "Descartes-08",
-     "est": false,
-     "lo": "2026-11-04",
-     "hi": "2027-08-04",
-     "reg": "2026-01-05",
-     "nct": "NCT04146051",
-     "label": "Descartes-08 Phase II (Myasthenia Gravis, Generalized) data (estimated)"
+     "label": "Descartes-08 Phase III data (estimated)"
     },
     {
      "date": "2026-11-05",
@@ -41847,7 +41895,7 @@
    "mkt": 0.6,
    "pipeline": [
     {
-     "d": "Biological: narsoplimab",
+     "d": "narsoplimab",
      "ind": "Thrombotic Microangiopathies",
      "tgt": "—",
      "moa": "—",
@@ -42032,13 +42080,13 @@
     {
      "date": "2027-03-20",
      "kind": "minor",
-     "drug": "Biological: narsoplimab",
+     "drug": "narsoplimab",
      "est": true,
      "lo": "2026-11-04",
      "hi": "2027-08-04",
      "reg": "2025-12-15",
      "nct": "NCT05855083",
-     "label": "Biological: narsoplimab Phase II data (registry date overdue)"
+     "label": "narsoplimab Phase II data (registry date overdue)"
     },
     {
      "date": "2027-03-31",
@@ -50462,7 +50510,7 @@
      }
     },
     {
-     "d": "Low dose LX2006",
+     "d": "LX2006",
      "ind": "Friedreich Ataxia",
      "tgt": "—",
      "moa": "—",
@@ -50470,14 +50518,14 @@
      "n": 8,
      "ro": "2029-09-15",
      "roType": "ESTIMATED",
-     "ep": "Treatment-emergent adverse events (TEAEs) and Treatment-emergent serious events (TESAEs)",
+     "ep": "Cohort 1: Percent change from baseline in left ventricular mass index by cardiac MRI",
      "peak": 600,
      "launch": 4.5,
      "cost": 160,
      "est": true,
      "nct": "NCT05445323",
-     "trials": 1,
-     "activeTrials": 1,
+     "trials": 2,
+     "activeTrials": 2,
      "status": "ACTIVE_NOT_RECRUITING",
      "trial": {
       "nct": "NCT05445323",
@@ -50539,99 +50587,6 @@
       ],
       "points": 2,
       "level": "Minor flags"
-     },
-     "odds": {
-      "loa": 0.1234,
-      "base": 0.1234,
-      "area": "Neurology",
-      "modality": null,
-      "factors": []
-     }
-    },
-    {
-     "d": "LX2006",
-     "ind": "Friedreich Ataxia",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase II",
-     "n": 26,
-     "ro": "2032-06-15",
-     "roType": "ESTIMATED",
-     "ep": "Cohort 1: Percent change from baseline in left ventricular mass index by cardiac MRI",
-     "peak": 600,
-     "launch": 4.5,
-     "cost": 160,
-     "est": true,
-     "nct": "NCT07721025",
-     "trials": 1,
-     "activeTrials": 1,
-     "status": "RECRUITING",
-     "trial": {
-      "nct": "NCT07721025",
-      "title": "Study of LX2006 Gene Therapy in Friedreich Ataxia Cardiomyopathy",
-      "status": "RECRUITING",
-      "ext": false,
-      "n": 26,
-      "nType": "ESTIMATED",
-      "alloc": "RANDOMIZED",
-      "model": "CROSSOVER",
-      "masking": "SINGLE",
-      "arms": [
-       "EXPERIMENTAL",
-       "OTHER"
-      ],
-      "primary": "Cohort 1: Percent change from baseline in left ventricular mass index by cardiac MRI",
-      "primaryCount": 9,
-      "sites": 1,
-      "countries": [
-       "United States"
-      ],
-      "start": "2026-06-25",
-      "startType": "ACTUAL",
-      "lastUpdate": "2026-09-02",
-      "ph": "Phase II",
-      "ind": "Friedreich Ataxia"
-     },
-     "modality": null,
-     "slips": 0,
-     "duration": {
-      "key": "Phase II, under 100 patients",
-      "n": 3787,
-      "planned": 72,
-      "elapsed": 4,
-      "median": 20,
-      "p25": 11,
-      "p75": 36,
-      "condMedian": 21,
-      "condP75": 38,
-      "fasterThan": 7
-     },
-     "window": {
-      "lo": "2032-06-30",
-      "hi": "2033-03-31",
-      "mid": "2032-11-14",
-      "reg": "2032-06-15",
-      "width": 9,
-      "basis": "Registry estimate",
-      "why": [
-       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
-      ]
-     },
-     "flags": {
-      "flags": [
-       {
-        "sev": "med",
-        "label": "No control arm",
-        "detail": "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment. Common, and sometimes unavoidable, in very rare diseases."
-       },
-       {
-        "sev": "low",
-        "label": "Several primary endpoints",
-        "detail": "9 primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it."
-       }
-      ],
-      "points": 3,
-      "level": "Some flags"
      },
      "odds": {
       "loa": 0.1234,
@@ -50897,7 +50852,7 @@
      "drugs": [
       "DT-216P2"
      ],
-     "forDrug": "Low dose LX2006",
+     "forDrug": "LX2006",
      "ind": "Friedreich Ataxia",
      "countries": [
       "Australia"
@@ -50915,7 +50870,7 @@
      "drugs": [
       "CTI-1601"
      ],
-     "forDrug": "Low dose LX2006",
+     "forDrug": "LX2006",
      "ind": "Friedreich Ataxia",
      "countries": [
       "United States"
@@ -50933,7 +50888,7 @@
      "drugs": [
       "GV101"
      ],
-     "forDrug": "Low dose LX2006",
+     "forDrug": "LX2006",
      "ind": "Friedreich Ataxia",
      "countries": [
       "United States"
@@ -50951,7 +50906,7 @@
      "drugs": [
       "Omaveloxolone"
      ],
-     "forDrug": "Low dose LX2006",
+     "forDrug": "LX2006",
      "ind": "Friedreich Ataxia",
      "countries": [
       "United States",
@@ -50974,7 +50929,7 @@
      "drugs": [
       "Vatiquinone"
      ],
-     "forDrug": "Low dose LX2006",
+     "forDrug": "LX2006",
      "ind": "Friedreich Ataxia",
      "countries": [
       "United States",
@@ -54068,7 +54023,7 @@
      "pcd": "2026-11-24",
      "n": 191,
      "drugs": [
-      "TX000045-"
+      "TX000045"
      ],
      "forDrug": "Seralutinib",
      "ind": "Pulmonary Arterial Hypertension",
@@ -59072,22 +59027,22 @@
    "mkt": 0.6,
    "pipeline": [
     {
-     "d": "Sevasemten Dose 1",
-     "ind": "Duchenne Muscular Dystrophy",
+     "d": "Sevasemten",
+     "ind": "Becker Muscular Dystrophy",
      "tgt": "—",
      "moa": "—",
      "ph": "Phase II",
      "n": 76,
      "ro": "2027-01-15",
      "roType": "ESTIMATED",
-     "ep": "Number of adverse events during treatment with sevasemten or placebo",
+     "ep": "Number of adverse events in those treated with sevasemten",
      "peak": 600,
      "launch": 4.5,
      "cost": 160,
      "est": true,
      "nct": "NCT05540860",
-     "trials": 2,
-     "activeTrials": 2,
+     "trials": 6,
+     "activeTrials": 3,
      "status": "ACTIVE_NOT_RECRUITING",
      "trial": {
       "nct": "NCT05540860",
@@ -59335,106 +59290,19 @@
       "modality": null,
       "factors": []
      }
-    },
-    {
-     "d": "Sevasemten",
-     "ind": "Becker Muscular Dystrophy",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase II",
-     "n": 260,
-     "ro": "2031-02-15",
-     "roType": "ESTIMATED",
-     "ep": "Number of adverse events in those treated with sevasemten",
-     "peak": 600,
-     "launch": 4.5,
-     "cost": 160,
-     "est": true,
-     "nct": "NCT06066580",
-     "trials": 4,
-     "activeTrials": 1,
-     "status": "ENROLLING_BY_INVITATION",
-     "trial": {
-      "nct": "NCT06066580",
-      "title": "Open-Label Extension of EDG-5506 in Participants With Becker Muscular Dystrophy",
-      "status": "ENROLLING_BY_INVITATION",
-      "ext": true,
-      "n": 260,
-      "nType": "ESTIMATED",
-      "alloc": "NA",
-      "model": "SINGLE_GROUP",
-      "masking": "NONE",
-      "arms": [
-       "EXPERIMENTAL"
-      ],
-      "primary": "Number of adverse events in those treated with sevasemten",
-      "primaryCount": 2,
-      "sites": 48,
-      "countries": [
-       "United States",
-       "Australia",
-       "Belgium",
-       "Denmark",
-       "France",
-       "Germany",
-       "Israel",
-       "Italy",
-       "Netherlands",
-       "New Zealand",
-       "Spain",
-       "United Kingdom"
-      ],
-      "start": "2023-11-02",
-      "startType": "ACTUAL",
-      "lastUpdate": "2026-09-17",
-      "ph": "Phase II",
-      "ind": "Becker Muscular Dystrophy"
-     },
-     "modality": null,
-     "slips": 0,
-     "duration": null,
-     "window": {
-      "lo": "2031-03-02",
-      "hi": "2031-12-01",
-      "mid": "2031-07-17",
-      "reg": "2031-02-15",
-      "width": 9,
-      "basis": "Registry estimate",
-      "why": [
-       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
-      ]
-     },
-     "flags": {
-      "flags": [
-       {
-        "sev": "info",
-        "label": "Extension study",
-        "detail": "This trial mainly tracks long-term safety in patients from earlier studies. Its completion is not a pivotal efficacy readout."
-       }
-      ],
-      "points": 0,
-      "level": "No flags"
-     },
-     "odds": {
-      "loa": 0.1234,
-      "base": 0.1234,
-      "area": "Neurology",
-      "modality": null,
-      "factors": []
-     }
     }
    ],
    "catalysts": [
     {
      "date": "2027-05-01",
      "kind": "readout",
-     "drug": "Sevasemten Dose 1",
+     "drug": "Sevasemten",
      "est": true,
      "lo": "2027-01-30",
      "hi": "2027-07-31",
      "reg": "2027-01-15",
      "nct": "NCT05540860",
-     "label": "Sevasemten Dose 1 Phase II data (estimated)"
+     "label": "Sevasemten Phase II (Duchenne Muscular Dystrophy) data (estimated)"
     },
     {
      "date": "2028-03-30",
@@ -59638,8 +59506,8 @@
      "drugs": [
       "Satralizumab"
      ],
-     "forDrug": "Sevasemten Dose 1",
-     "ind": "Duchenne Muscular Dystrophy",
+     "forDrug": "Sevasemten",
+     "ind": "Becker Muscular Dystrophy",
      "countries": [
       "United States",
       "Denmark",
@@ -59659,7 +59527,7 @@
      "pcd": "2026-11-24",
      "n": 191,
      "drugs": [
-      "TX000045-"
+      "TX000045"
      ],
      "forDrug": "EDG-15400",
      "ind": "Heart Failure With Preserved Ejection Fraction",
@@ -59684,8 +59552,8 @@
      "drugs": [
       "SGT-001"
      ],
-     "forDrug": "Sevasemten Dose 1",
-     "ind": "Duchenne Muscular Dystrophy",
+     "forDrug": "Sevasemten",
+     "ind": "Becker Muscular Dystrophy",
      "countries": [
       "United States"
      ],
@@ -59789,8 +59657,8 @@
      "drugs": [
       "DS-5141b"
      ],
-     "forDrug": "Sevasemten Dose 1",
-     "ind": "Duchenne Muscular Dystrophy",
+     "forDrug": "Sevasemten",
+     "ind": "Becker Muscular Dystrophy",
      "countries": [
       "Japan"
      ],
@@ -59807,8 +59675,8 @@
      "drugs": [
       "NS-089/NCNP-02"
      ],
-     "forDrug": "Sevasemten Dose 1",
-     "ind": "Duchenne Muscular Dystrophy",
+     "forDrug": "Sevasemten",
+     "ind": "Becker Muscular Dystrophy",
      "countries": [
       "United States",
       "Australia",
@@ -59848,8 +59716,8 @@
      "drugs": [
       "SAT-3247"
      ],
-     "forDrug": "Sevasemten Dose 1",
-     "ind": "Duchenne Muscular Dystrophy",
+     "forDrug": "Sevasemten",
+     "ind": "Becker Muscular Dystrophy",
      "countries": [
       "United States",
       "Australia",
@@ -59871,8 +59739,8 @@
      "drugs": [
       "BMN 351"
      ],
-     "forDrug": "Sevasemten Dose 1",
-     "ind": "Duchenne Muscular Dystrophy",
+     "forDrug": "Sevasemten",
+     "ind": "Becker Muscular Dystrophy",
      "countries": [
       "Italy",
       "Netherlands",
@@ -65942,7 +65810,7 @@
    "mkt": 0.6,
    "pipeline": [
     {
-     "d": "Tacrolimus",
+     "d": "Tegoprubart",
      "ind": "Kidney Transplant Rejection",
      "tgt": "—",
      "moa": "—",
@@ -65956,8 +65824,8 @@
      "cost": 260,
      "est": true,
      "nct": "NCT07835581",
-     "trials": 1,
-     "activeTrials": 1,
+     "trials": 6,
+     "activeTrials": 3,
      "status": "NOT_YET_RECRUITING",
      "trial": {
       "nct": "NCT07835581",
@@ -66026,122 +65894,9 @@
       "modality": null,
       "factors": []
      }
-    },
-    {
-     "d": "AT-1501",
-     "ind": "Kidney Transplant Rejection",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase II",
-     "n": 48,
-     "ro": "2027-01-15",
-     "roType": "ESTIMATED",
-     "ep": "Safety and Tolerability - Incidence of Treatment Emergent Adverse Events",
-     "peak": 600,
-     "launch": 4.5,
-     "cost": 160,
-     "est": true,
-     "nct": "NCT05027906",
-     "trials": 5,
-     "activeTrials": 2,
-     "status": "RECRUITING",
-     "trial": {
-      "nct": "NCT05027906",
-      "title": "Safety, Pharmacokinetics, and Efficacy of AT 1501 in Patients Undergoing Kidney Transplant",
-      "status": "RECRUITING",
-      "ext": false,
-      "n": 48,
-      "nType": "ESTIMATED",
-      "alloc": "NA",
-      "model": "SINGLE_GROUP",
-      "masking": "NONE",
-      "arms": [
-       "EXPERIMENTAL"
-      ],
-      "primary": "Safety Incidences",
-      "primaryCount": 9,
-      "sites": 9,
-      "countries": [
-       "United States",
-       "Australia",
-       "Brazil",
-       "Canada",
-       "United Kingdom"
-      ],
-      "start": "2022-02-18",
-      "startType": "ACTUAL",
-      "lastUpdate": "2025-06-29",
-      "ph": "Phase II",
-      "ind": "Prevention of Rejection in Kidney Transplant"
-     },
-     "modality": null,
-     "slips": 0,
-     "duration": {
-      "key": "Phase II, under 100 patients",
-      "n": 3787,
-      "planned": 59,
-      "elapsed": 56,
-      "median": 20,
-      "p25": 11,
-      "p75": 36,
-      "condMedian": 80,
-      "condP75": 124,
-      "fasterThan": 11
-     },
-     "window": {
-      "lo": "2027-01-30",
-      "hi": "2028-04-30",
-      "mid": "2027-09-15",
-      "reg": "2027-01-15",
-      "width": 15,
-      "basis": "Registry estimate",
-      "why": [
-       "Still enrolling, and enrolling trials often finish late (+6 months on the late end).",
-       "The registry record hasn't been updated in over a year (+6 months)."
-      ]
-     },
-     "flags": {
-      "flags": [
-       {
-        "sev": "med",
-        "label": "No control arm",
-        "detail": "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment. Common, and sometimes unavoidable, in very rare diseases."
-       },
-       {
-        "sev": "low",
-        "label": "Several primary endpoints",
-        "detail": "9 primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it."
-       },
-       {
-        "sev": "low",
-        "label": "Registry not updated in over a year",
-        "detail": "Last updated 2025-06-29."
-       }
-      ],
-      "points": 4,
-      "level": "Some flags"
-     },
-     "odds": {
-      "loa": 0.2047,
-      "base": 0.2047,
-      "area": "Other (incl. renal, dermatology)",
-      "modality": null,
-      "factors": []
-     }
     }
    ],
    "catalysts": [
-    {
-     "date": "2027-09-15",
-     "kind": "readout",
-     "drug": "AT-1501",
-     "est": true,
-     "lo": "2027-01-30",
-     "hi": "2028-04-30",
-     "reg": "2027-01-15",
-     "nct": "NCT05027906",
-     "label": "AT-1501 Phase II (Prevention of Rejection in Kidney Transplant) data (estimated)"
-    },
     {
      "date": "2026-11-12",
      "kind": "earnings",
@@ -66329,7 +66084,7 @@
      "drugs": [
       "Felzartamab"
      ],
-     "forDrug": "Tacrolimus",
+     "forDrug": "Tegoprubart",
      "ind": "Kidney Transplant Rejection",
      "countries": [
       "United States",
@@ -66352,7 +66107,7 @@
      "drugs": [
       "ALXN2030"
      ],
-     "forDrug": "Tacrolimus",
+     "forDrug": "Tegoprubart",
      "ind": "Kidney Transplant Rejection",
      "countries": [
       "United States",
@@ -66375,7 +66130,7 @@
      "drugs": [
       "Efgartigimod PH20"
      ],
-     "forDrug": "Tacrolimus",
+     "forDrug": "Tegoprubart",
      "ind": "Kidney Transplant Rejection",
      "countries": [
       "United States",
@@ -66399,7 +66154,7 @@
       "Siplizumab",
       "Rabbit anti-thymocyte globulin"
      ],
-     "forDrug": "Tacrolimus",
+     "forDrug": "Tegoprubart",
      "ind": "Kidney Transplant Rejection",
      "countries": [
       "United States",
@@ -67665,7 +67420,7 @@
      }
     },
     {
-     "d": "Sub-Retinal Administration of OCU400-301",
+     "d": "OCU400",
      "ind": "Retinitis Pigmentosa",
      "tgt": "—",
      "moa": "—",
@@ -67679,8 +67434,8 @@
      "cost": 260,
      "est": true,
      "nct": "NCT06388200",
-     "trials": 1,
-     "activeTrials": 1,
+     "trials": 2,
+     "activeTrials": 2,
      "status": "ACTIVE_NOT_RECRUITING",
      "trial": {
       "nct": "NCT06388200",
@@ -67838,100 +67593,6 @@
      }
     },
     {
-     "d": "OCU400",
-     "ind": "Retinitis Pigmentosa",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase II",
-     "n": 22,
-     "ro": "2027-03-15",
-     "roType": "ESTIMATED",
-     "ep": "Study Drug-related adverse events (SDAE)",
-     "peak": 600,
-     "launch": 4.5,
-     "cost": 160,
-     "est": true,
-     "nct": "NCT05203939",
-     "trials": 1,
-     "activeTrials": 1,
-     "status": "ACTIVE_NOT_RECRUITING",
-     "trial": {
-      "nct": "NCT05203939",
-      "title": "Study to Assess the Safety and Efficacy of OCU400 for Retinitis Pigmentosa and Leber Congenital Amaurosis",
-      "status": "ACTIVE_NOT_RECRUITING",
-      "ext": false,
-      "n": 22,
-      "nType": "ACTUAL",
-      "alloc": "NON_RANDOMIZED",
-      "model": "SEQUENTIAL",
-      "masking": "NONE",
-      "arms": [
-       "EXPERIMENTAL",
-       "EXPERIMENTAL",
-       "EXPERIMENTAL",
-       "EXPERIMENTAL",
-       "EXPERIMENTAL",
-       "EXPERIMENTAL",
-       "EXPERIMENTAL",
-       "NO_INTERVENTION"
-      ],
-      "primary": "Study Drug-related adverse events (SDAE)",
-      "primaryCount": 3,
-      "sites": 7,
-      "countries": [
-       "United States"
-      ],
-      "start": "2022-01-24",
-      "startType": "ACTUAL",
-      "lastUpdate": "2026-07-31",
-      "ph": "Phase II",
-      "ind": "Retinitis Pigmentosa"
-     },
-     "modality": null,
-     "slips": 0,
-     "duration": {
-      "key": "Phase II, under 100 patients",
-      "n": 3787,
-      "planned": 62,
-      "elapsed": 57,
-      "median": 20,
-      "p25": 11,
-      "p75": 36,
-      "condMedian": 81,
-      "condP75": 134,
-      "fasterThan": 10
-     },
-     "window": {
-      "lo": "2027-03-30",
-      "hi": "2027-09-28",
-      "mid": "2027-06-29",
-      "reg": "2027-03-15",
-      "width": 6,
-      "basis": "Registry estimate",
-      "why": [
-       "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
-      ]
-     },
-     "flags": {
-      "flags": [
-       {
-        "sev": "low",
-        "label": "Several primary endpoints",
-        "detail": "3 primary endpoints. Each extra one makes a chance win more likely unless the analysis corrects for it."
-       }
-      ],
-      "points": 1,
-      "level": "Minor flags"
-     },
-     "odds": {
-      "loa": 0.1656,
-      "base": 0.1656,
-      "area": "Ophthalmology",
-      "modality": null,
-      "factors": []
-     }
-    },
-    {
      "d": "OCU200",
      "ind": "Center Involved Diabetic Macular Edema",
      "tgt": "—",
@@ -68027,24 +67688,13 @@
     {
      "date": "2027-05-29",
      "kind": "readout",
-     "drug": "Sub-Retinal Administration of OCU400-301",
+     "drug": "OCU400",
      "est": true,
      "lo": "2027-02-27",
      "hi": "2027-08-28",
      "reg": "2027-02-12",
      "nct": "NCT06388200",
-     "label": "Sub-Retinal Administration of OCU400-301 Phase III data (estimated)"
-    },
-    {
-     "date": "2027-06-29",
-     "kind": "readout",
-     "drug": "OCU400",
-     "est": true,
-     "lo": "2027-03-30",
-     "hi": "2027-09-28",
-     "reg": "2027-03-15",
-     "nct": "NCT05203939",
-     "label": "OCU400 Phase II data (estimated)"
+     "label": "OCU400 Phase III data (estimated)"
     },
     {
      "date": "2027-03-20",
@@ -68318,7 +67968,7 @@
      "drugs": [
       "human retinal progenitor cells"
      ],
-     "forDrug": "Sub-Retinal Administration of OCU400-301",
+     "forDrug": "OCU400",
      "ind": "Retinitis Pigmentosa",
      "countries": [
       "United States"
@@ -68336,7 +67986,7 @@
      "drugs": [
       "BS01"
      ],
-     "forDrug": "Sub-Retinal Administration of OCU400-301",
+     "forDrug": "OCU400",
      "ind": "Retinitis Pigmentosa",
      "countries": [
       "United States"
@@ -68354,7 +68004,7 @@
      "drugs": [
       "SPVN06"
      ],
-     "forDrug": "Sub-Retinal Administration of OCU400-301",
+     "forDrug": "OCU400",
      "ind": "Retinitis Pigmentosa",
      "countries": [
       "United States",
@@ -68373,7 +68023,7 @@
      "drugs": [
       "AAV5-hRKp.RPGR"
      ],
-     "forDrug": "Sub-Retinal Administration of OCU400-301",
+     "forDrug": "OCU400",
      "ind": "Retinitis Pigmentosa",
      "countries": [
       "Japan"
@@ -68392,7 +68042,7 @@
       "1.5 x 10^6 UC-MSC + CM",
       "5 x 10^6 UC-MSC + CM"
      ],
-     "forDrug": "Sub-Retinal Administration of OCU400-301",
+     "forDrug": "OCU400",
      "ind": "Retinitis Pigmentosa",
      "countries": [
       "Indonesia"
@@ -68456,7 +68106,7 @@
      "drugs": [
       "Gene therapy: GS030-DP AND…"
      ],
-     "forDrug": "Sub-Retinal Administration of OCU400-301",
+     "forDrug": "OCU400",
      "ind": "Retinitis Pigmentosa",
      "countries": [
       "United States",
