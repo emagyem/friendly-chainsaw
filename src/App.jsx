@@ -942,7 +942,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
                     <dt>Mechanism</dt><dd>{p.moa || "—"}</dd>
                     <dt>Primary endpoint</dt><dd>{p.ep}</dd>
                     <dt>Enrollment</dt><dd className="mono">{p.n ? p.n : "—"}</dd>
-                    <dt>Expected data</dt><dd className="mono">{p.window ? <>{fmtDate(p.window.lo)} to {fmtDate(p.window.hi)} <span className="sub">{windowConfidence(p.window)} window; registry date {fmtDate(p.ro)}{p.roType === "COMPANY GUIDANCE" ? " (company guidance)" : ""}</span></> : <>{fmtDate(p.ro)} <span className="sub inline">({days(p.ro)}d)</span></>}</dd>
+                    <dt>Expected data</dt><dd className="mono">{p.window ? <>{fmtDate(p.window.lo)} to {fmtDate(p.window.hi)} <span className="sub">{p.window.stale ? "Registry date overdue, so a wide window" : `${windowConfidence(p.window)} window`}; registry date {fmtDate(p.ro)}{p.roType === "COMPANY GUIDANCE" ? " (company guidance)" : ""}</span></> : <>{fmtDate(p.ro)} <span className="sub inline">({days(p.ro)}d)</span></>}</dd>
                     {p.flags?.flags?.length ? <><dt>Trial design</dt><dd><div className="flagwrap">{p.flags.flags.map((f) => <span key={f.label} className={"flag " + ({ high: "flag-high", med: "flag-med", low: "flag-low", info: "flag-info" })[f.sev]} title={f.detail}>{f.label}</span>)}</div></dd></> : null}
                     {p.nct && <><dt>Registry</dt><dd className="mono"><ExtLink href={`https://clinicaltrials.gov/study/${p.nct}`}>{p.nct}</ExtLink>{p.trials > 1 ? <span className="sub inline"> +{p.trials - 1} more</span> : null}</dd></>}
                     <dt>Probability of approval</dt><dd className="mono">{Math.round((p.odds?.loa ?? POS[p.ph]) * 100)}%{p.odds ? <span className="sub">{p.odds.area}{p.odds.factors.length ? `; ${p.odds.factors.join(", ").toLowerCase()}` : ""}</span> : null}</dd>
@@ -1890,16 +1890,17 @@ function Outlook({ go }) {
   const progs = useMemo(() => COMPANIES.flatMap((c) => (c.pipeline || []).map((p) => ({ c, p }))), []);
   const timed = progs.filter(({ p }) => p.window && p.ph !== "Approved" && p.ph !== "Phase I" && !p.trial?.ext)
     .sort((a, b) => a.p.window.mid.localeCompare(b.p.window.mid));
-  const from = TODAY.getTime(), span = 30 * 30.44 * 86400000;
+  const from = TODAY.getTime(), span = 42 * 30.44 * 86400000;
   const late = progs.filter(({ p }) => ["Phase II", "Phase III", "Filed", "Approved"].includes(p.ph));
   const flagged = progs.filter(({ p }) => p.flags?.flags?.length);
   const fdaEvents = COMPANIES.flatMap((c) => (c.catalysts || []).filter((x) => x.kind === "regulatory" && days(x.date) >= 0).map((x) => ({ c, x, p: (c.pipeline || []).find((p) => p.d === x.drug) })));
   const fda = META.fda;
-  const rivals = COMPANIES.flatMap((c) => (c.rivals || []).map((r) => ({ c, r })));
-  const china = rivals.filter(({ r }) => r.china);
+  const rivals = COMPANIES.flatMap((c) => (c.rivals || []).slice(0, 4).map((r) => ({ c, r })));
+  const allRivals = COMPANIES.flatMap((c) => (c.rivals || []).map((r) => ({ c, r })));
+  const china = allRivals.filter(({ r }) => r.china);
   const launched = progs.filter(({ p }) => p.ph === "Approved");
   const officeStat = (name) => fda?.byOffice?.find((o) => o.office === name);
-  const yearTicks = [0, 6, 12, 18, 24, 30].map((m) => ({ m, label: new Date(from + m * 30.44 * 86400000).toLocaleDateString("en-US", { month: "short", year: "numeric" }) }));
+  const yearTicks = [0, 6, 12, 18, 24, 30, 36, 42].map((m) => ({ m, label: new Date(from + m * 30.44 * 86400000).toLocaleDateString("en-US", { month: "short", year: "numeric" }) }));
 
   return (
     <div className="stack">
@@ -1913,10 +1914,10 @@ function Outlook({ go }) {
         <header className="ph"><h2>When the data will actually land</h2>
           <span className="ph-note">Registry dates are plans, and they slip. Each bar is Helixora's estimated readout window; the dot is its middle, which the Financing Pressure Score now uses, and the tick is the date in the registry.</span></header>
         <div className="gantt">
-          <div className="gantt-axis"><span />{<span className="gantt-ticks">{yearTicks.map((t) => <em key={t.m} style={{ left: `${(t.m / 30) * 100}%` }}>{t.label}</em>)}</span>}</div>
+          <div className="gantt-axis"><span />{<span className="gantt-ticks">{yearTicks.map((t) => <em key={t.m} style={{ left: `${(t.m / 42) * 100}%` }}>{t.label}</em>)}</span>}</div>
           {timed.map(({ c, p }) => (
             <button key={c.t + p.d} className="gantt-row" onClick={() => go("company", c.t, "pipeline")}>
-              <span className="gantt-label"><b>{c.t}</b> {p.d}<span className="sub">{p.trial?.ph || p.ph}{p.trial?.ind && p.trial.ind !== p.ind ? ` in ${p.trial.ind}` : ""} · {windowConfidence(p.window).toLowerCase()} window, {fmtDate(p.window.lo)} to {fmtDate(p.window.hi)}</span></span>
+              <span className="gantt-label"><b>{c.t}</b> {p.d}<span className="sub">{p.trial?.ph || p.ph}{p.trial?.ind && p.trial.ind !== p.ind ? ` in ${p.trial.ind}` : ""} · {p.window.stale ? "registry date overdue, so a wide window" : `${windowConfidence(p.window).toLowerCase()} window`}, {fmtDate(p.window.lo)} to {fmtDate(p.window.hi)}</span></span>
               <WindowBar w={p.window} from={from} span={span} />
             </button>
           ))}
@@ -1941,7 +1942,7 @@ function Outlook({ go }) {
               {late.filter(({ p }) => p.odds && p.ph !== "Approved").map(({ c, p }) => (
                 <tr key={c.t + p.d} onClick={() => go("company", c.t, "pipeline")}>
                   <td><b>{c.t}</b> {p.d}<span className="sub">{p.ind}</span></td>
-                  <td>{p.ph}</td>
+                  <td className="nowrap">{p.ph}</td>
                   <td>{p.odds.area}</td>
                   <td>{p.odds.factors.length ? p.odds.factors.join(", ") : <span className="sub inline">Disease area only</span>}</td>
                   <td className="r">{pctW(successOdds({ ph: p.ph, area: "All indications" })?.loa)}</td>
@@ -2026,7 +2027,7 @@ function Outlook({ go }) {
                     <td><b>{c.t}</b> {r.forDrug}<span className="sub">{r.ind}</span></td>
                     <td><a className="src" href={`https://clinicaltrials.gov/study/${r.nct}`} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>{r.drugs.join(", ")}</a><span className="sub">{r.nct}</span></td>
                     <td>{r.sponsor}</td>
-                    <td>{r.ph || "—"}</td>
+                    <td className="nowrap">{r.ph || "—"}</td>
                     <td className="nowrap">{r.pcd ? fmtDate(r.pcd) : "—"}</td>
                     <td>{r.china === "only" ? <span className="flag flag-med">China only</span> : r.china === "some" ? <span className="flag flag-low">Includes China</span> : <span className="sub inline">{r.countries.slice(0, 2).join(", ")}{r.nCountries > 2 ? ` +${r.nCountries - 2}` : ""}</span>}</td>
                   </tr>
@@ -2035,7 +2036,7 @@ function Outlook({ go }) {
             </table>
           </div>
         )}
-        <p className="colnote">Matched by disease from ClinicalTrials.gov; industry sponsors only. Helixora doesn't yet estimate how far a rival result should move each stock.</p>
+        <p className="colnote">The four soonest per company; each company's Pipeline tab lists more. Matched by disease from ClinicalTrials.gov, industry sponsors only. Helixora doesn't yet estimate how far a rival result should move each stock.</p>
       </section>
 
       <section className="panel">
@@ -2120,24 +2121,24 @@ const COMPETITORS = [
 const PROBLEMS = [
   ["live", "Cash runway and dilution risk", "Small biotechs raise money again and again. Knowing who has to raise next, and when, matters for returns.",
     "The Financing Pressure Score joins cash, burn, debt, ATM and shelf filings with the next catalyst date. Next: predicting the timing and size of the next offering, and catching raises made from strength.", "report"],
-  ["next", "Catalyst timing", "Readout dates are often vague, like \"2H 2027,\" and they slip.",
-    "Already started: readout dates come from ClinicalTrials.gov and are marked as estimates. Next: an estimated readout window from enrollment pace and each trial's history of delays, fed straight into the score.", "catalysts"],
-  ["later", "Read-through between companies", "One company's result moves its competitors' shares too.",
-    "Planned once coverage grows. It needs many companies sharing targets and diseases to be useful.", null],
-  ["later", "Trial success odds that fit the drug", "Most models use industry-wide averages by phase.",
-    "The Valuation tab uses those broad averages today and says so.", null],
-  ["later", "Red flags in trial design", "Small studies, soft endpoints and changed analysis plans often come before failure.",
-    "", null],
-  ["later", "FDA behavior", "Advisory votes, delays and rejection letters follow patterns few people track.",
-    "FDA decision dates appear on the Calendar.", null],
-  ["later", "Sales after approval", "Many approved drugs miss sales expectations.",
-    "Peak sales in the Valuation tab are marked as placeholders.", null],
-  ["later", "Patent cliffs", "Exclusivity often ends later or sooner than the main patent suggests.",
-    "Patent life is a marked default.", null],
-  ["later", "China and ex-US pipelines", "More licensed drugs now come from Chinese biotechs, and the data is scattered.",
-    "", null],
+  ["live", "Catalyst timing", "Readout dates are often vague, like \"2H 2027,\" and they slip.",
+    "Every trial gets an estimated readout window from its registry status, staleness and recorded date slips, and the score uses it. Next: calibrating the windows against actual readouts and adding options-market pricing.", "outlook"],
+  ["live", "Trial success odds that fit the drug", "Most models use industry-wide averages by phase.",
+    "Odds start from published rates for each disease area, then adjust for drug type, rare disease and biomarker selection. The Valuation tab now uses them. Next: mechanism and sponsor track record.", "outlook"],
+  ["live", "Red flags in trial design", "Small studies, soft endpoints and changed analysis plans often come before failure.",
+    "Each lead trial is checked for size, randomization, blinding, control arm, endpoint type, sites and date changes. Next: statistical power and changes to the analysis plan.", "outlook"],
+  ["live", "FDA behavior", "Advisory votes, delays and rejection letters follow patterns few people track.",
+    "Every upcoming FDA decision gets base-rate odds and the record of the office likely to review it, from 445 published rejection letters. Next: advisory committee votes and review delays.", "outlook"],
+  ["live", "Read-through between companies", "One company's result moves its competitors' shares too.",
+    "Rival Phase II and III trials in the same diseases, finishing within 18 months, are listed for every company. Next: estimating how much a rival's result should move each stock.", "outlook"],
+  ["live", "China and ex-US pipelines", "More licensed drugs now come from Chinese biotechs, and the data is scattered.",
+    "Rival trials run entirely or partly in China are flagged and gathered in one list. Next: tracking licensing deals.", "outlook"],
+  ["live", "Sales after approval", "Many approved drugs miss sales expectations.",
+    "Launched products' quarterly revenue is tracked from SEC filings, beside a patient-based sales model you can fill in. Next: comparing launches with past ones.", "outlook"],
+  ["live", "Patent cliffs", "Exclusivity often ends later or sooner than the main patent suggests.",
+    "The earliest date a copy can compete under US law is worked out from each drug's approval pathway. Next: patent dates, lawsuits and settlements.", "outlook"],
 ];
-const STATUS = { live: "Live", next: "Next", later: "Not yet" };
+const STATUS = { live: "Live, version 1", next: "Next", later: "Not yet" };
 
 function About({ go }) {
   const rr = useMemo(() => raiseRunway(COMPANIES), []);
@@ -2197,7 +2198,7 @@ function About({ go }) {
 
       <section className="panel">
         <header className="ph"><h2>The problems biotech investors face, and where Helixora is on each</h2>
-          <span className="ph-note">Helixora starts with financing risk and catalyst timing, because both run on public data and both matter most in the weeks around a big event.</span></header>
+          <span className="ph-note">Each now has a first version on the site, built from public data with its rules written out. Each card says what comes next.</span></header>
         <div className="probs">
           {PROBLEMS.map(([st, title, pain, where, link]) => (
             <article key={title} className={"prob st-" + st}>
@@ -2205,7 +2206,7 @@ function About({ go }) {
               <h3>{title}</h3>
               <p className="prob-pain">{pain}</p>
               {where && <p className="prob-where">{where}</p>}
-              {link && <button className="morelink" onClick={() => go(link)}>{link === "report" ? "Open the Pressure Report" : "Open the Calendar"}</button>}
+              {link && <button className="morelink" onClick={() => go(link)}>{link === "report" ? "Open the Pressure Report" : "Open Trials & FDA"}</button>}
             </article>
           ))}
         </div>
@@ -2774,7 +2775,7 @@ button.tick:hover{color:var(--teal) !important;}
 .gantt-row{display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:center;background:none;border:0;border-top:1px solid var(--rule2);padding:9px 0;text-align:left;}
 .gantt-row:hover{background:var(--tint);}
 .gantt-label{font-size:14px;}
-.wbar{position:relative;display:block;height:14px;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(20% - 1px),var(--rule2) calc(20% - 1px),var(--rule2) 20%);border-radius:999px;}
+.wbar{position:relative;display:block;height:14px;background:var(--tint);border-radius:999px;}
 .wbar-band{position:absolute;top:0;bottom:0;background:rgba(14,124,116,.28);border-radius:999px;}
 .wbar-mid{position:absolute;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--teal);border:2px solid #fff;}
 .wbar-reg{position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:var(--ink);opacity:.55;}
@@ -2990,6 +2991,7 @@ details.more summary:hover{color:var(--teal);}
   .three,.probs,.fdacards{grid-template-columns:1fr;}
   .gantt-axis,.gantt-row{grid-template-columns:1fr;gap:6px;}
   .gantt-axis>span:first-child{display:none;}
+  .gantt-ticks em:nth-child(even){display:none;}
   .wordmark{font-size:30px;}
   .lead,.quote,.panel,.report-head{padding:22px 18px;}
   .hero{padding:28px 20px;border-radius:var(--r-lg);}
