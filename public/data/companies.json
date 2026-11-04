@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-04T01:55:46.075Z",
+  "generatedAt": "2026-11-04T01:58:30.888Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -1311,13 +1311,14 @@
      "slips": 0,
      "window": {
       "lo": "2026-11-04",
-      "hi": "2027-07-18",
-      "mid": "2027-03-12",
+      "hi": "2027-08-04",
+      "mid": "2027-03-20",
       "reg": "2026-10-02",
-      "width": 8.4,
-      "basis": "Registry estimate",
+      "width": 9,
+      "stale": true,
+      "basis": "Registry date overdue",
       "why": [
-       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
+       "The registry's estimated completion date has passed without an update, so the date can't be relied on. The window restarts from today and runs 9 months."
       ]
      },
      "flags": {
@@ -1353,15 +1354,15 @@
      "label": "VK2735 Phase III data (estimated)"
     },
     {
-     "date": "2027-03-12",
-     "kind": "readout",
+     "date": "2027-03-20",
+     "kind": "minor",
      "drug": "VK3019",
      "est": true,
      "lo": "2026-11-04",
-     "hi": "2027-07-18",
+     "hi": "2027-08-04",
      "reg": "2026-10-02",
      "nct": "NCT07846033",
-     "label": "VK3019 Phase I data (estimated)"
+     "label": "VK3019 Phase I data (registry date overdue)"
     },
     {
      "date": "2027-01-28",
@@ -5185,13 +5186,14 @@
      "slips": 0,
      "window": {
       "lo": "2026-11-04",
-      "hi": "2026-11-18",
-      "mid": "2026-11-11",
+      "hi": "2027-08-04",
+      "mid": "2027-03-20",
       "reg": "2026-05-05",
-      "width": 0.5,
-      "basis": "Registry estimate",
+      "width": 9,
+      "stale": true,
+      "basis": "Registry date overdue",
       "why": [
-       "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
+       "The registry's estimated completion date has passed without an update, so the date can't be relied on. The window restarts from today and runs 9 months."
       ]
      },
      "flags": {
@@ -5453,15 +5455,15 @@
    ],
    "catalysts": [
     {
-     "date": "2026-11-11",
-     "kind": "readout",
+     "date": "2027-03-20",
+     "kind": "minor",
      "drug": "RP-L102",
      "est": true,
      "lo": "2026-11-04",
-     "hi": "2026-11-18",
+     "hi": "2027-08-04",
      "reg": "2026-05-05",
      "nct": "NCT04248439",
-     "label": "RP-L102 Phase II data (estimated)"
+     "label": "RP-L102 Phase II data (registry date overdue)"
     },
     {
      "date": "2026-11-09",
