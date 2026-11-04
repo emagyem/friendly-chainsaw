@@ -1,12 +1,12 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  ScatterChart, Scatter, ZAxis, ReferenceLine, BarChart, Bar, Cell, AreaChart, Area
+  ScatterChart, Scatter, ZAxis, ReferenceLine, BarChart, Bar, Cell, AreaChart, Area, ComposedChart
 } from "recharts";
 import { COMPANIES, META, HISTORY } from "./data.js";
 import { offeringStudy, raiseRunway, PRE, POST } from "./research.js";
 import { successOdds, exclusivity, reviewOffice, windowConfidence, ODDS_SOURCE, TRIALS_VERSION } from "./trials.js";
-import { runwaySim, equitySim, financingModel, FEATURES, QUANT_VERSION } from "./quant.js";
+import { runwaySim, equitySim, financingModel, FEATURES, QUANT_VERSION, burnForecast, raiseEstimate, anomalies } from "./quant.js";
 import { computeFPS, nextMajorCatalyst, FPS_COMPONENTS, FPS_BANDS, FPS_CHANGELOG, FPS_VERSION, FPS_UPDATED, BUFFER_MONTHS, NO_CATALYST_MONTHS } from "./fps.js";
 
 /* ------------------------------------------------------------------
@@ -550,6 +550,8 @@ function Home({ go, watch, toggleWatch }) {
         </aside>
       </div>
 
+      <AlertsPanel go={go} />
+
       <div className="two wide-left">
         <section className="panel">
           <header className="ph"><h2>Financing Pressure Score</h2>
@@ -864,6 +866,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
           </section>
         </div>
       )}
+      {tab === "overview" && <AlertsPanel go={go} only={c.t} />}
 
       {tab === "financials" && (
         <div className="stack">
@@ -919,6 +922,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
               </table>
             </section>
           </div>
+          <BurnForecastPanel c={c} />
         </div>
       )}
 
@@ -946,6 +950,8 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
                     <dt>Expected data</dt><dd className="mono">{p.window ? <>{fmtDate(p.window.lo)} to {fmtDate(p.window.hi)} <span className="sub">{p.window.stale ? "Registry date overdue, so a wide window" : `${windowConfidence(p.window)} window`}; registry date {fmtDate(p.ro)}{p.roType === "COMPANY GUIDANCE" ? " (company guidance)" : ""}</span></> : <>{fmtDate(p.ro)} <span className="sub inline">({days(p.ro)}d)</span></>}</dd>
                     {p.flags?.flags?.length ? <><dt>Trial design</dt><dd><div className="flagwrap">{p.flags.flags.map((f) => <span key={f.label} className={"flag " + ({ high: "flag-high", med: "flag-med", low: "flag-low", info: "flag-info" })[f.sev]} title={f.detail}>{f.label}</span>)}</div></dd></> : null}
                     {p.nct && <><dt>Registry</dt><dd className="mono"><ExtLink href={`https://clinicaltrials.gov/study/${p.nct}`}>{p.nct}</ExtLink>{p.trials > 1 ? <span className="sub inline"> +{p.trials - 1} more</span> : null}</dd></>}
+                    {p.duration && <><dt>Similar trials</dt><dd>{p.duration.median ? <>Took a median {p.duration.median} months ({p.duration.p25}–{p.duration.p75}); this one plans {p.duration.planned}</> : <>This one plans {p.duration.planned} months</>}<span className="sub">{p.duration.key}, {p.duration.n.toLocaleString("en-US")} trials</span></dd></>}
+                    {(() => { const sc = readoutScenario(p); return sc ? <><dt>If this phase succeeds</dt><dd className="mono">{pctW(sc.ifUp)} approval odds <span className="sub">about 0% if it fails; {money(sc.stake)} of value at stake</span></dd></> : null; })()}
                     <dt>Probability of approval</dt><dd className="mono">{Math.round((p.odds?.loa ?? POS[p.ph]) * 100)}%{p.odds ? <span className="sub">{p.odds.area}{p.odds.factors.length ? `; ${p.odds.factors.join(", ").toLowerCase()}` : ""}</span> : null}</dd>
                     <dt>Peak sales estimate</dt><dd className="mono">{money(p.peak)}{p.est ? <span className="sub inline"> placeholder</span> : null}</dd>
                     <dt>Risk-adjusted value</dt><dd className="mono strong">{money(v)}</dd>
@@ -1023,6 +1029,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
             </div>
           </section>
           <EquityRangePanel c={c} />
+          <ScenarioPanel c={c} />
         </div>
       )}
 
@@ -1823,6 +1830,187 @@ function Research({ go }) {
   );
 }
 
+/* ------------------------ readout scenarios (Bayes) ------------------------
+   If this phase succeeds, the program's chance of approval becomes
+   P(approval | success) = P(approval) / P(success this phase), which is the
+   product of the remaining phase rates. If it fails, the program usually stops. */
+
+const NEXT_PHASE = { "Phase I": "Phase II", "Phase II": "Phase III", "Phase III": "Filed", Filed: "Approved" };
+function readoutScenario(p) {
+  if (!p.odds || !NEXT_PHASE[p.ph] || p.ph === "Approved") return null;
+  const now = successOdds(p), next = successOdds({ ...p, ph: NEXT_PHASE[p.ph] });
+  if (!now || !next) return null;
+  const pass = now.steps[0].adj;
+  const v = (pos) => rnpv(p, { posOverride: pos });
+  const up = v(next.loa), down = 0, mid = v(now.loa);
+  return { pass, now: now.loa, ifUp: next.loa, ifDown: 0, valueUp: up, valueDown: down, valueNow: mid, stake: up - down };
+}
+
+function ReadoutStakes({ go }) {
+  const rows = useMemo(() => COMPANIES.flatMap((c) => (c.pipeline || []).filter((p) => ["Phase II", "Phase III", "Filed"].includes(p.ph))
+    .map((p) => ({ c, p, s: readoutScenario(p) })).filter((r) => r.s && r.s.stake > 0)).sort((a, b) => b.s.stake / b.c.mcap - a.s.stake / a.c.mcap), []);
+  return (
+    <section className="panel">
+      <header className="ph"><h2>What the next result is worth</h2>
+        <span className="ph-note">How each program's chance of approval and risk-adjusted value change if its current phase succeeds or fails. By Bayes' rule, a success lifts the odds to the product of the remaining phase rates; a failure usually ends the program.</span></header>
+      <div className="tablewrap">
+        <table className="grid">
+          <thead><tr><th>Program</th><th className="r">Chance this phase succeeds</th><th className="r">Approval odds now</th><th className="r">If it succeeds</th><th className="r">Value at stake</th><th className="r">Share of market value</th></tr></thead>
+          <tbody>
+            {rows.map(({ c, p, s }) => (
+              <tr key={c.t + p.d} onClick={() => go("company", c.t, "pipeline")}>
+                <td><b>{c.t}</b> {p.d}<span className="sub">{p.ph}{p.window ? ` · data ${fmtDate(p.window.lo)} to ${fmtDate(p.window.hi)}` : ""}</span></td>
+                <td className="r">{pctW(s.pass)}</td>
+                <td className="r">{pctW(s.now)}</td>
+                <td className="r"><b>{pctW(s.ifUp)}</b><span className="sub">about 0% if it fails</span></td>
+                <td className="r">{money(s.stake)}<span className="sub">${num(s.stake / c.shares, 2)} a share</span></td>
+                <td className="r"><b>{pctW(s.stake / c.mcap)}</b></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="colnote">Value at stake is the gap between the program's risk-adjusted value after a success and after a failure, using the same placeholder peak sales as the Valuation tab. It shows which results matter most to each company, not how its shares will move.</p>
+    </section>
+  );
+}
+
+/* --------------------- valuation scenarios and sensitivity --------------------- */
+
+function equityAt(c, { posMul = 1, posAdd = 0, peakMul = 1, launchAdd = 0, discount = 0.11, margin = 0.42, patentAdd = 0 } = {}) {
+  const pipe = (c.pipeline || []).reduce((s, p) => {
+    const base = p.ph === "Approved" ? 1 : (p.odds?.loa ?? POS[p.ph]);
+    const pos = p.ph === "Approved" ? 1 : Math.max(0.005, Math.min(0.97, base * posMul + posAdd));
+    return s + rnpv({ ...p, peak: p.peak * peakMul, launch: Math.max(0, p.launch + launchAdd) }, { discount, margin, patentYrs: (c.patentYrs || 10) + patentAdd, posOverride: pos });
+  }, 0);
+  return pipe + c.cash - (c.debt || 0);
+}
+
+const SCENARIOS = [
+  ["Bear", 0.25, { posMul: 0.7, peakMul: 0.5, launchAdd: 1.5, discount: 0.13 }, "Odds 30% lower, half the peak sales, 18 months later, 13% discount rate"],
+  ["Base", 0.5, {}, "Helixora odds and current inputs, 11% discount rate"],
+  ["Bull", 0.25, { posMul: 1.2, peakMul: 1.5, launchAdd: -0.5, discount: 0.09 }, "Odds 20% higher, 1.5 times peak sales, 6 months sooner, 9% discount rate"],
+];
+const SENS = [
+  ["Approval odds ±10 points", { posAdd: -0.1 }, { posAdd: 0.1 }],
+  ["Peak sales ±50%", { peakMul: 0.5 }, { peakMul: 1.5 }],
+  ["Launch a year later / sooner", { launchAdd: 1 }, { launchAdd: -1 }],
+  ["Discount rate 13% / 9%", { discount: 0.13 }, { discount: 0.09 }],
+  ["Profit margin 32% / 52%", { margin: 0.32 }, { margin: 0.52 }],
+  ["Exclusivity 3 years shorter / longer", { patentAdd: -3 }, { patentAdd: 3 }],
+];
+
+function ScenarioPanel({ c }) {
+  const base = equityAt(c);
+  const sc = SCENARIOS.map(([name, w, o, desc]) => ({ name, w, desc, v: equityAt(c, o) }));
+  const weighted = sc.reduce((s, x) => s + x.w * x.v, 0);
+  const tor = SENS.map(([label, lo, hi]) => ({ label, lo: equityAt(c, lo) - base, hi: equityAt(c, hi) - base }))
+    .sort((a, b) => (Math.abs(b.hi - b.lo)) - Math.abs(a.hi - a.lo));
+  return (
+    <section className="panel">
+      <header className="ph"><h2>Bear, base and bull cases</h2>
+        <span className="ph-note">Equity value (pipeline plus cash minus debt) under three sets of assumptions, weighted 25/50/25, and which single assumption moves the answer most.</span></header>
+      <div className="tablewrap">
+        <table className="grid plain">
+          <thead><tr><th>Case</th><th>Assumptions</th><th className="r">Equity value</th><th className="r">Per share</th></tr></thead>
+          <tbody>
+            {sc.map((x) => <tr key={x.name}><td><b>{x.name}</b> <span className="sub inline">{Math.round(x.w * 100)}%</span></td><td>{x.desc}</td><td className="r">{money(x.v)}</td><td className="r">${num(x.v / c.shares, 2)}</td></tr>)}
+            <tr className="total"><td>Probability-weighted</td><td /><td className="r">{money(weighted)}</td><td className="r">${num(weighted / c.shares, 2)}</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p className="colnote">Market value today: {money(c.mcap)} (${num(c.quote?.price, 2)} a share).</p>
+      <h3 className="subhead">What moves the value most</h3>
+      <ResponsiveContainer width="100%" height={tor.length * 44 + 20}>
+        <BarChart data={tor} layout="vertical" stackOffset="sign" margin={{ top: 4, right: 60, bottom: 4, left: 8 }}>
+          <XAxis type="number" hide />
+          <YAxis type="category" dataKey="label" width={230} tick={{ fontSize: 12.5, fill: "#33434A" }} axisLine={false} tickLine={false} />
+          <ReferenceLine x={0} stroke="#8A979E" />
+          <Tooltip cursor={{ fill: "rgba(14,124,116,.06)" }} content={({ payload }) => payload?.length ? <div className="rtip"><b>{payload[0].payload.label}</b><br />{money(payload[0].payload.lo)} / {money(payload[0].payload.hi)} vs base</div> : null} />
+          <Bar dataKey="lo" stackId="a" fill="#B3264A" isAnimationActive={false} />
+          <Bar dataKey="hi" stackId="a" fill="#0E7C74" isAnimationActive={false} />
+        </BarChart>
+      </ResponsiveContainer>
+      <p className="colnote">Each bar changes one assumption and holds the rest at the base case: red is the lower setting, teal the higher. Not a price target.</p>
+    </section>
+  );
+}
+
+/* ----------------------- burn forecast and raise estimate ----------------------- */
+
+function BurnForecastPanel({ c }) {
+  const f = useMemo(() => burnForecast(c), [c]);
+  const fps = fpsOf(c);
+  const r = useMemo(() => raiseEstimate(c, fps.catalyst ? fps.monthsToCatalyst : null), [c]);
+  if (!f) return null;
+  const data = [...f.history.map((x) => ({ d: x.d, v: x.v })), ...f.forecast.map((x, i) => ({ d: x.d, fv: x.v, band: [x.lo, x.hi], ...(i === 0 ? {} : {}) }))];
+  data[f.history.length - 1].fv = data[f.history.length - 1].v;
+  return (
+    <div className="two">
+      <section className="panel">
+        <header className="ph"><h2>Burn forecast</h2>
+          <span className="ph-note">Quarterly cash burn from past filings, projected four quarters ahead with exponential smoothing (Holt's method). The shaded band covers roughly 80% of outcomes if past swings continue.</span></header>
+        <ResponsiveContainer width="100%" height={230}>
+          <ComposedChart data={data} margin={{ top: 8, right: 8, bottom: 4, left: 0 }}>
+            <CartesianGrid stroke="#E4E9EB" vertical={false} />
+            <XAxis dataKey="d" tickFormatter={(d) => new Date(d + "T00:00:00").toLocaleDateString("en-US", { month: "short", year: "2-digit" })} tick={{ fontSize: 11, fill: "#5E6B73" }} axisLine={false} tickLine={false} />
+            <YAxis tickFormatter={(x) => money(x)} tick={{ fontSize: 11, fill: "#5E6B73" }} width={56} axisLine={false} tickLine={false} />
+            <Tooltip content={({ payload }) => payload?.length ? <div className="rtip"><b>{money(payload[0].payload.v ?? payload[0].payload.fv)}</b> a quarter<br />{fmtDate(payload[0].payload.d)}{payload[0].payload.v == null ? " (forecast)" : ""}</div> : null} />
+            <Area dataKey="band" stroke="none" fill="#0E7C74" fillOpacity={0.12} isAnimationActive={false} />
+            <Line dataKey="v" stroke="#0D1B21" strokeWidth={2} dot={false} isAnimationActive={false} />
+            <Line dataKey="fv" stroke="#0E7C74" strokeWidth={2} strokeDasharray="5 4" dot={false} isAnimationActive={false} />
+          </ComposedChart>
+        </ResponsiveContainer>
+      </section>
+      <section className="panel">
+        <header className="ph"><h2>Likely size of the next raise</h2>
+          <span className="ph-note">Cash needed to fund the company to 12 months past its next major catalyst, plus a 6-month buffer, at forecast burn.</span></header>
+        {!r ? <p className="empty">Not enough data to estimate.</p> : r.gap <= 0 ? (
+          <p className="finding">No raise needed: current cash covers the next {Math.round(r.months)} months at forecast burn.</p>
+        ) : (
+          <>
+            <p className="finding">About {money(r.gap)} more is needed to cover the next {Math.round(r.months)} months. Raised at a {Math.round(r.discount * 100)}% discount to today's price, that's roughly {num(r.newShares, 0)}M new shares, diluting holders by about {pctW(r.dilution)}.</p>
+            <dl className="facts small">
+              <dt>Cash needed</dt><dd>{money(r.need)} over {Math.round(r.months)} months</dd>
+              <dt>Cash on hand</dt><dd>{money(c.cash)}</dd>
+              <dt>Assumed offer price</dt><dd>${num(r.price, 2)}</dd>
+            </dl>
+          </>
+        )}
+        <p className="colnote">A scenario, not a prediction of when or how a company raises. Partnerships, debt or an ATM drip can replace a single offering.</p>
+      </section>
+    </div>
+  );
+}
+
+/* ----------------------------- anomaly alerts ----------------------------- */
+
+const ALERT_ICON = { burn: "Burn", price: "Price", offering: "Offering", trial: "Trial", score: "Score" };
+function AlertsPanel({ go, only }) {
+  const list = useMemo(() => COMPANIES.filter((c) => !only || c.t === only)
+    .flatMap((c) => anomalies(c, { benchmark: META.benchmark, history: HISTORY, todayIso: TODAY.toISOString().slice(0, 10), version: FPS_VERSION }))
+    .sort((a, b) => ({ high: 0, med: 1, low: 2 }[a.sev] - { high: 0, med: 1, low: 2 }[b.sev]) || (b.date || "").localeCompare(a.date || "")), [only]);
+  if (only && !list.length) return null;
+  return (
+    <section className={only ? "panel" : "panel"}>
+      <header className="ph"><h2>{only ? "Unusual changes" : "What changed: unusual moves to check"}</h2>
+        <span className="ph-note">Flags only what is unusual for that company: a burn jump outside its normal range, an outsized price move against the biotech index, a new offering filing, a trial date pushed back, or a change in financing-pressure band.</span></header>
+      {list.length === 0 ? <p className="empty">Nothing unusual right now.</p> : (
+        <ul className="alertlist">
+          {list.map((a, i) => (
+            <li key={i} className={"al al-" + a.sev}>
+              <span className="al-kind">{ALERT_ICON[a.kind]}</span>
+              {!only && <button className="tick" onClick={() => go("company", a.t)}>{a.t}</button>}
+              <span className="al-text">{a.text}{a.url && <> <a className="src" href={a.url} target="_blank" rel="noreferrer">Filing</a></>}</span>
+              {a.date && <span className="sub inline">{fmtDate(a.date)}</span>}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}
+
 /* ---------------------------- quant panels ---------------------------- */
 
 function RunwaySimPanel({ c }) {
@@ -2046,6 +2234,7 @@ function Outlook({ go }) {
             <li>Start from the trial's primary completion date on ClinicalTrials.gov. Topline data usually follows by 2 weeks to 3.5 months.</li>
             <li>Enrollment closed: allow 3 more months on the late side. Still enrolling: 6 more (9 for Phase III). Not yet enrolling: shift 3 months later and add a year.</li>
             <li>Registry not updated in over a year: 6 more months. Each time Helixora sees the date pushed back: 3 more (up to 6).</li>
+            <li>If the registry plan is quicker than 75% of similar trials took (Kaplan-Meier curves from thousands of industry Phase II and III trials since 2012, by phase and size, counting trials still running), the late end moves out 4 months.</li>
             <li>A date the company has guided to replaces the registry date. If the window has already passed with no news, it restarts from today.</li>
           </ul>
         </details>
@@ -2132,6 +2321,8 @@ function Outlook({ go }) {
           </>
         ) : <p className="empty">FDA letter statistics appear after the next data refresh.</p>}
       </section>
+
+      <ReadoutStakes go={go} />
 
       <section className="panel">
         <header className="ph"><h2>Read-through: rival trials that could move these stocks</h2>
@@ -2271,8 +2462,27 @@ const TRACKS = [
     "Event studies around trial results and FDA decisions with exact announcement times, and costed, out-of-sample tests."],
 ];
 
+const LIBRARY = [
+  ["Risk-adjusted net present value", "Built", "Every program, with drug-specific odds (Valuation tab)."],
+  ["Monte Carlo simulation", "Built", "Cash survival paths and a range of equity values."],
+  ["Dilution and financing risk", "Built", "Financing Pressure Score, likely size of the next raise and its dilution, and a first logistic model."],
+  ["Bayesian clinical probability", "Built", "Odds after a readout succeeds or fails, and the value at stake (Trials & FDA)."],
+  ["Event studies", "Partial", "Share prices around stock offerings. Trial results and FDA decisions need exact announcement times first."],
+  ["Survival analysis", "Built", "Kaplan-Meier curves of how long about 16,000 industry trials took, used to check each registry timeline."],
+  ["Scenario and sensitivity analysis", "Built", "Bear, base and bull cases and a chart of which assumption matters most."],
+  ["Time-series forecasting", "Built", "Quarterly burn projected with exponential smoothing."],
+  ["Anomaly detection", "Built", "Alerts for unusual burn, price moves, new offerings, trial delays and band changes."],
+  ["Logistic regression", "Built", "The financing-risk test; published even though it doesn't beat the average yet."],
+  ["Multi-factor ranking", "Later", "Ranking 8 companies says little. Waits for the wider universe."],
+  ["Document text extraction", "Partial", "FDA letters are read by keyword; reading trial delays out of 8-K filings comes next."],
+  ["Random forests and gradient boosting", "Later", "Need thousands of labeled outcomes; would overfit today."],
+  ["Portfolio optimization", "Not planned", "Helixora is research, not personal portfolio advice."],
+];
+
 const JUDGED = [
   ["Readout windows", "Share of readouts that land inside the window", "Tracking from November 2026"],
+  ["Trial-duration curves", "Concordance: do trials predicted to run longer actually run longer?", "Tracking from November 2026"],
+  ["Burn forecast", "Error against each new quarterly filing", "Checked at every 10-Q"],
   ["Financing Pressure Score", "Whether High scorers raise within six months more often than Low scorers", "First check due April 2027"],
   ["Financing-risk model", "Brier score against simply assuming the average", "First test published: not yet better"],
   ["Approval odds", "Calibration: of drugs given 70%, about 70% should succeed", "Needs outcomes; starts with each readout"],
@@ -2373,6 +2583,14 @@ function About({ go }) {
           <li><b>Clinical catalyst and event intelligence.</b> Live in a first version: readout windows, trial design flags, FDA decisions and rival trials. <button className="morelink" style={{ padding: 0 }} onClick={() => go("outlook")}>Open</button></li>
           <li><b>Risk-adjusted pipeline valuation engine.</b> Started: drug-specific odds and a simulated range of equity values on each company's Valuation tab.</li>
         </ol>
+        <h3 className="subhead">The model library</h3>
+        <div className="tablewrap">
+          <table className="grid plain">
+            <thead><tr><th>Method</th><th>Status</th><th>Where it is</th></tr></thead>
+            <tbody>{LIBRARY.map(([a, b, c]) => <tr key={a}><td><b>{a}</b></td><td><span className={"stchip " + (b === "Built" ? "st-live" : b === "Partial" ? "st-next" : "st-later")}>{b}</span></td><td>{c}</td></tr>)}</tbody>
+          </table>
+        </div>
+        <p className="colnote">Each model is validated on its own before any of them are combined, so one model's strength can't hide another's weakness. A single combined score across all of them waits until each has a track record.</p>
         <h3 className="subhead">How each model will be judged</h3>
         <div className="tablewrap">
           <table className="grid plain">
@@ -2938,7 +3156,7 @@ button.tick:hover{color:var(--teal) !important;}
 .prob h3{font-size:16px;font-weight:700;margin:10px 0 6px;}
 .prob-pain{font-size:13.5px;color:var(--mut);margin:0 0 8px;}
 .prob-where{font-size:14px;margin:0;}
-.stchip{font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;}
+.stchip{font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;white-space:nowrap;}
 .stchip.st-live{background:#DFF2EE;color:#0A5752;}
 .stchip.st-next{background:#FBF0DA;color:#7A4E08;}
 .stchip.st-later{background:var(--tint);color:var(--mut);}
@@ -2967,6 +3185,12 @@ button.tick:hover{color:var(--teal) !important;}
 .salesmodel .f input{width:100%;}
 .unit{font-style:normal;font-size:11.5px;color:var(--mut);}
 .launch{margin-bottom:14px;}
+.alertlist{list-style:none;margin:0;padding:0;display:grid;gap:8px;}
+.al{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;padding:10px 14px;border-radius:var(--r-sm);background:var(--tint);font-size:14px;}
+.al-high{background:#FCF0F3;}
+.al-med{background:#FCF6EA;}
+.al-kind{font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:999px;background:#fff;color:var(--ink2);}
+.al-text{flex:1;min-width:200px;}
 .neg-strong{color:var(--crimson);font-weight:600;}
 details.more{margin-top:18px;}
 details.more summary{cursor:pointer;font-size:14.5px;font-weight:700;margin-bottom:10px;}

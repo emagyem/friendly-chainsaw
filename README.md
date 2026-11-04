@@ -123,3 +123,11 @@ How each program is classified lives in `config/programs.json`; edit it to corre
 ## Quant models and prediction log
 
 `src/quant.js`: a Monte Carlo cash survival simulation (burn trend and volatility from past filings, no new financing), a Monte Carlo range of equity values (program success at Helixora's odds, uncertain peak sales and timing) with the peak sales the market price implies, and a logistic financing-risk model tested by leaving each company out. The refresh writes `public/data/predictions.json`, a daily record of published predictions with model versions, never edited after the day it was written.
+
+## More models
+
+- **Trial-duration survival curves** (Kaplan-Meier, about 16,000 industry Phase II/III trials since 2012, still-running trials censored): each registry plan is compared with how long similar trials took; unusually quick plans widen the readout window. Stored in `meta.durations`.
+- **Readout scenarios**: approval odds after the current phase succeeds (Bayes' rule on the phase rates) and the value at stake.
+- **Valuation scenarios**: bear, base and bull cases and a one-at-a-time sensitivity chart.
+- **Burn forecast** (Holt's exponential smoothing) and the likely size and dilution of the next raise.
+- **Anomaly alerts**: robust z-scores for burn and price moves, plus new offerings, trial slips and score band changes (same score version only).

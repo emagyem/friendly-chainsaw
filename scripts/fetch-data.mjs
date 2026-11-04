@@ -951,7 +951,7 @@ async function main() {
   // which companies were flagged, and whether they went on to raise money.
   let history = { snapshots: [] };
   try { history = JSON.parse(await readFile(HISTORY_FILE, "utf8")); } catch { /* first run */ }
-  const snap = { date: TODAY_ISO, scores: {} };
+  const snap = { date: TODAY_ISO, v: FPS_VERSION, scores: {} };
   for (const c of companies) {
     const f = computeFPS(c, TODAY);
     snap.scores[c.t] = { fps: f.score, band: f.band };

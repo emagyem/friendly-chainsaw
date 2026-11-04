@@ -254,7 +254,7 @@ export function raiseEstimate(c, monthsToCatalyst, { discount = 0.12, after = 12
 const median = (xs) => { const s = [...xs].sort((a, b) => a - b); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
 const robustZ = (x, xs) => { const m = median(xs); const mad = median(xs.map((v) => Math.abs(v - m))) * 1.4826; return mad > 0 ? (x - m) / mad : 0; };
 
-export function anomalies(c, { benchmark, history, todayIso } = {}) {
+export function anomalies(c, { benchmark, history, todayIso, version } = {}) {
   const out = [];
   const today = todayIso || new Date().toISOString().slice(0, 10);
   const daysAgo = (d) => Math.round((Date.parse(today) - Date.parse(d)) / DAY);
@@ -288,7 +288,8 @@ export function anomalies(c, { benchmark, history, todayIso } = {}) {
   // 4. Trial dates pushed back
   for (const p of c.pipeline || []) if (p.slips > 0) out.push({ kind: "trial", sev: "med", date: null, text: `${p.d}: completion date pushed back ${p.slips} time${p.slips === 1 ? "" : "s"} since tracking began.` });
   // 5. Financing Pressure band change in the last two weeks of snapshots
-  const snaps = (history?.snapshots || []).filter((s) => s.scores?.[c.t]);
+  // Compare only snapshots made by the same score version, so a model change isn't reported as a company change.
+  const snaps = (history?.snapshots || []).filter((s) => s.scores?.[c.t] && s.v && s.v === version);
   if (snaps.length >= 2) {
     const recent = snaps.filter((s) => daysAgo(s.date) <= 14);
     const before = snaps.filter((s) => daysAgo(s.date) > 14).at(-1) || recent[0];
