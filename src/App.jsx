@@ -1807,6 +1807,115 @@ function Research({ go }) {
   );
 }
 
+/* -------------------------------- about -------------------------------- */
+
+const COMPETITORS = [
+  ["Helixora", "Yes", "Yes", "Yes, with a published formula", "Yes"],
+  ["DilutionTracker", "Yes, with risk ratings", "No", "No", "Offering history"],
+  ["BiopharmaWatch", "Runway and dilution on company pages", "Yes", "Not described", "Not described"],
+  ["BioPharmCatalyst", "Not a focus", "Yes", "No", "No"],
+];
+
+const PROBLEMS = [
+  ["live", "Cash runway and dilution risk", "Small biotechs raise money again and again. Knowing who has to raise next, and when, matters for returns.",
+    "The Financing Pressure Score joins cash, burn, debt, ATM and shelf filings with the next catalyst date. Next: predicting the timing and size of the next offering, and catching raises made from strength.", "report"],
+  ["next", "Catalyst timing", "Readout dates are often vague, like \"2H 2027,\" and they slip.",
+    "Already started: readout dates come from ClinicalTrials.gov and are marked as estimates. Next: an estimated readout window from enrollment pace and each trial's history of delays, fed straight into the score.", "catalysts"],
+  ["later", "Read-through between companies", "One company's result moves its competitors' shares too.",
+    "Planned once coverage grows. It needs many companies sharing targets and diseases to be useful.", null],
+  ["later", "Trial success odds that fit the drug", "Most models use industry-wide averages by phase.",
+    "The Valuation tab uses those broad averages today and says so.", null],
+  ["later", "Red flags in trial design", "Small studies, soft endpoints and changed analysis plans often come before failure.",
+    "", null],
+  ["later", "FDA behavior", "Advisory votes, delays and rejection letters follow patterns few people track.",
+    "FDA decision dates appear on the Calendar.", null],
+  ["later", "Sales after approval", "Many approved drugs miss sales expectations.",
+    "Peak sales in the Valuation tab are marked as placeholders.", null],
+  ["later", "Patent cliffs", "Exclusivity often ends later or sooner than the main patent suggests.",
+    "Patent life is a marked default.", null],
+  ["later", "China and ex-US pipelines", "More licensed drugs now come from Chinese biotechs, and the data is scattered.",
+    "", null],
+];
+const STATUS = { live: "Live", next: "Next", later: "Not yet" };
+
+function About({ go }) {
+  const rr = useMemo(() => raiseRunway(COMPANIES), []);
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">About Helixora</p>
+        <h1 className="report-h">Biotech investors keep getting hit by stock offerings they could have seen coming.</h1>
+        <p className="prose">Clinical-stage biotechs burn cash and earn little, so most of them sell new shares again and again. Each raise dilutes existing shareholders, often at a discount. The warning signs are public, but they sit in three different places, and almost nobody lines them up in time.</p>
+        <div className="three">
+          <div className="metric"><span>How much cash is left</span><b className="three-b">The quarterly report</b><em>10-Q and 10-K filings on SEC EDGAR</em></div>
+          <div className="metric"><span>When the next big event lands</span><b className="three-b">Trial registries and FDA dates</b><em>ClinicalTrials.gov, company guidance</em></div>
+          <div className="metric"><span>Whether shares can be sold overnight</span><b className="three-b">Shelf and ATM filings</b><em>S-3 and 424B prospectuses</em></div>
+        </div>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>What Helixora does</h2></header>
+        <p className="prose">Helixora puts those three pieces side by side and answers one question for every company: <b>does the cash run out before the next big readout or FDA decision, and can the company sell stock quickly when it wants to?</b> The answer is the Financing Pressure Score, from 0 to 100. Every number links to the filing it came from, and the formula is public.</p>
+        <div className="id-ctas" style={{ marginTop: 6 }}>
+          <button className="btn primary" onClick={() => go("report")}>See today's Pressure Report</button>
+          <button className="btn" onClick={() => go("method")}>How the score works</button>
+        </div>
+      </section>
+
+      <div className="two">
+        <section className="panel">
+          <header className="ph"><h2>Who it's for</h2></header>
+          <ul className="watch">
+            <li><b>Biotech analysts and fund managers</b> who don't want to hold a stock into a discounted offering, or who look for companies likely to raise.</li>
+            <li><b>Generalist investors with biotech exposure</b> who don't have time to read every filing.</li>
+            <li><b>Individual biotech investors</b>, who are hurt most by surprise offerings.</li>
+            <li><b>Biotech management and investor relations</b>, to see how the market reads their runway.</li>
+          </ul>
+        </section>
+        <section className="panel">
+          <header className="ph"><h2>Where Helixora stands today</h2></header>
+          <ul className="watch">
+            <li>It covers {COMPANIES.length} clinical-stage companies, with more to come.</li>
+            <li>The score is a published starting point. Its first six-month test against real offerings is due in April 2027, and the results will be published either way.</li>
+            {rr.n > 0 && <li>Past offerings show two kinds of raise: {rr.under24} of {rr.n} came from companies with under two years of cash, and {rr.bins.at(-1).n} from companies with three years or more that raised after good news. The score is built for the first kind; catching the second is on the roadmap. <button className="morelink" style={{ padding: 0 }} onClick={() => go("research")}>See the research</button></li>}
+          </ul>
+        </section>
+      </div>
+
+      <section className="panel">
+        <header className="ph"><h2>How it compares</h2>
+          <span className="ph-note">Other tools cover half of the question. Dilution trackers show how easily a company can raise; catalyst calendars show when its big day is. Helixora joins the two.</span></header>
+        <div className="tablewrap">
+          <table className="grid plain">
+            <thead><tr><th>Tool</th><th>Cash, shelf and ATM</th><th>Catalyst dates</th><th>One score joining both</th><th>Each figure linked to its filing</th></tr></thead>
+            <tbody>{COMPETITORS.map((r, i) => <tr key={r[0]} className={i === 0 ? "us" : ""}>{r.map((v, j) => <td key={j}>{j === 0 ? <b>{v}</b> : v}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
+        <p className="colnote">Other tools are described from their public pages as of October 2026 and may have changed.</p>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>The problems biotech investors face, and where Helixora is on each</h2>
+          <span className="ph-note">Helixora starts with financing risk and catalyst timing, because both run on public data and both matter most in the weeks around a big event.</span></header>
+        <div className="probs">
+          {PROBLEMS.map(([st, title, pain, where, link]) => (
+            <article key={title} className={"prob st-" + st}>
+              <span className={"stchip st-" + st}>{STATUS[st]}</span>
+              <h3>{title}</h3>
+              <p className="prob-pain">{pain}</p>
+              {where && <p className="prob-where">{where}</p>}
+              {link && <button className="morelink" onClick={() => go(link)}>{link === "report" ? "Open the Pressure Report" : "Open the Calendar"}</button>}
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <Waitlist />
+      <p className="disclaimer">Helixora publishes general research about companies' financing situations. It is not investment advice and does not recommend buying or selling any security.</p>
+    </div>
+  );
+}
+
 function Methodology({ go }) {
   return (
     <div className="stack">
@@ -1932,7 +2041,7 @@ export default function App() {
     ? COMPANIES.filter((c) => (c.t + " " + c.n).toLowerCase().includes(omni.toLowerCase())).slice(0, 6)
     : [];
 
-  const nav = [["home", "Markets"], ["report", "Pressure Report"], ["screen", "Screener"], ["company", "Quotes"], ["catalysts", "Calendar"], ["compare", "Compare"], ["ask", "Ask"], ["research", "Research"], ["method", "Methodology"]];
+  const nav = [["home", "Markets"], ["report", "Pressure Report"], ["screen", "Screener"], ["company", "Quotes"], ["catalysts", "Calendar"], ["compare", "Compare"], ["ask", "Ask"], ["research", "Research"], ["method", "Methodology"], ["about", "About"]];
   const dateline = TODAY.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
 
   return (
@@ -1991,6 +2100,7 @@ export default function App() {
         {view === "compare" && <Compare />}
         {view === "ask" && <Ask />}
         {view === "research" && <Research go={go} />}
+        {view === "about" && <About go={go} />}
       </main>
 
       <footer className="foot">
@@ -2339,6 +2449,20 @@ button.tick:hover{color:var(--teal) !important;}
 .metrics.four{grid-template-columns:repeat(4,1fr);margin:0 0 18px;}
 .metric em{display:block;font-style:normal;font-size:12.5px;color:var(--mut);margin-top:2px;}
 .metric b.chg{font-size:22px;}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px;}
+.three-b{display:block;font-size:17px !important;line-height:1.3;margin:2px 0;}
+.grid.plain tr.us td{background:#E3F2EF;}
+.probs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.prob{border:1px solid var(--rule2);border-radius:var(--r-md);padding:16px 18px;display:flex;flex-direction:column;align-items:flex-start;}
+.prob.st-live{border-color:#9CCAC3;background:#F2FAF8;}
+.prob.st-next{border-color:#EBCF9C;background:#FFFBF2;}
+.prob h3{font-size:16px;font-weight:700;margin:10px 0 6px;}
+.prob-pain{font-size:13.5px;color:var(--mut);margin:0 0 8px;}
+.prob-where{font-size:14px;margin:0;}
+.stchip{font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;}
+.stchip.st-live{background:#DFF2EE;color:#0A5752;}
+.stchip.st-next{background:#FBF0DA;color:#7A4E08;}
+.stchip.st-later{background:var(--tint);color:var(--mut);}
 .neg-strong{color:var(--crimson);font-weight:600;}
 details.more{margin-top:18px;}
 details.more summary{cursor:pointer;font-size:14.5px;font-weight:700;margin-bottom:10px;}
@@ -2512,6 +2636,7 @@ details.more summary:hover{color:var(--teal);}
   .pillars{grid-template-columns:1fr 1fr;}
 }
 @media (max-width:1240px){
+  .probs{grid-template-columns:1fr 1fr;}
   .hero{grid-template-columns:1fr;gap:28px;padding:32px 28px;}
 }
 @media (max-width:960px){
@@ -2535,6 +2660,7 @@ details.more summary:hover{color:var(--teal);}
   .front,.front>.side{grid-template-columns:1fr;}
   .briefs,.two,.filters,.prog-list,.metrics,.sugg,.q-body{grid-template-columns:1fr;}
   .metrics.four{grid-template-columns:1fr 1fr;}
+  .three,.probs{grid-template-columns:1fr;}
   .wordmark{font-size:30px;}
   .lead,.quote,.panel,.report-head{padding:22px 18px;}
   .hero{padding:28px 20px;border-radius:var(--r-lg);}
