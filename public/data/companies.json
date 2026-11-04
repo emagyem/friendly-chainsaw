@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-04T04:05:10.628Z",
+  "generatedAt": "2026-11-04T04:07:33.008Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -2530,7 +2530,7 @@
      "pcd": "2027-02-05",
      "n": 31,
      "drugs": [
-      "Investigational product is a…"
+      "CD36"
      ],
      "forDrug": "VK2735",
      "ind": "Weight Loss",
@@ -4953,7 +4953,7 @@
      "pcd": "2027-02-05",
      "n": 31,
      "drugs": [
-      "Investigational product is a…"
+      "CD36"
      ],
      "forDrug": "ARO-ALK7",
      "ind": "Obesity",
@@ -16699,7 +16699,7 @@
    "mkt": 0.6,
    "pipeline": [
     {
-     "d": "Zopapogene imadenovec",
+     "d": "PRGN-2012",
      "ind": "Recurrent Respiratory Papillomatosis",
      "tgt": "—",
      "moa": "—",
@@ -16713,8 +16713,8 @@
      "cost": 0,
      "est": true,
      "nct": "NCT06538480",
-     "trials": 2,
-     "activeTrials": 2,
+     "trials": 3,
+     "activeTrials": 3,
      "status": "RECRUITING",
      "trial": {
       "nct": "NCT06538480",
@@ -16754,100 +16754,6 @@
      "odds": {
       "loa": 1,
       "base": 1,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
-     }
-    },
-    {
-     "d": "PRGN-2012",
-     "ind": "Recurrent Respiratory Papillomatosis",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase II",
-     "n": 38,
-     "ro": "2024-06-05",
-     "roType": "ACTUAL",
-     "ep": "Determine the percentage of subjects with a complete response following treatment with PRGN-2012",
-     "peak": 600,
-     "launch": 4.5,
-     "cost": 160,
-     "est": true,
-     "nct": "NCT04724980",
-     "trials": 1,
-     "activeTrials": 1,
-     "status": "ACTIVE_NOT_RECRUITING",
-     "trial": {
-      "nct": "NCT04724980",
-      "title": "Adjuvant PRGN-2012 in Adult Patients With Recurrent Respiratory Papillomatosis",
-      "status": "ACTIVE_NOT_RECRUITING",
-      "ext": false,
-      "n": 38,
-      "nType": "ACTUAL",
-      "alloc": "NON_RANDOMIZED",
-      "model": "SEQUENTIAL",
-      "masking": "NONE",
-      "arms": [
-       "EXPERIMENTAL",
-       "EXPERIMENTAL",
-       "EXPERIMENTAL"
-      ],
-      "primary": "Determine the percentage of subjects with a complete response following treatment with PRGN-2012",
-      "primaryCount": 2,
-      "sites": 1,
-      "countries": [
-       "United States"
-      ],
-      "start": "2021-03-16",
-      "startType": "ACTUAL",
-      "lastUpdate": "2025-06-11",
-      "ph": "Phase II",
-      "ind": "Recurrent Respiratory Papillomatosis"
-     },
-     "modality": null,
-     "slips": 0,
-     "duration": {
-      "key": "Phase II, under 100 patients",
-      "n": 3787,
-      "planned": 39,
-      "elapsed": 67,
-      "median": 20,
-      "p25": 11,
-      "p75": 36,
-      "condMedian": 102,
-      "condP75": null,
-      "fasterThan": 22
-     },
-     "window": {
-      "lo": "2026-11-04",
-      "hi": "2027-08-04",
-      "mid": "2027-03-20",
-      "reg": "2024-06-05",
-      "width": 9,
-      "basis": "Registry (actual completion)",
-      "why": [
-       "The registry's estimated completion date has passed without an update, so the date can't be relied on. The window restarts from today and runs 9 months."
-      ]
-     },
-     "flags": {
-      "flags": [
-       {
-        "sev": "med",
-        "label": "No control arm",
-        "detail": "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment. Common, and sometimes unavoidable, in very rare diseases."
-       },
-       {
-        "sev": "low",
-        "label": "Registry not updated in over a year",
-        "detail": "Last updated 2025-06-11."
-       }
-      ],
-      "points": 3,
-      "level": "Some flags"
-     },
-     "odds": {
-      "loa": 0.1513,
-      "base": 0.1513,
       "area": "All indications",
       "modality": null,
       "factors": []
@@ -17101,17 +17007,6 @@
     }
    ],
    "catalysts": [
-    {
-     "date": "2027-03-20",
-     "kind": "readout",
-     "drug": "PRGN-2012",
-     "est": false,
-     "lo": "2026-11-04",
-     "hi": "2027-08-04",
-     "reg": "2024-06-05",
-     "nct": "NCT04724980",
-     "label": "PRGN-2012 Phase II data (estimated)"
-    },
     {
      "date": "2027-04-12",
      "kind": "readout",
@@ -17390,7 +17285,7 @@
      "pcd": "2026-12-27",
      "n": 45,
      "drugs": [
-      "EGCG and Quinine Sulfate…"
+      "EGCG and Quinine Sulfate"
      ],
      "forDrug": "PRGN-2009",
      "ind": "Cervical Cancer",
@@ -21026,7 +20921,7 @@
      }
     },
     {
-     "d": "Phase 1 Part A - dose escalation TYRA-200 taken once daily by mouth in 28-day cycles",
+     "d": "TYRA-200",
      "ind": "Locally Advanced Cholangiocarcinoma",
      "tgt": "—",
      "moa": "—",
@@ -21197,13 +21092,13 @@
     {
      "date": "2027-06-29",
      "kind": "readout",
-     "drug": "Phase 1 Part A - dose escalation TYRA-200 taken once daily by mouth in 28-day cycles",
+     "drug": "TYRA-200",
      "est": true,
      "lo": "2027-03-30",
      "hi": "2027-09-28",
      "reg": "2027-03-15",
      "nct": "NCT06160752",
-     "label": "Phase 1 Part A - dose escalation TYRA-200 taken once daily by mouth in 28-day cycles Phase I data (estimated)"
+     "label": "TYRA-200 Phase I data (estimated)"
     },
     {
      "date": "2028-06-15",
@@ -27704,7 +27599,7 @@
      }
     },
     {
-     "d": "intra-striatal rAAV5-miHTT",
+     "d": "AMT-130",
      "ind": "Huntington Disease",
      "tgt": "—",
      "moa": "—",
@@ -36294,7 +36189,7 @@
      "n": 186,
      "drugs": [
       "olvimulogene nanivacirepvec",
-      "Platinum chemotherapy: carboplatin or…",
+      "Platinum chemotherapy: carboplatin or",
       "Bevacizumab"
      ],
      "forDrug": "azenosertib",
@@ -38622,7 +38517,7 @@
      "pcd": "2027-07-15",
      "n": 39,
      "drugs": [
-      "human allogeneic induced pluripotent…"
+      "human allogeneic induced pluripotent"
      ],
      "forDrug": "BIIB122",
      "ind": "Parkinson Disease",
@@ -44220,7 +44115,7 @@
      "n": 752,
      "drugs": [
       "Seltorexant",
-      "Selective Serotonin Reuptake Inhibitor…"
+      "Selective Serotonin Reuptake Inhibitor"
      ],
      "forDrug": "ALTO-300",
      "ind": "Major Depressive Disorder",
@@ -56002,9 +55897,9 @@
      "pcd": "2027-03-14",
      "n": 96,
      "drugs": [
-      "Autologous CD19/CD22 dual-target CAR-T…",
-      "Autologous CD19/CD20 dual-target CAR-T…",
-      "Autologous BCMA/CD19 dual-target CAR-T…"
+      "CD19",
+      "CD38",
+      "Autologous BCMA/GPRC5D dual-target CAR-T"
      ],
      "forDrug": "galinpepimut-S",
      "ind": "Acute Myeloid Leukemia",
@@ -60926,8 +60821,8 @@
      "cost": 260,
      "est": true,
      "nct": "NCT06775379",
-     "trials": 5,
-     "activeTrials": 5,
+     "trials": 11,
+     "activeTrials": 9,
      "status": "ACTIVE_NOT_RECRUITING",
      "trial": {
       "nct": "NCT06775379",
@@ -60992,100 +60887,6 @@
       "modality": null,
       "factors": []
      }
-    },
-    {
-     "d": "XEN1101",
-     "ind": "Primary Generalized Tonic-Clonic Seizures",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase III",
-     "n": 160,
-     "ro": "2027-04-15",
-     "roType": "ESTIMATED",
-     "ep": "Median percent change (MPC) in monthly (28 days) PGTCS frequency",
-     "peak": 800,
-     "launch": 2.5,
-     "cost": 260,
-     "est": true,
-     "nct": "NCT05667142",
-     "trials": 6,
-     "activeTrials": 4,
-     "status": "RECRUITING",
-     "trial": {
-      "nct": "NCT05667142",
-      "title": "A Study to Evaluate XEN1101 as Adjunctive Therapy in Primary Generalized Tonic-Clonic Seizures",
-      "status": "RECRUITING",
-      "ext": false,
-      "n": 160,
-      "nType": "ESTIMATED",
-      "alloc": "RANDOMIZED",
-      "model": "PARALLEL",
-      "masking": "DOUBLE",
-      "arms": [
-       "EXPERIMENTAL",
-       "EXPERIMENTAL",
-       "PLACEBO_COMPARATOR"
-      ],
-      "primary": "Median percent change (MPC) in monthly (28 days) PGTCS frequency",
-      "primaryCount": 1,
-      "sites": 141,
-      "countries": [
-       "United States",
-       "Argentina",
-       "Australia",
-       "Austria",
-       "Belgium",
-       "Bulgaria",
-       "Canada",
-       "Chile",
-       "Croatia",
-       "Czechia",
-       "France",
-       "Germany"
-      ],
-      "start": "2023-02-14",
-      "startType": "ACTUAL",
-      "lastUpdate": "2026-11-02",
-      "ph": "Phase III",
-      "ind": "Primary Generalized Tonic-Clonic Seizures"
-     },
-     "modality": null,
-     "slips": 0,
-     "duration": {
-      "key": "Phase III, 100 to 499 patients",
-      "n": 4614,
-      "planned": 50,
-      "elapsed": 44,
-      "median": 23,
-      "p25": 13,
-      "p75": 42,
-      "condMedian": 70,
-      "condP75": 98,
-      "fasterThan": 19
-     },
-     "window": {
-      "lo": "2027-04-30",
-      "hi": "2028-04-29",
-      "mid": "2027-10-29",
-      "reg": "2027-04-15",
-      "width": 12,
-      "basis": "Registry estimate",
-      "why": [
-       "Still enrolling, and enrolling trials often finish late (+9 months on the late end)."
-      ]
-     },
-     "flags": {
-      "flags": [],
-      "points": 0,
-      "level": "No flags"
-     },
-     "odds": {
-      "loa": 0.5237,
-      "base": 0.5237,
-      "area": "All indications",
-      "modality": null,
-      "factors": []
-     }
     }
    ],
    "catalysts": [
@@ -61099,17 +60900,6 @@
      "reg": "2026-10-15",
      "nct": "NCT06775379",
      "label": "Azetukalner Phase III (Major Depressive Disorder) data (estimated)"
-    },
-    {
-     "date": "2027-10-29",
-     "kind": "readout",
-     "drug": "XEN1101",
-     "est": true,
-     "lo": "2027-04-30",
-     "hi": "2028-04-29",
-     "reg": "2027-04-15",
-     "nct": "NCT05667142",
-     "label": "XEN1101 Phase III data (estimated)"
     },
     {
      "date": "2026-11-05",
@@ -61351,24 +61141,6 @@
     ]
    ],
    "rivals": [
-    {
-     "nct": "NCT06579573",
-     "sponsor": "Ono Pharmaceutical Co., Ltd.",
-     "title": "ONO-2017 Study Japanese Patients With Primary Generalized Tonic Clonic Seizures.",
-     "ph": "Phase III",
-     "pcd": "2027-01-31",
-     "n": 15,
-     "drugs": [
-      "Cenobamate"
-     ],
-     "forDrug": "XEN1101",
-     "ind": "Primary Generalized Tonic-Clonic Seizures",
-     "countries": [
-      "Japan"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
     {
      "nct": "NCT04777357",
      "sponsor": "AbbVie",
@@ -64164,8 +63936,8 @@
      "cost": 260,
      "est": true,
      "nct": "NCT07778836",
-     "trials": 2,
-     "activeTrials": 1,
+     "trials": 6,
+     "activeTrials": 2,
      "status": "RECRUITING",
      "trial": {
       "nct": "NCT07778836",
@@ -64236,96 +64008,9 @@
       "modality": null,
       "factors": []
      }
-    },
-    {
-     "d": "CTI-1601",
-     "ind": "Friedreich Ataxia",
-     "tgt": "—",
-     "moa": "—",
-     "ph": "Phase II",
-     "n": 85,
-     "ro": "2027-01-15",
-     "roType": "ESTIMATED",
-     "ep": "Number of subjects with treatment-emergent adverse events (TEAEs) by System Organ Class (SOC), Preferred Term ",
-     "peak": 600,
-     "launch": 4.5,
-     "cost": 160,
-     "est": true,
-     "nct": "NCT06447025",
-     "trials": 4,
-     "activeTrials": 1,
-     "status": "RECRUITING",
-     "trial": {
-      "nct": "NCT06447025",
-      "title": "An Open-Label Study of CTI-1601 in Subjects With Friedreich's Ataxia",
-      "status": "RECRUITING",
-      "ext": true,
-      "n": 85,
-      "nType": "ESTIMATED",
-      "alloc": "NA",
-      "model": "SINGLE_GROUP",
-      "masking": "NONE",
-      "arms": [
-       "EXPERIMENTAL"
-      ],
-      "primary": "Number of subjects with treatment-emergent adverse events (TEAEs) by System Organ Class (SOC), Preferred Term (PT) and Maximum Severity",
-      "primaryCount": 20,
-      "sites": 10,
-      "countries": [
-       "United States"
-      ],
-      "start": "2024-01-25",
-      "startType": "ACTUAL",
-      "lastUpdate": "2026-10-27",
-      "ph": "Phase II",
-      "ind": "Friedreich Ataxia"
-     },
-     "modality": null,
-     "slips": 0,
-     "duration": null,
-     "window": {
-      "lo": "2027-01-30",
-      "hi": "2027-10-31",
-      "mid": "2027-06-16",
-      "reg": "2027-01-15",
-      "width": 9,
-      "basis": "Registry estimate",
-      "why": [
-       "Still enrolling, and enrolling trials often finish late (+6 months on the late end)."
-      ]
-     },
-     "flags": {
-      "flags": [
-       {
-        "sev": "info",
-        "label": "Extension study",
-        "detail": "This trial mainly tracks long-term safety in patients from earlier studies. Its completion is not a pivotal efficacy readout."
-       }
-      ],
-      "points": 0,
-      "level": "No flags"
-     },
-     "odds": {
-      "loa": 0.1234,
-      "base": 0.1234,
-      "area": "Neurology",
-      "modality": null,
-      "factors": []
-     }
     }
    ],
    "catalysts": [
-    {
-     "date": "2027-06-16",
-     "kind": "minor",
-     "drug": "CTI-1601",
-     "est": true,
-     "lo": "2027-01-30",
-     "hi": "2027-10-31",
-     "reg": "2027-01-15",
-     "nct": "NCT06447025",
-     "label": "CTI-1601 extension study completes (safety follow-up)"
-    },
     {
      "date": "2027-02-02",
      "kind": "earnings",
@@ -68104,7 +67789,7 @@
      "pcd": "2027-10-26",
      "n": 10,
      "drugs": [
-      "Gene therapy: GS030-DP AND…"
+      "GS030-DP"
      ],
      "forDrug": "OCU400",
      "ind": "Retinitis Pigmentosa",
