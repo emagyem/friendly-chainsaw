@@ -2540,7 +2540,8 @@ function About({ go, anchor }) {
       </section>
 
       <section className="panel" id="problem">
-        <header className="ph"><h2>Biotech investors keep getting hit by stock offerings they could have seen coming.</h2></header>
+        <header className="ph"><h2>The problem</h2></header>
+        <p className="lead-dek problem-h">Biotech investors keep getting hit by stock offerings they could have seen coming.</p>
         <p className="prose">Clinical-stage biotechs burn cash and earn little, so most of them sell new shares again and again. Each raise dilutes existing shareholders, often at a discount. The warning signs are public, but they sit in three different places, and almost nobody lines them up in time.</p>
         <div className="three">
           <div className="metric"><span>How much cash is left</span><b className="three-b">The quarterly report</b><em>10-Q and 10-K filings on SEC EDGAR</em></div>
@@ -2768,10 +2769,10 @@ function Wordmark({ underline = false }) {
 
 // Sections and their pages, grouped the way a financial news site groups them.
 const NAV = [
-  { k: "markets", l: "Markets", items: [["home", "Overview"], ["company", "Quotes"]] },
+  { k: "markets", l: "Markets", items: [["home", "Overview"], ["company", "Quotes"], ["screen", "Screener"], ["compare", "Compare"]] },
   { k: "risk", l: "Financing Risk", items: [["report", "Pressure Report"], ["research", "Research"]] },
   { k: "trials", l: "Trials & FDA", items: [["outlook", "Outlook"], ["catalysts", "Catalyst Calendar"]] },
-  { k: "tools", l: "Tools", items: [["screen", "Screener"], ["compare", "Compare"], ["ask", "Ask Helixora"]] },
+  { k: "ask", l: "Ask Helixora", items: [["ask", "Ask Helixora"]] },
   { k: "about", l: "About us", items: [["about", "About us"]] },
 ];
 const groupOf = (v) => NAV.find((g) => g.items.some(([k]) => k === v)) || NAV[0];
@@ -2821,6 +2822,15 @@ export default function App() {
       <a className="skip" href="#main">Skip to content</a>
 
       <header className="mast">
+        <div className="utility">
+          <div className="utility-in">
+            <span className="utility-date">{dateline}</span>
+            {LIVE && <span className="hide-sm">Data refreshed {new Date(META.generatedAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}</span>}
+            <span className="hide-sm">Financing risk research on {COMPANIES.length} clinical-stage biotechs</span>
+            <span className="utility-sp" />
+            <button className="utility-btn" onClick={() => setLayout("side")}>Menu on side</button>
+          </div>
+        </div>
         <div className="mast-in">
           <button className="wordmark" onClick={() => go("home")} aria-label="Helixora home">
             <Wordmark underline />
@@ -2868,7 +2878,7 @@ export default function App() {
           <span className="subnav-h">{cur.l}</span>
           {cur.items.length > 1
             ? cur.items.map(([k, l]) => <button key={k} className={view === k ? "on" : ""} aria-current={view === k ? "page" : undefined} onClick={() => go(k)}>{l}</button>)
-            : ABOUT_SECTIONS.map(([id, l]) => <button key={id} onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{l}</button>)}
+            : cur.k !== "about" ? null : ABOUT_SECTIONS.map(([id, l]) => <button key={id} onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{l}</button>)}
         </div>
       </nav>
       <div className="tape">
@@ -3543,5 +3553,76 @@ details.more summary:hover{color:var(--teal);}
   .strip-track{animation:none;}
   .strip-half[aria-hidden]{display:none;}
   .app *{transition:none !important;}
+}
+/* ---------- financial-news look: white masthead, black bars, serif headlines, ruled sections ---------- */
+.app{--bg:#FFFFFF;--tint:#F4F6F7;--rule:#D3D8DB;--rule2:#E2E6E8;--ink:#101417;--ink2:#2B3439;--mut:#5C676D;
+--serif:'Source Serif 4 Variable',Georgia,'Times New Roman',serif;--r-xl:4px;--r-lg:3px;--r-md:3px;--r-sm:3px;}
+.app h1,.lead-h,.report-h,.brief h2,.pillar h3,.prob h3,.subnav-h{font-family:var(--serif);font-stretch:normal;}
+.lead-h{font-size:clamp(30px,3.2vw,44px);line-height:1.08;font-weight:700;letter-spacing:-.015em;}
+.report-h{font-size:clamp(28px,3vw,40px);line-height:1.1;font-weight:700;letter-spacing:-.012em;}
+.hero h1{font-family:var(--serif);font-weight:700;letter-spacing:-.015em;}
+.brief h2{font-size:19px;line-height:1.25;font-weight:650;letter-spacing:-.005em;}
+.pillar h3{font-size:19px;letter-spacing:-.005em;}
+.panel,.lead,.wire,.side>section,.pillar{border:0;border-top:2px solid var(--ink);border-radius:0;box-shadow:none;background:var(--paper);}
+.panel{padding:14px 0 6px;}
+.lead{padding:14px 0 6px;}
+.side>section{padding:12px 0 6px;}
+.pillar{padding:14px 0 4px;}
+.report-head{padding:18px 0 10px;border-top:0;}
+.ph{margin-bottom:14px;}
+.wire{padding:12px 0 6px;}
+.quote{border:0;border-radius:0;padding:14px 0 6px;}
+.q-id h1{font-family:var(--serif);font-stretch:normal;letter-spacing:-.015em;}
+.problem-h{font-family:var(--serif);font-size:24px;font-weight:650;line-height:1.25;color:var(--ink);margin-bottom:10px;}
+.rl-h{font-family:var(--sans);font-size:13px;font-weight:800;font-stretch:normal;text-transform:uppercase;letter-spacing:.08em;line-height:1.3;}
+.ph h2{font-family:var(--sans);font-size:13px;font-weight:800;font-stretch:normal;text-transform:uppercase;letter-spacing:.08em;line-height:1.3;}
+.side>section h2,.wire h2{font-family:var(--sans);text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:800;font-stretch:normal;}
+.kicker-static,.kicker{text-transform:uppercase;letter-spacing:.07em;font-size:12px;font-weight:700;}
+.btn{border-radius:3px;}
+.lead-chart{border-radius:0;background:var(--tint);}
+.hero{border-radius:0;}
+.hero-rail{border-radius:3px;}
+.tape{background:#fff;border-bottom:1px solid var(--rule);}
+.foot{background:#0B0F12;border-top:0;}
+.foot p{color:#A9B3B8;}
+.foot .wordmark.small{color:#fff !important;--strand2:var(--mint);}
+.subnav{border-bottom:1px solid var(--rule);}
+.subnav-h{font-size:22px;font-weight:700;letter-spacing:-.01em;}
+.subnav button.on{border-bottom-width:3px;border-bottom-color:var(--ink);}
+
+/* top masthead */
+.utility{display:none;}
+.app.lay-top .utility{display:block;background:#0B0F12;color:#C3CCD0;font-size:12.5px;}
+.utility-in{max-width:1320px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:20px;height:34px;white-space:nowrap;overflow:hidden;}
+.utility-date{color:#fff;font-weight:600;}
+.utility-sp{flex:1;}
+.utility-btn{background:none;border:0;padding:4px 0;font-size:12.5px;font-weight:600;color:#C3CCD0 !important;}
+.utility-btn:hover{color:#fff !important;text-decoration:underline;text-underline-offset:3px;}
+.app.lay-top .mast{position:static;background:#fff;color:var(--ink);border-bottom:1px solid var(--rule);backdrop-filter:none;-webkit-backdrop-filter:none;}
+.app.lay-top .mast-in{flex-wrap:wrap;align-items:center;gap:0 24px;min-height:0;padding:20px 24px 0;}
+.app.lay-top .wordmark{order:1;font-size:40px;color:var(--ink) !important;--strand2:var(--teal);--rung:#7CC4BA;}
+.app.lay-top .wordmark:hover .xg-b,.app.lay-top .wordmark:hover .ul-b{stroke:var(--teal-d);}
+.app.lay-top .omni{order:2;margin-left:auto;width:300px;}
+.app.lay-top .omni input{background:var(--tint);border-color:var(--rule);color:var(--ink);border-radius:3px;}
+.app.lay-top .omni input:focus{background:#fff;border-color:var(--ink);}
+.app.lay-top .omni input::placeholder{color:var(--mut);}
+.app.lay-top .side-foot{display:none;}
+.app.lay-top .nav{order:3;flex-basis:100%;margin:16px 0 0;padding:0;border-top:1px solid var(--rule);gap:0;}
+.app.lay-top .nav .nav-top{color:var(--ink);border-radius:0;padding:13px 18px 12px;font-size:15px;font-weight:700;box-shadow:none;}
+.app.lay-top .nav-group:first-child .nav-top{padding-left:0;}
+.app.lay-top .nav-group:hover .nav-top,.app.lay-top .nav-group:focus-within .nav-top{background:none;color:var(--teal-d);}
+.app.lay-top .nav-group.cur .nav-top{color:var(--ink);background:none;border-radius:0;box-shadow:inset 0 -4px 0 var(--teal);}
+.app.lay-top .nav-menu{top:100%;border-radius:0 0 3px 3px;border-top:2px solid var(--ink);}
+.app.lay-top .nav-menu::before{display:none;}
+@media (max-width:960px){
+  .utility-in{padding:0 16px;}
+  .utility .hide-sm{display:none;}
+  .app.lay-top .mast-in{padding:12px 16px 0;gap:10px 14px;}
+  .app.lay-top .wordmark{font-size:30px;}
+  .app.lay-top .omni{flex:1;width:auto;min-width:140px;}
+  .app.lay-top .nav{margin:10px -16px 0;padding:0 6px;overflow-x:auto;}
+  .app.lay-top .nav .nav-top,.app.lay-top .nav-group:first-child .nav-top{padding:11px 10px;font-size:14px;color:var(--ink);background:none;}
+  .app.lay-top .nav-group.cur .nav-top{color:var(--ink);background:none;box-shadow:inset 0 -3px 0 var(--teal);}
+  .main{padding:18px 16px 44px;}
 }
 `;

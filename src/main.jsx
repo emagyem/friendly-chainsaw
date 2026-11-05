@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@fontsource-variable/bricolage-grotesque/standard.css'
 import '@fontsource-variable/instrument-sans/wdth.css'
+import '@fontsource-variable/source-serif-4/opsz.css'
 import './index.css'
 import { loadData } from './data.js'
 
