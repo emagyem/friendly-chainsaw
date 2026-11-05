@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .coverage-changed
+
+# Local Cloudflare test runs
+.wrangler

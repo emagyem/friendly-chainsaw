@@ -1,6 +1,7 @@
 /* ------------------------------------------------------------------
    POST /api/waitlist on Cloudflare Pages: stores waitlist sign-ups in a
-   Cloudflare D1 database (free tier).
+   Cloudflare D1 database (free tier), and removes them on request
+   ({ "action": "remove", "email": ... }) from the Privacy page.
 
    Setup, once: create a D1 database (Storage & Databases → D1), then in
    the Pages project → Settings → Bindings, add a D1 binding with the
@@ -10,18 +11,17 @@
      SELECT email, role, created_at FROM waitlist ORDER BY created_at DESC;
 ------------------------------------------------------------------- */
 
-import { json, makeLimiter, sameOrigin } from "../../server/ask-core.js";
+import { json, sameOrigin } from "../../server/ask-core.js";
+import { humanCheck, rateLimit } from "../../server/guard.js";
 
 const ROLES = new Set(["", "Fund analyst or PM", "Family office", "Independent investor", "Biotech operator", "Other"]);
 const EMAIL = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[A-Za-z]{2,}$/;
-const allow = makeLimiter(5, 10 * 60 * 1000);
 
 export async function onRequestPost({ request, env }) {
   if (!sameOrigin(request)) return json(403, { error: "Not allowed" });
   if (!env.WAITLIST) return json(503, { error: "Sign-ups aren't open yet" });
 
-  const ip = request.headers.get("cf-connecting-ip") || "unknown";
-  if (!allow(ip)) return json(429, { error: "Too many attempts; try again later" });
+  if (!(await rateLimit(env, request, "waitlist", 5, 600))) return json(429, { error: "Too many attempts; try again later" });
 
   let body;
   try { body = await request.json(); } catch { return json(400, { error: "Body must be JSON" }); }
@@ -29,9 +29,19 @@ export async function onRequestPost({ request, env }) {
   // Honeypot: real visitors never see this field. Pretend success so bots learn nothing.
   if (body?.botField) return json(200, { ok: true });
 
+  if (!(await humanCheck(env, request, body?.turnstileToken))) return json(403, { error: "Human check failed; reload the page and try again" });
+
   const email = typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
   const role = typeof body?.role === "string" ? body.role : "";
   if (!email || email.length > 254 || !EMAIL.test(email)) return json(400, { error: "Enter a valid email address" });
+
+  if (body?.action === "remove") {
+    try {
+      await env.WAITLIST.prepare("DELETE FROM waitlist WHERE email = ?1").bind(email).run();
+    } catch { /* table not created yet: nothing to remove */ }
+    // Same answer whether or not the address was on the list, so the form can't be used to check who signed up.
+    return json(200, { ok: true });
+  }
   if (!ROLES.has(role)) return json(400, { error: "Unknown role" });
 
   try {

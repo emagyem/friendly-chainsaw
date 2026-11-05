@@ -1,0 +1,27 @@
+# Scans the site's code for security problems on every push to main and weekly.
+# Results appear under the repo's Security tab → Code scanning.
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+    paths: ["src/**", "server/**", "functions/**", "scripts/**"]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "17 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+      - uses: github/codeql-action/analyze@v3

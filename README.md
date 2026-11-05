@@ -58,7 +58,9 @@ scripts/universe.mjs           the monthly coverage screen
 .github/workflows/refresh-data.yml   runs fetch-data every weekday and commits the result
 .github/workflows/universe.yml       runs the coverage screen on the 3rd of each month
 functions/api/ask.js           Cloudflare function for the Ask tab; holds the API key
-functions/api/waitlist.js      Cloudflare function that stores waitlist sign-ups in D1
+functions/api/waitlist.js      Cloudflare function that stores (and removes) waitlist sign-ups in D1
+functions/api/config.js        public settings for the browser (the Turnstile site key)
+server/guard.js                rate limits and the Turnstile human check
 server/ask-core.js             shared logic behind the Ask tab
 src/App.jsx                    the site: pages, navigation and styles
 src/fps.js                     the Financing Pressure Score
@@ -91,6 +93,18 @@ The site, the Ask function (`functions/api/ask.js`) and the waitlist (`functions
 To read sign-ups: D1 → the database → **Console**, run `SELECT email, role, created_at FROM waitlist ORDER BY created_at DESC;`
 
 Security and caching headers live in `public/_headers`.
+
+### Security
+
+Already handled in the code:
+
+- Security headers for every page in `public/_headers` (content security policy, HTTPS only, no embedding in other sites).
+- `/api/ask` and `/api/waitlist` refuse requests from other websites and limit each visitor (Ask: 6 a minute and 60 a day; waitlist: 5 per 10 minutes). Limits are counted in the D1 database, so they hold across Cloudflare's servers; visitors are stored only as a one-way hash of IP address and date, kept under a day (`server/guard.js`).
+- Cloudflare Turnstile human check on Ask, the waitlist and email removal. It turns on when you add the keys below, and stays off until then.
+- The Privacy page (`/#privacy`) explains what is collected and lets anyone delete their waitlist email.
+- CodeQL scans the code on every push and weekly (`.github/workflows/codeql.yml`); Dependabot proposes security updates.
+
+To turn on Turnstile: Cloudflare → **Turnstile** → **Add widget**, hostname `helixora.pages.dev`, mode **Managed**. Then in the Pages project → **Settings → Variables and Secrets**, add `TURNSTILE_SITE_KEY` (type Text) and `TURNSTILE_SECRET_KEY` (type Secret), and redeploy.
 
 ### 3. Run locally
 

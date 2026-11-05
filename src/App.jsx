@@ -1169,6 +1169,7 @@ function Ask() {
   const [q, setQ] = useState("");
   const [log, setLog] = useState([]);
   const [busy, setBusy] = useState(false);
+  const { mount: tsMount, token: tsToken, ready: tsReady, used: tsUsed } = useHumanCheck();
 
   const suggestions = [
     "Which companies may need financing within 12 months?",
@@ -1202,7 +1203,7 @@ function Ask() {
 
   const send = async (question) => {
     const text = (question ?? q).trim();
-    if (!text || busy) return;
+    if (!text || busy || !tsReady) return;
     setQ("");
     setLog((l) => [...l, { role: "user", text }]);
     setBusy(true);
@@ -1212,8 +1213,9 @@ function Ask() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // Only the question is sent; the server builds the data from the published data file.
-        body: JSON.stringify({ question: text }),
+        body: JSON.stringify({ question: text, turnstileToken: tsToken }),
       });
+      tsUsed();
       if (res.status === 429) {
         setLog((l) => [...l, { role: "ai", text: "That's a lot of questions in a short time. Wait a minute and ask again.", fallback: true }]);
         setBusy(false);
@@ -1236,7 +1238,7 @@ function Ask() {
           <span className="ph-note">Answers use only the figures on this site.</span></header>
         {log.length === 0 && (
           <div className="sugg">
-            {suggestions.map((s) => <button key={s} onClick={() => send(s)}>{s}</button>)}
+            {suggestions.map((s) => <button key={s} disabled={!tsReady} onClick={() => send(s)}>{s}</button>)}
           </div>
         )}
         <div className="log">
@@ -1251,8 +1253,9 @@ function Ask() {
         <div className="askbar">
           <input value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && send()}
             placeholder="Ask about runway, catalysts, valuation, or a specific ticker" />
-          <button onClick={() => send()} disabled={busy || !q.trim()}>Ask</button>
+          <button onClick={() => send()} disabled={busy || !q.trim() || !tsReady}>{tsReady ? "Ask" : "Checking…"}</button>
         </div>
+        <div ref={tsMount} className="ts-box" />
       </section>
     </div>
   );
@@ -1447,20 +1450,73 @@ function FpsPanel({ c, go }) {
   );
 }
 
+/* ---------------------------- human check ----------------------------
+   Cloudflare Turnstile on the forms that cost money or collect data.
+   It stays off until TURNSTILE_SITE_KEY is set in Cloudflare; then most
+   visitors see nothing, and only suspicious traffic gets a challenge.   */
+
+let TS_KEY; // undefined = not looked up yet, null = off
+let TS_SCRIPT;
+async function turnstileKey() {
+  if (TS_KEY === undefined) {
+    try { TS_KEY = (await (await fetch("/api/config")).json()).turnstileSiteKey || null; } catch { TS_KEY = null; }
+  }
+  return TS_KEY;
+}
+function loadTurnstile() {
+  if (!TS_SCRIPT) TS_SCRIPT = new Promise((resolve, reject) => {
+    const el = document.createElement("script");
+    el.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    el.async = true;
+    el.onload = () => resolve(window.turnstile);
+    el.onerror = reject;
+    document.head.appendChild(el);
+  });
+  return TS_SCRIPT;
+}
+function useHumanCheck() {
+  const [el, setEl] = useState(null); // the box the widget draws into (a callback ref)
+  const [on, setOn] = useState(false);
+  const [token, setToken] = useState(null);
+  const [widget, setWidget] = useState(null);
+  useEffect(() => {
+    if (!el) return;
+    const h = { live: true, id: null };
+    turnstileKey().then(async (key) => {
+      if (!key || !h.live) return;
+      setOn(true);
+      const ts = await loadTurnstile();
+      if (!h.live) return;
+      h.id = ts.render(el, {
+        sitekey: key, appearance: "interaction-only",
+        callback: setToken, "expired-callback": () => setToken(null), "error-callback": () => setToken(null),
+      });
+      setWidget(h.id);
+    }).catch(() => setOn(false));
+    return () => { h.live = false; if (h.id != null && window.turnstile) window.turnstile.remove(h.id); };
+  }, [el]);
+  // Each token works once; get a fresh one after every submission.
+  const used = () => { setToken(null); if (widget != null && window.turnstile) window.turnstile.reset(widget); };
+  return { mount: setEl, token, ready: !on || !!token, used };
+}
+
 function Waitlist({ compact }) {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [state, setState] = useState("idle");
+  const { mount: tsMount, token: tsToken, ready: tsReady, used: tsUsed } = useHumanCheck();
   const submit = async (e) => {
     e.preventDefault();
+    if (!tsReady) return;
     setState("sending");
     try {
       // Sign-ups are stored in Cloudflare D1 by functions/api/waitlist.js.
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, role, botField: "" }),
+        body: JSON.stringify({ email, role, botField: "", turnstileToken: tsToken }),
       });
+      tsUsed();
       setState(res.ok ? "done" : "error");
     } catch { setState("error"); }
   };
@@ -1481,10 +1537,11 @@ function Waitlist({ compact }) {
           <option>Biotech operator</option>
           <option>Other</option>
         </select>
-        <button type="submit" disabled={state === "sending"}>{state === "sending" ? "Joining…" : "Join the waitlist"}</button>
+        <button type="submit" disabled={state === "sending" || !tsReady}>{state === "sending" ? "Joining…" : tsReady ? "Join the waitlist" : "Checking…"}</button>
       </div>
+      <div ref={tsMount} className="ts-box" />
       {state === "error" && <p className="wl-err">That didn't go through. Check your connection and try again.</p>}
-      <p className="wl-fine">We'll only email you about Helixora. Unsubscribe any time.</p>
+      <p className="wl-fine">We'll only email you about Helixora. Unsubscribe any time. <a className="src" href="#privacy">How we handle your email</a></p>
     </form>
   );
 }
@@ -2730,6 +2787,69 @@ function CoveragePanel() {
   );
 }
 
+function RemoveMe() {
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState("idle");
+  const { mount: tsMount, token: tsToken, ready: tsReady, used: tsUsed } = useHumanCheck();
+  const submit = async (e) => {
+    e.preventDefault();
+    if (!tsReady) return;
+    setState("sending");
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "remove", email, turnstileToken: tsToken }),
+      });
+      tsUsed();
+      setState(res.ok ? "done" : "error");
+    } catch { setState("error"); }
+  };
+  if (state === "done") return <p className="wl-done">Done. If {email} was on the waitlist, it has been deleted.</p>;
+  return (
+    <form className="removeme" onSubmit={submit}>
+      <label className="sr" htmlFor="rm-email">Email to remove</label>
+      <input id="rm-email" type="email" required placeholder="you@fund.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <button className="btn" type="submit" disabled={state === "sending" || !tsReady}>{state === "sending" ? "Removing…" : "Remove my email"}</button>
+      <div ref={tsMount} className="ts-box" />
+      {state === "error" && <p className="wl-err">That didn't go through. Try again in a few minutes.</p>}
+    </form>
+  );
+}
+
+function Privacy() {
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">Privacy</p>
+        <h1 className="report-h">What Helixora collects, and what it doesn't.</h1>
+        <p className="lead-dek">You can read every page without an account. Helixora sets no tracking cookies and doesn't sell or share data.</p>
+      </section>
+      <section className="panel">
+        <header className="ph"><h2>What we collect</h2></header>
+        <div className="tablewrap">
+          <table className="grid plain">
+            <thead><tr><th>When</th><th>What</th><th>Why</th><th>How long</th></tr></thead>
+            <tbody>
+              <tr><td><b>You join the waitlist</b></td><td>Your email, the role you pick (optional), your country as reported by Cloudflare, and the sign-up time</td><td>To send the Financing Pressure Report and see who it's useful to</td><td>Until you remove it</td></tr>
+              <tr><td><b>You use Ask Helixora</b></td><td>Your question, sent to Anthropic's API to write the answer</td><td>To answer it. Helixora doesn't store questions.</td><td>Not kept by Helixora; Anthropic handles API data under its own terms</td></tr>
+              <tr><td><b>You submit a form</b></td><td>A one-way scrambled code made from your IP address and the date; Cloudflare Turnstile may check your browser</td><td>To limit abuse and stop bots</td><td>Codes expire within a day</td></tr>
+              <tr><td><b>You change a setting</b></td><td>Your watchlist and menu layout, stored in your own browser</td><td>To remember your choices</td><td>Until you clear your browser data; never sent to us</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="colnote">The site runs on Cloudflare, which processes visitors' IP addresses to deliver pages and block attacks. If page-view counts are turned on, they come from Cloudflare Web Analytics, which doesn't use cookies or track individuals.</p>
+      </section>
+      <section className="panel">
+        <header className="ph"><h2>Remove your email</h2></header>
+        <p className="prose">Enter the address you signed up with and it will be deleted from the waitlist straight away.</p>
+        <RemoveMe />
+      </section>
+      <p className="disclaimer">Last updated November 4, 2026. If this page changes, the date above will change too.</p>
+    </div>
+  );
+}
+
 /* -------------------------------- logo --------------------------------
    The "x" in helixora is one turn of a double helix: two strands crossing,
    with base-pair rungs at the open ends. The masthead version adds a thin
@@ -2775,7 +2895,7 @@ const NAV = [
   { k: "ask", l: "Ask Helixora", items: [["ask", "Ask Helixora"]] },
   { k: "about", l: "About us", items: [["about", "About us"]] },
 ];
-const groupOf = (v) => NAV.find((g) => g.items.some(([k]) => k === v)) || NAV[0];
+const groupOf = (v) => NAV.find((g) => g.items.some(([k]) => k === (v === "privacy" ? "about" : v))) || NAV[0];
 
 const WATCH_KEY = "readout-watchlist";
 function loadWatch() {
@@ -2806,6 +2926,14 @@ export default function App() {
     if (t) setTicker(t); setCompanyTab(tab || "overview"); setAnchor(a); setView(v);
     if (!a) window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  // helixora.pages.dev/#privacy opens the Privacy page (linked from the waitlist form).
+  useEffect(() => {
+    const fromHash = () => { if (window.location.hash === "#privacy") { setView("privacy"); window.scrollTo({ top: 0 }); } };
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+    return () => window.removeEventListener("hashchange", fromHash);
+  }, []);
+  useEffect(() => { if (view !== "privacy" && window.location.hash === "#privacy") history.replaceState(null, "", window.location.pathname); }, [view]);
   const toggleWatch = (t) => setWatch((w) => (w.includes(t) ? w.filter((x) => x !== t) : [...w, t]));
 
   const matches = omni.trim()
@@ -2878,7 +3006,7 @@ export default function App() {
           <span className="subnav-h">{cur.l}</span>
           {cur.items.length > 1
             ? cur.items.map(([k, l]) => <button key={k} className={view === k ? "on" : ""} aria-current={view === k ? "page" : undefined} onClick={() => go(k)}>{l}</button>)
-            : cur.k !== "about" ? null : ABOUT_SECTIONS.map(([id, l]) => <button key={id} onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{l}</button>)}
+            : view !== "about" ? null : ABOUT_SECTIONS.map(([id, l]) => <button key={id} onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{l}</button>)}
         </div>
       </nav>
       <div className="tape">
@@ -2896,6 +3024,7 @@ export default function App() {
         {view === "ask" && <Ask />}
         {view === "research" && <Research go={go} />}
         {view === "about" && <About key={anchor || "top"} go={go} anchor={anchor} />}
+        {view === "privacy" && <Privacy />}
         {view === "outlook" && <Outlook go={go} />}
       </main>
 
@@ -2910,6 +3039,7 @@ export default function App() {
               <>Showing the built-in sample dataset: companies, figures, and dates are fictional.{" "}</>
             )}
             Helixora publishes general research about companies' financing situations. It is not investment advice, is not tailored to any reader, and does not recommend buying or selling any security.
+            {" "}<a className="foot-link" href="#privacy">Privacy</a>
           </p>
         </div>
       </footer>
@@ -3571,6 +3701,12 @@ details.more summary:hover{color:var(--teal);}
 .report-head{padding:18px 0 10px;border-top:0;}
 .ph{margin-bottom:14px;}
 .wire{padding:12px 0 6px;}
+.ts-box:empty{display:none;}
+.ts-box{margin-top:12px;}
+.removeme{display:flex;flex-wrap:wrap;gap:10px;align-items:center;max-width:560px;}
+.removeme input{flex:1;min-width:200px;font:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--rule);border-radius:3px;}
+.removeme .ts-box,.removeme .wl-err{flex-basis:100%;}
+.foot-link{color:#fff !important;text-decoration:underline;text-underline-offset:3px;}
 .quote{border:0;border-radius:0;padding:14px 0 6px;}
 .q-id h1{font-family:var(--serif);font-stretch:normal;letter-spacing:-.015em;}
 .problem-h{font-family:var(--serif);font-size:24px;font-weight:650;line-height:1.25;color:var(--ink);margin-bottom:10px;}
@@ -3600,8 +3736,8 @@ details.more summary:hover{color:var(--teal);}
 .utility-btn:hover{color:#fff !important;text-decoration:underline;text-underline-offset:3px;}
 .app.lay-top .mast{position:static;background:#fff;color:var(--ink);border-bottom:1px solid var(--rule);backdrop-filter:none;-webkit-backdrop-filter:none;}
 .app.lay-top .mast-in{flex-wrap:wrap;align-items:center;gap:0 24px;min-height:0;padding:20px 24px 0;}
-.app.lay-top .wordmark{order:1;font-size:40px;color:var(--ink) !important;--strand2:var(--teal);--rung:#7CC4BA;}
-.app.lay-top .wordmark:hover .xg-b,.app.lay-top .wordmark:hover .ul-b{stroke:var(--teal-d);}
+.app.lay-top .mast .wordmark{order:1;font-size:40px;color:var(--ink) !important;--strand2:var(--teal);--rung:#7CC4BA;}
+.app.lay-top .mast .wordmark:hover .xg-b,.app.lay-top .mast .wordmark:hover .ul-b{stroke:var(--teal-d);}
 .app.lay-top .omni{order:2;margin-left:auto;width:300px;}
 .app.lay-top .omni input{background:var(--tint);border-color:var(--rule);color:var(--ink);border-radius:3px;}
 .app.lay-top .omni input:focus{background:#fff;border-color:var(--ink);}
@@ -3618,7 +3754,7 @@ details.more summary:hover{color:var(--teal);}
   .utility-in{padding:0 16px;}
   .utility .hide-sm{display:none;}
   .app.lay-top .mast-in{padding:12px 16px 0;gap:10px 14px;}
-  .app.lay-top .wordmark{font-size:30px;}
+  .app.lay-top .mast .wordmark{font-size:30px;}
   .app.lay-top .omni{flex:1;width:auto;min-width:140px;}
   .app.lay-top .nav{margin:10px -16px 0;padding:0 6px;overflow-x:auto;}
   .app.lay-top .nav .nav-top,.app.lay-top .nav-group:first-child .nav-top{padding:11px 10px;font-size:14px;color:var(--ink);background:none;}
