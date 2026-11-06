@@ -13,7 +13,7 @@ export const MAX_QUESTION = 400;
 const MAX_TOKENS = 600;
 const DATA_TTL_MS = 10 * 60 * 1000;
 // Cloudflare Workers AI model used when no working Anthropic key is available.
-export const WORKERS_AI_MODEL = "@cf/meta/llama-4-scout-17b-16e-instruct";
+export const WORKERS_AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 
 export const json = (status, obj, headers = {}) =>
   new Response(JSON.stringify(obj), {
@@ -60,6 +60,21 @@ export function buildFacts(dataFile, today = new Date()) {
       note: c.note || null,
     };
   });
+}
+
+// A smaller, pre-sorted version of the facts for open models: they answer list
+// questions ("who has under 12 months?") far more reliably when the data is short and already ordered.
+export function compactFacts(facts) {
+  return [...facts]
+    .sort((a, b) => (a.runway_months ?? 999) - (b.runway_months ?? 999))
+    .map((f) => ({
+      ticker: f.ticker, name: f.name, area: f.area,
+      runway_months: f.runway_months, cash_musd: f.cash_musd, monthly_burn_musd: f.monthly_burn_musd,
+      financing_pressure_score: f.financing_pressure_score, band: f.financing_pressure_band,
+      raise_capacity: f.raise_capacity, market_cap_musd: f.market_cap_musd,
+      next_major_catalyst: f.next_major_catalyst,
+      programs: (f.programs || []).slice(0, 4).map((p) => `${p.drug} (${p.phase}, ${p.indication})`),
+    }));
 }
 
 let cache = { at: 0, facts: null, asOf: null };
@@ -112,7 +127,13 @@ QUESTION: ${q}`;
 
   if (ai) {
     try {
-      const out = await ai.run(WORKERS_AI_MODEL, { messages: [{ role: "user", content: prompt }], max_tokens: MAX_TOKENS });
+      const short = `You are the research assistant on Helixora, a biotech financing-risk research site. Answer only from the data below; never invent a company, number or date. The companies are listed in order of runway_months, shortest first. When a question sets a threshold (for example "within 12 months" or "under 18 months of cash"), include exactly the companies whose runway_months meets it and no others, checking each number. Cite the figures you used, like "$69M cash against $16.8M monthly burn, 4.1 months". No buy or sell recommendations. Under 180 words, plain prose or plain hyphen lists, no headers. End with one line starting "Worth checking:" naming the assumption that matters most.
+
+DATA (dollar figures in millions USD, refreshed ${cache.asOf || "recently"}):
+${JSON.stringify(compactFacts(cache.facts))}
+
+QUESTION: ${q}`;
+      const out = await ai.run(WORKERS_AI_MODEL, { messages: [{ role: "user", content: short }], max_tokens: MAX_TOKENS, temperature: 0.2 });
       const text = (typeof out?.response === "string" ? out.response : JSON.stringify(out?.response ?? "")).trim();
       if (text) return json(200, { text, engine: "workers-ai", ...(claudeError ? { claudeError: claudeError.reason } : {}) });
     } catch (e) {
