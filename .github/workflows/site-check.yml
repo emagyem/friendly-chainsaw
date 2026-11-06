@@ -1,0 +1,23 @@
+# Checks the live site every Monday and on demand: pages, data freshness,
+# security headers, Ask and the waitlist. Results show in the run summary.
+name: Site check
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/site-check.mjs", ".github/workflows/site-check.yml"]
+  schedule:
+    - cron: "41 15 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 22 }
+      - run: node scripts/site-check.mjs https://helixora.pages.dev
