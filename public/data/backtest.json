@@ -1,30 +1,30 @@
 {
- "generatedAt": "2026-11-06T06:40:44.728Z",
+ "generatedAt": "2026-11-06T09:31:12.025Z",
  "fpsVersion": "1.1",
  "question": "Did the Financing Pressure Score flag biotechs before they sold stock?",
  "universe": "Every company with industry code 2834, 2836 or 8731 that reported R&D spending to the SEC, burned cash, and had under $50M of trailing revenue, at each balance sheet filed 2012–2025. Includes companies that later stopped filing.",
  "outcome": "A stock offering filing (424B4 or 424B5) or a jump of 15%+ in shares outstanding within 12 months after the balance sheet was filed.",
- "pointInTime": "Each row uses only figures filed with the SEC on or before its date.",
+ "pointInTime": "Each row uses only figures filed with the SEC on or before its date, including the catalyst dates the company gave in that filing.",
  "limits": [
-  "Catalyst timing isn't included: past expected trial dates aren't available in bulk, so every company gets the score's standard assumption of an event 18 months out.",
+  "Catalyst timing comes from what each company said in the 10-Q or 10-K behind that balance sheet (for example, \"topline data in the second half of 2019\"), read automatically. Where no dated guidance was found, the score's standard assumption of an event 18 months out is used. The reader can misread a sentence, and companies' own timelines often slip.",
   "Pipeline concentration isn't included; the score is re-weighted over the parts that are.",
   "Market access uses the public float reported in each 10-K instead of daily market value, because price history isn't freely available for delisted companies.",
   "An ATM program is detected from sales-agreement language in prospectus supplements found by SEC full-text search; a few may be missed or misread.",
   "A share-count jump can also come from a merger or debt conversion, not only a stock sale."
  ],
- "requests": 1256,
+ "requests": 31266,
  "rows": 23927,
  "companies": 1073,
  "companiesNoLongerFiling": 538,
  "events12": 14159,
  "base12": 0.592,
  "base6": 0.374,
- "auc": 0.581,
+ "auc": 0.558,
  "aucRunwayOnly": 0.522,
  "components": {
   "gap": {
    "n": 23927,
-   "auc": 0.546
+   "auc": 0.52
   },
   "trend": {
    "n": 22606,
@@ -46,83 +46,83 @@
  "bands": [
   {
    "band": "High",
-   "n": 6843,
-   "raised12": 0.68,
-   "raised6": 0.469
+   "n": 4722,
+   "raised12": 0.659,
+   "raised6": 0.456
   },
   {
    "band": "Elevated",
-   "n": 11572,
-   "raised12": 0.58,
-   "raised6": 0.364
+   "n": 11201,
+   "raised12": 0.603,
+   "raised6": 0.389
   },
   {
    "band": "Low",
-   "n": 5512,
-   "raised12": 0.506,
-   "raised6": 0.277
+   "n": 8004,
+   "raised12": 0.536,
+   "raised6": 0.303
   }
  ],
  "deciles": [
   {
    "from": 4,
-   "to": 24,
+   "to": 22,
    "n": 2392,
-   "raised12": 0.463
+   "raised12": 0.46
   },
   {
-   "from": 24,
-   "to": 36,
+   "from": 22,
+   "to": 29,
    "n": 2393,
-   "raised12": 0.534
+   "raised12": 0.553
   },
   {
-   "from": 36,
-   "to": 49,
+   "from": 29,
+   "to": 37,
    "n": 2393,
-   "raised12": 0.55
+   "raised12": 0.578
   },
   {
-   "from": 49,
-   "to": 57,
+   "from": 37,
+   "to": 46,
    "n": 2392,
-   "raised12": 0.554
+   "raised12": 0.585
   },
   {
-   "from": 57,
-   "to": 61,
+   "from": 46,
+   "to": 54,
    "n": 2393,
-   "raised12": 0.55
+   "raised12": 0.611
   },
   {
-   "from": 61,
-   "to": 66,
+   "from": 54,
+   "to": 60,
    "n": 2393,
-   "raised12": 0.625
+   "raised12": 0.608
   },
   {
-   "from": 66,
+   "from": 60,
+   "to": 65,
+   "n": 2392,
+   "raised12": 0.595
+  },
+  {
+   "from": 65,
    "to": 69,
-   "n": 2392,
-   "raised12": 0.601
+   "n": 2393,
+   "raised12": 0.607
   },
   {
    "from": 69,
-   "to": 73,
+   "to": 75,
    "n": 2393,
-   "raised12": 0.651
+   "raised12": 0.653
   },
   {
-   "from": 73,
-   "to": 78,
-   "n": 2393,
-   "raised12": 0.701
-  },
-  {
-   "from": 78,
+   "from": 75,
    "to": 96,
    "n": 2393,
-   "raised12": 0.69
+   "raised12": 0.668
   }
  ],
  "years": [
@@ -130,113 +130,113 @@
    "year": "2012",
    "n": 1139,
    "base": 0.54,
-   "high": 0.561,
-   "low": 0.561,
-   "auc": 0.483
+   "high": 0.53,
+   "low": 0.601,
+   "auc": 0.458
   },
   {
    "year": "2013",
    "n": 1196,
    "base": 0.593,
-   "high": 0.667,
-   "low": 0.533,
-   "auc": 0.562
+   "high": 0.665,
+   "low": 0.547,
+   "auc": 0.556
   },
   {
    "year": "2014",
    "n": 1378,
    "base": 0.582,
-   "high": 0.611,
-   "low": 0.593,
-   "auc": 0.502
+   "high": 0.595,
+   "low": 0.604,
+   "auc": 0.5
   },
   {
    "year": "2015",
    "n": 1528,
    "base": 0.507,
-   "high": 0.63,
-   "low": 0.417,
-   "auc": 0.603
+   "high": 0.603,
+   "low": 0.418,
+   "auc": 0.583
   },
   {
    "year": "2016",
    "n": 1569,
    "base": 0.568,
-   "high": 0.606,
-   "low": 0.528,
-   "auc": 0.542
+   "high": 0.552,
+   "low": 0.548,
+   "auc": 0.519
   },
   {
    "year": "2017",
    "n": 1581,
    "base": 0.636,
-   "high": 0.694,
-   "low": 0.612,
-   "auc": 0.537
+   "high": 0.683,
+   "low": 0.624,
+   "auc": 0.509
   },
   {
    "year": "2018",
    "n": 1691,
    "base": 0.601,
-   "high": 0.672,
-   "low": 0.562,
-   "auc": 0.563
+   "high": 0.64,
+   "low": 0.571,
+   "auc": 0.529
   },
   {
    "year": "2019",
    "n": 1793,
    "base": 0.674,
-   "high": 0.772,
-   "low": 0.609,
-   "auc": 0.595
+   "high": 0.744,
+   "low": 0.634,
+   "auc": 0.548
   },
   {
    "year": "2020",
    "n": 1853,
    "base": 0.726,
-   "high": 0.836,
-   "low": 0.621,
-   "auc": 0.626
+   "high": 0.801,
+   "low": 0.658,
+   "auc": 0.582
   },
   {
    "year": "2021",
    "n": 2189,
    "base": 0.492,
-   "high": 0.6,
-   "low": 0.384,
-   "auc": 0.6
+   "high": 0.589,
+   "low": 0.44,
+   "auc": 0.572
   },
   {
    "year": "2022",
    "n": 2367,
    "base": 0.523,
-   "high": 0.618,
-   "low": 0.422,
-   "auc": 0.587
+   "high": 0.604,
+   "low": 0.455,
+   "auc": 0.574
   },
   {
    "year": "2023",
    "n": 2215,
    "base": 0.594,
-   "high": 0.661,
-   "low": 0.44,
-   "auc": 0.589
+   "high": 0.641,
+   "low": 0.515,
+   "auc": 0.565
   },
   {
    "year": "2024",
    "n": 1997,
    "base": 0.601,
-   "high": 0.699,
-   "low": 0.453,
-   "auc": 0.613
+   "high": 0.729,
+   "low": 0.473,
+   "auc": 0.616
   },
   {
    "year": "2025",
    "n": 1431,
    "base": 0.67,
-   "high": 0.763,
-   "low": 0.615,
-   "auc": 0.592
+   "high": 0.743,
+   "low": 0.614,
+   "auc": 0.577
   }
  ],
  "runwayBuckets": [
@@ -277,66 +277,66 @@
    "raised12": 0.509
   }
  ],
- "leadMonthsHigh": 4,
+ "leadMonthsHigh": 4.1,
  "survivors": {
   "rows": 13531,
-  "auc": 0.636,
+  "auc": 0.617,
   "base12": 0.647
  },
  "nonSurvivors": {
   "rows": 10396,
-  "auc": 0.526,
+  "auc": 0.498,
   "base12": 0.52
  },
  "offeringsOnly": {
   "base12": 0.47,
-  "auc": 0.531,
+  "auc": 0.49,
   "bands": [
    {
     "band": "High",
-    "n": 6843,
-    "raised12": 0.516,
-    "raised6": 0.357
+    "n": 4722,
+    "raised12": 0.456,
+    "raised6": 0.322
    },
    {
     "band": "Elevated",
-    "n": 11572,
-    "raised12": 0.45,
-    "raised6": 0.277
+    "n": 11201,
+    "raised12": 0.469,
+    "raised6": 0.297
    },
    {
     "band": "Low",
-    "n": 5512,
-    "raised12": 0.457,
-    "raised6": 0.25
+    "n": 8004,
+    "raised12": 0.481,
+    "raised6": 0.273
    }
   ]
  },
  "raisedOrEnded": {
   "base12": 0.626,
-  "auc": 0.592,
+  "auc": 0.57,
   "bands": [
    {
     "band": "High",
-    "n": 6843,
-    "raised12": 0.72,
-    "raised6": 0.484
+    "n": 4722,
+    "raised12": 0.702,
+    "raised6": 0.473
    },
    {
     "band": "Elevated",
-    "n": 11572,
-    "raised12": 0.616,
-    "raised6": 0.379
+    "n": 11201,
+    "raised12": 0.64,
+    "raised6": 0.405
    },
    {
     "band": "Low",
-    "n": 5512,
-    "raised12": 0.529,
-    "raised6": 0.286
+    "n": 8004,
+    "raised12": 0.561,
+    "raised6": 0.312
    }
   ],
-  "survivorsAuc": 0.636,
-  "nonSurvivorsAuc": 0.542
+  "survivorsAuc": 0.617,
+  "nonSurvivorsAuc": 0.516
  },
  "eventsByHow": {
   "offering filing": 10322,
@@ -350,6 +350,9 @@
    "runway": 14.7,
    "score": 63,
    "band": "Elevated",
+   "scoreWithoutGuidance": 63,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "share count jump",
    "nextRaise": "2016-12-12"
@@ -361,6 +364,9 @@
    "runway": 12.1,
    "score": 58,
    "band": "Elevated",
+   "scoreWithoutGuidance": 58,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "share count jump",
    "nextRaise": "2016-12-12"
@@ -372,6 +378,9 @@
    "runway": 8.1,
    "score": 59,
    "band": "Elevated",
+   "scoreWithoutGuidance": 59,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "share count jump",
    "nextRaise": "2016-12-12"
@@ -383,6 +392,9 @@
    "runway": 15.9,
    "score": 59,
    "band": "Elevated",
+   "scoreWithoutGuidance": 59,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2018-01-17"
@@ -394,6 +406,9 @@
    "runway": 36.8,
    "score": 21,
    "band": "Low",
+   "scoreWithoutGuidance": 21,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2018-01-17"
@@ -405,6 +420,9 @@
    "runway": 31.6,
    "score": 30,
    "band": "Low",
+   "scoreWithoutGuidance": 30,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2018-01-17"
@@ -416,6 +434,9 @@
    "runway": 36.2,
    "score": 21,
    "band": "Low",
+   "scoreWithoutGuidance": 21,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2018-01-17"
@@ -427,6 +448,9 @@
    "runway": 32.9,
    "score": 29,
    "band": "Low",
+   "scoreWithoutGuidance": 29,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2018-01-17"
@@ -438,6 +462,9 @@
    "runway": 12.5,
    "score": 74,
    "band": "High",
+   "scoreWithoutGuidance": 74,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2019-12-02"
@@ -449,6 +476,9 @@
    "runway": 22.1,
    "score": 68,
    "band": "Elevated",
+   "scoreWithoutGuidance": 68,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2019-12-02"
@@ -460,6 +490,9 @@
    "runway": 15.7,
    "score": 76,
    "band": "High",
+   "scoreWithoutGuidance": 76,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2019-12-02"
@@ -471,6 +504,9 @@
    "runway": 19.4,
    "score": 65,
    "band": "Elevated",
+   "scoreWithoutGuidance": 65,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2019-12-02"
@@ -482,6 +518,9 @@
    "runway": 24.4,
    "score": 55,
    "band": "Elevated",
+   "scoreWithoutGuidance": 55,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2026-01-07"
@@ -493,6 +532,9 @@
    "runway": 14.9,
    "score": 76,
    "band": "High",
+   "scoreWithoutGuidance": 76,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2026-01-07"
@@ -504,6 +546,9 @@
    "runway": 17.7,
    "score": 76,
    "band": "High",
+   "scoreWithoutGuidance": 76,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2026-01-07"
@@ -515,6 +560,9 @@
    "runway": 13.5,
    "score": 76,
    "band": "High",
+   "scoreWithoutGuidance": 76,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2026-01-07"
@@ -524,8 +572,11 @@
    "filed": "2016-03-15",
    "cash": 59,
    "runway": 33.4,
-   "score": 52,
-   "band": "Elevated",
+   "score": 38,
+   "band": "Low",
+   "scoreWithoutGuidance": 52,
+   "monthsToEvent": 3.5,
+   "guidance": "We plan to analyze and submit early data from the Cohort 2 plazomicin treatment arm to a medical meeting for presentation in 2016.",
    "raisedWithinYear": true,
    "how": "share count jump",
    "nextRaise": "2016-08-02"
@@ -535,8 +586,11 @@
    "filed": "2016-05-05",
    "cash": 49,
    "runway": 21.7,
-   "score": 73,
-   "band": "High",
+   "score": 59,
+   "band": "Elevated",
+   "scoreWithoutGuidance": 73,
+   "monthsToEvent": 9.4,
+   "guidance": "We expect top-line results for our Phase 3 EPIC trial in the first quarter of 2017 and expect to submit an NDA for plazomicin in the second half of 2017, with a planned commercial launch of plazomicin in the U.S. in 2018, if our NDA is appr",
    "raisedWithinYear": true,
    "how": "share count jump",
    "nextRaise": "2016-08-02"
@@ -546,8 +600,11 @@
    "filed": "2016-08-08",
    "cash": 70,
    "runway": 20,
-   "score": 79,
-   "band": "High",
+   "score": 50,
+   "band": "Elevated",
+   "scoreWithoutGuidance": 79,
+   "monthsToEvent": 0,
+   "guidance": "We expect to end enrollment in the CARE study in 2016 and announce top-line data results from our Phase 3 CARE study in the first half of 2017.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2016-12-12"
@@ -557,8 +614,11 @@
    "filed": "2016-11-07",
    "cash": 61,
    "runway": 15.8,
-   "score": 84,
-   "band": "High",
+   "score": 59,
+   "band": "Elevated",
+   "scoreWithoutGuidance": 84,
+   "monthsToEvent": 0,
+   "guidance": "We also plan to submit the results to a peer-reviewed journal and for presentation at medical meetings in 2016 and 2017.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2016-12-12"
@@ -568,8 +628,11 @@
    "filed": "2017-03-14",
    "cash": 146,
    "runway": 37.3,
-   "score": 54,
+   "score": 46,
    "band": "Elevated",
+   "scoreWithoutGuidance": 54,
+   "monthsToEvent": 3.6,
+   "guidance": "In addition, we plan to publicly present detailed results from both the EPIC and CARE trials in mid-2017.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2017-05-23"
@@ -579,8 +642,11 @@
    "filed": "2017-05-08",
    "cash": 132,
    "runway": 30.8,
-   "score": 65,
+   "score": 47,
    "band": "Elevated",
+   "scoreWithoutGuidance": 65,
+   "monthsToEvent": 1.8,
+   "guidance": "We plan to submit the results to a peer-reviewed journal and for presentation at medical meetings in 2017.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2017-05-23"
@@ -592,6 +658,9 @@
    "runway": 48.9,
    "score": 45,
    "band": "Elevated",
+   "scoreWithoutGuidance": 45,
+   "monthsToEvent": 0,
+   "guidance": "We plan to submit the results to a peer-reviewed journal in 2017.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2018-02-27"
@@ -601,8 +670,11 @@
    "filed": "2017-11-08",
    "cash": 199,
    "runway": 32,
-   "score": 63,
+   "score": 47,
    "band": "Elevated",
+   "scoreWithoutGuidance": 63,
+   "monthsToEvent": 0,
+   "guidance": "We plan to submit the results to a peer-reviewed journal in 2017.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2018-02-27"
@@ -612,8 +684,11 @@
    "filed": "2018-02-27",
    "cash": 165,
    "runway": 20.8,
-   "score": 72,
-   "band": "High",
+   "score": 49,
+   "band": "Elevated",
+   "scoreWithoutGuidance": 72,
+   "monthsToEvent": 3.5,
+   "guidance": "Our current plans anticipate FDA approval of plazomicin in June 2018 and subsequent commercial launch in the United States in 2018, if our NDA is approved by the PDUFA date.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2019-02-15"
@@ -623,8 +698,11 @@
    "filed": "2018-05-07",
    "cash": 144,
    "runway": 13.4,
-   "score": 76,
-   "band": "High",
+   "score": 57,
+   "band": "Elevated",
+   "scoreWithoutGuidance": 76,
+   "monthsToEvent": 1.6,
+   "guidance": "The FDA has accepted review of the NDA and has granted the NDA Priority Review as well as set a Prescription Drug User Fee Act (\"PDUFA\") target action date of June 25, 2018.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2019-02-15"
@@ -636,6 +714,9 @@
    "runway": 6.7,
    "score": 78,
    "band": "High",
+   "scoreWithoutGuidance": 78,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2019-02-15"
@@ -647,6 +728,9 @@
    "runway": 3.9,
    "score": 78,
    "band": "High",
+   "scoreWithoutGuidance": 78,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2019-02-15"
@@ -658,6 +742,9 @@
    "runway": 2.3,
    "score": 94,
    "band": "High",
+   "scoreWithoutGuidance": 94,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": null
@@ -667,8 +754,11 @@
    "filed": "2016-03-08",
    "cash": 14,
    "runway": 19.4,
-   "score": 68,
+   "score": 45,
    "band": "Elevated",
+   "scoreWithoutGuidance": 68,
+   "monthsToEvent": 3.8,
+   "guidance": "We plan to complete an in vivo study in an established model of disease and report preliminary data in 2016.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2016-04-08"
@@ -680,6 +770,9 @@
    "runway": 12.2,
    "score": 71,
    "band": "High",
+   "scoreWithoutGuidance": 71,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "share count jump",
    "nextRaise": "2017-02-28"
@@ -691,6 +784,9 @@
    "runway": 16.3,
    "score": 81,
    "band": "High",
+   "scoreWithoutGuidance": 81,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "share count jump",
    "nextRaise": "2017-02-28"
@@ -702,6 +798,9 @@
    "runway": 14.7,
    "score": 82,
    "band": "High",
+   "scoreWithoutGuidance": 82,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "share count jump",
    "nextRaise": "2017-02-28"
@@ -713,6 +812,9 @@
    "runway": 14.3,
    "score": 80,
    "band": "High",
+   "scoreWithoutGuidance": 80,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2017-06-15"
@@ -724,6 +826,9 @@
    "runway": 12.7,
    "score": 68,
    "band": "Elevated",
+   "scoreWithoutGuidance": 68,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2017-06-15"
@@ -733,8 +838,11 @@
    "filed": "2017-08-09",
    "cash": 12,
    "runway": 11.5,
-   "score": 72,
-   "band": "High",
+   "score": 59,
+   "band": "Elevated",
+   "scoreWithoutGuidance": 72,
+   "monthsToEvent": 3.2,
+   "guidance": "We currently expect to report initial results from this Phase 2 trial in the fourth quarter of 2017.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2017-09-29"
@@ -744,8 +852,11 @@
    "filed": "2017-11-08",
    "cash": 10,
    "runway": 8.9,
-   "score": 77,
-   "band": "High",
+   "score": 63,
+   "band": "Elevated",
+   "scoreWithoutGuidance": 77,
+   "monthsToEvent": 0.2,
+   "guidance": "We currently expect to report initial results from this Phase 2 trial in the fourth quarter of 2017.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2017-12-05"
@@ -755,8 +866,11 @@
    "filed": "2018-03-07",
    "cash": 21,
    "runway": 16.7,
-   "score": 80,
-   "band": "High",
+   "score": 54,
+   "band": "Elevated",
+   "scoreWithoutGuidance": 80,
+   "monthsToEvent": 0.8,
+   "guidance": "We expect to receive follow-up data related to this study in the first half of 2018 and to then engage in further discussions with the U.S.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2018-06-06"
@@ -768,6 +882,9 @@
    "runway": 55.4,
    "score": 40,
    "band": "Elevated",
+   "scoreWithoutGuidance": 40,
+   "monthsToEvent": 4.7,
+   "guidance": "We are currently conducting a Phase 2 clinical trial of VK2809 in approximately 60 patients with hypercholesterolemia and fatty liver disease and expect to report initial results from this Phase 2 clinical trial in the second half of 2018.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2018-06-06"
@@ -779,6 +896,9 @@
    "runway": 79.5,
    "score": 39,
    "band": "Low",
+   "scoreWithoutGuidance": 39,
+   "monthsToEvent": 1.7,
+   "guidance": "In June 2018, we announced that enrollment had been completed for this study and that we expect to report initial results from this Phase 2 clinical trial in the second half of 2018.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2018-09-19"
@@ -790,6 +910,9 @@
    "runway": 120,
    "score": 39,
    "band": "Low",
+   "scoreWithoutGuidance": 39,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2019-08-02"
@@ -801,6 +924,9 @@
    "runway": 120,
    "score": 24,
    "band": "Low",
+   "scoreWithoutGuidance": 24,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2019-08-02"
@@ -812,6 +938,9 @@
    "runway": 120,
    "score": 11,
    "band": "Low",
+   "scoreWithoutGuidance": 11,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2019-08-02"
@@ -823,6 +952,9 @@
    "runway": 120,
    "score": 17,
    "band": "Low",
+   "scoreWithoutGuidance": 17,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2019-08-02"
@@ -834,6 +966,9 @@
    "runway": 120,
    "score": 18,
    "band": "Low",
+   "scoreWithoutGuidance": 18,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2021-08-11"
@@ -845,6 +980,9 @@
    "runway": 120,
    "score": 32,
    "band": "Low",
+   "scoreWithoutGuidance": 32,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2021-08-11"
@@ -856,6 +994,9 @@
    "runway": 120,
    "score": 34,
    "band": "Low",
+   "scoreWithoutGuidance": 34,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2021-08-11"
@@ -867,6 +1008,9 @@
    "runway": 120,
    "score": 34,
    "band": "Low",
+   "scoreWithoutGuidance": 34,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2021-08-11"
@@ -878,6 +1022,9 @@
    "runway": 109.3,
    "score": 35,
    "band": "Low",
+   "scoreWithoutGuidance": 35,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2021-08-11"
@@ -889,6 +1036,9 @@
    "runway": 120,
    "score": 20,
    "band": "Low",
+   "scoreWithoutGuidance": 20,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2021-08-11"
@@ -900,6 +1050,9 @@
    "runway": 102.3,
    "score": 26,
    "band": "Low",
+   "scoreWithoutGuidance": 26,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2021-08-11"
@@ -911,6 +1064,9 @@
    "runway": 78,
    "score": 34,
    "band": "Low",
+   "scoreWithoutGuidance": 34,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2021-08-11"
@@ -922,6 +1078,9 @@
    "runway": 63.7,
    "score": 35,
    "band": "Low",
+   "scoreWithoutGuidance": 35,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2023-03-29"
@@ -933,6 +1092,9 @@
    "runway": 51,
    "score": 36,
    "band": "Low",
+   "scoreWithoutGuidance": 36,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2023-03-29"
@@ -944,6 +1106,9 @@
    "runway": 47,
    "score": 36,
    "band": "Low",
+   "scoreWithoutGuidance": 36,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2023-03-29"
@@ -955,6 +1120,9 @@
    "runway": 42.9,
    "score": 34,
    "band": "Low",
+   "scoreWithoutGuidance": 34,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2023-03-29"
@@ -966,6 +1134,9 @@
    "runway": 37.3,
    "score": 39,
    "band": "Low",
+   "scoreWithoutGuidance": 39,
+   "monthsToEvent": null,
+   "guidance": null,
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2023-03-29"
@@ -975,8 +1146,11 @@
    "filed": "2023-02-10",
    "cash": 155,
    "runway": 38.6,
-   "score": 34,
+   "score": 29,
    "band": "Low",
+   "scoreWithoutGuidance": 34,
+   "monthsToEvent": 1.6,
+   "guidance": "In January 2023, we announced completion of patient enrollment in the VOYAGE study and expect to report data for the study's primary endpoint in the first half of 2023.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2023-03-29"
@@ -986,8 +1160,11 @@
    "filed": "2023-04-26",
    "cash": 136,
    "runway": 26,
-   "score": 65,
-   "band": "Elevated",
+   "score": 39,
+   "band": "Low",
+   "scoreWithoutGuidance": 65,
+   "monthsToEvent": 0.7,
+   "guidance": "In January 2023, we announced completion of patient enrollment in the VOYAGE study and expect to report data for the study&#x2019;s primary endpoint in the second quarter of 2023.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2024-02-27"
@@ -999,6 +1176,9 @@
    "runway": 77.9,
    "score": 38,
    "band": "Low",
+   "scoreWithoutGuidance": 38,
+   "monthsToEvent": 0,
+   "guidance": "Based on these Phase 1 results, we plan to initiate a Phase 2 study of VK2735 in patients with obesity in 2023.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2024-02-27"
@@ -1010,6 +1190,9 @@
    "runway": 67.7,
    "score": 40,
    "band": "Elevated",
+   "scoreWithoutGuidance": 40,
+   "monthsToEvent": 8.2,
+   "guidance": "Results from the biopsy after 52 weeks of dosing are expected to be available some time in 2024.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2024-02-27"
@@ -1021,6 +1204,9 @@
    "runway": 59.2,
    "score": 46,
    "band": "Elevated",
+   "scoreWithoutGuidance": 46,
+   "monthsToEvent": 1.7,
+   "guidance": "In October 2023, we announced completion of patient enrollment in the Phase 2 VENTURE study and we expect to report data from the study in the first half of 2024.",
    "raisedWithinYear": true,
    "how": "offering filing",
    "nextRaise": "2024-02-27"
@@ -1032,6 +1218,9 @@
    "runway": 120,
    "score": 31,
    "band": "Low",
+   "scoreWithoutGuidance": 31,
+   "monthsToEvent": 0,
+   "guidance": "Results from the biopsy after 52 weeks of dosing are expected to be available in the first half of 2024.",
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2026-09-23"
@@ -1043,6 +1232,9 @@
    "runway": 120,
    "score": 40,
    "band": "Elevated",
+   "scoreWithoutGuidance": 40,
+   "monthsToEvent": 0,
+   "guidance": "Based on these Phase 1 results, we plan to initiate a Phase 2 trial with the oral formulation of VK2735 in obesity later in 2024. 19 Our most advanced clinical program's drug candidate, VK2809, is an orally available, tissue and receptor-su",
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2026-09-23"
@@ -1054,6 +1246,9 @@
    "runway": 120,
    "score": 38,
    "band": "Low",
+   "scoreWithoutGuidance": 38,
+   "monthsToEvent": 0,
+   "guidance": "Based on these Phase 1 results, we plan to initiate a Phase 2 trial with the oral formulation of VK2735 in obesity later in 2024. 20 Our most advanced clinical program's drug candidate, VK2809, is an orally available, tissue and receptor-su",
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2026-09-23"
@@ -1065,6 +1260,9 @@
    "runway": 120,
    "score": 29,
    "band": "Low",
+   "scoreWithoutGuidance": 29,
+   "monthsToEvent": 7.1,
+   "guidance": "We expect to complete this study and report initial results in the second half of 2025.",
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2026-09-23"
@@ -1076,6 +1274,9 @@
    "runway": 76.3,
    "score": 34,
    "band": "Low",
+   "scoreWithoutGuidance": 34,
+   "monthsToEvent": 5.2,
+   "guidance": "In March 2025, we announced the completion of enrollment for this trial, and we expect to complete this study and report initial results in the second half of 2025.",
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2026-09-23"
@@ -1087,9 +1288,47 @@
    "runway": 63.5,
    "score": 34,
    "band": "Low",
+   "scoreWithoutGuidance": 34,
+   "monthsToEvent": 2.3,
+   "guidance": "We expect to report the results from this study in the second half of 2025.",
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": "2026-09-23"
   }
- ]
+ ],
+ "catalystTiming": {
+  "filingsRead": 23878,
+  "filingsWithGuidance": 13025,
+  "rowsWithGuidance": 13034,
+  "shareWithGuidance": 0.545,
+  "withoutGuidance": {
+   "auc": 0.581,
+   "bands": [
+    {
+     "band": "High",
+     "n": 6843,
+     "raised12": 0.68,
+     "raised6": 0.469
+    },
+    {
+     "band": "Elevated",
+     "n": 11572,
+     "raised12": 0.58,
+     "raised6": 0.364
+    },
+    {
+     "band": "Low",
+     "n": 5512,
+     "raised12": 0.506,
+     "raised6": 0.277
+    }
+   ]
+  },
+  "guidedRowsOnly": {
+   "rows": 13034,
+   "auc": 0.5817532621945671,
+   "aucWithoutGuidance": 0.5988676782258388,
+   "base12": 0.6163111861285868
+  }
+ }
 }
