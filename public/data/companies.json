@@ -1,14 +1,10 @@
 {
  "meta": {
-  "generatedAt": "2026-11-05T18:49:30.641Z",
+  "generatedAt": "2026-11-06T03:19:16.491Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
    "history": [
-    [
-     "2025-11-05",
-     109.21
-    ],
     [
      "2025-11-06",
      109.29
@@ -1011,7 +1007,7 @@
     ],
     [
      "2026-11-05",
-     149.37
+     148.4
     ]
    ]
   },
@@ -1196,59 +1192,59 @@
      0.4081,
      0.3918,
      0.3794,
-     0.3626,
-     0.3442,
-     0.3301,
+     0.3627,
+     0.3443,
+     0.3302,
      0.3158,
-     0.304,
+     0.3041,
      0.2909,
-     0.2803,
+     0.2804,
      0.2724,
      0.2553,
      0.2452,
-     0.2358,
-     0.228,
-     0.2204,
+     0.2359,
+     0.2281,
+     0.2205,
      0.2117,
      0.2039,
-     0.199,
-     0.193,
+     0.1991,
+     0.1931,
      0.1855,
-     0.1774,
+     0.1775,
      0.171,
      0.1649,
-     0.1594,
+     0.1595,
      0.1559,
-     0.1502,
+     0.1503,
      0.1445,
-     0.1398,
-     0.1355,
+     0.1399,
+     0.1356,
      0.1329,
-     0.1297,
+     0.1298,
      0.127,
      0.1223,
      0.1175,
      0.1146,
      0.1126,
      0.1106,
-     0.1052,
+     0.1053,
      0.1036,
      0.1008,
      0.098,
-     0.0916,
+     0.0917,
      0.0887,
-     0.0862,
+     0.0863,
      0.0832,
-     0.0806,
+     0.0807,
      0.08,
-     0.0772,
-     0.0758,
+     0.0773,
+     0.0759,
      0.0751,
-     0.0719,
-     0.0719,
-     0.0694,
+     0.072,
+     0.072,
+     0.0695,
      0.066,
-     0.0651,
+     0.0652,
      0.0616,
      0.0607,
      0.0598,
@@ -1259,34 +1255,34 @@
      0.0548,
      0.0548,
      0.0548,
-     0.0536,
-     0.05,
-     0.05,
-     0.05,
-     0.05,
-     0.05,
-     0.0485,
-     0.0485,
-     0.0485,
-     0.0485,
-     0.0469,
-     0.0469,
-     0.0452,
-     0.0452,
-     0.0452,
-     0.0452,
+     0.0537,
+     0.0501,
+     0.0501,
+     0.0501,
+     0.0501,
+     0.0501,
+     0.0486,
+     0.0486,
+     0.0486,
+     0.0486,
+     0.047,
+     0.047,
+     0.0453,
+     0.0453,
+     0.0453,
+     0.0453,
      0.0435,
      0.0435,
      0.0418,
-     0.04,
-     0.04,
-     0.04,
-     0.04,
-     0.04,
+     0.0401,
+     0.0401,
+     0.0401,
+     0.0401,
+     0.0401,
      0.0378,
      0.0378,
      0.0356,
-     0.0311,
+     0.0312,
      0.0289,
      0.0289,
      0.0289,
@@ -1348,58 +1344,58 @@
      0.4073,
      0.3958,
      0.3824,
-     0.3667,
-     0.3543,
+     0.3668,
+     0.3544,
      0.3404,
-     0.3245,
-     0.3089,
-     0.3008,
-     0.2895,
+     0.3246,
+     0.309,
+     0.3009,
+     0.2896,
      0.277,
-     0.2673,
-     0.2547,
-     0.2451,
-     0.2357,
-     0.2292,
-     0.2204,
-     0.212,
-     0.2048,
-     0.1949,
-     0.188,
-     0.184,
+     0.2674,
+     0.2548,
+     0.2452,
+     0.2358,
+     0.2293,
+     0.2205,
+     0.2121,
+     0.2049,
+     0.195,
+     0.1881,
+     0.1841,
      0.18,
      0.1727,
-     0.1681,
-     0.1639,
-     0.1582,
+     0.1682,
+     0.164,
+     0.1583,
      0.152,
      0.1475,
-     0.1464,
+     0.1465,
      0.1439,
      0.1413,
      0.1365,
-     0.1327,
+     0.1328,
      0.1311,
-     0.1299,
+     0.13,
      0.1259,
-     0.1229,
-     0.1217,
-     0.1174,
-     0.1149,
+     0.123,
+     0.1218,
+     0.1175,
+     0.115,
      0.1124,
-     0.1103,
+     0.1104,
      0.107,
-     0.1048,
-     0.1034,
+     0.1049,
+     0.1035,
      0.1027,
      0.1012,
      0.0989,
-     0.0965,
-     0.0957,
+     0.0966,
+     0.0958,
      0.0949,
-     0.0923,
-     0.0871,
-     0.0845,
+     0.0924,
+     0.0872,
+     0.0846,
      0.0837,
      0.0819,
      0.081,
@@ -1407,18 +1403,18 @@
      0.081,
      0.081,
      0.08,
-     0.0779,
+     0.078,
      0.0759,
-     0.0737,
-     0.0737,
-     0.0725,
-     0.0725,
-     0.0701,
-     0.0701,
+     0.0738,
+     0.0738,
+     0.0726,
+     0.0726,
+     0.0702,
+     0.0702,
      0.0689,
      0.0661,
-     0.0633,
-     0.0633,
+     0.0634,
+     0.0634,
      0.0604,
      0.0573,
      0.0573,
@@ -1430,28 +1426,28 @@
      0.0557,
      0.0557,
      0.0557,
-     0.0492,
-     0.0492,
-     0.0492,
-     0.0492,
-     0.0492,
-     0.0492,
-     0.0492,
-     0.0492,
-     0.0492,
-     0.0492,
-     0.0463,
-     0.0463,
-     0.0463,
-     0.0463,
-     0.0463,
-     0.0463,
-     0.043,
-     0.043,
-     0.043,
-     0.043,
-     0.043,
-     0.043,
+     0.0493,
+     0.0493,
+     0.0493,
+     0.0493,
+     0.0493,
+     0.0493,
+     0.0493,
+     0.0493,
+     0.0493,
+     0.0493,
+     0.0464,
+     0.0464,
+     0.0464,
+     0.0464,
+     0.0464,
+     0.0464,
+     0.0431,
+     0.0431,
+     0.0431,
+     0.0431,
+     0.0431,
+     0.0431,
      0.0383,
      0.0383,
      0.0383,
@@ -1655,104 +1651,104 @@
      0.3708,
      0.3573,
      0.3441,
-     0.3305,
-     0.3163,
-     0.3064,
-     0.2986,
-     0.2877,
-     0.2791,
+     0.3306,
+     0.3164,
+     0.3065,
+     0.2987,
+     0.2878,
+     0.2792,
      0.27,
-     0.2617,
-     0.2543,
+     0.2618,
+     0.2544,
      0.2443,
      0.2352,
-     0.2267,
-     0.2196,
-     0.2118,
-     0.208,
-     0.2,
+     0.2268,
+     0.2197,
+     0.2119,
+     0.2081,
+     0.2001,
      0.1949,
-     0.1903,
-     0.1857,
-     0.1826,
-     0.1775,
+     0.1904,
+     0.1858,
+     0.1827,
+     0.1776,
      0.1739,
      0.1686,
      0.1629,
      0.1574,
-     0.1535,
-     0.1475,
+     0.1536,
+     0.1476,
      0.1421,
-     0.1391,
-     0.1361,
-     0.133,
+     0.1392,
+     0.1362,
+     0.1331,
      0.1295,
-     0.127,
-     0.1236,
-     0.1197,
-     0.117,
-     0.1152,
-     0.1114,
+     0.1271,
+     0.1237,
+     0.1198,
+     0.1171,
+     0.1153,
+     0.1115,
      0.1075,
-     0.106,
-     0.105,
+     0.1061,
+     0.1051,
      0.1029,
-     0.0996,
-     0.0979,
-     0.0956,
+     0.0997,
+     0.098,
+     0.0957,
      0.0909,
      0.0897,
-     0.086,
-     0.0854,
-     0.0823,
-     0.081,
+     0.0861,
+     0.0855,
+     0.0824,
+     0.0811,
      0.0785,
      0.0752,
      0.0752,
      0.0731,
-     0.0723,
-     0.0701,
-     0.0678,
+     0.0724,
+     0.0702,
+     0.0679,
      0.067,
-     0.0619,
-     0.0601,
-     0.0583,
-     0.0574,
+     0.062,
+     0.0602,
+     0.0584,
+     0.0575,
      0.0565,
      0.0565,
-     0.0555,
-     0.0544,
-     0.0522,
-     0.051,
-     0.051,
-     0.051,
-     0.051,
-     0.0496,
-     0.0496,
-     0.0496,
-     0.0466,
-     0.0466,
-     0.0466,
-     0.0466,
-     0.0466,
-     0.0466,
-     0.0466,
-     0.0466,
+     0.0556,
+     0.0545,
+     0.0523,
+     0.0511,
+     0.0511,
+     0.0511,
+     0.0511,
+     0.0497,
+     0.0497,
+     0.0497,
+     0.0467,
+     0.0467,
+     0.0467,
+     0.0467,
+     0.0467,
+     0.0467,
+     0.0467,
+     0.0467,
      0.0448,
-     0.0429,
-     0.0429,
-     0.0429,
-     0.0429,
-     0.0429,
-     0.0429,
-     0.0429,
-     0.0429,
-     0.0429,
-     0.0429,
-     0.0429,
-     0.0398,
-     0.0398,
-     0.0398,
+     0.043,
+     0.043,
+     0.043,
+     0.043,
+     0.043,
+     0.043,
+     0.043,
+     0.043,
+     0.043,
+     0.043,
+     0.043,
+     0.0399,
+     0.0399,
+     0.0399,
      0.0368,
      0.0368,
      0.0368,
@@ -1809,82 +1805,82 @@
      0.4142,
      0.4018,
      0.3875,
-     0.3737,
+     0.3738,
      0.3601,
-     0.3509,
+     0.351,
      0.3381,
-     0.3303,
+     0.3304,
      0.3217,
-     0.315,
+     0.3151,
      0.3096,
      0.3029,
-     0.2931,
+     0.2932,
      0.2849,
      0.2774,
      0.2675,
      0.262,
-     0.2532,
+     0.2533,
      0.2448,
      0.2373,
-     0.232,
+     0.2321,
      0.2257,
-     0.2198,
-     0.2133,
-     0.2082,
-     0.2025,
-     0.1999,
-     0.1961,
-     0.1912,
-     0.1879,
-     0.1845,
-     0.1805,
+     0.2199,
+     0.2134,
+     0.2083,
+     0.2026,
+     0.2,
+     0.1962,
+     0.1913,
+     0.188,
+     0.1846,
+     0.1806,
      0.1764,
-     0.171,
-     0.1679,
+     0.1711,
+     0.168,
      0.1667,
      0.1628,
-     0.1588,
+     0.1589,
      0.1528,
-     0.1507,
-     0.1486,
-     0.1436,
-     0.1399,
+     0.1508,
+     0.1487,
+     0.1437,
+     0.14,
      0.1392,
      0.1369,
-     0.1329,
+     0.133,
      0.1298,
-     0.1265,
-     0.1257,
-     0.1224,
-     0.1224,
-     0.1191,
+     0.1266,
+     0.1258,
+     0.1225,
+     0.1225,
+     0.1192,
      0.1174,
-     0.1165,
+     0.1166,
      0.1121,
-     0.1093,
-     0.1074,
-     0.1033,
-     0.1033,
-     0.1023,
+     0.1094,
+     0.1075,
+     0.1034,
+     0.1034,
+     0.1024,
      0.1002,
      0.0991,
      0.0969,
      0.0969,
      0.0956,
-     0.0929,
-     0.0901,
-     0.0886,
-     0.0886,
+     0.093,
+     0.0902,
+     0.0887,
+     0.0887,
      0.087,
      0.087,
      0.0852,
-     0.0832,
-     0.0813,
+     0.0833,
+     0.0814,
      0.0794,
      0.0774,
      0.0754,
      0.0754,
-     0.0732,
+     0.0733,
      0.0711,
      0.0711,
      0.0711,
@@ -1905,19 +1901,19 @@
      0.0658,
      0.0658,
      0.0658,
-     0.0625,
-     0.0625,
-     0.0625,
-     0.0625,
-     0.0625,
-     0.0625,
-     0.0625,
-     0.0625,
-     0.0625,
-     0.0625,
-     0.0625,
-     0.0625,
-     0.0625
+     0.0626,
+     0.0626,
+     0.0626,
+     0.0626,
+     0.0626,
+     0.0626,
+     0.0626,
+     0.0626,
+     0.0626,
+     0.0626,
+     0.0626,
+     0.0626,
+     0.0626
     ]
    },
    "Phase III, under 100 patients": {
@@ -1979,14 +1975,14 @@
      0.1765,
      0.1744,
      0.169,
-     0.1679,
+     0.168,
      0.1635,
-     0.1601,
+     0.1602,
      0.1556,
      0.1486,
      0.1463,
      0.1427,
-     0.139,
+     0.1391,
      0.1341,
      0.129,
      0.1277,
@@ -1995,22 +1991,22 @@
      0.1165,
      0.112,
      0.1105,
-     0.1073,
-     0.1057,
+     0.1074,
+     0.1058,
      0.1009,
      0.096,
      0.0893,
-     0.0875,
+     0.0876,
      0.0822,
-     0.0785,
-     0.0785,
+     0.0786,
+     0.0786,
      0.0767,
      0.0767,
      0.0767,
      0.0746,
      0.0746,
      0.0746,
-     0.0722,
+     0.0723,
      0.0674,
      0.0626,
      0.0599,
@@ -2023,16 +2019,16 @@
      0.0569,
      0.0569,
      0.0569,
-     0.0533,
+     0.0534,
      0.0498,
      0.0498,
-     0.0459,
-     0.0459,
-     0.0459,
-     0.0459,
-     0.0459,
-     0.0459,
-     0.0459,
+     0.046,
+     0.046,
+     0.046,
+     0.046,
+     0.046,
+     0.046,
+     0.046,
      0.0421,
      0.0383,
      0.0383,
@@ -2063,12 +2059,12 @@
      0.0251,
      0.0251,
      0.0251,
-     0.0188,
-     0.0188,
-     0.0188,
-     0.0188,
-     0.0188,
-     0.0188
+     0.0189,
+     0.0189,
+     0.0189,
+     0.0189,
+     0.0189,
+     0.0189
     ]
    }
   },
@@ -2085,8 +2081,8 @@
    "t": "VKTX",
    "n": "Viking Therapeutics",
    "area": "Metabolic",
-   "mcap": 3291.3,
-   "ev": 2331.5,
+   "mcap": 3288.8,
+   "ev": 2329,
    "cash": 959.8,
    "debt": 0,
    "burn": 38.55,
@@ -2154,7 +2150,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
@@ -2247,10 +2243,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Metabolic",
      "rare": false,
@@ -2258,9 +2254,9 @@
      "slips": 0,
      "duration": null,
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2026-10-02",
       "width": 9,
       "stale": true,
@@ -2304,12 +2300,12 @@
      "label": "VK2735 Phase III data (estimated)"
     },
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "minor",
      "drug": "VK3019",
      "est": true,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2026-10-02",
      "nct": "NCT07846033",
      "label": "VK3019 Phase I data (registry date overdue)"
@@ -2800,19 +2796,15 @@
     }
    },
    "quote": {
-    "price": 25.81,
+    "price": 25.79,
     "prev": 27.97,
-    "chg": -2.16,
-    "chgPct": -7.72,
+    "chg": -2.18,
+    "chgPct": -7.79,
     "hi52": 43.15,
     "lo52": 23.82,
-    "volume": 2799283,
+    "volume": 4818708,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      36.47
-     ],
      [
       "2025-11-06",
       37.27
@@ -3815,7 +3807,7 @@
      ],
      [
       "2026-11-05",
-      25.81
+      25.79
      ]
     ]
    },
@@ -3916,7 +3908,7 @@
      "date": "2026-10-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1607678/000119312526436432/vktx-20260930.htm"
     },
-    "price": 25.81,
+    "price": 25.79,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Viking Therapeutics",
@@ -3933,8 +3925,8 @@
    "t": "ARWR",
    "n": "Arrowhead Pharmaceuticals",
    "area": "RNAi",
-   "mcap": 8219.6,
-   "ev": 7300.3,
+   "mcap": 8116.5,
+   "ev": 7197.2,
    "cash": 1602,
    "debt": 682.7,
    "burn": 4.92,
@@ -4005,10 +3997,10 @@
      },
      "modality": "siRNA/RNAi",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Cardiovascular",
      "rare": true,
@@ -4115,7 +4107,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
@@ -4218,7 +4210,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
@@ -4313,7 +4305,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
@@ -4411,7 +4403,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
@@ -4514,7 +4506,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
@@ -5082,19 +5074,15 @@
     }
    },
    "quote": {
-    "price": 58.19,
+    "price": 57.46,
     "prev": 61.65,
-    "chg": -3.46,
-    "chgPct": -5.61,
+    "chg": -4.19,
+    "chgPct": -6.8,
     "hi52": 95.49,
     "lo52": 37.06,
-    "volume": 995311,
+    "volume": 1804873,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      40.31
-     ],
      [
       "2025-11-06",
       39.6
@@ -6097,7 +6085,7 @@
      ],
      [
       "2026-11-05",
-      58.19
+      57.46
      ]
     ]
    },
@@ -6198,7 +6186,7 @@
      "date": "2026-08-04",
      "url": "https://www.sec.gov/Archives/edgar/data/879407/000087940726000057/arwr-20260630.htm"
     },
-    "price": 58.19,
+    "price": 57.46,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "ARROWHEAD PHARMACEUTICALS",
@@ -6215,8 +6203,8 @@
    "t": "RCKT",
    "n": "Rocket Pharmaceuticals",
    "area": "Gene therapy",
-   "mcap": 262.4,
-   "ev": -21.4,
+   "mcap": 267.3,
+   "ev": -16.4,
    "cash": 283.7,
    "debt": 0,
    "burn": 14.19,
@@ -6280,7 +6268,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "set by hand",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "biomarker": false,
      "slips": 0,
@@ -6297,9 +6285,9 @@
       "fasterThan": 8
      },
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2026-05-05",
       "width": 9,
       "stale": true,
@@ -6389,7 +6377,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "set by hand",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "biomarker": false,
      "slips": 0,
@@ -6489,7 +6477,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "set by hand",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "biomarker": false,
      "slips": 0,
@@ -6571,7 +6559,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
@@ -6606,12 +6594,12 @@
    ],
    "catalysts": [
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "minor",
      "drug": "RP-L102",
      "est": true,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2026-05-05",
      "nct": "NCT04248439",
      "label": "RP-L102 Phase II data (registry date overdue)"
@@ -6854,19 +6842,15 @@
     }
    },
    "quote": {
-    "price": 2.39,
+    "price": 2.44,
     "prev": 2.61,
-    "chg": -0.22,
-    "chgPct": -8.43,
+    "chg": -0.17,
+    "chgPct": -6.7,
     "hi52": 5.45,
     "lo52": 2.17,
-    "volume": 1552373,
+    "volume": 2180805,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      3.32
-     ],
      [
       "2025-11-06",
       3.23
@@ -7869,7 +7853,7 @@
      ],
      [
       "2026-11-05",
-      2.39
+      2.43
      ]
     ]
    },
@@ -7970,7 +7954,7 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1281895/000119312526342348/rckt-20260630.htm"
     },
-    "price": 2.39,
+    "price": 2.44,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "ROCKET PHARMACEUTICALS",
@@ -7987,8 +7971,8 @@
    "t": "SRRK",
    "n": "Scholar Rock Holding",
    "area": "Neuromuscular",
-   "mcap": 5547.9,
-   "ev": 5252,
+   "mcap": 5541.2,
+   "ev": 5245.3,
    "cash": 492.1,
    "debt": 196.2,
    "burn": 24.74,
@@ -8053,7 +8037,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "set by hand",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "biomarker": false,
      "slips": 0,
@@ -8144,9 +8128,9 @@
      "modality": "Small molecule",
      "labels": {
       "area": "not identified",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": null,
      "rare": false,
@@ -8193,7 +8177,7 @@
      "label": "SRK-439 Phase I data (estimated)"
     },
     {
-     "date": "2026-11-05",
+     "date": "2027-02-04",
      "kind": "earnings",
      "drug": null,
      "est": true,
@@ -8537,19 +8521,15 @@
     }
    },
    "quote": {
-    "price": 45.56,
+    "price": 45.5,
     "prev": 46.09,
-    "chg": -0.54,
-    "chgPct": -1.16,
+    "chg": -0.59,
+    "chgPct": -1.28,
     "hi52": 61.76,
     "lo52": 27.07,
-    "volume": 769598,
+    "volume": 1447601,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      27.99
-     ],
      [
       "2025-11-06",
       28.8
@@ -9552,7 +9532,7 @@
      ],
      [
       "2026-11-05",
-      45.56
+      45.5
      ]
     ]
    },
@@ -9653,7 +9633,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1727196/000119312526336732/srrk-20260630.htm"
     },
-    "price": 45.56,
+    "price": 45.5,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Scholar Rock",
@@ -9670,8 +9650,8 @@
    "t": "IDYA",
    "n": "IDEAYA Biosciences",
    "area": "Oncology",
-   "mcap": 2993.7,
-   "ev": 1842.8,
+   "mcap": 2963.7,
+   "ev": 1812.9,
    "cash": 1150.8,
    "debt": 0,
    "burn": 28.95,
@@ -9748,7 +9728,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "set by hand",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "biomarker": false,
      "slips": 0,
@@ -9860,7 +9840,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
@@ -9965,18 +9945,18 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
      "slips": 0,
      "duration": null,
      "window": {
-      "lo": "2026-11-05",
+      "lo": "2026-11-06",
       "hi": "2027-04-30",
       "mid": "2027-02-01",
       "reg": "2026-10-15",
-      "width": 5.8,
+      "width": 5.7,
       "basis": "Registry estimate",
       "why": [
        "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
@@ -10141,7 +10121,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
@@ -10221,10 +10201,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Oncology",
      "rare": false,
@@ -10275,7 +10255,7 @@
      "kind": "readout",
      "drug": "IDE-161",
      "est": true,
-     "lo": "2026-11-05",
+     "lo": "2026-11-06",
      "hi": "2027-04-30",
      "reg": "2026-10-15",
      "nct": "NCT05787587",
@@ -10823,19 +10803,15 @@
     }
    },
    "quote": {
-    "price": 30.96,
+    "price": 30.65,
     "prev": 32.36,
-    "chg": -1.4,
-    "chgPct": -4.33,
+    "chg": -1.71,
+    "chgPct": -5.28,
     "hi52": 42.68,
     "lo52": 26.81,
-    "volume": 530550,
+    "volume": 1237235,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      29.66
-     ],
      [
       "2025-11-06",
       29.85
@@ -11838,7 +11814,7 @@
      ],
      [
       "2026-11-05",
-      30.96
+      30.65
      ]
     ]
    },
@@ -11940,7 +11916,7 @@
      "date": "2026-11-03",
      "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526445294/idya-20260930.htm"
     },
-    "price": 30.96,
+    "price": 30.65,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "IDEAYA Biosciences",
@@ -11957,8 +11933,8 @@
    "t": "KYMR",
    "n": "Kymera Therapeutics",
    "area": "Immunology",
-   "mcap": 10781.6,
-   "ev": 9135.7,
+   "mcap": 10937.8,
+   "ev": 9291.9,
    "cash": 1645.9,
    "debt": 0,
    "burn": 23.96,
@@ -12031,7 +12007,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
@@ -12594,19 +12570,15 @@
     }
    },
    "quote": {
-    "price": 126.29,
+    "price": 128.12,
     "prev": 136.25,
-    "chg": -9.96,
-    "chgPct": -7.31,
+    "chg": -8.13,
+    "chgPct": -5.97,
     "hi52": 138,
     "lo52": 56.75,
-    "volume": 753295,
+    "volume": 1727750,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      59.89
-     ],
      [
       "2025-11-06",
       61
@@ -13609,7 +13581,7 @@
      ],
      [
       "2026-11-05",
-      126.29
+      128.12
      ]
     ]
    },
@@ -13711,7 +13683,7 @@
      "date": "2026-10-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312526436975/kymr-20260930.htm"
     },
-    "price": 126.29,
+    "price": 128.12,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Kymera Therapeutics",
@@ -13728,8 +13700,8 @@
    "t": "DYN",
    "n": "Dyne Therapeutics",
    "area": "Neuromuscular",
-   "mcap": 3350.5,
-   "ev": 2416.1,
+   "mcap": 3253,
+   "ev": 2318.7,
    "cash": 1134.4,
    "debt": 200,
    "burn": 47.04,
@@ -13892,7 +13864,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "set by hand",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "biomarker": false,
      "slips": 0,
@@ -14314,19 +14286,15 @@
     }
    },
    "quote": {
-    "price": 17.88,
+    "price": 17.36,
     "prev": 18.54,
-    "chg": -0.66,
-    "chgPct": -3.56,
+    "chg": -1.18,
+    "chgPct": -6.36,
     "hi52": 27.31,
     "lo52": 14,
-    "volume": 1365018,
+    "volume": 3203978,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      20.9
-     ],
      [
       "2025-11-06",
       18.2
@@ -15329,7 +15297,7 @@
      ],
      [
       "2026-11-05",
-      17.88
+      17.36
      ]
     ]
    },
@@ -15430,7 +15398,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1818794/000181879426000012/dyn-20260930.htm"
     },
-    "price": 17.88,
+    "price": 17.36,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Dyne Therapeutics",
@@ -15447,13 +15415,13 @@
    "t": "VERA",
    "n": "Vera Therapeutics",
    "area": "Nephrology",
-   "mcap": 2209.8,
-   "ev": 1785.9,
-   "cash": 499.2,
-   "debt": 75.2,
-   "burn": 28.22,
-   "rev": 0,
-   "shares": 72.06,
+   "mcap": 2179.1,
+   "ev": 1870.5,
+   "cash": 384,
+   "debt": 75.4,
+   "burn": 31.33,
+   "rev": 13.8,
+   "shares": 72.3,
    "own": null,
    "emp": null,
    "partners": [],
@@ -15515,7 +15483,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "set by hand",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "biomarker": false,
      "slips": 0,
@@ -15550,7 +15518,7 @@
    ],
    "catalysts": [
     {
-     "date": "2026-11-09",
+     "date": "2027-02-04",
      "kind": "earnings",
      "drug": null,
      "est": true,
@@ -15609,15 +15577,8 @@
     }
    ],
    "note": "Trutakna (atacicept) won FDA accelerated approval for IgA nephropathy on July 7, 2026 (8-K filed that day); the company is now funding a U.S. launch.",
-   "dil24": 31.4,
+   "dil24": 14.2,
    "runwayHist": [
-    {
-     "end": "2021-09-30",
-     "filed": "2021-11-10",
-     "cash": 87,
-     "burn": 3.7,
-     "runway": 23.5
-    },
     {
      "end": "2021-12-31",
      "filed": "2022-03-28",
@@ -15750,9 +15711,25 @@
      "cash": 499,
      "burn": 28.2,
      "runway": 17.7
+    },
+    {
+     "end": "2026-09-30",
+     "filed": "2026-11-05",
+     "cash": 384,
+     "burn": 31.3,
+     "runway": 12.3
     }
    ],
-   "revQ": [],
+   "revQ": [
+    [
+     "2025-09-30",
+     0
+    ],
+    [
+     "2026-09-30",
+     10.3
+    ]
+   ],
    "rivals": [
     {
      "nct": "NCT07616700",
@@ -15991,7 +15968,7 @@
      "china": "only"
     }
    ],
-   "burnPrior": 15.44,
+   "burnPrior": 17.52,
    "debtDue24": 0,
    "raise": {
     "capacity": "atm",
@@ -16008,19 +15985,15 @@
     }
    },
    "quote": {
-    "price": 30.67,
+    "price": 30.14,
     "prev": 31.97,
-    "chg": -1.3,
-    "chgPct": -4.08,
+    "chg": -1.83,
+    "chgPct": -5.72,
     "hi52": 56.05,
     "lo52": 23.05,
-    "volume": 741747,
+    "volume": 1417373,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      24.1
-     ],
      [
       "2025-11-06",
       25.22
@@ -17023,11 +16996,27 @@
      ],
      [
       "2026-11-05",
-      30.67
+      30.14
      ]
     ]
    },
    "news": [
+    {
+     "date": "2026-11-05",
+     "time": "2026-11-05T21:10:35.000Z",
+     "form": "10-Q",
+     "formLabel": "Quarterly report",
+     "headline": "Vera Therapeutics files its quarterly report",
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312526449826/vera-20260930.htm"
+    },
+    {
+     "date": "2026-11-05",
+     "time": "2026-11-05T21:07:06.000Z",
+     "form": "8-K",
+     "formLabel": "Current report",
+     "headline": "Vera Therapeutics reports quarterly results",
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312526449780/vera-20261105.htm"
+    },
     {
      "date": "2026-09-15",
      "time": "2026-09-15T10:45:34.000Z",
@@ -17091,40 +17080,24 @@
      "formLabel": "Quarterly report",
      "headline": "Vera Therapeutics files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312526212143/vera-20260331.htm"
-    },
-    {
-     "date": "2026-05-07",
-     "time": "2026-05-07T11:30:17.000Z",
-     "form": "8-K",
-     "formLabel": "Current report",
-     "headline": "Vera Therapeutics reports quarterly results",
-     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312526210351/vera-20260507.htm"
-    },
-    {
-     "date": "2026-04-09",
-     "time": "2026-04-09T20:05:31.000Z",
-     "form": "DEF 14A",
-     "formLabel": "Proxy statement",
-     "headline": "Vera Therapeutics files its proxy statement",
-     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000114036126014002/ny20065346x1_def14a.htm"
     }
    ],
    "cashFlowPositive": false,
    "src": {
     "cik": "1831828",
-    "asOf": "2026-06-30",
+    "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
      "MarketableSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
-    "sharesAsOf": "2026-07-29",
+    "sharesAsOf": "2026-10-29",
     "filing": {
      "form": "10-Q",
-     "date": "2026-08-10",
-     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312526342380/vera-20260630.htm"
+     "date": "2026-11-05",
+     "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312526449826/vera-20260930.htm"
     },
-    "price": 30.67,
+    "price": 30.14,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Vera Therapeutics",
@@ -17141,8 +17114,8 @@
    "t": "PGEN",
    "n": "Precigen",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1461.1,
-   "ev": 1504.4,
+   "mcap": 1513.1,
+   "ev": 1556.4,
    "cash": 51,
    "debt": 94.3,
    "burn": 6.1,
@@ -17202,10 +17175,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Infectious disease",
      "rare": true,
@@ -17275,10 +17248,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Oncology",
      "rare": false,
@@ -17374,10 +17347,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "trial names a marker or mutation"
+      "biomarker": "the trial names a biomarker or mutation"
      },
      "area": "Oncology",
      "rare": false,
@@ -17385,9 +17358,9 @@
      "slips": 0,
      "duration": null,
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2024-08-01",
       "width": 9,
       "basis": "Registry (actual completion)",
@@ -17464,10 +17437,10 @@
      },
      "modality": "Biologic",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as biological",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as biological",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Oncology",
      "rare": false,
@@ -17475,9 +17448,9 @@
      "slips": 0,
      "duration": null,
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2024-12-15",
       "width": 9,
       "stale": true,
@@ -17524,23 +17497,23 @@
      "label": "PRGN-2009 Phase II data (estimated)"
     },
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "readout",
      "drug": "PRGN-3006",
      "est": false,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2024-08-01",
      "nct": "NCT03927261",
      "label": "PRGN-3006 Phase I data (estimated)"
     },
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "minor",
      "drug": "PRGN-3005",
      "est": true,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2024-12-15",
      "nct": "NCT03907527",
      "label": "PRGN-3005 Phase I data (registry date overdue)"
@@ -18015,19 +17988,15 @@
     }
    },
    "quote": {
-    "price": 4.08,
+    "price": 4.22,
     "prev": 5.06,
-    "chg": -0.98,
-    "chgPct": -19.47,
+    "chg": -0.84,
+    "chgPct": -16.6,
     "hi52": 8.98,
     "lo52": 3.04,
-    "volume": 19363904,
+    "volume": 26620674,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      3.99
-     ],
      [
       "2025-11-06",
       3.92
@@ -19030,7 +18999,7 @@
      ],
      [
       "2026-11-05",
-      4.07
+      4.22
      ]
     ]
    },
@@ -19132,7 +19101,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1356090/000135609026000040/pgen-20260930.htm"
     },
-    "price": 4.08,
+    "price": 4.22,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "PRECIGEN",
@@ -19149,8 +19118,8 @@
    "t": "VIR",
    "n": "Vir Biotechnology",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 1897.7,
-   "ev": 1000.1,
+   "mcap": 1887.4,
+   "ev": 989.8,
    "cash": 897.6,
    "debt": 0,
    "burn": 11.75,
@@ -19219,10 +19188,10 @@
      },
      "modality": "Monoclonal antibody",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (-bart / -tug / -mig / -ment)",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Infectious disease",
      "rare": false,
@@ -19241,7 +19210,7 @@
       "fasterThan": 58
      },
      "window": {
-      "lo": "2026-11-05",
+      "lo": "2026-11-06",
       "hi": "2027-01-14",
       "mid": "2026-12-10",
       "reg": "2026-09-30",
@@ -19330,10 +19299,10 @@
      },
      "modality": "Monoclonal antibody",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "trial names a marker or mutation"
+      "biomarker": "the trial names a biomarker or mutation"
      },
      "area": "Oncology",
      "rare": false,
@@ -19451,10 +19420,10 @@
      },
      "modality": "siRNA/RNAi",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Infectious disease",
      "rare": false,
@@ -19548,10 +19517,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Oncology",
      "rare": false,
@@ -19591,7 +19560,7 @@
      "kind": "readout",
      "drug": "Tobevibart",
      "est": false,
-     "lo": "2026-11-05",
+     "lo": "2026-11-06",
      "hi": "2027-01-14",
      "reg": "2026-09-30",
      "nct": "NCT06903338",
@@ -20046,19 +20015,15 @@
     "shelf": null
    },
    "quote": {
-    "price": 11.08,
+    "price": 11.02,
     "prev": 11.77,
-    "chg": -0.69,
-    "chgPct": -5.86,
+    "chg": -0.75,
+    "chgPct": -6.37,
     "hi52": 12.19,
     "lo52": 4.82,
-    "volume": 1668890,
+    "volume": 2922141,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      5.4
-     ],
      [
       "2025-11-06",
       5.12
@@ -21061,7 +21026,7 @@
      ],
      [
       "2026-11-05",
-      11.08
+      11.02
      ]
     ]
    },
@@ -21163,7 +21128,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1706431/000162828026070273/vir-20260930.htm"
     },
-    "price": 11.08,
+    "price": 11.02,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Vir Biotechnology",
@@ -21180,8 +21145,8 @@
    "t": "TYRA",
    "n": "Tyra Biosciences",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1271.1,
-   "ev": 1197.3,
+   "mcap": 1246.7,
+   "ev": 1172.8,
    "cash": 73.8,
    "debt": 0,
    "burn": 9.14,
@@ -21245,10 +21210,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "trial names a marker or mutation"
+      "biomarker": "the trial names a biomarker or mutation"
      },
      "area": "Oncology",
      "rare": false,
@@ -21354,10 +21319,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (small-molecule stem)",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Oncology",
      "rare": false,
@@ -21457,9 +21422,9 @@
      "modality": "Small molecule",
      "labels": {
       "area": "not identified",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": null,
      "rare": false,
@@ -21467,9 +21432,9 @@
      "slips": 0,
      "duration": null,
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2025-05-15",
       "width": 9,
       "stale": true,
@@ -21550,10 +21515,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "trial names a marker or mutation"
+      "biomarker": "the trial names a biomarker or mutation"
      },
      "area": "Oncology",
      "rare": false,
@@ -21638,10 +21603,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "trial names a marker or mutation"
+      "biomarker": "the trial names a biomarker or mutation"
      },
      "area": "Oncology",
      "rare": false,
@@ -21689,12 +21654,12 @@
      "label": "TYRA-300 Phase II (Locally Advanced Urothelial Carcinoma) data (estimated)"
     },
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "minor",
      "drug": "TYRA-300-B01",
      "est": true,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2025-05-15",
      "nct": "NCT06006702",
      "label": "TYRA-300-B01 Phase I data (registry date overdue)"
@@ -21932,19 +21897,15 @@
     }
    },
    "quote": {
-    "price": 21.3,
+    "price": 20.89,
     "prev": 21.52,
-    "chg": -0.22,
-    "chgPct": -1.02,
+    "chg": -0.63,
+    "chgPct": -2.93,
     "hi52": 40.65,
     "lo52": 13.35,
-    "volume": 249057,
+    "volume": 694655,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      14.82
-     ],
      [
       "2025-11-06",
       14.28
@@ -22947,7 +22908,7 @@
      ],
      [
       "2026-11-05",
-      21.3
+      20.89
      ]
     ]
    },
@@ -23047,7 +23008,7 @@
      "date": "2026-08-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1863127/000119312526332995/tyra-20260630.htm"
     },
-    "price": 21.3,
+    "price": 20.89,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Tyra Biosciences",
@@ -23064,8 +23025,8 @@
    "t": "DBVT",
    "n": "DBV Technologies",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 3051.1,
-   "ev": 2885.6,
+   "mcap": 3081,
+   "ev": 2915.5,
    "cash": 165.7,
    "debt": 0.2,
    "burn": 15.7,
@@ -23128,10 +23089,10 @@
      },
      "modality": "Biologic",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Allergy",
      "rare": false,
@@ -23150,9 +23111,9 @@
       "fasterThan": 32
      },
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2019-11-23",
       "width": 9,
       "basis": "Registry (actual completion)",
@@ -23250,10 +23211,10 @@
      },
      "modality": "Biologic",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Allergy",
      "rare": false,
@@ -23272,9 +23233,9 @@
       "fasterThan": 43
      },
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2025-11-06",
       "width": 9,
       "basis": "Registry (actual completion)",
@@ -23298,23 +23259,23 @@
    ],
    "catalysts": [
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "readout",
      "drug": "Viaskin Peanut",
      "est": false,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2019-11-23",
      "nct": "NCT03013517",
      "label": "Viaskin Peanut Phase III data (estimated)"
     },
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "readout",
      "drug": "DBV712",
      "est": false,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2025-11-06",
      "nct": "NCT05741476",
      "label": "DBV712 Phase III data (estimated)"
@@ -23568,19 +23529,15 @@
     }
    },
    "quote": {
-    "price": 9.71,
+    "price": 9.8,
     "prev": 9.94,
-    "chg": -0.23,
-    "chgPct": -2.36,
+    "chg": -0.14,
+    "chgPct": -1.41,
     "hi52": 26.19,
     "lo52": 8.63,
-    "volume": 185507,
+    "volume": 414635,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      14.1
-     ],
      [
       "2025-11-06",
       14.04
@@ -24583,7 +24540,7 @@
      ],
      [
       "2026-11-05",
-      9.7
+      9.8
      ]
     ]
    },
@@ -24683,7 +24640,7 @@
      "date": "2026-10-28",
      "url": "https://www.sec.gov/Archives/edgar/data/1613780/000162828026067930/dbvt-20260930.htm"
     },
-    "price": 9.71,
+    "price": 9.8,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "DBV Technologies",
@@ -24700,8 +24657,8 @@
    "t": "IMUX",
    "n": "Immunic",
    "area": "Pharmaceutical Preparations",
-   "mcap": 100.7,
-   "ev": -54.4,
+   "mcap": 99.9,
+   "ev": -55.2,
    "cash": 155.1,
    "debt": 0,
    "burn": 7.31,
@@ -24772,10 +24729,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": false,
@@ -25290,19 +25247,15 @@
     }
    },
    "quote": {
-    "price": 7.38,
+    "price": 7.32,
     "prev": 7.94,
-    "chg": -0.56,
-    "chgPct": -7.05,
+    "chg": -0.62,
+    "chgPct": -7.81,
     "hi52": 17.43,
     "lo52": 5.06,
-    "volume": 166267,
+    "volume": 263038,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      7.23
-     ],
      [
       "2025-11-06",
       7.01
@@ -26305,7 +26258,7 @@
      ],
      [
       "2026-11-05",
-      7.38
+      7.32
      ]
     ]
    },
@@ -26405,7 +26358,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1280776/000128077626000018/vtl-20260630.htm"
     },
-    "price": 7.38,
+    "price": 7.32,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "IMMUNIC",
@@ -26422,13 +26375,13 @@
    "t": "TECX",
    "n": "Tectonic Therapeutic",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 379.4,
-   "ev": 152.3,
-   "cash": 227.1,
+   "mcap": 387.4,
+   "ev": 152.7,
+   "cash": 234.7,
    "debt": 0,
-   "burn": 6.01,
+   "burn": 5.77,
    "rev": 0,
-   "shares": 19.55,
+   "shares": 19.95,
    "own": null,
    "emp": null,
    "partners": [],
@@ -26495,10 +26448,10 @@
      },
      "modality": "Fusion protein",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Cardiovascular",
      "rare": false,
@@ -26560,7 +26513,7 @@
      "label": "TX000045 Phase II data (estimated)"
     },
     {
-     "date": "2026-11-05",
+     "date": "2027-02-04",
      "kind": "earnings",
      "drug": null,
      "est": true,
@@ -26598,15 +26551,8 @@
     }
    ],
    "note": "",
-   "dil24": 32.7,
+   "dil24": 35.2,
    "runwayHist": [
-    {
-     "end": "2021-09-30",
-     "filed": "2021-11-04",
-     "cash": 201,
-     "burn": 8.6,
-     "runway": 23.5
-    },
     {
      "end": "2021-12-31",
      "filed": "2022-03-17",
@@ -26739,6 +26685,13 @@
      "cash": 227,
      "burn": 6,
      "runway": 37.8
+    },
+    {
+     "end": "2026-09-30",
+     "filed": "2026-11-05",
+     "cash": 235,
+     "burn": 5.8,
+     "runway": 40.7
     }
    ],
    "revQ": [],
@@ -27000,7 +26953,7 @@
      "china": null
     }
    ],
-   "burnPrior": 5.35,
+   "burnPrior": 5.2,
    "debtDue24": 0,
    "raise": {
     "capacity": "atm",
@@ -27017,19 +26970,15 @@
     }
    },
    "quote": {
-    "price": 19.41,
+    "price": 19.42,
     "prev": 20.3,
-    "chg": -0.89,
-    "chgPct": -4.41,
+    "chg": -0.88,
+    "chgPct": -4.33,
     "hi52": 39.53,
     "lo52": 16.59,
-    "volume": 47653,
+    "volume": 109567,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      16.44
-     ],
      [
       "2025-11-06",
       18.99
@@ -28032,11 +27981,27 @@
      ],
      [
       "2026-11-05",
-      19.41
+      19.42
      ]
     ]
    },
    "news": [
+    {
+     "date": "2026-11-05",
+     "time": "2026-11-05T21:39:03.000Z",
+     "form": "10-Q",
+     "formLabel": "Quarterly report",
+     "headline": "Tectonic Therapeutic files its quarterly report",
+     "url": "https://www.sec.gov/Archives/edgar/data/1681087/000119312526450019/tecx-20260930.htm"
+    },
+    {
+     "date": "2026-11-05",
+     "time": "2026-11-05T21:28:32.000Z",
+     "form": "8-K",
+     "formLabel": "Current report",
+     "headline": "Tectonic Therapeutic completes an acquisition or sale",
+     "url": "https://www.sec.gov/Archives/edgar/data/1681087/000119312526449965/tecx-20261105.htm"
+    },
     {
      "date": "2026-09-29",
      "time": "2026-09-29T21:19:22.000Z",
@@ -28100,39 +28065,23 @@
      "formLabel": "Current report",
      "headline": "Tectonic Therapeutic announces a leadership change",
      "url": "https://www.sec.gov/Archives/edgar/data/1681087/000119312526173829/d150495d8k.htm"
-    },
-    {
-     "date": "2026-02-26",
-     "time": "2026-02-26T21:26:23.000Z",
-     "form": "8-K",
-     "formLabel": "Current report",
-     "headline": "Tectonic Therapeutic reports quarterly results",
-     "url": "https://www.sec.gov/Archives/edgar/data/1681087/000119312526076843/tecx-20260226.htm"
-    },
-    {
-     "date": "2026-02-26",
-     "time": "2026-02-26T21:21:53.000Z",
-     "form": "10-K",
-     "formLabel": "Annual report",
-     "headline": "Tectonic Therapeutic files its annual report",
-     "url": "https://www.sec.gov/Archives/edgar/data/1681087/000119312526076793/tecx-20251231.htm"
     }
    ],
    "cashFlowPositive": false,
    "src": {
     "cik": "1681087",
-    "asOf": "2026-06-30",
+    "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
-    "sharesAsOf": "2026-07-31",
+    "sharesAsOf": "2026-10-30",
     "filing": {
      "form": "10-Q",
-     "date": "2026-08-06",
-     "url": "https://www.sec.gov/Archives/edgar/data/1681087/000119312526338062/tecx-20260630.htm"
+     "date": "2026-11-05",
+     "url": "https://www.sec.gov/Archives/edgar/data/1681087/000119312526450019/tecx-20260930.htm"
     },
-    "price": 19.41,
+    "price": 19.42,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Tectonic Therapeutic",
@@ -28149,8 +28098,8 @@
    "t": "QURE",
    "n": "uniQure",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1465.9,
-   "ev": 1417.8,
+   "mcap": 1473.6,
+   "ev": 1425.5,
    "cash": 98.4,
    "debt": 50.3,
    "burn": 16.02,
@@ -28211,10 +28160,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": true,
@@ -28233,9 +28182,9 @@
       "fasterThan": 38
      },
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2026-09-30",
       "width": 9,
       "stale": true,
@@ -28322,10 +28271,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": false,
@@ -28423,10 +28372,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Metabolic",
      "rare": true,
@@ -28526,10 +28475,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": true,
@@ -28594,12 +28543,12 @@
    ],
    "catalysts": [
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "minor",
      "drug": "AMT-162",
      "est": true,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2026-09-30",
      "nct": "NCT06100276",
      "label": "AMT-162 Phase II data (registry date overdue)"
@@ -29104,19 +29053,15 @@
     }
    },
    "quote": {
-    "price": 20.9,
+    "price": 21.01,
     "prev": 23.03,
-    "chg": -2.13,
-    "chgPct": -9.25,
+    "chg": -2.02,
+    "chgPct": -8.77,
     "hi52": 51.72,
     "lo52": 8.73,
-    "volume": 1626186,
+    "volume": 3938526,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      26.06
-     ],
      [
       "2025-11-06",
       27.51
@@ -30119,7 +30064,7 @@
      ],
      [
       "2026-11-05",
-      20.9
+      21.01
      ]
     ]
    },
@@ -30219,7 +30164,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1590560/000110465926122367/qure-20260930x10q.htm"
     },
-    "price": 20.9,
+    "price": 21.01,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "uniQure",
@@ -30299,10 +30244,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": true,
@@ -30401,10 +30346,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": true,
@@ -30503,7 +30448,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "set by hand",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "biomarker": false,
      "slips": 0,
@@ -30583,10 +30528,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": true,
@@ -31146,13 +31091,9 @@
     "chgPct": -5.21,
     "hi52": 11.45,
     "lo52": 3.79,
-    "volume": 816593,
+    "volume": 1435875,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      3.93
-     ],
      [
       "2025-11-06",
       4.22
@@ -32273,8 +32214,8 @@
    "t": "AURA",
    "n": "Aura Biosciences",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 660.6,
-   "ev": 592.8,
+   "mcap": 657.5,
+   "ev": 589.7,
    "cash": 67.8,
    "debt": 0,
    "burn": 8.58,
@@ -32346,10 +32287,10 @@
      },
      "modality": "Virus-like drug conjugate",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Oncology",
      "rare": false,
@@ -32359,12 +32300,12 @@
       "key": "Phase III, 100 to 499 patients",
       "n": 4607,
       "planned": 47,
-      "elapsed": 34,
+      "elapsed": 35,
       "median": 23,
       "p25": 13,
       "p75": 42,
-      "condMedian": 57,
-      "condP75": 84,
+      "condMedian": 59,
+      "condP75": 85,
       "fasterThan": 21
      },
      "window": {
@@ -32619,19 +32560,15 @@
     }
    },
    "quote": {
-    "price": 6.37,
+    "price": 6.34,
     "prev": 6.65,
-    "chg": -0.28,
-    "chgPct": -4.21,
+    "chg": -0.31,
+    "chgPct": -4.66,
     "hi52": 9.54,
     "lo52": 4.73,
-    "volume": 343776,
+    "volume": 790866,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      5.44
-     ],
      [
       "2025-11-06",
       5.41
@@ -33634,7 +33571,7 @@
      ],
      [
       "2026-11-05",
-      6.37
+      6.34
      ]
     ]
    },
@@ -33734,7 +33671,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1501796/000119312526343429/aura-20260630.htm"
     },
-    "price": 6.37,
+    "price": 6.34,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Aura Biosciences",
@@ -33751,13 +33688,13 @@
    "t": "BIOA",
    "n": "BioAge Labs",
    "area": "Pharmaceutical Preparations",
-   "mcap": 252.4,
-   "ev": -128.8,
-   "cash": 381.2,
+   "mcap": 254.6,
+   "ev": -97.7,
+   "cash": 352.3,
    "debt": 0,
-   "burn": 7.3,
-   "rev": 10.4,
-   "shares": 45.9,
+   "burn": 8.54,
+   "rev": 8.6,
+   "shares": 45.96,
    "own": null,
    "emp": null,
    "partners": [],
@@ -33817,9 +33754,9 @@
      "area": "Metabolic",
      "labels": {
       "area": "set by hand",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
@@ -33888,7 +33825,7 @@
      "label": "BGE-102 Phase II data (estimated)"
     },
     {
-     "date": "2027-02-03",
+     "date": "2027-02-04",
      "kind": "earnings",
      "drug": null,
      "est": true,
@@ -33919,7 +33856,7 @@
     }
    ],
    "note": "",
-   "dil24": null,
+   "dil24": 28.2,
    "runwayHist": [
     {
      "end": "2023-12-31",
@@ -33990,6 +33927,13 @@
      "cash": 381,
      "burn": 7.3,
      "runway": 52.2
+    },
+    {
+     "end": "2026-09-30",
+     "filed": "2026-11-05",
+     "cash": 352,
+     "burn": 8.5,
+     "runway": 41.2
     }
    ],
    "revQ": [
@@ -34028,6 +33972,10 @@
     [
      "2026-06-30",
      2.5
+    ],
+    [
+     "2026-09-30",
+     0.3
     ]
    ],
    "rivals": [
@@ -34053,7 +34001,7 @@
      "china": null
     }
    ],
-   "burnPrior": 4.78,
+   "burnPrior": 4.88,
    "debtDue24": 2,
    "raise": {
     "capacity": "shelf",
@@ -34065,19 +34013,15 @@
     }
    },
    "quote": {
-    "price": 5.5,
+    "price": 5.54,
     "prev": 5.95,
-    "chg": -0.45,
-    "chgPct": -7.56,
+    "chg": -0.41,
+    "chgPct": -6.89,
     "hi52": 25.96,
     "lo52": 4.81,
-    "volume": 337294,
+    "volume": 672198,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      7.5
-     ],
      [
       "2025-11-06",
       7.47
@@ -35080,11 +35024,27 @@
      ],
      [
       "2026-11-05",
-      5.5
+      5.54
      ]
     ]
    },
    "news": [
+    {
+     "date": "2026-11-05",
+     "time": "2026-11-05T21:40:33.000Z",
+     "form": "10-Q",
+     "formLabel": "Quarterly report",
+     "headline": "BioAge Labs files its quarterly report",
+     "url": "https://www.sec.gov/Archives/edgar/data/1709941/000119312526450023/bioa-20260930.htm"
+    },
+    {
+     "date": "2026-11-05",
+     "time": "2026-11-05T21:35:15.000Z",
+     "form": "8-K",
+     "formLabel": "Current report",
+     "headline": "BioAge Labs reports quarterly results",
+     "url": "https://www.sec.gov/Archives/edgar/data/1709941/000119312526450008/bioa-20261105.htm"
+    },
     {
      "date": "2026-10-02",
      "time": "2026-10-02T20:15:14.000Z",
@@ -35148,41 +35108,25 @@
      "formLabel": "Shelf registration",
      "headline": "BioAge Labs registers shares for future sale",
      "url": "https://www.sec.gov/Archives/edgar/data/1709941/000119312526121862/bioa-20260324.htm"
-    },
-    {
-     "date": "2026-03-24",
-     "time": "2026-03-24T13:15:30.000Z",
-     "form": "10-K",
-     "formLabel": "Annual report",
-     "headline": "BioAge Labs files its annual report",
-     "url": "https://www.sec.gov/Archives/edgar/data/1709941/000119312526120873/bioa-20251231.htm"
-    },
-    {
-     "date": "2026-03-24",
-     "time": "2026-03-24T13:10:30.000Z",
-     "form": "8-K",
-     "formLabel": "Current report",
-     "headline": "BioAge Labs reports quarterly results",
-     "url": "https://www.sec.gov/Archives/edgar/data/1709941/000119312526120864/bioa-20260324.htm"
     }
    ],
    "cashFlowPositive": false,
    "src": {
     "cik": "1709941",
-    "asOf": "2026-06-30",
+    "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
      "MarketableSecuritiesCurrent",
      "MarketableSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
-    "sharesAsOf": "2026-07-31",
+    "sharesAsOf": "2026-10-30",
     "filing": {
      "form": "10-Q",
-     "date": "2026-08-05",
-     "url": "https://www.sec.gov/Archives/edgar/data/1709941/000119312526335407/bioa-20260630.htm"
+     "date": "2026-11-05",
+     "url": "https://www.sec.gov/Archives/edgar/data/1709941/000119312526450023/bioa-20260930.htm"
     },
-    "price": 5.5,
+    "price": 5.54,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "BioAge Labs",
@@ -35199,8 +35143,8 @@
    "t": "RNAC",
    "n": "Cartesian Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 203.5,
-   "ev": 130.7,
+   "mcap": 206.8,
+   "ev": 134.1,
    "cash": 123,
    "debt": 50.2,
    "burn": 7.39,
@@ -35271,7 +35215,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": true,
      "biomarker": false,
@@ -35544,19 +35488,15 @@
     }
    },
    "quote": {
-    "price": 6.67,
+    "price": 6.78,
     "prev": 6.82,
-    "chg": -0.15,
-    "chgPct": -2.2,
+    "chg": -0.04,
+    "chgPct": -0.59,
     "hi52": 11,
     "lo52": 5.6,
-    "volume": 90073,
+    "volume": 184785,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      7.67
-     ],
      [
       "2025-11-06",
       7.55
@@ -36559,7 +36499,7 @@
      ],
      [
       "2026-11-05",
-      6.67
+      6.78
      ]
     ]
    },
@@ -36659,7 +36599,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1453687/000145368726000111/rnac-20260930.htm"
     },
-    "price": 6.67,
+    "price": 6.78,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Cartesian Therapeutics",
@@ -36676,8 +36616,8 @@
    "t": "ZNTL",
    "n": "Zentalis Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 120.8,
-   "ev": -53.8,
+   "mcap": 122.6,
+   "ev": -52,
    "cash": 174.6,
    "debt": 0,
    "burn": 10.67,
@@ -36748,10 +36688,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (small-molecule stem)",
       "rare": "not on the rare-disease list",
-      "biomarker": "trial names a marker or mutation"
+      "biomarker": "the trial names a biomarker or mutation"
      },
      "area": "Oncology",
      "rare": false,
@@ -36805,7 +36745,7 @@
    ],
    "catalysts": [
     {
-     "date": "2026-11-05",
+     "date": "2027-02-04",
      "kind": "earnings",
      "drug": null,
      "est": true,
@@ -37279,19 +37219,15 @@
     }
    },
    "quote": {
-    "price": 1.69,
+    "price": 1.71,
     "prev": 1.76,
-    "chg": -0.07,
-    "chgPct": -4.26,
+    "chg": -0.05,
+    "chgPct": -2.84,
     "hi52": 6.95,
     "lo52": 1.21,
-    "volume": 1192516,
+    "volume": 1641166,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      1.34
-     ],
      [
       "2025-11-06",
       1.3
@@ -38294,7 +38230,7 @@
      ],
      [
       "2026-11-05",
-      1.68
+      1.71
      ]
     ]
    },
@@ -38395,7 +38331,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1725160/000172516026000062/zntl-20260630.htm"
     },
-    "price": 1.69,
+    "price": 1.71,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Zentalis Pharmaceuticals",
@@ -38412,8 +38348,8 @@
    "t": "DNLI",
    "n": "Denali Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 3205.8,
-   "ev": 2198.2,
+   "mcap": 3160.9,
+   "ev": 2153.4,
    "cash": 1007.6,
    "debt": 0,
    "burn": 37.02,
@@ -38485,10 +38421,10 @@
      },
      "modality": "Protein",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (protein suffix)",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Metabolic",
      "rare": true,
@@ -38602,7 +38538,7 @@
       "area": "set by hand",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": true,
      "biomarker": false,
@@ -38690,10 +38626,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": false,
@@ -38788,10 +38724,10 @@
      },
      "modality": "Protein",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Metabolic",
      "rare": true,
@@ -38889,10 +38825,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": false,
@@ -38976,10 +38912,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Metabolic",
      "rare": true,
@@ -39521,19 +39457,15 @@
     }
    },
    "quote": {
-    "price": 20,
+    "price": 19.72,
     "prev": 20.96,
-    "chg": -0.96,
-    "chgPct": -4.58,
+    "chg": -1.24,
+    "chgPct": -5.92,
     "hi52": 27.3,
     "lo52": 13.75,
-    "volume": 1085392,
+    "volume": 2249360,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      14.89
-     ],
      [
       "2025-11-06",
       14.41
@@ -40536,7 +40468,7 @@
      ],
      [
       "2026-11-05",
-      20
+      19.72
      ]
     ]
    },
@@ -40638,7 +40570,7 @@
      "date": "2026-11-03",
      "url": "https://www.sec.gov/Archives/edgar/data/1714899/000171489926000109/dnli-20260930.htm"
     },
-    "price": 20,
+    "price": 19.72,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Denali Therapeutics",
@@ -40655,8 +40587,8 @@
    "t": "BHVN",
    "n": "Biohaven",
    "area": "Pharmaceutical Preparations",
-   "mcap": 2142.8,
-   "ev": 2245.9,
+   "mcap": 2099.7,
+   "ev": 2202.9,
    "cash": 161.1,
    "debt": 264.3,
    "burn": 39.38,
@@ -40717,10 +40649,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (small-molecule stem)",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": true,
@@ -40739,9 +40671,9 @@
       "fasterThan": 31
      },
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2022-02-18",
       "width": 9,
       "basis": "Registry (actual completion)",
@@ -40820,10 +40752,10 @@
      },
      "modality": "Protein",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (protein suffix)",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": true,
@@ -40831,9 +40763,9 @@
      "slips": 0,
      "duration": null,
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2024-09-25",
       "width": 9,
       "basis": "Registry (actual completion)",
@@ -40921,10 +40853,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": false,
@@ -40943,11 +40875,11 @@
       "fasterThan": 38
      },
      "window": {
-      "lo": "2026-11-05",
+      "lo": "2026-11-06",
       "hi": "2027-04-30",
       "mid": "2027-02-01",
       "reg": "2026-10-15",
-      "width": 5.8,
+      "width": 5.7,
       "basis": "Registry estimate",
       "why": [
        "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
@@ -41016,10 +40948,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": false,
@@ -41112,10 +41044,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Endocrine",
      "rare": false,
@@ -41204,10 +41136,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Other (incl. renal, dermatology)",
      "rare": true,
@@ -41255,23 +41187,23 @@
    ],
    "catalysts": [
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "readout",
      "drug": "Troriluzole",
      "est": false,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2022-02-18",
      "nct": "NCT03701399",
      "label": "Troriluzole Phase III data (estimated)"
     },
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "minor",
      "drug": "Taldefgrobep Alfa",
      "est": false,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2024-09-25",
      "nct": "NCT05337553",
      "label": "Taldefgrobep Alfa extension study completes (safety follow-up)"
@@ -41281,7 +41213,7 @@
      "kind": "readout",
      "drug": "BHV-7000",
      "est": true,
-     "lo": "2026-11-05",
+     "lo": "2026-11-06",
      "hi": "2027-04-30",
      "reg": "2026-10-15",
      "nct": "NCT06309966",
@@ -41664,19 +41596,15 @@
     }
    },
    "quote": {
-    "price": 14.19,
+    "price": 13.9,
     "prev": 15.24,
-    "chg": -1.05,
-    "chgPct": -6.92,
+    "chg": -1.34,
+    "chgPct": -8.79,
     "hi52": 18.24,
     "lo52": 7.48,
-    "volume": 1726375,
+    "volume": 3468277,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      8.34
-     ],
      [
       "2025-11-06",
       8.53
@@ -42679,7 +42607,7 @@
      ],
      [
       "2026-11-05",
-      14.19
+      13.9
      ]
     ]
    },
@@ -42780,7 +42708,7 @@
      "date": "2026-10-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1935979/000193597926000092/bhvn-20260930.htm"
     },
-    "price": 14.19,
+    "price": 13.9,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Biohaven",
@@ -42797,8 +42725,8 @@
    "t": "OMER",
    "n": "Omeros",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1239.3,
-   "ev": 1107.3,
+   "mcap": 1235.7,
+   "ev": 1103.7,
    "cash": 132,
    "debt": 0,
    "burn": 5.72,
@@ -42861,10 +42789,10 @@
      },
      "modality": "Monoclonal antibody",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (-mab)",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Hematology",
      "rare": true,
@@ -42883,9 +42811,9 @@
       "fasterThan": 29
      },
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2025-12-15",
       "width": 9,
       "stale": true,
@@ -42975,10 +42903,10 @@
      },
      "modality": "Monoclonal antibody",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Hematology",
      "rare": true,
@@ -43021,12 +42949,12 @@
    ],
    "catalysts": [
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "minor",
      "drug": "narsoplimab",
      "est": true,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2025-12-15",
      "nct": "NCT05855083",
      "label": "narsoplimab Phase II data (registry date overdue)"
@@ -43503,19 +43431,15 @@
     }
    },
    "quote": {
-    "price": 17.12,
+    "price": 17.07,
     "prev": 18.18,
-    "chg": -1.06,
-    "chgPct": -5.83,
+    "chg": -1.11,
+    "chgPct": -6.11,
     "hi52": 21.24,
     "lo52": 6.24,
-    "volume": 560294,
+    "volume": 990756,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      6.99
-     ],
      [
       "2025-11-06",
       6.58
@@ -44518,7 +44442,7 @@
      ],
      [
       "2026-11-05",
-      17.12
+      17.07
      ]
     ]
    },
@@ -44619,7 +44543,7 @@
      "date": "2026-08-12",
      "url": "https://www.sec.gov/Archives/edgar/data/1285819/000143774926027318/omer20260630_10q.htm"
     },
-    "price": 17.12,
+    "price": 17.07,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "OMEROS",
@@ -44636,8 +44560,8 @@
    "t": "ANRO",
    "n": "Alto Neuroscience",
    "area": "Pharmaceutical Preparations",
-   "mcap": 876.3,
-   "ev": 645,
+   "mcap": 858.2,
+   "ev": 626.9,
    "cash": 243.7,
    "debt": 12.4,
    "burn": 5.69,
@@ -44697,10 +44621,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Psychiatry",
      "rare": false,
@@ -44719,9 +44643,9 @@
       "fasterThan": 49
      },
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2026-02-15",
       "width": 9,
       "stale": true,
@@ -44798,10 +44722,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Psychiatry",
      "rare": false,
@@ -44888,10 +44812,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Psychiatry",
      "rare": false,
@@ -44983,10 +44907,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Psychiatry",
      "rare": false,
@@ -45033,12 +44957,12 @@
    ],
    "catalysts": [
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "minor",
      "drug": "ALTO-101",
      "est": true,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2026-02-15",
      "nct": "NCT06502964",
      "label": "ALTO-101 Phase II data (registry date overdue)"
@@ -45458,19 +45382,15 @@
     }
    },
    "quote": {
-    "price": 22.33,
+    "price": 21.87,
     "prev": 23.3,
-    "chg": -0.97,
-    "chgPct": -4.16,
+    "chg": -1.43,
+    "chgPct": -6.14,
     "hi52": 37.48,
     "lo52": 10.62,
-    "volume": 223354,
+    "volume": 411271,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      11.29
-     ],
      [
       "2025-11-06",
       11.13
@@ -46473,7 +46393,7 @@
      ],
      [
       "2026-11-05",
-      22.33
+      21.87
      ]
     ]
    },
@@ -46573,7 +46493,7 @@
      "date": "2026-08-12",
      "url": "https://www.sec.gov/Archives/edgar/data/1999480/000199948026000023/alto-20260630.htm"
     },
-    "price": 22.33,
+    "price": 21.87,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Alto Neuroscience",
@@ -46590,8 +46510,8 @@
    "t": "DSGN",
    "n": "Design Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 639.1,
-   "ev": 430.5,
+   "mcap": 619.2,
+   "ev": 410.6,
    "cash": 208.6,
    "debt": 0,
    "burn": 4.94,
@@ -46650,10 +46570,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": true,
@@ -46756,10 +46676,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Ophthalmology",
      "rare": false,
@@ -47128,19 +47048,15 @@
     }
    },
    "quote": {
-    "price": 9.98,
+    "price": 9.67,
     "prev": 10.63,
-    "chg": -0.65,
-    "chgPct": -6.11,
+    "chg": -0.96,
+    "chgPct": -9.03,
     "hi52": 17.25,
     "lo52": 6.23,
-    "volume": 229733,
+    "volume": 748813,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      6.55
-     ],
      [
       "2025-11-06",
       6.87
@@ -48143,7 +48059,7 @@
      ],
      [
       "2026-11-05",
-      9.98
+      9.67
      ]
     ]
    },
@@ -48244,7 +48160,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1807120/000119312526447258/dsgn-20260930.htm"
     },
-    "price": 9.98,
+    "price": 9.67,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Design Therapeutics",
@@ -48261,8 +48177,8 @@
    "t": "DMAC",
    "n": "DiaMedica Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 500.7,
-   "ev": 457.2,
+   "mcap": 487.5,
+   "ev": 444,
    "cash": 43.5,
    "debt": 0,
    "burn": 2.63,
@@ -48331,10 +48247,10 @@
      },
      "modality": "Protein",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (protein suffix)",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": false,
@@ -48793,19 +48709,15 @@
     }
    },
    "quote": {
-    "price": 9.29,
+    "price": 9.04,
     "prev": 10.77,
-    "chg": -1.48,
-    "chgPct": -13.79,
+    "chg": -1.73,
+    "chgPct": -16.06,
     "hi52": 11,
     "lo52": 5.25,
-    "volume": 187088,
+    "volume": 330456,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      6.65
-     ],
      [
       "2025-11-06",
       6.22
@@ -49808,7 +49720,7 @@
      ],
      [
       "2026-11-05",
-      9.28
+      9.04
      ]
     ]
    },
@@ -49909,7 +49821,7 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1401040/000143774926026792/dmtp20260630_10q.htm"
     },
-    "price": 9.29,
+    "price": 9.04,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "DiaMedica Therapeutics",
@@ -49926,8 +49838,8 @@
    "t": "AVIR",
    "n": "Atea Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 339.3,
-   "ev": 119.8,
+   "mcap": 338.5,
+   "ev": 119,
    "cash": 219.5,
    "debt": 0,
    "burn": 12.67,
@@ -49998,10 +49910,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (small-molecule stem)",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Infectious disease",
      "rare": false,
@@ -50104,10 +50016,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Infectious disease",
      "rare": false,
@@ -50353,19 +50265,15 @@
     }
    },
    "quote": {
-    "price": 4.23,
+    "price": 4.22,
     "prev": 4.46,
-    "chg": -0.23,
-    "chgPct": -5.16,
+    "chg": -0.24,
+    "chgPct": -5.38,
     "hi52": 6.45,
     "lo52": 2.87,
-    "volume": 123902,
+    "volume": 298410,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      3.24
-     ],
      [
       "2025-11-06",
       3.25
@@ -51368,7 +51276,7 @@
      ],
      [
       "2026-11-05",
-      4.23
+      4.22
      ]
     ]
    },
@@ -51469,7 +51377,7 @@
      "date": "2026-08-12",
      "url": "https://www.sec.gov/Archives/edgar/data/1593899/000119312526347021/avir-20260630.htm"
     },
-    "price": 4.23,
+    "price": 4.22,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Atea Pharmaceuticals",
@@ -51486,8 +51394,8 @@
    "t": "LXEO",
    "n": "Lexeo Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 234.2,
-   "ev": 0.1,
+   "mcap": 238.3,
+   "ev": 4.2,
    "cash": 234.2,
    "debt": 0,
    "burn": 7.36,
@@ -51546,10 +51454,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as genetic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as genetic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Cardiovascular",
      "rare": false,
@@ -51645,10 +51553,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as genetic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as genetic",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": true,
@@ -51745,10 +51653,10 @@
      },
      "modality": "Biologic",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as biological",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as biological",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": false,
@@ -52073,19 +51981,15 @@
     }
    },
    "quote": {
-    "price": 2.86,
+    "price": 2.91,
     "prev": 3.23,
-    "chg": -0.37,
-    "chgPct": -11.61,
+    "chg": -0.33,
+    "chgPct": -10.06,
     "hi52": 10.99,
     "lo52": 2.55,
-    "volume": 843002,
+    "volume": 1707395,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      8.2
-     ],
      [
       "2025-11-06",
       8.42
@@ -53088,7 +52992,7 @@
      ],
      [
       "2026-11-05",
-      2.86
+      2.9
      ]
     ]
    },
@@ -53190,7 +53094,7 @@
      "date": "2026-08-12",
      "url": "https://www.sec.gov/Archives/edgar/data/1907108/000119312526345724/lxeo-20260630.htm"
     },
-    "price": 2.86,
+    "price": 2.91,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Lexeo Therapeutics",
@@ -53207,8 +53111,8 @@
    "t": "TARA",
    "n": "Protara Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 131.2,
-   "ev": -30.7,
+   "mcap": 125.9,
+   "ev": -36,
    "cash": 161.9,
    "debt": 0,
    "burn": 5.51,
@@ -53281,9 +53185,9 @@
      "area": "Gastroenterology",
      "labels": {
       "area": "set by hand",
-      "modality": "registry lists it as a drug, not a biologic",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "rare": false,
      "biomarker": false,
@@ -53369,10 +53273,10 @@
      },
      "modality": "Biologic",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Oncology",
      "rare": false,
@@ -53706,19 +53610,15 @@
     }
    },
    "quote": {
-    "price": 2.22,
+    "price": 2.13,
     "prev": 2.35,
-    "chg": -0.13,
-    "chgPct": -5.53,
+    "chg": -0.22,
+    "chgPct": -9.36,
     "hi52": 7.82,
-    "lo52": 2.2,
-    "volume": 380066,
+    "lo52": 2.11,
+    "volume": 627737,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      4.44
-     ],
      [
       "2025-11-06",
       4.29
@@ -54721,7 +54621,7 @@
      ],
      [
       "2026-11-05",
-      2.22
+      2.13
      ]
     ]
    },
@@ -54823,7 +54723,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1359931/000121390026087508/ea0298600-10q_protara.htm"
     },
-    "price": 2.22,
+    "price": 2.13,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Protara Therapeutics",
@@ -54840,8 +54740,8 @@
    "t": "GOSS",
    "n": "Gossamer Bio",
    "area": "Pharmaceutical Preparations",
-   "mcap": 4448.5,
-   "ev": 4391.5,
+   "mcap": 4604.9,
+   "ev": 4547.9,
    "cash": 57,
    "debt": 0,
    "burn": 13.55,
@@ -54911,10 +54811,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (small-molecule stem)",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Cardiovascular",
      "rare": true,
@@ -55440,19 +55340,15 @@
     }
    },
    "quote": {
-    "price": 9.1,
+    "price": 9.42,
     "prev": 9.95,
-    "chg": -0.85,
-    "chgPct": -8.54,
+    "chg": -0.53,
+    "chgPct": -5.33,
     "hi52": 309.6,
     "lo52": 8.29,
-    "volume": 112422,
+    "volume": 151661,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      189.6
-     ],
      [
       "2025-11-06",
       184.8
@@ -56455,7 +56351,7 @@
      ],
      [
       "2026-11-05",
-      9.1
+      9.42
      ]
     ]
    },
@@ -56557,7 +56453,7 @@
      "date": "2026-08-13",
      "url": "https://www.sec.gov/Archives/edgar/data/1728117/000172811726000072/goss-20260630.htm"
     },
-    "price": 9.1,
+    "price": 9.42,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Gossamer Bio",
@@ -56574,8 +56470,8 @@
    "t": "SLS",
    "n": "SELLAS Life Sciences Group",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1625.3,
-   "ev": 1486.9,
+   "mcap": 1591.3,
+   "ev": 1453,
    "cash": 138.3,
    "debt": 0,
    "burn": 2.37,
@@ -56644,10 +56540,10 @@
      },
      "modality": "Biologic",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as biological",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as biological",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Oncology",
      "rare": false,
@@ -56666,9 +56562,9 @@
       "fasterThan": 15
      },
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2025-12-15",
       "width": 9,
       "stale": true,
@@ -56763,10 +56659,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Oncology",
      "rare": false,
@@ -56819,12 +56715,12 @@
    ],
    "catalysts": [
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "minor",
      "drug": "Galinpepimut-S",
      "est": true,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2025-12-15",
      "nct": "NCT04229979",
      "label": "Galinpepimut-S Phase III data (registry date overdue)"
@@ -57365,19 +57261,15 @@
     }
    },
    "quote": {
-    "price": 8.05,
+    "price": 7.88,
     "prev": 9.14,
-    "chg": -1.09,
-    "chgPct": -11.95,
+    "chg": -1.26,
+    "chgPct": -13.79,
     "hi52": 15.88,
     "lo52": 1.39,
-    "volume": 7488235,
+    "volume": 10666396,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      1.68
-     ],
      [
       "2025-11-06",
       1.62
@@ -58380,7 +58272,7 @@
      ],
      [
       "2026-11-05",
-      8.05
+      7.88
      ]
     ]
    },
@@ -58480,7 +58372,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1390478/000139047826000012/sls-20260630.htm"
     },
-    "price": 8.05,
+    "price": 7.88,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "SELLAS Life Sciences Group",
@@ -58497,8 +58389,8 @@
    "t": "MLTX",
    "n": "MoonLake Immunotherapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 931.9,
-   "ev": 533.5,
+   "mcap": 919.2,
+   "ev": 520.7,
    "cash": 498.5,
    "debt": 100,
    "burn": 20.34,
@@ -58570,10 +58462,10 @@
      },
      "modality": "Monoclonal antibody",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (-mab)",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Autoimmune",
      "rare": false,
@@ -58592,9 +58484,9 @@
       "fasterThan": 66
      },
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2026-05-28",
       "width": 9,
       "basis": "Registry (actual completion)",
@@ -58620,12 +58512,12 @@
    ],
    "catalysts": [
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "readout",
      "drug": "Sonelokimab",
      "est": false,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2026-05-28",
      "nct": "NCT06641076",
      "label": "Sonelokimab Phase III data (estimated)"
@@ -59079,19 +58971,15 @@
     }
    },
    "quote": {
-    "price": 10.95,
+    "price": 10.8,
     "prev": 11.56,
-    "chg": -0.61,
-    "chgPct": -5.28,
+    "chg": -0.76,
+    "chgPct": -6.57,
     "hi52": 23.29,
     "lo52": 9.46,
-    "volume": 719367,
+    "volume": 1321209,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      10.59
-     ],
      [
       "2025-11-06",
       10.29
@@ -60094,7 +59982,7 @@
      ],
      [
       "2026-11-05",
-      10.95
+      10.8
      ]
     ]
    },
@@ -60195,7 +60083,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1821586/000182158626000015/mnlk-20260930.htm"
     },
-    "price": 10.95,
+    "price": 10.8,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "MoonLake Immunotherapeutics",
@@ -60212,8 +60100,8 @@
    "t": "EWTX",
    "n": "Edgewise Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 4401.2,
-   "ev": 4332.5,
+   "mcap": 4255.6,
+   "ev": 4186.9,
    "cash": 68.7,
    "debt": 0,
    "burn": 16.82,
@@ -60277,10 +60165,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (small-molecule stem)",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": true,
@@ -60380,10 +60268,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Cardiovascular",
      "rare": false,
@@ -60481,10 +60369,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Cardiovascular",
      "rare": false,
@@ -61006,19 +60894,15 @@
     }
    },
    "quote": {
-    "price": 40.2,
+    "price": 38.87,
     "prev": 37.53,
-    "chg": 2.67,
-    "chgPct": 7.11,
+    "chg": 1.34,
+    "chgPct": 3.57,
     "hi52": 48.51,
     "lo52": 16.7,
-    "volume": 3207318,
+    "volume": 5041184,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      17.37
-     ],
      [
       "2025-11-06",
       17.09
@@ -62021,7 +61905,7 @@
      ],
      [
       "2026-11-05",
-      40.2
+      38.87
      ]
     ]
    },
@@ -62121,7 +62005,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1710072/000110465926122653/ewtx-20260930x10q.htm"
     },
-    "price": 40.2,
+    "price": 38.87,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Edgewise Therapeutics",
@@ -62138,8 +62022,8 @@
    "t": "XENE",
    "n": "Xenon Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 3664,
-   "ev": 2418.9,
+   "mcap": 3648.9,
+   "ev": 2403.9,
    "cash": 1245.1,
    "debt": 0,
    "burn": 28.13,
@@ -62199,10 +62083,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Psychiatry",
      "rare": false,
@@ -62221,11 +62105,11 @@
       "fasterThan": 50
      },
      "window": {
-      "lo": "2026-11-05",
+      "lo": "2026-11-06",
       "hi": "2027-04-30",
       "mid": "2027-02-01",
       "reg": "2026-10-15",
-      "width": 5.8,
+      "width": 5.7,
       "basis": "Registry estimate",
       "why": [
        "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
@@ -62253,14 +62137,14 @@
      "kind": "readout",
      "drug": "Azetukalner",
      "est": true,
-     "lo": "2026-11-05",
+     "lo": "2026-11-06",
      "hi": "2027-04-30",
      "reg": "2026-10-15",
      "nct": "NCT06775379",
      "label": "Azetukalner Phase III data (estimated)"
     },
     {
-     "date": "2026-11-05",
+     "date": "2027-02-04",
      "kind": "earnings",
      "drug": null,
      "est": true,
@@ -62771,19 +62655,15 @@
     }
    },
    "quote": {
-    "price": 37.84,
+    "price": 37.68,
     "prev": 39.19,
-    "chg": -1.35,
-    "chgPct": -3.46,
+    "chg": -1.51,
+    "chgPct": -3.85,
     "hi52": 72.66,
     "lo52": 33.38,
-    "volume": 529357,
+    "volume": 1034776,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      38.66
-     ],
      [
       "2025-11-06",
       38.3
@@ -63786,7 +63666,7 @@
      ],
      [
       "2026-11-05",
-      37.83
+      37.68
      ]
     ]
    },
@@ -63888,7 +63768,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1582313/000119312526338244/xene-20260630.htm"
     },
-    "price": 37.84,
+    "price": 37.68,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Xenon Pharmaceuticals",
@@ -63905,13 +63785,13 @@
    "t": "LXRX",
    "n": "Lexicon Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 716.4,
-   "ev": 577.2,
-   "cash": 190.6,
-   "debt": 51.4,
-   "burn": 5.42,
-   "rev": 41.5,
-   "shares": 444.96,
+   "mcap": 716.8,
+   "ev": 585.5,
+   "cash": 183.2,
+   "debt": 51.9,
+   "burn": 4.1,
+   "rev": 38.5,
+   "shares": 445.23,
    "own": null,
    "emp": null,
    "partners": [],
@@ -63977,10 +63857,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (small-molecule stem)",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Cardiovascular",
      "rare": false,
@@ -64044,7 +63924,7 @@
      "label": "Sotagliflozin Phase III data (estimated)"
     },
     {
-     "date": "2026-11-05",
+     "date": "2027-02-04",
      "kind": "earnings",
      "drug": null,
      "est": true,
@@ -64082,15 +63962,8 @@
     }
    ],
    "note": "",
-   "dil24": 23.1,
+   "dil24": 23.2,
    "runwayHist": [
-    {
-     "end": "2021-09-30",
-     "filed": "2021-11-09",
-     "cash": 121,
-     "burn": 8.2,
-     "runway": 14.7
-    },
     {
      "end": "2021-12-31",
      "filed": "2022-03-10",
@@ -64223,13 +64096,16 @@
      "cash": 191,
      "burn": 5.4,
      "runway": 35.2
+    },
+    {
+     "end": "2026-09-30",
+     "filed": "2026-11-05",
+     "cash": 183,
+     "burn": 4.1,
+     "runway": 44.7
     }
    ],
    "revQ": [
-    [
-     "2023-09-30",
-     0.2
-    ],
     [
      "2023-12-31",
      0.7
@@ -64273,6 +64149,10 @@
     [
      "2026-06-30",
      0.7
+    ],
+    [
+     "2026-09-30",
+     11.3
     ]
    ],
    "rivals": [
@@ -64334,7 +64214,7 @@
      "china": null
     }
    ],
-   "burnPrior": 8.49,
+   "burnPrior": 6.01,
    "debtDue24": 0,
    "raise": {
     "capacity": "atm",
@@ -64357,13 +64237,9 @@
     "chgPct": 8.78,
     "hi52": 2.68,
     "lo52": 1.1,
-    "volume": 2897375,
+    "volume": 3788917,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      1.38
-     ],
      [
       "2025-11-06",
       1.43
@@ -65373,6 +65249,14 @@
    "news": [
     {
      "date": "2026-11-05",
+     "time": "2026-11-05T21:04:41.000Z",
+     "form": "10-Q",
+     "formLabel": "Quarterly report",
+     "headline": "Lexicon Pharmaceuticals files its quarterly report",
+     "url": "https://www.sec.gov/Archives/edgar/data/1062822/000106282226000128/lxrx-20260930.htm"
+    },
+    {
+     "date": "2026-11-05",
      "time": "2026-11-05T12:03:15.000Z",
      "form": "8-K",
      "formLabel": "Current report",
@@ -65442,30 +65326,22 @@
      "formLabel": "Proxy statement",
      "headline": "Lexicon Pharmaceuticals files its proxy statement",
      "url": "https://www.sec.gov/Archives/edgar/data/1062822/000106282226000056/lxrx-20260316.htm"
-    },
-    {
-     "date": "2026-03-05",
-     "time": "2026-03-05T21:50:45.000Z",
-     "form": "10-K",
-     "formLabel": "Annual report",
-     "headline": "Lexicon Pharmaceuticals files its annual report",
-     "url": "https://www.sec.gov/Archives/edgar/data/1062822/000106282226000050/lxrx-20251231.htm"
     }
    ],
    "cashFlowPositive": false,
    "src": {
     "cik": "1062822",
-    "asOf": "2026-06-30",
+    "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
      "ShortTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
-    "sharesAsOf": "2026-08-03",
+    "sharesAsOf": "2026-11-02",
     "filing": {
      "form": "10-Q",
-     "date": "2026-08-06",
-     "url": "https://www.sec.gov/Archives/edgar/data/1062822/000106282226000117/lxrx-20260630.htm"
+     "date": "2026-11-05",
+     "url": "https://www.sec.gov/Archives/edgar/data/1062822/000106282226000128/lxrx-20260930.htm"
     },
     "price": 1.61,
     "priceDate": "2026-11-05",
@@ -65484,8 +65360,8 @@
    "t": "LRMR",
    "n": "Larimar Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 247.8,
-   "ev": 91.5,
+   "mcap": 241,
+   "ev": 84.7,
    "cash": 156.3,
    "debt": 0,
    "burn": 12.99,
@@ -65545,10 +65421,10 @@
      },
      "modality": "Protein",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (protein suffix)",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Neurology",
      "rare": true,
@@ -65940,19 +65816,15 @@
     }
    },
    "quote": {
-    "price": 2.38,
+    "price": 2.32,
     "prev": 2.76,
-    "chg": -0.37,
-    "chgPct": -13.59,
+    "chg": -0.44,
+    "chgPct": -15.94,
     "hi52": 6.42,
     "lo52": 1.92,
-    "volume": 1215624,
+    "volume": 1772574,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      3.22
-     ],
      [
       "2025-11-06",
       3.47
@@ -66955,7 +66827,7 @@
      ],
      [
       "2026-11-05",
-      2.38
+      2.32
      ]
     ]
    },
@@ -67056,7 +66928,7 @@
      "date": "2026-08-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1374690/000119312526331529/lrmr-20260630.htm"
     },
-    "price": 2.38,
+    "price": 2.32,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Larimar Therapeutics",
@@ -67073,7 +66945,7 @@
    "t": "ELDN",
    "n": "Eledon Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 199.8,
+   "mcap": 199.9,
    "ev": 111.1,
    "cash": 88.8,
    "debt": 0,
@@ -67132,10 +67004,10 @@
      },
      "modality": "Monoclonal antibody",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "from the drug name (-bart / -tug / -mig / -ment)",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Other (incl. renal, dermatology)",
      "rare": false,
@@ -67475,16 +67347,12 @@
     "price": 2.46,
     "prev": 2.7,
     "chg": -0.24,
-    "chgPct": -8.93,
+    "chgPct": -8.89,
     "hi52": 4.49,
     "lo52": 1.35,
-    "volume": 445970,
+    "volume": 687175,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      4.03
-     ],
      [
       "2025-11-06",
       4.1
@@ -68605,8 +68473,8 @@
    "t": "OCGN",
    "n": "Ocugen",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 275.1,
-   "ev": 192.6,
+   "mcap": 277,
+   "ev": 194.5,
    "cash": 84.3,
    "debt": 1.7,
    "burn": 5.31,
@@ -68666,10 +68534,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Ophthalmology",
      "rare": true,
@@ -68688,9 +68556,9 @@
       "fasterThan": 29
      },
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2026-09-28",
       "width": 9,
       "stale": true,
@@ -68771,10 +68639,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as genetic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as genetic",
       "rare": "on Helixora's rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Ophthalmology",
      "rare": true,
@@ -68866,10 +68734,10 @@
      },
      "modality": "Gene therapy",
      "labels": {
-      "area": "from the disease",
+      "area": "from the condition studied",
       "modality": "set by hand",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Ophthalmology",
      "rare": false,
@@ -68968,10 +68836,10 @@
      },
      "modality": "Small molecule",
      "labels": {
-      "area": "from the disease",
-      "modality": "registry lists it as a drug, not a biologic",
+      "area": "from the condition studied",
+      "modality": "from the trial registry, which lists it as a drug rather than a biologic",
       "rare": "not on the rare-disease list",
-      "biomarker": "no marker named"
+      "biomarker": "no biomarker named"
      },
      "area": "Ophthalmology",
      "rare": false,
@@ -68979,9 +68847,9 @@
      "slips": 0,
      "duration": null,
      "window": {
-      "lo": "2026-11-05",
-      "hi": "2027-08-05",
-      "mid": "2027-03-21",
+      "lo": "2026-11-06",
+      "hi": "2027-08-06",
+      "mid": "2027-03-22",
       "reg": "2026-07-31",
       "width": 9,
       "stale": true,
@@ -69014,12 +68882,12 @@
    ],
    "catalysts": [
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "minor",
      "drug": "OCU410ST",
      "est": true,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2026-09-28",
      "nct": "NCT05956626",
      "label": "OCU410ST Phase III data (registry date overdue)"
@@ -69036,12 +68904,12 @@
      "label": "OCU400 Phase III data (estimated)"
     },
     {
-     "date": "2027-03-21",
+     "date": "2027-03-22",
      "kind": "minor",
      "drug": "OCU200",
      "est": true,
-     "lo": "2026-11-05",
-     "hi": "2027-08-05",
+     "lo": "2026-11-06",
+     "hi": "2027-08-06",
      "reg": "2026-07-31",
      "nct": "NCT05802329",
      "label": "OCU200 Phase I data (registry date overdue)"
@@ -69524,19 +69392,15 @@
     }
    },
    "quote": {
-    "price": 0.81,
+    "price": 0.82,
     "prev": 0.88,
-    "chg": -0.07,
-    "chgPct": -7.86,
+    "chg": -0.06,
+    "chgPct": -7.22,
     "hi52": 2.73,
     "lo52": 0.69,
-    "volume": 4631925,
+    "volume": 7142781,
     "date": "2026-11-05",
     "history": [
-     [
-      "2025-11-05",
-      1.41
-     ],
      [
       "2025-11-06",
       1.38
@@ -70539,7 +70403,7 @@
      ],
      [
       "2026-11-05",
-      0.81
+      0.82
      ]
     ]
    },
@@ -70640,7 +70504,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1372299/000162828026069835/ocgn-20260930.htm"
     },
-    "price": 0.81,
+    "price": 0.82,
     "priceDate": "2026-11-05",
     "priceSource": "Yahoo Finance",
     "sponsor": "Ocugen",
