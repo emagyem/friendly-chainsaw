@@ -1806,6 +1806,32 @@ function Backtest() {
         </div>
       </div>
 
+      {bt.offeringsOnly && bt.raisedOrEnded && (
+        <div className="tablewrap">
+          <h3 className="subh">Does it hold up if you count a raise differently?</h3>
+          <table className="grid plain">
+            <thead><tr><th>What counts as "had to raise"</th><th className="num">Average</th><th className="num">High band</th><th className="num">Low band</th><th className="num">AUC</th></tr></thead>
+            <tbody>
+              {[["Offering filing or a 15%+ jump in shares (main result)", bt], ["Formal offering filings only", bt.offeringsOnly], ["Raised, or stopped filing within the year (bankruptcy, wind-down or sale)", bt.raisedOrEnded]].map(([l, v]) => (
+                <tr key={l}><td>{l}</td><td className="num">{P(v.base12)}</td><td className="num">{P(v.bands.find((x) => x.band === "High")?.raised12)}</td><td className="num">{P(v.bands.find((x) => x.band === "Low")?.raised12)}</td><td className="num">{v.auc?.toFixed(2)}</td></tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="colnote">Share-count jumps catch money raised through at-the-market sales and private placements, which often don't get their own offering filing.</p>
+        </div>
+      )}
+
+      <div className="takeaways">
+        <h3 className="subh">What this tells us</h3>
+        <ul className="watch">
+          <li><b>The score points the right way, but the signal is modest.</b> High-band companies raised more often than Low-band ones in {yrs.filter((y) => y.high > y.low).length} of {yrs.length} years, but an AUC of {bt.auc?.toFixed(2)} is a long way from perfect. Treat a High score as "more likely", not "certain".</li>
+          <li><b>Almost every cash-burning biotech raises often.</b> {P(bt.base12)} of company-quarters were followed by a raise within a year, so the useful question is less "will they raise?" than "how soon, and how badly do they need it?"</li>
+          {(() => { const a = bt.runwayBuckets[0], b = bt.runwayBuckets[1]; return a && b && a.raised12 < b.raised12 ? <li><b>Companies nearly out of cash often can't raise at all.</b> With under 6 months left, only {P(a.raised12)} raised within a year, fewer than the {P(b.raised12)} with 6–12 months. Many of the rest were sold, wound down or went bankrupt instead. The "raised or stopped filing" row counts those too.</li> : null; })()}
+          {(() => { const c = Object.entries(bt.components).sort((x, y) => (y[1].auc || 0) - (x[1].auc || 0))[0]; return c ? <li><b>The strongest single part is "{COMP[c[0]] || c[0]}"</b> (AUC {c[1].auc?.toFixed(2)}). Burn trend and debt add almost nothing on their own. That points to re-weighting the score toward what works; any change will be logged on the About us page.</li> : null; })()}
+          <li><b>Catalyst timing, a key input to the score's biggest part, couldn't be tested yet</b> because past trial-date expectations aren't available in bulk. Every company was given the same 18-month assumption, so the true score may do better or worse than this.</li>
+        </ul>
+      </div>
+
       <p className="prose">
         <b>Survivors vs the rest.</b> For companies still filing today the ranking accuracy is {bt.survivors.auc?.toFixed(2) ?? "—"}; for companies that have since stopped filing it's {bt.nonSurvivors.auc?.toFixed(2) ?? "—"}.
         {bt.leadMonthsHigh != null ? ` When a High-band company did raise, the median wait was ${num(bt.leadMonthsHigh, 1)} months after the balance sheet that flagged it.` : ""}
@@ -3869,6 +3895,8 @@ details.more summary:hover{color:var(--teal);}
 .wire{padding:12px 0 6px;}
 .ts-box:empty{display:none;}
 .subh{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin:18px 0 8px;color:var(--ink);}
+.takeaways{margin:18px 0 16px;padding:16px 20px;background:var(--tint);border-left:3px solid var(--teal);}
+.takeaways .subh{margin-top:0;}
 .limits{margin-top:14px;border-top:1px solid var(--rule2);padding-top:12px;}
 .limits summary{cursor:pointer;font-weight:700;font-size:14px;color:var(--teal-d);}
 .limits[open] summary{margin-bottom:10px;}

@@ -6,9 +6,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "23 11 5 * *"
-  push:
-    branches: [backtest-v1]
-    paths: ["scripts/backtest.mjs", ".github/workflows/backtest.yml", "src/fps.js"]
 
 permissions:
   contents: write

@@ -55,8 +55,10 @@ config/programs.json           corrections to the automatic program labels
 config/assumptions.json        your analyst inputs and drug-name aliases (all optional)
 scripts/fetch-data.mjs         builds everything in public/data/ (no dependencies, Node 20+)
 scripts/universe.mjs           the monthly coverage screen
+scripts/backtest.mjs           historical backtest of the score (results on the Research page)
 .github/workflows/refresh-data.yml   runs fetch-data every weekday and commits the result
 .github/workflows/universe.yml       runs the coverage screen on the 3rd of each month
+.github/workflows/backtest.yml       reruns the backtest on the 5th of each month (about 30 minutes)
 functions/api/ask.js           Cloudflare function for the Ask tab; holds the API key
 functions/api/waitlist.js      Cloudflare function that stores (and removes) waitlist sign-ups in D1
 functions/api/config.js        public settings for the browser (the Turnstile site key)
@@ -93,6 +95,12 @@ The site, the Ask function (`functions/api/ask.js`) and the waitlist (`functions
 To read sign-ups: D1 → the database → **Console**, run `SELECT email, role, created_at FROM waitlist ORDER BY created_at DESC;`
 
 Security and caching headers live in `public/_headers`.
+
+### Backtest
+
+`scripts/backtest.mjs` runs today's Financing Pressure Score on every past balance sheet of every cash-burning drug or biotech company (industry codes 2834, 2836, 8731; under $50M of trailing revenue) that filed with the SEC since 2012, including companies that later went bankrupt, were sold or delisted. Each company-quarter uses only figures filed by that date. A "raise" is a 424B4/424B5 offering filing or a 15%+ jump in shares outstanding within the next 12 months. Results go to `public/data/backtest.json` and the Research page.
+
+What it can't test yet: catalyst timing (past expected trial dates aren't available in bulk from ClinicalTrials.gov or AACT, so every company gets the 18-month assumption) and pipeline concentration. Market access uses the public float from each 10-K, because free price history doesn't exist for delisted stocks.
 
 ### Security
 
