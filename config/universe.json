@@ -15,7 +15,7 @@
   "funnel": [
     [
       "Listed on Nasdaq, NYSE or NYSE American",
-      6040
+      6039
     ],
     [
       "Burned over $20M in operating cash in 2025",
@@ -30,25 +30,28 @@
       250
     ],
     [
+      "Not acquired or being acquired",
+      244
+    ],
+    [
       "Market value $100M to $5B",
-      152
+      145
     ],
     [
       "Trades at least $1M a day",
-      147
+      140
     ],
     [
       "Has an active company-sponsored Phase II or III trial",
-      112
+      109
     ]
   ],
-  "screenedOn": "2026-11-04",
+  "screenedOn": "2026-11-06",
   "selected": [
     "PGEN",
     "VIR",
     "TYRA",
     "DBVT",
-    "IMUX",
     "TECX",
     "QURE",
     "SLDB",
@@ -73,7 +76,70 @@
     "LXRX",
     "LRMR",
     "ELDN",
-    "OCGN"
+    "OCGN",
+    "CADL",
+    "GPCR",
+    "VOR",
+    "PEPG",
+    "KYTX",
+    "NKTX",
+    "IRON",
+    "ZURA",
+    "RXRX",
+    "LBRX",
+    "VSTM",
+    "ORIC",
+    "SVRA",
+    "CRVS",
+    "PVLA",
+    "TRVI",
+    "CLYM",
+    "IRD",
+    "KRRO",
+    "CMPX",
+    "WVE",
+    "XFOR",
+    "UPB",
+    "CHRS",
+    "ALT",
+    "GLUE",
+    "EVMN",
+    "RLMD",
+    "SABS",
+    "PYXS",
+    "MAZE",
+    "ALLO",
+    "INO",
+    "MBX",
+    "ARTV",
+    "RAPP",
+    "BCAX",
+    "ERAS",
+    "RLAY",
+    "LYEL",
+    "GERN",
+    "CRSP",
+    "ABSI",
+    "STTK",
+    "CABA",
+    "FTH",
+    "CBIO",
+    "FATE",
+    "TSHA",
+    "CMPS",
+    "PRME",
+    "NGNE",
+    "OLMA",
+    "ELVN",
+    "CGEM",
+    "JBIO",
+    "AVBP",
+    "TRDA",
+    "AGIO",
+    "ANTX",
+    "EDIT",
+    "IKT",
+    "OBX"
   ],
   "grandfathered": {
     "ARWR": "Market value above $5B",
@@ -222,6 +288,290 @@
         }
       ],
       "removed": []
+    },
+    {
+      "date": "2026-11-06",
+      "added": [
+        {
+          "t": "CADL",
+          "why": "ranks 30 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "GPCR",
+          "why": "ranks 31 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "VOR",
+          "why": "ranks 32 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "PEPG",
+          "why": "ranks 33 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "KYTX",
+          "why": "ranks 34 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "NKTX",
+          "why": "ranks 35 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "IRON",
+          "why": "ranks 36 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "ZURA",
+          "why": "ranks 37 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "RXRX",
+          "why": "ranks 38 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "LBRX",
+          "why": "ranks 39 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "VSTM",
+          "why": "ranks 40 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "ORIC",
+          "why": "ranks 41 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "SVRA",
+          "why": "ranks 42 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "CRVS",
+          "why": "ranks 43 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "PVLA",
+          "why": "ranks 45 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "TRVI",
+          "why": "ranks 46 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "CLYM",
+          "why": "ranks 47 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "IRD",
+          "why": "ranks 48 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "KRRO",
+          "why": "ranks 49 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "CMPX",
+          "why": "ranks 50 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "WVE",
+          "why": "ranks 51 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "XFOR",
+          "why": "ranks 52 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "UPB",
+          "why": "ranks 53 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "CHRS",
+          "why": "ranks 54 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "ALT",
+          "why": "ranks 55 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "GLUE",
+          "why": "ranks 56 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "EVMN",
+          "why": "ranks 57 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "RLMD",
+          "why": "ranks 59 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "SABS",
+          "why": "ranks 60 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "PYXS",
+          "why": "ranks 61 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "MAZE",
+          "why": "ranks 62 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "ALLO",
+          "why": "ranks 63 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "OTLK",
+          "why": "ranks 64 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "INO",
+          "why": "ranks 65 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "MBX",
+          "why": "ranks 66 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "ARTV",
+          "why": "ranks 67 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "RAPP",
+          "why": "ranks 68 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "BCAX",
+          "why": "ranks 69 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "ERAS",
+          "why": "ranks 70 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "RLAY",
+          "why": "ranks 71 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "LYEL",
+          "why": "ranks 72 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "GERN",
+          "why": "ranks 73 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "CRSP",
+          "why": "ranks 74 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "ABSI",
+          "why": "ranks 76 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "STTK",
+          "why": "ranks 77 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "CABA",
+          "why": "ranks 78 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "FTH",
+          "why": "ranks 79 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "CBIO",
+          "why": "ranks 80 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "FATE",
+          "why": "ranks 81 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "TSHA",
+          "why": "ranks 82 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "CMPS",
+          "why": "ranks 83 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "PRME",
+          "why": "ranks 84 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "NGNE",
+          "why": "ranks 85 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "OLMA",
+          "why": "ranks 86 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "ELVN",
+          "why": "ranks 87 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "CGEM",
+          "why": "ranks 88 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "JBIO",
+          "why": "ranks 89 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "AVBP",
+          "why": "ranks 90 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "TRDA",
+          "why": "ranks 91 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "AGIO",
+          "why": "ranks 92 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "ANTX",
+          "why": "ranks 93 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "EDIT",
+          "why": "ranks 94 of 109 by soonest Phase II/III completion"
+        },
+        {
+          "t": "IKT",
+          "why": "ranks 95 of 109 by soonest Phase II/III completion"
+        }
+      ],
+      "removed": [
+        {
+          "t": "IMUX",
+          "why": "no longer meets the coverage rules"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "added": [
+        {
+          "t": "OBX",
+          "why": "ranks 96 of 109 by soonest Phase II/III completion"
+        }
+      ],
+      "removed": [
+        {
+          "t": "OTLK",
+          "why": "its data couldn't be built (no active trials found for sponsor \"Outlook Therapeutics\" (set \"sponsor\" in assumptions.json))"
+        }
+      ]
     }
-  ]
+  ],
+  "unbuildable": {
+    "OTLK": {
+      "date": "2026-11-06",
+      "why": "no active trials found for sponsor \"Outlook Therapeutics\" (set \"sponsor\" in assumptions.json)"
+    }
+  }
 }
