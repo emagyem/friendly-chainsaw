@@ -1,5 +1,5 @@
 {
-  "_readme": "How Helixora chooses which companies to cover. scripts/universe.mjs re-runs the screen monthly. Turnover policy (approved 2026-11-06, replacing the 2026-11-04 policy of 30 selected companies): coverage is 100 companies, the original companies plus those chosen by the rules; a selected company stays while it still qualifies; open places are filled in order of soonest Phase II/III completion. A company that is bought leaves live coverage; if the buyer is a larger drugmaker it moves to the Acquired by big pharma list. Every change is logged in 'changes'.",
+  "_readme": "How Helixora chooses which companies to cover. scripts/universe.mjs re-runs the screen monthly. Turnover policy (approved 2026-11-06, replacing the 2026-11-04 policy of 30 selected companies): coverage is 100 companies, the original companies plus those chosen by the rules; a selected company stays while it still qualifies; open places are filled in order of soonest Phase II/III completion. A company that is bought is removed from the site once the deal closes, whoever the buyer. Every change is logged in 'changes'.",
   "approved": "2026-11-04",
   "rules": [
     "Listed on Nasdaq, NYSE or NYSE American (no OTC)",

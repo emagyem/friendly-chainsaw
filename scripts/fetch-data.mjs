@@ -21,7 +21,7 @@
 ------------------------------------------------------------------- */
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
-import { dealStatus, buyerInfo, isLargerPharma, tidyName } from "./deal-status.mjs";
+import { dealStatus, buyerInfo, tidyName } from "./deal-status.mjs";
 import { pathToFileURL } from "node:url";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
 import { runwaySim, QUANT_VERSION } from "../src/quant.js";
@@ -961,6 +961,24 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
   };
 }
 
+// Is the company being bought, bought, or delisted? Read from its SEC filing list (scripts/deal-status.mjs).
+async function dealFor(ticker, prevC, cikByTicker) {
+  const cik = cikByTicker.get(ticker) || prevC?.src?.cik;
+  if (!cik) return null;
+  const sub = await sec(`https://data.sec.gov/submissions/CIK${String(cik).padStart(10, "0")}.json`);
+  const deal = dealStatus(sub, TODAY_ISO);
+  if (deal && deal.status !== "delisted") {
+    const b = await buyerInfo(cik, deal.adsh, sub?.name, secText);
+    if (b?.selfIsBidder) return null; // it's buying someone else, not being bought
+    deal.by = tidyName(b?.name) || null;
+  }
+  return deal;
+}
+// Any closed acquisition removes a company, whoever the buyer. A bare delisting notice counts only once the
+// ticker has also left the SEC's list of listed companies (a company changing exchange files one too).
+const gone = (deal, ticker, cikByTicker) => deal?.status === "acquired" || (deal?.status === "delisted" && !cikByTicker.has(ticker));
+const goneWhy = (deal) => (deal.status === "acquired" ? `acquired${deal.by ? ` by ${deal.by}` : ""}; delisted ${deal.since}` : `delisted ${deal.since}`);
+
 async function main() {
   if (!UA || !/@/.test(UA)) {
     console.error('Set SEC_USER_AGENT to a name and contact email, e.g. SEC_USER_AGENT="Jane Doe jane@example.com"');
@@ -974,13 +992,10 @@ async function main() {
   try { trialHist = JSON.parse(await readFile(TRIAL_HISTORY_FILE, "utf8")); } catch { /* first run */ }
 
   let previous = {};
-  // Companies bought by a larger drugmaker stay on the site, frozen at their last figures.
-  let acquired = [];
   try {
     const prev = JSON.parse(await readFile(OUT_FILE, "utf8"));
     for (const c of [...(prev.companies || []), ...(prev.industry || prev.bigPharma || [])]) previous[c.t] = c;
     previous.__meta = prev.meta;
-    acquired = prev.acquired || [];
   } catch { /* first run */ }
 
   console.log("Loading SEC ticker list…");
@@ -999,43 +1014,18 @@ async function main() {
   for (const raw of config.tickers) {
     const ticker = raw.toUpperCase();
     console.log(`${ticker}…`);
-    // Acquired (or delisted) companies leave coverage; companies with a deal pending are flagged.
+    // Bought (or delisted) companies are removed from the site; companies with a deal pending are flagged.
     const prevC = previous[ticker];
-    const cik = cikByTicker.get(ticker) || prevC?.src?.cik;
-    let deal = null;
-    if (cik) {
-      const sub = await sec(`https://data.sec.gov/submissions/CIK${String(cik).padStart(10, "0")}.json`);
-      deal = dealStatus(sub, TODAY_ISO);
-      if (deal && deal.status !== "delisted") {
-        const b = await buyerInfo(cik, deal.adsh, sub?.name, secText);
-        if (b?.selfIsBidder) deal = null; // it's buying someone else, not being bought
-        else {
-          deal.by = tidyName(b?.name) || null;
-          deal.buyerType = b?.type || "unknown";
-          deal.bigPharma = await isLargerPharma(b, prevC?.mcap, sec);
-        }
-      }
-    }
-    const listed = cikByTicker.has(ticker);
-    if (deal?.status === "acquired" || (deal?.status === "delisted" && !listed)) {
-      const kept = deal.status === "acquired" && deal.bigPharma && prevC;
-      const kind = deal.buyerType === "financial" ? " (private equity / financial buyer)" : "";
-      const why = deal.status === "acquired"
-        ? `acquired${deal.by ? ` by ${deal.by}` : ""}${kind}; delisted ${deal.since}${kept ? "; moved to the Acquired by big pharma list" : ""}`
-        : `delisted ${deal.since}`;
-      if (kept) {
-        // The last reading Helixora published, as of the refresh that produced it.
-        const f = computeFPS(prevC, toDate((previous.__meta?.generatedAt || TODAY_ISO).slice(0, 10)));
-        acquired = acquired.filter((a) => a.t !== ticker);
-        acquired.push({ ...prevC, stale: false, acquired: { by: deal.by, closed: deal.since, how: deal.how, lastScore: f.score, lastBand: f.band, lastRunway: f.runway, lastDataDate: prevC.src?.asOf || null } });
-      }
+    const deal = await dealFor(ticker, prevC, cikByTicker);
+    if (gone(deal, ticker, cikByTicker)) {
+      const why = goneWhy(deal);
       leaving.push({ t: ticker, n: prevC?.n || ticker, why });
-      warn(`${ticker}: ${why}. Removed from coverage.`);
+      warn(`${ticker}: ${why}. Removed from the site.`);
       continue;
     }
     try {
       const c = await buildCompany(ticker, assumptions[ticker] || {}, cikByTicker, classes[ticker] || {}, trialHist, durTables);
-      if (deal?.status === "pending") c.deal = { status: "pending", how: deal.how, since: deal.since, by: deal.by || null, buyerType: deal.buyerType, bigPharma: !!deal.bigPharma };
+      if (deal?.status === "pending") c.deal = { status: "pending", how: deal.how, since: deal.since, by: deal.by || null };
       companies.push(c);
       console.log(`  ${c.n}: cash $${c.cash}M, burn $${c.burn}M/mo, ${c.pipeline.length} programs, mcap $${c.mcap}M`);
     } catch (e) {
@@ -1056,11 +1046,20 @@ async function main() {
   // Drug-industry companies (big pharma, generics, over-the-counter, ingredients, compounding):
   // tracked alongside coverage for comparison, never ranked with it or screened out.
   const industry = [];
+  const leavingIndustry = [];
   for (const ic of config.industry || []) {
     const ticker = ic.t.toUpperCase();
     console.log(`${ticker} (${ic.segment})…`);
+    const deal = await dealFor(ticker, previous[ticker], cikByTicker);
+    if (gone(deal, ticker, cikByTicker)) {
+      const why = goneWhy(deal);
+      leavingIndustry.push({ t: ticker, n: previous[ticker]?.n || ic.name || ticker, why });
+      warn(`${ticker}: ${why}. Removed from the site.`);
+      continue;
+    }
     try {
       const c = await buildCompany(ticker, { ...(assumptions[ticker] || {}), ...ic }, cikByTicker, classes[ticker] || {}, trialHist, durTables);
+      if (deal?.status === "pending") c.deal = { status: "pending", how: deal.how, since: deal.since, by: deal.by || null };
       industry.push(c);
       console.log(`  ${c.n}: cash $${c.cash}M, revenue $${c.rev}M, ${c.pipeline.length} late-stage programs, mcap $${c.mcap}M`);
     } catch (e) {
@@ -1079,17 +1078,24 @@ async function main() {
     if (unbuildable.some(({ t }) => (uni.selected || []).includes(t))) await writeFile(new URL(".needs-rescreen", ROOT), "1");
   }
 
+  // Drug-industry companies that were bought come off the industry list for good, logged with the rest.
+  if (leavingIndustry.length) {
+    const goneInd = new Set(leavingIndustry.map((x) => x.t));
+    config.industry = (config.industry || []).filter((x) => !goneInd.has(x.t.toUpperCase()));
+    await writeFile(new URL("config/companies.json", ROOT), JSON.stringify(config, null, 2) + "\n");
+  }
+
   // Take companies that left off the coverage list for good, and log why on the About page.
-  if (leaving.length) {
-    const gone = new Set(leaving.map((x) => x.t));
-    config.tickers = config.tickers.filter((t) => !gone.has(t.toUpperCase()));
+  if (leaving.length || leavingIndustry.length) {
+    const goneSet = new Set(leaving.map((x) => x.t));
+    config.tickers = config.tickers.filter((t) => !goneSet.has(t.toUpperCase()));
     await writeFile(new URL("config/companies.json", ROOT), JSON.stringify(config, null, 2) + "\n");
     const uniFile = new URL("config/universe.json", ROOT);
     const uni = JSON.parse(await readFile(uniFile, "utf8"));
-    uni.originalCoverage = (uni.originalCoverage || []).filter((t) => !gone.has(t));
-    uni.selected = (uni.selected || []).filter((t) => !gone.has(t));
-    for (const t of gone) if (uni.grandfathered) delete uni.grandfathered[t];
-    uni.changes = [...(uni.changes || []), { date: TODAY_ISO, added: [], removed: leaving.map(({ t, why }) => ({ t, why })) }];
+    uni.originalCoverage = (uni.originalCoverage || []).filter((t) => !goneSet.has(t));
+    uni.selected = (uni.selected || []).filter((t) => !goneSet.has(t));
+    for (const t of goneSet) if (uni.grandfathered) delete uni.grandfathered[t];
+    uni.changes = [...(uni.changes || []), { date: TODAY_ISO, added: [], removed: [...leaving, ...leavingIndustry].map(({ t, why }) => ({ t, why })) }];
     await writeFile(uniFile, JSON.stringify(uni, null, 2) + "\n");
   }
 
@@ -1127,11 +1133,10 @@ async function main() {
       durations: durTables,
       sources: ["SEC EDGAR XBRL company facts", "SEC EDGAR filing index", "ClinicalTrials.gov API v2", "Yahoo Finance"],
       warnings,
-      leftCoverage: leaving,
+      leftCoverage: [...leaving, ...leavingIndustry],
     },
     companies,
     industry,
-    acquired,
   };
   await mkdir(OUT_DIR, { recursive: true });
   await writeFile(OUT_FILE, JSON.stringify(out, null, 1) + "\n");

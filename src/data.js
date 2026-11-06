@@ -13,8 +13,6 @@ import { SAMPLE_COMPANIES } from "./sampleData.js";
 export let COMPANIES = SAMPLE_COMPANIES;
 export let META = { live: false };
 export let HISTORY = { snapshots: [] };
-// Companies bought by a larger drugmaker, kept at their last figures.
-export let ACQUIRED = [];
 // Drug-industry companies (big pharma, generics, over-the-counter, ingredients, compounding),
 // tracked for comparison and kept apart from the ranked coverage.
 export let INDUSTRY = [];
@@ -26,7 +24,6 @@ export async function loadData() {
     const json = await res.json();
     if (!Array.isArray(json.companies) || json.companies.length === 0) throw new Error("no companies in file");
     COMPANIES = json.companies;
-    ACQUIRED = Array.isArray(json.acquired) ? json.acquired : [];
     INDUSTRY = Array.isArray(json.industry) ? json.industry : Array.isArray(json.bigPharma) ? json.bigPharma : [];
     META = { ...json.meta, live: true };
     try {

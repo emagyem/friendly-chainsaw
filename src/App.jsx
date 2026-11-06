@@ -3,7 +3,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   ScatterChart, Scatter, ZAxis, ReferenceLine, BarChart, Bar, Cell, AreaChart, Area, ComposedChart
 } from "recharts";
-import { COMPANIES, META, HISTORY, ACQUIRED, INDUSTRY } from "./data.js";
+import { COMPANIES, META, HISTORY, INDUSTRY } from "./data.js";
 // Any company on the site, coverage or drug industry.
 const findCo = (t) => COMPANIES.find((x) => x.t === t) || INDUSTRY.find((x) => x.t === t);
 // Drug-industry segments, in the order the Drug Industry page shows them.
@@ -2999,7 +2999,7 @@ function CoveragePanel() {
         </table>
       </div>
       <p className="prose" style={{ marginTop: 14 }}>{UNIVERSE.selection} The first {UNIVERSE.originalCoverage.length} companies stay unless they are bought{Object.keys(g).length ? <>, including {Object.keys(g).length} that sit outside today's rules: {Object.entries(g).map(([t, why]) => `${t} (${why.toLowerCase()})`).join(", ")}</> : null}. Companies are never dropped quietly; any change is listed here.</p>
-      <p className="prose"><b>When a company is bought.</b> A company with a deal still pending stays, marked "Being acquired", until the deal closes. Once it closes, the company stops trading and stops filing reports, so it leaves the live rankings. If the buyer is a larger drugmaker, it moves to the <i>Acquired by big pharma</i> list with Helixora's last reading before the deal. If the buyer is a private-equity firm or other financial buyer, or can't be identified as a drugmaker, it's removed. Buyers are read from the SEC filings for the deal.</p>
+      <p className="prose"><b>When a company is bought.</b> A company with a deal still pending stays, marked "Being acquired", until the deal closes. Once it closes, the company is removed from the site, whoever bought it, and the removal is listed below. The same goes for the drug-industry companies. Deals are read from each company's SEC filings every day.</p>
       {UNIVERSE.policy && <p className="prose">Turnover (approved {fmtDate(UNIVERSE.policy.approved)}): the screen re-runs on the 3rd of each month. A selected company stays while it still qualifies{UNIVERSE.policy.keepRank ? ` and ranks in the top ${UNIVERSE.policy.keepRank} by soonest Phase II or III completion` : ""}; otherwise it leaves, and open places are filled in order of soonest Phase II or III completion until coverage reaches {UNIVERSE.policy.total ?? UNIVERSE.policy.target} companies. Companies that leave keep their full score history.</p>}
       {(UNIVERSE.changes || []).length > 0 && (
         <>
@@ -3014,19 +3014,6 @@ function CoveragePanel() {
           </ul>
         </>
       )}
-      <h3 className="subhead">Acquired by big pharma</h3>
-      {ACQUIRED.length ? (
-        <div className="tablewrap">
-          <table className="grid plain">
-            <thead><tr><th>Company</th><th>Bought by</th><th>Deal closed</th><th className="r">Helixora's last score</th><th className="r">Cash left then</th></tr></thead>
-            <tbody>{[...ACQUIRED].sort((a, b) => (a.acquired.closed < b.acquired.closed ? 1 : -1)).map((c) => (
-              <tr key={c.t}><td><b>{c.t}</b> {c.n}</td><td>{c.acquired.by || "a larger drugmaker"}</td><td>{fmtDate(c.acquired.closed)}</td>
-                <td className="r">{c.acquired.lastScore ?? "—"}{c.acquired.lastBand ? ` (${c.acquired.lastBand})` : ""}</td>
-                <td className="r">{c.acquired.lastRunway != null ? monthsSay(c.acquired.lastRunway) : "—"}</td></tr>
-            ))}</tbody>
-          </table>
-        </div>
-      ) : <p className="prose">None yet. When a company Helixora covers is bought by a larger drugmaker, it's listed here with the score Helixora gave it before the deal.</p>}
       <p className="colnote">Everyone who qualifies in the latest screen: <a className="src" href="/data/universe.json" target="_blank" rel="noreferrer">download</a>. Program labels (disease area, drug type, rare disease, biomarker) are set automatically from drug names and trial records; each program card shows how.</p>
     </section>
   );
