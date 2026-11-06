@@ -1709,6 +1709,145 @@ const PITFALLS = [
   ["Small samples", "Treating a few cases as a pattern.", "Every result shows how many offerings it rests on. Nothing here is called a signal before it holds across far more companies and years."],
 ];
 
+/* ------------------------------ backtest ------------------------------
+   Results of scripts/backtest.mjs: the score run point-in-time on every
+   cash-burning biotech that filed with the SEC since 2012, dead ones too. */
+
+function useBacktest() {
+  const [bt, setBt] = useState(null);
+  useEffect(() => {
+    let live = true;
+    fetch(`${import.meta.env.BASE_URL}data/backtest.json`, { cache: "no-cache" })
+      .then((r) => (r.ok ? r.json() : null)).then((j) => { if (live) setBt(j); }).catch(() => {});
+    return () => { live = false; };
+  }, []);
+  return bt;
+}
+
+function Backtest() {
+  const bt = useBacktest();
+  if (!bt) return null;
+  const P = (x) => (x == null ? "—" : `${Math.round(x * 100)}%`);
+  const hi = bt.bands.find((b) => b.band === "High"), lo = bt.bands.find((b) => b.band === "Low");
+  const lift = hi && lo && lo.raised12 > 0 ? hi.raised12 / lo.raised12 : null;
+  const decData = bt.deciles.map((d, i) => ({ label: `${d.from}–${d.to}`, rate: Math.round(d.raised12 * 100), i }));
+  const runData = bt.runwayBuckets.map((b) => ({ label: b.to == null ? `${b.from}+` : `${b.from}–${b.to}`, rate: Math.round(b.raised12 * 100), n: b.n }));
+  const yrs = bt.years.filter((y) => y.n >= 50);
+  const COMP = { gap: "Cash runway (vs the standard 18-month assumption)", trend: "Burn trend", capacity: "Raise-ready (shelf or ATM)", debt: "Debt due within 24 months", access: "Burn vs public float" };
+  return (
+    <section className="panel" id="backtest">
+      <header className="ph"><h2>Backtest: every biotech since {bt.years[0]?.year}, including the ones that died</h2>
+        <span className="ph-note">Updated {fmtDate(bt.generatedAt.slice(0, 10))} · score version {bt.fpsVersion}</span></header>
+      <p className="finding">
+        We ran today's score on {bt.rows.toLocaleString()} past balance sheets from {bt.companies.toLocaleString()} cash-burning biotechs
+        ({bt.companiesNoLongerFiling.toLocaleString()} of which have since stopped filing), using only what had been filed at the time.
+        Companies the score put in the High band went on to sell stock within a year {P(hi?.raised12)} of the time, against {P(lo?.raised12)} for the Low band{lift ? `, about ${lift.toFixed(1)} times as often` : ""}. The average was {P(bt.base12)}.
+      </p>
+      <div className="metrics four">
+        <div className="metric"><span>High band: raised within a year</span><b>{P(hi?.raised12)}</b></div>
+        <div className="metric"><span>Low band: raised within a year</span><b>{P(lo?.raised12)}</b></div>
+        <div className="metric"><span>Ranking accuracy (AUC)</span><b>{bt.auc != null ? bt.auc.toFixed(2) : "—"}</b></div>
+        <div className="metric"><span>Cash runway alone (AUC)</span><b>{bt.aucRunwayOnly != null ? bt.aucRunwayOnly.toFixed(2) : "—"}</b></div>
+      </div>
+      <p className="colnote">AUC: pick one company-quarter that was followed by a raise and one that wasn't. The AUC is how often the score ranks the first one higher. 0.50 is a coin flip; 1.00 is perfect.</p>
+
+      <div className="two">
+        <div>
+          <h3 className="subh">Share that raised within a year, by score</h3>
+          <div className="chart">
+            <ResponsiveContainer width="100%" height={220}>
+              <BarChart data={decData} margin={{ top: 16, right: 8, bottom: 4, left: 0 }}>
+                <CartesianGrid stroke="#E4E9EB" vertical={false} />
+                <XAxis dataKey="label" tick={{ fontSize: 10.5, fill: "#5E6B73" }} axisLine={false} tickLine={false} interval={0} />
+                <YAxis unit="%" tick={{ fontSize: 11, fill: "#5E6B73" }} width={38} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: "rgba(14,124,116,.06)" }} formatter={(v) => [`${v}%`, "Raised within a year"]} labelFormatter={(l) => `Score ${l}`} />
+                <Bar dataKey="rate" fill="#0E7C74" radius={[3, 3, 0, 0]} label={{ position: "top", fontSize: 10.5, fill: "#2B3439", formatter: (v) => `${v}%` }} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <p className="colnote">Each bar is a tenth of all company-quarters, lowest scores on the left.</p>
+        </div>
+        <div>
+          <h3 className="subh">Share that raised within a year, by months of cash left</h3>
+          <div className="chart">
+            <ResponsiveContainer width="100%" height={220}>
+              <BarChart data={runData} margin={{ top: 16, right: 8, bottom: 4, left: 0 }}>
+                <CartesianGrid stroke="#E4E9EB" vertical={false} />
+                <XAxis dataKey="label" tick={{ fontSize: 11, fill: "#5E6B73" }} axisLine={false} tickLine={false} interval={0} />
+                <YAxis unit="%" tick={{ fontSize: 11, fill: "#5E6B73" }} width={38} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: "rgba(14,124,116,.06)" }} formatter={(v) => [`${v}%`, "Raised within a year"]} labelFormatter={(l) => `${l} months of cash`} />
+                <Bar dataKey="rate" fill="#5B8DB8" radius={[3, 3, 0, 0]} label={{ position: "top", fontSize: 10.5, fill: "#2B3439", formatter: (v) => `${v}%` }} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <p className="colnote">Months of cash at the balance sheet date: cash and investments divided by the past year's average monthly burn.</p>
+        </div>
+      </div>
+
+      <div className="two">
+        <div className="tablewrap">
+          <h3 className="subh">By band</h3>
+          <table className="grid plain">
+            <thead><tr><th>Band</th><th className="num">Company-quarters</th><th className="num">Raised within 6 months</th><th className="num">Within 12 months</th></tr></thead>
+            <tbody>{bt.bands.map((b) => <tr key={b.band}><td><b>{b.band}</b></td><td className="num">{b.n.toLocaleString()}</td><td className="num">{P(b.raised6)}</td><td className="num">{P(b.raised12)}</td></tr>)}</tbody>
+          </table>
+          <h3 className="subh">Which parts of the score carry the signal</h3>
+          <table className="grid plain">
+            <thead><tr><th>Part</th><th className="num">AUC on its own</th></tr></thead>
+            <tbody>{Object.entries(bt.components).map(([k, v]) => <tr key={k}><td>{COMP[k] || k}</td><td className="num">{v.auc != null ? v.auc.toFixed(2) : "—"}</td></tr>)}</tbody>
+          </table>
+        </div>
+        <div className="tablewrap">
+          <h3 className="subh">Year by year</h3>
+          <table className="grid plain">
+            <thead><tr><th>Year</th><th className="num">Quarters</th><th className="num">Average</th><th className="num">High band</th><th className="num">Low band</th><th className="num">AUC</th></tr></thead>
+            <tbody>{yrs.map((y) => <tr key={y.year}><td>{y.year}</td><td className="num">{y.n.toLocaleString()}</td><td className="num">{P(y.base)}</td><td className="num">{P(y.high)}</td><td className="num">{P(y.low)}</td><td className="num">{y.auc != null ? y.auc.toFixed(2) : "—"}</td></tr>)}</tbody>
+          </table>
+        </div>
+      </div>
+
+      {bt.offeringsOnly && bt.raisedOrEnded && (
+        <div className="tablewrap">
+          <h3 className="subh">Does it hold up if you count a raise differently?</h3>
+          <table className="grid plain">
+            <thead><tr><th>What counts as "had to raise"</th><th className="num">Average</th><th className="num">High band</th><th className="num">Low band</th><th className="num">AUC</th></tr></thead>
+            <tbody>
+              {[["Offering filing or a 15%+ jump in shares (main result)", bt], ["Formal offering filings only", bt.offeringsOnly], ["Raised, or stopped filing within the year (bankruptcy, wind-down or sale)", bt.raisedOrEnded]].map(([l, v]) => (
+                <tr key={l}><td>{l}</td><td className="num">{P(v.base12)}</td><td className="num">{P(v.bands.find((x) => x.band === "High")?.raised12)}</td><td className="num">{P(v.bands.find((x) => x.band === "Low")?.raised12)}</td><td className="num">{v.auc?.toFixed(2)}</td></tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="colnote">Share-count jumps catch money raised through at-the-market sales and private placements, which often don't get their own offering filing.</p>
+        </div>
+      )}
+
+      <div className="takeaways">
+        <h3 className="subh">What this tells us</h3>
+        <ul className="watch">
+          <li><b>The score points the right way, but the signal is modest.</b> High-band companies raised more often than Low-band ones in {yrs.filter((y) => y.high > y.low).length} of {yrs.length} years, but an AUC of {bt.auc?.toFixed(2)} is a long way from perfect. Treat a High score as "more likely", not "certain".</li>
+          <li><b>Almost every cash-burning biotech raises often.</b> {P(bt.base12)} of company-quarters were followed by a raise within a year, so the useful question is less "will they raise?" than "how soon, and how badly do they need it?"</li>
+          {(() => { const a = bt.runwayBuckets[0], b = bt.runwayBuckets[1]; return a && b && a.raised12 < b.raised12 ? <li><b>Companies nearly out of cash often can't raise at all.</b> With under 6 months left, only {P(a.raised12)} raised within a year, fewer than the {P(b.raised12)} with 6–12 months. Many of the rest were sold, wound down or went bankrupt instead. The "raised or stopped filing" row counts those too.</li> : null; })()}
+          {(() => { const c = Object.entries(bt.components).sort((x, y) => (y[1].auc || 0) - (x[1].auc || 0))[0]; return c ? <li><b>The strongest single part is "{COMP[c[0]] || c[0]}"</b> (AUC {c[1].auc?.toFixed(2)}). Burn trend and debt add almost nothing on their own. That points to re-weighting the score toward what works; any change will be logged on the About us page.</li> : null; })()}
+          <li><b>Catalyst timing, a key input to the score's biggest part, couldn't be tested yet</b> because past trial-date expectations aren't available in bulk. Every company was given the same 18-month assumption, so the true score may do better or worse than this.</li>
+        </ul>
+      </div>
+
+      <p className="prose">
+        <b>Survivors vs the rest.</b> For companies still filing today the ranking accuracy is {bt.survivors.auc?.toFixed(2) ?? "—"}; for companies that have since stopped filing it's {bt.nonSurvivors.auc?.toFixed(2) ?? "—"}.
+        {bt.leadMonthsHigh != null ? ` When a High-band company did raise, the median wait was ${num(bt.leadMonthsHigh, 1)} months after the balance sheet that flagged it.` : ""}
+      </p>
+      <details className="limits">
+        <summary>How this was done, and what it leaves out</summary>
+        <p className="prose"><b>Who's in it.</b> {bt.universe}</p>
+        <p className="prose"><b>What counts as a raise.</b> {bt.outcome}</p>
+        <p className="prose"><b>No hindsight.</b> {bt.pointInTime}</p>
+        <ul className="watch">{bt.limits.map((l, i) => <li key={i}>{l}</li>)}</ul>
+        <p className="colnote">The code is <ExtLink href="https://github.com/emagyem/friendly-chainsaw/blob/main/scripts/backtest.mjs">scripts/backtest.mjs</ExtLink>; it reruns every month.</p>
+      </details>
+    </section>
+  );
+}
+
 function Research({ go }) {
   const rr = useMemo(() => raiseRunway(COMPANIES), []);
   const study = useMemo(() => offeringStudy(COMPANIES, META.benchmark), []);
@@ -1733,6 +1872,8 @@ function Research({ go }) {
         <h1 className="report-h">Could you have seen the raise coming?</h1>
         <p className="prose">Helixora's whole idea is spotting who has to raise money before they do. This page tests that idea against what really happened: {rr.rows.length} stock offerings by these companies since {since}, judged only on what had been filed before each one.</p>
       </section>
+
+      <Backtest />
 
       <section className="panel">
         <header className="ph"><h2>How much cash companies had left when they raised</h2>
@@ -3753,6 +3894,12 @@ details.more summary:hover{color:var(--teal);}
 .ph{margin-bottom:14px;}
 .wire{padding:12px 0 6px;}
 .ts-box:empty{display:none;}
+.subh{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin:18px 0 8px;color:var(--ink);}
+.takeaways{margin:18px 0 16px;padding:16px 20px;background:var(--tint);border-left:3px solid var(--teal);}
+.takeaways .subh{margin-top:0;}
+.limits{margin-top:14px;border-top:1px solid var(--rule2);padding-top:12px;}
+.limits summary{cursor:pointer;font-weight:700;font-size:14px;color:var(--teal-d);}
+.limits[open] summary{margin-bottom:10px;}
 .ts-box{margin-top:12px;}
 .removeme{display:flex;flex-wrap:wrap;gap:10px;align-items:center;max-width:560px;}
 .removeme input{flex:1;min-width:200px;font:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--rule);border-radius:3px;}
