@@ -42,7 +42,7 @@ const CAT_KIND = {
 const TODAY = new Date();
 const days = (iso) => Math.round((new Date(iso + "T00:00:00") - TODAY) / 86400000);
 const fmtDate = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-const money = (m) => (m >= 1000 ? `$${(m / 1000).toFixed(2)}B` : `$${Math.round(m)}M`);
+const money = (m) => (m >= 1e6 ? `$${(m / 1e6).toFixed(2)}T` : m >= 100000 ? `$${Math.round(m / 1000)}B` : m >= 1000 ? `$${(m / 1000).toFixed(2)}B` : `$${Math.round(m)}M`);
 const num = (n, d = 1) => (n == null || !isFinite(n) ? "—" : n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }));
 const LIVE = META.live;
 // Share-count growth: measured from SEC filings when live, summed from the financing table otherwise.
@@ -4041,7 +4041,7 @@ details.more summary:hover{color:var(--teal);}
 .lead-h button:hover{color:var(--teal-d);}
 .utility-cta{background:var(--mint);color:#062B2E !important;border:0;border-radius:3px;padding:5px 12px;font-size:12.5px;font-weight:700;}
 .utility-cta:hover{background:#fff;}
-.bp-tag { background: var(--teal, #0f766e); }
+.deal-tag.bp-tag { background: var(--teal); }
 .bp-note { margin: 8px 0 0; font-size: 14px; color: var(--mut); max-width: 760px; }
 .deal-tag { display:inline-block; vertical-align:middle; margin-left:12px; font: 600 11px/1 var(--sans, system-ui); letter-spacing:.06em; text-transform:uppercase; padding:5px 8px; border-radius:3px; background:#b4232a; color:#fff; }
 .cta-band{background:var(--mast);color:#fff;margin-top:56px;}
