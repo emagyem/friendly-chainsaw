@@ -14,7 +14,6 @@
 ------------------------------------------------------------------- */
 
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
-const MON = MONTHS.map((m) => m.slice(0, 3));
 
 // What makes a sentence about a catalyst, and what makes it forward-looking.
 const EVENT = /\b(top-?line|data|results|read-?outs?|interim analys[ie]s|PDUFA|action date|approval decision|regulatory decision|FDA decision)\b/i;
