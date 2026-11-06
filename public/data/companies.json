@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-06T14:11:21.374Z",
+  "generatedAt": "2026-11-06T14:23:04.874Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -112428,7 +112428,7 @@
      "area": null,
      "rare": false,
      "biomarker": false,
-     "slips": 0,
+     "slips": 1,
      "duration": {
       "key": "Phase II, 100 to 499 patients",
       "n": 3071,
@@ -112443,13 +112443,14 @@
      },
      "window": {
       "lo": "2026-12-30",
-      "hi": "2027-06-30",
-      "mid": "2027-03-31",
+      "hi": "2027-09-30",
+      "mid": "2027-05-16",
       "reg": "2026-12-15",
-      "width": 6,
+      "width": 9,
       "basis": "Registry estimate",
       "why": [
-       "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end)."
+       "Enrollment is closed, so the main remaining risk is a modest slip (+3 months on the late end).",
+       "The completion date has been pushed back 1 time since Helixora began tracking (+3 months)."
       ]
      },
      "flags": {
@@ -112458,10 +112459,15 @@
         "sev": "med",
         "label": "No control arm",
         "detail": "Every arm gets the drug, so results are compared with history or expectations rather than a placebo or standard treatment. Common, and sometimes unavoidable, in very rare diseases."
+       },
+       {
+        "sev": "med",
+        "label": "Completion date pushed back",
+        "detail": "Moved later 1 time since Helixora began tracking it."
        }
       ],
-      "points": 2,
-      "level": "Minor flags"
+      "points": 4,
+      "level": "Some flags"
      },
      "odds": {
       "loa": 0.1469,
@@ -112570,12 +112576,12 @@
    ],
    "catalysts": [
     {
-     "date": "2027-03-31",
+     "date": "2027-05-16",
      "kind": "readout",
      "drug": "MRT-2359",
      "est": true,
      "lo": "2026-12-30",
-     "hi": "2027-06-30",
+     "hi": "2027-09-30",
      "reg": "2026-12-15",
      "nct": "NCT05546268",
      "label": "MRT-2359 Phase II data (estimated)"
@@ -172157,7 +172163,7 @@
     "chgPct": -6.94,
     "hi52": 7.19,
     "lo52": 1,
-    "volume": 152967,
+    "volume": 150747,
     "date": "2026-11-05",
     "history": [
      [
@@ -177399,8 +177405,8 @@
  "bigPharma": [
   {
    "t": "LLY",
-   "n": "ELI LILLY & Co",
-   "area": "Pharmaceutical Preparations",
+   "n": "Eli Lilly",
+   "area": "Diabetes, obesity & immunology",
    "mcap": 1283863,
    "ev": 1321951,
    "cash": 8898,
@@ -179332,244 +179338,7 @@
      24397
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT07165223",
-     "sponsor": "Gan & Lee Pharmaceuticals.",
-     "title": "A Phase IIIb Clinical Study to Assess the Efficacy and Safety of GZR4 in Subjects With Type 2 Diabetes Mellitus Treated With Basal Insulin",
-     "ph": "Phase III",
-     "pcd": "2026-11-10",
-     "n": 300,
-     "drugs": [
-      "GZR4",
-      "Insulin Icodec group"
-     ],
-     "forDrug": "Dulaglutide",
-     "ind": "Type 2 Diabetes",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06716216",
-     "sponsor": "BrightGene Bio-Medical Technology Co., Ltd.",
-     "title": "A Study of BGM0504 in Participants With Type 2 Diabetes",
-     "ph": "Phase III",
-     "pcd": "2026-11-14",
-     "n": 537,
-     "drugs": [
-      "Semaglutide Administered"
-     ],
-     "forDrug": "Dulaglutide",
-     "ind": "Type 2 Diabetes",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT04302025",
-     "sponsor": "Genentech, Inc.",
-     "title": "A Study of Multiple Therapies in Biomarker-selected Participants With Resectable Stages IB-III Non-small Cell Lung Cancer (NSCLC)",
-     "ph": "Phase II",
-     "pcd": "2026-11-30",
-     "n": 99,
-     "drugs": [
-      "Alectinib",
-      "Entrectinib",
-      "Vemurafenib"
-     ],
-     "forDrug": "LY3537982",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT07139548",
-     "sponsor": "Guangdong Raynovent Biotech Co., Ltd",
-     "title": "A Study of RAY1225 Versus Semaglutide as Add-on Therapy to Oral Antidiabetic Drugs in Participants With Type 2 Diabetes",
-     "ph": "Phase III",
-     "pcd": "2026-12-01",
-     "n": 600,
-     "drugs": [
-      "RAY1225",
-      "Semaglutide"
-     ],
-     "forDrug": "Dulaglutide",
-     "ind": "Type 2 Diabetes",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07139535",
-     "sponsor": "Guangdong Raynovent Biotech Co., Ltd",
-     "title": "A Study of RAY1225 in Participants With Type 2 Diabetes Not Controlled With Diet and Exercise Alone",
-     "ph": "Phase III",
-     "pcd": "2026-12-01",
-     "n": 350,
-     "drugs": [
-      "RAY1225"
-     ],
-     "forDrug": "Dulaglutide",
-     "ind": "Type 2 Diabetes",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06778967",
-     "sponsor": "Gan & Lee Pharmaceuticals.",
-     "title": "A Phase III Clinical Study to Evaluate the Efficacy and Safety of GZR18 Injection in Adult Type 2 Diabetes Mellitus",
-     "ph": "Phase III",
-     "pcd": "2026-12-11",
-     "n": 1100,
-     "drugs": [
-      "GZR18",
-      "semaglutide"
-     ],
-     "forDrug": "Dulaglutide",
-     "ind": "Type 2 Diabetes",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT05736731",
-     "sponsor": "A2 Biotherapeutics Inc.",
-     "title": "A Study to Evaluate the Safety and Efficacy of A2B530, a Logic-gated CAR T, in Participants With Solid Tumors That Express CEA and Have Lost HLA-A*02 Expression",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 160,
-     "drugs": [
-      "A2B530"
-     ],
-     "forDrug": "LY3537982",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT04585750",
-     "sponsor": "PMV Pharmaceuticals, Inc",
-     "title": "The Evaluation of PC14586 in Patients With Advanced Solid Tumors Harboring a TP53 Y220C Mutation (PYNNACLE)",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 300,
-     "drugs": [
-      "rezatapopt",
-      "pembrolizumab"
-     ],
-     "forDrug": "LY3537982",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "United States",
-      "Australia",
-      "France",
-      "Germany",
-      "Italy",
-      "Singapore"
-     ],
-     "nCountries": 9,
-     "china": null
-    },
-    {
-     "nct": "NCT06671379",
-     "sponsor": "Suzhou Suncadia Biopharmaceuticals Co., Ltd.",
-     "title": "A Study of SHR-A2009 Versus Platinum-based Chemotherapy in EGFR-mutated, Advanced or Metastatic NSCLC",
-     "ph": "Phase III",
-     "pcd": "2026-12-15",
-     "n": 498,
-     "drugs": [
-      "SHR-A2009",
-      "platinum-based dual-agent chemotherapy"
-     ],
-     "forDrug": "LY3537982",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06456593",
-     "sponsor": "Abivax S.A.",
-     "title": "Efficacy and Safety of Obefazimod in Subjects With Moderately to Severely Active Crohn's Disease",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 212,
-     "drugs": [
-      "Obefazimod"
-     ],
-     "forDrug": "Mirikizumab",
-     "ind": "Crohn's Disease",
-     "countries": [
-      "United States",
-      "Belgium",
-      "Czechia",
-      "France",
-      "Germany",
-      "Hungary"
-     ],
-     "nCountries": 12,
-     "china": null
-    },
-    {
-     "nct": "NCT07472725",
-     "sponsor": "Jiangsu HengRui Medicine Co., Ltd.",
-     "title": "A Study Comparing Safety and Efficacy of SHR-3167 Fixed-Dose Titration and Individualized-Dose Titration in Adults With Type 2 Diabetes Inadequately Controlled ",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 102,
-     "drugs": [
-      "SHR-3167"
-     ],
-     "forDrug": "Dulaglutide",
-     "ind": "Type 2 Diabetes",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06220773",
-     "sponsor": "Boryung Pharmaceutical Co., Ltd",
-     "title": "A Study to Evaluate the Efficacy and Safety of BR1019A and BR1019B Combination Therapy",
-     "ph": "Phase III",
-     "pcd": "2026-12-15",
-     "n": 276,
-     "drugs": [
-      "BR1019A",
-      "BR1019B",
-      "BR1019C"
-     ],
-     "forDrug": "Dulaglutide",
-     "ind": "Type 2 Diabetes",
-     "countries": [
-      "Indonesia",
-      "South Korea"
-     ],
-     "nCountries": 2,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -1338.49,
    "debtDue24": 2517,
    "raise": {
@@ -180603,7 +180372,7 @@
      "time": "2026-10-29T15:35:46.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
-     "headline": "ELI LILLY & Co files its quarterly report",
+     "headline": "Eli Lilly files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000108/lly-20260930.htm"
     },
     {
@@ -180611,7 +180380,7 @@
      "time": "2026-10-29T11:03:30.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "ELI LILLY & Co reports quarterly results",
+     "headline": "Eli Lilly reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000104/lly-20261029.htm"
     },
     {
@@ -180619,7 +180388,7 @@
      "time": "2026-10-16T20:19:25.000Z",
      "form": "SCHEDULE 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "ELI LILLY & Co: Activist stake disclosed",
+     "headline": "Eli Lilly: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000095/xslSCHEDULE_13D_X02/primary_doc.xml"
     },
     {
@@ -180627,7 +180396,7 @@
      "time": "2026-08-05T18:40:40.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
-     "headline": "ELI LILLY & Co files its quarterly report",
+     "headline": "Eli Lilly files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000081/lly-20260630.htm"
     },
     {
@@ -180635,7 +180404,7 @@
      "time": "2026-08-05T11:05:09.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "ELI LILLY & Co reports quarterly results",
+     "headline": "Eli Lilly reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000077/lly-20260805.htm"
     },
     {
@@ -180643,7 +180412,7 @@
      "time": "2026-07-30T20:39:26.000Z",
      "form": "SCHEDULE 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "ELI LILLY & Co: Activist stake disclosed",
+     "headline": "Eli Lilly: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000072/xslSCHEDULE_13D_X02/primary_doc.xml"
     },
     {
@@ -180651,7 +180420,7 @@
      "time": "2026-05-20T20:30:32.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "ELI LILLY & Co makes a company announcement",
+     "headline": "Eli Lilly makes a company announcement",
      "url": "https://www.sec.gov/Archives/edgar/data/59478/000119312526232707/d148580d8k.htm"
     },
     {
@@ -180659,7 +180428,7 @@
      "time": "2026-05-07T20:41:48.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "ELI LILLY & Co reports shareholder vote results",
+     "headline": "Eli Lilly reports shareholder vote results",
      "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000048/lly-20260504.htm"
     },
     {
@@ -180667,7 +180436,7 @@
      "time": "2026-04-30T15:25:48.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
-     "headline": "ELI LILLY & Co files its quarterly report",
+     "headline": "Eli Lilly files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000045/lly-20260331.htm"
     },
     {
@@ -180675,7 +180444,7 @@
      "time": "2026-04-30T11:03:30.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "ELI LILLY & Co reports quarterly results",
+     "headline": "Eli Lilly reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000043/lly-20260430.htm"
     }
    ],
@@ -180712,7 +180481,7 @@
   {
    "t": "JNJ",
    "n": "Johnson & Johnson",
-   "area": "Pharmaceutical Preparations",
+   "area": "Oncology & immunology",
    "mcap": 655558.7,
    "ev": 674129.7,
    "cash": 17228,
@@ -182310,238 +182079,7 @@
      25399
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT03989414",
-     "sponsor": "Celgene",
-     "title": "A Study to Determine the Recommended Dose and Regimen and to Evaluate the Safety and Preliminary Efficacy of CC-92480 in Combination With Standard Treatments in",
-     "ph": "Phase II",
-     "pcd": "2026-11-30",
-     "n": 424,
-     "drugs": [
-      "CC-92480",
-      "Bortezomib",
-      "Dexamethasone"
-     ],
-     "forDrug": "Talquetamab",
-     "ind": "Multiple Myeloma",
-     "countries": [
-      "United States",
-      "Canada",
-      "Czechia",
-      "Denmark",
-      "France",
-      "Germany"
-     ],
-     "nCountries": 9,
-     "china": null
-    },
-    {
-     "nct": "NCT06182696",
-     "sponsor": "OriCell Therapeutics Co., Ltd.",
-     "title": "OriCAR-017 Chimeric Antigen Receptor (CAR) Modified T Cells for the Treatment of R/RMM",
-     "ph": "Phase II",
-     "pcd": "2026-11-30",
-     "n": 83,
-     "drugs": [
-      "OriCAR-017"
-     ],
-     "forDrug": "Talquetamab",
-     "ind": "Multiple Myeloma",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT03945162",
-     "sponsor": "Theralase® Technologies Inc.",
-     "title": "Intravesical Photodynamic Therapy (\"PDT\") in BCG-Unresponsive/Intolerant Non-Muscle Invasive Bladder Cancer (\"NMIBC\") Patients",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 90,
-     "drugs": [
-      "Ruvidar® bladder infusion and PDT"
-     ],
-     "forDrug": "TAR-200",
-     "ind": "Non-Muscle Invasive Bladder Neoplasms",
-     "countries": [
-      "United States",
-      "Canada"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT05922878",
-     "sponsor": "Alto Neuroscience",
-     "title": "Study of ALTO-300 in MDD",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 325,
-     "drugs": [
-      "ALTO-300"
-     ],
-     "forDrug": "Seltorexant",
-     "ind": "Depressive Disorder, Major",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05396885",
-     "sponsor": "Kite, A Gilead Company",
-     "title": "Study of Anitocabtagene-autoleucel in Relapsed or Refractory Multiple Myeloma (iMMagine-1)",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 136,
-     "drugs": [
-      "anitocabtagene-autoleucel"
-     ],
-     "forDrug": "Talquetamab",
-     "ind": "Multiple Myeloma",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05299424",
-     "sponsor": "Keymed Biosciences Co.Ltd",
-     "title": "A Study of CM336 in Patients With Relapsed or Refractory Multiple Myeloma",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 48,
-     "drugs": [
-      "CM336_group",
-      "CM336_RP2D"
-     ],
-     "forDrug": "Talquetamab",
-     "ind": "Multiple Myeloma",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07185815",
-     "sponsor": "Mapi Pharma Ltd.",
-     "title": "Pharmacokinetics, Safety, Tolerability and Efficacy of a Subcutaneous Long-Acting Injection of Cariprazine (Cariprazine Depot) in Subjects Eligible for Treatmen",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 24,
-     "drugs": [
-      "Cariprazine Depot",
-      "Cariprazine Depot MTD",
-      "Cariprazine"
-     ],
-     "forDrug": "Seltorexant",
-     "ind": "Depressive Disorder, Major",
-     "countries": [
-      "India",
-      "Israel"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT07226661",
-     "sponsor": "Supernus Pharmaceuticals, Inc.",
-     "title": "Double-blind, Placebo-controlled Study in Adults With Major Depressive Disorder",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 230,
-     "drugs": [
-      "SPN-821"
-     ],
-     "forDrug": "Seltorexant",
-     "ind": "Depressive Disorder, Major",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05565807",
-     "sponsor": "Zhejiang ACEA Pharmaceutical Co. Ltd.",
-     "title": "Safety and Efficacy Study of An Anti-CD38 Antibody Drug Conjugate in Relapsed or Refractory Multiple Myeloma",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 84,
-     "drugs": [
-      "STI-6129"
-     ],
-     "forDrug": "Talquetamab",
-     "ind": "Multiple Myeloma",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT04271644",
-     "sponsor": "Chongqing Precision Biotech Co., Ltd",
-     "title": "BCMA-Targeted CAR-T Cell Therapy for Relapsed/Refractory Multiple Myeloma and Plasma Cell Disease",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 80,
-     "drugs": [
-      "BCMA CAR-T cells"
-     ],
-     "forDrug": "Talquetamab",
-     "ind": "Multiple Myeloma",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07764861",
-     "sponsor": "Innovent Biologics (Suzhou) Co. Ltd.",
-     "title": "A Open-Label Phase in Participants With Multiple Myeloma",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 120,
-     "drugs": [
-      "Dexamethasone",
-      "IBI3003",
-      "Lenalidomide"
-     ],
-     "forDrug": "Talquetamab",
-     "ind": "Multiple Myeloma",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT04776330",
-     "sponsor": "Chongqing Precision Biotech Co., Ltd",
-     "title": "a Clinical Research of BCMA-Targeted Prime CAR-T Cell Therapy in Relapsed/Refractory Multiple Myeloma and Plasma Cell Disease",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 80,
-     "drugs": [
-      "BCMA targeted prime CAR-T cells"
-     ],
-     "forDrug": "Talquetamab",
-     "ind": "Multiple Myeloma",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    }
-   ],
+   "rivals": [],
    "burnPrior": -2017,
    "debtDue24": 5216,
    "raise": {
@@ -183684,7 +183222,7 @@
   {
    "t": "ABBV",
    "n": "AbbVie",
-   "area": "Pharmaceutical Preparations",
+   "area": "Immunology & neuroscience",
    "mcap": 509497.7,
    "ev": 498336.7,
    "cash": 11161,
@@ -185909,255 +185447,7 @@
      17404
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT04302025",
-     "sponsor": "Genentech, Inc.",
-     "title": "A Study of Multiple Therapies in Biomarker-selected Participants With Resectable Stages IB-III Non-small Cell Lung Cancer (NSCLC)",
-     "ph": "Phase II",
-     "pcd": "2026-11-30",
-     "n": 99,
-     "drugs": [
-      "Alectinib",
-      "Entrectinib",
-      "Vemurafenib"
-     ],
-     "forDrug": "Livmoniplimab",
-     "ind": "Non-Small Cell Lung Cancer",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT07228390",
-     "sponsor": "Pfizer",
-     "title": "A 16-Week Study to Learn About the Study Medicine Called Ritlecitinib in Adults With Long Lasting Painful Red Skin Lumps, Known by the Medical Term, Hidradeniti",
-     "ph": "Phase II",
-     "pcd": "2026-12-08",
-     "n": 128,
-     "drugs": [
-      "Ritlecitinib"
-     ],
-     "forDrug": "Lutikizumab",
-     "ind": "Hidradenitis Suppurativa",
-     "countries": [
-      "United States",
-      "Canada",
-      "Germany",
-      "Greece",
-      "Poland",
-      "Spain"
-     ],
-     "nCountries": 6,
-     "china": null
-    },
-    {
-     "nct": "NCT05736731",
-     "sponsor": "A2 Biotherapeutics Inc.",
-     "title": "A Study to Evaluate the Safety and Efficacy of A2B530, a Logic-gated CAR T, in Participants With Solid Tumors That Express CEA and Have Lost HLA-A*02 Expression",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 160,
-     "drugs": [
-      "A2B530"
-     ],
-     "forDrug": "Livmoniplimab",
-     "ind": "Non-Small Cell Lung Cancer",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT04585750",
-     "sponsor": "PMV Pharmaceuticals, Inc",
-     "title": "The Evaluation of PC14586 in Patients With Advanced Solid Tumors Harboring a TP53 Y220C Mutation (PYNNACLE)",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 300,
-     "drugs": [
-      "rezatapopt",
-      "pembrolizumab"
-     ],
-     "forDrug": "Livmoniplimab",
-     "ind": "Non-Small Cell Lung Cancer",
-     "countries": [
-      "United States",
-      "Australia",
-      "France",
-      "Germany",
-      "Italy",
-      "Singapore"
-     ],
-     "nCountries": 9,
-     "china": null
-    },
-    {
-     "nct": "NCT06671379",
-     "sponsor": "Suzhou Suncadia Biopharmaceuticals Co., Ltd.",
-     "title": "A Study of SHR-A2009 Versus Platinum-based Chemotherapy in EGFR-mutated, Advanced or Metastatic NSCLC",
-     "ph": "Phase III",
-     "pcd": "2026-12-15",
-     "n": 498,
-     "drugs": [
-      "SHR-A2009",
-      "platinum-based dual-agent chemotherapy"
-     ],
-     "forDrug": "Livmoniplimab",
-     "ind": "Non-Small Cell Lung Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06921850",
-     "sponsor": "UCB Biopharma SRL",
-     "title": "A Study to Assess the Pharmacokinetics and Safety of Bimekizumab in Children and Adolescents With Moderate to Severe Hidradenitis Suppurativa",
-     "ph": "Phase III",
-     "pcd": "2026-12-21",
-     "n": 43,
-     "drugs": [
-      "Bimekizumab"
-     ],
-     "forDrug": "Lutikizumab",
-     "ind": "Hidradenitis Suppurativa",
-     "countries": [
-      "United States",
-      "Germany",
-      "Poland"
-     ],
-     "nCountries": 3,
-     "china": null
-    },
-    {
-     "nct": "NCT06525350",
-     "sponsor": "CSPC ZhongQi Pharmaceutical Technology Co., Ltd.",
-     "title": "A Study to Evaluate the Efficacy and Safety of the Combination of Glumetinib and Docetaxel（Albumin Bound）Verse Docetaxel for the Treatment of MET-overexpressed ",
-     "ph": "Phase II",
-     "pcd": "2026-12-25",
-     "n": 256,
-     "drugs": [
-      "Glumetinib",
-      "HB1801",
-      "Docetaxel"
-     ],
-     "forDrug": "Livmoniplimab",
-     "ind": "Non-Small Cell Lung Cancer",
-     "countries": [],
-     "nCountries": 0,
-     "china": null
-    },
-    {
-     "nct": "NCT06212999",
-     "sponsor": "Incyte Corporation",
-     "title": "A Study to Evaluate the Long-Term Safety and Efficacy of Povorcitinib in Participants With Moderate to Severe Hidradenitis Suppurativa",
-     "ph": "Phase III",
-     "pcd": "2026-12-26",
-     "n": 617,
-     "drugs": [
-      "Povorcitinib"
-     ],
-     "forDrug": "Lutikizumab",
-     "ind": "Hidradenitis Suppurativa",
-     "countries": [
-      "United States",
-      "Australia",
-      "Austria",
-      "Belgium",
-      "Bulgaria",
-      "Canada"
-     ],
-     "nCountries": 17,
-     "china": null
-    },
-    {
-     "nct": "NCT07402070",
-     "sponsor": "Innovent Biologics (Suzhou) Co. Ltd.",
-     "title": "IBI363 as Neoadjuvant Therapy in Resectable Stage II-III Non-Small Cell Lung Cancer",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 10,
-     "drugs": [
-      "IBI363"
-     ],
-     "forDrug": "Livmoniplimab",
-     "ind": "Non-Small Cell Lung Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07162883",
-     "sponsor": "Qilu Pharmaceutical Co., Ltd.",
-     "title": "Pharmacokinetic Study of QL2107 Versus Keytruda® for Adjuvant Therapy of Non-Small Cell Lung Cancer (NSCLC)",
-     "ph": "Phase III",
-     "pcd": "2026-12-31",
-     "n": 146,
-     "drugs": [
-      "QL2107",
-      "Keytruda®"
-     ],
-     "forDrug": "Livmoniplimab",
-     "ind": "Non-Small Cell Lung Cancer",
-     "countries": [
-      "Bosnia and Herzegovina",
-      "China",
-      "Georgia",
-      "Greece",
-      "Hungary",
-      "India"
-     ],
-     "nCountries": 13,
-     "china": "some"
-    },
-    {
-     "nct": "NCT07485595",
-     "sponsor": "Tasly Pharmaceutical Group Co., Ltd",
-     "title": "A Study of the Effectiveness and Safety of JS1-1-01 Tablet in Patients With Moderate to Severe Depression",
-     "ph": "Phase III",
-     "pcd": "2026-12-31",
-     "n": 180,
-     "drugs": [
-      "JS1-1-01"
-     ],
-     "forDrug": "Cariprazine",
-     "ind": "Depression",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06879717",
-     "sponsor": "iOnctura",
-     "title": "A Study of Roginolisib (IOA-244) in Combination With Dostarlimab With or Without Docetaxel in Metastatic Non Small-cell Lung Cancer (NSCLC) Patients",
-     "ph": "Phase II",
-     "pcd": "2027-01-15",
-     "n": 45,
-     "drugs": [
-      "roginolisib",
-      "Dostarlimab",
-      "Docetaxel"
-     ],
-     "forDrug": "Livmoniplimab",
-     "ind": "Non-Small Cell Lung Cancer",
-     "countries": [
-      "Belgium",
-      "Italy",
-      "Spain"
-     ],
-     "nCountries": 3,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -1738.33,
    "debtDue24": 11130,
    "raise": {
@@ -187300,7 +186590,7 @@
   {
    "t": "MRK",
    "n": "Merck & Co.",
-   "area": "Pharmaceutical Preparations",
+   "area": "Oncology & vaccines",
    "mcap": 362243.2,
    "ev": 400679.2,
    "cash": 11253,
@@ -189817,265 +189107,7 @@
      18085
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT04302025",
-     "sponsor": "Genentech, Inc.",
-     "title": "A Study of Multiple Therapies in Biomarker-selected Participants With Resectable Stages IB-III Non-small Cell Lung Cancer (NSCLC)",
-     "ph": "Phase II",
-     "pcd": "2026-11-30",
-     "n": 99,
-     "drugs": [
-      "Alectinib",
-      "Entrectinib",
-      "Vemurafenib"
-     ],
-     "forDrug": "Sacituzumab Govitecan",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05736731",
-     "sponsor": "A2 Biotherapeutics Inc.",
-     "title": "A Study to Evaluate the Safety and Efficacy of A2B530, a Logic-gated CAR T, in Participants With Solid Tumors That Express CEA and Have Lost HLA-A*02 Expression",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 160,
-     "drugs": [
-      "A2B530"
-     ],
-     "forDrug": "Sacituzumab Govitecan",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT04585750",
-     "sponsor": "PMV Pharmaceuticals, Inc",
-     "title": "The Evaluation of PC14586 in Patients With Advanced Solid Tumors Harboring a TP53 Y220C Mutation (PYNNACLE)",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 300,
-     "drugs": [
-      "rezatapopt",
-      "pembrolizumab"
-     ],
-     "forDrug": "Sacituzumab Govitecan",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "United States",
-      "Australia",
-      "France",
-      "Germany",
-      "Italy",
-      "Singapore"
-     ],
-     "nCountries": 9,
-     "china": null
-    },
-    {
-     "nct": "NCT06671379",
-     "sponsor": "Suzhou Suncadia Biopharmaceuticals Co., Ltd.",
-     "title": "A Study of SHR-A2009 Versus Platinum-based Chemotherapy in EGFR-mutated, Advanced or Metastatic NSCLC",
-     "ph": "Phase III",
-     "pcd": "2026-12-15",
-     "n": 498,
-     "drugs": [
-      "SHR-A2009",
-      "platinum-based dual-agent chemotherapy"
-     ],
-     "forDrug": "Sacituzumab Govitecan",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06525350",
-     "sponsor": "CSPC ZhongQi Pharmaceutical Technology Co., Ltd.",
-     "title": "A Study to Evaluate the Efficacy and Safety of the Combination of Glumetinib and Docetaxel（Albumin Bound）Verse Docetaxel for the Treatment of MET-overexpressed ",
-     "ph": "Phase II",
-     "pcd": "2026-12-25",
-     "n": 256,
-     "drugs": [
-      "Glumetinib",
-      "HB1801",
-      "Docetaxel"
-     ],
-     "forDrug": "Sacituzumab Govitecan",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [],
-     "nCountries": 0,
-     "china": null
-    },
-    {
-     "nct": "NCT04658862",
-     "sponsor": "Janssen Research & Development, LLC",
-     "title": "A Study of TAR-200 in Combination With Cetrelimab Versus Concurrent Chemoradiotherapy in Participants With Muscle-invasive Bladder Cancer (MIBC) of the Bladder",
-     "ph": "Phase III",
-     "pcd": "2026-12-30",
-     "n": 518,
-     "drugs": [
-      "Cetrelimab",
-      "TAR-200",
-      "Cisplatin"
-     ],
-     "forDrug": "Mitomycin C",
-     "ind": "Urinary Bladder Neoplasms",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Australia",
-      "Austria",
-      "Belgium",
-      "Brazil"
-     ],
-     "nCountries": 25,
-     "china": "some"
-    },
-    {
-     "nct": "NCT07402070",
-     "sponsor": "Innovent Biologics (Suzhou) Co. Ltd.",
-     "title": "IBI363 as Neoadjuvant Therapy in Resectable Stage II-III Non-Small Cell Lung Cancer",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 10,
-     "drugs": [
-      "IBI363"
-     ],
-     "forDrug": "Sacituzumab Govitecan",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07162883",
-     "sponsor": "Qilu Pharmaceutical Co., Ltd.",
-     "title": "Pharmacokinetic Study of QL2107 Versus Keytruda® for Adjuvant Therapy of Non-Small Cell Lung Cancer (NSCLC)",
-     "ph": "Phase III",
-     "pcd": "2026-12-31",
-     "n": 146,
-     "drugs": [
-      "QL2107",
-      "Keytruda®"
-     ],
-     "forDrug": "Sacituzumab Govitecan",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "Bosnia and Herzegovina",
-      "China",
-      "Georgia",
-      "Greece",
-      "Hungary",
-      "India"
-     ],
-     "nCountries": 13,
-     "china": "some"
-    },
-    {
-     "nct": "NCT06879717",
-     "sponsor": "iOnctura",
-     "title": "A Study of Roginolisib (IOA-244) in Combination With Dostarlimab With or Without Docetaxel in Metastatic Non Small-cell Lung Cancer (NSCLC) Patients",
-     "ph": "Phase II",
-     "pcd": "2027-01-15",
-     "n": 45,
-     "drugs": [
-      "roginolisib",
-      "Dostarlimab",
-      "Docetaxel"
-     ],
-     "forDrug": "Sacituzumab Govitecan",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "Belgium",
-      "Italy",
-      "Spain"
-     ],
-     "nCountries": 3,
-     "china": null
-    },
-    {
-     "nct": "NCT04561362",
-     "sponsor": "BicycleTx Limited",
-     "title": "Study BT8009-100 in Subjects With Nectin-4 Expressing Advanced Malignancies",
-     "ph": "Phase II",
-     "pcd": "2027-01-15",
-     "n": 329,
-     "drugs": [
-      "BT8009",
-      "Pembrolizumab"
-     ],
-     "forDrug": "Mitomycin C",
-     "ind": "Urinary Bladder Neoplasms",
-     "countries": [
-      "United States",
-      "Canada",
-      "France",
-      "Italy",
-      "Spain",
-      "United Kingdom"
-     ],
-     "nCountries": 6,
-     "china": null
-    },
-    {
-     "nct": "NCT06946797",
-     "sponsor": "Bristol-Myers Squibb",
-     "title": "A Study to Evaluate Two Dosing Regimens of Subcutaneous Nivolumab in Combination With Intravenous Ipilimumab and Chemotherapy in Participants With Previously Un",
-     "ph": "Phase II",
-     "pcd": "2027-02-05",
-     "n": 76,
-     "drugs": [
-      "Nivolumab",
-      "Ipilimumab",
-      "Carboplatin"
-     ],
-     "forDrug": "Sacituzumab Govitecan",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "United States",
-      "Brazil",
-      "Chile",
-      "France",
-      "Greece",
-      "Italy"
-     ],
-     "nCountries": 9,
-     "china": null
-    },
-    {
-     "nct": "NCT06463665",
-     "sponsor": "Genelux Corporation",
-     "title": "Efficacy & Safety of Olvimulogene Nanivacirepvec & Platinum-doublet + Physician's Choice of Immune Checkpoint Inhibitor Compared to Docetaxel in NSCL Cancer",
-     "ph": "Phase II",
-     "pcd": "2027-02-15",
-     "n": 142,
-     "drugs": [
-      "Olvimulogene nanivacirepvec",
-      "Platinum chemotherapy: carboplatin or",
-      "Non-platinum chemotherapy: paclitaxel or"
-     ],
-     "forDrug": "Sacituzumab Govitecan",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -1422.08,
    "debtDue24": 5300,
    "raise": {
@@ -191219,7 +190251,7 @@
   {
    "t": "PFE",
    "n": "Pfizer",
-   "area": "Pharmaceutical Preparations",
+   "area": "Vaccines, oncology & internal medicine",
    "mcap": 170311.6,
    "ev": 219313.6,
    "cash": 10995,
@@ -193830,254 +192862,7 @@
      16583
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT06602479",
-     "sponsor": "AbbVie",
-     "title": "A Study to Investigate the Safety and Efficacy of MEDI0618 Compared to Placebo in Adult Participants With Episodic Migraine",
-     "ph": "Phase II",
-     "pcd": "2027-02-15",
-     "n": 309,
-     "drugs": [
-      "MEDI0618"
-     ],
-     "forDrug": "Rimegepant",
-     "ind": "Migraine",
-     "countries": [
-      "United States",
-      "Czechia",
-      "Denmark",
-      "Germany",
-      "Hungary",
-      "Italy"
-     ],
-     "nCountries": 8,
-     "china": null
-    },
-    {
-     "nct": "NCT07645924",
-     "sponsor": "TriGemX Bio, Inc.",
-     "title": "A Study to Evaluate the Efficacy and Safety of Elismetrep (K-304) in the Acute Treatment of Migraine",
-     "ph": "Phase III",
-     "pcd": "2027-02-15",
-     "n": 1800,
-     "drugs": [
-      "Elismetrep"
-     ],
-     "forDrug": "Rimegepant",
-     "ind": "Migraine",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT07018713",
-     "sponsor": "Merz Therapeutics GmbH",
-     "title": "A Clinical Trial to Evaluate Efficacy and Safety of Xeomin® Injections for Preventing Chronic Migraine",
-     "ph": "Phase III",
-     "pcd": "2027-03-15",
-     "n": 808,
-     "drugs": [
-      "Xeomin"
-     ],
-     "forDrug": "Rimegepant",
-     "ind": "Migraine",
-     "countries": [
-      "United States",
-      "Austria",
-      "Canada",
-      "Czechia",
-      "Denmark",
-      "France"
-     ],
-     "nCountries": 13,
-     "china": null
-    },
-    {
-     "nct": "NCT07646613",
-     "sponsor": "Aspeya, Inc.",
-     "title": "Study Evaluating the Efficacy, Safety, and Tolerability of ASY202 (Dihydroergotamine Mesylate [DHE] Inhalation Powder Delivered Via a Multidose Dry Powder Inhal",
-     "ph": "Phase II",
-     "pcd": "2027-03-15",
-     "n": 108,
-     "drugs": [
-      "ASY202"
-     ],
-     "forDrug": "Rimegepant",
-     "ind": "Migraine",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT07018700",
-     "sponsor": "Merz Therapeutics GmbH",
-     "title": "A Clinical Trial to Evaluate Efficacy and Safety of Xeomin® Injections for Preventing Episodic Migraine",
-     "ph": "Phase III",
-     "pcd": "2027-03-15",
-     "n": 997,
-     "drugs": [
-      "Xeomin"
-     ],
-     "forDrug": "Rimegepant",
-     "ind": "Migraine",
-     "countries": [
-      "United States",
-      "Austria",
-      "Canada",
-      "Czechia",
-      "Denmark",
-      "France"
-     ],
-     "nCountries": 13,
-     "china": null
-    },
-    {
-     "nct": "NCT04965675",
-     "sponsor": "H. Lundbeck A/S",
-     "title": "A Study With Eptinezumab in Adolescents (12-17 Years) With Chronic Migraine",
-     "ph": "Phase III",
-     "pcd": "2027-03-26",
-     "n": 285,
-     "drugs": [
-      "Eptinezumab"
-     ],
-     "forDrug": "Rimegepant",
-     "ind": "Migraine",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Canada",
-      "Italy",
-      "Mexico",
-      "Poland"
-     ],
-     "nCountries": 11,
-     "china": null
-    },
-    {
-     "nct": "NCT05125302",
-     "sponsor": "AbbVie",
-     "title": "Study to Assess Adverse Events and Disease Activity of Oral Ubrogepant Tablets for the Acute Treatment of Migraine in Children and Adolescents (Ages 6-17)",
-     "ph": "Phase III",
-     "pcd": "2027-05-15",
-     "n": 1059,
-     "drugs": [
-      "Ubrogepant"
-     ],
-     "forDrug": "Rimegepant",
-     "ind": "Migraine",
-     "countries": [
-      "United States",
-      "Puerto Rico"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT03898479",
-     "sponsor": "Sun Pharmaceutical Industries, Inc.",
-     "title": "Extension Study to Evaluate Safety and Efficacy of CTP-543 in Adults With Alopecia Areata",
-     "ph": "Phase III",
-     "pcd": "2027-05-15",
-     "n": 1000,
-     "drugs": [
-      "CTP-543"
-     ],
-     "forDrug": "Ritlecitinib higher",
-     "ind": "Severe Alopecia Areata",
-     "countries": [
-      "United States",
-      "Canada"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT06562894",
-     "sponsor": "CSPC Ouyi Pharmaceutical Co., Ltd.",
-     "title": "Study to Evaluate Safety and Efficacy of SYHX1901 Tablets in Severe Alopecia Areata Patients",
-     "ph": "Phase II",
-     "pcd": "2027-05-31",
-     "n": 156,
-     "drugs": [
-      "SYHX1901"
-     ],
-     "forDrug": "Ritlecitinib higher",
-     "ind": "Severe Alopecia Areata",
-     "countries": [],
-     "nCountries": 0,
-     "china": null
-    },
-    {
-     "nct": "NCT07533006",
-     "sponsor": "Eli Lilly and Company",
-     "title": "A Study of LY4005130 in Adult Participants With Severe Alopecia Areata (Hair Loss)",
-     "ph": "Phase II",
-     "pcd": "2027-06-15",
-     "n": 65,
-     "drugs": [
-      "LY4005130"
-     ],
-     "forDrug": "Ritlecitinib higher",
-     "ind": "Severe Alopecia Areata",
-     "countries": [
-      "United States",
-      "Canada",
-      "China",
-      "Netherlands",
-      "Poland",
-      "South Korea"
-     ],
-     "nCountries": 7,
-     "china": "some"
-    },
-    {
-     "nct": "NCT07311564",
-     "sponsor": "Almirall, S.A.",
-     "title": "A Study of LAD603 in Adults With Alopecia Areata",
-     "ph": "Phase II",
-     "pcd": "2027-06-23",
-     "n": 136,
-     "drugs": [
-      "LAD603"
-     ],
-     "forDrug": "Ritlecitinib higher",
-     "ind": "Severe Alopecia Areata",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05897320",
-     "sponsor": "H. Lundbeck A/S",
-     "title": "A Study of Eptinezumab in Pediatric Participants With Episodic Migraine",
-     "ph": "Phase III",
-     "pcd": "2027-07-06",
-     "n": 315,
-     "drugs": [
-      "Eptinezumab"
-     ],
-     "forDrug": "Rimegepant",
-     "ind": "Migraine",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Canada",
-      "Italy",
-      "Mexico",
-      "Poland"
-     ],
-     "nCountries": 11,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -1089.75,
    "debtDue24": 2674,
    "raise": {
@@ -195220,8 +194005,8 @@
   },
   {
    "t": "BMY",
-   "n": "Bristol Myers Squibb Co",
-   "area": "Pharmaceutical Preparations",
+   "n": "Bristol Myers Squibb",
+   "area": "Oncology & cardiovascular",
    "mcap": 129043.1,
    "ev": 158701.1,
    "cash": 12959,
@@ -196723,247 +195508,7 @@
      13069
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT04302025",
-     "sponsor": "Genentech, Inc.",
-     "title": "A Study of Multiple Therapies in Biomarker-selected Participants With Resectable Stages IB-III Non-small Cell Lung Cancer (NSCLC)",
-     "ph": "Phase II",
-     "pcd": "2026-11-30",
-     "n": 99,
-     "drugs": [
-      "Alectinib",
-      "Entrectinib",
-      "Vemurafenib"
-     ],
-     "forDrug": "Repotrectinib",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05736731",
-     "sponsor": "A2 Biotherapeutics Inc.",
-     "title": "A Study to Evaluate the Safety and Efficacy of A2B530, a Logic-gated CAR T, in Participants With Solid Tumors That Express CEA and Have Lost HLA-A*02 Expression",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 160,
-     "drugs": [
-      "A2B530"
-     ],
-     "forDrug": "Repotrectinib",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT04585750",
-     "sponsor": "PMV Pharmaceuticals, Inc",
-     "title": "The Evaluation of PC14586 in Patients With Advanced Solid Tumors Harboring a TP53 Y220C Mutation (PYNNACLE)",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 300,
-     "drugs": [
-      "rezatapopt",
-      "pembrolizumab"
-     ],
-     "forDrug": "Repotrectinib",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "United States",
-      "Australia",
-      "France",
-      "Germany",
-      "Italy",
-      "Singapore"
-     ],
-     "nCountries": 9,
-     "china": null
-    },
-    {
-     "nct": "NCT06671379",
-     "sponsor": "Suzhou Suncadia Biopharmaceuticals Co., Ltd.",
-     "title": "A Study of SHR-A2009 Versus Platinum-based Chemotherapy in EGFR-mutated, Advanced or Metastatic NSCLC",
-     "ph": "Phase III",
-     "pcd": "2026-12-15",
-     "n": 498,
-     "drugs": [
-      "SHR-A2009",
-      "platinum-based dual-agent chemotherapy"
-     ],
-     "forDrug": "Repotrectinib",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT05924841",
-     "sponsor": "Sichuan Baili Pharmaceutical Co., Ltd.",
-     "title": "A Study of BL-B01D1, SI-B003 and BL-B01D1+SI-B003 in Patients With Extensive Stage Small Cell Lung Cancer",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 100,
-     "drugs": [
-      "BL-B01D1",
-      "SI-B003"
-     ],
-     "forDrug": "BMS-986489",
-     "ind": "Extensive-Stage Small Cell Lung Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06437509",
-     "sponsor": "Sichuan Baili Pharmaceutical Co., Ltd.",
-     "title": "A Study of BL-B01D1+PD-1 Monoclonal Antibody in Patients With Extensive-stage Small Cell Lung Cancer",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 66,
-     "drugs": [
-      "BL-B01D1",
-      "PD-1"
-     ],
-     "forDrug": "BMS-986489",
-     "ind": "Extensive-Stage Small Cell Lung Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06525350",
-     "sponsor": "CSPC ZhongQi Pharmaceutical Technology Co., Ltd.",
-     "title": "A Study to Evaluate the Efficacy and Safety of the Combination of Glumetinib and Docetaxel（Albumin Bound）Verse Docetaxel for the Treatment of MET-overexpressed ",
-     "ph": "Phase II",
-     "pcd": "2026-12-25",
-     "n": 256,
-     "drugs": [
-      "Glumetinib",
-      "HB1801",
-      "Docetaxel"
-     ],
-     "forDrug": "Repotrectinib",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [],
-     "nCountries": 0,
-     "china": null
-    },
-    {
-     "nct": "NCT07402070",
-     "sponsor": "Innovent Biologics (Suzhou) Co. Ltd.",
-     "title": "IBI363 as Neoadjuvant Therapy in Resectable Stage II-III Non-Small Cell Lung Cancer",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 10,
-     "drugs": [
-      "IBI363"
-     ],
-     "forDrug": "Repotrectinib",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07162883",
-     "sponsor": "Qilu Pharmaceutical Co., Ltd.",
-     "title": "Pharmacokinetic Study of QL2107 Versus Keytruda® for Adjuvant Therapy of Non-Small Cell Lung Cancer (NSCLC)",
-     "ph": "Phase III",
-     "pcd": "2026-12-31",
-     "n": 146,
-     "drugs": [
-      "QL2107",
-      "Keytruda®"
-     ],
-     "forDrug": "Repotrectinib",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "Bosnia and Herzegovina",
-      "China",
-      "Georgia",
-      "Greece",
-      "Hungary",
-      "India"
-     ],
-     "nCountries": 13,
-     "china": "some"
-    },
-    {
-     "nct": "NCT06961201",
-     "sponsor": "Changchun GeneScience Pharmaceutical Co., Ltd.",
-     "title": "Nano-crystalline Megestrol Acetate Combined With Standard Treatment Versus Standard Treatment for First-line Extensive-stage Small Cell Lung Cancer in the Cache",
-     "ph": "Phase III",
-     "pcd": "2026-12-31",
-     "n": 94,
-     "drugs": [
-      "Nano-crystalline Megestrol Acetate",
-      "standard treatment"
-     ],
-     "forDrug": "BMS-986489",
-     "ind": "Extensive-Stage Small Cell Lung Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06879717",
-     "sponsor": "iOnctura",
-     "title": "A Study of Roginolisib (IOA-244) in Combination With Dostarlimab With or Without Docetaxel in Metastatic Non Small-cell Lung Cancer (NSCLC) Patients",
-     "ph": "Phase II",
-     "pcd": "2027-01-15",
-     "n": 45,
-     "drugs": [
-      "roginolisib",
-      "Dostarlimab",
-      "Docetaxel"
-     ],
-     "forDrug": "Repotrectinib",
-     "ind": "Carcinoma, Non-Small-Cell Lung",
-     "countries": [
-      "Belgium",
-      "Italy",
-      "Spain"
-     ],
-     "nCountries": 3,
-     "china": null
-    },
-    {
-     "nct": "NCT07744256",
-     "sponsor": "Beijing Biotech",
-     "title": "Adaptive Phase 1/2 Study of Dual-Target CAR-NK Cells in Relapsed/Refractory Small Cell Lung Cancer (SCLC)",
-     "ph": "Phase II",
-     "pcd": "2027-02-14",
-     "n": 60,
-     "drugs": [
-      "EB-DART-NK01",
-      "Lymphodepleting chemotherapy"
-     ],
-     "forDrug": "BMS-986489",
-     "ind": "Extensive-Stage Small Cell Lung Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    }
-   ],
+   "rivals": [],
    "burnPrior": -1385.08,
    "debtDue24": 4000,
    "raise": {
@@ -197997,7 +196542,7 @@
      "time": "2026-10-29T15:16:34.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
-     "headline": "Bristol Myers Squibb Co files its quarterly report",
+     "headline": "Bristol Myers Squibb files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000001427226000024/bmy-20260930.htm"
     },
     {
@@ -198005,7 +196550,7 @@
      "time": "2026-10-29T11:05:52.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Bristol Myers Squibb Co reports quarterly results",
+     "headline": "Bristol Myers Squibb reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000001427226000022/bmy-20261029.htm"
     },
     {
@@ -198013,7 +196558,7 @@
      "time": "2026-07-30T15:10:38.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
-     "headline": "Bristol Myers Squibb Co files its quarterly report",
+     "headline": "Bristol Myers Squibb files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000001427226000020/bmy-20260630.htm"
     },
     {
@@ -198021,7 +196566,7 @@
      "time": "2026-07-30T11:05:39.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Bristol Myers Squibb Co reports quarterly results",
+     "headline": "Bristol Myers Squibb reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000001427226000018/bmy-20260730.htm"
     },
     {
@@ -198029,7 +196574,7 @@
      "time": "2026-05-08T20:10:44.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Bristol Myers Squibb Co reports shareholder vote results",
+     "headline": "Bristol Myers Squibb reports shareholder vote results",
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000114036126020036/ef20072750_8k.htm"
     },
     {
@@ -198037,7 +196582,7 @@
      "time": "2026-04-30T15:44:13.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
-     "headline": "Bristol Myers Squibb Co files its quarterly report",
+     "headline": "Bristol Myers Squibb files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000001427226000010/bmy-20260331.htm"
     },
     {
@@ -198045,7 +196590,7 @@
      "time": "2026-04-30T11:01:58.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Bristol Myers Squibb Co reports quarterly results",
+     "headline": "Bristol Myers Squibb reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000001427226000008/bmy-20260430.htm"
     },
     {
@@ -198053,7 +196598,7 @@
      "time": "2026-03-25T20:19:00.000Z",
      "form": "DEF 14A",
      "formLabel": "Proxy statement",
-     "headline": "Bristol Myers Squibb Co files its proxy statement",
+     "headline": "Bristol Myers Squibb files its proxy statement",
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000001427226000006/bmy-20260325.htm"
     },
     {
@@ -198061,7 +196606,7 @@
      "time": "2026-02-11T16:35:11.000Z",
      "form": "10-K",
      "formLabel": "Annual report",
-     "headline": "Bristol Myers Squibb Co files its annual report",
+     "headline": "Bristol Myers Squibb files its annual report",
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000001427226000004/bmy-20251231.htm"
     },
     {
@@ -198069,7 +196614,7 @@
      "time": "2026-02-05T12:07:45.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Bristol Myers Squibb Co reports quarterly results",
+     "headline": "Bristol Myers Squibb reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000001427226000002/bmy-20260205.htm"
     }
    ],
@@ -198107,7 +196652,7 @@
   {
    "t": "AMGN",
    "n": "Amgen",
-   "area": "Biological Products, (No Diagnostic Substances)",
+   "area": "Inflammation, oncology & bone",
    "mcap": 248970.7,
    "ev": 289787.7,
    "cash": 13190,
@@ -199980,243 +198525,7 @@
      10365
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT07165223",
-     "sponsor": "Gan & Lee Pharmaceuticals.",
-     "title": "A Phase IIIb Clinical Study to Assess the Efficacy and Safety of GZR4 in Subjects With Type 2 Diabetes Mellitus Treated With Basal Insulin",
-     "ph": "Phase III",
-     "pcd": "2026-11-10",
-     "n": 300,
-     "drugs": [
-      "GZR4",
-      "Insulin Icodec group"
-     ],
-     "forDrug": "Maridebart cafraglutide",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06716216",
-     "sponsor": "BrightGene Bio-Medical Technology Co., Ltd.",
-     "title": "A Study of BGM0504 in Participants With Type 2 Diabetes",
-     "ph": "Phase III",
-     "pcd": "2026-11-14",
-     "n": 537,
-     "drugs": [
-      "Semaglutide Administered"
-     ],
-     "forDrug": "Maridebart cafraglutide",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06151574",
-     "sponsor": "Boehringer Ingelheim",
-     "title": "Beamion LUNG-2: A Study to Test Whether Zongertinib (BI 1810631) Helps People With Advanced Non-small Cell Lung Cancer With HER2 Mutations Compared With Standar",
-     "ph": "Phase III",
-     "pcd": "2026-12-10",
-     "n": 428,
-     "drugs": [
-      "zongertinib",
-      "pembrolizumab",
-      "cisplatin"
-     ],
-     "forDrug": "ABP 234",
-     "ind": "Advanced or Metastatic Non-squamous Non-Small Cell Lung Cancer",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Australia",
-      "Austria",
-      "Belgium",
-      "Brazil"
-     ],
-     "nCountries": 26,
-     "china": "some"
-    },
-    {
-     "nct": "NCT06778967",
-     "sponsor": "Gan & Lee Pharmaceuticals.",
-     "title": "A Phase III Clinical Study to Evaluate the Efficacy and Safety of GZR18 Injection in Adult Type 2 Diabetes Mellitus",
-     "ph": "Phase III",
-     "pcd": "2026-12-11",
-     "n": 1100,
-     "drugs": [
-      "GZR18",
-      "semaglutide"
-     ],
-     "forDrug": "Maridebart cafraglutide",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT05736731",
-     "sponsor": "A2 Biotherapeutics Inc.",
-     "title": "A Study to Evaluate the Safety and Efficacy of A2B530, a Logic-gated CAR T, in Participants With Solid Tumors That Express CEA and Have Lost HLA-A*02 Expression",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 160,
-     "drugs": [
-      "A2B530"
-     ],
-     "forDrug": "ABP 234",
-     "ind": "Advanced or Metastatic Non-squamous Non-Small Cell Lung Cancer",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT06711900",
-     "sponsor": "Sichuan Kelun-Biotech Biopharmaceutical Co., Ltd.",
-     "title": "A Study of SKB264 in Combination With Pembrolizumab Versus Chemotherapy in Combination With Pembrolizumab as First-Line Treatment for PD-L1 Negative Patients Wi",
-     "ph": "Phase III",
-     "pcd": "2026-12-15",
-     "n": 432,
-     "drugs": [
-      "SKB264",
-      "Pembrolizumab",
-      "pemetrexed"
-     ],
-     "forDrug": "ABP 234",
-     "ind": "Advanced or Metastatic Non-squamous Non-Small Cell Lung Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT05473156",
-     "sponsor": "AP Biosciences Inc.",
-     "title": "A Study to Investigate the Safety, Pharmacokinetics, and Clinical Activity of AP203 in Patients with Locally Advanced or Metastatic Solid Tumors, and Expansion ",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 168,
-     "drugs": [
-      "AP203"
-     ],
-     "forDrug": "ABP 234",
-     "ind": "Advanced or Metastatic Non-squamous Non-Small Cell Lung Cancer",
-     "countries": [
-      "Taiwan"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT07472725",
-     "sponsor": "Jiangsu HengRui Medicine Co., Ltd.",
-     "title": "A Study Comparing Safety and Efficacy of SHR-3167 Fixed-Dose Titration and Individualized-Dose Titration in Adults With Type 2 Diabetes Inadequately Controlled ",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 102,
-     "drugs": [
-      "SHR-3167"
-     ],
-     "forDrug": "Maridebart cafraglutide",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06220773",
-     "sponsor": "Boryung Pharmaceutical Co., Ltd",
-     "title": "A Study to Evaluate the Efficacy and Safety of BR1019A and BR1019B Combination Therapy",
-     "ph": "Phase III",
-     "pcd": "2026-12-15",
-     "n": 276,
-     "drugs": [
-      "BR1019A",
-      "BR1019B",
-      "BR1019C"
-     ],
-     "forDrug": "Maridebart cafraglutide",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "Indonesia",
-      "South Korea"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT07239440",
-     "sponsor": "Dong-A ST Co., Ltd.",
-     "title": "Clinical Trial to Evaluate the Efficacy and Safety of DA-2811 When Added to Ongoing BT-1 and BT-2 Combination Therapy in Patients With Type 2 Diabetes Who Have ",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 288,
-     "drugs": [
-      "DA-2811",
-      "DA-2811-C"
-     ],
-     "forDrug": "Maridebart cafraglutide",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "South Korea"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05464784",
-     "sponsor": "MediciNova",
-     "title": "MN-001 in Non-alcoholic Fatty Liver Disease, Type 2 Diabetes Mellitus, and Hypertriglyceridemia",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 40,
-     "drugs": [
-      "MN-001"
-     ],
-     "forDrug": "Maridebart cafraglutide",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT06879717",
-     "sponsor": "iOnctura",
-     "title": "A Study of Roginolisib (IOA-244) in Combination With Dostarlimab With or Without Docetaxel in Metastatic Non Small-cell Lung Cancer (NSCLC) Patients",
-     "ph": "Phase II",
-     "pcd": "2027-01-15",
-     "n": 45,
-     "drugs": [
-      "roginolisib",
-      "Dostarlimab",
-      "Docetaxel"
-     ],
-     "forDrug": "ABP 234",
-     "ind": "Advanced or Metastatic Non-squamous Non-Small Cell Lung Cancer",
-     "countries": [
-      "Belgium",
-      "Italy",
-      "Spain"
-     ],
-     "nCountries": 3,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -1093.83,
    "debtDue24": 7295,
    "raise": {
@@ -201358,7 +199667,7 @@
   {
    "t": "GILD",
    "n": "Gilead Sciences",
-   "area": "Biological Products, (No Diagnostic Substances)",
+   "area": "HIV, liver disease & oncology",
    "mcap": 207843.5,
    "ev": 227637.5,
    "cash": 6437,
@@ -201961,250 +200270,7 @@
      8300
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT04302025",
-     "sponsor": "Genentech, Inc.",
-     "title": "A Study of Multiple Therapies in Biomarker-selected Participants With Resectable Stages IB-III Non-small Cell Lung Cancer (NSCLC)",
-     "ph": "Phase II",
-     "pcd": "2026-11-30",
-     "n": 99,
-     "drugs": [
-      "Alectinib",
-      "Entrectinib",
-      "Vemurafenib"
-     ],
-     "forDrug": "Zimberelimab",
-     "ind": "Non-small Cell Lung Cancer",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT07308782",
-     "sponsor": "Henan Genuine Biotech Co., Ltd.",
-     "title": "A Phase Ⅱa Clinical Study of CL-197 Capsules",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 24,
-     "drugs": [
-      "CL-197"
-     ],
-     "forDrug": "Lepetegravir",
-     "ind": "HIV-1-Infection",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT04985890",
-     "sponsor": "UBP Greater China (Shanghai) Co., Ltd",
-     "title": "A Proof of Concept Study to Evaluate the Effect of UB-421 in Combination With Chidamide on HIV Viral Reservoir",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 20,
-     "drugs": [
-      "UB-421"
-     ],
-     "forDrug": "Lepetegravir",
-     "ind": "HIV-1-Infection",
-     "countries": [],
-     "nCountries": 0,
-     "china": null
-    },
-    {
-     "nct": "NCT05736731",
-     "sponsor": "A2 Biotherapeutics Inc.",
-     "title": "A Study to Evaluate the Safety and Efficacy of A2B530, a Logic-gated CAR T, in Participants With Solid Tumors That Express CEA and Have Lost HLA-A*02 Expression",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 160,
-     "drugs": [
-      "A2B530"
-     ],
-     "forDrug": "Zimberelimab",
-     "ind": "Non-small Cell Lung Cancer",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT04585750",
-     "sponsor": "PMV Pharmaceuticals, Inc",
-     "title": "The Evaluation of PC14586 in Patients With Advanced Solid Tumors Harboring a TP53 Y220C Mutation (PYNNACLE)",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 300,
-     "drugs": [
-      "rezatapopt",
-      "pembrolizumab"
-     ],
-     "forDrug": "Zimberelimab",
-     "ind": "Non-small Cell Lung Cancer",
-     "countries": [
-      "United States",
-      "Australia",
-      "France",
-      "Germany",
-      "Italy",
-      "Singapore"
-     ],
-     "nCountries": 9,
-     "china": null
-    },
-    {
-     "nct": "NCT06671379",
-     "sponsor": "Suzhou Suncadia Biopharmaceuticals Co., Ltd.",
-     "title": "A Study of SHR-A2009 Versus Platinum-based Chemotherapy in EGFR-mutated, Advanced or Metastatic NSCLC",
-     "ph": "Phase III",
-     "pcd": "2026-12-15",
-     "n": 498,
-     "drugs": [
-      "SHR-A2009",
-      "platinum-based dual-agent chemotherapy"
-     ],
-     "forDrug": "Zimberelimab",
-     "ind": "Non-small Cell Lung Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06525350",
-     "sponsor": "CSPC ZhongQi Pharmaceutical Technology Co., Ltd.",
-     "title": "A Study to Evaluate the Efficacy and Safety of the Combination of Glumetinib and Docetaxel（Albumin Bound）Verse Docetaxel for the Treatment of MET-overexpressed ",
-     "ph": "Phase II",
-     "pcd": "2026-12-25",
-     "n": 256,
-     "drugs": [
-      "Glumetinib",
-      "HB1801",
-      "Docetaxel"
-     ],
-     "forDrug": "Zimberelimab",
-     "ind": "Non-small Cell Lung Cancer",
-     "countries": [],
-     "nCountries": 0,
-     "china": null
-    },
-    {
-     "nct": "NCT07402070",
-     "sponsor": "Innovent Biologics (Suzhou) Co. Ltd.",
-     "title": "IBI363 as Neoadjuvant Therapy in Resectable Stage II-III Non-Small Cell Lung Cancer",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 10,
-     "drugs": [
-      "IBI363"
-     ],
-     "forDrug": "Zimberelimab",
-     "ind": "Non-small Cell Lung Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07162883",
-     "sponsor": "Qilu Pharmaceutical Co., Ltd.",
-     "title": "Pharmacokinetic Study of QL2107 Versus Keytruda® for Adjuvant Therapy of Non-Small Cell Lung Cancer (NSCLC)",
-     "ph": "Phase III",
-     "pcd": "2026-12-31",
-     "n": 146,
-     "drugs": [
-      "QL2107",
-      "Keytruda®"
-     ],
-     "forDrug": "Zimberelimab",
-     "ind": "Non-small Cell Lung Cancer",
-     "countries": [
-      "Bosnia and Herzegovina",
-      "China",
-      "Georgia",
-      "Greece",
-      "Hungary",
-      "India"
-     ],
-     "nCountries": 13,
-     "china": "some"
-    },
-    {
-     "nct": "NCT06879717",
-     "sponsor": "iOnctura",
-     "title": "A Study of Roginolisib (IOA-244) in Combination With Dostarlimab With or Without Docetaxel in Metastatic Non Small-cell Lung Cancer (NSCLC) Patients",
-     "ph": "Phase II",
-     "pcd": "2027-01-15",
-     "n": 45,
-     "drugs": [
-      "roginolisib",
-      "Dostarlimab",
-      "Docetaxel"
-     ],
-     "forDrug": "Zimberelimab",
-     "ind": "Non-small Cell Lung Cancer",
-     "countries": [
-      "Belgium",
-      "Italy",
-      "Spain"
-     ],
-     "nCountries": 3,
-     "china": null
-    },
-    {
-     "nct": "NCT06946797",
-     "sponsor": "Bristol-Myers Squibb",
-     "title": "A Study to Evaluate Two Dosing Regimens of Subcutaneous Nivolumab in Combination With Intravenous Ipilimumab and Chemotherapy in Participants With Previously Un",
-     "ph": "Phase II",
-     "pcd": "2027-02-05",
-     "n": 76,
-     "drugs": [
-      "Nivolumab",
-      "Ipilimumab",
-      "Carboplatin"
-     ],
-     "forDrug": "Zimberelimab",
-     "ind": "Non-small Cell Lung Cancer",
-     "countries": [
-      "United States",
-      "Brazil",
-      "Chile",
-      "France",
-      "Greece",
-      "Italy"
-     ],
-     "nCountries": 9,
-     "china": null
-    },
-    {
-     "nct": "NCT06463665",
-     "sponsor": "Genelux Corporation",
-     "title": "Efficacy & Safety of Olvimulogene Nanivacirepvec & Platinum-doublet + Physician's Choice of Immune Checkpoint Inhibitor Compared to Docetaxel in NSCL Cancer",
-     "ph": "Phase II",
-     "pcd": "2027-02-15",
-     "n": 142,
-     "drugs": [
-      "Olvimulogene nanivacirepvec",
-      "Platinum chemotherapy: carboplatin or",
-      "Non-platinum chemotherapy: paclitaxel or"
-     ],
-     "forDrug": "Zimberelimab",
-     "ind": "Non-small Cell Lung Cancer",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -805.58,
    "debtDue24": 2416,
    "raise": {
@@ -203347,8 +201413,8 @@
   },
   {
    "t": "REGN",
-   "n": "Regeneron Pharmaceuticals",
-   "area": "Pharmaceutical Preparations",
+   "n": "Regeneron",
+   "area": "Eye disease & immunology",
    "mcap": 84832.1,
    "ev": 67960.6,
    "cash": 18858.5,
@@ -204664,249 +202730,7 @@
      5115.8
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT06534437",
-     "sponsor": "Ryvu Therapeutics SA",
-     "title": "MEN1703 (SEL24) to Treat Relapsed or Refractory Aggressive B-cell Non-Hodgkin Lymphoma (JASPIS-01)",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 178,
-     "drugs": [
-      "MEN1703",
-      "Glofitamab"
-     ],
-     "forDrug": "Odronextamab",
-     "ind": "B-Cell Non-Hodgkin Lymphoma (B-NHL)",
-     "countries": [
-      "France",
-      "Poland",
-      "Spain",
-      "United Kingdom"
-     ],
-     "nCountries": 4,
-     "china": null
-    },
-    {
-     "nct": "NCT05950165",
-     "sponsor": "Cho Pharma Inc.",
-     "title": "A Study to Assess Safety and Efficacy of CHO-H01 as a Single Agent/Combined With Lenalidomide in Subjects With Refractory or Relapsed Non-Hodgkin's Lymphoma",
-     "ph": "Phase II",
-     "pcd": "2026-12-23",
-     "n": 37,
-     "drugs": [
-      "CHO-H01",
-      "Lenalidomide"
-     ],
-     "forDrug": "Odronextamab",
-     "ind": "B-Cell Non-Hodgkin Lymphoma (B-NHL)",
-     "countries": [
-      "Taiwan"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05210868",
-     "sponsor": "Beijing InnoCare Pharma Tech Co., Ltd.",
-     "title": "A Phase I/II Study of CM355 in Patients With Relapsed or Refractory B-Cell Non-Hodgkin's Lymphoma (B-NHL)",
-     "ph": "Phase II",
-     "pcd": "2026-12-28",
-     "n": 184,
-     "drugs": [
-      "CM355"
-     ],
-     "forDrug": "Odronextamab",
-     "ind": "B-Cell Non-Hodgkin Lymphoma (B-NHL)",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT04792489",
-     "sponsor": "Miltenyi Biomedicine GmbH",
-     "title": "DALY II USA/ MB-CART2019.1 for DLBCL",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 315,
-     "drugs": [
-      "zamtocabtagene autoleucel",
-      "Cyclophosphamide",
-      "Fludarabine"
-     ],
-     "forDrug": "Odronextamab",
-     "ind": "B-Cell Non-Hodgkin Lymphoma (B-NHL)",
-     "countries": [
-      "United States",
-      "Canada"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT06806033",
-     "sponsor": "Hoffmann-La Roche",
-     "title": "Evaluate Optimization of CRS Profile for Glofit Monotherapy and Glofit+GemOx in R/R Aggressive B-NHL",
-     "ph": "Phase II",
-     "pcd": "2027-01-31",
-     "n": 130,
-     "drugs": [
-      "Obinutuzumab",
-      "Glofitamab",
-      "Gemcitabine"
-     ],
-     "forDrug": "Odronextamab",
-     "ind": "B-Cell Non-Hodgkin Lymphoma (B-NHL)",
-     "countries": [
-      "United States",
-      "Australia",
-      "Canada",
-      "France",
-      "Germany",
-      "Italy"
-     ],
-     "nCountries": 7,
-     "china": null
-    },
-    {
-     "nct": "NCT07523555",
-     "sponsor": "Beijing Biotech",
-     "title": "Adaptive Dual-Target CAR-T Cells for Relapsed or Refractory Hematologic Malignancies",
-     "ph": "Phase II",
-     "pcd": "2027-03-14",
-     "n": 96,
-     "drugs": [
-      "CD19",
-      "CD38",
-      "Autologous BCMA/GPRC5D dual-target CAR-T"
-     ],
-     "forDrug": "Odronextamab",
-     "ind": "B-Cell Non-Hodgkin Lymphoma (B-NHL)",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT05006716",
-     "sponsor": "BeOne Medicines",
-     "title": "A Dose-Escalation and Expansion Study of Tacabrutideg (BGB-16673) in Participants With B-Cell Malignancies",
-     "ph": "Phase II",
-     "pcd": "2027-03-15",
-     "n": 689,
-     "drugs": [
-      "Tacabrutideg"
-     ],
-     "forDrug": "Odronextamab",
-     "ind": "B-Cell Non-Hodgkin Lymphoma (B-NHL)",
-     "countries": [
-      "United States",
-      "Australia",
-      "Brazil",
-      "Canada",
-      "China",
-      "France"
-     ],
-     "nCountries": 16,
-     "china": "some"
-    },
-    {
-     "nct": "NCT07125872",
-     "sponsor": "ImmunityBio, Inc.",
-     "title": "Study of Relapsed/ Refractory B-cell Non- Hodgkin Lymphoma",
-     "ph": "Phase II",
-     "pcd": "2027-05-25",
-     "n": 20,
-     "drugs": [
-      "CD19"
-     ],
-     "forDrug": "Odronextamab",
-     "ind": "B-Cell Non-Hodgkin Lymphoma (B-NHL)",
-     "countries": [
-      "South Africa"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT06533579",
-     "sponsor": "Vironexis Biotherapeutics Inc.",
-     "title": "Gene Therapy for CD19-Positive Hematologic Malignancies (SENTRY-CD19)",
-     "ph": "Phase II",
-     "pcd": "2027-06-15",
-     "n": 32,
-     "drugs": [
-      "Dose Level 1, VNX-101",
-      "Dose Level 2, VNX-101",
-      "Dose Level 3, VNX-101"
-     ],
-     "forDrug": "Odronextamab",
-     "ind": "B-Cell Non-Hodgkin Lymphoma (B-NHL)",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05294731",
-     "sponsor": "BeOne Medicines",
-     "title": "Treatment of Chinese Participants With B-Cell Malignancies With BGB-16673, a Bruton Tyrosine Kinase-Targeted Protein-Degrader",
-     "ph": "Phase II",
-     "pcd": "2027-06-30",
-     "n": 146,
-     "drugs": [
-      "Tacabrutideg"
-     ],
-     "forDrug": "Odronextamab",
-     "ind": "B-Cell Non-Hodgkin Lymphoma (B-NHL)",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06343311",
-     "sponsor": "Estrella Immunopharma, Inc.",
-     "title": "T-Cell Therapy (EB103) in Adults With Relapsed/Refractory B-Cell Non-Hodgkin's Lymphoma (NHL)",
-     "ph": "Phase II",
-     "pcd": "2027-07-31",
-     "n": 27,
-     "drugs": [
-      "EB103"
-     ],
-     "forDrug": "Odronextamab",
-     "ind": "B-Cell Non-Hodgkin Lymphoma (B-NHL)",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05207670",
-     "sponsor": "Genentech, Inc.",
-     "title": "A Study Evaluating the Safety, Efficacy, and Pharmacokinetics of Mosunetuzumab Monotherapy in Participants With Select B-Cell Malignancies",
-     "ph": "Phase II",
-     "pcd": "2027-07-31",
-     "n": 320,
-     "drugs": [
-      "Mosunetuzumab",
-      "Tocilizumab"
-     ],
-     "forDrug": "Odronextamab",
-     "ind": "B-Cell Non-Hodgkin Lymphoma (B-NHL)",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -422.58,
    "debtDue24": 0,
    "raise": {
@@ -205940,7 +203764,7 @@
      "time": "2026-10-30T10:55:31.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
-     "headline": "Regeneron Pharmaceuticals files its quarterly report",
+     "headline": "Regeneron files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/872589/000087258926000034/regn-20260930.htm"
     },
     {
@@ -205948,7 +203772,7 @@
      "time": "2026-10-30T10:50:20.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Regeneron Pharmaceuticals reports quarterly results",
+     "headline": "Regeneron reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/872589/000087258926000032/regn-20261030.htm"
     },
     {
@@ -205956,7 +203780,7 @@
      "time": "2026-10-06T11:51:50.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Regeneron Pharmaceuticals reports quarterly results",
+     "headline": "Regeneron reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/872589/000110465926113895/tm2627077d1_8k.htm"
     },
     {
@@ -205964,7 +203788,7 @@
      "time": "2026-09-30T20:14:08.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Regeneron Pharmaceuticals announces a leadership change",
+     "headline": "Regeneron announces a leadership change",
      "url": "https://www.sec.gov/Archives/edgar/data/872589/000110465926112340/tm2626090d1_8k.htm"
     },
     {
@@ -205972,7 +203796,7 @@
      "time": "2026-07-30T10:52:16.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
-     "headline": "Regeneron Pharmaceuticals files its quarterly report",
+     "headline": "Regeneron files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/872589/000087258926000025/regn-20260630.htm"
     },
     {
@@ -205980,7 +203804,7 @@
      "time": "2026-07-30T10:48:32.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Regeneron Pharmaceuticals reports quarterly results",
+     "headline": "Regeneron reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/872589/000087258926000023/regn-20260730.htm"
     },
     {
@@ -205988,7 +203812,7 @@
      "time": "2026-07-06T11:00:40.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Regeneron Pharmaceuticals reports quarterly results",
+     "headline": "Regeneron reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/872589/000110465926080562/tm2619682d1_8k.htm"
     },
     {
@@ -205996,7 +203820,7 @@
      "time": "2026-06-17T20:05:37.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Regeneron Pharmaceuticals reports shareholder vote results",
+     "headline": "Regeneron reports shareholder vote results",
      "url": "https://www.sec.gov/Archives/edgar/data/872589/000110465926075127/tm2618117d1_8k.htm"
     },
     {
@@ -206004,7 +203828,7 @@
      "time": "2026-04-29T10:54:54.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
-     "headline": "Regeneron Pharmaceuticals files its quarterly report",
+     "headline": "Regeneron files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/872589/000087258926000016/regn-20260331.htm"
     },
     {
@@ -206012,7 +203836,7 @@
      "time": "2026-04-29T10:50:22.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Regeneron Pharmaceuticals reports quarterly results",
+     "headline": "Regeneron reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/872589/000087258926000014/regn-20260429.htm"
     }
    ],
@@ -206049,8 +203873,8 @@
   },
   {
    "t": "VRTX",
-   "n": "Vertex Pharmaceuticals Inc. / Ma",
-   "area": "Pharmaceutical Preparations",
+   "n": "Vertex Pharmaceuticals",
+   "area": "Cystic fibrosis & pain",
    "mcap": 137544.2,
    "ev": 131220,
    "cash": 9821.2,
@@ -207225,240 +205049,7 @@
      3440.8
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT06660992",
-     "sponsor": "Haisco Pharmaceutical Group Co., Ltd.",
-     "title": "A Study to Assess the Efficacy and Safety of HSK31858 in Participants With Non-Cystic Fibrosis Bronchiectasis",
-     "ph": "Phase III",
-     "pcd": "2026-11-28",
-     "n": 669,
-     "drugs": [
-      "HSK31858,"
-     ],
-     "forDrug": "ELX/TEZ/IVA",
-     "ind": "Cystic Fibrosis",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06526923",
-     "sponsor": "Spirovant Sciences, Inc.",
-     "title": "A Phase 1/2 Trial of SP-101 for the Treatment of Cystic Fibrosis (CF)",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 15,
-     "drugs": [
-      "SP-101"
-     ],
-     "forDrug": "ELX/TEZ/IVA",
-     "ind": "Cystic Fibrosis",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT04819841",
-     "sponsor": "Kamau Therapeutics",
-     "title": "Gene Correction in Autologous CD34+ Hematopoietic Stem Cells (HbS to HbA) to Treat Severe Sickle Cell Disease",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 15,
-     "drugs": [
-      "nula-cel Drug Product"
-     ],
-     "forDrug": "CTX001",
-     "ind": "Sickle Cell Disease",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT06481306",
-     "sponsor": "Bristol-Myers Squibb",
-     "title": "A Study to Evaluate BMS-986470 in Healthy Volunteers and Participants With Sickle Cell Disease",
-     "ph": "Phase II",
-     "pcd": "2027-01-06",
-     "n": 224,
-     "drugs": [
-      "BMS-986470",
-      "Famotidine",
-      "Pantoprazole"
-     ],
-     "forDrug": "CTX001",
-     "ind": "Sickle Cell Disease",
-     "countries": [
-      "United States",
-      "Canada",
-      "France",
-      "Italy",
-      "United Kingdom"
-     ],
-     "nCountries": 5,
-     "china": null
-    },
-    {
-     "nct": "NCT07247188",
-     "sponsor": "Sanofi",
-     "title": "Study of a Single Dose of a 21-valent Pneumococcal Conjugate Vaccine in Children and Adolescents With Sickle Cell Disease",
-     "ph": "Phase III",
-     "pcd": "2027-01-07",
-     "n": 100,
-     "drugs": [
-      "PCV21",
-      "20vPCV"
-     ],
-     "forDrug": "CTX001",
-     "ind": "Sickle Cell Disease",
-     "countries": [
-      "United States",
-      "Dominican Republic"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT04293185",
-     "sponsor": "Genetix Biotherapeutics Inc.",
-     "title": "A Study Evaluating Gene Therapy With BB305 Lentiviral Vector in Sickle Cell Disease",
-     "ph": "Phase III",
-     "pcd": "2027-05-15",
-     "n": 35,
-     "drugs": [
-      "bb1111"
-     ],
-     "forDrug": "CTX001",
-     "ind": "Sickle Cell Disease",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT07712913",
-     "sponsor": "Brainfarma Industria Química e Farmacêutica S/A",
-     "title": "Extended-release Pregabalin for the Treatment of Neuropathic Pain in Patients With Diabetic Peripheral Neuropathy and Postherpetic Neuralgia",
-     "ph": "Phase III",
-     "pcd": "2027-06-01",
-     "n": 348,
-     "drugs": [
-      "Experimental: Pregabalin XR",
-      "Comparator: Dorene Tabs"
-     ],
-     "forDrug": "Suzetrigine",
-     "ind": "Diabetic Peripheral Neuropathic Pain",
-     "countries": [
-      "Brazil"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05248230",
-     "sponsor": "4D Molecular Therapeutics",
-     "title": "4D-710 in Adult Patients With Cystic Fibrosis",
-     "ph": "Phase II",
-     "pcd": "2027-06-15",
-     "n": 30,
-     "drugs": [
-      "4D-710"
-     ],
-     "forDrug": "ELX/TEZ/IVA",
-     "ind": "Cystic Fibrosis",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT07559175",
-     "sponsor": "Aimmune Nestlé Health Science US R&D, LLC",
-     "title": "A Study to Evaluate Safety and Explore Efficacy of New Lipase NHS7108 in Adult Participants With Exocrine Pancreatic Insufficiency.",
-     "ph": "Phase II",
-     "pcd": "2027-06-15",
-     "n": 66,
-     "drugs": [
-      "NHS7108",
-      "Zenpep®"
-     ],
-     "forDrug": "ELX/TEZ/IVA",
-     "ind": "Cystic Fibrosis",
-     "countries": [
-      "United States",
-      "Bulgaria",
-      "Hungary",
-      "Italy",
-      "Poland",
-      "Spain"
-     ],
-     "nCountries": 7,
-     "china": null
-    },
-    {
-     "nct": "NCT06747858",
-     "sponsor": "Arcturus Therapeutics, Inc.",
-     "title": "Safety, Tolerability and Efficacy Study of ARCT-032 in People With Cystic Fibrosis",
-     "ph": "Phase II",
-     "pcd": "2027-06-15",
-     "n": 33,
-     "drugs": [
-      "ARCT-032"
-     ],
-     "forDrug": "ELX/TEZ/IVA",
-     "ind": "Cystic Fibrosis",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT06989567",
-     "sponsor": "Asklepion Pharmaceuticals, LLC",
-     "title": "A Study of Intravenous L-Citrulline in Patients Aged 6-21 Years Old With Sickle Cell Disease Presenting to Emergency Departments in Acute Vaso-Occlusive Crisis",
-     "ph": "Phase III",
-     "pcd": "2027-06-15",
-     "n": 120,
-     "drugs": [
-      "L-citrulline"
-     ],
-     "forDrug": "CTX001",
-     "ind": "Sickle Cell Disease",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT07450547",
-     "sponsor": "Anagram Therapeutics, Inc.",
-     "title": "Phase 2 Study to Assess the Safety and Efficacy of ANG003",
-     "ph": "Phase II",
-     "pcd": "2027-07-15",
-     "n": 113,
-     "drugs": [
-      "ANG003",
-      "Creon"
-     ],
-     "forDrug": "ELX/TEZ/IVA",
-     "ind": "Cystic Fibrosis",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -309.83,
    "debtDue24": 999.6,
    "raise": {
@@ -208492,7 +206083,7 @@
      "time": "2026-11-03T21:04:27.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
-     "headline": "Vertex Pharmaceuticals Inc. / Ma files its quarterly report",
+     "headline": "Vertex Pharmaceuticals files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/875320/000087532026000291/vrtx-20260930.htm"
     },
     {
@@ -208500,7 +206091,7 @@
      "time": "2026-11-02T21:05:46.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Vertex Pharmaceuticals Inc. / Ma reports quarterly results",
+     "headline": "Vertex Pharmaceuticals reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/875320/000087532026000287/vrtx-20261102.htm"
     },
     {
@@ -208508,7 +206099,7 @@
      "time": "2026-10-20T20:09:27.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Vertex Pharmaceuticals Inc. / Ma announces a leadership change",
+     "headline": "Vertex Pharmaceuticals announces a leadership change",
      "url": "https://www.sec.gov/Archives/edgar/data/875320/000087532026000278/vrtx-20261020.htm"
     },
     {
@@ -208516,7 +206107,7 @@
      "time": "2026-09-01T20:25:14.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Vertex Pharmaceuticals Inc. / Ma announces a leadership change",
+     "headline": "Vertex Pharmaceuticals announces a leadership change",
      "url": "https://www.sec.gov/Archives/edgar/data/875320/000087532026000264/vrtx-20260827.htm"
     },
     {
@@ -208524,7 +206115,7 @@
      "time": "2026-08-04T20:08:13.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
-     "headline": "Vertex Pharmaceuticals Inc. / Ma files its quarterly report",
+     "headline": "Vertex Pharmaceuticals files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/875320/000087532026000259/vrtx-20260630.htm"
     },
     {
@@ -208532,7 +206123,7 @@
      "time": "2026-08-03T20:09:43.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Vertex Pharmaceuticals Inc. / Ma reports quarterly results",
+     "headline": "Vertex Pharmaceuticals reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/875320/000087532026000256/vrtx-20260803.htm"
     },
     {
@@ -208540,7 +206131,7 @@
      "time": "2026-07-07T01:55:41.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Vertex Pharmaceuticals Inc. / Ma signs a material agreement",
+     "headline": "Vertex Pharmaceuticals signs a material agreement",
      "url": "https://www.sec.gov/Archives/edgar/data/875320/000119312526296710/d113650d8k.htm"
     },
     {
@@ -208548,7 +206139,7 @@
      "time": "2026-05-13T20:03:13.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Vertex Pharmaceuticals Inc. / Ma announces a leadership change",
+     "headline": "Vertex Pharmaceuticals announces a leadership change",
      "url": "https://www.sec.gov/Archives/edgar/data/875320/000087532026000204/vrtx-20260513.htm"
     },
     {
@@ -208556,7 +206147,7 @@
      "time": "2026-05-05T20:08:44.000Z",
      "form": "10-Q",
      "formLabel": "Quarterly report",
-     "headline": "Vertex Pharmaceuticals Inc. / Ma files its quarterly report",
+     "headline": "Vertex Pharmaceuticals files its quarterly report",
      "url": "https://www.sec.gov/Archives/edgar/data/875320/000087532026000173/vrtx-20260331.htm"
     },
     {
@@ -208564,7 +206155,7 @@
      "time": "2026-05-04T20:05:36.000Z",
      "form": "8-K",
      "formLabel": "Current report",
-     "headline": "Vertex Pharmaceuticals Inc. / Ma reports quarterly results",
+     "headline": "Vertex Pharmaceuticals reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/875320/000087532026000171/vrtx-20260504.htm"
     }
    ],
@@ -208602,7 +206193,7 @@
   {
    "t": "BIIB",
    "n": "Biogen",
-   "area": "Biological Products, (No Diagnostic Substances)",
+   "area": "Neurology",
    "mcap": 36057.8,
    "ev": 42045.9,
    "cash": 1303.9,
@@ -209711,251 +207302,7 @@
      2804.1
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT07616700",
-     "sponsor": "Haisco Pharmaceutical Group Co., Ltd.",
-     "title": "A Study to Evaluate the Long-Term Safety and Efficacy of HSK39297 Tablets in Primary IgA Nephropathy",
-     "ph": "Phase II",
-     "pcd": "2026-12-05",
-     "n": 73,
-     "drugs": [
-      "HSK39297"
-     ],
-     "forDrug": "Felzartamab",
-     "ind": "Immunoglobulin A Nephropathy (IgAN)",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06786338",
-     "sponsor": "Suzhou Sanegene Bio Inc.",
-     "title": "A Study of SGB-9768 in Patients With Complement-mediated Kidney Diseases",
-     "ph": "Phase II",
-     "pcd": "2026-12-29",
-     "n": 45,
-     "drugs": [
-      "SGB-9768"
-     ],
-     "forDrug": "Felzartamab",
-     "ind": "Immunoglobulin A Nephropathy (IgAN)",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06819826",
-     "sponsor": "Biocity Biopharmaceutics Co., Ltd.",
-     "title": "A Study of SC0062 Capsule for the Treatment of IgA Nephropathy with Proteinuria",
-     "ph": "Phase III",
-     "pcd": "2026-12-31",
-     "n": 360,
-     "drugs": [
-      "SC0062"
-     ],
-     "forDrug": "Felzartamab",
-     "ind": "Immunoglobulin A Nephropathy (IgAN)",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06800404",
-     "sponsor": "Hope Biosciences Research Foundation",
-     "title": "\"HB-adMSCs for the Treatment of Patients With Multiple Sclerosis\"",
-     "ph": "Phase II",
-     "pcd": "2027-01-15",
-     "n": 10,
-     "drugs": [
-      "Autologous HB-adMSCs"
-     ],
-     "forDrug": "BIIB017",
-     "ind": "Multiple Sclerosis, Relapsing-Remitting",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05906992",
-     "sponsor": "Celltrion",
-     "title": "A Study to Compare Efficacy, Pharmacokinetics, Pharmacodynamics and Safety of CT-P53 and Ocrevus in Patients With Relapsing-remitting Multiple Sclerosis",
-     "ph": "Phase III",
-     "pcd": "2027-02-15",
-     "n": 512,
-     "drugs": [
-      "CT-P53",
-      "US-Ocrevus",
-      "EU-Ocrevus"
-     ],
-     "forDrug": "BIIB017",
-     "ind": "Multiple Sclerosis, Relapsing-Remitting",
-     "countries": [
-      "Poland"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05003986",
-     "sponsor": "Travere Therapeutics, Inc.",
-     "title": "Study of Sparsentan Treatment in Pediatrics With Proteinuric Glomerular Diseases",
-     "ph": "Phase II",
-     "pcd": "2027-03-12",
-     "n": 67,
-     "drugs": [
-      "Sparsentan"
-     ],
-     "forDrug": "Felzartamab",
-     "ind": "Immunoglobulin A Nephropathy (IgAN)",
-     "countries": [
-      "United States",
-      "Germany",
-      "Italy",
-      "Netherlands",
-      "Poland",
-      "Spain"
-     ],
-     "nCountries": 8,
-     "china": null
-    },
-    {
-     "nct": "NCT06466135",
-     "sponsor": "Walden Biosciences",
-     "title": "Study of WAL0921 in Patients With Glomerular Kidney Diseases",
-     "ph": "Phase II",
-     "pcd": "2027-03-15",
-     "n": 96,
-     "drugs": [
-      "WAL0921"
-     ],
-     "forDrug": "Felzartamab",
-     "ind": "Immunoglobulin A Nephropathy (IgAN)",
-     "countries": [
-      "United States",
-      "Australia",
-      "India",
-      "Malaysia",
-      "South Korea",
-      "Sri Lanka"
-     ],
-     "nCountries": 7,
-     "china": null
-    },
-    {
-     "nct": "NCT06700343",
-     "sponsor": "Amgen",
-     "title": "Comparison Between ABP 692 and Ocrevus® (Ocrelizumab)",
-     "ph": "Phase III",
-     "pcd": "2027-04-19",
-     "n": 152,
-     "drugs": [
-      "Ocrelizumab",
-      "ABP 692"
-     ],
-     "forDrug": "BIIB017",
-     "ind": "Multiple Sclerosis, Relapsing-Remitting",
-     "countries": [
-      "United States",
-      "Belgium",
-      "Bulgaria",
-      "Canada",
-      "Croatia",
-      "Czechia"
-     ],
-     "nCountries": 22,
-     "china": null
-    },
-    {
-     "nct": "NCT05775042",
-     "sponsor": "Keymed Biosciences Co.Ltd",
-     "title": "Clinical Study of CM338 in the Treatment of Immunoglobulin A Nephropathy",
-     "ph": "Phase II",
-     "pcd": "2027-06-30",
-     "n": 70,
-     "drugs": [
-      "CM338"
-     ],
-     "forDrug": "Felzartamab",
-     "ind": "Immunoglobulin A Nephropathy (IgAN)",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07606352",
-     "sponsor": "Sitala Bio LTD",
-     "title": "Safety and Efficacy of STL303 In Patients With Primary Immunoglobulin A (IgA) Nephropathy",
-     "ph": "Phase II",
-     "pcd": "2027-07-15",
-     "n": 15,
-     "drugs": [
-      "STL303"
-     ],
-     "forDrug": "Felzartamab",
-     "ind": "Immunoglobulin A Nephropathy (IgAN)",
-     "countries": [
-      "Australia"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05852938",
-     "sponsor": "Novartis Pharmaceuticals",
-     "title": "A Study of Zigakibart in Adults With IgA Nephropathy",
-     "ph": "Phase III",
-     "pcd": "2027-08-10",
-     "n": 383,
-     "drugs": [
-      "BION-1301"
-     ],
-     "forDrug": "Felzartamab",
-     "ind": "Immunoglobulin A Nephropathy (IgAN)",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Australia",
-      "Belgium",
-      "Brazil",
-      "Canada"
-     ],
-     "nCountries": 23,
-     "china": "some"
-    },
-    {
-     "nct": "NCT06797518",
-     "sponsor": "Novartis Pharmaceuticals",
-     "title": "Study to Evaluate the Impact of Iptacopan on Top of SOC on Biopsy Changes in Kidneys of Adult Patients With IgAN",
-     "ph": "Phase II",
-     "pcd": "2027-11-27",
-     "n": 20,
-     "drugs": [
-      "Iptacopan"
-     ],
-     "forDrug": "Felzartamab",
-     "ind": "Immunoglobulin A Nephropathy (IgAN)",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Israel",
-      "Malaysia",
-      "Saudi Arabia"
-     ],
-     "nCountries": 5,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -204.47,
    "debtDue24": 0,
    "raise": {
@@ -211098,8 +208445,8 @@
   },
   {
    "t": "NVO",
-   "n": "Novo Nordisk A S",
-   "area": "Pharmaceutical Preparations",
+   "n": "Novo Nordisk",
+   "area": "Diabetes & obesity",
    "mcap": 179093.2,
    "ev": 194662.8,
    "cash": 3943.1,
@@ -212179,232 +209526,7 @@
     }
    ],
    "revQ": [],
-   "rivals": [
-    {
-     "nct": "NCT07165223",
-     "sponsor": "Gan & Lee Pharmaceuticals.",
-     "title": "A Phase IIIb Clinical Study to Assess the Efficacy and Safety of GZR4 in Subjects With Type 2 Diabetes Mellitus Treated With Basal Insulin",
-     "ph": "Phase III",
-     "pcd": "2026-11-10",
-     "n": 300,
-     "drugs": [
-      "GZR4",
-      "Insulin Icodec group"
-     ],
-     "forDrug": "CagriSema",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07431086",
-     "sponsor": "Regeneron Pharmaceuticals",
-     "title": "Study of Olatorepatide in Adult Participants Living With Overweight or Obesity in the US",
-     "ph": "Phase II",
-     "pcd": "2026-11-13",
-     "n": 120,
-     "drugs": [
-      "Olatorepatide"
-     ],
-     "forDrug": "NNC0487-0111",
-     "ind": "Obesity",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT06716216",
-     "sponsor": "BrightGene Bio-Medical Technology Co., Ltd.",
-     "title": "A Study of BGM0504 in Participants With Type 2 Diabetes",
-     "ph": "Phase III",
-     "pcd": "2026-11-14",
-     "n": 537,
-     "drugs": [
-      "Semaglutide Administered"
-     ],
-     "forDrug": "CagriSema",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06577090",
-     "sponsor": "Skye Bioscience, Inc.",
-     "title": "Study to Evaluate the Effect on Obesity of QW Nimacimab and QW Nimacimab Co-administered With Semaglutide vs Placebo",
-     "ph": "Phase II",
-     "pcd": "2026-11-20",
-     "n": 136,
-     "drugs": [
-      "Nimacimab",
-      "semaglutide"
-     ],
-     "forDrug": "NNC0487-0111",
-     "ind": "Obesity",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT07656727",
-     "sponsor": "BioAge Labs, Inc.",
-     "title": "A Phase 2 Study to Evaluate the Pharmacodynamics, Safety and Tolerability of BGE-102 in Participants With Obesity and Cardiovascular Risk Factors",
-     "ph": "Phase II",
-     "pcd": "2026-11-30",
-     "n": 160,
-     "drugs": [
-      "BGE-102"
-     ],
-     "forDrug": "NNC0487-0111",
-     "ind": "Obesity",
-     "countries": [
-      "United States",
-      "Puerto Rico"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT06778967",
-     "sponsor": "Gan & Lee Pharmaceuticals.",
-     "title": "A Phase III Clinical Study to Evaluate the Efficacy and Safety of GZR18 Injection in Adult Type 2 Diabetes Mellitus",
-     "ph": "Phase III",
-     "pcd": "2026-12-11",
-     "n": 1100,
-     "drugs": [
-      "GZR18",
-      "semaglutide"
-     ],
-     "forDrug": "CagriSema",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07472725",
-     "sponsor": "Jiangsu HengRui Medicine Co., Ltd.",
-     "title": "A Study Comparing Safety and Efficacy of SHR-3167 Fixed-Dose Titration and Individualized-Dose Titration in Adults With Type 2 Diabetes Inadequately Controlled ",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 102,
-     "drugs": [
-      "SHR-3167"
-     ],
-     "forDrug": "CagriSema",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06220773",
-     "sponsor": "Boryung Pharmaceutical Co., Ltd",
-     "title": "A Study to Evaluate the Efficacy and Safety of BR1019A and BR1019B Combination Therapy",
-     "ph": "Phase III",
-     "pcd": "2026-12-15",
-     "n": 276,
-     "drugs": [
-      "BR1019A",
-      "BR1019B",
-      "BR1019C"
-     ],
-     "forDrug": "CagriSema",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "Indonesia",
-      "South Korea"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT07239440",
-     "sponsor": "Dong-A ST Co., Ltd.",
-     "title": "Clinical Trial to Evaluate the Efficacy and Safety of DA-2811 When Added to Ongoing BT-1 and BT-2 Combination Therapy in Patients With Type 2 Diabetes Who Have ",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 288,
-     "drugs": [
-      "DA-2811",
-      "DA-2811-C"
-     ],
-     "forDrug": "CagriSema",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "South Korea"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT06994650",
-     "sponsor": "Fujian Shengdi Pharmaceutical Co., Ltd.",
-     "title": "A Multicenter, Randomized, Double-blind, Placebo-controlled Phase III Clinical Study to Evaluate the Efficacy and Safety of HRS9531 Injection in Subjects With O",
-     "ph": "Phase III",
-     "pcd": "2026-12-15",
-     "n": 144,
-     "drugs": [
-      "HRS9531"
-     ],
-     "forDrug": "NNC0487-0111",
-     "ind": "Obesity",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT05464784",
-     "sponsor": "MediciNova",
-     "title": "MN-001 in Non-alcoholic Fatty Liver Disease, Type 2 Diabetes Mellitus, and Hypertriglyceridemia",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 40,
-     "drugs": [
-      "MN-001"
-     ],
-     "forDrug": "CagriSema",
-     "ind": "Diabetes Mellitus, Type 2",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT04819841",
-     "sponsor": "Kamau Therapeutics",
-     "title": "Gene Correction in Autologous CD34+ Hematopoietic Stem Cells (HbS to HbA) to Treat Severe Sickle Cell Disease",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 15,
-     "drugs": [
-      "nula-cel Drug Product"
-     ],
-     "forDrug": "Etavopivat",
-     "ind": "Sickle Cell Disease",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -1502.02,
    "debtDue24": 1790.5,
    "raise": {
@@ -213463,8 +210585,8 @@
   },
   {
    "t": "NVS",
-   "n": "Novartis Ag",
-   "area": "Pharmaceutical Preparations",
+   "n": "Novartis",
+   "area": "Cardiovascular, immunology & oncology",
    "mcap": 308987,
    "ev": 326126,
    "cash": 11590,
@@ -215909,263 +213031,7 @@
      14054
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT05646862",
-     "sponsor": "Hoffmann-La Roche",
-     "title": "A Study Evaluating the Efficacy and Safety of Inavolisib Plus Fulvestrant Compared With Alpelisib Plus Fulvestrant in Participants With HR-Positive, HER2-Negati",
-     "ph": "Phase III",
-     "pcd": "2026-11-13",
-     "n": 420,
-     "drugs": [
-      "Inavolisib",
-      "Fulvestrant",
-      "Alpelisib"
-     ],
-     "forDrug": "Alpelisib",
-     "ind": "Advanced HER2+Breast Cancer",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Australia",
-      "Belgium",
-      "Brazil",
-      "Canada"
-     ],
-     "nCountries": 20,
-     "china": "some"
-    },
-    {
-     "nct": "NCT06954961",
-     "sponsor": "InventisBio Co., Ltd",
-     "title": "A Study to Evaluate D-0502 in Subjects With ER+ Her2- Locally Advanced or Metastatic Breast Cancer",
-     "ph": "Phase III",
-     "pcd": "2026-11-30",
-     "n": 640,
-     "drugs": [
-      "D-0502",
-      "Fulvestrant"
-     ],
-     "forDrug": "Alpelisib",
-     "ind": "Advanced HER2+Breast Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT04585750",
-     "sponsor": "PMV Pharmaceuticals, Inc",
-     "title": "The Evaluation of PC14586 in Patients With Advanced Solid Tumors Harboring a TP53 Y220C Mutation (PYNNACLE)",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 300,
-     "drugs": [
-      "rezatapopt",
-      "pembrolizumab"
-     ],
-     "forDrug": "Alpelisib",
-     "ind": "Advanced HER2+Breast Cancer",
-     "countries": [
-      "United States",
-      "Australia",
-      "France",
-      "Germany",
-      "Italy",
-      "Singapore"
-     ],
-     "nCountries": 9,
-     "china": null
-    },
-    {
-     "nct": "NCT06607627",
-     "sponsor": "Alexion Pharmaceuticals, Inc.",
-     "title": "PK, PD, Safety, and Efficacy Study of Gefurulimab in Pediatric Patients With AChR+ Generalized Myasthenia Gravis",
-     "ph": "Phase III",
-     "pcd": "2026-12-15",
-     "n": 12,
-     "drugs": [
-      "Gefurulimab"
-     ],
-     "forDrug": "Iptacopan",
-     "ind": "Generalized Myasthenia Gravis",
-     "countries": [
-      "United States",
-      "Brazil",
-      "Japan",
-      "Poland",
-      "Taiwan"
-     ],
-     "nCountries": 5,
-     "china": null
-    },
-    {
-     "nct": "NCT05909397",
-     "sponsor": "Pfizer",
-     "title": "Vepdegestrant (ARV-471/PF-07850327) + Palbociclib vs Letrozole + Palbociclib in ER(+)/HER2(-) Advanced Breast Cancer",
-     "ph": "Phase III",
-     "pcd": "2026-12-30",
-     "n": 59,
-     "drugs": [
-      "Vepdegestrant",
-      "Palbociclib",
-      "Letrozole"
-     ],
-     "forDrug": "Alpelisib",
-     "ind": "Advanced HER2+Breast Cancer",
-     "countries": [
-      "United States",
-      "Australia",
-      "Brazil",
-      "China",
-      "Hungary",
-      "Italy"
-     ],
-     "nCountries": 10,
-     "china": "some"
-    },
-    {
-     "nct": "NCT07459738",
-     "sponsor": "Shanghai Henlius Biotech",
-     "title": "A Phase II Study to Evaluate the Efficacy and Safety of HLX43 in Patients With Hormone Receptor Positive, HER2 Negative Locally Advanced or Metastatic Breast Ca",
-     "ph": "Phase II",
-     "pcd": "2026-12-30",
-     "n": 60,
-     "drugs": [
-      "HLX43"
-     ],
-     "forDrug": "Alpelisib",
-     "ind": "Advanced HER2+Breast Cancer",
-     "countries": [],
-     "nCountries": 0,
-     "china": null
-    },
-    {
-     "nct": "NCT06799247",
-     "sponsor": "Cartesian Therapeutics",
-     "title": "Investigating an mRNA CAR T-cell Therapy, Known as Descartes-08, as a Potential Approach to Treat Myasthenia Gravis",
-     "ph": "Phase III",
-     "pcd": "2026-12-30",
-     "n": 128,
-     "drugs": [
-      "Decartes-08"
-     ],
-     "forDrug": "Iptacopan",
-     "ind": "Generalized Myasthenia Gravis",
-     "countries": [
-      "United States",
-      "Canada",
-      "Italy",
-      "Poland",
-      "Serbia",
-      "Spain"
-     ],
-     "nCountries": 8,
-     "china": null
-    },
-    {
-     "nct": "NCT06447597",
-     "sponsor": "Shanghai Jiaolian Drug Research and Development Co., Ltd",
-     "title": "A Clinical Study of B007 in the Treatment of Generalized Myasthenia Gravis.",
-     "ph": "Phase III",
-     "pcd": "2026-12-30",
-     "n": 104,
-     "drugs": [
-      "B007"
-     ],
-     "forDrug": "Iptacopan",
-     "ind": "Generalized Myasthenia Gravis",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06577519",
-     "sponsor": "Jiangsu vcare pharmaceutical technology co., LTD",
-     "title": "Efficacy and Safety Study of Vicagrel in Patients With Acute Coronary Syndrome (ACS) Undergoing Percutaneous Coronary Intervention (PCI)",
-     "ph": "Phase III",
-     "pcd": "2026-12-30",
-     "n": 1000,
-     "drugs": [
-      "Vicagrel",
-      "Clopidogrel"
-     ],
-     "forDrug": "Inclisiran",
-     "ind": "Acute Coronary Syndrome",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06081959",
-     "sponsor": "Sichuan Kelun-Biotech Biopharmaceutical Co., Ltd.",
-     "title": "Study of SKB264 for Locally Advanced, Recurrent or Metastatic HR+/HER2- Breast Cancer",
-     "ph": "Phase III",
-     "pcd": "2026-12-31",
-     "n": 376,
-     "drugs": [
-      "SKB264",
-      "Eribulin",
-      "Capecitabine"
-     ],
-     "forDrug": "Alpelisib",
-     "ind": "Advanced HER2+Breast Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT04561362",
-     "sponsor": "BicycleTx Limited",
-     "title": "Study BT8009-100 in Subjects With Nectin-4 Expressing Advanced Malignancies",
-     "ph": "Phase II",
-     "pcd": "2027-01-15",
-     "n": 329,
-     "drugs": [
-      "BT8009",
-      "Pembrolizumab"
-     ],
-     "forDrug": "Alpelisib",
-     "ind": "Advanced HER2+Breast Cancer",
-     "countries": [
-      "United States",
-      "Canada",
-      "France",
-      "Italy",
-      "Spain",
-      "United Kingdom"
-     ],
-     "nCountries": 6,
-     "china": null
-    },
-    {
-     "nct": "NCT06827613",
-     "sponsor": "Marengo Therapeutics, Inc.",
-     "title": "A Study of Invikafusp Alfa (STAR0602), a Selective T Cell Receptor (TCR)-Targeting, Bifunctional Antibody-fusion Molecule, in Combination With Sacituzumab Govit",
-     "ph": "Phase II",
-     "pcd": "2027-01-15",
-     "n": 50,
-     "drugs": [
-      "STAR0602",
-      "Sacituzumab Govitecan"
-     ],
-     "forDrug": "Alpelisib",
-     "ind": "Advanced HER2+Breast Cancer",
-     "countries": [
-      "United States",
-      "Canada"
-     ],
-     "nCountries": 2,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -1468.25,
    "debtDue24": 794,
    "raise": {
@@ -217195,7 +214061,7 @@
      "time": "2026-03-17T20:40:53.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
-     "headline": "Novartis Ag files a stock offering prospectus",
+     "headline": "Novartis files a stock offering prospectus",
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000110465926029551/tm268725-2_424b5.htm"
     },
     {
@@ -217203,7 +214069,7 @@
      "time": "2026-03-16T12:16:48.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
-     "headline": "Novartis Ag files a stock offering prospectus",
+     "headline": "Novartis files a stock offering prospectus",
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000110465926028048/tm268725-1_424b5.htm"
     },
     {
@@ -217211,7 +214077,7 @@
      "time": "2025-11-04T21:43:19.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
-     "headline": "Novartis Ag files a stock offering prospectus",
+     "headline": "Novartis files a stock offering prospectus",
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000110465925106338/tm2529850-2_424b5.htm"
     },
     {
@@ -217219,7 +214085,7 @@
      "time": "2025-11-03T13:08:36.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
-     "headline": "Novartis Ag files a stock offering prospectus",
+     "headline": "Novartis files a stock offering prospectus",
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000110465925105278/tm2529850-1_424b5.htm"
     },
     {
@@ -217227,7 +214093,7 @@
      "time": "2024-09-17T21:08:15.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
-     "headline": "Novartis Ag files a stock offering prospectus",
+     "headline": "Novartis files a stock offering prospectus",
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000110465924100712/tm2423681-5_424b5.htm"
     },
     {
@@ -217235,7 +214101,7 @@
      "time": "2024-09-16T12:44:34.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
-     "headline": "Novartis Ag files a stock offering prospectus",
+     "headline": "Novartis files a stock offering prospectus",
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000110465924100040/tm2423681-4_424b5.htm"
     },
     {
@@ -217243,7 +214109,7 @@
      "time": "2024-04-18T18:33:50.000Z",
      "form": "SC 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "Novartis Ag: Activist stake disclosed",
+     "headline": "Novartis: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000110465924048774/tm2410988d11_sc13d.htm"
     },
     {
@@ -217251,7 +214117,7 @@
      "time": "2020-02-12T20:34:02.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
-     "headline": "Novartis Ag files a stock offering prospectus",
+     "headline": "Novartis files a stock offering prospectus",
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000104746920000837/a2240739z424b5.htm"
     },
     {
@@ -217259,7 +214125,7 @@
      "time": "2020-02-11T12:57:59.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
-     "headline": "Novartis Ag files a stock offering prospectus",
+     "headline": "Novartis files a stock offering prospectus",
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000104746920000795/a2240685z424b5.htm"
     },
     {
@@ -217267,7 +214133,7 @@
      "time": "2018-02-01T21:22:48.000Z",
      "form": "SC 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "Novartis Ag: Activist stake disclosed",
+     "headline": "Novartis: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000110465918005861/a18-3997_2sc13d.htm"
     }
    ],
@@ -217303,8 +214169,8 @@
   },
   {
    "t": "AZN",
-   "n": "Astrazeneca",
-   "area": "Pharmaceutical Preparations",
+   "n": "AstraZeneca",
+   "area": "Oncology & respiratory",
    "mcap": 289617.5,
    "ev": 313498.5,
    "cash": 5741,
@@ -219789,202 +216655,7 @@
      14457
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT06747338",
-     "sponsor": "Shanghai JMT-Bio Inc.",
-     "title": "A Phase III Study of KN026 in Combination With HB1801 ± Carboplatin as Neoadjuvant Treatment for Early or Locally Advanced HER2-Positive Breast Cancer",
-     "ph": "Phase III",
-     "pcd": "2026-12-16",
-     "n": 520,
-     "drugs": [
-      "KN026",
-      "HB1801",
-      "Pertuzumab"
-     ],
-     "forDrug": "Camizestrant",
-     "ind": "Breast Cancer, Early Breast Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07783802",
-     "sponsor": "Eli Lilly and Company",
-     "title": "A Study of Clazakizumab (LY5724886) in Adults With Elevated hsCRP and at Increased Risk for Cardiovascular Event",
-     "ph": "Phase II",
-     "pcd": "2027-05-15",
-     "n": 120,
-     "drugs": [
-      "Clazakizumab"
-     ],
-     "forDrug": "Dapagliflozin",
-     "ind": "Renal Insufficiency, Chronic",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Japan",
-      "Puerto Rico"
-     ],
-     "nCountries": 4,
-     "china": null
-    },
-    {
-     "nct": "NCT03980054",
-     "sponsor": "Jiangsu HengRui Medicine Co., Ltd.",
-     "title": "A Study of Evaluating The Effects Of Pyrotinib After Adjuvant Trastuzumab In Women With Early Stage Breast Cancer",
-     "ph": "Phase III",
-     "pcd": "2027-06-15",
-     "n": 2135,
-     "drugs": [
-      "Pyrotinib"
-     ],
-     "forDrug": "Camizestrant",
-     "ind": "Breast Cancer, Early Breast Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07054190",
-     "sponsor": "Hoffmann-La Roche",
-     "title": "A Study to Test Inavolisib Treatments in Participants With Early-Stage, PIK3CA-Mutated Breast Cancer",
-     "ph": "Phase II",
-     "pcd": "2027-07-31",
-     "n": 120,
-     "drugs": [
-      "Inavolisib",
-      "Ribociclib",
-      "Letrozole"
-     ],
-     "forDrug": "Camizestrant",
-     "ind": "Breast Cancer, Early Breast Cancer",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Brazil",
-      "Canada",
-      "Germany",
-      "South Korea"
-     ],
-     "nCountries": 7,
-     "china": null
-    },
-    {
-     "nct": "NCT05514054",
-     "sponsor": "Eli Lilly and Company",
-     "title": "A Study of Imlunestrant Versus Standard Endocrine Therapy in Participants With Early Breast Cancer",
-     "ph": "Phase III",
-     "pcd": "2027-10-15",
-     "n": 8000,
-     "drugs": [
-      "Imlunestrant",
-      "Tamoxifen",
-      "Anastrozole"
-     ],
-     "forDrug": "Camizestrant",
-     "ind": "Breast Cancer, Early Breast Cancer",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Australia",
-      "Austria",
-      "Belgium",
-      "Brazil"
-     ],
-     "nCountries": 31,
-     "china": "some"
-    },
-    {
-     "nct": "NCT06926075",
-     "sponsor": "Filamon LTD",
-     "title": "Early Phase Study of KESONOTIDE™in Participants With Solid Tumours",
-     "ph": "Phase II",
-     "pcd": "2027-10-26",
-     "n": 80,
-     "drugs": [
-      "A novel hGIIA-Vimentin Inhibitor",
-      "Dose expansion"
-     ],
-     "forDrug": "Camizestrant",
-     "ind": "Breast Cancer, Early Breast Cancer",
-     "countries": [
-      "Australia"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05334368",
-     "sponsor": "GlaxoSmithKline",
-     "title": "Depemokimab in Participants With Hypereosinophilic Syndrome, Efficacy, and Safety Trial",
-     "ph": "Phase III",
-     "pcd": "2027-10-29",
-     "n": 110,
-     "drugs": [
-      "Depemokimab"
-     ],
-     "forDrug": "Benralizumab",
-     "ind": "Hypereosinophilic Syndrome",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Australia",
-      "Brazil",
-      "Canada",
-      "China"
-     ],
-     "nCountries": 16,
-     "china": "some"
-    },
-    {
-     "nct": "NCT07196774",
-     "sponsor": "Jiangsu HengRui Medicine Co., Ltd.",
-     "title": "A Trial of SHR-A1811 Compared to Other Antitumor Therapies as Neoadjuvant Treatments in Early-stage or Locally Advanced HER2-positive Breast Cancer",
-     "ph": "Phase III",
-     "pcd": "2027-12-15",
-     "n": 740,
-     "drugs": [
-      "SHR-A1811",
-      "Docetaxel",
-      "Trastuzumab"
-     ],
-     "forDrug": "Camizestrant",
-     "ind": "Breast Cancer, Early Breast Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07102381",
-     "sponsor": "Jazz Pharmaceuticals",
-     "title": "A Phase 2 Neoadjuvant Study of Zanidatamab in Combination With Chemotherapy in Participants With HER2-positive Breast Cancer",
-     "ph": "Phase II",
-     "pcd": "2027-12-29",
-     "n": 125,
-     "drugs": [
-      "Zanidatamab",
-      "Paclitaxel",
-      "Docetaxel"
-     ],
-     "forDrug": "Camizestrant",
-     "ind": "Breast Cancer, Early Breast Cancer",
-     "countries": [
-      "United States",
-      "Germany",
-      "Italy",
-      "Spain"
-     ],
-     "nCountries": 4,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -988.42,
    "debtDue24": 3104,
    "raise": {
@@ -221014,7 +217685,7 @@
      "time": "2023-11-09T22:07:46.000Z",
      "form": "SC 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "Astrazeneca: Activist stake disclosed",
+     "headline": "AstraZeneca: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/901832/000110465923116366/tm2330279d1_sc13d.htm"
     },
     {
@@ -221022,7 +217693,7 @@
      "time": "2020-02-07T17:56:27.000Z",
      "form": "SC 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "Astrazeneca: Activist stake disclosed",
+     "headline": "AstraZeneca: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/901832/000110465920012387/a20-6998_1sc13d.htm"
     },
     {
@@ -221030,7 +217701,7 @@
      "time": "2019-10-25T18:36:58.000Z",
      "form": "SC 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "Astrazeneca: Activist stake disclosed",
+     "headline": "AstraZeneca: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/901832/000110465919056493/a19-20977_1sc13d.htm"
     }
    ],
@@ -221067,13 +217738,13 @@
   {
    "t": "SNY",
    "n": "Sanofi",
-   "area": "Pharmaceutical Preparations",
+   "area": "Immunology & vaccines",
    "mcap": 114406.7,
-   "ev": 125830.5,
-   "cash": 9415.8,
-   "debt": 20839.6,
+   "ev": 125825.3,
+   "cash": 9411.6,
+   "debt": 20830.3,
    "burn": 0.1,
-   "rev": 48612.5,
+   "rev": 48590.6,
    "shares": 1219.43,
    "own": null,
    "emp": null,
@@ -223137,343 +219808,134 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-16",
-     "cash": 10208,
-     "burn": -769.8,
+     "cash": 10204,
+     "burn": -769.5,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-16",
-     "cash": 11482,
-     "burn": -727.8,
+     "cash": 11477,
+     "burn": -727.5,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-16",
-     "cash": 11580,
-     "burn": -685.2,
+     "cash": 11575,
+     "burn": -684.9,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-08",
-     "cash": 7938,
-     "burn": -515.1,
+     "cash": 7935,
+     "burn": -514.9,
      "runway": null
     },
     {
      "end": "2019-06-30",
      "filed": "2020-07-29",
-     "cash": 7513,
-     "burn": -599.1,
+     "cash": 7509,
+     "burn": -598.8,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-05",
-     "cash": 10979,
-     "burn": -716.4,
+     "cash": 10974,
+     "burn": -716.1,
      "runway": null
     },
     {
      "end": "2020-06-30",
      "filed": "2020-07-29",
-     "cash": 17794,
-     "burn": -785.8,
+     "cash": 17786,
+     "burn": -785.4,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-04",
-     "cash": 16508,
-     "burn": -688.8,
+     "cash": 16501,
+     "burn": -688.5,
      "runway": null
     },
     {
      "end": "2021-06-30",
      "filed": "2021-07-29",
-     "cash": 10833,
-     "burn": -763.2,
+     "cash": 10828,
+     "burn": -762.9,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-23",
-     "cash": 12427,
-     "burn": -977.1,
+     "cash": 12421,
+     "burn": -976.6,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-07-28",
-     "cash": 7688,
-     "burn": -893.3,
+     "cash": 7684,
+     "burn": -892.9,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-24",
-     "cash": 14768,
-     "burn": -977.4,
+     "cash": 14761,
+     "burn": -977,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-07-28",
-     "cash": 8907,
-     "burn": -953.1,
+     "cash": 8903,
+     "burn": -952.7,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-23",
-     "cash": 9882,
-     "burn": -952.5,
+     "cash": 9877,
+     "burn": -952.1,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-07-25",
-     "cash": 7572,
-     "burn": -753.7,
+     "cash": 7568,
+     "burn": -753.4,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-13",
-     "cash": 8705,
-     "burn": -843.2,
+     "cash": 8701,
+     "burn": -842.9,
      "runway": null
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-31",
-     "cash": 17115,
-     "burn": -1041.3,
+     "cash": 17107,
+     "burn": -1040.8,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-17",
-     "cash": 9416,
-     "burn": -998.2,
+     "cash": 9412,
+     "burn": -997.8,
      "runway": null
     }
    ],
    "revQ": [],
-   "rivals": [
-    {
-     "nct": "NCT06833983",
-     "sponsor": "Gritgen Therapeutics Co., Ltd.",
-     "title": "To Evaluate the Clinical Study of GS1191-0445 Injection in the Treatment of Hemophilia A",
-     "ph": "Phase III",
-     "pcd": "2026-11-30",
-     "n": 50,
-     "drugs": [
-      "GS1191-0445"
-     ],
-     "forDrug": "efanesoctocog alfa",
-     "ind": "Hemophilia A",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06136507",
-     "sponsor": "Hangzhou Gensciences Biopharmaceutical Co., Ltd.",
-     "title": "Study of Efficacy and Safety of FRSW107 in Pediatric Patients With Severe Hemophilia A",
-     "ph": "Phase III",
-     "pcd": "2026-12-31",
-     "n": 76,
-     "drugs": [
-      "FRSW107"
-     ],
-     "forDrug": "efanesoctocog alfa",
-     "ind": "Hemophilia A",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07644832",
-     "sponsor": "Shanghai RAAS Blood Products Co., Ltd.",
-     "title": "An Open-label, Multicenter Phase I/II Clinical Trial to Evaluate the Safety, Tolerability, Efficacy, and Pharmacokinetic/Pharmacodynamic (PK/PD) Characteristics",
-     "ph": "Phase II",
-     "pcd": "2026-12-31",
-     "n": 76,
-     "drugs": [
-      "SR604"
-     ],
-     "forDrug": "efanesoctocog alfa",
-     "ind": "Hemophilia A",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07663903",
-     "sponsor": "Hangzhou Gensciences Biopharmaceutical Co., Ltd.",
-     "title": "Study of Recombinant Human Coagulation Factor VIII-Fc Fusion Protein (FRSW107) On-Demand Treatment",
-     "ph": "Phase III",
-     "pcd": "2027-02-15",
-     "n": 60,
-     "drugs": [
-      "FRSW107"
-     ],
-     "forDrug": "efanesoctocog alfa",
-     "ind": "Hemophilia A",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07684898",
-     "sponsor": "Hangzhou Gensciences Biopharmaceutical Co., Ltd.",
-     "title": "Study of Recombinant Human Coagulation Factor VIII-Fc Fusion Protein (FRSW107) as Prophylactic Treatment.",
-     "ph": "Phase III",
-     "pcd": "2027-03-09",
-     "n": 60,
-     "drugs": [
-      "FRSW107"
-     ],
-     "forDrug": "efanesoctocog alfa",
-     "ind": "Hemophilia A",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07787091",
-     "sponsor": "Arditus Pte Ltd",
-     "title": "A First-in Human Study of ARD001 in Healthy Volunteers and People With Hemophilia A",
-     "ph": "Phase II",
-     "pcd": "2027-03-15",
-     "n": 20,
-     "drugs": [
-      "ARD001"
-     ],
-     "forDrug": "efanesoctocog alfa",
-     "ind": "Hemophilia A",
-     "countries": [
-      "Singapore"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT06111638",
-     "sponsor": "Shanghai Xinzhi BioMed Co., Ltd.",
-     "title": "Evaluation of the Safety and Efficacy of Hemophilia A Gene Therapy Drugs",
-     "ph": "Phase III",
-     "pcd": "2027-05-30",
-     "n": 55,
-     "drugs": [
-      "Single dose"
-     ],
-     "forDrug": "efanesoctocog alfa",
-     "ind": "Hemophilia A",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07416526",
-     "sponsor": "Hoffmann-La Roche",
-     "title": "A Clinical Study to Evaluate the Effects of NXT007 Compared to Factor VIII Prophylaxis in Participants With Hemophilia A",
-     "ph": "Phase III",
-     "pcd": "2027-09-23",
-     "n": 138,
-     "drugs": [
-      "NXT007",
-      "Human Coagulation Factor VIII"
-     ],
-     "forDrug": "efanesoctocog alfa",
-     "ind": "Hemophilia A",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Austria",
-      "Brazil",
-      "China",
-      "Denmark"
-     ],
-     "nCountries": 18,
-     "china": "some"
-    },
-    {
-     "nct": "NCT07876674",
-     "sponsor": "Shanghai RAAS Blood Products Co., Ltd.",
-     "title": "A Phase III Clinical Trial Evaluating SR604 Injection for Prophylactic Treatment in Patients With Hemophilia",
-     "ph": "Phase III",
-     "pcd": "2027-09-30",
-     "n": 90,
-     "drugs": [
-      "SR604"
-     ],
-     "forDrug": "efanesoctocog alfa",
-     "ind": "Hemophilia A",
-     "countries": [],
-     "nCountries": 0,
-     "china": null
-    },
-    {
-     "nct": "NCT07545395",
-     "sponsor": "Suzhou Alphamab Co., Ltd.",
-     "title": "Safety of KN057 Prophylaxis in Patients With Haemophilia A or B",
-     "ph": "Phase III",
-     "pcd": "2027-12-30",
-     "n": 70,
-     "drugs": [
-      "KN057"
-     ],
-     "forDrug": "efanesoctocog alfa",
-     "ind": "Hemophilia A",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07416604",
-     "sponsor": "Hoffmann-La Roche",
-     "title": "A Clinical Study to Evaluate the Effects of NXT007 Compared to Emicizumab Prophylaxis in People With Hemophilia A",
-     "ph": "Phase III",
-     "pcd": "2028-02-29",
-     "n": 360,
-     "drugs": [
-      "NXT007",
-      "Emicizumab"
-     ],
-     "forDrug": "efanesoctocog alfa",
-     "ind": "Hemophilia A",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Australia",
-      "Belgium",
-      "Brazil",
-      "Canada"
-     ],
-     "nCountries": 22,
-     "china": "some"
-    }
-   ],
-   "burnPrior": -843.25,
-   "debtDue24": 4838.3,
+   "rivals": [],
+   "burnPrior": -842.87,
+   "debtDue24": 4836.1,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -224578,7 +221040,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 11979,
+   "ocf": 11973,
    "group": "big-pharma",
    "src": {
     "cik": "1121404",
@@ -224588,8 +221050,8 @@
      "MarketableSecuritiesCurrent"
     ],
     "currency": "EUR",
-    "fx": 1.1143,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1143 USD per EUR",
+    "fx": 1.1138,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1138 USD per EUR",
     "adr": 0.5,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -224614,13 +221076,13 @@
   {
    "t": "GSK",
    "n": "GSK",
-   "area": "Pharmaceutical Preparations",
+   "area": "Vaccines & respiratory",
    "mcap": 108770.8,
-   "ev": 123875.5,
-   "cash": 4536.4,
-   "debt": 19641.1,
+   "ev": 123867.6,
+   "cash": 4534,
+   "debt": 19630.8,
    "burn": 0.1,
-   "rev": 43623.5,
+   "rev": 43600.6,
    "shares": 4315.45,
    "own": null,
    "emp": null,
@@ -226631,330 +223093,84 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-20",
-     "cash": 7785,
-     "burn": -285.9,
+     "cash": 7781,
+     "burn": -285.7,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-20",
-     "cash": 6539,
-     "burn": -723,
+     "cash": 6536,
+     "burn": -722.6,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-20",
-     "cash": 5119,
-     "burn": -769.9,
+     "cash": 5116,
+     "burn": -769.5,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-15",
-     "cash": 5286,
-     "burn": -937.1,
+     "cash": 5283,
+     "burn": -936.6,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-06",
-     "cash": 6391,
-     "burn": -892.5,
+     "cash": 6388,
+     "burn": -892,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-12",
-     "cash": 8506,
-     "burn": -939.3,
+     "cash": 8502,
+     "burn": -938.9,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-03-08",
-     "cash": 5789,
-     "burn": -884.9,
+     "cash": 5786,
+     "burn": -884.5,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-10",
-     "cash": 5061,
-     "burn": -823.8,
+     "cash": 5059,
+     "burn": -823.4,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-05",
-     "cash": 3977,
-     "burn": -753.2,
+     "cash": 3975,
+     "burn": -752.8,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-03",
-     "cash": 5168,
-     "burn": -729.4,
+     "cash": 5165,
+     "burn": -729,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-06",
-     "cash": 4536,
-     "burn": -861.4,
+     "cash": 4534,
+     "burn": -861,
      "runway": null
     }
    ],
    "revQ": [],
-   "rivals": [
-    {
-     "nct": "NCT05851443",
-     "sponsor": "Incyte Corporation",
-     "title": "A Study to Evaluate the Efficacy and Safety Study of Povorcitinib in Participants With Inadequately Controlled Moderate to Severe Asthma",
-     "ph": "Phase II",
-     "pcd": "2026-11-20",
-     "n": 247,
-     "drugs": [
-      "povorcitinib",
-      "ICS-LABA"
-     ],
-     "forDrug": "HFA-152a",
-     "ind": "Asthma",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Canada",
-      "Germany",
-      "Japan",
-      "Poland"
-     ],
-     "nCountries": 7,
-     "china": null
-    },
-    {
-     "nct": "NCT04435990",
-     "sponsor": "Inmunotek S.L.",
-     "title": "Efficacy and Safety Evaluation for the Treatment of Allergy Against Mites",
-     "ph": "Phase III",
-     "pcd": "2026-12-15",
-     "n": 150,
-     "drugs": [
-      "10,000 MM09",
-      "30,000 MM09"
-     ],
-     "forDrug": "HFA-152a",
-     "ind": "Asthma",
-     "countries": [
-      "Spain"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT07301255",
-     "sponsor": "Enveda Therapeutics",
-     "title": "ENV-294 for Moderate-to-Severe Asthma: A 12-Week Study in Adults",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 50,
-     "drugs": [
-      "ENV-294"
-     ],
-     "forDrug": "HFA-152a",
-     "ind": "Asthma",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT07705737",
-     "sponsor": "Connect Biopharm LLC",
-     "title": "Rademikibart IV for Acute Asthma and COPD Exacerbation",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 40,
-     "drugs": [
-      "Rademikibart"
-     ],
-     "forDrug": "HFA-152a",
-     "ind": "Asthma",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05692180",
-     "sponsor": "AstraZeneca",
-     "title": "A Multicentre, Randomised, Double-blind, Parallel Group, Placebo-controlled, Time-to-first Asthma Exacerbation Phase III Efficacy and Safety Study of Benralizum",
-     "ph": "Phase III",
-     "pcd": "2026-12-23",
-     "n": 94,
-     "drugs": [
-      "Benralizumab"
-     ],
-     "forDrug": "HFA-152a",
-     "ind": "Asthma",
-     "countries": [
-      "United States",
-      "Argentina",
-      "France",
-      "Italy",
-      "Poland",
-      "South Korea"
-     ],
-     "nCountries": 9,
-     "china": null
-    },
-    {
-     "nct": "NCT07436221",
-     "sponsor": "Akeso",
-     "title": "A Study to Evaluate the Efficacy and Safety of AK139 in Participants With Asthma",
-     "ph": "Phase II",
-     "pcd": "2026-12-27",
-     "n": 160,
-     "drugs": [
-      "AK139"
-     ],
-     "forDrug": "HFA-152a",
-     "ind": "Asthma",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06052267",
-     "sponsor": "Teva Branded Pharmaceutical Products R&D LLC",
-     "title": "A Study to Test if a Fixed-Dose Combination of Fluticasone Propionate/Albuterol Sulfate is Effective in Preventing Asthma Exacerbations",
-     "ph": "Phase III",
-     "pcd": "2026-12-31",
-     "n": 2769,
-     "drugs": [
-      "TEV-56248",
-      "Albuterol sulfate"
-     ],
-     "forDrug": "HFA-152a",
-     "ind": "Asthma",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Australia",
-      "Bulgaria",
-      "Canada",
-      "Czechia"
-     ],
-     "nCountries": 22,
-     "china": null
-    },
-    {
-     "nct": "NCT07488897",
-     "sponsor": "RIGImmune Inc.",
-     "title": "RIG 101 Trial in Healthy Adults and Adults With Asthma",
-     "ph": "Phase II",
-     "pcd": "2027-02-15",
-     "n": 82,
-     "drugs": [
-      "RIG-101"
-     ],
-     "forDrug": "HFA-152a",
-     "ind": "Asthma",
-     "countries": [
-      "United Kingdom"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT06323213",
-     "sponsor": "Sunshine Guojian Pharmaceutical (Shanghai) Co., Ltd.",
-     "title": "Efficacy and Safety Study of 610 in Patients With Severe Asthma",
-     "ph": "Phase III",
-     "pcd": "2027-02-15",
-     "n": 480,
-     "drugs": [
-      "610"
-     ],
-     "forDrug": "HFA-152a",
-     "ind": "Asthma",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06680947",
-     "sponsor": "Sunshine Guojian Pharmaceutical (Shanghai) Co., Ltd.",
-     "title": "A Phase IIb Study of 610 in Participants With Severe Eosinophilic Asthma",
-     "ph": "Phase II",
-     "pcd": "2027-02-15",
-     "n": 225,
-     "drugs": [
-      "610"
-     ],
-     "forDrug": "HFA-152a",
-     "ind": "Asthma",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06977581",
-     "sponsor": "Pfizer",
-     "title": "A Study to Learn About the Study Medicine Called PF-07275315 in People With Moderate-To-Severe Asthma",
-     "ph": "Phase II",
-     "pcd": "2027-03-08",
-     "n": 252,
-     "drugs": [
-      "PF-07275315"
-     ],
-     "forDrug": "HFA-152a",
-     "ind": "Asthma",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Belgium",
-      "Bulgaria",
-      "China",
-      "Czechia"
-     ],
-     "nCountries": 15,
-     "china": "some"
-    },
-    {
-     "nct": "NCT07301736",
-     "sponsor": "Chiesi Farmaceutici S.p.A.",
-     "title": "Therapeutic Equivalence of CHF5993 pMDI 100/6/12.5 µg HFA-152a in Subjects With Mild to Moderate Asthma",
-     "ph": "Phase II",
-     "pcd": "2027-06-03",
-     "n": 780,
-     "drugs": [
-      "CHF5993",
-      "CHF718"
-     ],
-     "forDrug": "HFA-152a",
-     "ind": "Asthma",
-     "countries": [
-      "Argentina",
-      "Bosnia and Herzegovina",
-      "Bulgaria",
-      "Czechia",
-      "Germany",
-      "Hungary"
-     ],
-     "nCountries": 14,
-     "china": null
-    }
-   ],
-   "burnPrior": -729.35,
+   "rivals": [],
+   "burnPrior": -728.97,
    "debtDue24": 0,
    "raise": {
     "capacity": "none",
@@ -227996,7 +224212,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 10337,
+   "ocf": 10332,
    "group": "big-pharma",
    "src": {
     "cik": "1131399",
@@ -228005,8 +224221,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3354,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3354 USD per GBP",
+    "fx": 1.3347,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3347 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -228030,8 +224246,8 @@
   },
   {
    "t": "TAK",
-   "n": "Takeda Pharmaceutical Co",
-   "area": "Pharmaceutical Preparations",
+   "n": "Takeda",
+   "area": "Gastroenterology & rare disease",
    "mcap": 67424.5,
    "ev": 93444.4,
    "cash": 2426.2,
@@ -230161,213 +226377,7 @@
     }
    ],
    "revQ": [],
-   "rivals": [
-    {
-     "nct": "NCT07493265",
-     "sponsor": "Eisai Inc.",
-     "title": "A Study to Evaluate the Efficacy and Safety of E2086 in Adults With Narcolepsy",
-     "ph": "Phase II",
-     "pcd": "2027-02-14",
-     "n": 64,
-     "drugs": [
-      "E2086"
-     ],
-     "forDrug": "TAK-861",
-     "ind": "Narcolepsy Type 1 (NT1)",
-     "countries": [
-      "United States",
-      "Belgium",
-      "Canada",
-      "China",
-      "Germany",
-      "Italy"
-     ],
-     "nCountries": 10,
-     "china": "some"
-    },
-    {
-     "nct": "NCT05683457",
-     "sponsor": "ModernaTX, Inc.",
-     "title": "A Study to Evaluate the Efficacy, Safety, and Immunogenicity of mRNA-1647 Cytomegalovirus (CMV) Vaccine in Allogenic Hematopoietic Cell Transplantation (HCT) Pa",
-     "ph": "Phase II",
-     "pcd": "2027-03-06",
-     "n": 84,
-     "drugs": [
-      "mRNA-1647"
-     ],
-     "forDrug": "Maribavir",
-     "ind": "Cytomegalovirus (CMV)",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT06904872",
-     "sponsor": "Napo Therapeutics, S.p.A.",
-     "title": "Safety and Efficacy of Crofelemer in Adult Patients With Short Bowel Syndrome and Intestinal Failure (SBS-IF) Without Colon-in-continuity (CIC)",
-     "ph": "Phase II",
-     "pcd": "2027-03-15",
-     "n": 18,
-     "drugs": [
-      "Crofelemer Powder for"
-     ],
-     "forDrug": "Teduglutide",
-     "ind": "Short Bowel Syndrome",
-     "countries": [
-      "Germany",
-      "Italy"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT07704047",
-     "sponsor": "Chongqing Peg-Bio Biopharm Co., Ltd.",
-     "title": "A Clinical Study of FT1 in Patients With Short Bowel Syndrome",
-     "ph": "Phase II",
-     "pcd": "2027-04-15",
-     "n": 8,
-     "drugs": [
-      "FT1"
-     ],
-     "forDrug": "Teduglutide",
-     "ind": "Short Bowel Syndrome",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07455383",
-     "sponsor": "Alkermes, Inc.",
-     "title": "A Study to Evaluate the Efficacy and Safety of ALKS 2680 in Adults With Narcolepsy Type 1",
-     "ph": "Phase III",
-     "pcd": "2027-05-15",
-     "n": 150,
-     "drugs": [
-      "ALKS 2680"
-     ],
-     "forDrug": "TAK-861",
-     "ind": "Narcolepsy Type 1 (NT1)",
-     "countries": [
-      "United States",
-      "Australia",
-      "Belgium",
-      "Canada",
-      "France",
-      "Italy"
-     ],
-     "nCountries": 10,
-     "china": null
-    },
-    {
-     "nct": "NCT07540897",
-     "sponsor": "Alkermes, Inc.",
-     "title": "A Study to Evaluate the Efficacy, Safety and Tolerability of ALKS 2680 in Adults With Narcolepsy Type 1 (Brilliance NT1 - 304)",
-     "ph": "Phase III",
-     "pcd": "2027-06-15",
-     "n": 150,
-     "drugs": [
-      "ALKS 2680"
-     ],
-     "forDrug": "TAK-861",
-     "ind": "Narcolepsy Type 1 (NT1)",
-     "countries": [
-      "United States",
-      "Belgium",
-      "Canada",
-      "Japan",
-      "Poland"
-     ],
-     "nCountries": 5,
-     "china": null
-    },
-    {
-     "nct": "NCT07598708",
-     "sponsor": "Centessa Pharmaceuticals (UK) Limited",
-     "title": "A Study to Investigate the Effects of Cleminorexton Compared With Placebo in the Treatment of Participants With Central Disorders of Hypersomnolence",
-     "ph": "Phase III",
-     "pcd": "2027-09-30",
-     "n": 222,
-     "drugs": [
-      "cleminorexton"
-     ],
-     "forDrug": "TAK-861",
-     "ind": "Narcolepsy Type 1 (NT1)",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05018286",
-     "sponsor": "VectivBio AG",
-     "title": "Open-label Extension Trial to Evaluate the Long-term Safety of Apraglutide in Short Bowel Syndrome.",
-     "ph": "Phase III",
-     "pcd": "2027-10-30",
-     "n": 158,
-     "drugs": [
-      "Apraglutide"
-     ],
-     "forDrug": "Teduglutide",
-     "ind": "Short Bowel Syndrome",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Belgium",
-      "Czechia",
-      "Denmark",
-      "France"
-     ],
-     "nCountries": 18,
-     "china": null
-    },
-    {
-     "nct": "NCT04775706",
-     "sponsor": "Hanmi Pharmaceutical Company Limited",
-     "title": "Phase 2 Study to Assess the Safety, PK, and PD of Sonefpeglutide (HM15912) in SBS-IF Subjects",
-     "ph": "Phase II",
-     "pcd": "2027-12-15",
-     "n": 18,
-     "drugs": [
-      "HM15912"
-     ],
-     "forDrug": "Teduglutide",
-     "ind": "Short Bowel Syndrome",
-     "countries": [
-      "United States",
-      "Belgium",
-      "Denmark",
-      "France",
-      "Germany",
-      "Poland"
-     ],
-     "nCountries": 8,
-     "china": null
-    },
-    {
-     "nct": "NCT07625280",
-     "sponsor": "Jazz Pharmaceuticals",
-     "title": "A Study Evaluating the Efficacy and Safety of Xywav Expanded Dosing vs Placebo in Participants With Narcolepsy or IH",
-     "ph": "Phase III",
-     "pcd": "2027-12-23",
-     "n": 120,
-     "drugs": [
-      "Xywav"
-     ],
-     "forDrug": "TAK-861",
-     "ind": "Narcolepsy Type 1 (NT1)",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": -376.08,
    "debtDue24": 3458.3,
    "raise": {
@@ -231397,7 +227407,7 @@
      "time": "2025-06-26T10:21:15.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
-     "headline": "Takeda Pharmaceutical Co files a stock offering prospectus",
+     "headline": "Takeda files a stock offering prospectus",
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000139506425000101/takeda-424b5prelimmultixtr.htm"
     },
     {
@@ -231405,7 +227415,7 @@
      "time": "2024-06-27T10:01:10.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
-     "headline": "Takeda Pharmaceutical Co files a stock offering prospectus",
+     "headline": "Takeda files a stock offering prospectus",
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000139506424000091/a424b5-pps_062724.htm"
     },
     {
@@ -231413,7 +227423,7 @@
      "time": "2022-05-09T10:08:09.000Z",
      "form": "SC 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "Takeda Pharmaceutical Co: Activist stake disclosed",
+     "headline": "Takeda: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000139506422000067/sc13d_050922.htm"
     },
     {
@@ -231421,7 +227431,7 @@
      "time": "2022-04-21T10:06:36.000Z",
      "form": "SC 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "Takeda Pharmaceutical Co: Activist stake disclosed",
+     "headline": "Takeda: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000139506422000060/sc13d_042122.htm"
     },
     {
@@ -231429,7 +227439,7 @@
      "time": "2020-06-25T10:25:46.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
-     "headline": "Takeda Pharmaceutical Co files a stock offering prospectus",
+     "headline": "Takeda files a stock offering prospectus",
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000119312520178205/d917915d424b5.htm"
     },
     {
@@ -231437,7 +227447,7 @@
      "time": "2020-06-25T10:14:49.000Z",
      "form": "424B5",
      "formLabel": "Stock offering prospectus",
-     "headline": "Takeda Pharmaceutical Co files a stock offering prospectus",
+     "headline": "Takeda files a stock offering prospectus",
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000119312520178198/d948433d424b5.htm"
     },
     {
@@ -231445,7 +227455,7 @@
      "time": "2019-11-06T11:08:14.000Z",
      "form": "SC 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "Takeda Pharmaceutical Co: Activist stake disclosed",
+     "headline": "Takeda: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000139506419000040/sc13d_110619.htm"
     },
     {
@@ -231453,7 +227463,7 @@
      "time": "2018-01-12T21:46:33.000Z",
      "form": "SC 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "Takeda Pharmaceutical Co: Activist stake disclosed",
+     "headline": "Takeda: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000119312518010089/d521799dsc13d.htm"
     },
     {
@@ -231461,7 +227471,7 @@
      "time": "2017-08-10T20:06:07.000Z",
      "form": "SC 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "Takeda Pharmaceutical Co: Activist stake disclosed",
+     "headline": "Takeda: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000119312517254443/d441072dsc13d.htm"
     },
     {
@@ -231469,7 +227479,7 @@
      "time": "2017-01-18T22:19:55.000Z",
      "form": "SC 13D",
      "formLabel": "Activist stake disclosed",
-     "headline": "Takeda Pharmaceutical Co: Activist stake disclosed",
+     "headline": "Takeda: Activist stake disclosed",
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000119312517012464/d329612dsc13d.htm"
     }
    ],
