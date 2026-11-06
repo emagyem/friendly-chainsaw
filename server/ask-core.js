@@ -45,11 +45,11 @@ export function sameOrigin(request) {
 
 export function buildFacts(dataFile, today = new Date()) {
   const days = (iso) => Math.round((new Date(iso + "T00:00:00") - today) / 86400000);
-  const all = [...(dataFile.companies || []), ...(dataFile.bigPharma || [])];
+  const all = [...(dataFile.companies || []), ...(dataFile.industry || dataFile.bigPharma || [])];
   return all.map((c) => {
     const f = computeFPS(c, today);
     return {
-      ticker: c.t, name: c.n, area: c.area, ...(c.group === "big-pharma" ? { big_pharma: true, operating_cash_flow_ttm_musd: c.ocf ?? null } : {}),
+      ticker: c.t, name: c.n, area: c.area, ...(c.group ? { industry_segment: c.group, operating_cash_flow_ttm_musd: c.ocf ?? null } : {}),
       market_cap_musd: c.mcap, enterprise_value_musd: c.ev, cash_musd: c.cash, debt_musd: c.debt,
       monthly_burn_musd: c.burn, cash_flow_positive: !!c.cashFlowPositive, runway_months: f.runway,
       revenue_ttm_musd: c.rev, shares_out_m: c.shares, share_count_change_24m_pct: c.dil24 ?? null,
@@ -71,7 +71,7 @@ export function compactFacts(facts) {
   return [...facts]
     .sort((a, b) => (a.runway_months ?? 999) - (b.runway_months ?? 999))
     .map((f) => ({
-      ticker: f.ticker, name: f.name, area: f.area, ...(f.big_pharma ? { big_pharma: true, revenue_ttm_musd: f.revenue_ttm_musd } : {}),
+      ticker: f.ticker, name: f.name, area: f.area, ...(f.industry_segment ? { industry_segment: f.industry_segment, revenue_ttm_musd: f.revenue_ttm_musd } : {}),
       runway_months: f.runway_months, cash_musd: f.cash_musd, monthly_burn_musd: f.monthly_burn_musd,
       financing_pressure_score: f.financing_pressure_score, band: f.financing_pressure_band,
       raise_capacity: f.raise_capacity, market_cap_musd: f.market_cap_musd,
@@ -99,7 +99,7 @@ export async function answer({ question, apiKey, model, loadDataFile, ai }) {
     }
   }
 
-  const prompt = `You are the research assistant on Helixora, a biotech financing-risk research site. Answer only from the JSON dataset below. Never invent a company, number, or date that is not present. Cite the specific figures you used inline, in plain prose, e.g. "$412M cash against $21.5M monthly burn". If the data cannot answer the question, say exactly what is missing. If the question is not about the companies in the dataset, say you can only answer questions about them. Do not give buy or sell recommendations. Companies marked big_pharma are large, profitable drugmakers tracked for comparison: leave them out of lists about runway, financing pressure or who may need to raise money unless the question asks about them. Keep the answer under 180 words, no markdown headers, no bullet symbols other than plain hyphens. End with one line beginning "Worth checking:" naming the single assumption that most affects the conclusion.
+  const prompt = `You are the research assistant on Helixora, a biotech financing-risk research site. Answer only from the JSON dataset below. Never invent a company, number, or date that is not present. Cite the specific figures you used inline, in plain prose, e.g. "$412M cash against $21.5M monthly burn". If the data cannot answer the question, say exactly what is missing. If the question is not about the companies in the dataset, say you can only answer questions about them. Do not give buy or sell recommendations. Companies with an industry_segment (big-pharma, generics, otc, api, compounding) are established drug-industry companies tracked for comparison: leave them out of lists about runway, financing pressure or who may need to raise money unless the question asks about them. Keep the answer under 180 words, no markdown headers, no bullet symbols other than plain hyphens. End with one line beginning "Worth checking:" naming the single assumption that most affects the conclusion.
 
 DATA (all dollar figures in millions USD). Figures come from SEC EDGAR filings, ClinicalTrials.gov and previous-close market prices, refreshed ${cache.asOf || "recently"}. Trial readout dates are registry estimates. The Financing Pressure Score (0-100) estimates how likely a company is to need new money before its next major catalyst.
 ${JSON.stringify(cache.facts)}
@@ -134,7 +134,7 @@ QUESTION: ${q}`;
 
   if (ai) {
     try {
-      const short = `You are the research assistant on Helixora, a biotech financing-risk research site. Answer only from the data below; never invent a company, number or date. The companies are listed in order of runway_months, shortest first. When a question sets a threshold (for example "within 12 months" or "under 18 months of cash"), include exactly the companies whose runway_months meets it and no others, checking each number. Cite the figures you used, like "$69M cash against $16.8M monthly burn, 4.1 months". No buy or sell recommendations. Companies marked big_pharma are large, profitable drugmakers tracked for comparison: leave them out of lists about runway, financing pressure or who may need to raise money unless the question asks about them. Under 180 words, plain prose or plain hyphen lists, no headers. End with one line starting "Worth checking:" naming the assumption that matters most.
+      const short = `You are the research assistant on Helixora, a biotech financing-risk research site. Answer only from the data below; never invent a company, number or date. The companies are listed in order of runway_months, shortest first. When a question sets a threshold (for example "within 12 months" or "under 18 months of cash"), include exactly the companies whose runway_months meets it and no others, checking each number. Cite the figures you used, like "$69M cash against $16.8M monthly burn, 4.1 months". No buy or sell recommendations. Companies with an industry_segment (big-pharma, generics, otc, api, compounding) are established drug-industry companies tracked for comparison: leave them out of lists about runway, financing pressure or who may need to raise money unless the question asks about them. Under 180 words, plain prose or plain hyphen lists, no headers. End with one line starting "Worth checking:" naming the assumption that matters most.
 
 DATA (dollar figures in millions USD, refreshed ${cache.asOf || "recently"}):
 ${JSON.stringify(compactFacts(cache.facts))}

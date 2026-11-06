@@ -33,7 +33,7 @@ export function dealStatus(sub, today = new Date().toISOString().slice(0, 10)) {
   const deals = rows.filter((x) => DEAL.test(x.form));
   let gone = rows.find((x) => GONE.test(x.form) && x.date >= addDays(today, -730));
   // A company that switches exchange also files a Form 25, then keeps filing quarterly reports.
-  if (gone && rows.some((x) => /^10-[QK]/.test(x.form) && x.date > gone.date)) gone = null;
+  if (gone && rows.some((x) => /^(10-[QK]|20-F|40-F)/.test(x.form) && x.date > gone.date)) gone = null;
   if (gone) {
     // A deal filing in the 18 months before the delisting means it was bought.
     const deal = deals.find((d) => d.date <= gone.date && d.date >= addDays(gone.date, -548));
@@ -71,6 +71,9 @@ export async function buyerInfo(cik, adsh, ownName, secText) {
   if (!html) return null;
   const text = plain(html);
   const own = (ownName || "").toUpperCase().slice(0, 12);
+  // A company's filing list also holds tender offers it makes for others. If the subject is another company, this one is the buyer.
+  const subject = text.match(/SUBJECT COMPANY: COMPANY DATA: COMPANY CONFORMED NAME:\s*(.+?)\s+CENTRAL INDEX KEY/)?.[1];
+  if (subject && own && !subject.toUpperCase().startsWith(own)) return { name: subject, cik: null, sic: null, type: "bidder", selfIsBidder: true };
   const filers = [...text.matchAll(/FILED BY: COMPANY DATA: COMPANY CONFORMED NAME:\s*(.+?)\s+CENTRAL INDEX KEY:\s*(\d+)(?:\s+STANDARD INDUSTRIAL CLASSIFICATION:[^[]*\[(\d{4})\])?/g)]
     .map((m) => ({ name: m[1].trim(), cik: m[2], sic: m[3] || null }))
     .filter((f) => !own || !f.name.toUpperCase().startsWith(own));

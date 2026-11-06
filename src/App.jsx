@@ -3,9 +3,18 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   ScatterChart, Scatter, ZAxis, ReferenceLine, BarChart, Bar, Cell, AreaChart, Area, ComposedChart
 } from "recharts";
-import { COMPANIES, META, HISTORY, ACQUIRED, BIG_PHARMA } from "./data.js";
-// Any company on the site, coverage or big pharma.
-const findCo = (t) => COMPANIES.find((x) => x.t === t) || BIG_PHARMA.find((x) => x.t === t);
+import { COMPANIES, META, HISTORY, ACQUIRED, INDUSTRY } from "./data.js";
+// Any company on the site, coverage or drug industry.
+const findCo = (t) => COMPANIES.find((x) => x.t === t) || INDUSTRY.find((x) => x.t === t);
+// Drug-industry segments, in the order the Drug Industry page shows them.
+const SEGMENTS = [
+  ["big-pharma", "Big pharma", "Large drugmakers that discover, develop and sell branded medicines."],
+  ["generics", "Generics", "Makers of off-patent copies of medicines, including biosimilars, plus older brands."],
+  ["otc", "Over-the-counter", "Medicines sold without a prescription: pain relief, cold and allergy, store brands."],
+  ["api", "Ingredients & contract manufacturing", "Companies that make drugs, drug ingredients or drug packaging for other drugmakers. Most active-ingredient makers are in India, China and Europe and don't file with the SEC."],
+  ["compounding", "Compounding", "Pharmacies that mix custom or sterile medicines, including large-scale compounded weight-loss drugs."],
+];
+const segLabel = (g) => SEGMENTS.find(([k]) => k === g)?.[1] || null;
 import UNIVERSE from "../config/universe.json";
 import { offeringStudy, raiseRunway, PRE, POST } from "./research.js";
 import { successOdds, exclusivity, reviewOffice, windowConfidence, ODDS_SOURCE, TRIALS_VERSION } from "./trials.js";
@@ -764,7 +773,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
       <section className="quote">
         <div className="q-top">
           <div className="q-id">
-            <h1>{c.n}{c.deal?.status === "pending" && <span className="deal-tag">Being acquired</span>}{c.group === "big-pharma" && <span className="deal-tag bp-tag">Big pharma</span>}</h1>
+            <h1>{c.n}{c.deal?.status === "pending" && <span className="deal-tag">Being acquired</span>}{segLabel(c.group) && <span className="deal-tag bp-tag">{segLabel(c.group)}</span>}</h1>
             <span className="q-tk">{c.t}</span>
             <span className="q-area">{c.area}</span>
           </div>
@@ -772,7 +781,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
             {watch.includes(c.t) ? "★ On your watchlist" : "☆ Add to watchlist"}
           </button>
         </div>
-        {c.group === "big-pharma" && <p className="bp-note">Tracked for comparison, not ranked with the biotechs. {c.n} {c.cashFlowPositive ? "generates cash from its business" : "is spending more cash than it brings in"}, so the financing-pressure measures on this page mostly don't apply. Its pipeline here shows only its own Phase III programs.{c.src?.fxNote ? ` ${c.src.fxNote}.` : ""}</p>}
+        {segLabel(c.group) && <p className="bp-note">Part of the wider drug industry, tracked for comparison and not ranked with the biotechs. {c.n} {c.cashFlowPositive ? "generates cash from its business, so the financing-pressure measures on this page mostly don't apply" : "is spending more cash than it brings in"}. {c.pipeline.length ? "Its pipeline here shows only its own active Phase III trials." : "It has no active Phase III trials of its own."}{c.src?.fxNote ? ` ${c.src.fxNote}.` : ""}</p>}
         {c.quote ? (
           <div className="q-px">
             <span className="q-price">{fmtPx(c.quote.price)}</span>
@@ -1164,7 +1173,7 @@ function Compare() {
               <th key={i}>
                 <select value={s} onChange={(e) => set(i, e.target.value)}>
                   <optgroup label="Coverage">{COMPANIES.map((c) => <option key={c.t} value={c.t}>{c.t} — {c.n}</option>)}</optgroup>
-                  {BIG_PHARMA.length > 0 && <optgroup label="Big pharma">{BIG_PHARMA.map((c) => <option key={c.t} value={c.t}>{c.t} — {c.n}</option>)}</optgroup>}
+                  {SEGMENTS.map(([g, l]) => { const cs = INDUSTRY.filter((c) => c.group === g); return cs.length ? <optgroup key={g} label={l}>{cs.map((c) => <option key={c.t} value={c.t}>{c.t} — {c.n}</option>)}</optgroup> : null; })}
                 </select>
               </th>
             ))}
@@ -2916,49 +2925,63 @@ function About({ go, anchor }) {
   );
 }
 
-/* ------------------------------ big pharma ------------------------------ */
+/* ---------------------------- drug industry ---------------------------- */
 
-function BigPharma({ go }) {
+function IndustryTable({ rows, go }) {
   const [sort, setSort] = useState("mcap");
   const keys = {
-    mcap: (c) => -(c.mcap || 0), rev: (c) => -(c.rev || 0), ocf: (c) => -(c.ocf || 0), cash: (c) => -(c.cash || 0),
+    mcap: (c) => -(c.mcap || 0), rev: (c) => -(c.rev || 0), ocf: (c) => -(c.ocf ?? -1e12), cash: (c) => -(c.cash || 0),
     next: (c) => { const n = nextCatalyst(c); return n ? days(n.date) : 1e9; }, chg: (c) => -(c.quote?.chgPct ?? -1e9),
   };
-  const rows = [...BIG_PHARMA].sort((a, b) => keys[sort](a) - keys[sort](b));
-  const total = BIG_PHARMA.reduce((s, c) => s + (c.mcap || 0), 0);
+  const sorted = [...rows].sort((a, b) => keys[sort](a) - keys[sort](b));
   const th = (k, label) => <th className="r" onClick={() => setSort(k)}>{label}<span className="sortmark">{sort === k ? "▾" : ""}</span></th>;
-  if (!BIG_PHARMA.length) return <section className="panel"><header className="ph"><h2>Big Pharma</h2></header><p className="prose">Big pharma figures arrive with the next data refresh.</p></section>;
+  return (
+    <div className="tablewrap">
+      <table className="grid">
+        <thead><tr><th>Company</th>{th("mcap", "Market value")}{th("rev", "Revenue, last 12 mo")}{th("ocf", "Operating cash flow, 12 mo")}{th("cash", "Cash")}<th className="r">Debt</th><th className="r">Phase III programs</th>{th("next", "Next late-stage result")}{th("chg", "Price")}</tr></thead>
+        <tbody>{sorted.map((c) => {
+          const n = c.pipeline.length ? nextCatalyst(c) : null;
+          return (
+            <tr key={c.t} onClick={() => go("company", c.t)}>
+              <td className="nm"><span className="tick">{c.t}</span> {c.n}<span className="sub">{c.area}{c.src?.currency ? ` · reports in ${c.src.currency}` : ""}{c.stale ? " · not updated today" : ""}</span></td>
+              <td className="r num">{money(c.mcap)}</td>
+              <td className="r num">{money(c.rev)}</td>
+              <td className="r num">{c.ocf == null ? "—" : c.ocf < 0 ? `−${money(-c.ocf)}` : money(c.ocf)}</td>
+              <td className="r num">{money(c.cash)}</td>
+              <td className="r num">{c.debt ? money(c.debt) : "None"}</td>
+              <td className="r num">{c.pipeline.length || "—"}</td>
+              <td className="r">{n ? <>{fmtDate(n.date)}<span className="sub"> {shortLabel(n.label)}</span></> : "—"}</td>
+              <td className="r num">{c.quote?.price != null ? `$${num(c.quote.price)} ` : "—"}<Change c={c} /></td>
+            </tr>
+          );
+        })}</tbody>
+      </table>
+    </div>
+  );
+}
+
+function Industry({ go }) {
+  if (!INDUSTRY.length) return <section className="panel"><header className="ph"><h2>Drug Industry</h2></header><p className="prose">Drug industry figures arrive with the next data refresh.</p></section>;
+  const total = INDUSTRY.reduce((s, c) => s + (c.mcap || 0), 0);
   return (
     <div className="stack">
       <section className="panel report-head">
-        <p className="kicker-static">Big Pharma</p>
-        <h1 className="report-h">The {BIG_PHARMA.length} largest drugmakers that file with the SEC</h1>
-        <p className="lead-dek">These are the companies that buy, partner with and compete against the {COMPANIES.length} biotechs Helixora covers. Together they're worth about {money(total)}. They make money, so the Financing Pressure Score mostly doesn't apply. They're here for comparison and are never ranked with the biotechs. Each row shows the Phase III programs they run themselves, soonest result first.</p>
+        <p className="kicker-static">Drug Industry</p>
+        <h1 className="report-h">Who makes the world's legal medicines</h1>
+        <p className="lead-dek">The {INDUSTRY.length} drug-industry companies here are the ones that buy, partner with, supply and compete against the {COMPANIES.length} biotechs Helixora covers. Together they're worth about {money(total)}. Most make money, so the Financing Pressure Score mostly doesn't apply to them. They're here for comparison and are never ranked with the biotechs.</p>
+        <p className="byline">Jump to: {SEGMENTS.filter(([g]) => INDUSTRY.some((c) => c.group === g)).map(([g, l], i) => <span key={g}>{i ? " · " : ""}<a href={`#seg-${g}`} onClick={(e) => { e.preventDefault(); document.getElementById(`seg-${g}`)?.scrollIntoView({ behavior: "smooth" }); }}>{l}</a></span>)}</p>
       </section>
-      <section className="panel">
-        <div className="tablewrap">
-          <table className="grid">
-            <thead><tr><th>Company</th>{th("mcap", "Market value")}{th("rev", "Revenue, last 12 mo")}{th("ocf", "Operating cash flow, 12 mo")}{th("cash", "Cash")}<th className="r">Debt</th><th className="r">Phase III programs</th>{th("next", "Next late-stage result")}{th("chg", "Price")}</tr></thead>
-            <tbody>{rows.map((c) => {
-              const n = nextCatalyst(c);
-              return (
-                <tr key={c.t} onClick={() => go("company", c.t)}>
-                  <td className="nm"><span className="tick">{c.t}</span> {c.n}{c.src?.currency ? <span className="sub"> · reports in {c.src.currency}</span> : null}{c.stale ? <span className="sub"> · not updated today</span> : null}</td>
-                  <td className="r num">{money(c.mcap)}</td>
-                  <td className="r num">{money(c.rev)}</td>
-                  <td className="r num">{c.ocf == null ? "—" : money(c.ocf)}</td>
-                  <td className="r num">{money(c.cash)}</td>
-                  <td className="r num">{c.debt ? money(c.debt) : "None"}</td>
-                  <td className="r num">{c.pipeline.length}</td>
-                  <td className="r">{n ? <>{fmtDate(n.date)}<span className="sub"> {shortLabel(n.label)}</span></> : "—"}</td>
-                  <td className="r num">{c.quote?.price != null ? `$${num(c.quote.price)} ` : "—"}<Change c={c} /></td>
-                </tr>
-              );
-            })}</tbody>
-          </table>
-        </div>
-        <p className="colnote">From each company's latest 10-Q, 10-K or 20-F on SEC EDGAR, and ClinicalTrials.gov. Foreign companies' figures are converted to US dollars at today's exchange rate. Novo Nordisk, Novartis and the other foreign filers report in detail only once or twice a year, so their figures can be older; each company page gives the date. Roche, Bayer, Merck KGaA, Boehringer Ingelheim, Daiichi Sankyo and Astellas aren't included because they don't file with the SEC.</p>
-      </section>
+      {SEGMENTS.map(([g, label, blurb]) => {
+        const rows = INDUSTRY.filter((c) => c.group === g);
+        if (!rows.length) return null;
+        return (
+          <section className="panel" key={g} id={`seg-${g}`}>
+            <header className="ph"><h2>{label}</h2><span className="ph-note">{blurb} {rows.length} {rows.length === 1 ? "company" : "companies"}, worth about {money(rows.reduce((s, c) => s + (c.mcap || 0), 0))}.</span></header>
+            <IndustryTable rows={rows} go={go} />
+          </section>
+        );
+      })}
+      <p className="colnote">From each company's latest 10-Q, 10-K or 20-F on SEC EDGAR, and ClinicalTrials.gov. Foreign companies' figures are converted to US dollars at today's exchange rate; they report in detail once or twice a year, so their figures can be older (each company page gives the date). Only companies that file with the SEC can be included, which leaves out Roche, Bayer, Merck KGaA, Boehringer Ingelheim, Daiichi Sankyo, Astellas, Sandoz and most Indian, Chinese and European generic and ingredient makers.</p>
     </div>
   );
 }
@@ -3111,7 +3134,7 @@ function Wordmark({ underline = false }) {
 
 // Sections and their pages, grouped the way a financial news site groups them.
 const NAV = [
-  { k: "markets", l: "Markets", items: [["home", "Overview"], ["company", "Quotes"], ["screen", "Screener"], ["compare", "Compare"], ["bigpharma", "Big Pharma"]] },
+  { k: "markets", l: "Markets", items: [["home", "Overview"], ["company", "Quotes"], ["screen", "Screener"], ["compare", "Compare"], ["industry", "Drug Industry"]] },
   { k: "risk", l: "Financing Risk", items: [["report", "Pressure Report"], ["research", "Research"]] },
   { k: "trials", l: "Trials & FDA", items: [["outlook", "Outlook"], ["catalysts", "Catalyst Calendar"]] },
   { k: "ask", l: "Ask Helixora", items: [["ask", "Ask Helixora"]] },
@@ -3159,7 +3182,7 @@ export default function App() {
   const toggleWatch = (t) => setWatch((w) => (w.includes(t) ? w.filter((x) => x !== t) : [...w, t]));
 
   const matches = omni.trim()
-    ? [...COMPANIES, ...BIG_PHARMA].filter((c) => (c.t + " " + c.n).toLowerCase().includes(omni.toLowerCase())).slice(0, 6)
+    ? [...COMPANIES, ...INDUSTRY].filter((c) => (c.t + " " + c.n).toLowerCase().includes(omni.toLowerCase())).slice(0, 6)
     : [];
 
   const cur = groupOf(view);
@@ -3193,7 +3216,7 @@ export default function App() {
               <div className="omnilist">
                 {matches.map((c) => (
                   <button key={c.t} onClick={() => { go("company", c.t); setOmni(""); }}>
-                    <b>{c.t}</b>{c.n}<span className="sub">{c.group === "big-pharma" ? "Big pharma" : c.area}</span>
+                    <b>{c.t}</b>{c.n}<span className="sub">{segLabel(c.group) || c.area}</span>
                   </button>
                 ))}
               </div>
@@ -3244,7 +3267,7 @@ export default function App() {
         {view === "report" && <PressureReport go={go} />}
         {view === "catalysts" && <Catalysts go={go} />}
         {view === "compare" && <Compare />}
-        {view === "bigpharma" && <BigPharma go={go} />}
+        {(view === "industry" || view === "bigpharma") && <Industry go={go} />}
         {view === "ask" && <Ask />}
         {view === "research" && <Research go={go} />}
         {view === "about" && <About key={anchor || "top"} go={go} anchor={anchor} />}

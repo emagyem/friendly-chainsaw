@@ -175,8 +175,17 @@ function trailing12(s, targetEnd = null) {
 }
 
 function shareHistory(facts) {
-  const raw = facts?.dei?.EntityCommonStockSharesOutstanding?.units?.shares
-    || facts?.["us-gaap"]?.CommonStockSharesOutstanding?.units?.shares;
+  // Use whichever share count has the newest figure: the cover-page count, the balance-sheet count, or
+  // (when a company stopped tagging both) the quarter's weighted average basic share count.
+  const newest = (rows) => (rows || []).filter((r) => r.val > 0).reduce((m, r) => (r.end > m ? r.end : m), "");
+  const cands = [
+    facts?.dei?.EntityCommonStockSharesOutstanding?.units?.shares,
+    facts?.["us-gaap"]?.CommonStockSharesOutstanding?.units?.shares,
+    facts?.["us-gaap"]?.WeightedAverageNumberOfSharesOutstandingBasic?.units?.shares?.filter((r) => r.start && monthsBetween(r.start, r.end) < 4).map(({ start: _start, ...r }) => r),
+  ].filter((x) => x?.length);
+  // Prefer the first two whenever they're within a quarter of the newest, since they're exact counts.
+  const best = cands.reduce((b, x) => (newest(x) > newest(b) ? x : b), cands[0]);
+  const raw = cands.find((x) => monthsBetween(newest(x), newest(best)) < 4) || best;
   if (!raw?.length) return [];
   // A filing with several share classes reports one row per class; add them up per filing.
   const byFiling = new Map();
@@ -826,15 +835,16 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
   const mcap = px.price * fin.shares / (a.adr || 1);
 
   const sponsor = a.sponsor || shortName(sub?.name || facts.entityName);
-  const trials = await trialsFor(sponsor, { lateActive: !!a.big });
-  let pipeline = programsFromTrials(trials, a.programs || {}, a.big ? 200 : 6);
+  const trials = await trialsFor(sponsor, { lateActive: !!a.segment });
+  let pipeline = programsFromTrials(trials, a.programs || {}, a.segment ? 200 : 6);
   // Big pharma runs hundreds of trials; keep the late-stage programs that move the stock, soonest first.
-  if (a.big) {
+  if (a.segment) {
     pipeline = pipeline
       .filter((p) => ["Phase III", "Filed"].includes(p.ph) && !STANDARD_DRUGS.test(p.d) && (p.ph === "Filed" || !p.ro || p.ro >= TODAY_ISO))
       .sort((x, y) => (x.ro || "9") < (y.ro || "9") ? -1 : 1).slice(0, 20);
   }
-  if (!pipeline.length) throw new Error(`no active trials found for sponsor "${sponsor}" (set "sponsor" in assumptions.json)`);
+  // Industry companies (generics, ingredient makers, compounders) often run no late-stage trials of their own.
+  if (!pipeline.length && !a.segment) throw new Error(`no active trials found for sponsor "${sponsor}" (set "sponsor" in assumptions.json)`);
 
   // Classification for the drug-development models, then timing, design and odds per program.
   for (const p of pipeline) {
@@ -910,7 +920,7 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
     dil24: round(fin.dil24, 1),
     runwayHist: fin.runwayHist || [],
     revQ: fin.revQ || [],
-    rivals: a.big ? [] : await rivalsFor(pipeline, sponsor),
+    rivals: a.segment ? [] : await rivalsFor(pipeline, sponsor),
     burnPrior: round(fin.burnPrior, 2),
     debtDue24: round(fin.debtDue24, 1),
     raise,
@@ -928,7 +938,7 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
     news: newsFromSubmissions(sub, cik, name),
     cashFlowPositive: fin.cashFlowPositive,
     ocf: fin.ocf == null ? null : Math.round(fin.ocf),
-    ...(a.big ? { group: "big-pharma" } : {}),
+    ...(a.segment ? { group: a.segment } : {}),
     src: {
       cik: String(cik),
       asOf: fin.asOf,
@@ -968,7 +978,7 @@ async function main() {
   let acquired = [];
   try {
     const prev = JSON.parse(await readFile(OUT_FILE, "utf8"));
-    for (const c of [...(prev.companies || []), ...(prev.bigPharma || [])]) previous[c.t] = c;
+    for (const c of [...(prev.companies || []), ...(prev.industry || prev.bigPharma || [])]) previous[c.t] = c;
     previous.__meta = prev.meta;
     acquired = prev.acquired || [];
   } catch { /* first run */ }
@@ -998,9 +1008,12 @@ async function main() {
       deal = dealStatus(sub, TODAY_ISO);
       if (deal && deal.status !== "delisted") {
         const b = await buyerInfo(cik, deal.adsh, sub?.name, secText);
-        deal.by = tidyName(b?.name) || null;
-        deal.buyerType = b?.type || "unknown";
-        deal.bigPharma = await isLargerPharma(b, prevC?.mcap, sec);
+        if (b?.selfIsBidder) deal = null; // it's buying someone else, not being bought
+        else {
+          deal.by = tidyName(b?.name) || null;
+          deal.buyerType = b?.type || "unknown";
+          deal.bigPharma = await isLargerPharma(b, prevC?.mcap, sec);
+        }
       }
     }
     const listed = cikByTicker.has(ticker);
@@ -1040,17 +1053,18 @@ async function main() {
     }
   }
 
-  // Big pharma: tracked alongside coverage for comparison, never ranked with it or screened out.
-  const bigPharma = [];
-  for (const bp of config.bigPharma || []) {
-    const ticker = bp.t.toUpperCase();
-    console.log(`${ticker} (big pharma)…`);
+  // Drug-industry companies (big pharma, generics, over-the-counter, ingredients, compounding):
+  // tracked alongside coverage for comparison, never ranked with it or screened out.
+  const industry = [];
+  for (const ic of config.industry || []) {
+    const ticker = ic.t.toUpperCase();
+    console.log(`${ticker} (${ic.segment})…`);
     try {
-      const c = await buildCompany(ticker, { ...(assumptions[ticker] || {}), ...bp, big: true }, cikByTicker, classes[ticker] || {}, trialHist, durTables);
-      bigPharma.push(c);
+      const c = await buildCompany(ticker, { ...(assumptions[ticker] || {}), ...ic }, cikByTicker, classes[ticker] || {}, trialHist, durTables);
+      industry.push(c);
       console.log(`  ${c.n}: cash $${c.cash}M, revenue $${c.rev}M, ${c.pipeline.length} late-stage programs, mcap $${c.mcap}M`);
     } catch (e) {
-      if (previous[ticker]) { warn(`${ticker}: ${e.message}. Kept the previous run's figures.`); bigPharma.push({ ...previous[ticker], stale: true }); }
+      if (previous[ticker]) { warn(`${ticker}: ${e.message}. Kept the previous run's figures.`); industry.push({ ...previous[ticker], stale: true }); }
       else warn(`${ticker}: ${e.message}. Skipped.`);
     }
   }
@@ -1116,7 +1130,7 @@ async function main() {
       leftCoverage: leaving,
     },
     companies,
-    bigPharma,
+    industry,
     acquired,
   };
   await mkdir(OUT_DIR, { recursive: true });
