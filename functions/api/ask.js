@@ -24,8 +24,8 @@ export async function onRequestPost({ request, env }) {
 
   return answer({
     question: payload?.question,
-    apiKey: env.ANTHROPIC_API_KEY,
-    model: env.ANTHROPIC_MODEL,
+    apiKey: (env.ANTHROPIC_API_KEY || "").trim(), // pasted keys often carry a trailing line break
+    model: (env.ANTHROPIC_MODEL || "").trim() || undefined,
     // Read the published data file straight from this deployment's static files.
     loadDataFile: async () => {
       const res = await env.ASSETS.fetch(new URL("/data/companies.json", request.url));

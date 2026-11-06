@@ -1472,7 +1472,7 @@ let TS_KEY; // undefined = not looked up yet, null = off
 let TS_SCRIPT;
 async function turnstileKey() {
   if (TS_KEY === undefined) {
-    try { TS_KEY = (await (await fetch("/api/config")).json()).turnstileSiteKey || null; } catch { TS_KEY = null; }
+    try { TS_KEY = ((await (await fetch("/api/config")).json()).turnstileSiteKey || "").trim() || null; } catch { TS_KEY = null; }
   }
   return TS_KEY;
 }

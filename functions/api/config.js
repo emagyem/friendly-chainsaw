@@ -3,5 +3,6 @@
 import { json } from "../../server/ask-core.js";
 
 export function onRequestGet({ env }) {
-  return json(200, { turnstileSiteKey: env.TURNSTILE_SITE_KEY || null });
+  // Trim: keys pasted into the dashboard often carry a trailing line break.
+  return json(200, { turnstileSiteKey: (env.TURNSTILE_SITE_KEY || "").trim() || null });
 }

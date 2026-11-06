@@ -49,10 +49,11 @@ export async function rateLimit(env, request, route, max, windowSec) {
 }
 
 export async function humanCheck(env, request, token) {
-  if (!env.TURNSTILE_SECRET_KEY) return true;
+  const secret = (env.TURNSTILE_SECRET_KEY || "").trim(); // pasted keys often carry a trailing line break
+  if (!secret) return true;
   if (typeof token !== "string" || !token || token.length > 2048) return false;
   const form = new FormData();
-  form.append("secret", env.TURNSTILE_SECRET_KEY);
+  form.append("secret", secret);
   form.append("response", token);
   const ip = request.headers.get("cf-connecting-ip");
   if (ip) form.append("remoteip", ip);
