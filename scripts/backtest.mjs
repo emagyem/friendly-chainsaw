@@ -32,6 +32,7 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
+import { expectedEvents, toText } from "./guidance.mjs";
 
 const UA = process.env.SEC_USER_AGENT;
 if (!UA) { console.error("Set SEC_USER_AGENT"); process.exit(1); }
@@ -103,7 +104,7 @@ async function filingsFor(cik) {
   const sub = await sec(`https://data.sec.gov/submissions/CIK${pad(cik)}.json`, { cacheKey: `sub-${cik}.json` });
   if (!sub) return null;
   const rows = [];
-  const add = (r) => { for (let i = 0; i < r.form.length; i++) rows.push({ form: r.form[i], date: r.filingDate[i], adsh: r.accessionNumber[i] }); };
+  const add = (r) => { for (let i = 0; i < r.form.length; i++) rows.push({ form: r.form[i], date: r.filingDate[i], adsh: r.accessionNumber[i], doc: r.primaryDocument?.[i] }); };
   add(sub.filings.recent);
   return { sub, rows, add };
 }
@@ -250,9 +251,27 @@ function companyQuarters(facts, filings, atmDates) {
     if (c.cashFlowPositive) continue; // not burning cash: outside the question
     const f = computeFPS(c, toDate(filed));
     out.push({ end, filed, cash: Math.round(cash), runway: f.runway, score: f.score, band: f.band,
-      parts: Object.fromEntries(f.parts.filter((p) => p.present).map((p) => [p.key, p.score])), coverage: f.coverage });
+      parts: Object.fromEntries(f.parts.filter((p) => p.present).map((p) => [p.key, p.score])), coverage: f.coverage, _c: c });
   }
   return out;
+}
+
+/* ------------------- 3b. catalyst timing from guidance ------------------- */
+
+// What the company said, in the 10-Q or 10-K behind this balance sheet, about when news is due.
+let guidanceDocs = 0, guidanceFound = 0;
+async function guidanceAt(cik, filings, filed) {
+  const f = filings.find((x) => x.date === filed && /^10-[QK]/.test(x.form) && x.doc);
+  if (!f) return [];
+  const key = `guid-${f.adsh}.json`;
+  const file = new URL(key, CACHE);
+  if (existsSync(file)) return JSON.parse(await readFile(file, "utf8"));
+  const html = await sec(`https://www.sec.gov/Archives/edgar/data/${cik}/${f.adsh.replace(/-/g, "")}/${f.doc}`, { json: false });
+  guidanceDocs++;
+  const events = html && html.length < 25e6 ? expectedEvents(toText(html), filed).slice(0, 12) : [];
+  if (events.length) guidanceFound++;
+  await writeFile(file, JSON.stringify(events));
+  return events;
 }
 
 /* ------------------------------ 4. outcomes ------------------------------ */
@@ -380,6 +399,15 @@ async function main() {
     if (!qs.length) continue;
     const events = raiseEvents(co.filings, shareRows(facts));
     for (const q of qs) {
+      // Score again with the company's own guided catalyst dates (point-in-time: from the filing itself).
+      const guided = await guidanceAt(co.cik, co.filings, q.filed);
+      const c = { ...q._c, catalysts: guided.map((e) => ({ date: e.date, kind: e.kind, label: "Company-guided event" })) };
+      delete q._c;
+      const g = computeFPS(c, toDate(q.filed));
+      q.scoreNoCat = q.score; q.bandNoCat = q.band; q.partsNoCat = q.parts;
+      q.score = g.score; q.band = g.band; q.runway = g.runway;
+      q.parts = Object.fromEntries(g.parts.filter((p) => p.present).map((p) => [p.key, p.score]));
+      q.guided = guided.length > 0; q.monthsToEvent = g.catalyst ? g.monthsToCatalyst : null;
       const next = events.find((e) => e.date > q.filed);
       const y12 = !!next && next.date <= addDays(q.filed, 365);
       const y6 = !!next && next.date <= addDays(q.filed, 182);
@@ -389,7 +417,7 @@ async function main() {
       // Stopped filing within the year (bankruptcy, wind-down or sale): the need for money was resolved without a raise.
       const ended = !co.alive && co.last <= addDays(q.filed, 365);
       rows.push({ cik: co.cik, ...q, y12, y6, yOff12, yOff6, yEnd12: y12 || ended, yEnd6: y6 || (!co.alive && co.last <= addDays(q.filed, 182)), how: y12 ? next.how : null, lead: y12 ? Math.round(monthsBetween(q.filed, next.date) * 10) / 10 : null });
-      if (EXAMPLES.has(co.cik) && q.filed >= "2016-01-01") examples.push({ name: co.name, filed: q.filed, cash: q.cash, runway: q.runway, score: q.score, band: q.band, raisedWithinYear: y12, how: y12 ? next.how : null, nextRaise: next?.date || null });
+      if (EXAMPLES.has(co.cik) && q.filed >= "2016-01-01") examples.push({ name: co.name, filed: q.filed, cash: q.cash, runway: q.runway, score: q.score, band: q.band, scoreWithoutGuidance: q.scoreNoCat, monthsToEvent: q.monthsToEvent, guidance: guided[0]?.text || null, raisedWithinYear: y12, how: y12 ? next.how : null, nextRaise: next?.date || null });
     }
   }
   console.log(`  ${rows.length} company-quarters`);
@@ -402,15 +430,24 @@ async function main() {
   result.raisedOrEnded = { base12: end.base12, auc: end.auc, bands: end.bands, survivorsAuc: end.survivors.auc, nonSurvivorsAuc: end.nonSurvivors.auc };
   result.eventsByHow = { "offering filing": rows.filter((r) => r.how === "offering filing").length, "share count jump": rows.filter((r) => r.how === "share count jump").length };
   result.examples = examples;
+  // Catalyst timing: how much the company-guided dates add.
+  const nc = evaluate(rows.map((r) => ({ ...r, score: r.scoreNoCat, band: r.bandNoCat, parts: r.partsNoCat })), companies);
+  const gRows = rows.filter((r) => r.guided);
+  result.catalystTiming = {
+    filingsRead: guidanceDocs, filingsWithGuidance: guidanceFound,
+    rowsWithGuidance: gRows.length, shareWithGuidance: Math.round((gRows.length / rows.length) * 1000) / 1000,
+    withoutGuidance: { auc: nc.auc, bands: nc.bands },
+    guidedRowsOnly: { rows: gRows.length, auc: auc(gRows, "score"), aucWithoutGuidance: auc(gRows.map((r) => ({ ...r, score: r.scoreNoCat })), "score"), base12: rate(gRows) },
+  };
   const out = {
     generatedAt: new Date().toISOString(),
     fpsVersion: FPS_VERSION,
     question: "Did the Financing Pressure Score flag biotechs before they sold stock?",
     universe: `Every company with industry code 2834, 2836 or 8731 that reported R&D spending to the SEC, burned cash, and had under $${MAX_REVENUE_M}M of trailing revenue, at each balance sheet filed ${START.slice(0, 4)}–${LAST_ASOF.slice(0, 4)}. Includes companies that later stopped filing.`,
     outcome: `A stock offering filing (424B4 or 424B5) or a jump of ${JUMP * 100}%+ in shares outstanding within 12 months after the balance sheet was filed.`,
-    pointInTime: "Each row uses only figures filed with the SEC on or before its date.",
+    pointInTime: "Each row uses only figures filed with the SEC on or before its date, including the catalyst dates the company gave in that filing.",
     limits: [
-      "Catalyst timing isn't included: past expected trial dates aren't available in bulk, so every company gets the score's standard assumption of an event 18 months out.",
+      "Catalyst timing comes from what each company said in the 10-Q or 10-K behind that balance sheet (for example, \"topline data in the second half of 2019\"), read automatically. Where no dated guidance was found, the score's standard assumption of an event 18 months out is used. The reader can misread a sentence, and companies' own timelines often slip.",
       "Pipeline concentration isn't included; the score is re-weighted over the parts that are.",
       "Market access uses the public float reported in each 10-K instead of daily market value, because price history isn't freely available for delisted companies.",
       "An ATM program is detected from sales-agreement language in prospectus supplements found by SEC full-text search; a few may be missed or misread.",
