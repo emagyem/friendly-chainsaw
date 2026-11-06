@@ -94,7 +94,8 @@ QUESTION: ${q}`;
     const body = await r.json();
     if (!r.ok) {
       console.error("Anthropic API error", r.status, body?.error?.type);
-      return json(502, { error: "The model request failed" });
+      // The error type (e.g. authentication_error, not_found_error) helps diagnose setup problems and reveals nothing secret.
+      return json(502, { error: "The model request failed", reason: body?.error?.type || `HTTP ${r.status}`, detail: (body?.error?.message || "").slice(0, 160) });
     }
     const text = (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
     return json(200, { text });
