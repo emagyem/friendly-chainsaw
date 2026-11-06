@@ -190,9 +190,9 @@ export function classifyModality(p) {
   if (p.modality) return { value: p.modality, how: "set by hand" };
   for (const [m, re] of MODALITY_WORDS) if (re.test(p.moa || "")) return { value: m, how: "from the mechanism" };
   for (const [m, re, stem] of NAME_STEMS) if (re.test(p.d || "")) return { value: m, how: `from the drug name (${stem})` };
-  if (p.itype === "GENETIC") return { value: "Gene therapy", how: "registry lists it as genetic" };
-  if (p.itype === "BIOLOGICAL") return { value: "Biologic", how: "registry lists it as biological" };
-  if (p.itype === "DRUG") return { value: "Small molecule", how: "registry lists it as a drug, not a biologic" };
+  if (p.itype === "GENETIC") return { value: "Gene therapy", how: "from the trial registry, which lists it as genetic" };
+  if (p.itype === "BIOLOGICAL") return { value: "Biologic", how: "from the trial registry, which lists it as biological" };
+  if (p.itype === "DRUG") return { value: "Small molecule", how: "from the trial registry, which lists it as a drug rather than a biologic" };
   return { value: null, how: "not identified" };
 }
 
@@ -207,12 +207,12 @@ export function classify(p) {
   const why = {};
   const out = {};
   if (p.area && AREA_RATES[p.area]) { out.area = p.area; why.area = "set by hand"; }
-  else { out.area = diseaseArea(p); why.area = out.area === "All indications" ? "not identified" : "from the disease"; }
+  else { out.area = diseaseArea(p); why.area = out.area === "All indications" ? "not identified" : "from the condition studied"; }
   const m = classifyModality(p); out.modality = m.value; why.modality = m.how;
   if (p.rare != null) { out.rare = p.rare; why.rare = "set by hand"; }
   else { out.rare = RARE_WORDS.test(txt); why.rare = out.rare ? "on Helixora's rare-disease list" : "not on the rare-disease list"; }
   if (p.biomarker != null) { out.biomarker = p.biomarker; why.biomarker = "set by hand"; }
-  else { out.biomarker = BIOMARKER_WORDS.test(txt); why.biomarker = out.biomarker ? "trial names a marker or mutation" : "no marker named"; }
+  else { out.biomarker = BIOMARKER_WORDS.test(txt); why.biomarker = out.biomarker ? "the trial names a biomarker or mutation" : "no biomarker named"; }
   return { ...out, why };
 }
 

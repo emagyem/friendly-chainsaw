@@ -83,9 +83,20 @@ function nextCatalyst(c) {
 }
 // "VK2735 Phase III primary completion (registry estimate)" -> "VK2735 Phase III data (est.)"
 const shortLabel = (l) => (l || "").replace(/ primary completion \(registry estimate\)/i, " data (est.)").replace(/ primary completion/i, " data")
-  .replace(/Next quarterly report \(estimated\)/i, "Quarterly report (est.)");
+  .replace(/Next quarterly report \(estimated\)/i, "Quarterly report (est.)").replace(/ data \(estimated\)$/i, " data (est.)");
 // For use inside sentences, where "(est.)" reads badly.
-const plainLabel = (l) => shortLabel(l).replace(/ \(est\.\)$/, "");
+const plainLabel = (l) => shortLabel(l).replace(/ \(est\.\)$/, "").replace(/ data$/, " results").replace(/ PDUFA target action date$/, " FDA decision");
+// "about a year", "about 16 months": how a person would say a span of months.
+const monthsSay = (m) => {
+  const r = Math.round(m);
+  if (r >= 120) return "more than ten years";
+  if (r === 12) return "about a year";
+  if (r === 18) return "about a year and a half";
+  if (r === 24) return "about two years";
+  if (r === 36) return "about three years";
+  if (r <= 1) return "about a month";
+  return `about ${r} months`;
+};
 const fmtRunway = (r, unit = "mo") => (r >= 120 ? "10+ yrs" : `${num(r)} ${unit}`);
 // Capitalize a sentence, but leave drug names like "z-rostudirsen" as written.
 const cap = (t) => (t && /^[a-z]+[\s,]/.test(t) ? t.charAt(0).toUpperCase() + t.slice(1) : t);
@@ -135,20 +146,20 @@ function bis(c) {
 function alertsFor(c) {
   const out = [];
   const r = runway(c);
-  if (r < 12) out.push({ sev: "high", text: `Cash runway of ${num(r)} months. Financing likely before the next major catalyst.` });
-  else if (r < 18) out.push({ sev: "med", text: `Cash runway of ${num(r)} months. Watch for an opportunistic raise.` });
+  if (r < 12) out.push({ sev: "high", text: `Only ${monthsSay(r)} of cash left, so it will probably need to raise money before its next big event.` });
+  else if (r < 18) out.push({ sev: "med", text: `${cap(monthsSay(r))} of cash left. Companies in this spot often raise early, while the stock is doing well.` });
   const nc = nextCatalyst(c);
   // A routine quarterly report is worth noting, not a reason to act.
   if (nc && nc.kind === "earnings") out.push({ sev: "low", text: `${shortLabel(nc.label)} in ${days(nc.date)} days.` });
   else if (nc && days(nc.date) <= 45) out.push({ sev: "high", text: `${shortLabel(nc.label)} in ${days(nc.date)} days.` });
   else if (nc && days(nc.date) <= 120) out.push({ sev: "low", text: `${shortLabel(nc.label)} in ${days(nc.date)} days.` });
   const atm = c.financings.find((f) => f.type === "ATM program" && days(f.date) > -540);
-  if (atm) out.push({ sev: "med", text: `ATM program open since ${fmtDate(atm.date)}. Dilution can arrive without an announcement.` });
+  if (atm) out.push({ sev: "med", text: `It has had an at-the-market program since ${fmtDate(atm.date)}, so it can sell new shares quietly, without announcing a deal.` });
   const dil = shareGrowth(c);
-  if (dil > 25) out.push({ sev: "med", text: `Share count up roughly ${num(dil, 0)}% ${dilutionPhrase(c)}.` });
-  if (c.stale) out.push({ sev: "low", text: "The latest refresh could not update this company, so these figures are from an earlier run." });
+  if (dil > 25) out.push({ sev: "med", text: `The number of shares has grown about ${num(dil, 0)}% ${dilutionPhrase(c)}, which shrinks each existing holder's slice.` });
+  if (c.stale) out.push({ sev: "low", text: "We couldn't update this company in the latest refresh, so these figures are from an earlier run." });
   const evpv = c.ev / Math.max(pipelineValue(c), 1);
-  if (evpv < 0.8) out.push({ sev: "low", text: `Enterprise value is ${num((1 - evpv) * 100, 0)}% below the modeled risk-adjusted pipeline value. Check the peak sales assumption before reading that as cheap.` });
+  if (evpv < 0.8) out.push({ sev: "low", text: `The company is valued about ${num((1 - evpv) * 100, 0)}% below our rough estimate of what its pipeline is worth. That estimate leans on a placeholder sales figure, so check it before calling the stock cheap.` });
   return out;
 }
 
@@ -313,16 +324,16 @@ function briefs() {
   const used = new Set();
   const add = (b) => { if (b && !used.has(b.c.t + b.kind)) { used.add(b.c.t + b.kind); out.push(b); } };
   const runwayLine = (c) => c.cashFlowPositive
-    ? `Operating cash flow is positive, and it holds ${money(c.cash)} in cash and investments.`
-    : `It holds ${money(c.cash)} in cash and investments against a burn of $${num(c.burn)}M a month, about ${num(runway(c), 0)} months of runway.`;
+    ? `It brings in more cash than it spends, and has ${money(c.cash)} in cash and investments.`
+    : `It has ${money(c.cash)} in cash and investments and spends about $${num(c.burn)}M a month, enough for ${monthsSay(runway(c))}.`;
 
   // Regulatory decisions in the next six months
   const reg = [];
   COMPANIES.forEach((c) => c.catalysts.forEach((x) => { const d = days(x.date); if (x.kind === "regulatory" && d >= 0 && d <= 180) reg.push({ c, x, d }); }));
   reg.sort((a, b) => a.d - b.d).forEach(({ c, x, d }) => add({
     kind: "reg", c, weight: 100 - d / 10,
-    headline: `${c.n} faces an FDA decision ${d <= 1 ? "this week" : `in ${d} days`}`,
-    dek: `The FDA's target action date for ${x.drug || "its application"} is ${fmtDate(x.date)}. ${runwayLine(c)}`,
+    headline: `${c.n} is ${d <= 7 ? "days" : `${d} days`} away from an FDA decision`,
+    dek: `The FDA is due to rule on ${x.drug || "its application"} by ${fmtDate(x.date)}. ${runwayLine(c)}`,
   }));
 
   // Biggest price moves
@@ -333,8 +344,8 @@ function briefs() {
       const offHigh = q.hi52 ? ((q.price / q.hi52) - 1) * 100 : null;
       add({
         kind: "move", c, weight: Math.abs(q.chgPct) * 6,
-        headline: `${c.n} shares ${q.chgPct >= 0 ? "rise" : "fall"} ${Math.abs(q.chgPct).toFixed(1)}%`,
-        dek: `The stock closed at ${fmtPx(q.price)} on ${fmtDate(q.date)}${offHigh != null ? `, ${Math.abs(offHigh).toFixed(0)}% ${offHigh < 0 ? "below" : "above"} its 52-week high of ${fmtPx(q.hi52)}` : ""}. Market value stands at ${money(c.mcap)}.`,
+        headline: `${c.n} shares ${q.chgPct >= 0 ? (q.chgPct >= 8 ? "jump" : "rise") : (q.chgPct <= -8 ? "slide" : "fall")} ${Math.abs(q.chgPct).toFixed(1)}%`,
+        dek: `The stock closed at ${fmtPx(q.price)} on ${fmtDate(q.date)}${offHigh != null ? (offHigh < -1 ? `, ${Math.abs(offHigh).toFixed(0)}% below its high of the past year (${fmtPx(q.hi52)})` : ", near its high of the past year") : ""}. The market values the company at ${money(c.mcap)}.`,
       });
     });
   }
@@ -346,8 +357,8 @@ function briefs() {
     const p = c.pipeline.find((pp) => pp.d === x.drug);
     add({
       kind: "readout", c, weight: 60 - d / 8,
-      headline: `${x.drug || c.n} ${p ? `${p.ph} ` : ""}data expected in ${d} days`,
-      dek: `${c.n}${p ? ` is testing ${x.drug} in ${p.ind.toLowerCase()}` : ""}. The ${x.est ? "estimated " : ""}date is ${fmtDate(x.date)}${x.est ? ", taken from the trial registry, so topline results may come later" : ""}.`,
+      headline: `${x.drug || c.n} ${p ? `${p.ph} ` : ""}results could be ${d} days away`,
+      dek: `${c.n}${p ? ` is testing ${x.drug} in ${p.ind.toLowerCase()}` : " has a trial finishing soon"}. ${x.est ? `The trial registry lists ${fmtDate(x.date)}, but results often come out weeks or months after that.` : `The company expects results by ${fmtDate(x.date)}.`}`,
     });
   });
 
@@ -357,8 +368,8 @@ function briefs() {
     const nc = nextCatalyst(tight);
     add({
       kind: "runway", c: tight, weight: 70 - runway(tight),
-      headline: `${tight.n} has the shortest cash runway in the group`,
-      dek: `${runwayLine(tight)}${nc ? ` Its next dated event, ${shortLabel(nc.label)}, is due ${fmtDate(nc.date)}.` : ""}`,
+      headline: `${tight.n} has less cash runway than any company we track`,
+      dek: `${runwayLine(tight)}${nc ? ` Its next big event, ${plainLabel(nc.label)}, is expected around ${fmtDate(nc.date)}.` : ""}`,
     });
   }
 
@@ -367,8 +378,10 @@ function briefs() {
   if (dil && dil.dil24 > 15) {
     add({
       kind: "dilution", c: dil, weight: dil.dil24 / 2,
-      headline: `${dil.n}${dil.n.endsWith("s") ? "'" : "'s"} share count is up ${dil.dil24.toFixed(0)}% in two years`,
-      dek: `Shares outstanding now total ${num(dil.shares, 1)} million, according to its latest SEC filing. ${dil.financings.length} offering ${dil.financings.length === 1 ? "filing" : "filings"} in the past three years.`,
+      headline: dil.dil24 >= 100
+        ? `${dil.n} has ${(1 + dil.dil24 / 100).toFixed(1)} times as many shares as two years ago`
+        : `${dil.n} has ${dil.dil24.toFixed(0)}% more shares than two years ago`,
+      dek: `It now has ${num(dil.shares, 1)} million shares, according to its latest SEC filing${dil.financings.length ? `, after ${dil.financings.length === 1 ? "one offering filing" : `${dil.financings.length} offering filings`} in the past three years` : ""}. Every new share shrinks existing holders' slice.`,
     });
   }
   // Financing pressure leads the page: the company most likely to need money before its next catalyst.
@@ -377,14 +390,14 @@ function briefs() {
     const cat = f.catalyst;
     add({
       kind: "pressure", c, weight: (i === 0 ? 300 : 90) + f.score,
-      headline: c.cashFlowPositive ? `${c.n} faces little financing pressure`
-        : `${c.n} has ${num(f.runway, 0)} months of cash${cat ? ` and ${cat.kind === "regulatory" ? "an FDA decision" : `a ${(c.pipeline.find((p) => p.d === cat.drug)?.ph || "trial")} readout`} in ${num(f.monthsToCatalyst, 0)}` : ""}`,
-      dek: `Its Financing Pressure Score is ${f.score}, in the ${f.band} band. ${!cat
-        ? `No clinical or regulatory event is dated, so the score assumes one ${NO_CATALYST_MONTHS} months out${(() => { const t = f.parts.find((p) => p.key === "trend"); return t?.present && t.value > 10 ? `, and burn is up ${Math.round(t.value)}% from a year earlier` : ""; })()}.`
+      headline: c.cashFlowPositive ? `${c.n} is under little pressure to raise money`
+        : `${c.n} has ${monthsSay(f.runway)} of cash${cat ? ` and ${cat.kind === "regulatory" ? "an FDA decision" : `${(c.pipeline.find((p) => p.d === cat.drug)?.ph || "trial")} results`} due in ${monthsSay(f.monthsToCatalyst)}` : " and nothing big on the calendar"}`,
+      dek: `That puts it at ${f.score} out of 100 on our Financing Pressure Score, in the ${f.band} band. ${!cat
+        ? `With no trial result or FDA decision dated, we assume the next one is ${NO_CATALYST_MONTHS} months away${(() => { const t = f.parts.find((p) => p.key === "trend"); return t?.present && t.value > 10 ? `, and it's spending ${Math.round(t.value)}% more than a year ago` : ""; })()}.`
         : Math.round(f.gap) < 0
-        ? `Counting a ${BUFFER_MONTHS}-month buffer after ${cat ? plainLabel(cat.label) : "its next catalyst"}, its cash falls about ${Math.round(-f.gap)} months short.`
-        : Math.round(f.gap) === 0 ? `Counting a ${BUFFER_MONTHS}-month buffer after ${cat ? plainLabel(cat.label) : "its next catalyst"}, it has almost nothing to spare.`
-          : `Counting a ${BUFFER_MONTHS}-month buffer after ${cat ? plainLabel(cat.label) : "its next catalyst"}, it has about ${Math.round(f.gap)} months to spare.`}${c.raise?.capacity === "atm" ? " An at-the-market program is on file, so it can sell shares at any time." : c.raise?.capacity === "shelf" ? " A shelf registration is on file." : ""}`,
+        ? `Allowing a ${BUFFER_MONTHS}-month cushion after ${cat ? plainLabel(cat.label) : "its next big event"}, it's about ${Math.round(-f.gap)} months short.`
+        : Math.round(f.gap) === 0 ? `Allowing a ${BUFFER_MONTHS}-month cushion after ${cat ? plainLabel(cat.label) : "its next big event"}, it has almost nothing to spare.`
+          : `Allowing a ${BUFFER_MONTHS}-month cushion after ${cat ? plainLabel(cat.label) : "its next big event"}, it has about ${Math.round(f.gap)} months to spare.`}${c.raise?.capacity === "atm" ? " It already has an at-the-market program, so it can start selling shares any day." : c.raise?.capacity === "shelf" ? " It has a shelf registration ready, which makes a quick raise easy." : ""}`,
     });
   });
   return out.filter((b) => !(b.kind === "runway" && out.some((x) => x.kind === "pressure" && x.c.t === b.c.t)))
@@ -441,15 +454,15 @@ function Home({ go, watch, toggleWatch }) {
     <div className="front-wrap">
       <section className="hero">
         <div className="hero-copy">
-          <h1 className="id-line">The platform that tells you who has to raise money, and when.</h1>
-          <p className="id-sub">Cash, catalysts and the capacity to raise, for {COMPANIES.length} clinical-stage biotechs. Every number traced to its filing.</p>
+          <h1 className="id-line">Know which biotechs will have to raise money, and roughly when.</h1>
+          <p className="id-sub">We follow {COMPANIES.length} clinical-stage biotechs: how much cash they have, when their big news is due, and how fast they could sell stock. Every number links back to the filing it came from.</p>
           <div className="id-ctas">
             <button className="btn primary" onClick={() => go("report")}>Read the Financing Pressure Report</button>
             <button className="btn ghost" onClick={() => go("method")}>How the score works</button>
           </div>
         </div>
         <div className="hero-rail">
-          <p className="rail-cap">Financing Pressure Score today. Select a company to see why.</p>
+          <p className="rail-cap">Today's Financing Pressure Score for every company we track. Pick one to see why.</p>
           <PressureRail go={go} />
         </div>
       </section>
@@ -465,7 +478,7 @@ function Home({ go, watch, toggleWatch }) {
                   ? <><div className="lead-px"><b>{fmtPx(lead.c.quote.price)}</b><Change c={lead.c} abs /></div><PriceChart c={lead.c} height={150} compact /></>
                   : null}
               </div>
-              <p className="byline">Written automatically from SEC filings, ClinicalTrials.gov and market prices{LIVE ? `, updated ${fmtDate(META.generatedAt.slice(0, 10))}` : ""}.</p>
+              <p className="byline">Our software writes these headlines from SEC filings, ClinicalTrials.gov and market prices{LIVE ? `, updated ${fmtDate(META.generatedAt.slice(0, 10))}` : ""}.</p>
             </>
           ) : <p className="empty">No briefs yet. They appear after the first data refresh.</p>}
 
@@ -557,7 +570,7 @@ function Home({ go, watch, toggleWatch }) {
       <div className="two wide-left">
         <section className="panel">
           <header className="ph"><h2>Financing Pressure Score</h2>
-            <span className="ph-note">How likely each company is to need new money before its next major catalyst. Dashed lines mark the Elevated (40) and High (70) bands.</span></header>
+            <span className="ph-note">How likely each company is to need new money before its next big event. The dashed lines mark the Elevated (40) and High (70) bands.</span></header>
           <FpsChart go={go} />
         </section>
         <section className="panel"><RaiseList go={go} /></section>
@@ -802,14 +815,14 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
       {tab === "overview" && (
         <div className="two">
           <section className="panel">
-            <header className="ph"><h2>Key figures</h2><span className="ph-note">Select a figure to see its source and calculation.</span></header>
+            <header className="ph"><h2>Key figures</h2><span className="ph-note">Tap any figure to see where it came from and how we worked it out.</span></header>
             <div className="metrics">
               <div className="metric"><span>Cash runway</span>
                 <Trace value={r >= 120 ? "10+" : num(r)} unit={r >= 120 ? " years" : " months"} tone={r < 12 ? "warn" : ""}
                   source={c.src ? `${c.src.filing?.form || "SEC filing"} balance sheet as of ${fmtDate(c.src.asOf)}: cash plus marketable securities` : `Cash of ${money(c.cash)} and quarterly operating cash use, latest filing`}
                   link={c.src?.filing?.url}
                   calc={`${money(c.cash)} ÷ ${num(c.burn)}M per month`}
-                  reading={r < 12 ? "Financing is likely needed before the next major catalyst." : r < 18 ? "Enough to reach the next event, not enough to negotiate from strength after it." : "Funded through the next catalyst with room to spare."} />
+                  reading={r < 12 ? "Financing is likely needed before the next big event." : r < 18 ? "Enough to reach the next event, not enough to negotiate from strength after it." : "Funded through the next catalyst with room to spare."} />
               </div>
               <div className="metric"><span>Monthly cash burn</span>
                 <Trace value={num(c.burn)} unit="M"
@@ -849,7 +862,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
           <section className="panel">
             <header className="ph"><h2>Risk flags</h2></header>
             <div className="alist tight">
-              {alertsFor(c).length === 0 && <div className="empty">No rules fired. Cash, timing, and dilution all sit inside normal bands.</div>}
+              {alertsFor(c).length === 0 && <div className="empty">Nothing stands out right now. Cash, timing and dilution are all in normal ranges.</div>}
               {alertsFor(c).map((x, i) => <div key={i} className={"alert " + x.sev}>{x.text}</div>)}
             </div>
             <header className="ph mt"><h2>Company facts</h2></header>
@@ -874,7 +887,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
         <div className="stack">
           <section className="panel">
             <header className="ph"><h2>Cash runway</h2>
-              <span className="ph-note">Straight-line burn against reported cash. Use the slider to model a financing.</span></header>
+              <span className="ph-note">How long the cash lasts at today's spending. Drag the slider to see what a new raise would do.</span></header>
             <label className="f wide"><span>Model a raise of {money(raise)} in month 6</span>
               <input type="range" min="0" max="400" step="10" value={raise} onChange={(e) => setRaise(+e.target.value)} /></label>
             <div className="chart">
@@ -1324,7 +1337,7 @@ function PressureRail({ go }) {
         ))}
       </div>
       <div className="rail-axis" aria-hidden="true"><span>0</span><span>40</span><span>70</span><span>100</span></div>
-      {dots.length > pts.length && <p className="rail-note">{dots.length} companies; some of those under the most pressure are named. Hover or select any dot.</p>}
+      {dots.length > pts.length && <p className="rail-note">{dots.length} companies; the most pressed are labeled. Hover over or tap any dot.</p>}
     </div>
   );
 }
@@ -1364,7 +1377,7 @@ function RaiseList({ go }) {
       <li key={c.t}>
         <button onClick={() => go("company", c.t, "pressure")}>
           <span className="rl-t">{c.t}</span>
-          <span className="rl-n">{c.n}<em>{fmtRunway(f.runway, "months")} of cash, {f.catalyst ? `${plainLabel(f.catalyst.label)} in ${Math.round(f.monthsToCatalyst)} months` : "no dated catalyst"}</em></span>
+          <span className="rl-n">{c.n}<em>{f.runway >= 120 ? "10+ years" : `${Math.round(f.runway)} months`} of cash · {f.catalyst ? `${plainLabel(f.catalyst.label)} in ~${Math.round(f.monthsToCatalyst)} months` : "nothing big on the calendar"}</em></span>
           <BandBadge c={c} />
         </button>
       </li>
@@ -1388,10 +1401,10 @@ function FpsPanel({ c, go }) {
   const prog = cat ? c.pipeline.find((p) => p.d === cat.drug) : null;
   const atmUrl = c.raise?.atm?.url || c.raise?.shelf?.url;
   const interp = f.band === "High"
-    ? "High likelihood of an equity raise around the next catalyst; existing holders face dilution risk."
+    ? "It will very likely sell new shares around its next big event, and existing holders would be diluted."
     : f.band === "Elevated"
-      ? "A raise before or soon after the next catalyst is plausible; watch for offering filings."
-      : "Cash covers the next catalyst with room to spare; near-term financing pressure is low.";
+      ? "A raise before or soon after its next big event is quite possible. Watch for offering filings."
+      : "Its cash comfortably covers the next big event, so it's under little pressure to raise soon.";
   const steps = [
     ["Source data", `Cash and investments: ${money(c.cash)}`, q ? <ExtLink href={q.url}>{q.form} balance sheet, {fmtDate(c.src.asOf)}</ExtLink> : "Latest filing"],
     ["Source data", c.cashFlowPositive ? "Operating cash flow is positive" : `Operating cash burn: ${money(c.burn * 3)} a quarter (${money(c.burn)} a month)`, q ? <ExtLink href={q.url}>Cash-flow statement, trailing twelve months</ExtLink> : "Latest filing"],
@@ -1405,7 +1418,7 @@ function FpsPanel({ c, go }) {
     <div className="stack">
       <section className="panel">
         <header className="ph"><h2>Financing Pressure Score</h2>
-          <span className="ph-note">How likely {c.n} is to need new money before its next major catalyst.</span></header>
+          <span className="ph-note">How likely {c.n} is to need new money before its next big event.</span></header>
         <div className="fps-head">
           <BandBadge c={c} size="lg" />
           <p>{interp} {f.missing.length > 0 && <span className="sub inline">Scored on {f.coverage}% of the weights; not available: {f.missing.join(", ").toLowerCase()}.</span>}</p>
@@ -1439,10 +1452,10 @@ function FpsPanel({ c, go }) {
       <section className="panel">
         <header className="ph"><h2>What to watch next quarter</h2></header>
         <ul className="watch">
-          <li>Any 8-K announcing an offering, private placement or ATM sales.</li>
-          <li>Whether burn rises further ahead of {cat ? shortLabel(cat.label) : "the next catalyst"}{f.parts.find((p) => p.key === "trend")?.present ? ` (currently ${f.parts.find((p) => p.key === "trend").value > 0 ? "+" : ""}${num(f.parts.find((p) => p.key === "trend").value, 0)}% year on year)` : ""}.</li>
-          <li>Changes to the catalyst date, which would move the gap and the score.</li>
-          <li>New partnerships or non-dilutive funding that would lower pressure.</li>
+          <li>Any filing announcing an offering, a private placement or share sales through its ATM program.</li>
+          <li>Whether spending keeps rising before {cat ? plainLabel(cat.label) : "its next big event"}{f.parts.find((p) => p.key === "trend")?.present ? ` (it's ${f.parts.find((p) => p.key === "trend").value >= 0 ? "up" : "down"} ${num(Math.abs(f.parts.find((p) => p.key === "trend").value), 0)}% on a year ago)` : ""}.</li>
+          <li>Any change to the expected date of that event, which would move the score.</li>
+          <li>New partnerships, grants or loans: money that doesn't mean selling shares, which would ease the pressure.</li>
         </ul>
         {go && <button className="morelink" onClick={() => go("method")}>How the score is calculated</button>}
       </section>
@@ -1618,9 +1631,9 @@ function PressureReport({ go }) {
   const topTrend = tf?.parts.find((p) => p.key === "trend");
   const capPhrase = top?.raise?.capacity === "atm" ? ", and it already has an at-the-market program it can sell shares through" : top?.raise?.capacity === "shelf" ? ", with a shelf registration on file" : "";
   const headline = top && !tf.catalyst
-    ? `${top.n} has about ${Math.round(tf.runway)} months of cash and no dated clinical or regulatory event. ${topTrend?.present && topTrend.value > 10 ? `Its burn is up ${Math.round(topTrend.value)}% from a year earlier` : "Its burn is steady"}${capPhrase.replace(", and it already has", ", and it already has").replace(", with a shelf", ", and it has a shelf")}.`
+    ? `Top of the list this week: ${top.n}. It has ${monthsSay(tf.runway)} of cash and no trial result or FDA decision on the calendar. ${topTrend?.present && topTrend.value > 10 ? `It's spending ${Math.round(topTrend.value)}% more than a year ago` : "Its spending is steady"}${capPhrase}.`
     : top
-    ? `${top.n} has about ${num(tf.runway, 0)} months of cash${tf.catalyst ? ` and its ${plainLabel(tf.catalyst.label)} is ${Math.round(tf.monthsToCatalyst)} months away` : ""}, ${Math.round(tf.gap) <= 0 ? "leaving almost no buffer once the data is in" : `leaving about ${Math.round(tf.gap)} months of cash after a ${BUFFER_MONTHS}-month buffer`}${top.raise?.capacity === "atm" ? ", and it already has an at-the-market program it can sell shares through" : top.raise?.capacity === "shelf" ? ", with a shelf registration on file" : ""}.`
+    ? `Top of the list this week: ${top.n}. It has ${monthsSay(tf.runway)} of cash${tf.catalyst ? `, and ${plainLabel(tf.catalyst.label)} is ${monthsSay(tf.monthsToCatalyst)} away` : ""}, ${Math.round(tf.gap) <= 0 ? "which leaves almost no cushion once the news is out" : `which leaves about ${Math.round(tf.gap)} months to spare after a ${BUFFER_MONTHS}-month cushion`}${capPhrase}.`
     : "";
   return (
     <div className="stack">
@@ -1677,9 +1690,9 @@ function PressureReport({ go }) {
 }
 
 const PILLARS = [
-  ["Financing risk first", "We tell you who has to raise, and when.", "The Financing Pressure Score and the Raise List"],
-  ["Every number traced", "Select any figure and see the filing it came from.", "Source links on every metric and a published methodology"],
-  ["Built for the middle", "Terminal-grade biotech analysis without a terminal-sized bill.", "Free to use while in early access"],
+  ["Financing risk first", "We tell you who's likely to raise money, and when.", "The Financing Pressure Score and the Raise List"],
+  ["Every number traced", "Tap any figure and see the filing it came from.", "Source links on every metric and a published methodology"],
+  ["Built for the middle", "Serious biotech analysis without a terminal-sized bill.", "Free to use while in early access"],
   ["Honest about uncertainty", "We publish our misses as well as our hits.", "A public, scored track record"],
 ];
 
@@ -1719,7 +1732,7 @@ function Research({ go }) {
       <section className="panel report-head">
         <p className="kicker-static">Research</p>
         <h1 className="report-h">Could you have seen the raise coming?</h1>
-        <p className="prose">Helixora exists to know who has to raise before they do. This page checks that idea against what actually happened: {rr.rows.length} stock offerings by these companies since {since}, judged only on figures that had been filed before each one.</p>
+        <p className="prose">Helixora's whole idea is spotting who has to raise money before they do. This page tests that idea against what really happened: {rr.rows.length} stock offerings by these companies since {since}, judged only on what had been filed before each one.</p>
       </section>
 
       <section className="panel">
@@ -1919,7 +1932,7 @@ function ReadoutStakes({ go }) {
   return (
     <section className="panel">
       <header className="ph"><h2>What the next result is worth</h2>
-        <span className="ph-note">How each program's chance of approval and risk-adjusted value change if its current phase succeeds or fails. By Bayes' rule, a success lifts the odds to the product of the remaining phase rates; a failure usually ends the program.</span></header>
+        <span className="ph-note">How each program's chance of approval and risk-adjusted value change if its current phase succeeds or fails. A success leaves only the later phases to clear, so the odds jump; a failure usually ends the program.</span></header>
       <div className="tablewrap">
         <table className="grid">
           <thead><tr><th>Program</th><th className="r">Chance this phase succeeds</th><th className="r">Approval odds now</th><th className="r">If it succeeds</th><th className="r">Value at stake</th><th className="r">Share of market value</th></tr></thead>
@@ -2032,7 +2045,7 @@ function BurnForecastPanel({ c }) {
       </section>
       <section className="panel">
         <header className="ph"><h2>Likely size of the next raise</h2>
-          <span className="ph-note">Cash needed to fund the company to 12 months past its next major catalyst, plus a 6-month buffer, at forecast burn.</span></header>
+          <span className="ph-note">Cash needed to fund the company to 12 months past its next big event, plus a 6-month buffer, at forecast burn.</span></header>
         {!r ? <p className="empty">Not enough data to estimate.</p> : r.gap <= 0 ? (
           <p className="finding">No raise needed: current cash covers the next {Math.round(r.months)} months at forecast burn.</p>
         ) : (
@@ -2062,7 +2075,7 @@ function AlertsPanel({ go, only }) {
   return (
     <section className={only ? "panel" : "panel"}>
       <header className="ph"><h2>{only ? "Unusual changes" : "What changed: unusual moves to check"}</h2>
-        <span className="ph-note">Flags only what is unusual for that company: a burn jump outside its normal range, an outsized price move against the biotech index, a new offering filing, a trial date pushed back, or a change in financing-pressure band.</span></header>
+        <span className="ph-note">We only flag what's unusual for that particular company: a jump in spending, a big move against the biotech index, a new offering filing, a delayed trial, or a change in its pressure band.</span></header>
       {list.length === 0 ? <p className="empty">Nothing unusual right now.</p> : (
         <ul className="alertlist">
           {list.map((a, i) => (
@@ -2181,9 +2194,9 @@ function FinancingModelPanel() {
   return (
     <section className="panel">
       <header className="ph"><h2>Can a model predict the next raise? A first test</h2>
-        <span className="ph-note">A logistic regression for "starts a stock offering within 12 months", fit on {m.n} company-quarters ({m.events} followed by an offering), each dated by when its balance sheet was first filed. Every company is predicted by a model that never saw it.</span></header>
+        <span className="ph-note">A simple statistical model (logistic regression) that guesses whether a company will start a stock offering within 12 months. It learned from {m.n} company-quarters ({m.events} followed by an offering), each dated by when its balance sheet was first made public, and every company is predicted by a version that never saw it.</span></header>
       <p className="finding">{beats
-        ? `The model beats the simple average by ${pctW(m.skill)} on Brier score.`
+        ? `It beats simply guessing the average, but only by ${pctW(m.skill)} on the Brier score. That's a start, not proof.`
         : `Not yet. ${pctW(m.base)} of company-quarters were followed by an offering within a year, so simply assuming the average does better than the model (Brier score ${num(m.brierBase, 3)} vs. ${num(m.brier, 3)}).`}</p>
       <p className="prose">{beats ? "" : "For these companies, raising within a year is the norm; the open question is timing, which is what the Financing Pressure Score and readout windows address. The model needs a much larger group of companies, including ones that failed or were bought, before it can be judged. "}Inputs: {FEATURES.join(", ").toLowerCase()}. Period: offerings from {fmtDate(m.start)}, judged on balance sheets filed up to {fmtDate(m.cutoff)}.</p>
       {beats && (
@@ -2293,7 +2306,7 @@ function Outlook({ go }) {
       <section className="panel report-head">
         <p className="kicker-static">Trials and FDA</p>
         <h1 className="report-h">What's coming, how likely it is to work, and what could move it</h1>
-        <p className="prose">Readout windows, trial design warning signs, drug-specific odds of approval, FDA decision patterns, competitor read-through, launch sales and exclusivity, for every tracked program. Each model is version {TRIALS_VERSION}, its rules are written out below, and it will be checked against what happens.</p>
+        <p className="prose">For every program we track: when results are likely, warning signs in how the trial was designed, the odds of approval, how the FDA tends to decide, rival trials, launch sales, and how long the drug is protected from copies. Each model is a first version ({TRIALS_VERSION}) with its rules written out below, and we'll check it against what actually happens.</p>
       </section>
 
       <section className="panel">
@@ -2583,8 +2596,8 @@ function About({ go, anchor }) {
     <div className="stack about">
       <section className="panel report-head">
         <p className="kicker-static">About us</p>
-        <h1 className="report-h">The platform that tells you who has to raise money, and when.</h1>
-        <p className="lead-dek">Catalyst calendars show dates. Enterprise terminals cost a fortune. Helixora connects cash, catalysts and the capacity to raise capital, for funds, family offices and serious independent investors, with every number traced to its filing.</p>
+        <h1 className="report-h">We help investors see a biotech's next stock sale coming.</h1>
+        <p className="lead-dek">Catalyst calendars give you dates. Professional terminals cost a fortune. Helixora puts a company's cash, its upcoming news and its ability to raise money side by side, for funds, family offices and serious individual investors, and shows you the filing behind every number.</p>
         <nav className="toc" aria-label="On this page">
           {ABOUT_SECTIONS.map(([id, l]) => <button key={id} onClick={() => jump(id)}>{l}</button>)}
         </nav>
@@ -2666,7 +2679,7 @@ function About({ go, anchor }) {
 
       <section className="panel" id="score">
         <header className="ph"><h2>The Financing Pressure Score</h2><span className="ph-note">Version {FPS_VERSION}, updated {fmtDate(FPS_UPDATED)}</span></header>
-        <p className="prose">One number from 0 to 100 for one question: how likely is a company to need new money before its next major catalyst? It describes a financing situation. It never says buy or sell.</p>
+        <p className="prose">One number from 0 to 100 for one question: how likely is a company to need new money before its next big event? It describes a financing situation. It never says buy or sell.</p>
         <div className="tablewrap">
           <table className="grid plain">
             <thead><tr><th>Component</th><th className="r">Weight</th><th>What it measures</th><th>How it is scored</th></tr></thead>
@@ -2684,7 +2697,7 @@ function About({ go, anchor }) {
           <dt>Raise-ready capacity</dt><dd>An at-the-market program is identified from a sales agreement disclosed in a prospectus supplement (424B5) or shelf registration (S-3) filed in the past three years. Each company page links to the filing used.</dd>
           <dt>Missing data</dt><dd>If a component can't be calculated from filings, it is left out and the remaining weights are scaled up. The company page says which components were used.</dd>
         </dl>
-        <p className="colnote">Weights are a starting hypothesis. We will backtest them against historical offerings and publish every change below.</p>
+        <p className="colnote">These weights are our best first guess. We'll test them against past offerings and log every change below.</p>
       </section>
 
       <div id="coverage" className="anchor"><CoveragePanel /></div>
@@ -2707,9 +2720,9 @@ function About({ go, anchor }) {
         </div>
         <h3 className="subhead">Three products, in this order</h3>
         <ol className="tr-list">
-          <li><b>Financial survival and dilution monitor.</b> Live: the Pressure Report, the Financing Pressure Score and the cash survival simulation. <button className="morelink" style={{ padding: 0 }} onClick={() => go("report")}>Open</button></li>
-          <li><b>Clinical catalyst and event intelligence.</b> Live in a first version: readout windows, trial design flags, FDA decisions and rival trials. <button className="morelink" style={{ padding: 0 }} onClick={() => go("outlook")}>Open</button></li>
-          <li><b>Risk-adjusted pipeline valuation engine.</b> Started: drug-specific odds and a simulated range of equity values on each company's Valuation tab.</li>
+          <li><b>Cash and dilution tracker.</b> Live now: the Pressure Report, the Financing Pressure Score and the cash simulation. <button className="morelink" style={{ padding: 0 }} onClick={() => go("report")}>Open</button></li>
+          <li><b>Trials and FDA events.</b> A first version is live: readout windows, trial design flags, FDA decisions and rival trials. <button className="morelink" style={{ padding: 0 }} onClick={() => go("outlook")}>Open</button></li>
+          <li><b>Pipeline valuation.</b> Started: drug-by-drug odds and a simulated range of values on each company's Valuation tab.</li>
         </ol>
         <h3 className="subhead">The model library</h3>
         <div className="tablewrap">

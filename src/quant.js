@@ -263,7 +263,7 @@ export function anomalies(c, { benchmark, history, todayIso, version } = {}) {
   if (b.length >= 6) {
     const ch = b.slice(1).map((r, i) => Math.log(r.burn / b[i].burn));
     const last = ch.at(-1), z = robustZ(last, ch.slice(0, -1));
-    if (Math.abs(z) >= 3 && Math.abs(last) >= 0.15) out.push({ kind: "burn", sev: last > 0 ? "med" : "low", date: b.at(-1).filed, text: `Burn ${last > 0 ? "jumped" : "fell"} ${Math.round(Math.abs(Math.exp(last) - 1) * 100)}% in the latest filing, far outside its usual quarter-to-quarter change.` });
+    if (Math.abs(z) >= 3 && Math.abs(last) >= 0.15) out.push({ kind: "burn", sev: last > 0 ? "med" : "low", date: b.at(-1).filed, text: `Spending ${last > 0 ? "jumped" : "dropped"} ${Math.round(Math.abs(Math.exp(last) - 1) * 100)}% in the latest quarter, a much bigger change than usual for this company.` });
   }
   // 2. Unusual price move against the biotech index in the last week
   const h = c.quote?.history || [];
@@ -278,15 +278,15 @@ export function anomalies(c, { benchmark, history, todayIso, version } = {}) {
     const base = ar.slice(0, -5).map((x) => x.v);
     for (const x of ar.slice(-5)) {
       const z = robustZ(x.v, base);
-      if (Math.abs(z) >= 4 && Math.abs(x.v) >= 0.08) out.push({ kind: "price", sev: "med", date: x.d, text: `Shares moved ${x.v > 0 ? "+" : "−"}${Math.round(Math.abs(x.v) * 100)}% against the biotech index on ${x.d}, an unusually large move for this stock.` });
+      if (Math.abs(z) >= 4 && Math.abs(x.v) >= 0.08) out.push({ kind: "price", sev: "med", date: x.d, text: `The stock ${x.v > 0 ? "beat" : "trailed"} the biotech index by ${Math.round(Math.abs(x.v) * 100)}% on ${new Date(x.d + "T12:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" })}, an unusually big move for this stock.` });
     }
   }
   // 3. New offering filings
   for (const f of (c.financings || []).filter((f) => daysAgo(f.date) >= 0 && daysAgo(f.date) <= 21)) {
-    out.push({ kind: "offering", sev: "high", date: f.date, url: f.url, text: `New offering filing: ${f.type}.` });
+    out.push({ kind: "offering", sev: "high", date: f.date, url: f.url, text: /424B4/.test(f.type) ? "It just priced a stock offering." : /424B5/.test(f.type) ? "It just filed to sell new shares." : `New filing to raise money: ${f.type}.` });
   }
   // 4. Trial dates pushed back
-  for (const p of c.pipeline || []) if (p.slips > 0) out.push({ kind: "trial", sev: "med", date: null, text: `${p.d}: completion date pushed back ${p.slips} time${p.slips === 1 ? "" : "s"} since tracking began.` });
+  for (const p of c.pipeline || []) if (p.slips > 0) out.push({ kind: "trial", sev: "med", date: null, text: `${p.d}: the trial's finish date has been pushed back ${p.slips === 1 ? "once" : p.slips === 2 ? "twice" : `${p.slips} times`} since we started tracking it.` });
   // 5. Financing Pressure band change in the last two weeks of snapshots
   // Compare only snapshots made by the same score version, so a model change isn't reported as a company change.
   const snaps = (history?.snapshots || []).filter((s) => s.scores?.[c.t] && s.v && s.v === version);
@@ -294,7 +294,7 @@ export function anomalies(c, { benchmark, history, todayIso, version } = {}) {
     const recent = snaps.filter((s) => daysAgo(s.date) <= 14);
     const before = snaps.filter((s) => daysAgo(s.date) > 14).at(-1) || recent[0];
     const now = snaps.at(-1);
-    if (before && now && before.scores[c.t].band !== now.scores[c.t].band) out.push({ kind: "score", sev: "med", date: now.date, text: `Financing pressure moved from ${before.scores[c.t].band} to ${now.scores[c.t].band}.` });
+    if (before && now && before.scores[c.t].band !== now.scores[c.t].band) out.push({ kind: "score", sev: "med", date: now.date, text: `Financing pressure went from ${before.scores[c.t].band} to ${now.scores[c.t].band} in the past two weeks.` });
   }
   return out.map((a) => ({ ...a, t: c.t }));
 }
