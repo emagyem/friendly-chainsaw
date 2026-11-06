@@ -360,7 +360,7 @@ async function main() {
       if (older) f.add(older);
     }
     const last = f.rows.reduce((m, r) => (r.date > m ? r.date : m), "");
-    companies.set(cik, { cik, name: f.sub.name || name, sic: String(f.sub.sic), filings: f.rows, alive: last >= addDays(TODAY_ISO, -400) && (f.sub.tickers || []).length > 0 });
+    companies.set(cik, { cik, name: f.sub.name || name, sic: String(f.sub.sic), filings: f.rows, last, alive: last >= addDays(TODAY_ISO, -400) && (f.sub.tickers || []).length > 0 });
   }
   console.log(`  ${companies.size} drug and biotech companies`);
 
@@ -385,17 +385,21 @@ async function main() {
       const y6 = !!next && next.date <= addDays(q.filed, 182);
       const off = events.find((e) => e.date > q.filed && e.how === "offering filing");
       const yOff12 = !!off && off.date <= addDays(q.filed, 365);
-      rows.push({ cik: co.cik, ...q, y12, y6, yOff12, how: y12 ? next.how : null, lead: y12 ? Math.round(monthsBetween(q.filed, next.date) * 10) / 10 : null });
-      if (EXAMPLES.has(co.cik)) examples.push({ name: co.name, filed: q.filed, cash: q.cash, runway: q.runway, score: q.score, band: q.band, raisedWithinYear: y12, how: y12 ? next.how : null, nextRaise: next?.date || null });
+      const yOff6 = !!off && off.date <= addDays(q.filed, 182);
+      // Stopped filing within the year (bankruptcy, wind-down or sale): the need for money was resolved without a raise.
+      const ended = !co.alive && co.last <= addDays(q.filed, 365);
+      rows.push({ cik: co.cik, ...q, y12, y6, yOff12, yOff6, yEnd12: y12 || ended, yEnd6: y6 || (!co.alive && co.last <= addDays(q.filed, 182)), how: y12 ? next.how : null, lead: y12 ? Math.round(monthsBetween(q.filed, next.date) * 10) / 10 : null });
+      if (EXAMPLES.has(co.cik) && q.filed >= "2016-01-01") examples.push({ name: co.name, filed: q.filed, cash: q.cash, runway: q.runway, score: q.score, band: q.band, raisedWithinYear: y12, how: y12 ? next.how : null, nextRaise: next?.date || null });
     }
   }
   console.log(`  ${rows.length} company-quarters`);
 
   const result = evaluate(rows, companies);
   // Robustness: count only formal offering filings as a raise, ignoring share-count jumps.
-  const offRows = rows.map((r) => ({ ...r, y12: r.yOff12 }));
-  const off = evaluate(offRows, companies);
+  const off = evaluate(rows.map((r) => ({ ...r, y12: r.yOff12, y6: r.yOff6 })), companies);
   result.offeringsOnly = { base12: off.base12, auc: off.auc, bands: off.bands };
+  const end = evaluate(rows.map((r) => ({ ...r, y12: r.yEnd12, y6: r.yEnd6 })), companies);
+  result.raisedOrEnded = { base12: end.base12, auc: end.auc, bands: end.bands, survivorsAuc: end.survivors.auc, nonSurvivorsAuc: end.nonSurvivors.auc };
   result.eventsByHow = { "offering filing": rows.filter((r) => r.how === "offering filing").length, "share count jump": rows.filter((r) => r.how === "share count jump").length };
   result.examples = examples;
   const out = {
