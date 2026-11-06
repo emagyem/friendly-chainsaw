@@ -1,18 +1,14 @@
-// Temporary: checks which historical data sources are reachable and what they contain.
-const UA = process.env.SEC_USER_AGENT;
-const B = { "User-Agent": "Mozilla/5.0 (Helixora research)" };
-for (const u of ["https://aact.ctti-clinicaltrials.org/archive/download", "https://aact.ctti-clinicaltrials.org/pipe_files", "https://aact.ctti-clinicaltrials.org/download", "https://aact.ctti-clinicaltrials.org/archive"]) {
-  try {
-    const r = await fetch(u, { headers: B }); const t = await r.text();
-    const links = [...new Set([...t.matchAll(/href="([^"]+)"/g)].map((m) => m[1]).filter((h) => /zip|digitalocean|download|snapshot|\d{8}/i.test(h)))];
-    console.log(`\n## ${u} ${r.status} links=${links.length}\n` + links.slice(0, 40).join("\n") + (links.length > 40 ? `\n... ${links.length - 40} more\n` + links.slice(-15).join("\n") : ""));
-  } catch (e) { console.log(u, e.message); }
+// Temporary: checks SEC endpoints for the backtest.
+const H = { "User-Agent": process.env.SEC_USER_AGENT };
+const j = async (u) => { const r = await fetch(u, { headers: H }); return r.ok ? r.json() : { status: r.status }; };
+const fr = await j("https://data.sec.gov/api/xbrl/frames/us-gaap/ResearchAndDevelopmentExpense/USD/CY2015Q1.json");
+console.log("## R&D frame CY2015Q1 rows", fr.data?.length, JSON.stringify(fr.data?.slice(0, 2)));
+const fr2 = await j("https://data.sec.gov/api/xbrl/frames/us-gaap/ResearchAndDevelopmentExpense/USD/CY2015.json");
+console.log("## R&D frame CY2015 rows", fr2.data?.length);
+const q = (s) => `https://efts.sec.gov/LATEST/search-index?q=${encodeURIComponent(s)}&forms=424B5&dateRange=custom&startdt=2016-01-01&enddt=2016-12-31`;
+for (const s of ['"sales agreement"', '"at the market offering"', '"equity distribution agreement"']) {
+  const r = await j(q(s));
+  console.log(`## efts ${s}`, r.status || "", "total", JSON.stringify(r.hits?.total), "sample", JSON.stringify(r.hits?.hits?.[0]?._source ? { ciks: r.hits.hits[0]._source.ciks, date: r.hits.hits[0]._source.file_date, form: r.hits.hits[0]._source.form, adsh: r.hits.hits[0]._source.adsh, names: r.hits.hits[0]._source.display_names } : null));
 }
-// Public float (a free, filed market-value figure) for a dead company
-const f = await (await fetch("https://data.sec.gov/api/xbrl/companyfacts/CIK0001301501.json", { headers: { "User-Agent": UA } })).json();
-const pf = f.facts?.dei?.EntityPublicFloat?.units?.USD || [];
-console.log("\n## Achaogen public float rows", pf.length, JSON.stringify(pf.slice(-4)));
-const sub = await (await fetch("https://data.sec.gov/submissions/CIK0001301501.json", { headers: { "User-Agent": UA } })).json();
-const r = sub.filings.recent; const forms = {};
-r.form.forEach((x) => { forms[x] = (forms[x] || 0) + 1; });
-console.log("## Achaogen forms", JSON.stringify(forms), "older files:", JSON.stringify(sub.filings.files));
+const r = await j("https://efts.sec.gov/LATEST/search-index?q=%22sales%20agreement%22&forms=424B5&dateRange=custom&startdt=2016-01-01&enddt=2016-12-31&from=100");
+console.log("## efts paging from=100", r.hits?.hits?.length, Object.keys(r.hits?.hits?.[0]?._source || {}).join(","));
