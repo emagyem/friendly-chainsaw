@@ -14,4 +14,4 @@ jobs:
         with: { node-version: 22 }
       - run: node scripts/probe-backtest.mjs
         env:
-          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+          SEC_USER_AGENT: "Helixora research ${{ vars.SEC_CONTACT_EMAIL }}"
