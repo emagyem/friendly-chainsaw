@@ -45,7 +45,10 @@ const TODAY_ISO = TODAY.toISOString().slice(0, 10);
 const START = "2012-01-01";
 const SICS = new Set(["2834", "2836", "8731"]); // pharma preparations, biological products, commercial biological research
 const MAX_REVENUE_M = 50; // trailing revenue above this isn't "clinical stage"
-const JUMP = 0.15; // a 15%+ jump in shares outstanding counts as a raise (catches ATM sales and private placements)
+const JUMP = 0.15;
+// A few well-known cases printed in full so the results can be checked by hand:
+// Achaogen (bankrupt 2019), Clovis Oncology (bankrupt 2022), Viking Therapeutics, Arrowhead.
+const EXAMPLES = new Set([1301501, 1466301, 1607678, 879407]); // a 15%+ jump in shares outstanding counts as a raise (catches ATM sales and private placements)
 
 const toDate = (iso) => new Date(iso + "T00:00:00Z");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -367,6 +370,7 @@ async function main() {
 
   console.log("Scoring every company-quarter…");
   const rows = [];
+  const examples = [];
   i = 0;
   for (const co of companies.values()) {
     if (++i % 200 === 0) console.log(`  ${i}/${companies.size}, ${rows.length} rows, ${calls} requests`);
@@ -379,12 +383,21 @@ async function main() {
       const next = events.find((e) => e.date > q.filed);
       const y12 = !!next && next.date <= addDays(q.filed, 365);
       const y6 = !!next && next.date <= addDays(q.filed, 182);
-      rows.push({ cik: co.cik, ...q, y12, y6, how: y12 ? next.how : null, lead: y12 ? Math.round(monthsBetween(q.filed, next.date) * 10) / 10 : null });
+      const off = events.find((e) => e.date > q.filed && e.how === "offering filing");
+      const yOff12 = !!off && off.date <= addDays(q.filed, 365);
+      rows.push({ cik: co.cik, ...q, y12, y6, yOff12, how: y12 ? next.how : null, lead: y12 ? Math.round(monthsBetween(q.filed, next.date) * 10) / 10 : null });
+      if (EXAMPLES.has(co.cik)) examples.push({ name: co.name, filed: q.filed, cash: q.cash, runway: q.runway, score: q.score, band: q.band, raisedWithinYear: y12, how: y12 ? next.how : null, nextRaise: next?.date || null });
     }
   }
   console.log(`  ${rows.length} company-quarters`);
 
   const result = evaluate(rows, companies);
+  // Robustness: count only formal offering filings as a raise, ignoring share-count jumps.
+  const offRows = rows.map((r) => ({ ...r, y12: r.yOff12 }));
+  const off = evaluate(offRows, companies);
+  result.offeringsOnly = { base12: off.base12, auc: off.auc, bands: off.bands };
+  result.eventsByHow = { "offering filing": rows.filter((r) => r.how === "offering filing").length, "share count jump": rows.filter((r) => r.how === "share count jump").length };
+  result.examples = examples;
   const out = {
     generatedAt: new Date().toISOString(),
     fpsVersion: FPS_VERSION,
