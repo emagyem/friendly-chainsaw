@@ -11,6 +11,8 @@ import { computeFPS } from "../src/fps.js";
 
 export const MAX_QUESTION = 400;
 const MAX_TOKENS = 600;
+// Claude may think before answering; give it room so thinking can't use up the whole budget.
+const CLAUDE_MAX_TOKENS = 2000;
 const DATA_TTL_MS = 10 * 60 * 1000;
 // Cloudflare Workers AI model used when no working Anthropic key is available.
 export const WORKERS_AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
@@ -109,16 +111,20 @@ QUESTION: ${q}`;
       const r = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
         headers: { "content-type": "application/json", "x-api-key": apiKey, "anthropic-version": "2023-06-01" },
-        body: JSON.stringify({ model: model || "claude-sonnet-5-5", max_tokens: MAX_TOKENS, messages: [{ role: "user", content: prompt }] }),
+        body: JSON.stringify({ model: model || "claude-sonnet-5-5", max_tokens: CLAUDE_MAX_TOKENS, messages: [{ role: "user", content: prompt }] }),
       });
       const body = await r.json();
       if (r.ok) {
         const text = (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
-        return json(200, { text, engine: "claude" });
+        if (text) return json(200, { text, engine: "claude" });
+        // An empty answer: say why (stop reason and block types), then fall back below.
+        claudeError = { reason: "empty_answer", detail: `stop_reason=${body.stop_reason}; blocks=${(body.content || []).map((b) => b.type).join(",") || "none"}` };
+        console.error("Claude returned no text", claudeError.detail);
+      } else {
+        console.error("Anthropic API error", r.status, body?.error?.type);
+        // The error type (e.g. authentication_error) helps diagnose setup problems and reveals nothing secret.
+        claudeError = { reason: body?.error?.type || `HTTP ${r.status}`, detail: (body?.error?.message || "").slice(0, 160) };
       }
-      console.error("Anthropic API error", r.status, body?.error?.type);
-      // The error type (e.g. authentication_error) helps diagnose setup problems and reveals nothing secret.
-      claudeError = { reason: body?.error?.type || `HTTP ${r.status}`, detail: (body?.error?.message || "").slice(0, 160) };
     } catch (e) {
       console.error(e);
       claudeError = { reason: "network", detail: "Could not reach the model" };
@@ -135,7 +141,7 @@ ${JSON.stringify(compactFacts(cache.facts))}
 QUESTION: ${q}`;
       const out = await ai.run(WORKERS_AI_MODEL, { messages: [{ role: "user", content: short }], max_tokens: MAX_TOKENS, temperature: 0.2 });
       const text = (typeof out?.response === "string" ? out.response : JSON.stringify(out?.response ?? "")).trim();
-      if (text) return json(200, { text, engine: "workers-ai", ...(claudeError ? { claudeError: claudeError.reason } : {}) });
+      if (text) return json(200, { text, engine: "workers-ai", ...(claudeError ? { claudeError: claudeError.reason, claudeDetail: claudeError.detail } : {}) });
     } catch (e) {
       console.error("Workers AI error", e);
       return json(502, { error: "The model request failed", reason: "workers_ai", detail: String(e?.message || e).slice(0, 160), claudeError: claudeError?.reason });
