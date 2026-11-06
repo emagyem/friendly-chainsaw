@@ -24,7 +24,7 @@ export async function onRequestPost({ request, env }) {
 
   return answer({
     question: payload?.question,
-    apiKey: (env.ANTHROPIC_API_KEY || "").trim(), // pasted keys often carry a trailing line break
+    apiKey: (env.ANTHROPIC_API_KEY || "").trim().replace(/^["']|["']$/g, ""), // pasted keys often carry a line break or quotes
     model: (env.ANTHROPIC_MODEL || "").trim() || undefined,
     // Read the published data file straight from this deployment's static files.
     loadDataFile: async () => {
