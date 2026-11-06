@@ -1,0 +1,21 @@
+# Cloudflare Pages configuration for helixora.pages.dev.
+# This file is the source of truth for the project's bindings and plain
+# variables; secrets (ANTHROPIC_API_KEY, TURNSTILE_SECRET_KEY) stay in the
+# Cloudflare dashboard.
+name = "helixora"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-24"
+
+[vars]
+# Public key for the Turnstile human check (safe to publish).
+TURNSTILE_SITE_KEY = "0x4AAAAAAF1xb1NsRT9urNW9"
+
+# Waitlist sign-ups and rate-limit counters.
+[[d1_databases]]
+binding = "WAITLIST"
+database_name = "helixora-waitlist"
+database_id = "5e2bf5d9-3747-4edd-a765-8098ca538787"
+
+# Cloudflare Workers AI: answers Ask questions when no working Anthropic key is set.
+[ai]
+binding = "AI"

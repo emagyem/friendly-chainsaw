@@ -3,8 +3,10 @@
 
    Needs one secret, set in Cloudflare → Workers & Pages → (project)
    → Settings → Variables and Secrets:
-     ANTHROPIC_API_KEY   (type: Secret)
+     ANTHROPIC_API_KEY   (type: Secret) optional: Claude answers when it works
      ANTHROPIC_MODEL     optional, defaults to claude-sonnet-5-5
+   Without a working key, Ask uses Cloudflare Workers AI through the AI
+   binding declared in wrangler.toml (no key needed; free daily allowance).
      TURNSTILE_SECRET_KEY  optional (Secret): turns on the human check
    Also set a monthly spend limit on the key in the Anthropic Console.
 ------------------------------------------------------------------- */
@@ -26,6 +28,7 @@ export async function onRequestPost({ request, env }) {
     question: payload?.question,
     apiKey: (env.ANTHROPIC_API_KEY || "").trim().replace(/^["']|["']$/g, ""), // pasted keys often carry a line break or quotes
     model: (env.ANTHROPIC_MODEL || "").trim() || undefined,
+    ai: env.AI,
     // Read the published data file straight from this deployment's static files.
     loadDataFile: async () => {
       const res = await env.ASSETS.fetch(new URL("/data/companies.json", request.url));

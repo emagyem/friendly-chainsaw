@@ -12,6 +12,8 @@ import { computeFPS } from "../src/fps.js";
 export const MAX_QUESTION = 400;
 const MAX_TOKENS = 600;
 const DATA_TTL_MS = 10 * 60 * 1000;
+// Cloudflare Workers AI model used when no working Anthropic key is available.
+export const WORKERS_AI_MODEL = "@cf/meta/llama-4-scout-17b-16e-instruct";
 
 export const json = (status, obj, headers = {}) =>
   new Response(JSON.stringify(obj), {
@@ -63,10 +65,11 @@ export function buildFacts(dataFile, today = new Date()) {
 let cache = { at: 0, facts: null, asOf: null };
 
 // loadDataFile: async () => parsed contents of /data/companies.json
-export async function answer({ question, apiKey, model, loadDataFile }) {
+// ai: the Workers AI binding (env.AI), used when the Anthropic key is missing or rejected.
+export async function answer({ question, apiKey, model, loadDataFile, ai }) {
   const q = typeof question === "string" ? question.trim() : "";
   if (!q || q.length > MAX_QUESTION) return json(400, { error: `Questions must be 1 to ${MAX_QUESTION} characters` });
-  if (!apiKey) return json(503, { error: "Ask is not configured" });
+  if (!apiKey && !ai) return json(503, { error: "Ask is not configured" });
 
   if (!cache.facts || Date.now() - cache.at > DATA_TTL_MS) {
     try {
@@ -85,22 +88,37 @@ ${JSON.stringify(cache.facts)}
 
 QUESTION: ${q}`;
 
-  try {
-    const r = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "content-type": "application/json", "x-api-key": apiKey, "anthropic-version": "2023-06-01" },
-      body: JSON.stringify({ model: model || "claude-sonnet-5-5", max_tokens: MAX_TOKENS, messages: [{ role: "user", content: prompt }] }),
-    });
-    const body = await r.json();
-    if (!r.ok) {
+  let claudeError = null;
+  if (apiKey) {
+    try {
+      const r = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-api-key": apiKey, "anthropic-version": "2023-06-01" },
+        body: JSON.stringify({ model: model || "claude-sonnet-5-5", max_tokens: MAX_TOKENS, messages: [{ role: "user", content: prompt }] }),
+      });
+      const body = await r.json();
+      if (r.ok) {
+        const text = (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
+        return json(200, { text, engine: "claude" });
+      }
       console.error("Anthropic API error", r.status, body?.error?.type);
-      // The error type (e.g. authentication_error, not_found_error) helps diagnose setup problems and reveals nothing secret.
-      return json(502, { error: "The model request failed", reason: body?.error?.type || `HTTP ${r.status}`, detail: (body?.error?.message || "").slice(0, 160) });
+      // The error type (e.g. authentication_error) helps diagnose setup problems and reveals nothing secret.
+      claudeError = { reason: body?.error?.type || `HTTP ${r.status}`, detail: (body?.error?.message || "").slice(0, 160) };
+    } catch (e) {
+      console.error(e);
+      claudeError = { reason: "network", detail: "Could not reach the model" };
     }
-    const text = (body.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
-    return json(200, { text });
-  } catch (e) {
-    console.error(e);
-    return json(502, { error: "Could not reach the model" });
   }
+
+  if (ai) {
+    try {
+      const out = await ai.run(WORKERS_AI_MODEL, { messages: [{ role: "user", content: prompt }], max_tokens: MAX_TOKENS });
+      const text = (typeof out?.response === "string" ? out.response : JSON.stringify(out?.response ?? "")).trim();
+      if (text) return json(200, { text, engine: "workers-ai", ...(claudeError ? { claudeError: claudeError.reason } : {}) });
+    } catch (e) {
+      console.error("Workers AI error", e);
+      return json(502, { error: "The model request failed", reason: "workers_ai", detail: String(e?.message || e).slice(0, 160), claudeError: claudeError?.reason });
+    }
+  }
+  return json(502, { error: "The model request failed", ...(claudeError || {}) });
 }

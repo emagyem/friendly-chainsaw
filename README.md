@@ -62,6 +62,7 @@ scripts/backtest.mjs           historical backtest of the score (results on the 
 functions/api/ask.js           Cloudflare function for the Ask tab; holds the API key
 functions/api/waitlist.js      Cloudflare function that stores (and removes) waitlist sign-ups in D1
 functions/api/config.js        public settings for the browser (the Turnstile site key)
+wrangler.toml                  Cloudflare Pages bindings: waitlist database (D1), Workers AI, Turnstile site key
 server/guard.js                rate limits and the Turnstile human check
 server/ask-core.js             shared logic behind the Ask tab
 src/App.jsx                    the site: pages, navigation and styles
