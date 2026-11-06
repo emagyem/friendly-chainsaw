@@ -910,7 +910,7 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
     dil24: round(fin.dil24, 1),
     runwayHist: fin.runwayHist || [],
     revQ: fin.revQ || [],
-    rivals: await rivalsFor(pipeline, sponsor),
+    rivals: a.big ? [] : await rivalsFor(pipeline, sponsor),
     burnPrior: round(fin.burnPrior, 2),
     debtDue24: round(fin.debtDue24, 1),
     raise,

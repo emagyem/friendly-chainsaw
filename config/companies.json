@@ -106,74 +106,108 @@
   "bigPharma": [
     {
       "t": "LLY",
-      "sponsor": "Eli Lilly"
+      "sponsor": "Eli Lilly",
+      "name": "Eli Lilly",
+      "area": "Diabetes, obesity & immunology"
     },
     {
       "t": "JNJ",
-      "sponsor": "Janssen"
+      "sponsor": "Janssen",
+      "name": "Johnson & Johnson",
+      "area": "Oncology & immunology"
     },
     {
       "t": "ABBV",
-      "sponsor": "AbbVie"
+      "sponsor": "AbbVie",
+      "name": "AbbVie",
+      "area": "Immunology & neuroscience"
     },
     {
       "t": "MRK",
-      "sponsor": "Merck Sharp"
+      "sponsor": "Merck Sharp",
+      "name": "Merck & Co.",
+      "area": "Oncology & vaccines"
     },
     {
       "t": "PFE",
-      "sponsor": "Pfizer"
+      "sponsor": "Pfizer",
+      "name": "Pfizer",
+      "area": "Vaccines, oncology & internal medicine"
     },
     {
       "t": "BMY",
-      "sponsor": "Bristol-Myers Squibb"
+      "sponsor": "Bristol-Myers Squibb",
+      "name": "Bristol Myers Squibb",
+      "area": "Oncology & cardiovascular"
     },
     {
       "t": "AMGN",
-      "sponsor": "Amgen"
+      "sponsor": "Amgen",
+      "name": "Amgen",
+      "area": "Inflammation, oncology & bone"
     },
     {
       "t": "GILD",
-      "sponsor": "Gilead Sciences"
+      "sponsor": "Gilead Sciences",
+      "name": "Gilead Sciences",
+      "area": "HIV, liver disease & oncology"
     },
     {
       "t": "REGN",
-      "sponsor": "Regeneron"
+      "sponsor": "Regeneron",
+      "name": "Regeneron",
+      "area": "Eye disease & immunology"
     },
     {
       "t": "VRTX",
-      "sponsor": "Vertex Pharmaceuticals"
+      "sponsor": "Vertex Pharmaceuticals",
+      "name": "Vertex Pharmaceuticals",
+      "area": "Cystic fibrosis & pain"
     },
     {
       "t": "BIIB",
-      "sponsor": "Biogen"
+      "sponsor": "Biogen",
+      "name": "Biogen",
+      "area": "Neurology"
     },
     {
       "t": "NVO",
-      "sponsor": "Novo Nordisk"
+      "sponsor": "Novo Nordisk",
+      "name": "Novo Nordisk",
+      "area": "Diabetes & obesity"
     },
     {
       "t": "NVS",
-      "sponsor": "Novartis"
+      "sponsor": "Novartis",
+      "name": "Novartis",
+      "area": "Cardiovascular, immunology & oncology"
     },
     {
       "t": "AZN",
-      "sponsor": "AstraZeneca"
+      "sponsor": "AstraZeneca",
+      "name": "AstraZeneca",
+      "area": "Oncology & respiratory"
     },
     {
       "t": "SNY",
       "sponsor": "Sanofi",
-      "adr": 0.5
+      "adr": 0.5,
+      "name": "Sanofi",
+      "area": "Immunology & vaccines"
     },
     {
       "t": "GSK",
       "sponsor": "GlaxoSmithKline",
-      "adr": 2
+      "adr": 2,
+      "name": "GSK",
+      "area": "Vaccines & respiratory"
     },
     {
       "t": "TAK",
       "sponsor": "Takeda",
-      "adr": 0.5
+      "adr": 0.5,
+      "name": "Takeda",
+      "area": "Gastroenterology & rare disease"
     }
   ]
 }
