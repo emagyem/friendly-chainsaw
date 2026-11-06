@@ -1733,7 +1733,7 @@ function Backtest() {
   const decData = bt.deciles.map((d, i) => ({ label: `${d.from}–${d.to}`, rate: Math.round(d.raised12 * 100), i }));
   const runData = bt.runwayBuckets.map((b) => ({ label: b.to == null ? `${b.from}+` : `${b.from}–${b.to}`, rate: Math.round(b.raised12 * 100), n: b.n }));
   const yrs = bt.years.filter((y) => y.n >= 50);
-  const COMP = { gap: "Cash runway (vs the standard 18-month assumption)", trend: "Burn trend", capacity: "Raise-ready (shelf or ATM)", debt: "Debt due within 24 months", access: "Burn vs public float" };
+  const COMP = { gap: bt.catalystTiming ? "Runway vs the next guided event" : "Cash runway (vs the standard 18-month assumption)", trend: "Burn trend", capacity: "Raise-ready (shelf or ATM)", debt: "Debt due within 24 months", access: "Burn vs public float" };
   return (
     <section className="panel" id="backtest">
       <header className="ph"><h2>Backtest: every biotech since {bt.years[0]?.year}, including the ones that died</h2>
@@ -1812,7 +1812,7 @@ function Backtest() {
           <table className="grid plain">
             <thead><tr><th>What counts as "had to raise"</th><th className="num">Average</th><th className="num">High band</th><th className="num">Low band</th><th className="num">AUC</th></tr></thead>
             <tbody>
-              {[["Offering filing or a 15%+ jump in shares (main result)", bt], ["Formal offering filings only", bt.offeringsOnly], ["Raised, or stopped filing within the year (bankruptcy, wind-down or sale)", bt.raisedOrEnded]].map(([l, v]) => (
+              {[["Offering filing or a 15%+ jump in shares (main result)", bt], ["Formal offering filings only", bt.offeringsOnly], ["Raised, or stopped filing within the year (bankruptcy, wind-down or sale)", bt.raisedOrEnded], ...(bt.catalystTiming ? [["Main result, but ignoring companies' catalyst guidance (flat 18 months)", { base12: bt.base12, ...bt.catalystTiming.withoutGuidance }]] : [])].map(([l, v]) => (
                 <tr key={l}><td>{l}</td><td className="num">{P(v.base12)}</td><td className="num">{P(v.bands.find((x) => x.band === "High")?.raised12)}</td><td className="num">{P(v.bands.find((x) => x.band === "Low")?.raised12)}</td><td className="num">{v.auc?.toFixed(2)}</td></tr>
               ))}
             </tbody>
@@ -1828,7 +1828,11 @@ function Backtest() {
           <li><b>Almost every cash-burning biotech raises often.</b> {P(bt.base12)} of company-quarters were followed by a raise within a year, so the useful question is less "will they raise?" than "how soon, and how badly do they need it?"</li>
           {(() => { const a = bt.runwayBuckets[0], b = bt.runwayBuckets[1]; return a && b && a.raised12 < b.raised12 ? <li><b>Companies nearly out of cash often can't raise at all.</b> With under 6 months left, only {P(a.raised12)} raised within a year, fewer than the {P(b.raised12)} with 6–12 months. Many of the rest were sold, wound down or went bankrupt instead. The "raised or stopped filing" row counts those too.</li> : null; })()}
           {(() => { const c = Object.entries(bt.components).sort((x, y) => (y[1].auc || 0) - (x[1].auc || 0))[0]; return c ? <li><b>The strongest single part is "{COMP[c[0]] || c[0]}"</b> (AUC {c[1].auc?.toFixed(2)}). Burn trend and debt add almost nothing on their own. That points to re-weighting the score toward what works; any change will be logged on the About us page.</li> : null; })()}
-          <li><b>Catalyst timing, a key input to the score's biggest part, couldn't be tested yet</b> because past trial-date expectations aren't available in bulk. Every company was given the same 18-month assumption, so the true score may do better or worse than this.</li>
+          {bt.catalystTiming ? (
+            <li><b>Catalyst timing comes from what companies told investors at the time.</b> We read {bt.catalystTiming.filingsRead.toLocaleString()} quarterly and annual reports for dated guidance like "topline data in the second half of 2019"; {P(bt.catalystTiming.shareWithGuidance)} of company-quarters had some. With those dates the score's ranking accuracy is {bt.auc?.toFixed(2)}, against {bt.catalystTiming.withoutGuidance.auc?.toFixed(2)} with the flat 18-month assumption{bt.catalystTiming.guidedRowsOnly.auc != null ? ` (${bt.catalystTiming.guidedRowsOnly.auc.toFixed(2)} vs ${bt.catalystTiming.guidedRowsOnly.aucWithoutGuidance.toFixed(2)} on just the quarters that had guidance)` : ""}.</li>
+          ) : (
+            <li><b>Catalyst timing, a key input to the score's biggest part, couldn't be tested yet.</b> Every company was given the same 18-month assumption, so the true score may do better or worse than this.</li>
+          )}
         </ul>
       </div>
 
