@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-06T13:09:50.706Z",
+  "generatedAt": "2026-11-06T13:18:05.265Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -53112,13 +53112,13 @@
    "t": "TARA",
    "n": "Protara Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 125.9,
-   "ev": -36,
-   "cash": 161.9,
+   "mcap": 131.1,
+   "ev": -11.9,
+   "cash": 143.1,
    "debt": 0,
-   "burn": 5.51,
+   "burn": 6.01,
    "rev": 0,
-   "shares": 59.1,
+   "shares": 61.57,
    "own": null,
    "emp": null,
    "partners": [],
@@ -53350,7 +53350,7 @@
      "label": "TARA-002 Phase III data (estimated)"
     },
     {
-     "date": "2026-11-10",
+     "date": "2027-02-05",
      "kind": "earnings",
      "drug": null,
      "est": true,
@@ -53395,15 +53395,8 @@
     }
    ],
    "note": "",
-   "dil24": 186.5,
+   "dil24": 198.5,
    "runwayHist": [
-    {
-     "end": "2021-09-30",
-     "filed": "2021-11-04",
-     "cash": 138,
-     "burn": 2.9,
-     "runway": 48.3
-    },
     {
      "end": "2021-12-31",
      "filed": "2022-03-09",
@@ -53536,6 +53529,13 @@
      "cash": 162,
      "burn": 5.5,
      "runway": 29.4
+    },
+    {
+     "end": "2026-09-30",
+     "filed": "2026-11-06",
+     "cash": 143,
+     "burn": 6,
+     "runway": 23.8
     }
    ],
    "revQ": [
@@ -53594,7 +53594,7 @@
      "china": null
     }
    ],
-   "burnPrior": 3.73,
+   "burnPrior": 4.06,
    "debtDue24": 0,
    "raise": {
     "capacity": "atm",
@@ -54629,6 +54629,14 @@
    "news": [
     {
      "date": "2026-11-06",
+     "time": "2026-11-06T13:10:41.000Z",
+     "form": "10-Q",
+     "formLabel": "Quarterly report",
+     "headline": "Protara Therapeutics files its quarterly report",
+     "url": "https://www.sec.gov/Archives/edgar/data/1359931/000121390026116612/ea0309353-10q_protara.htm"
+    },
+    {
+     "date": "2026-11-06",
      "time": "2026-11-06T13:05:21.000Z",
      "form": "8-K",
      "formLabel": "Current report",
@@ -54698,31 +54706,23 @@
      "formLabel": "Current report",
      "headline": "Protara Therapeutics reports quarterly results",
      "url": "https://www.sec.gov/Archives/edgar/data/1359931/000121390026055462/ea0288581-8k_protara.htm"
-    },
-    {
-     "date": "2026-04-28",
-     "time": "2026-04-28T20:05:40.000Z",
-     "form": "DEF 14A",
-     "formLabel": "Proxy statement",
-     "headline": "Protara Therapeutics files its proxy statement",
-     "url": "https://www.sec.gov/Archives/edgar/data/1359931/000121390026048536/ea0286228-04.htm"
     }
    ],
    "cashFlowPositive": false,
    "src": {
     "cik": "1359931",
-    "asOf": "2026-06-30",
+    "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
      "MarketableSecuritiesCurrent",
      "MarketableSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
-    "sharesAsOf": "2026-08-07",
+    "sharesAsOf": "2026-11-03",
     "filing": {
      "form": "10-Q",
-     "date": "2026-08-11",
-     "url": "https://www.sec.gov/Archives/edgar/data/1359931/000121390026087508/ea0298600-10q_protara.htm"
+     "date": "2026-11-06",
+     "url": "https://www.sec.gov/Archives/edgar/data/1359931/000121390026116612/ea0309353-10q_protara.htm"
     },
     "price": 2.13,
     "priceDate": "2026-11-05",
@@ -70518,5 +70518,6 @@
     ]
    }
   }
- ]
+ ],
+ "acquired": []
 }
