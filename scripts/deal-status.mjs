@@ -86,6 +86,8 @@ export async function buyerInfo(cik, adsh, ownName, secText) {
       const t = body ? plain(body).slice(0, 60000) : "";
       const parent = t.match(/([A-Z][A-Za-z0-9&.,'/ -]{2,70}?)\s*(?:,\s*an? [^()]{0,120})?\(\s*(?:the\s+)?"Parent"\s*\)/)?.[1]?.replace(/^.*?\b(?:with|by|among|between|and)\s+/i, "").trim();
       const named = t.match(BIG_PHARMA)?.[0];
+      // A proxy whose "Parent" is the filer itself means the filer is the buyer (e.g. Amneal buying Kashiv in 2026).
+      if (parent && own && parent.toUpperCase().startsWith(own.slice(0, 8))) return { name: parent, cik: null, sic: null, type: "bidder", selfIsBidder: true };
       if (parent || named) buyer = { name: parent || named, cik: null, sic: null };
     }
   }

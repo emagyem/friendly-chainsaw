@@ -970,6 +970,9 @@ async function dealFor(ticker, prevC, cikByTicker) {
   if (deal && deal.status !== "delisted") {
     const b = await buyerInfo(cik, deal.adsh, sub?.name, secText);
     if (b?.selfIsBidder) return null; // it's buying someone else, not being bought
+    // A shareholder vote on a merger can also be the company voting to buy someone (issuing shares to pay).
+    // Until the deal closes, only tag it as being bought when the proxy names an outside buyer.
+    if (deal.status === "pending" && deal.how === "merger vote" && !b) return null;
     deal.by = tidyName(b?.name) || null;
   }
   return deal;
