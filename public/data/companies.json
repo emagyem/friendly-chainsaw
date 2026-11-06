@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-06T14:23:04.874Z",
+  "generatedAt": "2026-11-06T14:28:53.992Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -2075,7 +2075,8 @@
    "Yahoo Finance"
   ],
   "warnings": [
-   "Read-through search failed for Fludarabine: HTTP 400 for https://clinicaltrials.gov/api/v2/studies?query.cond=Relapsed+or+Refractory+Large+B+Cell+Lymphoma%2C+Relapsed+or+Refractory+Chronic+Lymphocytic+Leukemia%2C+Relapsed+or+Refractory+Small+Lymphocytic+Lymphoma&filter.overallStatus=RECRUITING%2CACTIVE_NOT_RECRUITING%2CNOT_YET_RECRUITING%2CENROLLING_BY_INVITATION&filter.advanced=AREA%5BPhase%5D%28PHASE2+OR+PHASE3%29+AND+AREA%5BPrimaryCompletionDate%5DRANGE%5B2026-11-06%2C2028-05-07%5D+AND+AREA%5BLeadSponsorClass%5DINDUSTRY&fields=NCTId%2CBriefTitle%2CLeadSponsorName%2CPhase%2CPrimaryCompletionDate%2COverallStatus%2CInterventionName%2CInterventionType%2CLocationCountry%2CCondition%2CEnrollmentCount&pageSize=60"
+   "Read-through search failed for TARA-002: HTTP 400 for https://clinicaltrials.gov/api/v2/studies?query.cond=Bladder+%28Urothelial&filter.overallStatus=RECRUITING%2CACTIVE_NOT_RECRUITING%2CNOT_YET_RECRUITING%2CENROLLING_BY_INVITATION&filter.advanced=AREA%5BPhase%5D%28PHASE2+OR+PHASE3%29+AND+AREA%5BPrimaryCompletionDate%5DRANGE%5B2026-11-06%2C2028-05-07%5D+AND+AREA%5BLeadSponsorClass%5DINDUSTRY&fields=NCTId%2CBriefTitle%2CLeadSponsorName%2CPhase%2CPrimaryCompletionDate%2COverallStatus%2CInterventionName%2CInterventionType%2CLocationCountry%2CCondition%2CEnrollmentCount&pageSize=60",
+   "Read-through search failed for NDV-01: HTTP 400 for https://clinicaltrials.gov/api/v2/studies?query.cond=Bladder+%28Urothelial&filter.overallStatus=RECRUITING%2CACTIVE_NOT_RECRUITING%2CNOT_YET_RECRUITING%2CENROLLING_BY_INVITATION&filter.advanced=AREA%5BPhase%5D%28PHASE2+OR+PHASE3%29+AND+AREA%5BPrimaryCompletionDate%5DRANGE%5B2026-11-06%2C2028-05-07%5D+AND+AREA%5BLeadSponsorClass%5DINDUSTRY&fields=NCTId%2CBriefTitle%2CLeadSponsorName%2CPhase%2CPrimaryCompletionDate%2COverallStatus%2CInterventionName%2CInterventionType%2CLocationCountry%2CCondition%2CEnrollmentCount&pageSize=60"
   ],
   "leftCoverage": []
  },
@@ -13967,6 +13968,47 @@
    "revQ": [],
    "rivals": [
     {
+     "nct": "NCT06450639",
+     "sponsor": "Hoffmann-La Roche",
+     "title": "A Study to Assess the Efficacy and Safety of Satralizumab in Duchenne Muscular Dystrophy (DMD)",
+     "ph": "Phase II",
+     "pcd": "2026-11-18",
+     "n": 30,
+     "drugs": [
+      "Satralizumab"
+     ],
+     "forDrug": "z-rostudirsen (DYNE-251)",
+     "ind": "Duchenne muscular dystrophy, exon 51 amenable",
+     "countries": [
+      "United States",
+      "Denmark",
+      "Italy",
+      "Poland",
+      "Spain",
+      "Ukraine"
+     ],
+     "nCountries": 6,
+     "china": null
+    },
+    {
+     "nct": "NCT03368742",
+     "sponsor": "Solid Biosciences Inc.",
+     "title": "Microdystrophin Gene Transfer Study in Adolescents and Children With DMD",
+     "ph": "Phase II",
+     "pcd": "2026-11-30",
+     "n": 12,
+     "drugs": [
+      "SGT-001"
+     ],
+     "forDrug": "z-rostudirsen (DYNE-251)",
+     "ind": "Duchenne muscular dystrophy, exon 51 amenable",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
      "nct": "NCT05004129",
      "sponsor": "AMO Pharma Limited",
      "title": "Safety and Efficacy of Tideglusib in Congenital or Childhood Onset Myotonic Dystrophy",
@@ -14011,6 +14053,42 @@
      "china": null
     },
     {
+     "nct": "NCT05540860",
+     "sponsor": "Edgewise Therapeutics, Inc.",
+     "title": "A Study of EDG-5506 in Children With Duchenne Muscular Dystrophy (LYNX)",
+     "ph": "Phase II",
+     "pcd": "2027-01-15",
+     "n": 76,
+     "drugs": [
+      "Sevasemten"
+     ],
+     "forDrug": "z-rostudirsen (DYNE-251)",
+     "ind": "Duchenne muscular dystrophy, exon 51 amenable",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT04433234",
+     "sponsor": "Daiichi Sankyo Co., Ltd.",
+     "title": "Long-term, Extension Study of DS-5141b in Patients With Duchenne Muscular Dystrophy",
+     "ph": "Phase II",
+     "pcd": "2027-01-31",
+     "n": 8,
+     "drugs": [
+      "DS-5141b"
+     ],
+     "forDrug": "z-rostudirsen (DYNE-251)",
+     "ind": "Duchenne muscular dystrophy, exon 51 amenable",
+     "countries": [
+      "Japan"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
      "nct": "NCT06185764",
      "sponsor": "Vertex Pharmaceuticals Incorporated",
      "title": "A Phase 1/2 Study of VX-670 in Adult Participants With Myotonic Dystrophy 1 (DM1)",
@@ -14031,6 +14109,47 @@
       "Germany"
      ],
      "nCountries": 10,
+     "china": null
+    },
+    {
+     "nct": "NCT05996003",
+     "sponsor": "NS Pharma, Inc.",
+     "title": "NS-089/NCNP-02-201 in Boys With Duchenne Muscular Dystrophy (DMD)",
+     "ph": "Phase II",
+     "pcd": "2027-02-26",
+     "n": 20,
+     "drugs": [
+      "NS-089/NCNP-02"
+     ],
+     "forDrug": "z-rostudirsen (DYNE-251)",
+     "ind": "Duchenne muscular dystrophy, exon 51 amenable",
+     "countries": [
+      "United States",
+      "Australia",
+      "Canada",
+      "Japan",
+      "New Zealand",
+      "South Korea"
+     ],
+     "nCountries": 7,
+     "china": null
+    },
+    {
+     "nct": "NCT06100887",
+     "sponsor": "Edgewise Therapeutics, Inc.",
+     "title": "Phase 2 Study of EDG-5506 in Children and Adolescents With Duchenne Muscular Dystrophy Previously Treated With Gene Therapy",
+     "ph": "Phase II",
+     "pcd": "2027-03-15",
+     "n": 43,
+     "drugs": [
+      "Sevasemten"
+     ],
+     "forDrug": "z-rostudirsen (DYNE-251)",
+     "ind": "Duchenne muscular dystrophy, exon 51 amenable",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
      "china": null
     },
     {
@@ -14055,49 +14174,48 @@
      "china": null
     },
     {
-     "nct": "NCT06523400",
-     "sponsor": "Lupin Ltd.",
-     "title": "The Efficacy and Safety of Once Daily Mexiletine PR in Patients With Myotonic Dystrophy Type 1 and Type 2",
-     "ph": "Phase III",
-     "pcd": "2027-06-15",
-     "n": 176,
+     "nct": "NCT07287189",
+     "sponsor": "Satellos Bioscience, Inc.",
+     "title": "Phase 2 Study of SAT-3247 in Pediatric Ambulatory Patients",
+     "ph": "Phase II",
+     "pcd": "2027-03-31",
+     "n": 51,
      "drugs": [
-      "Mexiletine granules for prolonged-release…"
+      "SAT-3247"
      ],
-     "forDrug": "z-basivarsen (DYNE-101)",
-     "ind": "Myotonic dystrophy type 1",
+     "forDrug": "z-rostudirsen (DYNE-251)",
+     "ind": "Duchenne muscular dystrophy, exon 51 amenable",
      "countries": [
+      "United States",
+      "Australia",
       "Belgium",
-      "Denmark",
-      "Germany",
-      "Italy",
-      "Spain",
-      "United Kingdom"
+      "Canada",
+      "Poland",
+      "Serbia"
      ],
-     "nCountries": 6,
+     "nCountries": 8,
      "china": null
     },
     {
-     "nct": "NCT06300307",
-     "sponsor": "ARTHEx Biotech S.L.",
-     "title": "Study of ATX-01 in Participants With DM1",
+     "nct": "NCT06280209",
+     "sponsor": "BioMarin Pharmaceutical",
+     "title": "A Phase 1/2 Study to Assess the Safety, Tolerability, Pharmacokinetics, and Pharmacodynamics of BMN 351 in Participants With Duchenne Muscular Dystrophy",
      "ph": "Phase II",
-     "pcd": "2027-07-15",
-     "n": 56,
+     "pcd": "2027-04-14",
+     "n": 18,
      "drugs": [
-      "ATX-01"
+      "BMN 351"
      ],
-     "forDrug": "z-basivarsen (DYNE-101)",
-     "ind": "Myotonic dystrophy type 1",
+     "forDrug": "z-rostudirsen (DYNE-251)",
+     "ind": "Duchenne muscular dystrophy, exon 51 amenable",
      "countries": [
-      "United States",
-      "Canada",
-      "France",
       "Italy",
       "Netherlands",
-      "Spain"
+      "Spain",
+      "Turkey (Türkiye)",
+      "United Kingdom"
      ],
-     "nCountries": 7,
+     "nCountries": 5,
      "china": null
     }
    ],
@@ -51989,52 +52107,7 @@
      0
     ]
    ],
-   "rivals": [
-    {
-     "nct": "NCT04561362",
-     "sponsor": "BicycleTx Limited",
-     "title": "Study BT8009-100 in Subjects With Nectin-4 Expressing Advanced Malignancies",
-     "ph": "Phase II",
-     "pcd": "2027-01-15",
-     "n": 329,
-     "drugs": [
-      "BT8009",
-      "Pembrolizumab"
-     ],
-     "forDrug": "TARA-002",
-     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
-     "countries": [
-      "United States",
-      "Canada",
-      "France",
-      "Italy",
-      "Spain",
-      "United Kingdom"
-     ],
-     "nCountries": 6,
-     "china": null
-    },
-    {
-     "nct": "NCT05706129",
-     "sponsor": "Lumara Bio Oncologics GmbH",
-     "title": "A Study to Assess Safety, Tolerability and Imaging Characteristics of [68Ga]Ga-DPI-4452 and to Assess Safety, Tolerability, and Efficacy of [177Lu]Lu-DPI-4452 i",
-     "ph": "Phase II",
-     "pcd": "2027-06-15",
-     "n": 270,
-     "drugs": [
-      "[68Ga]Ga-DPI-4452",
-      "[177Lu]Lu-DPI-4452"
-     ],
-     "forDrug": "TARA-002",
-     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
-     "countries": [
-      "Australia",
-      "France"
-     ],
-     "nCountries": 2,
-     "china": null
-    }
-   ],
+   "rivals": [],
    "burnPrior": 4.06,
    "debtDue24": 0,
    "raise": {
@@ -57145,47 +57218,6 @@
    "revQ": [],
    "rivals": [
     {
-     "nct": "NCT06807424",
-     "sponsor": "Janssen Research & Development, LLC",
-     "title": "A Study to Evaluate the Efficacy and Safety of Icotrokinra (JNJ-77242113) in Biologic-experienced and Biologic-naive Participants With Active Psoriatic Arthriti",
-     "ph": "Phase III",
-     "pcd": "2027-02-10",
-     "n": 813,
-     "drugs": [
-      "Icotrokinra"
-     ],
-     "forDrug": "Sonelokimab",
-     "ind": "Arthritis, Psoriatic",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Australia",
-      "Brazil",
-      "Bulgaria",
-      "Canada"
-     ],
-     "nCountries": 24,
-     "china": "some"
-    },
-    {
-     "nct": "NCT07706530",
-     "sponsor": "Clarent Biopharma, Inc.",
-     "title": "Oral CBP-0276 or Placebo in Adults With Active Psoriatic Arthritis (PsA)",
-     "ph": "Phase II",
-     "pcd": "2027-02-15",
-     "n": 240,
-     "drugs": [
-      "CBP-0276"
-     ],
-     "forDrug": "Sonelokimab",
-     "ind": "Arthritis, Psoriatic",
-     "countries": [
-      "Mexico"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
      "nct": "NCT07486960",
      "sponsor": "Merck Sharp & Dohme LLC",
      "title": "Study to Evaluate Tulisokibart in Adults With Psoriatic Arthritis (MK-7240-015)",
@@ -57206,26 +57238,6 @@
       "Poland"
      ],
      "nCountries": 8,
-     "china": null
-    },
-    {
-     "nct": "NCT06506916",
-     "sponsor": "UCB Biopharma SRL",
-     "title": "A Study to Evaluate the Effect of Bimekizumab on Gene Expression Biomarkers in Study Participants With Moderate to Severe Plaque Psoriasis",
-     "ph": "Phase III",
-     "pcd": "2027-03-09",
-     "n": 89,
-     "drugs": [
-      "bimekizumab"
-     ],
-     "forDrug": "Sonelokimab",
-     "ind": "Arthritis, Psoriatic",
-     "countries": [
-      "United States",
-      "Germany",
-      "Poland"
-     ],
-     "nCountries": 3,
      "china": null
     },
     {
@@ -57307,25 +57319,6 @@
      "n": 222,
      "drugs": [
       "D-2570"
-     ],
-     "forDrug": "Sonelokimab",
-     "ind": "Arthritis, Psoriatic",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07406035",
-     "sponsor": "Chia Tai Tianqing Pharmaceutical Group Nanjing Shunxin Pharmaceutical Co., Ltd.",
-     "title": "A Clinical Trial of TQH3906 Capsules in the Treatment of Active Psoriatic Arthritis",
-     "ph": "Phase II",
-     "pcd": "2027-08-15",
-     "n": 156,
-     "drugs": [
-      "TQH3906",
-      "Tofacitinib Citrate"
      ],
      "forDrug": "Sonelokimab",
      "ind": "Arthritis, Psoriatic",
@@ -69331,24 +69324,6 @@
      "china": "only"
     },
     {
-     "nct": "NCT07256509",
-     "sponsor": "CSPC Megalith Biopharmaceutical Co.,Ltd.",
-     "title": "A Study of SYS6010 Combined With Osimertinib Versus Osimertinib Alone as Neoadjuvant Therapy for Patients With EGFR Mutation-positive Resectable Non-squamous No",
-     "ph": "Phase II",
-     "pcd": "2026-11-30",
-     "n": 120,
-     "drugs": [
-      "SYS6010",
-      "Osimertinib",
-      "Pemetrexed"
-     ],
-     "forDrug": "Valacyclovir",
-     "ind": "Non-squamous, Non-Small Cell Lung Cancer",
-     "countries": [],
-     "nCountries": 0,
-     "china": null
-    },
-    {
      "nct": "NCT03767244",
      "sponsor": "Janssen Research & Development, LLC",
      "title": "A Study of Apalutamide in Participants With High-Risk, Localized or Locally Advanced Prostate Cancer Who Are Candidates for Radical Prostatectomy",
@@ -69507,6 +69482,26 @@
      ],
      "nCountries": 9,
      "china": null
+    },
+    {
+     "nct": "NCT06568094",
+     "sponsor": "Jiangsu HengRui Medicine Co., Ltd.",
+     "title": "A Study of HRS-5041 Tablets Combined With Antitumor Therapy in Subjects With Advanced Prostate Cancer",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 100,
+     "drugs": [
+      "HRS-5041",
+      "Abiraterone Acetate",
+      "Prednisone Acetate"
+     ],
+     "forDrug": "aglatimagene besadenovec + valacyclovir",
+     "ind": "Prostate Cancer",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
     }
    ],
    "burnPrior": 2.49,
@@ -92254,7 +92249,249 @@
     }
    ],
    "revQ": [],
-   "rivals": [],
+   "rivals": [
+    {
+     "nct": "NCT05475925",
+     "sponsor": "Dren Bio",
+     "title": "A Study of DR-01 in Subjects With Large Granular Lymphocytic Leukemia or Cytotoxic Lymphomas",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 200,
+     "drugs": [
+      "DR-01"
+     ],
+     "forDrug": "Soquelitinib",
+     "ind": "Peripheral T-Cell Lymphoma, Not Otherwise Specified",
+     "countries": [
+      "United States",
+      "Australia",
+      "France",
+      "Germany",
+      "Hong Kong",
+      "Italy"
+     ],
+     "nCountries": 9,
+     "china": null
+    },
+    {
+     "nct": "NCT06495723",
+     "sponsor": "Xenothera SAS",
+     "title": "Polyspecific Antibodies in Lymphoproliferative T-cell Disorders",
+     "ph": "Phase II",
+     "pcd": "2026-12-31",
+     "n": 54,
+     "drugs": [
+      "LIS1"
+     ],
+     "forDrug": "Soquelitinib",
+     "ind": "Peripheral T-Cell Lymphoma, Not Otherwise Specified",
+     "countries": [
+      "France",
+      "Italy"
+     ],
+     "nCountries": 2,
+     "china": null
+    },
+    {
+     "nct": "NCT06702605",
+     "sponsor": "Evopoint Biosciences Inc.",
+     "title": "To Evaluate XNW5004 Tablets in Patients with Relapsed or Refractory Peripheral T Cell Lymphoma",
+     "ph": "Phase II",
+     "pcd": "2027-01-15",
+     "n": 50,
+     "drugs": [
+      "XNW5004"
+     ],
+     "forDrug": "Soquelitinib",
+     "ind": "Peripheral T-Cell Lymphoma, Not Otherwise Specified",
+     "countries": [],
+     "nCountries": 0,
+     "china": null
+    },
+    {
+     "nct": "NCT07523555",
+     "sponsor": "Beijing Biotech",
+     "title": "Adaptive Dual-Target CAR-T Cells for Relapsed or Refractory Hematologic Malignancies",
+     "ph": "Phase II",
+     "pcd": "2027-03-14",
+     "n": 96,
+     "drugs": [
+      "CD19",
+      "CD38",
+      "Autologous BCMA/GPRC5D dual-target CAR-T"
+     ],
+     "forDrug": "Soquelitinib",
+     "ind": "Peripheral T-Cell Lymphoma, Not Otherwise Specified",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT04068597",
+     "sponsor": "CellCentric Ltd.",
+     "title": "Study to Evaluate CCS1477 (Inobrodib) in Haematological Malignancies",
+     "ph": "Phase II",
+     "pcd": "2027-03-31",
+     "n": 250,
+     "drugs": [
+      "CCS1477",
+      "Pomalidomide",
+      "Dexamethasone"
+     ],
+     "forDrug": "Soquelitinib",
+     "ind": "Peripheral T-Cell Lymphoma, Not Otherwise Specified",
+     "countries": [
+      "United States",
+      "France",
+      "Spain",
+      "Sweden",
+      "United Kingdom"
+     ],
+     "nCountries": 5,
+     "china": null
+    },
+    {
+     "nct": "NCT05833724",
+     "sponsor": "Great Novel Therapeutics Biotech & Medicals Corporation",
+     "title": "Chidamide in Patients With Relapsed or Refractory Peripheral T-cell Lymphoma (R/R PTCL)",
+     "ph": "Phase II",
+     "pcd": "2027-06-15",
+     "n": 33,
+     "drugs": [
+      "Chidamide"
+     ],
+     "forDrug": "Soquelitinib",
+     "ind": "Peripheral T-Cell Lymphoma, Not Otherwise Specified",
+     "countries": [
+      "Taiwan"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT07180771",
+     "sponsor": "Boryung Pharmaceutical Co., Ltd",
+     "title": "A Study of Bosmolisib (BR101801) in Participants With R/R PTCL.",
+     "ph": "Phase II",
+     "pcd": "2027-09-15",
+     "n": 44,
+     "drugs": [
+      "BR101801"
+     ],
+     "forDrug": "Soquelitinib",
+     "ind": "Peripheral T-Cell Lymphoma, Not Otherwise Specified",
+     "countries": [],
+     "nCountries": 0,
+     "china": null
+    },
+    {
+     "nct": "NCT07234162",
+     "sponsor": "Dizal Pharmaceuticals",
+     "title": "A Phase 3 Multinational Study of Golidocitinib Versus Investigator's Choice in r/r PTCL (JACKPOT19)",
+     "ph": "Phase III",
+     "pcd": "2027-11-30",
+     "n": 218,
+     "drugs": [
+      "Golidocitinib",
+      "Chidamide",
+      "Gemcitabine"
+     ],
+     "forDrug": "Soquelitinib",
+     "ind": "Peripheral T-Cell Lymphoma, Not Otherwise Specified",
+     "countries": [
+      "China",
+      "Taiwan",
+      "Thailand"
+     ],
+     "nCountries": 3,
+     "china": "some"
+    },
+    {
+     "nct": "NCT04668690",
+     "sponsor": "CSPC ZhongQi Pharmaceutical Technology Co., Ltd.",
+     "title": "Clinical Study of Mitoxantrone Hydrochloride Liposome Injection vs. Chidamide in Patients With Relapsed/Refractory PTCL",
+     "ph": "Phase III",
+     "pcd": "2027-12-30",
+     "n": 193,
+     "drugs": [
+      "Mitoxantrone Hydrochloride Liposome",
+      "Chidamide"
+     ],
+     "forDrug": "Soquelitinib",
+     "ind": "Peripheral T-Cell Lymphoma, Not Otherwise Specified",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT04390737",
+     "sponsor": "Haihe Biopharma Co., Ltd.",
+     "title": "Evaluate the Safety and Clinical Activity of HH2853",
+     "ph": "Phase II",
+     "pcd": "2027-12-31",
+     "n": 254,
+     "drugs": [
+      "HH2853"
+     ],
+     "forDrug": "Soquelitinib",
+     "ind": "Peripheral T-Cell Lymphoma, Not Otherwise Specified",
+     "countries": [
+      "United States",
+      "China"
+     ],
+     "nCountries": 2,
+     "china": "some"
+    },
+    {
+     "nct": "NCT07676175",
+     "sponsor": "BeBetter Med Inc",
+     "title": "A Study of BEBT-908 in Combination With Chemotherapy in Patients With Previously Untreated Peripheral T-Cell Lymphoma (PTCL)",
+     "ph": "Phase II",
+     "pcd": "2028-01-31",
+     "n": 120,
+     "drugs": [
+      "Ifupinostat Hydrochloride",
+      "Cyclophosphamide",
+      "Doxorubicin Hydrochloride"
+     ],
+     "forDrug": "Soquelitinib",
+     "ind": "Peripheral T-Cell Lymphoma, Not Otherwise Specified",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT04752826",
+     "sponsor": "BioInvent International AB",
+     "title": "BI-1808 as a Single Agent and With Pembrolizumab (KEYTRUDA® ) in Treatment of Advanced Malignancies(Keynote-D20)",
+     "ph": "Phase II",
+     "pcd": "2028-01-31",
+     "n": 250,
+     "drugs": [
+      "BI-1808",
+      "Pembrolizumab",
+      "Paclitaxel"
+     ],
+     "forDrug": "Soquelitinib",
+     "ind": "Peripheral T-Cell Lymphoma, Not Otherwise Specified",
+     "countries": [
+      "United States",
+      "Denmark",
+      "Hungary",
+      "Russia",
+      "Spain",
+      "Sweden"
+     ],
+     "nCountries": 7,
+     "china": null
+    }
+   ],
    "burnPrior": 2.67,
    "debtDue24": 0,
    "raise": {
@@ -116339,30 +116576,6 @@
      "china": "some"
     },
     {
-     "nct": "NCT04561362",
-     "sponsor": "BicycleTx Limited",
-     "title": "Study BT8009-100 in Subjects With Nectin-4 Expressing Advanced Malignancies",
-     "ph": "Phase II",
-     "pcd": "2027-01-15",
-     "n": 329,
-     "drugs": [
-      "BT8009",
-      "Pembrolizumab"
-     ],
-     "forDrug": "NDV-01",
-     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
-     "countries": [
-      "United States",
-      "Canada",
-      "France",
-      "Italy",
-      "Spain",
-      "United Kingdom"
-     ],
-     "nCountries": 6,
-     "china": null
-    },
-    {
      "nct": "NCT06567743",
      "sponsor": "CG Oncology, Inc.",
      "title": "Phase 2 Study to Evaluate Safety and Efficacy of Cretostimogene Grenadenorepvec in High-Risk NMIBC",
@@ -116392,8 +116605,8 @@
       "[68Ga]Ga-DPI-4452",
       "[177Lu]Lu-DPI-4452"
      ],
-     "forDrug": "NDV-01",
-     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "forDrug": "NDV01",
+     "ind": "Non Muscle Invasive Bladder Cancer",
      "countries": [
       "Australia",
       "France"
@@ -116517,8 +116730,8 @@
      "drugs": [
       "TARA-002"
      ],
-     "forDrug": "NDV-01",
-     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "forDrug": "NDV01",
+     "ind": "Non Muscle Invasive Bladder Cancer",
      "countries": [
       "United States",
       "Ukraine"
@@ -116549,6 +116762,24 @@
      ],
      "nCountries": 10,
      "china": null
+    },
+    {
+     "nct": "NCT07468851",
+     "sponsor": "Jiangsu Hansoh Pharmaceutical Co., Ltd.",
+     "title": "A Study of HS-10566 in Patients With High-risk Non-muscle-invasive Bladder Cancer Who Are Ineligible for or Refuse Radical Cystectomy",
+     "ph": "Phase II",
+     "pcd": "2028-04-30",
+     "n": 180,
+     "drugs": [
+      "HS-10566"
+     ],
+     "forDrug": "NDV01",
+     "ind": "Non Muscle Invasive Bladder Cancer",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
     }
    ],
    "burnPrior": 4.16,
@@ -123009,7 +123240,248 @@
      0
     ]
    ],
-   "rivals": [],
+   "rivals": [
+    {
+     "nct": "NCT04442022",
+     "sponsor": "Karyopharm Therapeutics Inc",
+     "title": "A Study of Rituximab-Gemcitabine-Dexamethasone-Platinum (R-GDP) With or Without Selinexor in Patients With Relapsed/Refractory Diffuse Large B-cell Lymphoma",
+     "ph": "Phase III",
+     "pcd": "2026-12-15",
+     "n": 501,
+     "drugs": [
+      "Selinexor",
+      "Rituximab",
+      "Gemcitabine"
+     ],
+     "forDrug": "Fludarabine",
+     "ind": "Relapsed or Refractory Large B Cell Lymphoma, Relapsed or Refractory Chronic Lymphocytic Leukemia, Relapsed or Refractory Small Lymphocytic Lymphoma",
+     "countries": [
+      "United States",
+      "China",
+      "Israel",
+      "Italy",
+      "Poland",
+      "Spain"
+     ],
+     "nCountries": 6,
+     "china": "some"
+    },
+    {
+     "nct": "NCT05950165",
+     "sponsor": "Cho Pharma Inc.",
+     "title": "A Study to Assess Safety and Efficacy of CHO-H01 as a Single Agent/Combined With Lenalidomide in Subjects With Refractory or Relapsed Non-Hodgkin's Lymphoma",
+     "ph": "Phase II",
+     "pcd": "2026-12-23",
+     "n": 37,
+     "drugs": [
+      "CHO-H01",
+      "Lenalidomide"
+     ],
+     "forDrug": "Fludarabine",
+     "ind": "Relapsed or Refractory Large B Cell Lymphoma, Relapsed or Refractory Chronic Lymphocytic Leukemia, Relapsed or Refractory Small Lymphocytic Lymphoma",
+     "countries": [
+      "Taiwan"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT05563844",
+     "sponsor": "Chengdu Zenitar Biomedical Technology Co., Ltd",
+     "title": "Study of Purinostat Mesylate for Injection in the Treatment of Relapsed or Refractory Diffuse Large B-cell Lymphoma (R/R DLBCL)",
+     "ph": "Phase II",
+     "pcd": "2026-12-30",
+     "n": 74,
+     "drugs": [
+      "PM"
+     ],
+     "forDrug": "Fludarabine",
+     "ind": "Relapsed or Refractory Large B Cell Lymphoma, Relapsed or Refractory Chronic Lymphocytic Leukemia, Relapsed or Refractory Small Lymphocytic Lymphoma",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT06375733",
+     "sponsor": "Genfleet Therapeutics (Shanghai) Inc.",
+     "title": "A Study of GFH009 in Combination With Zanubrutinib in Subjects With Relapsed or Refractory DLBCL",
+     "ph": "Phase II",
+     "pcd": "2026-12-31",
+     "n": 51,
+     "drugs": [
+      "GFH009",
+      "Zanubrutinib"
+     ],
+     "forDrug": "Fludarabine",
+     "ind": "Relapsed or Refractory Large B Cell Lymphoma, Relapsed or Refractory Chronic Lymphocytic Leukemia, Relapsed or Refractory Small Lymphocytic Lymphoma",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT04792489",
+     "sponsor": "Miltenyi Biomedicine GmbH",
+     "title": "DALY II USA/ MB-CART2019.1 for DLBCL",
+     "ph": "Phase II",
+     "pcd": "2026-12-31",
+     "n": 315,
+     "drugs": [
+      "zamtocabtagene autoleucel",
+      "Cyclophosphamide",
+      "Fludarabine"
+     ],
+     "forDrug": "Fludarabine",
+     "ind": "Relapsed or Refractory Large B Cell Lymphoma, Relapsed or Refractory Chronic Lymphocytic Leukemia, Relapsed or Refractory Small Lymphocytic Lymphoma",
+     "countries": [
+      "United States",
+      "Canada"
+     ],
+     "nCountries": 2,
+     "china": null
+    },
+    {
+     "nct": "NCT05326243",
+     "sponsor": "Pell Bio-Med Technology Co., Ltd.",
+     "title": "Phase 1/2 Study of CD19 Chimeric Antigen Receptor T-cell (CD19 CAR-T; PL001) for Relapsed or Refractory B-cell Lymphoma",
+     "ph": "Phase II",
+     "pcd": "2026-12-31",
+     "n": 49,
+     "drugs": [
+      "CD19-targeted"
+     ],
+     "forDrug": "Fludarabine",
+     "ind": "Relapsed or Refractory Large B Cell Lymphoma, Relapsed or Refractory Chronic Lymphocytic Leukemia, Relapsed or Refractory Small Lymphocytic Lymphoma",
+     "countries": [
+      "Taiwan"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT06886139",
+     "sponsor": "Zhejiang Teruisi Pharmaceutical Inc.",
+     "title": "A Phase 2 Study of TRS005 in Patients With CD20-positive R/R DLBCL.",
+     "ph": "Phase II",
+     "pcd": "2027-01-15",
+     "n": 139,
+     "drugs": [
+      "TRS005"
+     ],
+     "forDrug": "Fludarabine",
+     "ind": "Relapsed or Refractory Large B Cell Lymphoma, Relapsed or Refractory Chronic Lymphocytic Leukemia, Relapsed or Refractory Small Lymphocytic Lymphoma",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT07288879",
+     "sponsor": "Miltenyi Biomedicine GmbH",
+     "title": "DALY II Japan/MB-CART2019.1 for DLBCL",
+     "ph": "Phase II",
+     "pcd": "2027-01-31",
+     "n": 31,
+     "drugs": [
+      "MB-CART2019.1"
+     ],
+     "forDrug": "Fludarabine",
+     "ind": "Relapsed or Refractory Large B Cell Lymphoma, Relapsed or Refractory Chronic Lymphocytic Leukemia, Relapsed or Refractory Small Lymphocytic Lymphoma",
+     "countries": [
+      "Japan"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT06806033",
+     "sponsor": "Hoffmann-La Roche",
+     "title": "Evaluate Optimization of CRS Profile for Glofit Monotherapy and Glofit+GemOx in R/R Aggressive B-NHL",
+     "ph": "Phase II",
+     "pcd": "2027-01-31",
+     "n": 130,
+     "drugs": [
+      "Obinutuzumab",
+      "Glofitamab",
+      "Gemcitabine"
+     ],
+     "forDrug": "Fludarabine",
+     "ind": "Relapsed or Refractory Large B Cell Lymphoma, Relapsed or Refractory Chronic Lymphocytic Leukemia, Relapsed or Refractory Small Lymphocytic Lymphoma",
+     "countries": [
+      "United States",
+      "Australia",
+      "Canada",
+      "France",
+      "Germany",
+      "Italy"
+     ],
+     "nCountries": 7,
+     "china": null
+    },
+    {
+     "nct": "NCT06929624",
+     "sponsor": "Suzhou Suncadia Biopharmaceuticals Co., Ltd.",
+     "title": "A Phase 3 Clinical Study of SHR-A1912 Combined With R-GemOx Versus R-GemOx in Diffuse Large B-cell Lymphoma",
+     "ph": "Phase III",
+     "pcd": "2027-03-15",
+     "n": 282,
+     "drugs": [
+      "SHR-A1912",
+      "Rituximab",
+      "Gemcitabine Hydrochloride"
+     ],
+     "forDrug": "Fludarabine",
+     "ind": "Relapsed or Refractory Large B Cell Lymphoma, Relapsed or Refractory Chronic Lymphocytic Leukemia, Relapsed or Refractory Small Lymphocytic Lymphoma",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT05451810",
+     "sponsor": "Genmab",
+     "title": "A Study to Evaluate Adverse Events of Subcutaneous (SC) Epcoritamab Administered in the Outpatient Setting in Adult Participants With Relapsed or Refractory Dif",
+     "ph": "Phase II",
+     "pcd": "2027-03-15",
+     "n": 184,
+     "drugs": [
+      "Epcoritamab"
+     ],
+     "forDrug": "Fludarabine",
+     "ind": "Relapsed or Refractory Large B Cell Lymphoma, Relapsed or Refractory Chronic Lymphocytic Leukemia, Relapsed or Refractory Small Lymphocytic Lymphoma",
+     "countries": [
+      "United States",
+      "Puerto Rico"
+     ],
+     "nCountries": 2,
+     "china": null
+    },
+    {
+     "nct": "NCT06533579",
+     "sponsor": "Vironexis Biotherapeutics Inc.",
+     "title": "Gene Therapy for CD19-Positive Hematologic Malignancies (SENTRY-CD19)",
+     "ph": "Phase II",
+     "pcd": "2027-06-15",
+     "n": 32,
+     "drugs": [
+      "Dose Level 1, VNX-101",
+      "Dose Level 2, VNX-101",
+      "Dose Level 3, VNX-101"
+     ],
+     "forDrug": "Fludarabine",
+     "ind": "Relapsed or Refractory Large B Cell Lymphoma, Relapsed or Refractory Chronic Lymphocytic Leukemia, Relapsed or Refractory Small Lymphocytic Lymphoma",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    }
+   ],
    "burnPrior": 13.2,
    "debtDue24": 0,
    "raise": {
@@ -172163,7 +172635,7 @@
     "chgPct": -6.94,
     "hi52": 7.19,
     "lo52": 1,
-    "volume": 150747,
+    "volume": 152967,
     "date": "2026-11-05",
     "history": [
      [
@@ -217740,11 +218212,11 @@
    "n": "Sanofi",
    "area": "Immunology & vaccines",
    "mcap": 114406.7,
-   "ev": 125825.3,
-   "cash": 9411.6,
-   "debt": 20830.3,
+   "ev": 125824.3,
+   "cash": 9410.8,
+   "debt": 20828.4,
    "burn": 0.1,
-   "rev": 48590.6,
+   "rev": 48586.3,
    "shares": 1219.43,
    "own": null,
    "emp": null,
@@ -219808,134 +220280,134 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-16",
-     "cash": 10204,
-     "burn": -769.5,
+     "cash": 10203,
+     "burn": -769.4,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-16",
-     "cash": 11477,
-     "burn": -727.5,
+     "cash": 11476,
+     "burn": -727.4,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-16",
-     "cash": 11575,
-     "burn": -684.9,
+     "cash": 11574,
+     "burn": -684.8,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-08",
-     "cash": 7935,
-     "burn": -514.9,
+     "cash": 7934,
+     "burn": -514.8,
      "runway": null
     },
     {
      "end": "2019-06-30",
      "filed": "2020-07-29",
      "cash": 7509,
-     "burn": -598.8,
+     "burn": -598.7,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-05",
-     "cash": 10974,
-     "burn": -716.1,
+     "cash": 10973,
+     "burn": -716,
      "runway": null
     },
     {
      "end": "2020-06-30",
      "filed": "2020-07-29",
-     "cash": 17786,
-     "burn": -785.4,
+     "cash": 17785,
+     "burn": -785.3,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-04",
-     "cash": 16501,
+     "cash": 16499,
      "burn": -688.5,
      "runway": null
     },
     {
      "end": "2021-06-30",
      "filed": "2021-07-29",
-     "cash": 10828,
-     "burn": -762.9,
+     "cash": 10827,
+     "burn": -762.8,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-23",
-     "cash": 12421,
-     "burn": -976.6,
+     "cash": 12420,
+     "burn": -976.5,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-07-28",
-     "cash": 7684,
-     "burn": -892.9,
+     "cash": 7683,
+     "burn": -892.8,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-24",
-     "cash": 14761,
-     "burn": -977,
+     "cash": 14760,
+     "burn": -976.9,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-07-28",
-     "cash": 8903,
-     "burn": -952.7,
+     "cash": 8902,
+     "burn": -952.6,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-23",
-     "cash": 9877,
-     "burn": -952.1,
+     "cash": 9876,
+     "burn": -952,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-07-25",
      "cash": 7568,
-     "burn": -753.4,
+     "burn": -753.3,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-13",
-     "cash": 8701,
-     "burn": -842.9,
+     "cash": 8700,
+     "burn": -842.8,
      "runway": null
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-31",
-     "cash": 17107,
+     "cash": 17105,
      "burn": -1040.8,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-17",
-     "cash": 9412,
-     "burn": -997.8,
+     "cash": 9411,
+     "burn": -997.7,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -842.87,
-   "debtDue24": 4836.1,
+   "burnPrior": -842.79,
+   "debtDue24": 4835.7,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -221040,7 +221512,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 11973,
+   "ocf": 11972,
    "group": "big-pharma",
    "src": {
     "cik": "1121404",
@@ -221050,8 +221522,8 @@
      "MarketableSecuritiesCurrent"
     ],
     "currency": "EUR",
-    "fx": 1.1138,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1138 USD per EUR",
+    "fx": 1.1137,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1137 USD per EUR",
     "adr": 0.5,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -221078,11 +221550,11 @@
    "n": "GSK",
    "area": "Vaccines & respiratory",
    "mcap": 108770.8,
-   "ev": 123867.6,
-   "cash": 4534,
-   "debt": 19630.8,
+   "ev": 123871,
+   "cash": 4535,
+   "debt": 19635.2,
    "burn": 0.1,
-   "rev": 43600.6,
+   "rev": 43610.4,
    "shares": 4315.45,
    "own": null,
    "emp": null,
@@ -223093,84 +223565,84 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-20",
-     "cash": 7781,
-     "burn": -285.7,
+     "cash": 7783,
+     "burn": -285.8,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-20",
-     "cash": 6536,
-     "burn": -722.6,
+     "cash": 6537,
+     "burn": -722.8,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-20",
-     "cash": 5116,
-     "burn": -769.5,
+     "cash": 5117,
+     "burn": -769.6,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-15",
-     "cash": 5283,
-     "burn": -936.6,
+     "cash": 5284,
+     "burn": -936.8,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-06",
-     "cash": 6388,
-     "burn": -892,
+     "cash": 6389,
+     "burn": -892.2,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-12",
-     "cash": 8502,
-     "burn": -938.9,
+     "cash": 8504,
+     "burn": -939.1,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-03-08",
-     "cash": 5786,
-     "burn": -884.5,
+     "cash": 5787,
+     "burn": -884.7,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-10",
-     "cash": 5059,
-     "burn": -823.4,
+     "cash": 5060,
+     "burn": -823.6,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-05",
-     "cash": 3975,
-     "burn": -752.8,
+     "cash": 3976,
+     "burn": -752.9,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-03",
-     "cash": 5165,
-     "burn": -729,
+     "cash": 5166,
+     "burn": -729.1,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-06",
-     "cash": 4534,
-     "burn": -861,
+     "cash": 4535,
+     "burn": -861.2,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -728.97,
+   "burnPrior": -729.13,
    "debtDue24": 0,
    "raise": {
     "capacity": "none",
@@ -224212,7 +224684,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 10332,
+   "ocf": 10334,
    "group": "big-pharma",
    "src": {
     "cik": "1131399",
@@ -224221,8 +224693,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3347,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3347 USD per GBP",
+    "fx": 1.335,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3350 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
