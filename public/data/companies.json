@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-06T14:39:45.447Z",
+  "generatedAt": "2026-11-06T14:45:52.955Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -1011,7 +1011,7 @@
     ],
     [
      "2026-11-06",
-     148.23
+     148.95
     ]
    ]
   },
@@ -2078,10 +2078,7 @@
    "ClinicalTrials.gov API v2",
    "Yahoo Finance"
   ],
-  "warnings": [
-   "Read-through search failed for TARA-002: HTTP 400 for https://clinicaltrials.gov/api/v2/studies?query.cond=Bladder+%28Urothelial&filter.overallStatus=RECRUITING%2CACTIVE_NOT_RECRUITING%2CNOT_YET_RECRUITING%2CENROLLING_BY_INVITATION&filter.advanced=AREA%5BPhase%5D%28PHASE2+OR+PHASE3%29+AND+AREA%5BPrimaryCompletionDate%5DRANGE%5B2026-11-06%2C2028-05-07%5D+AND+AREA%5BLeadSponsorClass%5DINDUSTRY&fields=NCTId%2CBriefTitle%2CLeadSponsorName%2CPhase%2CPrimaryCompletionDate%2COverallStatus%2CInterventionName%2CInterventionType%2CLocationCountry%2CCondition%2CEnrollmentCount&pageSize=60",
-   "Read-through search failed for NDV-01: HTTP 400 for https://clinicaltrials.gov/api/v2/studies?query.cond=Bladder+%28Urothelial&filter.overallStatus=RECRUITING%2CACTIVE_NOT_RECRUITING%2CNOT_YET_RECRUITING%2CENROLLING_BY_INVITATION&filter.advanced=AREA%5BPhase%5D%28PHASE2+OR+PHASE3%29+AND+AREA%5BPrimaryCompletionDate%5DRANGE%5B2026-11-06%2C2028-05-07%5D+AND+AREA%5BLeadSponsorClass%5DINDUSTRY&fields=NCTId%2CBriefTitle%2CLeadSponsorName%2CPhase%2CPrimaryCompletionDate%2COverallStatus%2CInterventionName%2CInterventionType%2CLocationCountry%2CCondition%2CEnrollmentCount&pageSize=60"
-  ],
+  "warnings": [],
   "leftCoverage": []
  },
  "companies": [
@@ -2089,8 +2086,8 @@
    "t": "VKTX",
    "n": "Viking Therapeutics",
    "area": "Metabolic",
-   "mcap": 3304.1,
-   "ev": 2344.3,
+   "mcap": 3302.8,
+   "ev": 2343,
    "cash": 959.8,
    "debt": 0,
    "burn": 38.55,
@@ -2804,13 +2801,13 @@
     }
    },
    "quote": {
-    "price": 25.91,
+    "price": 25.9,
     "prev": 25.79,
-    "chg": 0.12,
-    "chgPct": 0.47,
+    "chg": 0.11,
+    "chgPct": 0.43,
     "hi52": 43.15,
     "lo52": 23.82,
-    "volume": 124261,
+    "volume": 179361,
     "date": "2026-11-06",
     "history": [
      [
@@ -3819,7 +3816,7 @@
      ],
      [
       "2026-11-06",
-      25.91
+      25.9
      ]
     ]
    },
@@ -3921,7 +3918,7 @@
      "date": "2026-10-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1607678/000119312526436432/vktx-20260930.htm"
     },
-    "price": 25.91,
+    "price": 25.9,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Viking Therapeutics",
@@ -3938,8 +3935,8 @@
    "t": "ARWR",
    "n": "Arrowhead Pharmaceuticals",
    "area": "RNAi",
-   "mcap": 8188.5,
-   "ev": 7269.3,
+   "mcap": 8249.3,
+   "ev": 7330,
    "cash": 1602,
    "debt": 682.7,
    "burn": 4.92,
@@ -5093,13 +5090,13 @@
     }
    },
    "quote": {
-    "price": 57.97,
+    "price": 58.4,
     "prev": 57.46,
-    "chg": 0.51,
-    "chgPct": 0.89,
+    "chg": 0.94,
+    "chgPct": 1.64,
     "hi52": 95.49,
     "lo52": 37.06,
-    "volume": 27757,
+    "volume": 63511,
     "date": "2026-11-06",
     "history": [
      [
@@ -6108,7 +6105,7 @@
      ],
      [
       "2026-11-06",
-      57.97
+      58.4
      ]
     ]
    },
@@ -6210,7 +6207,7 @@
      "date": "2026-08-04",
      "url": "https://www.sec.gov/Archives/edgar/data/879407/000087940726000057/arwr-20260630.htm"
     },
-    "price": 57.97,
+    "price": 58.4,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "ARROWHEAD PHARMACEUTICALS",
@@ -6227,8 +6224,8 @@
    "t": "RCKT",
    "n": "Rocket Pharmaceuticals",
    "area": "Gene therapy",
-   "mcap": 265.7,
-   "ev": -18.1,
+   "mcap": 261.8,
+   "ev": -21.9,
    "cash": 283.7,
    "debt": 0,
    "burn": 14.19,
@@ -6866,13 +6863,13 @@
     }
    },
    "quote": {
-    "price": 2.42,
+    "price": 2.38,
     "prev": 2.43,
-    "chg": -0.01,
-    "chgPct": -0.41,
+    "chg": -0.05,
+    "chgPct": -1.85,
     "hi52": 5.45,
     "lo52": 2.17,
-    "volume": 32157,
+    "volume": 74478,
     "date": "2026-11-06",
     "history": [
      [
@@ -7881,7 +7878,7 @@
      ],
      [
       "2026-11-06",
-      2.42
+      2.38
      ]
     ]
    },
@@ -7983,7 +7980,7 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1281895/000119312526342348/rckt-20260630.htm"
     },
-    "price": 2.42,
+    "price": 2.38,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "ROCKET PHARMACEUTICALS",
@@ -8000,8 +7997,8 @@
    "t": "SRRK",
    "n": "Scholar Rock Holding",
    "area": "Neuromuscular",
-   "mcap": 5602.7,
-   "ev": 5306.8,
+   "mcap": 5559.5,
+   "ev": 5263.6,
    "cash": 492.1,
    "debt": 196.2,
    "burn": 24.74,
@@ -8550,13 +8547,13 @@
     }
    },
    "quote": {
-    "price": 46.01,
+    "price": 45.65,
     "prev": 45.5,
-    "chg": 0.51,
-    "chgPct": 1.11,
+    "chg": 0.15,
+    "chgPct": 0.33,
     "hi52": 61.76,
     "lo52": 27.07,
-    "volume": 34254,
+    "volume": 37773,
     "date": "2026-11-06",
     "history": [
      [
@@ -9565,7 +9562,7 @@
      ],
      [
       "2026-11-06",
-      46.01
+      45.65
      ]
     ]
    },
@@ -9667,7 +9664,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1727196/000119312526336732/srrk-20260630.htm"
     },
-    "price": 46.01,
+    "price": 45.65,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Scholar Rock",
@@ -9684,8 +9681,8 @@
    "t": "IDYA",
    "n": "IDEAYA Biosciences",
    "area": "Oncology",
-   "mcap": 3002.4,
-   "ev": 1851.5,
+   "mcap": 2977.2,
+   "ev": 1826.4,
    "cash": 1150.8,
    "debt": 0,
    "burn": 28.95,
@@ -10822,13 +10819,13 @@
     }
    },
    "quote": {
-    "price": 31.05,
+    "price": 30.79,
     "prev": 30.65,
-    "chg": 0.4,
-    "chgPct": 1.31,
+    "chg": 0.14,
+    "chgPct": 0.46,
     "hi52": 42.68,
     "lo52": 26.81,
-    "volume": 8737,
+    "volume": 9476,
     "date": "2026-11-06",
     "history": [
      [
@@ -11837,7 +11834,7 @@
      ],
      [
       "2026-11-06",
-      31.05
+      30.79
      ]
     ]
    },
@@ -11940,7 +11937,7 @@
      "date": "2026-11-03",
      "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526445294/idya-20260930.htm"
     },
-    "price": 31.05,
+    "price": 30.79,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "IDEAYA Biosciences",
@@ -11957,8 +11954,8 @@
    "t": "KYMR",
    "n": "Kymera Therapeutics",
    "area": "Immunology",
-   "mcap": 11051.3,
-   "ev": 9405.4,
+   "mcap": 10884.9,
+   "ev": 9239,
    "cash": 1645.9,
    "debt": 0,
    "burn": 23.96,
@@ -12425,13 +12422,13 @@
     }
    },
    "quote": {
-    "price": 129.45,
+    "price": 127.5,
     "prev": 128.12,
-    "chg": 1.33,
-    "chgPct": 1.04,
+    "chg": -0.62,
+    "chgPct": -0.48,
     "hi52": 138,
     "lo52": 56.75,
-    "volume": 14761,
+    "volume": 16684,
     "date": "2026-11-06",
     "history": [
      [
@@ -13440,7 +13437,7 @@
      ],
      [
       "2026-11-06",
-      129.45
+      127.5
      ]
     ]
    },
@@ -13543,7 +13540,7 @@
      "date": "2026-10-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312526436975/kymr-20260930.htm"
     },
-    "price": 129.45,
+    "price": 127.5,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Kymera Therapeutics",
@@ -13560,8 +13557,8 @@
    "t": "DYN",
    "n": "Dyne Therapeutics",
    "area": "Neuromuscular",
-   "mcap": 3282.1,
-   "ev": 2347.7,
+   "mcap": 3292.4,
+   "ev": 2358,
    "cash": 1134.4,
    "debt": 200,
    "burn": 47.04,
@@ -14264,13 +14261,13 @@
     }
    },
    "quote": {
-    "price": 17.52,
+    "price": 17.57,
     "prev": 17.36,
-    "chg": 0.16,
-    "chgPct": 0.89,
+    "chg": 0.21,
+    "chgPct": 1.21,
     "hi52": 27.31,
     "lo52": 14,
-    "volume": 24195,
+    "volume": 26869,
     "date": "2026-11-06",
     "history": [
      [
@@ -15279,7 +15276,7 @@
      ],
      [
       "2026-11-06",
-      17.51
+      17.57
      ]
     ]
    },
@@ -15381,7 +15378,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1818794/000181879426000012/dyn-20260930.htm"
     },
-    "price": 17.52,
+    "price": 17.57,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Dyne Therapeutics",
@@ -15398,8 +15395,8 @@
    "t": "VERA",
    "n": "Vera Therapeutics",
    "area": "Nephrology",
-   "mcap": 2179.8,
-   "ev": 1871.2,
+   "mcap": 2054,
+   "ev": 1745.4,
    "cash": 384,
    "debt": 75.4,
    "burn": 31.33,
@@ -15968,13 +15965,13 @@
     }
    },
    "quote": {
-    "price": 30.15,
+    "price": 28.41,
     "prev": 30.14,
-    "chg": 0.01,
-    "chgPct": 0.03,
+    "chg": -1.73,
+    "chgPct": -5.74,
     "hi52": 56.05,
     "lo52": 23.86,
-    "volume": 60013,
+    "volume": 117709,
     "date": "2026-11-06",
     "history": [
      [
@@ -16983,7 +16980,7 @@
      ],
      [
       "2026-11-06",
-      30.15
+      28.41
      ]
     ]
    },
@@ -17085,7 +17082,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312526449826/vera-20260930.htm"
     },
-    "price": 30.15,
+    "price": 28.41,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Vera Therapeutics",
@@ -17102,8 +17099,8 @@
    "t": "PGEN",
    "n": "Precigen",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1480.8,
-   "ev": 1524.1,
+   "mcap": 1479,
+   "ev": 1522.3,
    "cash": 51,
    "debt": 94.3,
    "burn": 6.1,
@@ -17978,10 +17975,10 @@
     "price": 4.13,
     "prev": 4.22,
     "chg": -0.09,
-    "chgPct": -2.13,
+    "chgPct": -2.25,
     "hi52": 8.98,
     "lo52": 3.04,
-    "volume": 248020,
+    "volume": 327057,
     "date": "2026-11-06",
     "history": [
      [
@@ -18990,7 +18987,7 @@
      ],
      [
       "2026-11-06",
-      4.13
+      4.12
      ]
     ]
    },
@@ -19110,8 +19107,8 @@
    "t": "VIR",
    "n": "Vir Biotechnology",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 1964.5,
-   "ev": 1066.9,
+   "mcap": 1977.3,
+   "ev": 1079.8,
    "cash": 897.6,
    "debt": 0,
    "burn": 11.75,
@@ -20007,13 +20004,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 11.47,
+    "price": 11.55,
     "prev": 11.02,
-    "chg": 0.45,
-    "chgPct": 4.08,
+    "chg": 0.53,
+    "chgPct": 4.76,
     "hi52": 12.19,
     "lo52": 4.82,
-    "volume": 72641,
+    "volume": 85541,
     "date": "2026-11-06",
     "history": [
      [
@@ -21022,7 +21019,7 @@
      ],
      [
       "2026-11-06",
-      11.47
+      11.55
      ]
     ]
    },
@@ -21125,7 +21122,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1706431/000162828026070273/vir-20260930.htm"
     },
-    "price": 11.47,
+    "price": 11.55,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Vir Biotechnology",
@@ -21142,8 +21139,8 @@
    "t": "TYRA",
    "n": "Tyra Biosciences",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1284.5,
-   "ev": 1210.7,
+   "mcap": 1256.8,
+   "ev": 1183,
    "cash": 73.8,
    "debt": 0,
    "burn": 9.14,
@@ -22130,13 +22127,13 @@
     }
    },
    "quote": {
-    "price": 21.53,
+    "price": 21.06,
     "prev": 20.89,
-    "chg": 0.63,
-    "chgPct": 3.04,
+    "chg": 0.17,
+    "chgPct": 0.81,
     "hi52": 40.65,
     "lo52": 13.83,
-    "volume": 34825,
+    "volume": 36450,
     "date": "2026-11-06",
     "history": [
      [
@@ -23145,7 +23142,7 @@
      ],
      [
       "2026-11-06",
-      21.52
+      21.06
      ]
     ]
    },
@@ -23246,7 +23243,7 @@
      "date": "2026-08-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1863127/000119312526332995/tyra-20260630.htm"
     },
-    "price": 21.53,
+    "price": 21.06,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Tyra Biosciences",
@@ -23263,8 +23260,8 @@
    "t": "DBVT",
    "n": "DBV Technologies",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 3081,
-   "ev": 2915.5,
+   "mcap": 3059,
+   "ev": 2893.5,
    "cash": 165.7,
    "debt": 0.2,
    "burn": 15.7,
@@ -23806,13 +23803,13 @@
     }
    },
    "quote": {
-    "price": 9.8,
+    "price": 9.73,
     "prev": 9.8,
-    "chg": 0,
-    "chgPct": 0,
+    "chg": -0.07,
+    "chgPct": -0.71,
     "hi52": 26.19,
     "lo52": 8.63,
-    "volume": 5058,
+    "volume": 6888,
     "date": "2026-11-06",
     "history": [
      [
@@ -24821,7 +24818,7 @@
      ],
      [
       "2026-11-06",
-      9.8
+      9.73
      ]
     ]
    },
@@ -24922,7 +24919,7 @@
      "date": "2026-10-28",
      "url": "https://www.sec.gov/Archives/edgar/data/1613780/000162828026067930/dbvt-20260930.htm"
     },
-    "price": 9.8,
+    "price": 9.73,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "DBV Technologies",
@@ -24939,8 +24936,8 @@
    "t": "TECX",
    "n": "Tectonic Therapeutic",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 392.6,
-   "ev": 157.9,
+   "mcap": 396.4,
+   "ev": 161.7,
    "cash": 234.7,
    "debt": 0,
    "burn": 5.77,
@@ -25534,13 +25531,13 @@
     }
    },
    "quote": {
-    "price": 19.68,
+    "price": 19.87,
     "prev": 19.42,
-    "chg": 0.26,
-    "chgPct": 1.34,
+    "chg": 0.45,
+    "chgPct": 2.32,
     "hi52": 39.53,
     "lo52": 16.77,
-    "volume": 4125,
+    "volume": 6749,
     "date": "2026-11-06",
     "history": [
      [
@@ -26549,7 +26546,7 @@
      ],
      [
       "2026-11-06",
-      19.68
+      19.87
      ]
     ]
    },
@@ -26650,7 +26647,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1681087/000119312526450019/tecx-20260930.htm"
     },
-    "price": 19.68,
+    "price": 19.87,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Tectonic Therapeutic",
@@ -26667,8 +26664,8 @@
    "t": "QURE",
    "n": "uniQure",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1505.9,
-   "ev": 1457.8,
+   "mcap": 1491.2,
+   "ev": 1443.1,
    "cash": 98.4,
    "debt": 50.3,
    "burn": 16.02,
@@ -27622,13 +27619,13 @@
     }
    },
    "quote": {
-    "price": 21.47,
+    "price": 21.26,
     "prev": 21.01,
-    "chg": 0.46,
-    "chgPct": 2.19,
+    "chg": 0.25,
+    "chgPct": 1.19,
     "hi52": 51.72,
     "lo52": 8.73,
-    "volume": 42545,
+    "volume": 51504,
     "date": "2026-11-06",
     "history": [
      [
@@ -28637,7 +28634,7 @@
      ],
      [
       "2026-11-06",
-      21.47
+      21.26
      ]
     ]
    },
@@ -28738,7 +28735,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1590560/000110465926122367/qure-20260930x10q.htm"
     },
-    "price": 21.47,
+    "price": 21.26,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "uniQure",
@@ -28755,8 +28752,8 @@
    "t": "SLDB",
    "n": "Solid Biosciences",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 712.6,
-   "ev": 363.7,
+   "mcap": 704.3,
+   "ev": 355.3,
    "cash": 348.9,
    "debt": 0,
    "burn": 16.58,
@@ -29659,13 +29656,13 @@
     }
    },
    "quote": {
-    "price": 6.39,
+    "price": 6.31,
     "prev": 6.18,
-    "chg": 0.21,
-    "chgPct": 3.32,
+    "chg": 0.13,
+    "chgPct": 2.1,
     "hi52": 11.45,
     "lo52": 3.79,
-    "volume": 26044,
+    "volume": 41970,
     "date": "2026-11-06",
     "history": [
      [
@@ -30674,7 +30671,7 @@
      ],
      [
       "2026-11-06",
-      6.39
+      6.31
      ]
     ]
    },
@@ -30776,7 +30773,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1707502/000119312526447178/sldb-20260930.htm"
     },
-    "price": 6.39,
+    "price": 6.31,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Solid Biosciences",
@@ -30793,8 +30790,8 @@
    "t": "AURA",
    "n": "Aura Biosciences",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 653.9,
-   "ev": 586,
+   "mcap": 656.9,
+   "ev": 589,
    "cash": 67.8,
    "debt": 0,
    "burn": 8.58,
@@ -31139,13 +31136,13 @@
     }
    },
    "quote": {
-    "price": 6.31,
+    "price": 6.33,
     "prev": 6.34,
-    "chg": -0.04,
-    "chgPct": -0.55,
+    "chg": -0.01,
+    "chgPct": -0.09,
     "hi52": 9.54,
     "lo52": 4.73,
-    "volume": 3877,
+    "volume": 7677,
     "date": "2026-11-06",
     "history": [
      [
@@ -32154,7 +32151,7 @@
      ],
      [
       "2026-11-06",
-      6.3
+      6.33
      ]
     ]
    },
@@ -32255,7 +32252,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1501796/000119312526343429/aura-20260630.htm"
     },
-    "price": 6.31,
+    "price": 6.33,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Aura Biosciences",
@@ -32272,8 +32269,8 @@
    "t": "BIOA",
    "n": "BioAge Labs",
    "area": "Pharmaceutical Preparations",
-   "mcap": 250.7,
-   "ev": -101.6,
+   "mcap": 250,
+   "ev": -102.3,
    "cash": 352.3,
    "debt": 0,
    "burn": 8.54,
@@ -32597,13 +32594,13 @@
     }
    },
    "quote": {
-    "price": 5.46,
+    "price": 5.44,
     "prev": 5.54,
-    "chg": -0.08,
-    "chgPct": -1.53,
+    "chg": -0.1,
+    "chgPct": -1.81,
     "hi52": 25.96,
     "lo52": 4.81,
-    "volume": 18076,
+    "volume": 19126,
     "date": "2026-11-06",
     "history": [
      [
@@ -33612,7 +33609,7 @@
      ],
      [
       "2026-11-06",
-      5.45
+      5.44
      ]
     ]
    },
@@ -33715,7 +33712,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1709941/000119312526450023/bioa-20260930.htm"
     },
-    "price": 5.46,
+    "price": 5.44,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "BioAge Labs",
@@ -34083,7 +34080,7 @@
     "chgPct": 0.59,
     "hi52": 11,
     "lo52": 5.6,
-    "volume": 2148,
+    "volume": 2164,
     "date": "2026-11-06",
     "history": [
      [
@@ -35210,8 +35207,8 @@
    "t": "ZNTL",
    "n": "Zentalis Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 125.1,
-   "ev": -49.5,
+   "mcap": 123.6,
+   "ev": -51,
    "cash": 174.6,
    "debt": 0,
    "burn": 10.67,
@@ -35846,13 +35843,13 @@
     }
    },
    "quote": {
-    "price": 1.75,
+    "price": 1.73,
     "prev": 1.71,
-    "chg": 0.04,
-    "chgPct": 2.05,
+    "chg": 0.02,
+    "chgPct": 0.88,
     "hi52": 6.95,
     "lo52": 1.21,
-    "volume": 11936,
+    "volume": 12587,
     "date": "2026-11-06",
     "history": [
      [
@@ -36861,7 +36858,7 @@
      ],
      [
       "2026-11-06",
-      1.75
+      1.73
      ]
     ]
    },
@@ -36963,7 +36960,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1725160/000172516026000062/zntl-20260630.htm"
     },
-    "price": 1.75,
+    "price": 1.73,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Zentalis Pharmaceuticals",
@@ -38095,7 +38092,7 @@
     "chgPct": 1.29,
     "hi52": 27.3,
     "lo52": 13.75,
-    "volume": 14756,
+    "volume": 24232,
     "date": "2026-11-06",
     "history": [
      [
@@ -39224,8 +39221,8 @@
    "t": "BHVN",
    "n": "Biohaven",
    "area": "Pharmaceutical Preparations",
-   "mcap": 2108,
-   "ev": 2211.2,
+   "mcap": 2104.2,
+   "ev": 2207.4,
    "cash": 161.1,
    "debt": 264.3,
    "burn": 39.38,
@@ -40233,13 +40230,13 @@
     }
    },
    "quote": {
-    "price": 13.96,
+    "price": 13.93,
     "prev": 13.9,
-    "chg": 0.05,
-    "chgPct": 0.4,
+    "chg": 0.03,
+    "chgPct": 0.22,
     "hi52": 18.24,
     "lo52": 7.48,
-    "volume": 49424,
+    "volume": 66880,
     "date": "2026-11-06",
     "history": [
      [
@@ -41248,7 +41245,7 @@
      ],
      [
       "2026-11-06",
-      13.95
+      13.93
      ]
     ]
    },
@@ -41350,7 +41347,7 @@
      "date": "2026-10-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1935979/000193597926000092/bhvn-20260930.htm"
     },
-    "price": 13.96,
+    "price": 13.93,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Biohaven",
@@ -41367,8 +41364,8 @@
    "t": "OMER",
    "n": "Omeros",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1243.6,
-   "ev": 1111.7,
+   "mcap": 1246.8,
+   "ev": 1114.9,
    "cash": 132,
    "debt": 0,
    "burn": 5.72,
@@ -42073,13 +42070,13 @@
     }
    },
    "quote": {
-    "price": 17.18,
+    "price": 17.22,
     "prev": 17.07,
-    "chg": 0.11,
-    "chgPct": 0.64,
+    "chg": 0.15,
+    "chgPct": 0.9,
     "hi52": 21.24,
     "lo52": 6.24,
-    "volume": 20693,
+    "volume": 25842,
     "date": "2026-11-06",
     "history": [
      [
@@ -43088,7 +43085,7 @@
      ],
      [
       "2026-11-06",
-      17.18
+      17.22
      ]
     ]
    },
@@ -43190,7 +43187,7 @@
      "date": "2026-08-12",
      "url": "https://www.sec.gov/Archives/edgar/data/1285819/000143774926027318/omer20260630_10q.htm"
     },
-    "price": 17.18,
+    "price": 17.22,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "OMEROS",
@@ -44035,7 +44032,7 @@
     "chgPct": 1.69,
     "hi52": 37.48,
     "lo52": 10.62,
-    "volume": 3491,
+    "volume": 3615,
     "date": "2026-11-06",
     "history": [
      [
@@ -45162,8 +45159,8 @@
    "t": "DSGN",
    "n": "Design Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 628.8,
-   "ev": 420.2,
+   "mcap": 633.3,
+   "ev": 424.7,
    "cash": 208.6,
    "debt": 0,
    "burn": 4.94,
@@ -45700,13 +45697,13 @@
     }
    },
    "quote": {
-    "price": 9.82,
+    "price": 9.89,
     "prev": 9.67,
-    "chg": 0.15,
-    "chgPct": 1.55,
+    "chg": 0.22,
+    "chgPct": 2.28,
     "hi52": 17.25,
     "lo52": 6.68,
-    "volume": 25514,
+    "volume": 34705,
     "date": "2026-11-06",
     "history": [
      [
@@ -46715,7 +46712,7 @@
      ],
      [
       "2026-11-06",
-      9.82
+      9.89
      ]
     ]
    },
@@ -46817,7 +46814,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1807120/000119312526447258/dsgn-20260930.htm"
     },
-    "price": 9.82,
+    "price": 9.89,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Design Therapeutics",
@@ -46834,8 +46831,8 @@
    "t": "DMAC",
    "n": "DiaMedica Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 496.1,
-   "ev": 452.6,
+   "mcap": 490.7,
+   "ev": 447.2,
    "cash": 43.5,
    "debt": 0,
    "burn": 2.63,
@@ -47366,13 +47363,13 @@
     }
    },
    "quote": {
-    "price": 9.2,
+    "price": 9.1,
     "prev": 9.04,
-    "chg": 0.16,
-    "chgPct": 1.77,
+    "chg": 0.06,
+    "chgPct": 0.66,
     "hi52": 11,
     "lo52": 5.25,
-    "volume": 5233,
+    "volume": 5792,
     "date": "2026-11-06",
     "history": [
      [
@@ -48381,7 +48378,7 @@
      ],
      [
       "2026-11-06",
-      9.2
+      9.1
      ]
     ]
    },
@@ -48483,7 +48480,7 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1401040/000143774926026792/dmtp20260630_10q.htm"
     },
-    "price": 9.2,
+    "price": 9.1,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "DiaMedica Therapeutics",
@@ -48500,8 +48497,8 @@
    "t": "AVIR",
    "n": "Atea Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 337.7,
-   "ev": 118.2,
+   "mcap": 336.1,
+   "ev": 116.6,
    "cash": 219.5,
    "debt": 0,
    "burn": 12.67,
@@ -48927,13 +48924,13 @@
     }
    },
    "quote": {
-    "price": 4.21,
+    "price": 4.19,
     "prev": 4.22,
-    "chg": -0.01,
-    "chgPct": -0.24,
+    "chg": -0.03,
+    "chgPct": -0.71,
     "hi52": 6.45,
     "lo52": 2.87,
-    "volume": 1480,
+    "volume": 1870,
     "date": "2026-11-06",
     "history": [
      [
@@ -49939,6 +49936,10 @@
      [
       "2026-11-05",
       4.22
+     ],
+     [
+      "2026-11-06",
+      4.19
      ]
     ]
    },
@@ -50040,7 +50041,7 @@
      "date": "2026-08-12",
      "url": "https://www.sec.gov/Archives/edgar/data/1593899/000119312526347021/avir-20260630.htm"
     },
-    "price": 4.21,
+    "price": 4.19,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Atea Pharmaceuticals",
@@ -50057,8 +50058,8 @@
    "t": "LXEO",
    "n": "Lexeo Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 231.4,
-   "ev": -2.8,
+   "mcap": 229.7,
+   "ev": -4.4,
    "cash": 234.2,
    "debt": 0,
    "burn": 7.36,
@@ -50644,13 +50645,13 @@
     }
    },
    "quote": {
-    "price": 2.82,
+    "price": 2.8,
     "prev": 2.9,
-    "chg": -0.08,
-    "chgPct": -2.76,
+    "chg": -0.1,
+    "chgPct": -3.45,
     "hi52": 10.99,
     "lo52": 2.55,
-    "volume": 40022,
+    "volume": 126603,
     "date": "2026-11-06",
     "history": [
      [
@@ -51659,7 +51660,7 @@
      ],
      [
       "2026-11-06",
-      2.82
+      2.8
      ]
     ]
    },
@@ -51762,7 +51763,7 @@
      "date": "2026-08-12",
      "url": "https://www.sec.gov/Archives/edgar/data/1907108/000119312526345724/lxeo-20260630.htm"
     },
-    "price": 2.82,
+    "price": 2.8,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Lexeo Therapeutics",
@@ -51779,8 +51780,8 @@
    "t": "TARA",
    "n": "Protara Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 128.7,
-   "ev": -14.4,
+   "mcap": 129.3,
+   "ev": -13.8,
    "cash": 143.1,
    "debt": 0,
    "burn": 6.01,
@@ -52215,7 +52216,183 @@
      0
     ]
    ],
-   "rivals": [],
+   "rivals": [
+    {
+     "nct": "NCT04585750",
+     "sponsor": "PMV Pharmaceuticals, Inc",
+     "title": "The Evaluation of PC14586 in Patients With Advanced Solid Tumors Harboring a TP53 Y220C Mutation (PYNNACLE)",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 300,
+     "drugs": [
+      "rezatapopt",
+      "pembrolizumab"
+     ],
+     "forDrug": "TARA-002",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "United States",
+      "Australia",
+      "France",
+      "Germany",
+      "Italy",
+      "Singapore"
+     ],
+     "nCountries": 9,
+     "china": null
+    },
+    {
+     "nct": "NCT04180371",
+     "sponsor": "BicycleTx Limited",
+     "title": "Study BT5528-100 in Patients With Advanced Solid Tumors Associated With EphA2 Expression",
+     "ph": "Phase II",
+     "pcd": "2026-12-31",
+     "n": 288,
+     "drugs": [
+      "BT5528",
+      "Nivolumab"
+     ],
+     "forDrug": "TARA-002",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "United States",
+      "Belgium",
+      "South Korea",
+      "Spain",
+      "United Kingdom"
+     ],
+     "nCountries": 5,
+     "china": null
+    },
+    {
+     "nct": "NCT07341737",
+     "sponsor": "Second Life Therapeutics",
+     "title": "SL-28 for Advanced Solid Tumours",
+     "ph": "Phase II",
+     "pcd": "2027-01-01",
+     "n": 60,
+     "drugs": [
+      "SL-28"
+     ],
+     "forDrug": "TARA-002",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "Australia"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT04561362",
+     "sponsor": "BicycleTx Limited",
+     "title": "Study BT8009-100 in Subjects With Nectin-4 Expressing Advanced Malignancies",
+     "ph": "Phase II",
+     "pcd": "2027-01-15",
+     "n": 329,
+     "drugs": [
+      "BT8009",
+      "Pembrolizumab"
+     ],
+     "forDrug": "TARA-002",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "United States",
+      "Canada",
+      "France",
+      "Italy",
+      "Spain",
+      "United Kingdom"
+     ],
+     "nCountries": 6,
+     "china": null
+    },
+    {
+     "nct": "NCT04644068",
+     "sponsor": "AstraZeneca",
+     "title": "Study of AZD5305 as Monotherapy and in Combination With Anti-cancer Agents in Patients With Advanced Solid Malignancies",
+     "ph": "Phase II",
+     "pcd": "2027-05-28",
+     "n": 702,
+     "drugs": [
+      "AZD5305",
+      "Paclitaxel",
+      "Carboplatin"
+     ],
+     "forDrug": "TARA-002",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "United States",
+      "Australia",
+      "Canada",
+      "China",
+      "Czechia",
+      "Hungary"
+     ],
+     "nCountries": 14,
+     "china": "some"
+    },
+    {
+     "nct": "NCT05706129",
+     "sponsor": "Lumara Bio Oncologics GmbH",
+     "title": "A Study to Assess Safety, Tolerability and Imaging Characteristics of [68Ga]Ga-DPI-4452 and to Assess Safety, Tolerability, and Efficacy of [177Lu]Lu-DPI-4452 i",
+     "ph": "Phase II",
+     "pcd": "2027-06-15",
+     "n": 270,
+     "drugs": [
+      "[68Ga]Ga-DPI-4452",
+      "[177Lu]Lu-DPI-4452"
+     ],
+     "forDrug": "TARA-002",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "Australia",
+      "France"
+     ],
+     "nCountries": 2,
+     "china": null
+    },
+    {
+     "nct": "NCT06172478",
+     "sponsor": "Daiichi Sankyo",
+     "title": "A Study of HER3-DXd in Subjects With Locally Advanced or Metastatic Solid Tumors",
+     "ph": "Phase II",
+     "pcd": "2027-09-01",
+     "n": 740,
+     "drugs": [
+      "HER3-DXd"
+     ],
+     "forDrug": "TARA-002",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "United States",
+      "Australia",
+      "Belgium",
+      "Canada",
+      "China",
+      "France"
+     ],
+     "nCountries": 16,
+     "china": "some"
+    },
+    {
+     "nct": "NCT07793318",
+     "sponsor": "Tarapeutics Science Inc.",
+     "title": "TR115 in ARID1A-Mutated Advanced Solid Tumors",
+     "ph": "Phase II",
+     "pcd": "2028-05-01",
+     "n": 50,
+     "drugs": [
+      "TR115"
+     ],
+     "forDrug": "TARA-002",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    }
+   ],
    "burnPrior": 4.06,
    "debtDue24": 0,
    "raise": {
@@ -52233,13 +52410,13 @@
     }
    },
    "quote": {
-    "price": 2.09,
+    "price": 2.1,
     "prev": 2.13,
-    "chg": -0.04,
-    "chgPct": -1.88,
+    "chg": -0.03,
+    "chgPct": -1.41,
     "hi52": 7.82,
     "lo52": 2.09,
-    "volume": 17862,
+    "volume": 34461,
     "date": "2026-11-06",
     "history": [
      [
@@ -53248,7 +53425,7 @@
      ],
      [
       "2026-11-06",
-      2.09
+      2.1
      ]
     ]
    },
@@ -53351,7 +53528,7 @@
      "date": "2026-11-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1359931/000121390026116612/ea0309353-10q_protara.htm"
     },
-    "price": 2.09,
+    "price": 2.1,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Protara Therapeutics",
@@ -53368,8 +53545,8 @@
    "t": "GOSS",
    "n": "Gossamer Bio",
    "area": "Pharmaceutical Preparations",
-   "mcap": 4780.9,
-   "ev": 4723.9,
+   "mcap": 4717.4,
+   "ev": 4660.3,
    "cash": 57,
    "debt": 0,
    "burn": 13.55,
@@ -53968,13 +54145,13 @@
     }
    },
    "quote": {
-    "price": 9.78,
+    "price": 9.65,
     "prev": 9.42,
-    "chg": 0.36,
-    "chgPct": 3.82,
+    "chg": 0.23,
+    "chgPct": 2.44,
     "hi52": 309.6,
     "lo52": 8.29,
-    "volume": 2282,
+    "volume": 2558,
     "date": "2026-11-06",
     "history": [
      [
@@ -54983,7 +55160,7 @@
      ],
      [
       "2026-11-06",
-      9.78
+      9.65
      ]
     ]
    },
@@ -55086,7 +55263,7 @@
      "date": "2026-08-13",
      "url": "https://www.sec.gov/Archives/edgar/data/1728117/000172811726000072/goss-20260630.htm"
     },
-    "price": 9.78,
+    "price": 9.65,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Gossamer Bio",
@@ -55103,8 +55280,8 @@
    "t": "SLS",
    "n": "SELLAS Life Sciences Group",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1530.7,
-   "ev": 1392.4,
+   "mcap": 1516.6,
+   "ev": 1378.3,
    "cash": 138.3,
    "debt": 0,
    "burn": 2.37,
@@ -55894,13 +56071,13 @@
     }
    },
    "quote": {
-    "price": 7.58,
+    "price": 7.51,
     "prev": 7.88,
-    "chg": -0.3,
-    "chgPct": -3.81,
+    "chg": -0.37,
+    "chgPct": -4.7,
     "hi52": 15.88,
     "lo52": 1.39,
-    "volume": 851709,
+    "volume": 1658179,
     "date": "2026-11-06",
     "history": [
      [
@@ -56909,7 +57086,7 @@
      ],
      [
       "2026-11-06",
-      7.58
+      7.51
      ]
     ]
    },
@@ -57010,7 +57187,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1390478/000139047826000012/sls-20260630.htm"
     },
-    "price": 7.58,
+    "price": 7.51,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "SELLAS Life Sciences Group",
@@ -57027,8 +57204,8 @@
    "t": "MLTX",
    "n": "MoonLake Immunotherapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 963,
-   "ev": 564.5,
+   "mcap": 976.2,
+   "ev": 577.7,
    "cash": 498.5,
    "debt": 100,
    "burn": 20.34,
@@ -57529,13 +57706,13 @@
     }
    },
    "quote": {
-    "price": 11.32,
+    "price": 11.47,
     "prev": 10.8,
-    "chg": 0.51,
-    "chgPct": 4.77,
+    "chg": 0.67,
+    "chgPct": 6.2,
     "hi52": 23.29,
     "lo52": 9.46,
-    "volume": 34109,
+    "volume": 57927,
     "date": "2026-11-06",
     "history": [
      [
@@ -58544,7 +58721,7 @@
      ],
      [
       "2026-11-06",
-      11.31
+      11.47
      ]
     ]
    },
@@ -58646,7 +58823,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1821586/000182158626000015/mnlk-20260930.htm"
     },
-    "price": 11.32,
+    "price": 11.47,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "MoonLake Immunotherapeutics",
@@ -58663,8 +58840,8 @@
    "t": "EWTX",
    "n": "Edgewise Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 4280.8,
-   "ev": 4212.1,
+   "mcap": 4217.8,
+   "ev": 4149.1,
    "cash": 68.7,
    "debt": 0,
    "burn": 16.82,
@@ -59457,13 +59634,13 @@
     }
    },
    "quote": {
-    "price": 39.1,
+    "price": 38.53,
     "prev": 38.87,
-    "chg": 0.23,
-    "chgPct": 0.59,
+    "chg": -0.34,
+    "chgPct": -0.89,
     "hi52": 48.51,
     "lo52": 16.7,
-    "volume": 29867,
+    "volume": 36882,
     "date": "2026-11-06",
     "history": [
      [
@@ -60472,7 +60649,7 @@
      ],
      [
       "2026-11-06",
-      39.1
+      38.53
      ]
     ]
    },
@@ -60573,7 +60750,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1710072/000110465926122653/ewtx-20260930x10q.htm"
     },
-    "price": 39.1,
+    "price": 38.53,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Edgewise Therapeutics",
@@ -60590,8 +60767,8 @@
    "t": "XENE",
    "n": "Xenon Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 3639.6,
-   "ev": 2394.5,
+   "mcap": 3622.8,
+   "ev": 2377.7,
    "cash": 1245.1,
    "debt": 0,
    "burn": 28.13,
@@ -61024,13 +61201,13 @@
     }
    },
    "quote": {
-    "price": 37.58,
+    "price": 37.41,
     "prev": 37.68,
-    "chg": -0.1,
-    "chgPct": -0.26,
+    "chg": -0.27,
+    "chgPct": -0.72,
     "hi52": 72.66,
     "lo52": 33.38,
-    "volume": 24301,
+    "volume": 26784,
     "date": "2026-11-06",
     "history": [
      [
@@ -62039,7 +62216,7 @@
      ],
      [
       "2026-11-06",
-      37.58
+      37.41
      ]
     ]
    },
@@ -62142,7 +62319,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1582313/000119312526338244/xene-20260630.htm"
     },
-    "price": 37.58,
+    "price": 37.41,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Xenon Pharmaceuticals",
@@ -62159,8 +62336,8 @@
    "t": "LXRX",
    "n": "Lexicon Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 730.2,
-   "ev": 598.9,
+   "mcap": 725.7,
+   "ev": 594.4,
    "cash": 183.2,
    "debt": 51.9,
    "burn": 4.1,
@@ -62605,13 +62782,13 @@
     }
    },
    "quote": {
-    "price": 1.64,
+    "price": 1.63,
     "prev": 1.61,
-    "chg": 0.03,
-    "chgPct": 1.86,
+    "chg": 0.02,
+    "chgPct": 1.24,
     "hi52": 2.68,
     "lo52": 1.1,
-    "volume": 97678,
+    "volume": 117847,
     "date": "2026-11-06",
     "history": [
      [
@@ -63620,7 +63797,7 @@
      ],
      [
       "2026-11-06",
-      1.64
+      1.63
      ]
     ]
    },
@@ -63722,7 +63899,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1062822/000106282226000128/lxrx-20260930.htm"
     },
-    "price": 1.64,
+    "price": 1.63,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "LEXICON PHARMACEUTICALS",
@@ -63739,8 +63916,8 @@
    "t": "LRMR",
    "n": "Larimar Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 241,
-   "ev": 84.7,
+   "mcap": 243.1,
+   "ev": 86.8,
    "cash": 156.3,
    "debt": 0,
    "burn": 12.99,
@@ -64195,13 +64372,13 @@
     }
    },
    "quote": {
-    "price": 2.32,
+    "price": 2.34,
     "prev": 2.32,
-    "chg": 0,
-    "chgPct": 0,
+    "chg": 0.02,
+    "chgPct": 0.86,
     "hi52": 6.42,
     "lo52": 1.92,
-    "volume": 22096,
+    "volume": 31160,
     "date": "2026-11-06",
     "history": [
      [
@@ -65210,7 +65387,7 @@
      ],
      [
       "2026-11-06",
-      2.32
+      2.34
      ]
     ]
    },
@@ -65312,7 +65489,7 @@
      "date": "2026-08-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1374690/000119312526331529/lrmr-20260630.htm"
     },
-    "price": 2.32,
+    "price": 2.34,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Larimar Therapeutics",
@@ -65734,7 +65911,7 @@
     "chgPct": 2.85,
     "hi52": 4.49,
     "lo52": 1.35,
-    "volume": 16031,
+    "volume": 23651,
     "date": "2026-11-06",
     "history": [
      [
@@ -66862,8 +67039,8 @@
    "t": "OCGN",
    "n": "Ocugen",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 285,
-   "ev": 202.5,
+   "mcap": 285.9,
+   "ev": 203.4,
    "cash": 84.3,
    "debt": 1.7,
    "burn": 5.31,
@@ -67784,10 +67961,10 @@
     "price": 0.84,
     "prev": 0.82,
     "chg": 0.02,
-    "chgPct": 2.44,
+    "chgPct": 2.74,
     "hi52": 2.73,
     "lo52": 0.69,
-    "volume": 190260,
+    "volume": 257136,
     "date": "2026-11-06",
     "history": [
      [
@@ -68915,8 +69092,8 @@
    "t": "CADL",
    "n": "Candel Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 618.7,
-   "ev": 417.1,
+   "mcap": 633.6,
+   "ev": 432,
    "cash": 201.6,
    "debt": 0,
    "burn": 4.67,
@@ -69669,13 +69846,13 @@
     }
    },
    "quote": {
-    "price": 8.09,
+    "price": 8.28,
     "prev": 8.04,
-    "chg": 0.05,
-    "chgPct": 0.56,
+    "chg": 0.24,
+    "chgPct": 2.99,
     "hi52": 14,
     "lo52": 4.35,
-    "volume": 55348,
+    "volume": 83106,
     "date": "2026-11-06",
     "history": [
      [
@@ -70684,7 +70861,7 @@
      ],
      [
       "2026-11-06",
-      8.09
+      8.28
      ]
     ]
    },
@@ -70785,7 +70962,7 @@
      "date": "2026-08-13",
      "url": "https://www.sec.gov/Archives/edgar/data/1841387/000119312526347980/cadl-20260630.htm"
     },
-    "price": 8.09,
+    "price": 8.28,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Candel Therapeutics",
@@ -70802,8 +70979,8 @@
    "t": "GPCR",
    "n": "Structure Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 4092.5,
-   "ev": 2749.8,
+   "mcap": 4067.9,
+   "ev": 2725.2,
    "cash": 1342.7,
    "debt": 0,
    "burn": 18.36,
@@ -71419,13 +71596,13 @@
     }
    },
    "quote": {
-    "price": 19.13,
+    "price": 19.02,
     "prev": 19.08,
-    "chg": 0.05,
-    "chgPct": 0.26,
+    "chg": -0.06,
+    "chgPct": -0.34,
     "hi52": 94.9,
     "lo52": 18.76,
-    "volume": 31765,
+    "volume": 47718,
     "date": "2026-11-06",
     "history": [
      [
@@ -72434,7 +72611,7 @@
      ],
      [
       "2026-11-06",
-      19.13
+      19.01
      ]
     ]
    },
@@ -72536,7 +72713,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1888886/000110465926092057/gpcr-20260630x10q.htm"
     },
-    "price": 19.13,
+    "price": 19.02,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Structure Therapeutics",
@@ -72553,8 +72730,8 @@
    "t": "VOR",
    "n": "Vor Biopharma",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 1156.8,
-   "ev": 675.3,
+   "mcap": 1152.5,
+   "ev": 671,
    "cash": 481.6,
    "debt": 0,
    "burn": 9.93,
@@ -73124,13 +73301,13 @@
     }
    },
    "quote": {
-    "price": 18.83,
+    "price": 18.76,
     "prev": 18.66,
-    "chg": 0.17,
-    "chgPct": 0.91,
+    "chg": 0.1,
+    "chgPct": 0.54,
     "hi52": 26,
     "lo52": 6.5,
-    "volume": 32419,
+    "volume": 33547,
     "date": "2026-11-06",
     "history": [
      [
@@ -74139,7 +74316,7 @@
      ],
      [
       "2026-11-06",
-      18.83
+      18.76
      ]
     ]
    },
@@ -74241,7 +74418,7 @@
      "date": "2026-10-30",
      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000119312526439905/vor-20260930.htm"
     },
-    "price": 18.83,
+    "price": 18.76,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Vor Biopharma",
@@ -74258,8 +74435,8 @@
    "t": "PEPG",
    "n": "PepGen",
    "area": "Pharmaceutical Preparations",
-   "mcap": 165.9,
-   "ev": 48.6,
+   "mcap": 165.5,
+   "ev": 48.3,
    "cash": 117.2,
    "debt": 0,
    "burn": 5.78,
@@ -74691,13 +74868,13 @@
     }
    },
    "quote": {
-    "price": 2.4,
+    "price": 2.39,
     "prev": 2.32,
-    "chg": 0.08,
-    "chgPct": 3.23,
+    "chg": 0.07,
+    "chgPct": 3.02,
     "hi52": 7.8,
     "lo52": 1.31,
-    "volume": 18169,
+    "volume": 37755,
     "date": "2026-11-06",
     "history": [
      [
@@ -75808,7 +75985,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1835597/000119312526336754/pepg-20260630.htm"
     },
-    "price": 2.4,
+    "price": 2.39,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "PepGen",
@@ -75825,8 +76002,8 @@
    "t": "KYTX",
    "n": "Kyverna Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 288.2,
-   "ev": 113.6,
+   "mcap": 293.4,
+   "ev": 118.9,
    "cash": 199.4,
    "debt": 24.9,
    "burn": 13.23,
@@ -76383,13 +76560,13 @@
     }
    },
    "quote": {
-    "price": 4.66,
+    "price": 4.75,
     "prev": 4.61,
-    "chg": 0.05,
-    "chgPct": 1.08,
+    "chg": 0.13,
+    "chgPct": 2.93,
     "hi52": 13.67,
     "lo52": 4.5,
-    "volume": 80370,
+    "volume": 85208,
     "date": "2026-11-06",
     "history": [
      [
@@ -77398,7 +77575,7 @@
      ],
      [
       "2026-11-06",
-      4.66
+      4.74
      ]
     ]
    },
@@ -77500,7 +77677,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1994702/000119312526344607/kytx-20260630.htm"
     },
-    "price": 4.66,
+    "price": 4.75,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Kyverna Therapeutics",
@@ -77517,8 +77694,8 @@
    "t": "NKTX",
    "n": "Nkarta",
    "area": "Pharmaceutical Preparations",
-   "mcap": 118.2,
-   "ev": -95,
+   "mcap": 117.2,
+   "ev": -96,
    "cash": 213.3,
    "debt": 0,
    "burn": 8.33,
@@ -78177,13 +78354,13 @@
     }
    },
    "quote": {
-    "price": 1.65,
+    "price": 1.64,
     "prev": 1.57,
-    "chg": 0.08,
-    "chgPct": 5.03,
+    "chg": 0.06,
+    "chgPct": 4.14,
     "hi52": 3.72,
     "lo52": 1.48,
-    "volume": 59658,
+    "volume": 66330,
     "date": "2026-11-06",
     "history": [
      [
@@ -79192,7 +79369,7 @@
      ],
      [
       "2026-11-06",
-      1.65
+      1.63
      ]
     ]
    },
@@ -79295,7 +79472,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1787400/000178740026000021/nktx-20260930.htm"
     },
-    "price": 1.65,
+    "price": 1.64,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Nkarta",
@@ -79312,8 +79489,8 @@
    "t": "IRON",
    "n": "Disc Medicine",
    "area": "Pharmaceutical Preparations",
-   "mcap": 3610,
-   "ev": 2987,
+   "mcap": 3575.6,
+   "ev": 2952.6,
    "cash": 682.8,
    "debt": 59.7,
    "burn": 15.83,
@@ -79868,6 +80045,30 @@
    "revQ": [],
    "rivals": [
     {
+     "nct": "NCT06517875",
+     "sponsor": "GlaxoSmithKline",
+     "title": "Study of Momelotinib in Combination With Luspatercept in Participants With Transfusion Dependent Myelofibrosis",
+     "ph": "Phase II",
+     "pcd": "2027-03-16",
+     "n": 68,
+     "drugs": [
+      "Momelotinib",
+      "Luspatercept"
+     ],
+     "forDrug": "DISC-3405",
+     "ind": "Polycythemia Vera (PV)",
+     "countries": [
+      "United States",
+      "Canada",
+      "France",
+      "Germany",
+      "Italy",
+      "Spain"
+     ],
+     "nCountries": 6,
+     "china": null
+    },
+    {
      "nct": "NCT07232290",
      "sponsor": "Chengdu Zenitar Biomedical Technology Co., Ltd",
      "title": "Phase IIa Study of Flonoltinib Maleate Tablets in the Treatment of Patients With Polycythemia Vera",
@@ -79885,6 +80086,24 @@
      ],
      "nCountries": 1,
      "china": "only"
+    },
+    {
+     "nct": "NCT07648030",
+     "sponsor": "Takeda",
+     "title": "A Study of Rusfertide in Japanese Adults With Polycythemia Vera",
+     "ph": "Phase II",
+     "pcd": "2027-10-28",
+     "n": 9,
+     "drugs": [
+      "Rusfertide"
+     ],
+     "forDrug": "DISC-3405",
+     "ind": "Polycythemia Vera (PV)",
+     "countries": [
+      "Japan"
+     ],
+     "nCountries": 1,
+     "china": null
     },
     {
      "nct": "NCT05005975",
@@ -79927,13 +80146,13 @@
     }
    },
    "quote": {
-    "price": 79.27,
+    "price": 78.52,
     "prev": 78.47,
-    "chg": 0.8,
-    "chgPct": 1.02,
+    "chg": 0.05,
+    "chgPct": 0.06,
     "hi52": 99.5,
     "lo52": 40,
-    "volume": 10000,
+    "volume": 12402,
     "date": "2026-11-06",
     "history": [
      [
@@ -80942,7 +81161,7 @@
      ],
      [
       "2026-11-06",
-      79.27
+      78.51
      ]
     ]
    },
@@ -81044,7 +81263,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1816736/000119312526448729/iron-20260930.htm"
     },
-    "price": 79.27,
+    "price": 78.52,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Disc Medicine",
@@ -81061,8 +81280,8 @@
    "t": "ZURA",
    "n": "Zura Bio",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 366.5,
-   "ev": 178.9,
+   "mcap": 366,
+   "ev": 178.4,
    "cash": 187.7,
    "debt": 0,
    "burn": 5.4,
@@ -81377,6 +81596,29 @@
      "china": null
     },
     {
+     "nct": "NCT06468228",
+     "sponsor": "AbbVie",
+     "title": "A Study to Assess Disease Activity and Safety of Lutikizumab in Adult and Adolescent Participants With Moderate to Severe Hidradenitis Suppurativa",
+     "ph": "Phase III",
+     "pcd": "2026-12-15",
+     "n": 1400,
+     "drugs": [
+      "Lutikizumab"
+     ],
+     "forDrug": "Tibulizumab",
+     "ind": "Hidradenitis Suppurativa (HS)",
+     "countries": [
+      "United States",
+      "Argentina",
+      "Australia",
+      "Austria",
+      "Belgium",
+      "Bosnia and Herzegovina"
+     ],
+     "nCountries": 44,
+     "china": null
+    },
+    {
      "nct": "NCT06921850",
      "sponsor": "UCB Biopharma SRL",
      "title": "A Study to Assess the Pharmacokinetics and Safety of Bimekizumab in Children and Adolescents With Moderate to Severe Hidradenitis Suppurativa",
@@ -81420,6 +81662,52 @@
      "china": null
     },
     {
+     "nct": "NCT07244263",
+     "sponsor": "Takeda",
+     "title": "A Study of Zasocitinib in Adults With Hidradenitis Suppurativa",
+     "ph": "Phase II",
+     "pcd": "2027-02-05",
+     "n": 91,
+     "drugs": [
+      "Zasocitinib"
+     ],
+     "forDrug": "Tibulizumab",
+     "ind": "Hidradenitis Suppurativa (HS)",
+     "countries": [
+      "United States",
+      "Australia",
+      "Canada",
+      "China",
+      "France",
+      "Germany"
+     ],
+     "nCountries": 8,
+     "china": "some"
+    },
+    {
+     "nct": "NCT07170917",
+     "sponsor": "Sanofi",
+     "title": "Brivekimig for the Treatment of Moderate to Severe Hidradenitis Suppurativa",
+     "ph": "Phase II",
+     "pcd": "2027-02-09",
+     "n": 208,
+     "drugs": [
+      "Brivekimig"
+     ],
+     "forDrug": "Tibulizumab",
+     "ind": "Hidradenitis Suppurativa (HS)",
+     "countries": [
+      "United States",
+      "Australia",
+      "Canada",
+      "Chile",
+      "China",
+      "Czechia"
+     ],
+     "nCountries": 19,
+     "china": "some"
+    },
+    {
      "nct": "NCT06524635",
      "sponsor": "AbbVie",
      "title": "A Study to Assess Molecular Changes in Adult Participants With Moderate to Severe Hidradenitis Suppurativa or With Moderate to Severe Atopic Dermatitis Receivin",
@@ -81433,6 +81721,24 @@
      "ind": "Hidradenitis Suppurativa (HS)",
      "countries": [
       "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT07547813",
+     "sponsor": "Almirall, S.A.",
+     "title": "A Proof-of-Concept Study of LAD328 in Adults With Hidradenitis Suppurativa",
+     "ph": "Phase II",
+     "pcd": "2027-02-15",
+     "n": 50,
+     "drugs": [
+      "LAD328"
+     ],
+     "forDrug": "Tibulizumab",
+     "ind": "Hidradenitis Suppurativa (HS)",
+     "countries": [
+      "Poland"
      ],
      "nCountries": 1,
      "china": null
@@ -81502,115 +81808,22 @@
      "china": "some"
     },
     {
-     "nct": "NCT06840392",
-     "sponsor": "Novartis Pharmaceuticals",
-     "title": "A Phase 3 Study to Assess Efficacy Safety and Tolerability of Remibrutinib in Adult and Adolescent Patients With Moderate to Severe Hidradenitis Suppurativa",
-     "ph": "Phase III",
-     "pcd": "2027-06-03",
-     "n": 565,
-     "drugs": [
-      "Remibrutinib"
-     ],
-     "forDrug": "Tibulizumab",
-     "ind": "Hidradenitis Suppurativa (HS)",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Austria",
-      "Belgium",
-      "Canada",
-      "Colombia"
-     ],
-     "nCountries": 19,
-     "china": null
-    },
-    {
-     "nct": "NCT07287644",
-     "sponsor": "Bluefin Biomedicine, Inc.",
-     "title": "A Study Evaluating BFB759 in Moderate to Severe Hidradenitis Suppurativa",
-     "ph": "Phase III",
-     "pcd": "2027-08-01",
-     "n": 210,
-     "drugs": [
-      "BFB759"
-     ],
-     "forDrug": "Tibulizumab",
-     "ind": "Hidradenitis Suppurativa (HS)",
-     "countries": [
-      "United States",
-      "Bulgaria",
-      "Canada",
-      "Czechia",
-      "Germany",
-      "Poland"
-     ],
-     "nCountries": 7,
-     "china": null
-    },
-    {
-     "nct": "NCT07384975",
-     "sponsor": "Navigator Medicines, Inc.",
-     "title": "A Study to Assess NAV-240 in Adult Participants With Hidradenitis Suppurativa",
+     "nct": "NCT07151937",
+     "sponsor": "Almirall, S.A.",
+     "title": "A Study of LAD191 in Adults With Hidradenitis Suppurativa",
      "ph": "Phase II",
-     "pcd": "2027-09-15",
-     "n": 150,
+     "pcd": "2027-05-25",
+     "n": 200,
      "drugs": [
-      "NAV-240"
+      "LAD191",
+      "Adalimumab"
      ],
      "forDrug": "Tibulizumab",
      "ind": "Hidradenitis Suppurativa (HS)",
      "countries": [
-      "United States",
-      "Bulgaria",
-      "Canada",
-      "Georgia",
-      "Germany",
-      "Hungary"
+      "Spain"
      ],
-     "nCountries": 8,
-     "china": null
-    },
-    {
-     "nct": "NCT07766005",
-     "sponsor": "Spyre Therapeutics, Inc.",
-     "title": "A Study of SPY072 in Adults With Moderate to Severe Hidradenitis Suppurativa (The SKYLIGHT Trial)",
-     "ph": "Phase II",
-     "pcd": "2027-10-15",
-     "n": 150,
-     "drugs": [
-      "SPY072",
-      "bimekizumab"
-     ],
-     "forDrug": "Tibulizumab",
-     "ind": "Hidradenitis Suppurativa (HS)",
-     "countries": [
-      "United States",
-      "Canada"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT06855498",
-     "sponsor": "Incyte Corporation",
-     "title": "Rollover Study for Participants Previously Enrolled in Clinical Trials of Povorcitinib",
-     "ph": "Phase III",
-     "pcd": "2028-02-28",
-     "n": 600,
-     "drugs": [
-      "povorcitinib"
-     ],
-     "forDrug": "Tibulizumab",
-     "ind": "Hidradenitis Suppurativa (HS)",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Australia",
-      "Austria",
-      "Belgium",
-      "Bulgaria"
-     ],
-     "nCountries": 20,
+     "nCountries": 1,
      "china": null
     }
    ],
@@ -81631,13 +81844,13 @@
     }
    },
    "quote": {
-    "price": 3.81,
+    "price": 3.8,
     "prev": 3.72,
     "chg": 0.08,
-    "chgPct": 2.28,
+    "chgPct": 2.15,
     "hi52": 7.44,
     "lo52": 3.25,
-    "volume": 73718,
+    "volume": 117873,
     "date": "2026-11-06",
     "history": [
      [
@@ -82646,7 +82859,7 @@
      ],
      [
       "2026-11-06",
-      3.81
+      3.8
      ]
     ]
    },
@@ -82747,7 +82960,7 @@
      "date": "2026-10-27",
      "url": "https://www.sec.gov/Archives/edgar/data/1855644/000185564426000011/zura-20260930.htm"
     },
-    "price": 3.81,
+    "price": 3.8,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Zura Bio",
@@ -82764,8 +82977,8 @@
    "t": "RXRX",
    "n": "Recursion Pharmaceuticals",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 2182.8,
-   "ev": 1632.9,
+   "mcap": 2192.1,
+   "ev": 1642.3,
    "cash": 549.9,
    "debt": 0,
    "burn": 25.88,
@@ -83682,6 +83895,24 @@
      "china": "only"
     },
     {
+     "nct": "NCT06505551",
+     "sponsor": "SCG Cell Therapy Pte. Ltd.",
+     "title": "Phase 1/2 Study of Autologous SCG142 TCR T Cells in Patients With HPV16/52-positive Carcinoma",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 66,
+     "drugs": [
+      "SCG142",
+      "Cyclophosphamide",
+      "Fludarabine"
+     ],
+     "forDrug": "GTAEXS617",
+     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC)",
+     "countries": [],
+     "nCountries": 0,
+     "china": null
+    },
+    {
      "nct": "NCT05312710",
      "sponsor": "Aveta Biomics, Inc.",
      "title": "Safety and Efficacy of APG-157 in Head and Neck Cancer",
@@ -83759,6 +83990,24 @@
      "china": "only"
     },
     {
+     "nct": "NCT05669430",
+     "sponsor": "GV20 Therapeutics",
+     "title": "A Study of GV20-0251 Monotherapy and GV20-0251 in Combination With Pembrolizumab in Participants With Solid Tumor Malignancies",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 365,
+     "drugs": [
+      "GV20-0251"
+     ],
+     "forDrug": "GTAEXS617",
+     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC)",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
      "nct": "NCT05668858",
      "sponsor": "Sichuan Baili Pharmaceutical Co., Ltd.",
      "title": "A Study of SI-B001+SI-B003± Chemotherapy in Patients With Locally Advanced or Metastatic Head and Neck Squamous Cell Carcinoma",
@@ -83797,24 +84046,6 @@
      "china": "only"
     },
     {
-     "nct": "NCT05473156",
-     "sponsor": "AP Biosciences Inc.",
-     "title": "A Study to Investigate the Safety, Pharmacokinetics, and Clinical Activity of AP203 in Patients with Locally Advanced or Metastatic Solid Tumors, and Expansion ",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 168,
-     "drugs": [
-      "AP203"
-     ],
-     "forDrug": "GTAEXS617",
-     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC)",
-     "countries": [
-      "Taiwan"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
      "nct": "NCT06359860",
      "sponsor": "Beijing Scitech-Mq Pharmaceuticals Limited",
      "title": "A Study of ST-1898 for Unresectable or Metastatic Melanoma",
@@ -83850,31 +84081,6 @@
      ],
      "nCountries": 1,
      "china": "only"
-    },
-    {
-     "nct": "NCT06107413",
-     "sponsor": "AbbVie",
-     "title": "Study to Assess Adverse Events and Change in Disease Activity in Previously Treated Adult Participants Receiving Intravenous (IV) ABBV-400 With Unresectable Met",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 280,
-     "drugs": [
-      "ABBV-400",
-      "Bevacizumab",
-      "Folinic Acid"
-     ],
-     "forDrug": "REC-1245",
-     "ind": "Unresectable",
-     "countries": [
-      "United States",
-      "Belgium",
-      "Germany",
-      "Israel",
-      "Japan",
-      "South Korea"
-     ],
-     "nCountries": 8,
-     "china": null
     }
    ],
    "burnPrior": 36.76,
@@ -83889,13 +84095,13 @@
     }
    },
    "quote": {
-    "price": 3.51,
+    "price": 3.52,
     "prev": 3.5,
-    "chg": 0,
-    "chgPct": 0.14,
+    "chg": 0.02,
+    "chgPct": 0.57,
     "hi52": 5.24,
     "lo52": 2.77,
-    "volume": 1373755,
+    "volume": 1680398,
     "date": "2026-11-06",
     "history": [
      [
@@ -84904,7 +85110,7 @@
      ],
      [
       "2026-11-06",
-      3.51
+      3.52
      ]
     ]
    },
@@ -85005,7 +85211,7 @@
      "date": "2026-11-02",
      "url": "https://www.sec.gov/Archives/edgar/data/1601830/000160183026000145/rxrx-20260930.htm"
     },
-    "price": 3.51,
+    "price": 3.52,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "RECURSION PHARMACEUTICALS",
@@ -85022,8 +85228,8 @@
    "t": "LBRX",
    "n": "Lb Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1253,
-   "ev": 849.3,
+   "mcap": 1257.6,
+   "ev": 853.9,
    "cash": 403.8,
    "debt": 0,
    "burn": 11.94,
@@ -85457,13 +85663,13 @@
     }
    },
    "quote": {
-    "price": 38.72,
+    "price": 38.86,
     "prev": 38.09,
-    "chg": 0.63,
-    "chgPct": 1.65,
+    "chg": 0.77,
+    "chgPct": 2.02,
     "hi52": 50.16,
     "lo52": 14.32,
-    "volume": 10617,
+    "volume": 12542,
     "date": "2026-11-06",
     "history": [
      [
@@ -86472,7 +86678,7 @@
      ],
      [
       "2026-11-06",
-      38.72
+      38.86
      ]
     ]
    },
@@ -86574,7 +86780,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1691082/000119312526449994/lbrx-20260930.htm"
     },
-    "price": 38.72,
+    "price": 38.86,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "LB PHARMACEUTICALS",
@@ -86591,8 +86797,8 @@
    "t": "VSTM",
    "n": "Verastem",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1069.9,
-   "ev": 897.1,
+   "mcap": 1033.3,
+   "ev": 860.5,
    "cash": 172.8,
    "debt": 0,
    "burn": 13.3,
@@ -87610,13 +87816,13 @@
     }
    },
    "quote": {
-    "price": 8.49,
+    "price": 8.2,
     "prev": 9.38,
-    "chg": -0.89,
-    "chgPct": -9.49,
+    "chg": -1.18,
+    "chgPct": -12.58,
     "hi52": 10.82,
     "lo52": 3.43,
-    "volume": 327091,
+    "volume": 468375,
     "date": "2026-11-06",
     "history": [
      [
@@ -88625,7 +88831,7 @@
      ],
      [
       "2026-11-06",
-      8.49
+      8.2
      ]
     ]
    },
@@ -88726,7 +88932,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1526119/000110465926123305/vstm-20260930x10q.htm"
     },
-    "price": 8.49,
+    "price": 8.2,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Verastem",
@@ -88743,8 +88949,8 @@
    "t": "ORIC",
    "n": "Oric Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 895.1,
-   "ev": 507.6,
+   "mcap": 881,
+   "ev": 493.5,
    "cash": 387.6,
    "debt": 0,
    "burn": 9.3,
@@ -89418,13 +89624,13 @@
     }
    },
    "quote": {
-    "price": 8.64,
+    "price": 8.5,
     "prev": 8.49,
-    "chg": 0.15,
-    "chgPct": 1.72,
+    "chg": 0.01,
+    "chgPct": 0.12,
     "hi52": 14.68,
     "lo52": 7.23,
-    "volume": 16990,
+    "volume": 28347,
     "date": "2026-11-06",
     "history": [
      [
@@ -90433,7 +90639,7 @@
      ],
      [
       "2026-11-06",
-      8.64
+      8.5
      ]
     ]
    },
@@ -90536,7 +90742,7 @@
      "date": "2026-08-03",
      "url": "https://www.sec.gov/Archives/edgar/data/1796280/000119312526330631/oric-20260630.htm"
     },
-    "price": 8.64,
+    "price": 8.5,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Oric Pharmaceuticals",
@@ -90553,8 +90759,8 @@
    "t": "SVRA",
    "n": "Savara",
    "area": "Pharmaceutical Preparations",
-   "mcap": 918.4,
-   "ev": 775.5,
+   "mcap": 926.6,
+   "ev": 783.7,
    "cash": 173,
    "debt": 30.1,
    "burn": 9.2,
@@ -90906,13 +91112,13 @@
     }
    },
    "quote": {
-    "price": 4.47,
+    "price": 4.51,
     "prev": 4.38,
-    "chg": 0.09,
-    "chgPct": 2.05,
+    "chg": 0.13,
+    "chgPct": 2.97,
     "hi52": 7.01,
     "lo52": 3.86,
-    "volume": 60426,
+    "volume": 67888,
     "date": "2026-11-06",
     "history": [
      [
@@ -91921,7 +92127,7 @@
      ],
      [
       "2026-11-06",
-      4.47
+      4.51
      ]
     ]
    },
@@ -92023,7 +92229,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1160308/000119312526344585/svra-20260630.htm"
     },
-    "price": 4.47,
+    "price": 4.51,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Savara",
@@ -92040,8 +92246,8 @@
    "t": "CRVS",
    "n": "Corvus Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 830.9,
-   "ev": 627.9,
+   "mcap": 821.2,
+   "ev": 618.2,
    "cash": 202.9,
    "debt": 0,
    "burn": 3.93,
@@ -92709,13 +92915,13 @@
     }
    },
    "quote": {
-    "price": 9.85,
+    "price": 9.74,
     "prev": 9.73,
-    "chg": 0.12,
-    "chgPct": 1.23,
+    "chg": 0,
+    "chgPct": 0.05,
     "hi52": 26.95,
     "lo52": 6.39,
-    "volume": 32562,
+    "volume": 41434,
     "date": "2026-11-06",
     "history": [
      [
@@ -93724,7 +93930,7 @@
      ],
      [
       "2026-11-06",
-      9.85
+      9.73
      ]
     ]
    },
@@ -93826,7 +94032,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1626971/000110465926123317/crvs-20260930x10q.htm"
     },
-    "price": 9.85,
+    "price": 9.74,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Corvus Pharmaceuticals",
@@ -94367,7 +94573,7 @@
     "chgPct": 1.91,
     "hi52": 166.73,
     "lo52": 72.22,
-    "volume": 2679,
+    "volume": 4812,
     "date": "2026-11-06",
     "history": [
      [
@@ -95495,8 +95701,8 @@
    "t": "TRVI",
    "n": "Trevi Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1852.2,
-   "ev": 1533.3,
+   "mcap": 1882.1,
+   "ev": 1563.2,
    "cash": 318.9,
    "debt": 0,
    "burn": 4.39,
@@ -96081,13 +96287,13 @@
     }
    },
    "quote": {
-    "price": 13,
+    "price": 13.21,
     "prev": 12.81,
-    "chg": 0.19,
-    "chgPct": 1.48,
+    "chg": 0.4,
+    "chgPct": 3.12,
     "hi52": 20.22,
     "lo52": 9.82,
-    "volume": 35877,
+    "volume": 95132,
     "date": "2026-11-06",
     "history": [
      [
@@ -97096,7 +97302,7 @@
      ],
      [
       "2026-11-06",
-      13
+      13.21
      ]
     ]
    },
@@ -97198,7 +97404,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1563880/000119312526338023/trvi-20260630.htm"
     },
-    "price": 13,
+    "price": 13.21,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Trevi Therapeutics",
@@ -97215,8 +97421,8 @@
    "t": "CLYM",
    "n": "Climb Bio",
    "area": "Pharmaceutical Preparations",
-   "mcap": 526.9,
-   "ev": 299.3,
+   "mcap": 522.8,
+   "ev": 295.1,
    "cash": 227.6,
    "debt": 0,
    "burn": 4.38,
@@ -97873,13 +98079,13 @@
     }
    },
    "quote": {
-    "price": 8.97,
+    "price": 8.9,
     "prev": 8.87,
-    "chg": 0.1,
-    "chgPct": 1.13,
+    "chg": 0.03,
+    "chgPct": 0.34,
     "hi52": 18.33,
     "lo52": 1.64,
-    "volume": 20778,
+    "volume": 21474,
     "date": "2026-11-06",
     "history": [
      [
@@ -98888,7 +99094,7 @@
      ],
      [
       "2026-11-06",
-      8.97
+      8.9
      ]
     ]
    },
@@ -98991,7 +99197,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1768446/000119312526448567/clym-20260930.htm"
     },
-    "price": 8.97,
+    "price": 8.9,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Climb Bio",
@@ -99008,8 +99214,8 @@
    "t": "IRD",
    "n": "Opus Genetics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 336.9,
-   "ev": 283.4,
+   "mcap": 335,
+   "ev": 281.5,
    "cash": 88.8,
    "debt": 35.3,
    "burn": 3.39,
@@ -99702,13 +99908,13 @@
     }
    },
    "quote": {
-    "price": 4.05,
+    "price": 4.03,
     "prev": 4.01,
-    "chg": 0.04,
-    "chgPct": 1,
+    "chg": 0.02,
+    "chgPct": 0.42,
     "hi52": 7.07,
     "lo52": 1.7,
-    "volume": 6248,
+    "volume": 9027,
     "date": "2026-11-06",
     "history": [
      [
@@ -100717,7 +100923,7 @@
      ],
      [
       "2026-11-06",
-      4.05
+      4.03
      ]
     ]
    },
@@ -100818,7 +101024,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1228627/000162828026054381/ird-20260630.htm"
     },
-    "price": 4.05,
+    "price": 4.03,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Opus Genetics",
@@ -100835,8 +101041,8 @@
    "t": "KRRO",
    "n": "Korro Bio",
    "area": "Pharmaceutical Preparations",
-   "mcap": 205.4,
-   "ev": 80.6,
+   "mcap": 207.3,
+   "ev": 82.4,
    "cash": 124.8,
    "debt": 0,
    "burn": 5.31,
@@ -101204,13 +101410,13 @@
     }
    },
    "quote": {
-    "price": 14.96,
+    "price": 15.1,
     "prev": 14.73,
-    "chg": 0.23,
-    "chgPct": 1.59,
+    "chg": 0.37,
+    "chgPct": 2.51,
     "hi52": 36.79,
     "lo52": 5.2,
-    "volume": 4181,
+    "volume": 4779,
     "date": "2026-11-06",
     "history": [
      [
@@ -102219,7 +102425,7 @@
      ],
      [
       "2026-11-06",
-      14.96
+      15.1
      ]
     ]
    },
@@ -102322,7 +102528,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1703647/000119312526448550/krro-20260930.htm"
     },
-    "price": 14.96,
+    "price": 15.1,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Korro Bio",
@@ -102339,8 +102545,8 @@
    "t": "CMPX",
    "n": "Compass Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 124.4,
-   "ev": -55.5,
+   "mcap": 124.3,
+   "ev": -55.6,
    "cash": 179.9,
    "debt": 0,
    "burn": 4.68,
@@ -103227,10 +103433,10 @@
     "price": 0.69,
     "prev": 0.69,
     "chg": 0,
-    "chgPct": 0.07,
+    "chgPct": 0.01,
     "hi52": 6.88,
     "lo52": 0.68,
-    "volume": 65570,
+    "volume": 74325,
     "date": "2026-11-06",
     "history": [
      [
@@ -104358,8 +104564,8 @@
    "t": "WVE",
    "n": "Wave Life Sciences",
    "area": "Pharmaceutical Preparations",
-   "mcap": 639,
-   "ev": 208,
+   "mcap": 641,
+   "ev": 210,
    "cash": 431,
    "debt": 0,
    "burn": 17.25,
@@ -105229,13 +105435,13 @@
     }
    },
    "quote": {
-    "price": 3.24,
+    "price": 3.25,
     "prev": 3.22,
-    "chg": 0.02,
-    "chgPct": 0.62,
+    "chg": 0.03,
+    "chgPct": 0.93,
     "hi52": 21.73,
     "lo52": 3.04,
-    "volume": 60061,
+    "volume": 101932,
     "date": "2026-11-06",
     "history": [
      [
@@ -106244,7 +106450,7 @@
      ],
      [
       "2026-11-06",
-      3.24
+      3.25
      ]
     ]
    },
@@ -106347,7 +106553,7 @@
      "date": "2026-10-27",
      "url": "https://www.sec.gov/Archives/edgar/data/1631574/000119312526432714/wve-20260930.htm"
     },
-    "price": 3.24,
+    "price": 3.25,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Wave Life Sciences",
@@ -106364,8 +106570,8 @@
    "t": "XFOR",
    "n": "X4 Pharmaceuticals",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 306.9,
-   "ev": 196.1,
+   "mcap": 297.7,
+   "ev": 186.9,
    "cash": 185.8,
    "debt": 75,
    "burn": 6.34,
@@ -106758,13 +106964,13 @@
     }
    },
    "quote": {
-    "price": 3.01,
+    "price": 2.92,
     "prev": 3.07,
-    "chg": -0.06,
-    "chgPct": -2.12,
+    "chg": -0.15,
+    "chgPct": -5.05,
     "hi52": 4.83,
     "lo52": 2.43,
-    "volume": 47990,
+    "volume": 69402,
     "date": "2026-11-06",
     "history": [
      [
@@ -107773,7 +107979,7 @@
      ],
      [
       "2026-11-06",
-      3.01
+      2.91
      ]
     ]
    },
@@ -107874,7 +108080,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1501697/000150169726000089/xfor-20260930.htm"
     },
-    "price": 3.01,
+    "price": 2.92,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "X4 Pharmaceuticals",
@@ -107891,8 +108097,8 @@
    "t": "UPB",
    "n": "Upstream Bio",
    "area": "Pharmaceutical Preparations",
-   "mcap": 176.9,
-   "ev": -84.4,
+   "mcap": 179.1,
+   "ev": -82.2,
    "cash": 261.3,
    "debt": 0,
    "burn": 11.36,
@@ -108450,13 +108656,13 @@
     }
    },
    "quote": {
-    "price": 3.23,
+    "price": 3.27,
     "prev": 3.21,
-    "chg": 0.02,
-    "chgPct": 0.62,
+    "chg": 0.06,
+    "chgPct": 1.87,
     "hi52": 33.68,
     "lo52": 2.68,
-    "volume": 6197,
+    "volume": 7953,
     "date": "2026-11-06",
     "history": [
      [
@@ -109465,7 +109671,7 @@
      ],
      [
       "2026-11-06",
-      3.23
+      3.27
      ]
     ]
    },
@@ -109567,7 +109773,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/2022626/000119312526343417/upb-20260630.htm"
     },
-    "price": 3.23,
+    "price": 3.27,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Upstream Bio",
@@ -109584,8 +109790,8 @@
    "t": "CHRS",
    "n": "Coherus Oncology",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 115.3,
-   "ev": 10,
+   "mcap": 114.7,
+   "ev": 9.4,
    "cash": 105.3,
    "debt": 0,
    "burn": 15.5,
@@ -110002,13 +110208,13 @@
     }
    },
    "quote": {
-    "price": 0.75,
+    "price": 0.74,
     "prev": 0.75,
-    "chg": 0,
-    "chgPct": -0.49,
+    "chg": -0.01,
+    "chgPct": -0.99,
     "hi52": 2.62,
     "lo52": 0.73,
-    "volume": 36280,
+    "volume": 43638,
     "date": "2026-11-06",
     "history": [
      [
@@ -111017,7 +111223,7 @@
      ],
      [
       "2026-11-06",
-      0.75
+      0.74
      ]
     ]
    },
@@ -111119,7 +111325,7 @@
      "date": "2026-08-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1512762/000110465926091262/chrs-20260630x10q.htm"
     },
-    "price": 0.75,
+    "price": 0.74,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Coherus Oncology",
@@ -111136,8 +111342,8 @@
    "t": "ALT",
    "n": "Altimmune",
    "area": "Pharmaceutical Preparations",
-   "mcap": 383,
-   "ev": -100.8,
+   "mcap": 379.7,
+   "ev": -104.1,
    "cash": 518.5,
    "debt": 34.7,
    "burn": 6.38,
@@ -111485,6 +111691,25 @@
    ],
    "rivals": [
     {
+     "nct": "NCT06884293",
+     "sponsor": "Innovent Biologics (Suzhou) Co. Ltd.",
+     "title": "A Study Comparing IBI362 vs Semaglutide in Chinese Overweight or Obese Adults With Metabolic Dysfunction-associated Fatty Liver Disease （MAFLD）",
+     "ph": "Phase III",
+     "pcd": "2026-12-31",
+     "n": 479,
+     "drugs": [
+      "IBI362",
+      "semaglutide"
+     ],
+     "forDrug": "Pemvidutide",
+     "ind": "Metabolic Dysfunction-Associated Steatohepatitis (MASH)",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
      "nct": "NCT07491458",
      "sponsor": "Rivus Pharmaceuticals, Inc.",
      "title": "A Trial to Investigate Safety, Exposure, and Efficacy of HU6 Compared With Placebo in Adult Participants With Metabolic Dysfunction-associated Steatohepatitis (",
@@ -111705,13 +111930,13 @@
     }
    },
    "quote": {
-    "price": 1.97,
+    "price": 1.95,
     "prev": 1.97,
-    "chg": 0,
-    "chgPct": -0.05,
+    "chg": -0.02,
+    "chgPct": -0.91,
     "hi52": 6.44,
     "lo52": 1.91,
-    "volume": 101545,
+    "volume": 136826,
     "date": "2026-11-06",
     "history": [
      [
@@ -112720,7 +112945,7 @@
      ],
      [
       "2026-11-06",
-      1.97
+      1.95
      ]
     ]
    },
@@ -112823,7 +113048,7 @@
      "date": "2026-08-12",
      "url": "https://www.sec.gov/Archives/edgar/data/1326190/000132619026000052/alt-20260630x10q.htm"
     },
-    "price": 1.97,
+    "price": 1.95,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Altimmune",
@@ -112840,8 +113065,8 @@
    "t": "GLUE",
    "n": "Monte Rosa Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 871.6,
-   "ev": 826.4,
+   "mcap": 862.2,
+   "ev": 817,
    "cash": 45.2,
    "debt": 0,
    "burn": 13.79,
@@ -113585,13 +113810,13 @@
     }
    },
    "quote": {
-    "price": 10.2,
+    "price": 10.09,
     "prev": 10.25,
-    "chg": -0.05,
-    "chgPct": -0.49,
+    "chg": -0.16,
+    "chgPct": -1.56,
     "hi52": 25.77,
     "lo52": 9.68,
-    "volume": 21975,
+    "volume": 28034,
     "date": "2026-11-06",
     "history": [
      [
@@ -114600,7 +114825,7 @@
      ],
      [
       "2026-11-06",
-      10.2
+      10.09
      ]
     ]
    },
@@ -114701,7 +114926,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1826457/000119312526448568/glue-20260930.htm"
     },
-    "price": 10.2,
+    "price": 10.09,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Monte Rosa Therapeutics",
@@ -114718,8 +114943,8 @@
    "t": "EVMN",
    "n": "Evommune",
    "area": "Pharmaceutical Preparations",
-   "mcap": 232.6,
-   "ev": -55.4,
+   "mcap": 234.4,
+   "ev": -53.6,
    "cash": 288,
    "debt": 0,
    "burn": 6.18,
@@ -115213,13 +115438,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 6.41,
+    "price": 6.46,
     "prev": 6.37,
-    "chg": 0.04,
-    "chgPct": 0.63,
+    "chg": 0.09,
+    "chgPct": 1.41,
     "hi52": 33.2,
     "lo52": 4.94,
-    "volume": 11137,
+    "volume": 16086,
     "date": "2026-11-06",
     "history": [
      [
@@ -116228,7 +116453,7 @@
      ],
      [
       "2026-11-06",
-      6.41
+      6.46
      ]
     ]
    },
@@ -116331,7 +116556,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/2044725/000119312526337984/evmn-20260630.htm"
     },
-    "price": 6.41,
+    "price": 6.46,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Evommune",
@@ -116348,8 +116573,8 @@
    "t": "RLMD",
    "n": "Relmada Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 395.7,
-   "ev": 178,
+   "mcap": 397.9,
+   "ev": 180.1,
    "cash": 217.7,
    "debt": 0,
    "burn": 3.83,
@@ -116788,6 +117013,30 @@
    ],
    "rivals": [
     {
+     "nct": "NCT04585750",
+     "sponsor": "PMV Pharmaceuticals, Inc",
+     "title": "The Evaluation of PC14586 in Patients With Advanced Solid Tumors Harboring a TP53 Y220C Mutation (PYNNACLE)",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 300,
+     "drugs": [
+      "rezatapopt",
+      "pembrolizumab"
+     ],
+     "forDrug": "NDV-01",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "United States",
+      "Australia",
+      "France",
+      "Germany",
+      "Italy",
+      "Singapore"
+     ],
+     "nCountries": 9,
+     "china": null
+    },
+    {
      "nct": "NCT03945162",
      "sponsor": "Theralase® Technologies Inc.",
      "title": "Intravesical Photodynamic Therapy (\"PDT\") in BCG-Unresponsive/Intolerant Non-Muscle Invasive Bladder Cancer (\"NMIBC\") Patients",
@@ -116832,6 +117081,71 @@
      "china": "some"
     },
     {
+     "nct": "NCT04180371",
+     "sponsor": "BicycleTx Limited",
+     "title": "Study BT5528-100 in Patients With Advanced Solid Tumors Associated With EphA2 Expression",
+     "ph": "Phase II",
+     "pcd": "2026-12-31",
+     "n": 288,
+     "drugs": [
+      "BT5528",
+      "Nivolumab"
+     ],
+     "forDrug": "NDV-01",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "United States",
+      "Belgium",
+      "South Korea",
+      "Spain",
+      "United Kingdom"
+     ],
+     "nCountries": 5,
+     "china": null
+    },
+    {
+     "nct": "NCT07341737",
+     "sponsor": "Second Life Therapeutics",
+     "title": "SL-28 for Advanced Solid Tumours",
+     "ph": "Phase II",
+     "pcd": "2027-01-01",
+     "n": 60,
+     "drugs": [
+      "SL-28"
+     ],
+     "forDrug": "NDV-01",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "Australia"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT04561362",
+     "sponsor": "BicycleTx Limited",
+     "title": "Study BT8009-100 in Subjects With Nectin-4 Expressing Advanced Malignancies",
+     "ph": "Phase II",
+     "pcd": "2027-01-15",
+     "n": 329,
+     "drugs": [
+      "BT8009",
+      "Pembrolizumab"
+     ],
+     "forDrug": "NDV-01",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "United States",
+      "Canada",
+      "France",
+      "Italy",
+      "Spain",
+      "United Kingdom"
+     ],
+     "nCountries": 6,
+     "china": null
+    },
+    {
      "nct": "NCT06567743",
      "sponsor": "CG Oncology, Inc.",
      "title": "Phase 2 Study to Evaluate Safety and Efficacy of Cretostimogene Grenadenorepvec in High-Risk NMIBC",
@@ -116851,6 +117165,31 @@
      "china": null
     },
     {
+     "nct": "NCT04644068",
+     "sponsor": "AstraZeneca",
+     "title": "Study of AZD5305 as Monotherapy and in Combination With Anti-cancer Agents in Patients With Advanced Solid Malignancies",
+     "ph": "Phase II",
+     "pcd": "2027-05-28",
+     "n": 702,
+     "drugs": [
+      "AZD5305",
+      "Paclitaxel",
+      "Carboplatin"
+     ],
+     "forDrug": "NDV-01",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "United States",
+      "Australia",
+      "Canada",
+      "China",
+      "Czechia",
+      "Hungary"
+     ],
+     "nCountries": 14,
+     "china": "some"
+    },
+    {
      "nct": "NCT05706129",
      "sponsor": "Lumara Bio Oncologics GmbH",
      "title": "A Study to Assess Safety, Tolerability and Imaging Characteristics of [68Ga]Ga-DPI-4452 and to Assess Safety, Tolerability, and Efficacy of [177Lu]Lu-DPI-4452 i",
@@ -116861,14 +117200,37 @@
       "[68Ga]Ga-DPI-4452",
       "[177Lu]Lu-DPI-4452"
      ],
-     "forDrug": "NDV01",
-     "ind": "Non Muscle Invasive Bladder Cancer",
+     "forDrug": "NDV-01",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
      "countries": [
       "Australia",
       "France"
      ],
      "nCountries": 2,
      "china": null
+    },
+    {
+     "nct": "NCT06172478",
+     "sponsor": "Daiichi Sankyo",
+     "title": "A Study of HER3-DXd in Subjects With Locally Advanced or Metastatic Solid Tumors",
+     "ph": "Phase II",
+     "pcd": "2027-09-01",
+     "n": 740,
+     "drugs": [
+      "HER3-DXd"
+     ],
+     "forDrug": "NDV-01",
+     "ind": "Bladder (Urothelial, Transitional Cell) Cancer",
+     "countries": [
+      "United States",
+      "Australia",
+      "Belgium",
+      "Canada",
+      "China",
+      "France"
+     ],
+     "nCountries": 16,
+     "china": "some"
     },
     {
      "nct": "NCT07122414",
@@ -116906,136 +117268,6 @@
      ],
      "nCountries": 1,
      "china": "only"
-    },
-    {
-     "nct": "NCT06995677",
-     "sponsor": "Tyra Biosciences, Inc",
-     "title": "Efficacy and Safety of TYRA-300 in Participants With FGFR3 Altered Low Grade, Intermediate Risk Non-Muscle Invasive Bladder Cancer",
-     "ph": "Phase II",
-     "pcd": "2028-02-15",
-     "n": 90,
-     "drugs": [
-      "TYRA-300"
-     ],
-     "forDrug": "NDV01",
-     "ind": "Non Muscle Invasive Bladder Cancer",
-     "countries": [
-      "United States",
-      "Australia",
-      "Italy",
-      "Spain"
-     ],
-     "nCountries": 4,
-     "china": null
-    },
-    {
-     "nct": "NCT05316155",
-     "sponsor": "Janssen Research & Development, LLC",
-     "title": "Study of Erdafitinib Intravesical Delivery System for Localized Bladder Cancer",
-     "ph": "Phase II",
-     "pcd": "2028-03-30",
-     "n": 235,
-     "drugs": [
-      "Erdafitinib Intravesical Delivery System"
-     ],
-     "forDrug": "NDV01",
-     "ind": "Non Muscle Invasive Bladder Cancer",
-     "countries": [
-      "United States",
-      "Canada",
-      "Germany",
-      "Israel",
-      "Japan",
-      "Netherlands"
-     ],
-     "nCountries": 8,
-     "china": null
-    },
-    {
-     "nct": "NCT06919965",
-     "sponsor": "Janssen Research & Development, LLC",
-     "title": "A Study to Evaluate TAR-210 Versus Intravesical Chemotherapy Treatment in Participants With High Risk Non-Muscle-Invasive Bladder Cancer",
-     "ph": "Phase III",
-     "pcd": "2028-04-06",
-     "n": 220,
-     "drugs": [
-      "TAR-210",
-      "Mitomycin C",
-      "Gemcitabine"
-     ],
-     "forDrug": "NDV01",
-     "ind": "Non Muscle Invasive Bladder Cancer",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Belgium",
-      "Brazil",
-      "China",
-      "France"
-     ],
-     "nCountries": 15,
-     "china": "some"
-    },
-    {
-     "nct": "NCT07480356",
-     "sponsor": "Protara Therapeutics",
-     "title": "Efficacy and Safety of Intravesical TARA-002 Compared With Investigator's Choice of Intravesical Chemotherapy in Participants With BCG-naïve High-grade Non-musc",
-     "ph": "Phase III",
-     "pcd": "2028-04-15",
-     "n": 284,
-     "drugs": [
-      "TARA-002"
-     ],
-     "forDrug": "NDV01",
-     "ind": "Non Muscle Invasive Bladder Cancer",
-     "countries": [
-      "United States",
-      "Ukraine"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT04752722",
-     "sponsor": "enGene, Inc.",
-     "title": "LEGEND Study: EG-70 in NMIBC Patients BCG-Unresponsive and High-Risk NMIBC Incompletely Treated With BCG or BCG-Naïve",
-     "ph": "Phase II",
-     "pcd": "2028-04-30",
-     "n": 350,
-     "drugs": [
-      "EG-70",
-      "Surfactant Bladder Pre-Rinse and EG-70"
-     ],
-     "forDrug": "NDV01",
-     "ind": "Non Muscle Invasive Bladder Cancer",
-     "countries": [
-      "United States",
-      "Australia",
-      "Canada",
-      "France",
-      "Germany",
-      "Italy"
-     ],
-     "nCountries": 10,
-     "china": null
-    },
-    {
-     "nct": "NCT07468851",
-     "sponsor": "Jiangsu Hansoh Pharmaceutical Co., Ltd.",
-     "title": "A Study of HS-10566 in Patients With High-risk Non-muscle-invasive Bladder Cancer Who Are Ineligible for or Refuse Radical Cystectomy",
-     "ph": "Phase II",
-     "pcd": "2028-04-30",
-     "n": 180,
-     "drugs": [
-      "HS-10566"
-     ],
-     "forDrug": "NDV01",
-     "ind": "Non Muscle Invasive Bladder Cancer",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
     }
    ],
    "burnPrior": 4.16,
@@ -117055,13 +117287,13 @@
     }
    },
    "quote": {
-    "price": 3.71,
+    "price": 3.73,
     "prev": 3.77,
-    "chg": -0.06,
-    "chgPct": -1.59,
+    "chg": -0.04,
+    "chgPct": -1.06,
     "hi52": 8,
     "lo52": 2.42,
-    "volume": 24793,
+    "volume": 35334,
     "date": "2026-11-06",
     "history": [
      [
@@ -118070,7 +118302,7 @@
      ],
      [
       "2026-11-06",
-      3.71
+      3.73
      ]
     ]
    },
@@ -118172,7 +118404,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1553643/000121390026086151/ea0298199-10q_relmada.htm"
     },
-    "price": 3.71,
+    "price": 3.73,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "RELMADA THERAPEUTICS",
@@ -118189,8 +118421,8 @@
    "t": "SABS",
    "n": "SAB Biotherapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 283.1,
-   "ev": 77.7,
+   "mcap": 262.2,
+   "ev": 56.8,
    "cash": 205.3,
    "debt": 0,
    "burn": 4.49,
@@ -118815,13 +119047,13 @@
     }
    },
    "quote": {
-    "price": 3.14,
+    "price": 2.91,
     "prev": 2.94,
-    "chg": 0.2,
-    "chgPct": 6.87,
+    "chg": -0.03,
+    "chgPct": -1.02,
     "hi52": 5.15,
     "lo52": 2.44,
-    "volume": 14783,
+    "volume": 39170,
     "date": "2026-11-06",
     "history": [
      [
@@ -119830,7 +120062,7 @@
      ],
      [
       "2026-11-06",
-      3.14
+      2.91
      ]
     ]
    },
@@ -119933,7 +120165,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1833214/000119312526448600/sabs-20260930.htm"
     },
-    "price": 3.14,
+    "price": 2.91,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "SAB Biotherapeutics",
@@ -119950,8 +120182,8 @@
    "t": "PYXS",
    "n": "Pyxis Oncology",
    "area": "Pharmaceutical Preparations",
-   "mcap": 200.3,
-   "ev": 144.8,
+   "mcap": 201.5,
+   "ev": 146,
    "cash": 55.6,
    "debt": 0,
    "burn": 5.91,
@@ -120395,13 +120627,13 @@
     }
    },
    "quote": {
-    "price": 1.68,
+    "price": 1.69,
     "prev": 1.61,
-    "chg": 0.06,
-    "chgPct": 4.04,
+    "chg": 0.07,
+    "chgPct": 4.66,
     "hi52": 5.55,
     "lo52": 1.03,
-    "volume": 11291,
+    "volume": 12003,
     "date": "2026-11-06",
     "history": [
      [
@@ -121410,7 +121642,7 @@
      ],
      [
       "2026-11-06",
-      1.67
+      1.68
      ]
     ]
    },
@@ -121512,7 +121744,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1782223/000119312526448612/pyxs-20260930.htm"
     },
-    "price": 1.68,
+    "price": 1.69,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Pyxis Oncology",
@@ -121529,8 +121761,8 @@
    "t": "MAZE",
    "n": "Maze Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 1830.3,
-   "ev": 1374.4,
+   "mcap": 1831.5,
+   "ev": 1375.5,
    "cash": 494.9,
    "debt": 39,
    "burn": 8.88,
@@ -122015,13 +122247,13 @@
     }
    },
    "quote": {
-    "price": 32.95,
+    "price": 32.97,
     "prev": 32.53,
-    "chg": 0.42,
-    "chgPct": 1.29,
+    "chg": 0.44,
+    "chgPct": 1.35,
     "hi52": 53.65,
     "lo52": 21.95,
-    "volume": 8780,
+    "volume": 10065,
     "date": "2026-11-06",
     "history": [
      [
@@ -123030,7 +123262,7 @@
      ],
      [
       "2026-11-06",
-      32.95
+      32.97
      ]
     ]
    },
@@ -123133,7 +123365,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1842295/000119312526344903/maze-20260630.htm"
     },
-    "price": 32.95,
+    "price": 32.97,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Maze Therapeutics",
@@ -123150,8 +123382,8 @@
    "t": "ALLO",
    "n": "Allogene Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 374.2,
-   "ev": -14.7,
+   "mcap": 375.9,
+   "ev": -13,
    "cash": 388.9,
    "debt": 0,
    "burn": 9.05,
@@ -123771,13 +124003,13 @@
     }
    },
    "quote": {
-    "price": 1.08,
+    "price": 1.09,
     "prev": 1.09,
     "chg": -0.01,
-    "chgPct": -0.92,
+    "chgPct": -0.46,
     "hi52": 4.46,
     "lo52": 1.04,
-    "volume": 643966,
+    "volume": 774397,
     "date": "2026-11-06",
     "history": [
      [
@@ -124786,7 +125018,7 @@
      ],
      [
       "2026-11-06",
-      1.08
+      1.09
      ]
     ]
    },
@@ -124889,7 +125121,7 @@
      "date": "2026-11-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1737287/000162828026071191/allo-20260930.htm"
     },
-    "price": 1.08,
+    "price": 1.09,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Allogene Therapeutics",
@@ -124906,8 +125138,8 @@
    "t": "INO",
    "n": "Inovio Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 116.8,
-   "ev": 80.2,
+   "mcap": 116.3,
+   "ev": 79.6,
    "cash": 36.7,
    "debt": 0,
    "burn": 6.72,
@@ -125543,10 +125775,10 @@
     "price": 1.13,
     "prev": 1.45,
     "chg": -0.32,
-    "chgPct": -22.07,
+    "chgPct": -22.41,
     "hi52": 2.72,
     "lo52": 0.56,
-    "volume": 7147914,
+    "volume": 7667963,
     "date": "2026-11-06",
     "history": [
      [
@@ -126674,8 +126906,8 @@
    "t": "MBX",
    "n": "MBX Biosciences",
    "area": "Pharmaceutical Preparations",
-   "mcap": 2348.3,
-   "ev": 1929.7,
+   "mcap": 2338.2,
+   "ev": 1919.6,
    "cash": 418.6,
    "debt": 0,
    "burn": 6.89,
@@ -127195,13 +127427,13 @@
     }
    },
    "quote": {
-    "price": 48.76,
+    "price": 48.55,
     "prev": 48.46,
-    "chg": 0.3,
-    "chgPct": 0.62,
+    "chg": 0.09,
+    "chgPct": 0.19,
     "hi52": 72.64,
     "lo52": 21.9,
-    "volume": 7224,
+    "volume": 8167,
     "date": "2026-11-06",
     "history": [
      [
@@ -128210,7 +128442,7 @@
      ],
      [
       "2026-11-06",
-      48.76
+      48.55
      ]
     ]
    },
@@ -128312,7 +128544,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1776111/000119312526336849/mbx-20260630.htm"
     },
-    "price": 48.76,
+    "price": 48.55,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "MBX Biosciences",
@@ -128329,8 +128561,8 @@
    "t": "ARTV",
    "n": "Artiva Biotherapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 203.6,
-   "ev": -145.8,
+   "mcap": 202.4,
+   "ev": -147,
    "cash": 349.4,
    "debt": 0,
    "burn": 6.27,
@@ -128719,13 +128951,13 @@
     }
    },
    "quote": {
-    "price": 4.17,
+    "price": 4.14,
     "prev": 4.13,
-    "chg": 0.04,
-    "chgPct": 0.85,
+    "chg": 0.01,
+    "chgPct": 0.24,
     "hi52": 14.53,
     "lo52": 2.96,
-    "volume": 19354,
+    "volume": 29405,
     "date": "2026-11-06",
     "history": [
      [
@@ -129734,7 +129966,7 @@
      ],
      [
       "2026-11-06",
-      4.16
+      4.14
      ]
     ]
    },
@@ -129836,7 +130068,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1817241/000119312526338029/artv-20260630.htm"
     },
-    "price": 4.17,
+    "price": 4.14,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Artiva Biotherapeutics",
@@ -129853,8 +130085,8 @@
    "t": "RAPP",
    "n": "Rapport Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1397.2,
-   "ev": 1002.2,
+   "mcap": 1394,
+   "ev": 998.9,
    "cash": 395,
    "debt": 0,
    "burn": 10.07,
@@ -130163,13 +130395,13 @@
     }
    },
    "quote": {
-    "price": 23.57,
+    "price": 23.52,
     "prev": 23.72,
-    "chg": -0.15,
-    "chgPct": -0.63,
+    "chg": -0.2,
+    "chgPct": -0.86,
     "hi52": 52.93,
     "lo52": 22.06,
-    "volume": 24031,
+    "volume": 28703,
     "date": "2026-11-06",
     "history": [
      [
@@ -131178,7 +131410,7 @@
      ],
      [
       "2026-11-06",
-      23.57
+      23.51
      ]
     ]
    },
@@ -131280,7 +131512,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/2012593/000119312526446217/rapp-20260930.htm"
     },
-    "price": 23.57,
+    "price": 23.52,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Rapport Therapeutics",
@@ -131297,8 +131529,8 @@
    "t": "BCAX",
    "n": "Bicara Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 541,
-   "ev": 43.7,
+   "mcap": 543.3,
+   "ev": 46,
    "cash": 497.3,
    "debt": 0,
    "burn": 11.24,
@@ -131888,13 +132120,13 @@
     }
    },
    "quote": {
-    "price": 8.18,
+    "price": 8.21,
     "prev": 8.19,
-    "chg": -0.01,
-    "chgPct": -0.18,
+    "chg": 0.02,
+    "chgPct": 0.24,
     "hi52": 30.99,
     "lo52": 7.87,
-    "volume": 19963,
+    "volume": 27967,
     "date": "2026-11-06",
     "history": [
      [
@@ -132903,7 +133135,7 @@
      ],
      [
       "2026-11-06",
-      8.18
+      8.21
      ]
     ]
    },
@@ -133005,7 +133237,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/2023658/000162828026055765/bcax-20260630.htm"
     },
-    "price": 8.18,
+    "price": 8.21,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Bicara Therapeutics",
@@ -133022,8 +133254,8 @@
    "t": "ERAS",
    "n": "Erasca",
    "area": "Pharmaceutical Preparations",
-   "mcap": 4669.3,
-   "ev": 4285.1,
+   "mcap": 4615.1,
+   "ev": 4230.8,
    "cash": 384.3,
    "debt": 0,
    "burn": 8.17,
@@ -133558,13 +133790,13 @@
     }
    },
    "quote": {
-    "price": 13.35,
+    "price": 13.2,
     "prev": 13.27,
-    "chg": 0.08,
-    "chgPct": 0.6,
+    "chg": -0.07,
+    "chgPct": -0.57,
     "hi52": 24.28,
     "lo52": 2.11,
-    "volume": 116112,
+    "volume": 149769,
     "date": "2026-11-06",
     "history": [
      [
@@ -134573,7 +134805,7 @@
      ],
      [
       "2026-11-06",
-      13.35
+      13.19
      ]
     ]
    },
@@ -134676,7 +134908,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1761918/000119312526344611/eras-20260630.htm"
     },
-    "price": 13.35,
+    "price": 13.2,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Erasca",
@@ -134693,8 +134925,8 @@
    "t": "RLAY",
    "n": "Relay Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 3766.3,
-   "ev": 3642.1,
+   "mcap": 3757.4,
+   "ev": 3633.2,
    "cash": 124.2,
    "debt": 0,
    "burn": 17.84,
@@ -135390,13 +135622,13 @@
     }
    },
    "quote": {
-    "price": 17.05,
+    "price": 17.01,
     "prev": 17,
-    "chg": 0.05,
-    "chgPct": 0.26,
+    "chg": 0,
+    "chgPct": 0.03,
     "hi52": 21.27,
     "lo52": 5.95,
-    "volume": 53142,
+    "volume": 67334,
     "date": "2026-11-06",
     "history": [
      [
@@ -136405,7 +136637,7 @@
      ],
      [
       "2026-11-06",
-      17.05
+      17
      ]
     ]
    },
@@ -136506,7 +136738,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1812364/000119312526447294/rlay-20260930.htm"
     },
-    "price": 17.05,
+    "price": 17.01,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Relay Therapeutics",
@@ -136523,8 +136755,8 @@
    "t": "LYEL",
    "n": "Lyell Immunopharma",
    "area": "Pharmaceutical Preparations",
-   "mcap": 374.2,
-   "ev": 180.2,
+   "mcap": 374.7,
+   "ev": 180.7,
    "cash": 194,
    "debt": 0,
    "burn": 11.6,
@@ -137238,13 +137470,13 @@
     }
    },
    "quote": {
-    "price": 15.22,
+    "price": 15.24,
     "prev": 15,
-    "chg": 0.22,
-    "chgPct": 1.47,
+    "chg": 0.24,
+    "chgPct": 1.6,
     "hi52": 45,
     "lo52": 7.2,
-    "volume": 13917,
+    "volume": 20346,
     "date": "2026-11-06",
     "history": [
      [
@@ -138253,7 +138485,7 @@
      ],
      [
       "2026-11-06",
-      15.22
+      15.24
      ]
     ]
    },
@@ -138356,7 +138588,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1806952/000162828026070171/lyel-20260930.htm"
     },
-    "price": 15.22,
+    "price": 15.24,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Lyell Immunopharma",
@@ -138373,8 +138605,8 @@
    "t": "GERN",
    "n": "Geron",
    "area": "Pharmaceutical Preparations",
-   "mcap": 634,
-   "ev": 685.3,
+   "mcap": 640.9,
+   "ev": 692.1,
    "cash": 69.2,
    "debt": 120.4,
    "burn": 7.54,
@@ -139133,13 +139365,13 @@
     }
    },
    "quote": {
-    "price": 0.98,
+    "price": 0.99,
     "prev": 0.95,
-    "chg": 0.03,
-    "chgPct": 3.59,
+    "chg": 0.04,
+    "chgPct": 4.72,
     "hi52": 2.01,
     "lo52": 0.84,
-    "volume": 292321,
+    "volume": 541124,
     "date": "2026-11-06",
     "history": [
      [
@@ -140148,7 +140380,7 @@
      ],
      [
       "2026-11-06",
-      0.98
+      0.99
      ]
     ]
    },
@@ -140249,7 +140481,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/886744/000088674426000041/gern-20260930.htm"
     },
-    "price": 0.98,
+    "price": 0.99,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "GERON",
@@ -140266,8 +140498,8 @@
    "t": "CRSP",
    "n": "CRISPR Therapeutics AG",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 4725.7,
-   "ev": 3036.1,
+   "mcap": 4712.2,
+   "ev": 3022.6,
    "cash": 2276.6,
    "debt": 586.9,
    "burn": 31.22,
@@ -141071,13 +141303,13 @@
     }
    },
    "quote": {
-    "price": 48.72,
+    "price": 48.58,
     "prev": 48.56,
-    "chg": 0.16,
-    "chgPct": 0.33,
+    "chg": 0.02,
+    "chgPct": 0.04,
     "hi52": 63.45,
     "lo52": 44.12,
-    "volume": 82284,
+    "volume": 106329,
     "date": "2026-11-06",
     "history": [
      [
@@ -142086,7 +142318,7 @@
      ],
      [
       "2026-11-06",
-      48.72
+      48.58
      ]
     ]
    },
@@ -142189,7 +142421,7 @@
      "date": "2026-11-02",
      "url": "https://www.sec.gov/Archives/edgar/data/1674416/000119312526443665/crsp-20260930.htm"
     },
-    "price": 48.72,
+    "price": 48.58,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "CRISPR Therapeutics AG",
@@ -142206,8 +142438,8 @@
    "t": "ABSI",
    "n": "Absci",
    "area": "Services-Commercial Physical & Biological Research",
-   "mcap": 1663.8,
-   "ev": 1462.7,
+   "mcap": 1656.1,
+   "ev": 1454.9,
    "cash": 201.1,
    "debt": 0,
    "burn": 9.01,
@@ -142767,13 +142999,13 @@
     }
    },
    "quote": {
-    "price": 9.7,
+    "price": 9.65,
     "prev": 9.39,
-    "chg": 0.3,
-    "chgPct": 3.25,
+    "chg": 0.26,
+    "chgPct": 2.77,
     "hi52": 12.55,
     "lo52": 2.24,
-    "volume": 127224,
+    "volume": 159112,
     "date": "2026-11-06",
     "history": [
      [
@@ -143782,7 +144014,7 @@
      ],
      [
       "2026-11-06",
-      9.69
+      9.65
      ]
     ]
    },
@@ -143885,7 +144117,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1672688/000167268826000136/absi-20260630.htm"
     },
-    "price": 9.7,
+    "price": 9.65,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Absci",
@@ -143902,8 +144134,8 @@
    "t": "STTK",
    "n": "Shattuck Labs",
    "area": "Pharmaceutical Preparations",
-   "mcap": 454.7,
-   "ev": 393,
+   "mcap": 448.1,
+   "ev": 386.3,
    "cash": 61.8,
    "debt": 0,
    "burn": 4.13,
@@ -144536,13 +144768,13 @@
     }
    },
    "quote": {
-    "price": 4.47,
+    "price": 4.4,
     "prev": 4.49,
-    "chg": -0.03,
-    "chgPct": -0.56,
+    "chg": -0.09,
+    "chgPct": -2,
     "hi52": 8.33,
     "lo52": 1.72,
-    "volume": 19235,
+    "volume": 34985,
     "date": "2026-11-06",
     "history": [
      [
@@ -145551,7 +145783,7 @@
      ],
      [
       "2026-11-06",
-      4.47
+      4.4
      ]
     ]
    },
@@ -145652,7 +145884,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1680367/000162828026070618/sttk-20260930.htm"
     },
-    "price": 4.47,
+    "price": 4.4,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Shattuck Labs",
@@ -145669,8 +145901,8 @@
    "t": "CABA",
    "n": "Cabaletta Bio",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 274.2,
-   "ev": -25.2,
+   "mcap": 275,
+   "ev": -24.3,
    "cash": 299.4,
    "debt": 0,
    "burn": 13.51,
@@ -146072,10 +146304,10 @@
     "price": 1.27,
     "prev": 1.28,
     "chg": -0.01,
-    "chgPct": -0.7,
+    "chgPct": -0.39,
     "hi52": 4.23,
     "lo52": 1.18,
-    "volume": 145921,
+    "volume": 291225,
     "date": "2026-11-06",
     "history": [
      [
@@ -147203,8 +147435,8 @@
    "t": "FTH",
    "n": "Faeth Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 521,
-   "ev": 346.2,
+   "mcap": 528.8,
+   "ev": 354,
    "cash": 174.8,
    "debt": 0,
    "burn": 3.61,
@@ -147842,13 +148074,13 @@
     }
    },
    "quote": {
-    "price": 20.16,
+    "price": 20.46,
     "prev": 19.92,
-    "chg": 0.24,
-    "chgPct": 1.2,
+    "chg": 0.54,
+    "chgPct": 2.71,
     "hi52": 42.14,
     "lo52": 7.45,
-    "volume": 2367,
+    "volume": 3300,
     "date": "2026-11-06",
     "history": [
      [
@@ -148857,7 +149089,7 @@
      ],
      [
       "2026-11-06",
-      20.16
+      20.46
      ]
     ]
    },
@@ -148959,7 +149191,7 @@
      "date": "2026-11-03",
      "url": "https://www.sec.gov/Archives/edgar/data/1829802/000119312526444376/snse-20260930.htm"
     },
-    "price": 20.16,
+    "price": 20.46,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Faeth Therapeutics",
@@ -148976,8 +149208,8 @@
    "t": "CBIO",
    "n": "Crescent Biopharma",
    "area": "Pharmaceutical Preparations",
-   "mcap": 476.9,
-   "ev": 305.3,
+   "mcap": 480.6,
+   "ev": 309,
    "cash": 171.6,
    "debt": 0,
    "burn": 6.06,
@@ -149429,6 +149661,177 @@
      "china": null
     },
     {
+     "nct": "NCT05054439",
+     "sponsor": "Sichuan Baili Pharmaceutical Co., Ltd.",
+     "title": "A Clinical Study of SI-B001 in Combination With Paclitaxel/Docetaxel in the Treatment of Recurrent and Metastatic HNSCC",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 45,
+     "drugs": [
+      "SI-B001",
+      "Paclitaxel",
+      "docetaxel"
+     ],
+     "forDrug": "CR-002",
+     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC) - Recurrent/Metastatic (R/M)",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT06505551",
+     "sponsor": "SCG Cell Therapy Pte. Ltd.",
+     "title": "Phase 1/2 Study of Autologous SCG142 TCR T Cells in Patients With HPV16/52-positive Carcinoma",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 66,
+     "drugs": [
+      "SCG142",
+      "Cyclophosphamide",
+      "Fludarabine"
+     ],
+     "forDrug": "CR-002",
+     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC) - Recurrent/Metastatic (R/M)",
+     "countries": [],
+     "nCountries": 0,
+     "china": null
+    },
+    {
+     "nct": "NCT05312710",
+     "sponsor": "Aveta Biomics, Inc.",
+     "title": "Safety and Efficacy of APG-157 in Head and Neck Cancer",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 24,
+     "drugs": [
+      "APG-157"
+     ],
+     "forDrug": "CR-002",
+     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC) - Recurrent/Metastatic (R/M)",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT05784688",
+     "sponsor": "TiumBio Co., Ltd.",
+     "title": "Study of TU2218 in Combination With KEYTRUDA®(Pembrolizumab) in Patients With Advanced Solid Tumors",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 140,
+     "drugs": [
+      "TU2218"
+     ],
+     "forDrug": "CR-002",
+     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC) - Recurrent/Metastatic (R/M)",
+     "countries": [
+      "United States",
+      "South Korea"
+     ],
+     "nCountries": 2,
+     "china": null
+    },
+    {
+     "nct": "NCT07151040",
+     "sponsor": "One-carbon Therapeutics AB",
+     "title": "Phase 1/2 Study to Evaluate TH9619 in the Treatment of Advanced Solid Tumors",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 43,
+     "drugs": [
+      "TH9619"
+     ],
+     "forDrug": "CR-002",
+     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC) - Recurrent/Metastatic (R/M)",
+     "countries": [
+      "France",
+      "Spain",
+      "United Kingdom"
+     ],
+     "nCountries": 3,
+     "china": null
+    },
+    {
+     "nct": "NCT06943820",
+     "sponsor": "Akeso",
+     "title": "AK129 Combination Therapy for Advanced Solid Tumors",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 230,
+     "drugs": [
+      "AK129",
+      "Pemetrexed",
+      "Paclitaxel"
+     ],
+     "forDrug": "CR-002",
+     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC) - Recurrent/Metastatic (R/M)",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT05669430",
+     "sponsor": "GV20 Therapeutics",
+     "title": "A Study of GV20-0251 Monotherapy and GV20-0251 in Combination With Pembrolizumab in Participants With Solid Tumor Malignancies",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 365,
+     "drugs": [
+      "GV20-0251"
+     ],
+     "forDrug": "CR-002",
+     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC) - Recurrent/Metastatic (R/M)",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT05668858",
+     "sponsor": "Sichuan Baili Pharmaceutical Co., Ltd.",
+     "title": "A Study of SI-B001+SI-B003± Chemotherapy in Patients With Locally Advanced or Metastatic Head and Neck Squamous Cell Carcinoma",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 70,
+     "drugs": [
+      "SI-B001",
+      "SI-B003"
+     ],
+     "forDrug": "CR-002",
+     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC) - Recurrent/Metastatic (R/M)",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT06006169",
+     "sponsor": "Sichuan Baili Pharmaceutical Co., Ltd.",
+     "title": "A Study of BL-B01D1, SI-B003 and BL-B01D1+SI-B003 in Patients With Recurrent or Metastatic Head and Neck Squamous Cell Carcinoma and Other Solid Tumors",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 186,
+     "drugs": [
+      "BL-B01D1",
+      "SI-B003"
+     ],
+     "forDrug": "CR-002",
+     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC) - Recurrent/Metastatic (R/M)",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
      "nct": "NCT05965856",
      "sponsor": "Sichuan Baili Pharmaceutical Co., Ltd.",
      "title": "A Study of SI-B003 and BL-B01D1+SI-B003 in Patients With Locally Advanced or Metastatic Urothelial Carcinoma and Other Solid Tumors",
@@ -149470,172 +149873,6 @@
      ],
      "nCountries": 9,
      "china": null
-    },
-    {
-     "nct": "NCT06578624",
-     "sponsor": "Lamassu Bio Inc",
-     "title": "Safety and Preliminary Efficacy of SA53-OS in Patients With Locally Advanced or Metastatic Solid Tumors",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 70,
-     "drugs": [
-      "SA53-OS"
-     ],
-     "forDrug": "CR-001",
-     "ind": "Locally Advanced / Metastatic Solid Tumors",
-     "countries": [
-      "United States"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT05956587",
-     "sponsor": "Sichuan Baili Pharmaceutical Co., Ltd.",
-     "title": "A Study of SI-B003 and BL-B01D1+SI-B003 in Patients With Locally Advanced or Metastatic Non-small Cell Lung Cancer, Nasopharyngeal Carcinoma and Other Solid Tum",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 121,
-     "drugs": [
-      "BL-B01D1",
-      "SI-B003"
-     ],
-     "forDrug": "CR-001",
-     "ind": "Locally Advanced / Metastatic Solid Tumors",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06031584",
-     "sponsor": "Sichuan Baili Pharmaceutical Co., Ltd.",
-     "title": "A Study of BL-M07D1 in Patients With a Variety of Solid Tumors Including Locally Advanced or Metastatic HER2-positive/Low-expressing Urinary and Gastrointestina",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 42,
-     "drugs": [
-      "BL-M07D1"
-     ],
-     "forDrug": "CR-001",
-     "ind": "Locally Advanced / Metastatic Solid Tumors",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT05785039",
-     "sponsor": "Sichuan Baili Pharmaceutical Co., Ltd.",
-     "title": "A Study of BL-B01D1 in Patients With Multiple Solid Tumors, Including Locally Advanced or Metastatic Urinary System Tumors",
-     "ph": "Phase II",
-     "pcd": "2026-12-15",
-     "n": 76,
-     "drugs": [
-      "BL-B01D1"
-     ],
-     "forDrug": "CR-001",
-     "ind": "Locally Advanced / Metastatic Solid Tumors",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06658353",
-     "sponsor": "Jiangsu vcare pharmaceutical technology co., LTD",
-     "title": "Phase III Clinical Study of VC004 in Patients With Localized Advanced/ Metastatic Solid Tumors",
-     "ph": "Phase III",
-     "pcd": "2026-12-30",
-     "n": 54,
-     "drugs": [
-      "VC004"
-     ],
-     "forDrug": "CR-001",
-     "ind": "Locally Advanced / Metastatic Solid Tumors",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06601335",
-     "sponsor": "Akeso",
-     "title": "A Phase 3 Study of AK112 Plus AK117 Versus Pembrolizumab in Recurrent or Metastatic Head and Neck Squamous Cell Carcinoma (R/M HNSCC)",
-     "ph": "Phase III",
-     "pcd": "2027-01-15",
-     "n": 510,
-     "drugs": [
-      "AK117"
-     ],
-     "forDrug": "CR-002",
-     "ind": "Head and Neck Squamous Cell Carcinoma (HNSCC) - Recurrent/Metastatic (R/M)",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT06827613",
-     "sponsor": "Marengo Therapeutics, Inc.",
-     "title": "A Study of Invikafusp Alfa (STAR0602), a Selective T Cell Receptor (TCR)-Targeting, Bifunctional Antibody-fusion Molecule, in Combination With Sacituzumab Govit",
-     "ph": "Phase II",
-     "pcd": "2027-01-15",
-     "n": 50,
-     "drugs": [
-      "STAR0602",
-      "Sacituzumab Govitecan"
-     ],
-     "forDrug": "CR-001",
-     "ind": "Locally Advanced / Metastatic Solid Tumors",
-     "countries": [
-      "United States",
-      "Canada"
-     ],
-     "nCountries": 2,
-     "china": null
-    },
-    {
-     "nct": "NCT07202364",
-     "sponsor": "MediLink Therapeutics (Suzhou) Co., Ltd.",
-     "title": "A Study of YL202 in Patients With Advanced Solid Tumors",
-     "ph": "Phase II",
-     "pcd": "2027-01-31",
-     "n": 100,
-     "drugs": [
-      "YL202"
-     ],
-     "forDrug": "CR-001",
-     "ind": "Locally Advanced / Metastatic Solid Tumors",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
-    },
-    {
-     "nct": "NCT07486089",
-     "sponsor": "Beijing Biotech",
-     "title": "Dual-Target CAR-NK Cells for Advanced Breast Cancer (HER2+ and TNBC)",
-     "ph": "Phase II",
-     "pcd": "2027-02-14",
-     "n": 60,
-     "drugs": [
-      "Dual-target CAR-NK cells",
-      "Lymphodepleting chemotherapy"
-     ],
-     "forDrug": "CR-001",
-     "ind": "Locally Advanced / Metastatic Solid Tumors",
-     "countries": [
-      "China"
-     ],
-     "nCountries": 1,
-     "china": "only"
     }
    ],
    "burnPrior": 3.25,
@@ -149655,13 +149892,13 @@
     }
    },
    "quote": {
-    "price": 12.84,
+    "price": 12.94,
     "prev": 12.94,
-    "chg": -0.1,
-    "chgPct": -0.77,
+    "chg": 0,
+    "chgPct": 0,
     "hi52": 27.41,
     "lo52": 8.72,
-    "volume": 1867,
+    "volume": 2032,
     "date": "2026-11-06",
     "history": [
      [
@@ -150670,7 +150907,7 @@
      ],
      [
       "2026-11-06",
-      12.84
+      12.94
      ]
     ]
    },
@@ -150771,7 +151008,7 @@
      "date": "2026-07-30",
      "url": "https://www.sec.gov/Archives/edgar/data/1253689/000162828026050869/cbio-20260630.htm"
     },
-    "price": 12.84,
+    "price": 12.94,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "CRESCENT BIOPHARMA",
@@ -150788,8 +151025,8 @@
    "t": "FATE",
    "n": "Fate Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 224.3,
-   "ev": 85.2,
+   "mcap": 226.1,
+   "ev": 87,
    "cash": 139.1,
    "debt": 0,
    "burn": 8.79,
@@ -151436,6 +151673,30 @@
    ],
    "rivals": [
     {
+     "nct": "NCT06388941",
+     "sponsor": "Novartis Pharmaceuticals",
+     "title": "Iptacopan in Patients With ANCA Associated Vasculitis",
+     "ph": "Phase II",
+     "pcd": "2026-12-30",
+     "n": 84,
+     "drugs": [
+      "Iptacopan",
+      "Rituximab"
+     ],
+     "forDrug": "FT839",
+     "ind": "ANCA-Associated Vasculitis (AAV)",
+     "countries": [
+      "United States",
+      "Argentina",
+      "Australia",
+      "Austria",
+      "Belgium",
+      "Canada"
+     ],
+     "nCountries": 15,
+     "china": "some"
+    },
+    {
      "nct": "NCT05138133",
      "sponsor": "AstraZeneca",
      "title": "Phase 3 Study of Anifrolumab in Adult Patients With Active Proliferative Lupus Nephritis",
@@ -151580,6 +151841,29 @@
      "china": "some"
     },
     {
+     "nct": "NCT07160608",
+     "sponsor": "Alexion Pharmaceuticals, Inc.",
+     "title": "Safety and Efficacy of Tarperprumig in Adult Participants With Anti-Neutrophil Cytoplasmic Antibody (ANCA)-Associated Vasculitis",
+     "ph": "Phase II",
+     "pcd": "2027-10-11",
+     "n": 78,
+     "drugs": [
+      "Tarperprumig"
+     ],
+     "forDrug": "FT839",
+     "ind": "ANCA-Associated Vasculitis (AAV)",
+     "countries": [
+      "Argentina",
+      "Australia",
+      "Brazil",
+      "Canada",
+      "China",
+      "France"
+     ],
+     "nCountries": 14,
+     "china": "some"
+    },
+    {
      "nct": "NCT06226662",
      "sponsor": "NovelMed Therapeutics",
      "title": "Study of NM8074 in Patients with Anti-Neutrophil Cytoplasmic Antibody (ANCA)-Associated Vasculitis (AAV)",
@@ -151630,47 +151914,6 @@
      ],
      "nCountries": 1,
      "china": null
-    },
-    {
-     "nct": "NCT03673748",
-     "sponsor": "Red de Terapia Celular",
-     "title": "Treatment of Lupus Nephritis With Allogeneic Mesenchymal Stem Cells",
-     "ph": "Phase II",
-     "pcd": "2027-12-15",
-     "n": 20,
-     "drugs": [
-      "Mesenchymal stem cells"
-     ],
-     "forDrug": "FT819",
-     "ind": "Lupus Nephritis",
-     "countries": [
-      "Spain"
-     ],
-     "nCountries": 1,
-     "china": null
-    },
-    {
-     "nct": "NCT06581198",
-     "sponsor": "Novartis Pharmaceuticals",
-     "title": "A Study of Rapcabtagene Autoleucel in Active, Refractory Systemic Lupus Erythematosus (SLE) or Lupus Nephritis (LN) Patients (AUTOGRAPH - SLE/LN)",
-     "ph": "Phase II",
-     "pcd": "2028-02-14",
-     "n": 179,
-     "drugs": [
-      "rapcabtagene autoleucel"
-     ],
-     "forDrug": "FT819",
-     "ind": "Lupus Nephritis",
-     "countries": [
-      "United States",
-      "Argentina",
-      "Australia",
-      "Austria",
-      "Brazil",
-      "Czechia"
-     ],
-     "nCountries": 26,
-     "china": null
     }
    ],
    "burnPrior": 9.21,
@@ -151690,13 +151933,13 @@
     }
    },
    "quote": {
-    "price": 1.85,
+    "price": 1.86,
     "prev": 1.85,
-    "chg": -0.01,
-    "chgPct": -0.27,
+    "chg": 0.01,
+    "chgPct": 0.54,
     "hi52": 3.23,
     "lo52": 0.95,
-    "volume": 57451,
+    "volume": 87123,
     "date": "2026-11-06",
     "history": [
      [
@@ -152705,7 +152948,7 @@
      ],
      [
       "2026-11-06",
-      1.85
+      1.86
      ]
     ]
    },
@@ -152808,7 +153051,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1434316/000119312526448543/fate-20260930.htm"
     },
-    "price": 1.85,
+    "price": 1.86,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "FATE THERAPEUTICS",
@@ -152825,8 +153068,8 @@
    "t": "TSHA",
    "n": "Taysha Gene Therapies",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 1371.8,
-   "ev": 965.6,
+   "mcap": 1357.1,
+   "ev": 950.9,
    "cash": 455.4,
    "debt": 49.3,
    "burn": 11.02,
@@ -153233,13 +153476,13 @@
     }
    },
    "quote": {
-    "price": 4.21,
+    "price": 4.17,
     "prev": 4.09,
-    "chg": 0.12,
-    "chgPct": 2.93,
+    "chg": 0.08,
+    "chgPct": 1.83,
     "hi52": 7.3,
     "lo52": 3.46,
-    "volume": 77727,
+    "volume": 119819,
     "date": "2026-11-06",
     "history": [
      [
@@ -154248,7 +154491,7 @@
      ],
      [
       "2026-11-06",
-      4.21
+      4.16
      ]
     ]
    },
@@ -154349,7 +154592,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1806310/000119312526344610/tsha-20260630.htm"
     },
-    "price": 4.21,
+    "price": 4.17,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Taysha Gene Therapies",
@@ -154366,8 +154609,8 @@
    "t": "CMPS",
    "n": "COMPASS Pathways",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1145.7,
-   "ev": 752.7,
+   "mcap": 1142.2,
+   "ev": 749.2,
    "cash": 444,
    "debt": 51,
    "burn": 14.73,
@@ -154924,13 +155167,13 @@
     }
    },
    "quote": {
-    "price": 8.09,
+    "price": 8.06,
     "prev": 7.81,
-    "chg": 0.28,
-    "chgPct": 3.52,
+    "chg": 0.25,
+    "chgPct": 3.2,
     "hi52": 15.87,
     "lo52": 4.88,
-    "volume": 254439,
+    "volume": 271750,
     "date": "2026-11-06",
     "history": [
      [
@@ -155939,7 +156182,7 @@
      ],
      [
       "2026-11-06",
-      8.09
+      8.06
      ]
     ]
    },
@@ -156040,7 +156283,7 @@
      "date": "2026-11-03",
      "url": "https://www.sec.gov/Archives/edgar/data/1816590/000181659026000076/cmps-20260930.htm"
     },
-    "price": 8.09,
+    "price": 8.06,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "COMPASS Pathways",
@@ -156057,8 +156300,8 @@
    "t": "PRME",
    "n": "Prime Medicine",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 839.8,
-   "ev": 744.7,
+   "mcap": 828.9,
+   "ev": 733.8,
    "cash": 95.1,
    "debt": 0,
    "burn": 13,
@@ -156768,13 +157011,13 @@
     }
    },
    "quote": {
-    "price": 4.63,
+    "price": 4.57,
     "prev": 4.45,
-    "chg": 0.18,
-    "chgPct": 4.04,
+    "chg": 0.12,
+    "chgPct": 2.7,
     "hi52": 5.91,
     "lo52": 2.67,
-    "volume": 134625,
+    "volume": 186335,
     "date": "2026-11-06",
     "history": [
      [
@@ -157783,7 +158026,7 @@
      ],
      [
       "2026-11-06",
-      4.63
+      4.57
      ]
     ]
    },
@@ -157885,7 +158128,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1894562/000162828026053883/prme-20260630.htm"
     },
-    "price": 4.63,
+    "price": 4.57,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Prime Medicine",
@@ -157902,8 +158145,8 @@
    "t": "NGNE",
    "n": "Neurogene",
    "area": "Pharmaceutical Preparations",
-   "mcap": 531.2,
-   "ev": 305.8,
+   "mcap": 540.3,
+   "ev": 314.9,
    "cash": 225.4,
    "debt": 0,
    "burn": 7.23,
@@ -158401,13 +158644,13 @@
     }
    },
    "quote": {
-    "price": 26.55,
+    "price": 27,
     "prev": 25.65,
-    "chg": 0.9,
-    "chgPct": 3.49,
+    "chg": 1.35,
+    "chgPct": 5.26,
     "hi52": 43.66,
     "lo52": 15.93,
-    "volume": 11035,
+    "volume": 36614,
     "date": "2026-11-06",
     "history": [
      [
@@ -159416,7 +159659,7 @@
      ],
      [
       "2026-11-06",
-      26.55
+      27
      ]
     ]
    },
@@ -159518,7 +159761,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1404644/000140464426000059/ngne-20260630.htm"
     },
-    "price": 26.55,
+    "price": 27,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Neurogene",
@@ -159535,8 +159778,8 @@
    "t": "OLMA",
    "n": "Olema Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 598,
-   "ev": 137,
+   "mcap": 594.1,
+   "ev": 133,
    "cash": 461.1,
    "debt": 0,
    "burn": 13.73,
@@ -160120,13 +160363,13 @@
     }
    },
    "quote": {
-    "price": 6.84,
+    "price": 6.79,
     "prev": 6.76,
-    "chg": 0.08,
-    "chgPct": 1.11,
+    "chg": 0.03,
+    "chgPct": 0.44,
     "hi52": 36.26,
     "lo52": 6.24,
-    "volume": 50641,
+    "volume": 83520,
     "date": "2026-11-06",
     "history": [
      [
@@ -161135,7 +161378,7 @@
      ],
      [
       "2026-11-06",
-      6.84
+      6.79
      ]
     ]
    },
@@ -161237,7 +161480,7 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1750284/000119312526342383/olma-20260630.htm"
     },
-    "price": 6.84,
+    "price": 6.79,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Olema Pharmaceuticals",
@@ -161254,8 +161497,8 @@
    "t": "ELVN",
    "n": "Enliven Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 3342.7,
-   "ev": 2458.3,
+   "mcap": 3328.3,
+   "ev": 2444,
    "cash": 884.4,
    "debt": 0,
    "burn": 5.52,
@@ -161669,6 +161912,28 @@
    "revQ": [],
    "rivals": [
     {
+     "nct": "NCT05428969",
+     "sponsor": "Faron Pharmaceuticals Ltd",
+     "title": "A Study to Assess Safety, Tolerability and Preliminary Efficacy of Bexmarilimab in Combination With Standard of Care in Patients With Hematological Malignancies",
+     "ph": "Phase II",
+     "pcd": "2027-03-15",
+     "n": 181,
+     "drugs": [
+      "Bexmarilimab",
+      "Azacitidine",
+      "Venetoclax"
+     ],
+     "forDrug": "ELVN-001",
+     "ind": "Chronic Myeloid Leukemia (CML)",
+     "countries": [
+      "United States",
+      "Finland",
+      "United Kingdom"
+     ],
+     "nCountries": 3,
+     "china": null
+    },
+    {
      "nct": "NCT03459534",
      "sponsor": "Il-Yang Pharm. Co., Ltd.",
      "title": "A Phase 3 Study for the Efficacy and Safety of Radotinib in CP-CML Patients With Failure or Intolerance to Previous TKIs",
@@ -161714,6 +161979,29 @@
      "china": null
     },
     {
+     "nct": "NCT03844048",
+     "sponsor": "AbbVie",
+     "title": "An Extension Study of Venetoclax for Subjects Who Have Completed a Prior Venetoclax Clinical Trial",
+     "ph": "Phase III",
+     "pcd": "2027-08-15",
+     "n": 165,
+     "drugs": [
+      "Venetoclax"
+     ],
+     "forDrug": "ELVN-001",
+     "ind": "Chronic Myeloid Leukemia (CML)",
+     "countries": [
+      "United States",
+      "Australia",
+      "Austria",
+      "Belgium",
+      "Canada",
+      "Denmark"
+     ],
+     "nCountries": 23,
+     "china": null
+    },
+    {
      "nct": "NCT04925479",
      "sponsor": "Novartis Pharmaceuticals",
      "title": "Study to Determine the Dose and Safety of Asciminib in Pediatric Patients With Chronic Myeloid Leukemia",
@@ -161736,6 +162024,93 @@
      ],
      "nCountries": 14,
      "china": "some"
+    },
+    {
+     "nct": "NCT07719348",
+     "sponsor": "Servier",
+     "title": "A Study to Evaluate S241656 Alone or in Combination in Participants With Selected Myeloid Malignancies",
+     "ph": "Phase II",
+     "pcd": "2027-11-01",
+     "n": 64,
+     "drugs": [
+      "S241656",
+      "Posaconazole"
+     ],
+     "forDrug": "ELVN-001",
+     "ind": "Chronic Myeloid Leukemia (CML)",
+     "countries": [],
+     "nCountries": 0,
+     "china": null
+    },
+    {
+     "nct": "NCT04256317",
+     "sponsor": "Taiho Oncology, Inc.",
+     "title": "A Multi-phase Study of ASTX030 (Azacitidine and Cedazuridine) in Myeloid Neoplasm Alone or in Combination With Venetoclax in AML (AZTOUND Study)",
+     "ph": "Phase III",
+     "pcd": "2027-11-01",
+     "n": 316,
+     "drugs": [
+      "Azacitidine",
+      "ASTX030",
+      "Cedazuridine"
+     ],
+     "forDrug": "ELVN-001",
+     "ind": "Chronic Myeloid Leukemia (CML)",
+     "countries": [
+      "United States",
+      "Canada",
+      "Czechia",
+      "France",
+      "Germany",
+      "Hungary"
+     ],
+     "nCountries": 10,
+     "china": null
+    },
+    {
+     "nct": "NCT04581512",
+     "sponsor": "Ellipses Pharma",
+     "title": "Study to Evaluate the Safety and Tolerability of EP0042",
+     "ph": "Phase II",
+     "pcd": "2027-12-15",
+     "n": 70,
+     "drugs": [
+      "EP0042",
+      "Venetoclax",
+      "Azacitidine"
+     ],
+     "forDrug": "ELVN-001",
+     "ind": "Chronic Myeloid Leukemia (CML)",
+     "countries": [
+      "Australia",
+      "Netherlands",
+      "United Kingdom"
+     ],
+     "nCountries": 3,
+     "china": null
+    },
+    {
+     "nct": "NCT04093570",
+     "sponsor": "Taiho Oncology, Inc.",
+     "title": "A Study for Participants Who Participated in Prior Clinical Studies of ASTX727 (Standard Dose)",
+     "ph": "Phase II",
+     "pcd": "2027-12-31",
+     "n": 332,
+     "drugs": [
+      "ASTX727"
+     ],
+     "forDrug": "ELVN-001",
+     "ind": "Chronic Myeloid Leukemia (CML)",
+     "countries": [
+      "United States",
+      "Armenia",
+      "Austria",
+      "Bulgaria",
+      "Canada",
+      "France"
+     ],
+     "nCountries": 13,
+     "china": null
     },
     {
      "nct": "NCT03934372",
@@ -161778,13 +162153,13 @@
     }
    },
    "quote": {
-    "price": 45.42,
+    "price": 45.23,
     "prev": 44.79,
-    "chg": 0.63,
-    "chgPct": 1.41,
+    "chg": 0.44,
+    "chgPct": 0.97,
     "hi52": 62.32,
     "lo52": 14.79,
-    "volume": 19475,
+    "volume": 23745,
     "date": "2026-11-06",
     "history": [
      [
@@ -162793,7 +163168,7 @@
      ],
      [
       "2026-11-06",
-      45.42
+      45.22
      ]
     ]
    },
@@ -162895,7 +163270,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1672619/000119312526449870/elvn-20260930.htm"
     },
-    "price": 45.42,
+    "price": 45.23,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Enliven Therapeutics",
@@ -162912,8 +163287,8 @@
    "t": "CGEM",
    "n": "Cullinan Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 698.2,
-   "ev": 344.7,
+   "mcap": 697.6,
+   "ev": 344,
    "cash": 353.6,
    "debt": 0,
    "burn": 13.27,
@@ -163919,13 +164294,13 @@
     }
    },
    "quote": {
-    "price": 10.85,
+    "price": 10.84,
     "prev": 10.8,
-    "chg": 0.05,
-    "chgPct": 0.46,
+    "chg": 0.04,
+    "chgPct": 0.37,
     "hi52": 23.19,
     "lo52": 6.73,
-    "volume": 17857,
+    "volume": 22532,
     "date": "2026-11-06",
     "history": [
      [
@@ -164934,7 +165309,7 @@
      ],
      [
       "2026-11-06",
-      10.85
+      10.84
      ]
     ]
    },
@@ -165037,7 +165412,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1789972/000119312526336717/cgem-20260630.htm"
     },
-    "price": 10.85,
+    "price": 10.84,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Cullinan Therapeutics",
@@ -165054,8 +165429,8 @@
    "t": "JBIO",
    "n": "Jade Biosciences",
    "area": "Pharmaceutical Preparations",
-   "mcap": 908.5,
-   "ev": 447.3,
+   "mcap": 896.1,
+   "ev": 434.9,
    "cash": 461.2,
    "debt": 0,
    "burn": 10.29,
@@ -165672,13 +166047,13 @@
     }
    },
    "quote": {
-    "price": 14.29,
+    "price": 14.09,
     "prev": 14.1,
-    "chg": 0.19,
-    "chgPct": 1.31,
+    "chg": -0.01,
+    "chgPct": -0.07,
     "hi52": 28,
     "lo52": 8.36,
-    "volume": 11017,
+    "volume": 12501,
     "date": "2026-11-06",
     "history": [
      [
@@ -166687,7 +167062,7 @@
      ],
      [
       "2026-11-06",
-      14.28
+      14.09
      ]
     ]
    },
@@ -166789,7 +167164,7 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1798749/000119312526341242/ck0001798749-20260630.htm"
     },
-    "price": 14.29,
+    "price": 14.09,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Jade Biosciences",
@@ -166806,8 +167181,8 @@
    "t": "AVBP",
    "n": "ArriVent BioPharma",
    "area": "Pharmaceutical Preparations",
-   "mcap": 604.5,
-   "ev": 231.4,
+   "mcap": 599.1,
+   "ev": 226,
    "cash": 373.1,
    "debt": 0,
    "burn": 12.33,
@@ -167635,13 +168010,13 @@
     }
    },
    "quote": {
-    "price": 12.26,
+    "price": 12.15,
     "prev": 12.23,
-    "chg": 0.03,
-    "chgPct": 0.25,
+    "chg": -0.08,
+    "chgPct": -0.65,
     "hi52": 35.83,
     "lo52": 11.36,
-    "volume": 42571,
+    "volume": 50226,
     "date": "2026-11-06",
     "history": [
      [
@@ -168650,7 +169025,7 @@
      ],
      [
       "2026-11-06",
-      12.26
+      12.15
      ]
     ]
    },
@@ -168752,7 +169127,7 @@
      "date": "2026-08-12",
      "url": "https://www.sec.gov/Archives/edgar/data/1868279/000110465926094902/avbp-20260630x10q.htm"
     },
-    "price": 12.26,
+    "price": 12.15,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "ArriVent BioPharma",
@@ -169463,7 +169838,7 @@
     "chgPct": 1.1,
     "hi52": 16.45,
     "lo52": 4.11,
-    "volume": 2506,
+    "volume": 2555,
     "date": "2026-11-06",
     "history": [
      [
@@ -170590,8 +170965,8 @@
    "t": "AGIO",
    "n": "Agios Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
-   "mcap": 1716.2,
-   "ev": 809.2,
+   "mcap": 1718.6,
+   "ev": 811.6,
    "cash": 907,
    "debt": 0,
    "burn": 27.64,
@@ -171591,13 +171966,13 @@
     }
    },
    "quote": {
-    "price": 28.7,
+    "price": 28.74,
     "prev": 28.27,
-    "chg": 0.43,
-    "chgPct": 1.5,
+    "chg": 0.46,
+    "chgPct": 1.64,
     "hi52": 46,
     "lo52": 22.24,
-    "volume": 18327,
+    "volume": 29080,
     "date": "2026-11-06",
     "history": [
      [
@@ -172606,7 +172981,7 @@
      ],
      [
       "2026-11-06",
-      28.69
+      28.74
      ]
     ]
    },
@@ -172709,7 +173084,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1439222/000143922226000131/agio-20260930.htm"
     },
-    "price": 28.7,
+    "price": 28.74,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "AGIOS PHARMACEUTICALS",
@@ -172726,8 +173101,8 @@
    "t": "ANTX",
    "n": "AN2 Therapeutics",
    "area": "Pharmaceutical Preparations",
-   "mcap": 150.6,
-   "ev": 70.7,
+   "mcap": 153,
+   "ev": 73.2,
    "cash": 79.9,
    "debt": 0,
    "burn": 2.56,
@@ -172995,7 +173370,106 @@
     }
    ],
    "revQ": [],
-   "rivals": [],
+   "rivals": [
+    {
+     "nct": "NCT06517875",
+     "sponsor": "GlaxoSmithKline",
+     "title": "Study of Momelotinib in Combination With Luspatercept in Participants With Transfusion Dependent Myelofibrosis",
+     "ph": "Phase II",
+     "pcd": "2027-03-16",
+     "n": 68,
+     "drugs": [
+      "Momelotinib",
+      "Luspatercept"
+     ],
+     "forDrug": "Epetraborole",
+     "ind": "Polycythemia Vera (SNOMED CT: 109992005)",
+     "countries": [
+      "United States",
+      "Canada",
+      "France",
+      "Germany",
+      "Italy",
+      "Spain"
+     ],
+     "nCountries": 6,
+     "china": null
+    },
+    {
+     "nct": "NCT05320198",
+     "sponsor": "Disc Medicine, Inc",
+     "title": "Study of DISC-0974 (RALLY-MF) in Participants With Myelofibrosis or Myelodysplastic Syndrome and Anemia",
+     "ph": "Phase II",
+     "pcd": "2027-05-15",
+     "n": 150,
+     "drugs": [
+      "DISC-0974"
+     ],
+     "forDrug": "Epetraborole",
+     "ind": "Polycythemia Vera (SNOMED CT: 109992005)",
+     "countries": [
+      "United States",
+      "Australia"
+     ],
+     "nCountries": 2,
+     "china": null
+    },
+    {
+     "nct": "NCT06985147",
+     "sponsor": "Disc Medicine, Inc",
+     "title": "A Phase 2, Open-Label Study of DISC-3405 in Participants With Polycythemia Vera (PV)",
+     "ph": "Phase II",
+     "pcd": "2027-07-15",
+     "n": 60,
+     "drugs": [
+      "DISC-3405"
+     ],
+     "forDrug": "Epetraborole",
+     "ind": "Polycythemia Vera (SNOMED CT: 109992005)",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
+     "nct": "NCT07232290",
+     "sponsor": "Chengdu Zenitar Biomedical Technology Co., Ltd",
+     "title": "Phase IIa Study of Flonoltinib Maleate Tablets in the Treatment of Patients With Polycythemia Vera",
+     "ph": "Phase II",
+     "pcd": "2027-07-30",
+     "n": 60,
+     "drugs": [
+      "Flonoltinib",
+      "Extended Phase Dose Group"
+     ],
+     "forDrug": "Epetraborole",
+     "ind": "Polycythemia Vera (SNOMED CT: 109992005)",
+     "countries": [
+      "China"
+     ],
+     "nCountries": 1,
+     "china": "only"
+    },
+    {
+     "nct": "NCT07648030",
+     "sponsor": "Takeda",
+     "title": "A Study of Rusfertide in Japanese Adults With Polycythemia Vera",
+     "ph": "Phase II",
+     "pcd": "2027-10-28",
+     "n": 9,
+     "drugs": [
+      "Rusfertide"
+     ],
+     "forDrug": "Epetraborole",
+     "ind": "Polycythemia Vera (SNOMED CT: 109992005)",
+     "countries": [
+      "Japan"
+     ],
+     "nCountries": 1,
+     "china": null
+    }
+   ],
    "burnPrior": 2.96,
    "debtDue24": 0,
    "raise": {
@@ -173013,13 +173487,13 @@
     }
    },
    "quote": {
-    "price": 3.99,
+    "price": 4.06,
     "prev": 3.95,
-    "chg": 0.04,
-    "chgPct": 1.01,
+    "chg": 0.1,
+    "chgPct": 2.66,
     "hi52": 7.19,
     "lo52": 1,
-    "volume": 622,
+    "volume": 806,
     "date": "2026-11-06",
     "history": [
      [
@@ -174028,7 +174502,7 @@
      ],
      [
       "2026-11-06",
-      3.99
+      4.05
      ]
     ]
    },
@@ -174131,7 +174605,7 @@
      "date": "2026-08-11",
      "url": "https://www.sec.gov/Archives/edgar/data/1880438/000119312526344569/antx-20260630.htm"
     },
-    "price": 3.99,
+    "price": 4.06,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "AN2 Therapeutics",
@@ -174148,8 +174622,8 @@
    "t": "EDIT",
    "n": "Editas Medicine",
    "area": "Biological Products, (No Diagnostic Substances)",
-   "mcap": 395.5,
-   "ev": 232.1,
+   "mcap": 391.6,
+   "ev": 228.2,
    "cash": 211.6,
    "debt": 48.2,
    "burn": 9.99,
@@ -174865,13 +175339,13 @@
     }
    },
    "quote": {
-    "price": 2.58,
+    "price": 2.55,
     "prev": 2.55,
-    "chg": 0.03,
-    "chgPct": 0.98,
+    "chg": 0,
+    "chgPct": 0,
     "hi52": 3.94,
     "lo52": 1.66,
-    "volume": 111808,
+    "volume": 125775,
     "date": "2026-11-06",
     "history": [
      [
@@ -175880,7 +176354,7 @@
      ],
      [
       "2026-11-06",
-      2.58
+      2.55
      ]
     ]
    },
@@ -175982,7 +176456,7 @@
      "date": "2026-08-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1650664/000165066426000083/edit-20260630.htm"
     },
-    "price": 2.58,
+    "price": 2.55,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Editas Medicine",
@@ -176369,6 +176843,47 @@
    ],
    "rivals": [
     {
+     "nct": "NCT06616974",
+     "sponsor": "Tectonic Therapeutic",
+     "title": "A Study of TX000045 in Patients With Pulmonary Hypertension Secondary to Heart Failure With Preserved Ejection Fraction (the APEX Study)",
+     "ph": "Phase II",
+     "pcd": "2026-11-24",
+     "n": 191,
+     "drugs": [
+      "TX000045"
+     ],
+     "forDrug": "IKT-001",
+     "ind": "Pulmonary Arterial Hypertension (PAH)",
+     "countries": [
+      "United States",
+      "Armenia",
+      "Australia",
+      "Austria",
+      "Belgium",
+      "Bulgaria"
+     ],
+     "nCountries": 17,
+     "china": null
+    },
+    {
+     "nct": "NCT07333183",
+     "sponsor": "Pulmovant, Inc.",
+     "title": "A Study of Mosliciguat in Combination With Inhaled Treprostinil in PH-ILD",
+     "ph": "Phase II",
+     "pcd": "2026-12-15",
+     "n": 20,
+     "drugs": [
+      "mosliciguat"
+     ],
+     "forDrug": "IKT-001",
+     "ind": "Pulmonary Arterial Hypertension (PAH)",
+     "countries": [
+      "United States"
+     ],
+     "nCountries": 1,
+     "china": null
+    },
+    {
      "nct": "NCT06274801",
      "sponsor": "Gossamer Bio USA, Inc.",
      "title": "Open-label Extension Study of Seralutinib in Adult Subjects With PAH (PROSERA-EXT)",
@@ -176504,6 +177019,29 @@
      "china": null
     },
     {
+     "nct": "NCT07473700",
+     "sponsor": "Tectonic Operating Company, Inc.",
+     "title": "Study of TX000045 in Participants With Pulmonary Hypertension Due to Interstitial Lung Disease",
+     "ph": "Phase II",
+     "pcd": "2027-11-21",
+     "n": 25,
+     "drugs": [
+      "TX000045"
+     ],
+     "forDrug": "IKT-001",
+     "ind": "Pulmonary Arterial Hypertension (PAH)",
+     "countries": [
+      "United States",
+      "Poland",
+      "Romania",
+      "Serbia",
+      "South Korea",
+      "Spain"
+     ],
+     "nCountries": 6,
+     "china": null
+    },
+    {
      "nct": "NCT07623525",
      "sponsor": "Diagonal Therapeutics, Inc.",
      "title": "DIAG723 in Adults With Hereditary Hemorrhagic Telangiectasia",
@@ -176521,6 +177059,25 @@
       "New Zealand"
      ],
      "nCountries": 3,
+     "china": null
+    },
+    {
+     "nct": "NCT06475781",
+     "sponsor": "Foresee Pharmaceuticals Co., Ltd.",
+     "title": "Study to Evaluate Safety and Efficacy of Mirivadelgat in PH-ILD (Windward)",
+     "ph": "Phase II",
+     "pcd": "2028-02-15",
+     "n": 126,
+     "drugs": [
+      "Mirivadelgat"
+     ],
+     "forDrug": "IKT-001",
+     "ind": "Pulmonary Arterial Hypertension (PAH)",
+     "countries": [
+      "Bosnia and Herzegovina",
+      "Taiwan"
+     ],
+     "nCountries": 2,
      "china": null
     },
     {
@@ -176544,26 +177101,6 @@
       "Latvia"
      ],
      "nCountries": 10,
-     "china": null
-    },
-    {
-     "nct": "NCT07143448",
-     "sponsor": "35Pharma Inc., a GSK company",
-     "title": "A Study of HS235 for Treatment of Pulmonary Arterial Hypertension (PAH) in Adults",
-     "ph": "Phase II",
-     "pcd": "2028-03-15",
-     "n": 90,
-     "drugs": [
-      "HS235"
-     ],
-     "forDrug": "IKT-001",
-     "ind": "Pulmonary Arterial Hypertension (PAH)",
-     "countries": [
-      "United States",
-      "Spain",
-      "United Kingdom"
-     ],
-     "nCountries": 3,
      "china": null
     }
    ],
@@ -176590,7 +177127,7 @@
     "chgPct": 3.13,
     "hi52": 2.61,
     "lo52": 1.39,
-    "volume": 14120,
+    "volume": 14444,
     "date": "2026-11-06",
     "history": [
      [
@@ -177917,7 +178454,7 @@
     "chgPct": 3.28,
     "hi52": 49.97,
     "lo52": 9.6,
-    "volume": 7503,
+    "volume": 7746,
     "date": "2026-11-06",
     "history": [
      [
@@ -178279,8 +178816,8 @@
    "t": "LLY",
    "n": "Eli Lilly",
    "area": "Diabetes, obesity & immunology",
-   "mcap": 1282969.3,
-   "ev": 1321057.3,
+   "mcap": 1281358.7,
+   "ev": 1319446.7,
    "cash": 8898,
    "debt": 46986,
    "burn": 0.1,
@@ -180223,13 +180760,13 @@
     }
    },
    "quote": {
-    "price": 1363.78,
+    "price": 1362.07,
     "prev": 1364.73,
-    "chg": -0.95,
-    "chgPct": -0.07,
+    "chg": -2.66,
+    "chgPct": -0.2,
     "hi52": 1453,
     "lo52": 850.51,
-    "volume": 261541,
+    "volume": 342001,
     "date": "2026-11-06",
     "history": [
      [
@@ -181238,7 +181775,7 @@
      ],
      [
       "2026-11-06",
-      1363.78
+      1362.07
      ]
     ]
    },
@@ -181341,7 +181878,7 @@
      "date": "2026-10-29",
      "url": "https://www.sec.gov/Archives/edgar/data/59478/000005947826000108/lly-20260930.htm"
     },
-    "price": 1363.78,
+    "price": 1362.07,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Eli Lilly",
@@ -181358,8 +181895,8 @@
    "t": "JNJ",
    "n": "Johnson & Johnson",
    "area": "Oncology & immunology",
-   "mcap": 642857.8,
-   "ev": 661428.8,
+   "mcap": 645411.9,
+   "ev": 663982.9,
    "cash": 17228,
    "debt": 35799,
    "burn": 0.1,
@@ -182968,13 +183505,13 @@
     }
    },
    "quote": {
-    "price": 267.04,
+    "price": 268.11,
     "prev": 272.32,
-    "chg": -5.28,
-    "chgPct": -1.94,
+    "chg": -4.21,
+    "chgPct": -1.55,
     "hi52": 282.02,
     "lo52": 185.12,
-    "volume": 450593,
+    "volume": 526190,
     "date": "2026-11-06",
     "history": [
      [
@@ -183983,7 +184520,7 @@
      ],
      [
       "2026-11-06",
-      267.04
+      268.11
      ]
     ]
    },
@@ -184086,7 +184623,7 @@
      "date": "2026-10-21",
      "url": "https://www.sec.gov/Archives/edgar/data/200406/000020040626000197/jnj-20260927.htm"
     },
-    "price": 267.04,
+    "price": 268.11,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Janssen",
@@ -184103,8 +184640,8 @@
    "t": "ABBV",
    "n": "AbbVie",
    "area": "Immunology & neuroscience",
-   "mcap": 504371.6,
-   "ev": 493210.6,
+   "mcap": 504919.6,
+   "ev": 493758.6,
    "cash": 11161,
    "debt": 0,
    "burn": 0.1,
@@ -186340,13 +186877,13 @@
     }
    },
    "quote": {
-    "price": 285.34,
+    "price": 285.65,
     "prev": 288.24,
-    "chg": -2.9,
-    "chgPct": -1.01,
+    "chg": -2.59,
+    "chgPct": -0.9,
     "hi52": 302.93,
     "lo52": 190.75,
-    "volume": 318510,
+    "volume": 365927,
     "date": "2026-11-06",
     "history": [
      [
@@ -187355,7 +187892,7 @@
      ],
      [
       "2026-11-06",
-      285.34
+      285.65
      ]
     ]
    },
@@ -187458,7 +187995,7 @@
      "date": "2026-11-03",
      "url": "https://www.sec.gov/Archives/edgar/data/1551152/000155115226000037/abbv-20260930.htm"
     },
-    "price": 285.34,
+    "price": 285.65,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "AbbVie",
@@ -187475,8 +188012,8 @@
    "t": "MRK",
    "n": "Merck & Co.",
    "area": "Oncology & vaccines",
-   "mcap": 356375.9,
-   "ev": 394811.9,
+   "mcap": 358409.7,
+   "ev": 396845.7,
    "cash": 11253,
    "debt": 49689,
    "burn": 0.1,
@@ -190004,13 +190541,13 @@
     }
    },
    "quote": {
-    "price": 144.56,
+    "price": 145.39,
     "prev": 146.94,
-    "chg": -2.38,
-    "chgPct": -1.62,
+    "chg": -1.56,
+    "chgPct": -1.06,
     "hi52": 156.92,
     "lo52": 85.24,
-    "volume": 390136,
+    "volume": 1135254,
     "date": "2026-11-06",
     "history": [
      [
@@ -191019,7 +191556,7 @@
      ],
      [
       "2026-11-06",
-      144.56
+      145.38
      ]
     ]
    },
@@ -191123,7 +191660,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/310158/000031015826000248/mrk-20260930.htm"
     },
-    "price": 144.56,
+    "price": 145.39,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Merck Sharp",
@@ -191140,8 +191677,8 @@
    "t": "PFE",
    "n": "Pfizer",
    "area": "Vaccines, oncology & internal medicine",
-   "mcap": 164497.8,
-   "ev": 213499.8,
+   "mcap": 165609.3,
+   "ev": 214611.3,
    "cash": 10995,
    "debt": 59997,
    "burn": 0.1,
@@ -193763,13 +194300,13 @@
     }
    },
    "quote": {
-    "price": 28.86,
+    "price": 29.06,
     "prev": 29.88,
-    "chg": -1.02,
-    "chgPct": -3.41,
+    "chg": -0.82,
+    "chgPct": -2.76,
     "hi52": 31.44,
     "lo52": 23.62,
-    "volume": 11129292,
+    "volume": 12530403,
     "date": "2026-11-06",
     "history": [
      [
@@ -194778,7 +195315,7 @@
      ],
      [
       "2026-11-06",
-      28.86
+      29.06
      ]
     ]
    },
@@ -194882,7 +195419,7 @@
      "date": "2026-11-03",
      "url": "https://www.sec.gov/Archives/edgar/data/78003/000007800326000127/pfe-20260927.htm"
     },
-    "price": 28.86,
+    "price": 29.06,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Pfizer",
@@ -194899,8 +195436,8 @@
    "t": "BMY",
    "n": "Bristol Myers Squibb",
    "area": "Oncology & cardiovascular",
-   "mcap": 126242.7,
-   "ev": 155900.7,
+   "mcap": 126815.1,
+   "ev": 156473.1,
    "cash": 12959,
    "debt": 42617,
    "burn": 0.1,
@@ -196413,13 +196950,13 @@
     }
    },
    "quote": {
-    "price": 61.76,
+    "price": 62.04,
     "prev": 63.13,
-    "chg": -1.37,
-    "chgPct": -2.17,
+    "chg": -1.09,
+    "chgPct": -1.73,
     "hi52": 68.64,
     "lo52": 45.27,
-    "volume": 318496,
+    "volume": 418758,
     "date": "2026-11-06",
     "history": [
      [
@@ -197428,7 +197965,7 @@
      ],
      [
       "2026-11-06",
-      61.76
+      62.04
      ]
     ]
    },
@@ -197532,7 +198069,7 @@
      "date": "2026-10-29",
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000001427226000024/bmy-20260930.htm"
     },
-    "price": 61.76,
+    "price": 62.04,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Bristol-Myers Squibb",
@@ -197549,8 +198086,8 @@
    "t": "AMGN",
    "n": "Amgen",
    "area": "Inflammation, oncology & bone",
-   "mcap": 244394.6,
-   "ev": 285211.6,
+   "mcap": 246369,
+   "ev": 287186,
    "cash": 13190,
    "debt": 54007,
    "burn": 0.1,
@@ -199434,13 +199971,13 @@
     }
    },
    "quote": {
-    "price": 451.82,
+    "price": 455.47,
     "prev": 460.28,
-    "chg": -8.46,
-    "chgPct": -1.84,
+    "chg": -4.81,
+    "chgPct": -1.05,
     "hi52": 483.99,
     "lo52": 312.39,
-    "volume": 166185,
+    "volume": 214163,
     "date": "2026-11-06",
     "history": [
      [
@@ -200449,7 +200986,7 @@
      ],
      [
       "2026-11-06",
-      451.82
+      455.47
      ]
     ]
    },
@@ -200551,7 +201088,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/318154/000031815426000155/amgn-20260930.htm"
     },
-    "price": 451.82,
+    "price": 455.47,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Amgen",
@@ -200568,8 +201105,8 @@
    "t": "GILD",
    "n": "Gilead Sciences",
    "area": "HIV, liver disease & oncology",
-   "mcap": 204835.7,
-   "ev": 224629.7,
+   "mcap": 206169.1,
+   "ev": 225963.1,
    "cash": 6437,
    "debt": 26231,
    "burn": 0.1,
@@ -201183,13 +201720,13 @@
     }
    },
    "quote": {
-    "price": 165.15,
+    "price": 166.22,
     "prev": 167.57,
-    "chg": -2.42,
-    "chgPct": -1.45,
+    "chg": -1.35,
+    "chgPct": -0.81,
     "hi52": 176.58,
     "lo52": 116.88,
-    "volume": 265402,
+    "volume": 326719,
     "date": "2026-11-06",
     "history": [
      [
@@ -202198,7 +202735,7 @@
      ],
      [
       "2026-11-06",
-      165.15
+      166.22
      ]
     ]
    },
@@ -202302,7 +202839,7 @@
      "date": "2026-10-30",
      "url": "https://www.sec.gov/Archives/edgar/data/882095/000088209526000039/gild-20260930.htm"
     },
-    "price": 165.15,
+    "price": 166.22,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Gilead Sciences",
@@ -202319,8 +202856,8 @@
    "t": "REGN",
    "n": "Regeneron",
    "area": "Eye disease & immunology",
-   "mcap": 91367.3,
-   "ev": 74495.8,
+   "mcap": 91541.2,
+   "ev": 74669.7,
    "cash": 18858.5,
    "debt": 1987,
    "burn": 0.1,
@@ -203647,13 +204184,13 @@
     }
    },
    "quote": {
-    "price": 898.4,
+    "price": 900.11,
     "prev": 902.9,
-    "chg": -4.5,
-    "chgPct": -0.5,
+    "chg": -2.79,
+    "chgPct": -0.31,
     "hi52": 991.73,
     "lo52": 591.52,
-    "volume": 32353,
+    "volume": 42921,
     "date": "2026-11-06",
     "history": [
      [
@@ -204662,7 +205199,7 @@
      ],
      [
       "2026-11-06",
-      898.4
+      900.11
      ]
     ]
    },
@@ -204766,7 +205303,7 @@
      "date": "2026-10-30",
      "url": "https://www.sec.gov/Archives/edgar/data/872589/000087258926000034/regn-20260930.htm"
     },
-    "price": 898.4,
+    "price": 900.11,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Regeneron",
@@ -204783,8 +205320,8 @@
    "t": "VRTX",
    "n": "Vertex Pharmaceuticals",
    "area": "Cystic fibrosis & pain",
-   "mcap": 136023,
-   "ev": 129698.8,
+   "mcap": 135957,
+   "ev": 129632.8,
    "cash": 9821.2,
    "debt": 3497,
    "burn": 0.1,
@@ -205970,13 +206507,13 @@
     }
    },
    "quote": {
-    "price": 536.5,
+    "price": 536.24,
     "prev": 542.5,
-    "chg": -6,
-    "chgPct": -1.11,
+    "chg": -6.26,
+    "chgPct": -1.15,
     "hi52": 568.67,
     "lo52": 406.67,
-    "volume": 44530,
+    "volume": 67502,
     "date": "2026-11-06",
     "history": [
      [
@@ -206985,7 +207522,7 @@
      ],
      [
       "2026-11-06",
-      536.5
+      536.24
      ]
     ]
    },
@@ -207089,7 +207626,7 @@
      "date": "2026-11-03",
      "url": "https://www.sec.gov/Archives/edgar/data/875320/000087532026000291/vrtx-20260930.htm"
     },
-    "price": 536.5,
+    "price": 536.24,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Vertex Pharmaceuticals",
@@ -207106,8 +207643,8 @@
    "t": "BIIB",
    "n": "Biogen",
    "area": "Neurology",
-   "mcap": 35907,
-   "ev": 41895.1,
+   "mcap": 36080,
+   "ev": 42068.1,
    "cash": 1303.9,
    "debt": 7292,
    "burn": 0.1,
@@ -208227,13 +208764,13 @@
     }
    },
    "quote": {
-    "price": 242.91,
+    "price": 244.08,
     "prev": 243.93,
-    "chg": -1.02,
-    "chgPct": -0.42,
+    "chg": 0.15,
+    "chgPct": 0.06,
     "hi52": 258.78,
     "lo52": 151.83,
-    "volume": 19066,
+    "volume": 23487,
     "date": "2026-11-06",
     "history": [
      [
@@ -209242,7 +209779,7 @@
      ],
      [
       "2026-11-06",
-      242.91
+      244.08
      ]
     ]
    },
@@ -209346,7 +209883,7 @@
      "date": "2026-10-28",
      "url": "https://www.sec.gov/Archives/edgar/data/875045/000087504526000096/biib-20260930.htm"
     },
-    "price": 242.91,
+    "price": 244.08,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Biogen",
@@ -209363,8 +209900,8 @@
    "t": "NVO",
    "n": "Novo Nordisk",
    "area": "Diabetes & obesity",
-   "mcap": 176426.8,
-   "ev": 192006.9,
+   "mcap": 177626.7,
+   "ev": 193206.7,
    "cash": 3945.8,
    "debt": 19525.8,
    "burn": 0.1,
@@ -210451,13 +210988,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 39.7,
+    "price": 39.97,
     "prev": 40.3,
-    "chg": -0.6,
-    "chgPct": -1.49,
+    "chg": -0.33,
+    "chgPct": -0.82,
     "hi52": 64.16,
     "lo52": 35.12,
-    "volume": 1063431,
+    "volume": 1209855,
     "date": "2026-11-06",
     "history": [
      [
@@ -211466,7 +212003,7 @@
      ],
      [
       "2026-11-06",
-      39.7
+      39.97
      ]
     ]
    },
@@ -211490,7 +212027,7 @@
      "date": "2026-02-04",
      "url": "https://www.sec.gov/Archives/edgar/data/353278/000035327826000012/nvo-20251231.htm"
     },
-    "price": 39.7,
+    "price": 39.97,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Novo Nordisk",
@@ -211507,8 +212044,8 @@
    "t": "NVS",
    "n": "Novartis",
    "area": "Cardiovascular, immunology & oncology",
-   "mcap": 305170.7,
-   "ev": 322309.7,
+   "mcap": 306697.2,
+   "ev": 323836.2,
    "cash": 11590,
    "debt": 28729,
    "burn": 0.1,
@@ -213960,13 +214497,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 159.93,
+    "price": 160.73,
     "prev": 161.93,
-    "chg": -2,
-    "chgPct": -1.24,
+    "chg": -1.2,
+    "chgPct": -0.74,
     "hi52": 170.46,
     "lo52": 123.24,
-    "volume": 164588,
+    "volume": 236015,
     "date": "2026-11-06",
     "history": [
      [
@@ -214975,7 +215512,7 @@
      ],
      [
       "2026-11-06",
-      159.93
+      160.73
      ]
     ]
    },
@@ -215078,7 +215615,7 @@
      "date": "2026-02-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000111444826000004/nvs-20251231.htm"
     },
-    "price": 159.93,
+    "price": 160.73,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Novartis",
@@ -215095,8 +215632,8 @@
    "t": "AZN",
    "n": "AstraZeneca",
    "area": "Oncology & respiratory",
-   "mcap": 283278,
-   "ev": 307159,
+   "mcap": 285045,
+   "ev": 308926,
    "cash": 5741,
    "debt": 29622,
    "burn": 0.1,
@@ -217588,13 +218125,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 182.76,
+    "price": 183.9,
     "prev": 186.85,
-    "chg": -4.09,
-    "chgPct": -2.19,
+    "chg": -2.95,
+    "chgPct": -1.58,
     "hi52": 212.71,
     "lo52": 153.41,
-    "volume": 484571,
+    "volume": 559991,
     "date": "2026-11-06",
     "history": [
      [
@@ -218603,7 +219140,7 @@
      ],
      [
       "2026-11-06",
-      182.76
+      183.9
      ]
     ]
    },
@@ -218650,7 +219187,7 @@
      "date": "2026-02-24",
      "url": "https://www.sec.gov/Archives/edgar/data/901832/000110465926019130/azn-20251231x20f.htm"
     },
-    "price": 182.76,
+    "price": 183.9,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "AstraZeneca",
@@ -218667,12 +219204,12 @@
    "t": "SNY",
    "n": "Sanofi",
    "area": "Immunology & vaccines",
-   "mcap": 111723.9,
-   "ev": 123152.8,
-   "cash": 9420.1,
-   "debt": 20849,
+   "mcap": 112236.1,
+   "ev": 123662.9,
+   "cash": 9418.4,
+   "debt": 20845.2,
    "burn": 0.1,
-   "rev": 48634.3,
+   "rev": 48625.5,
    "shares": 1219.43,
    "own": null,
    "emp": null,
@@ -220736,147 +221273,147 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-16",
-     "cash": 10213,
-     "burn": -770.1,
+     "cash": 10211,
+     "burn": -770,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-16",
-     "cash": 11487,
-     "burn": -728.2,
+     "cash": 11485,
+     "burn": -728,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-16",
-     "cash": 11585,
-     "burn": -685.5,
+     "cash": 11583,
+     "burn": -685.4,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-08",
-     "cash": 7942,
-     "burn": -515.3,
+     "cash": 7940,
+     "burn": -515.2,
      "runway": null
     },
     {
      "end": "2019-06-30",
      "filed": "2020-07-29",
-     "cash": 7516,
-     "burn": -599.3,
+     "cash": 7515,
+     "burn": -599.2,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-05",
-     "cash": 10984,
-     "burn": -716.7,
+     "cash": 10982,
+     "burn": -716.6,
      "runway": null
     },
     {
      "end": "2020-06-30",
      "filed": "2020-07-29",
-     "cash": 17802,
-     "burn": -786.1,
+     "cash": 17799,
+     "burn": -786,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-04",
-     "cash": 16516,
-     "burn": -689.1,
+     "cash": 16513,
+     "burn": -689,
      "runway": null
     },
     {
      "end": "2021-06-30",
      "filed": "2021-07-29",
-     "cash": 10838,
-     "burn": -763.5,
+     "cash": 10836,
+     "burn": -763.4,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-23",
-     "cash": 12432,
-     "burn": -977.5,
+     "cash": 12430,
+     "burn": -977.3,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-07-28",
-     "cash": 7691,
-     "burn": -893.7,
+     "cash": 7690,
+     "burn": -893.5,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-24",
-     "cash": 14774,
-     "burn": -977.9,
+     "cash": 14772,
+     "burn": -977.7,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-07-28",
-     "cash": 8911,
-     "burn": -953.5,
+     "cash": 8909,
+     "burn": -953.4,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-23",
-     "cash": 9886,
-     "burn": -953,
+     "cash": 9884,
+     "burn": -952.8,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-07-25",
-     "cash": 7575,
-     "burn": -754.1,
+     "cash": 7574,
+     "burn": -753.9,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-13",
-     "cash": 8709,
-     "burn": -843.6,
+     "cash": 8707,
+     "burn": -843.5,
      "runway": null
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-31",
-     "cash": 17122,
-     "burn": -1041.8,
+     "cash": 17119,
+     "burn": -1041.6,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-17",
-     "cash": 9420,
-     "burn": -998.7,
+     "cash": 9418,
+     "burn": -998.5,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -843.62,
-   "debtDue24": 4840.5,
+   "burnPrior": -843.47,
+   "debtDue24": 4839.6,
    "raise": {
     "capacity": "none",
     "atm": null,
     "shelf": null
    },
    "quote": {
-    "price": 45.81,
+    "price": 46.02,
     "prev": 46.91,
-    "chg": -1.1,
-    "chgPct": -2.34,
+    "chg": -0.89,
+    "chgPct": -1.9,
     "hi52": 52.68,
     "lo52": 39.07,
-    "volume": 233183,
+    "volume": 265831,
     "date": "2026-11-06",
     "history": [
      [
@@ -221885,7 +222422,7 @@
      ],
      [
       "2026-11-06",
-      45.81
+      46.02
      ]
     ]
    },
@@ -221972,7 +222509,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 11984,
+   "ocf": 11982,
    "group": "big-pharma",
    "src": {
     "cik": "1121404",
@@ -221982,8 +222519,8 @@
      "MarketableSecuritiesCurrent"
     ],
     "currency": "EUR",
-    "fx": 1.1148,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1148 USD per EUR",
+    "fx": 1.1146,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1146 USD per EUR",
     "adr": 0.5,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -221992,7 +222529,7 @@
      "date": "2026-02-17",
      "url": "https://www.sec.gov/Archives/edgar/data/1121404/000162828026008403/sny-20251231.htm"
     },
-    "price": 45.81,
+    "price": 46.02,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Sanofi",
@@ -222009,8 +222546,8 @@
    "t": "GSK",
    "n": "GSK",
    "area": "Vaccines & respiratory",
-   "mcap": 106149.2,
-   "ev": 121261.8,
+   "mcap": 106677.8,
+   "ev": 121790.4,
    "cash": 4538.7,
    "debt": 19651.4,
    "burn": 0.1,
@@ -224110,13 +224647,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 49.2,
+    "price": 49.44,
     "prev": 50.41,
-    "chg": -1.21,
-    "chgPct": -2.41,
+    "chg": -0.97,
+    "chgPct": -1.92,
     "hi52": 61.7,
     "lo52": 45.81,
-    "volume": 367641,
+    "volume": 400452,
     "date": "2026-11-06",
     "history": [
      [
@@ -225125,7 +225662,7 @@
      ],
      [
       "2026-11-06",
-      49.19
+      49.44
      ]
     ]
    },
@@ -225167,7 +225704,7 @@
      "date": "2026-03-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1131399/000113139926000004/gsk-20251231.htm"
     },
-    "price": 49.2,
+    "price": 49.44,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "GlaxoSmithKline",
@@ -225184,8 +225721,8 @@
    "t": "TAK",
    "n": "Takeda",
    "area": "Gastroenterology & rare disease",
-   "mcap": 66024.4,
-   "ev": 92044.4,
+   "mcap": 66438.1,
+   "ev": 92458,
    "cash": 2426.2,
    "debt": 28446.2,
    "burn": 0.1,
@@ -227322,13 +227859,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 20.75,
+    "price": 20.88,
     "prev": 21.19,
-    "chg": -0.44,
-    "chgPct": -2.08,
+    "chg": -0.31,
+    "chgPct": -1.46,
     "hi52": 21.73,
     "lo52": 13.56,
-    "volume": 94504,
+    "volume": 150535,
     "date": "2026-11-06",
     "history": [
      [
@@ -228337,7 +228874,7 @@
      ],
      [
       "2026-11-06",
-      20.75
+      20.88
      ]
     ]
    },
@@ -228443,7 +228980,7 @@
      "date": "2026-06-17",
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000139506426000177/tak-20260331.htm"
     },
-    "price": 20.75,
+    "price": 20.88,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Takeda",
@@ -228460,8 +228997,8 @@
    "t": "TEVA",
    "n": "Teva",
    "area": "Generics, biosimilars & neuroscience",
-   "mcap": 48680,
-   "ev": 61381,
+   "mcap": 48913.4,
+   "ev": 61614.4,
    "cash": 4085,
    "debt": 16786,
    "burn": 0.1,
@@ -228937,13 +229474,13 @@
     }
    },
    "quote": {
-    "price": 41.72,
+    "price": 41.92,
     "prev": 41.78,
-    "chg": -0.06,
-    "chgPct": -0.14,
+    "chg": 0.14,
+    "chgPct": 0.34,
     "hi52": 43.34,
     "lo52": 23.61,
-    "volume": 739737,
+    "volume": 779892,
     "date": "2026-11-06",
     "history": [
      [
@@ -229952,7 +230489,7 @@
      ],
      [
       "2026-11-06",
-      41.72
+      41.92
      ]
     ]
    },
@@ -230054,7 +230591,7 @@
      "date": "2026-11-03",
      "url": "https://www.sec.gov/Archives/edgar/data/818686/000081868626000006/teva-20260930.htm"
     },
-    "price": 41.72,
+    "price": 41.92,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Teva",
@@ -230071,8 +230608,8 @@
    "t": "VTRS",
    "n": "Viatris",
    "area": "Generics & off-patent brands",
-   "mcap": 21908.7,
-   "ev": 31707,
+   "mcap": 21931.7,
+   "ev": 31730,
    "cash": 1789.2,
    "debt": 11587.5,
    "burn": 0.1,
@@ -230548,13 +231085,13 @@
     }
    },
    "quote": {
-    "price": 19.11,
+    "price": 19.13,
     "prev": 18.97,
-    "chg": 0.14,
-    "chgPct": 0.74,
+    "chg": 0.16,
+    "chgPct": 0.84,
     "hi52": 19.96,
     "lo52": 9.92,
-    "volume": 232799,
+    "volume": 314200,
     "date": "2026-11-06",
     "history": [
      [
@@ -231563,7 +232100,7 @@
      ],
      [
       "2026-11-06",
-      19.11
+      19.13
      ]
     ]
    },
@@ -231665,7 +232202,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1792044/000179204426000057/vtrs-20260930.htm"
     },
-    "price": 19.11,
+    "price": 19.13,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Viatris",
@@ -231682,8 +232219,8 @@
    "t": "AMRX",
    "n": "Amneal",
    "area": "Generics & specialty",
-   "mcap": 6299.3,
-   "ev": 8741.9,
+   "mcap": 6345.6,
+   "ev": 8788.2,
    "cash": 127.6,
    "debt": 2570.3,
    "burn": 0.1,
@@ -232037,13 +232574,13 @@
     }
    },
    "quote": {
-    "price": 19.73,
+    "price": 19.87,
     "prev": 19.45,
-    "chg": 0.28,
-    "chgPct": 1.41,
+    "chg": 0.42,
+    "chgPct": 2.16,
     "hi52": 21.68,
     "lo52": 11.3,
-    "volume": 35224,
+    "volume": 46100,
     "date": "2026-11-06",
     "history": [
      [
@@ -233052,7 +233589,7 @@
      ],
      [
       "2026-11-06",
-      19.73
+      19.87
      ]
     ]
    },
@@ -233154,7 +233691,7 @@
      "date": "2026-08-06",
      "url": "https://www.sec.gov/Archives/edgar/data/1723128/000172312826000031/amrx-20260630.htm"
     },
-    "price": 19.73,
+    "price": 19.87,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Amneal",
@@ -233171,8 +233708,8 @@
    "t": "RDY",
    "n": "Dr. Reddy's",
    "area": "Generics & active ingredients",
-   "mcap": 12077.5,
-   "ev": 11551.2,
+   "mcap": 12135.9,
+   "ev": 11609.6,
    "cash": 619.6,
    "debt": 93.3,
    "burn": 0.1,
@@ -233272,13 +233809,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 14.47,
+    "price": 14.54,
     "prev": 14.53,
-    "chg": -0.06,
-    "chgPct": -0.41,
+    "chg": 0.01,
+    "chgPct": 0.07,
     "hi52": 15.67,
     "lo52": 11.36,
-    "volume": 38469,
+    "volume": 58185,
     "date": "2026-11-06",
     "history": [
      [
@@ -234287,7 +234824,7 @@
      ],
      [
       "2026-11-06",
-      14.47
+      14.54
      ]
     ]
    },
@@ -234312,7 +234849,7 @@
      "date": "2026-05-29",
      "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000381/rdy0899_20f.htm"
     },
-    "price": 14.47,
+    "price": 14.54,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Dr. Reddy's",
@@ -234561,7 +235098,7 @@
     "chgPct": 0.65,
     "hi52": 95.45,
     "lo52": 68.79,
-    "volume": 9096,
+    "volume": 9312,
     "date": "2026-11-06",
     "history": [
      [
@@ -235688,8 +236225,8 @@
    "t": "AMPH",
    "n": "Amphastar",
    "area": "Injectable generics & insulin ingredients",
-   "mcap": 1301.7,
-   "ev": 1071.1,
+   "mcap": 1243.1,
+   "ev": 1012.5,
    "cash": 230.6,
    "debt": 0,
    "burn": 0.1,
@@ -235915,13 +236452,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 30.52,
+    "price": 29.15,
     "prev": 27.66,
-    "chg": 2.86,
-    "chgPct": 10.34,
+    "chg": 1.48,
+    "chgPct": 5.37,
     "hi52": 30.79,
     "lo52": 16.65,
-    "volume": 82964,
+    "volume": 104376,
     "date": "2026-11-06",
     "history": [
      [
@@ -236930,7 +237467,7 @@
      ],
      [
       "2026-11-06",
-      30.52
+      29.15
      ]
     ]
    },
@@ -237033,7 +237570,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1297184/000129718426000053/amph-20260930x10q.htm"
     },
-    "price": 30.52,
+    "price": 29.15,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Amphastar",
@@ -237049,8 +237586,8 @@
    "t": "BHC",
    "n": "Bausch Health",
    "area": "Off-patent brands & eye care",
-   "mcap": 3018.8,
-   "ev": 21170.8,
+   "mcap": 3002,
+   "ev": 21154,
    "cash": 2485,
    "debt": 20637,
    "burn": 0.1,
@@ -237382,13 +237919,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 8.07,
+    "price": 8.02,
     "prev": 7.96,
-    "chg": 0.11,
-    "chgPct": 1.33,
+    "chg": 0.06,
+    "chgPct": 0.77,
     "hi52": 9.04,
     "lo52": 4.33,
-    "volume": 128733,
+    "volume": 155253,
     "date": "2026-11-06",
     "history": [
      [
@@ -238397,7 +238934,7 @@
      ],
      [
       "2026-11-06",
-      8.07
+      8.02
      ]
     ]
    },
@@ -238499,7 +239036,7 @@
      "date": "2026-10-29",
      "url": "https://www.sec.gov/Archives/edgar/data/885590/000088559026000123/bhc-20260930.htm"
     },
-    "price": 8.07,
+    "price": 8.02,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Bausch Health",
@@ -238516,8 +239053,8 @@
    "t": "PRGO",
    "n": "Perrigo",
    "area": "Over-the-counter & store brands",
-   "mcap": 2159.1,
-   "ev": 5005.3,
+   "mcap": 2173.6,
+   "ev": 5019.8,
    "cash": 436.6,
    "debt": 3282.8,
    "burn": 0.1,
@@ -238762,13 +239299,13 @@
     }
    },
    "quote": {
-    "price": 15.56,
+    "price": 15.66,
     "prev": 15.71,
-    "chg": -0.16,
-    "chgPct": -0.99,
+    "chg": -0.05,
+    "chgPct": -0.32,
     "hi52": 16.81,
     "lo52": 9.23,
-    "volume": 93534,
+    "volume": 99366,
     "date": "2026-11-06",
     "history": [
      [
@@ -239777,7 +240314,7 @@
      ],
      [
       "2026-11-06",
-      15.56
+      15.66
      ]
     ]
    },
@@ -239879,7 +240416,7 @@
      "date": "2026-11-04",
      "url": "https://www.sec.gov/Archives/edgar/data/1585364/000158536426000162/prgo-20260926.htm"
     },
-    "price": 15.56,
+    "price": 15.66,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Perrigo",
@@ -239895,12 +240432,12 @@
    "t": "HLN",
    "n": "Haleon",
    "area": "Over-the-counter consumer health",
-   "mcap": 39838,
-   "ev": 49572.2,
-   "cash": 1769.1,
-   "debt": 11503.3,
+   "mcap": 40017,
+   "ev": 49750.5,
+   "cash": 1769,
+   "debt": 11502.5,
    "burn": 0.1,
-   "rev": 14738.3,
+   "rev": 14737.2,
    "shares": 8952.35,
    "own": null,
    "emp": null,
@@ -239955,7 +240492,7 @@
      "end": "2022-06-30",
      "filed": "2023-08-02",
      "cash": 1782,
-     "burn": -153.7,
+     "burn": -153.6,
      "runway": null
     },
     {
@@ -239982,7 +240519,7 @@
     {
      "end": "2024-06-30",
      "filed": "2024-08-01",
-     "cash": 710,
+     "cash": 709,
      "burn": -244.2,
      "runway": null
     },
@@ -240003,21 +240540,21 @@
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -256.22,
-   "debtDue24": 1117.1,
+   "burnPrior": -256.2,
+   "debtDue24": 1117,
    "raise": {
     "capacity": "none",
     "atm": null,
     "shelf": null
    },
    "quote": {
-    "price": 8.9,
+    "price": 8.94,
     "prev": 9.15,
-    "chg": -0.25,
-    "chgPct": -2.73,
+    "chg": -0.21,
+    "chgPct": -2.3,
     "hi52": 11.28,
     "lo52": 8.38,
-    "volume": 1557004,
+    "volume": 2077175,
     "date": "2026-11-06",
     "history": [
      [
@@ -241026,7 +241563,7 @@
      ],
      [
       "2026-11-06",
-      8.9
+      8.94
      ]
     ]
    },
@@ -241065,7 +241602,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 3520,
+   "ocf": 3519,
    "group": "otc",
    "src": {
     "cik": "1900304",
@@ -241074,8 +241611,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3362,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3362 USD per GBP",
+    "fx": 1.3361,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3361 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2026-03-13",
@@ -241084,7 +241621,7 @@
      "date": "2026-03-13",
      "url": "https://www.sec.gov/Archives/edgar/data/1900304/000110465926027443/hln-20251231x20f.htm"
     },
-    "price": 8.9,
+    "price": 8.94,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Haleon",
@@ -241100,8 +241637,8 @@
    "t": "PBH",
    "n": "Prestige Consumer Healthcare",
    "area": "Over-the-counter medicines",
-   "mcap": 2016.7,
-   "ev": 4049.6,
+   "mcap": 2023.4,
+   "ev": 4056.2,
    "cash": 46.5,
    "debt": 2079.3,
    "burn": 0.1,
@@ -241327,13 +241864,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 42.55,
+    "price": 42.69,
     "prev": 44.32,
-    "chg": -1.77,
-    "chgPct": -3.99,
+    "chg": -1.63,
+    "chgPct": -3.68,
     "hi52": 71.07,
-    "lo52": 42.5,
-    "volume": 25424,
+    "lo52": 42.34,
+    "volume": 37886,
     "date": "2026-11-06",
     "history": [
      [
@@ -242342,7 +242879,7 @@
      ],
      [
       "2026-11-06",
-      42.55
+      42.69
      ]
     ]
    },
@@ -242444,7 +242981,7 @@
      "date": "2026-11-05",
      "url": "https://www.sec.gov/Archives/edgar/data/1295947/000129594726000057/pbh-20260930.htm"
     },
-    "price": 42.55,
+    "price": 42.69,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Prestige",
@@ -242460,8 +242997,8 @@
    "t": "TMO",
    "n": "Thermo Fisher Scientific",
    "area": "Contract drug manufacturing (Patheon) & lab supplies",
-   "mcap": 251960.1,
-   "ev": 287007.1,
+   "mcap": 255213.2,
+   "ev": 290260.2,
    "cash": 6061,
    "debt": 41108,
    "burn": 0.1,
@@ -242748,13 +243285,13 @@
     }
    },
    "quote": {
-    "price": 680.03,
+    "price": 688.81,
     "prev": 676.94,
-    "chg": 3.08,
-    "chgPct": 0.46,
+    "chg": 11.86,
+    "chgPct": 1.75,
     "hi52": 712.17,
     "lo52": 435.27,
-    "volume": 112096,
+    "volume": 128578,
     "date": "2026-11-06",
     "history": [
      [
@@ -243763,7 +244300,7 @@
      ],
      [
       "2026-11-06",
-      680.03
+      688.8
      ]
     ]
    },
@@ -243866,7 +244403,7 @@
      "date": "2026-10-30",
      "url": "https://www.sec.gov/Archives/edgar/data/97745/000009774526000179/tmo-20260926.htm"
     },
-    "price": 680.03,
+    "price": 688.81,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Thermo Fisher",
@@ -243882,8 +244419,8 @@
    "t": "WST",
    "n": "West Pharmaceutical Services",
    "area": "Drug containment & delivery components",
-   "mcap": 27234.3,
-   "ev": 26973.1,
+   "mcap": 27611.5,
+   "ev": 27350.3,
    "cash": 464.1,
    "debt": 202.9,
    "burn": 0.1,
@@ -244109,13 +244646,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 390.96,
+    "price": 396.37,
     "prev": 392.48,
-    "chg": -1.53,
-    "chgPct": -0.39,
+    "chg": 3.89,
+    "chgPct": 0.99,
     "hi52": 438.27,
     "lo52": 223.83,
-    "volume": 18419,
+    "volume": 28506,
     "date": "2026-11-06",
     "history": [
      [
@@ -245124,7 +245661,7 @@
      ],
      [
       "2026-11-06",
-      390.95
+      396.37
      ]
     ]
    },
@@ -245226,7 +245763,7 @@
      "date": "2026-10-29",
      "url": "https://www.sec.gov/Archives/edgar/data/105770/000010577026000121/wst-20260930.htm"
     },
-    "price": 390.96,
+    "price": 396.37,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "West Pharmaceutical",
@@ -245242,8 +245779,8 @@
    "t": "HROW",
    "n": "Harrow",
    "area": "Eye-care drugs & compounding (ImprimisRx)",
-   "mcap": 984.6,
-   "ev": 1193.1,
+   "mcap": 987.6,
+   "ev": 1196.1,
    "cash": 83.9,
    "debt": 292.4,
    "burn": 0.1,
@@ -245587,13 +246124,13 @@
     "shelf": null
    },
    "quote": {
-    "price": 26.27,
+    "price": 26.35,
     "prev": 26.04,
-    "chg": 0.23,
-    "chgPct": 0.86,
+    "chg": 0.3,
+    "chgPct": 1.17,
     "hi52": 54.85,
     "lo52": 25.97,
-    "volume": 25205,
+    "volume": 32673,
     "date": "2026-11-06",
     "history": [
      [
@@ -246602,7 +247139,7 @@
      ],
      [
       "2026-11-06",
-      26.26
+      26.34
      ]
     ]
    },
@@ -246704,7 +247241,7 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1360214/000162828026055271/hrow-20260630.htm"
     },
-    "price": 26.27,
+    "price": 26.35,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Harrow",
@@ -246721,8 +247258,8 @@
    "t": "HIMS",
    "n": "Hims & Hers Health",
    "area": "Telehealth & compounded medicines",
-   "mcap": 5823.8,
-   "ev": 6348,
+   "mcap": 5934.1,
+   "ev": 6458.3,
    "cash": 841,
    "debt": 1365.3,
    "burn": 0.1,
@@ -246952,13 +247489,13 @@
     }
    },
    "quote": {
-    "price": 25.13,
+    "price": 25.61,
     "prev": 24.06,
-    "chg": 1.07,
-    "chgPct": 4.45,
+    "chg": 1.55,
+    "chgPct": 6.43,
     "hi52": 42.7,
     "lo52": 13.74,
-    "volume": 2670917,
+    "volume": 3093597,
     "date": "2026-11-06",
     "history": [
      [
@@ -247967,7 +248504,7 @@
      ],
      [
       "2026-11-06",
-      25.13
+      25.61
      ]
     ]
    },
@@ -248071,7 +248608,7 @@
      "date": "2026-08-10",
      "url": "https://www.sec.gov/Archives/edgar/data/1773751/000177375126000163/hims-20260630.htm"
     },
-    "price": 25.13,
+    "price": 25.61,
     "priceDate": "2026-11-06",
     "priceSource": "Yahoo Finance",
     "sponsor": "Hims",
