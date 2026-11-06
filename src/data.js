@@ -13,6 +13,8 @@ import { SAMPLE_COMPANIES } from "./sampleData.js";
 export let COMPANIES = SAMPLE_COMPANIES;
 export let META = { live: false };
 export let HISTORY = { snapshots: [] };
+// Companies bought by a larger drugmaker, kept at their last figures.
+export let ACQUIRED = [];
 
 export async function loadData() {
   try {
@@ -21,6 +23,7 @@ export async function loadData() {
     const json = await res.json();
     if (!Array.isArray(json.companies) || json.companies.length === 0) throw new Error("no companies in file");
     COMPANIES = json.companies;
+    ACQUIRED = Array.isArray(json.acquired) ? json.acquired : [];
     META = { ...json.meta, live: true };
     try {
       const h = await fetch(`${import.meta.env.BASE_URL}data/fps-history.json`, { cache: "no-cache" });

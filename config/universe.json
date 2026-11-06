@@ -1,5 +1,5 @@
 {
-  "_readme": "How Helixora chooses which companies to cover. scripts/universe.mjs re-runs the screen monthly. Turnover policy (approved 2026-11-04): the original companies always stay; a selected company stays while it still qualifies and ranks in the top 45 by soonest Phase II/III completion; open places are filled in rank order up to 30. Every change is logged in 'changes'.",
+  "_readme": "How Helixora chooses which companies to cover. scripts/universe.mjs re-runs the screen monthly. Turnover policy (approved 2026-11-06, replacing the 2026-11-04 policy of 30 selected companies): coverage is 100 companies, the original companies plus those chosen by the rules; a selected company stays while it still qualifies; open places are filled in order of soonest Phase II/III completion. A company that is bought leaves live coverage; if the buyer is a larger drugmaker it moves to the Acquired by big pharma list. Every change is logged in 'changes'.",
   "approved": "2026-11-04",
   "rules": [
     "Listed on Nasdaq, NYSE or NYSE American (no OTC)",
@@ -11,7 +11,7 @@
     "At least one active, company-sponsored Phase II or III trial",
     "Not acquired or being acquired: no tender offer or merger vote under way"
   ],
-  "selection": "The 30 qualifying companies whose next Phase II or III trial finishes soonest.",
+  "selection": "Up to 100 companies in all: the original companies plus the qualifying companies whose next Phase II or III trial finishes soonest.",
   "funnel": [
     [
       "Listed on Nasdaq, NYSE or NYSE American",
@@ -92,9 +92,9 @@
     "VERA"
   ],
   "policy": {
-    "target": 30,
-    "keepRank": 45,
-    "approved": "2026-11-04"
+    "total": 100,
+    "keepRank": null,
+    "approved": "2026-11-06"
   },
   "changes": [
     {

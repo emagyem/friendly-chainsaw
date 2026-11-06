@@ -47,8 +47,7 @@ for (const r of c) {
   if (["2834", "2836", "8731"].includes(String(s?.sic))) keep.push({ ...r, sic: s.sic, deal: dealStatus(s), sponsor: (s.name || r.name).replace(/,?\s+(inc|corp|corporation|ltd|limited|plc|n\.v|s\.a)\.?$/i, "").trim() });
 }
 c = keep; funnel.push(["Drug developer industry code (2834, 2836, 8731)", c.length]);
-// A bare delisting notice on a company still on the exchange list is a share-class or tier change, not a sale.
-c = c.filter((r) => !r.deal || r.deal.status === "delisted"); funnel.push(["Not acquired or being acquired", c.length]);
+c = c.filter((r) => !r.deal); funnel.push(["Not acquired or being acquired", c.length]);
 const cash = await frame("us-gaap", "CashAndCashEquivalentsAtCarryingValue", "USD", "CY2026Q2I");
 const sh = await frame("dei", "EntityCommonStockSharesOutstanding", "shares", "CY2026Q2I");
 const priced = [];
@@ -91,13 +90,17 @@ await writeFile(new URL("../public/data/universe.json", import.meta.url), JSON.s
 console.log(funnel.map(([a, b]) => `${a}: ${b}`).join("\n"));
 
 /* ---------------------------- turnover ----------------------------
-   Approved policy: the original companies always stay. A selected company stays
-   while it still qualifies and ranks in the top KEEP_RANK; otherwise it leaves.
-   Open places are filled, in rank order, up to TARGET. Every change is logged. */
-const TARGET = 30, KEEP_RANK = 45, MIN_QUALIFIED = 50;
+   Approved policy (config/universe.json → policy): the original companies stay
+   unless they are bought. A selected company stays while it still qualifies (and,
+   if policy.keepRank is set, ranks in the top keepRank); otherwise it leaves.
+   Open places are filled, in rank order, until coverage reaches policy.total.
+   Every change is logged. */
+const MIN_QUALIFIED = 50;
 const uniFile = new URL("../config/universe.json", import.meta.url);
 const cfgFile = new URL("../config/companies.json", import.meta.url);
 const uni = JSON.parse(await readFile(uniFile, "utf8"));
+const TARGET = (uni.policy?.total ?? 38) - (uni.originalCoverage || []).length;
+const KEEP_RANK = uni.policy?.keepRank ?? Infinity;
 const cfg = JSON.parse(await readFile(cfgFile, "utf8"));
 if (c.length < MIN_QUALIFIED) {
   console.log(`Only ${c.length} companies qualified; that looks like a data problem, so coverage is left unchanged.`);

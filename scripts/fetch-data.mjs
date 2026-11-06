@@ -21,7 +21,7 @@
 ------------------------------------------------------------------- */
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
-import { dealStatus, buyerName, tidyName } from "./deal-status.mjs";
+import { dealStatus, buyerInfo, isLargerPharma, tidyName } from "./deal-status.mjs";
 import { pathToFileURL } from "node:url";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
 import { runwaySim, QUANT_VERSION } from "../src/quant.js";
@@ -898,10 +898,13 @@ async function main() {
   try { trialHist = JSON.parse(await readFile(TRIAL_HISTORY_FILE, "utf8")); } catch { /* first run */ }
 
   let previous = {};
+  // Companies bought by a larger drugmaker stay on the site, frozen at their last figures.
+  let acquired = [];
   try {
     const prev = JSON.parse(await readFile(OUT_FILE, "utf8"));
     for (const c of prev.companies || []) previous[c.t] = c;
     previous.__meta = prev.meta;
+    acquired = prev.acquired || [];
   } catch { /* first run */ }
 
   console.log("Loading SEC ticker list…");
@@ -926,18 +929,33 @@ async function main() {
     if (cik) {
       const sub = await sec(`https://data.sec.gov/submissions/CIK${String(cik).padStart(10, "0")}.json`);
       deal = dealStatus(sub, TODAY_ISO);
-      if (deal && deal.status !== "delisted") deal.by = tidyName(await buyerName(cik, deal.adsh, sub?.name, secText));
+      if (deal && deal.status !== "delisted") {
+        const b = await buyerInfo(cik, deal.adsh, sub?.name, secText);
+        deal.by = tidyName(b?.name) || null;
+        deal.buyerType = b?.type || "unknown";
+        deal.bigPharma = await isLargerPharma(b, prevC?.mcap, sec);
+      }
     }
     const listed = cikByTicker.has(ticker);
     if (deal?.status === "acquired" || (deal?.status === "delisted" && !listed)) {
-      const why = deal.status === "acquired" ? `acquired${deal.by ? ` by ${deal.by}` : ""}; delisted ${deal.since}` : `delisted ${deal.since}`;
+      const kept = deal.status === "acquired" && deal.bigPharma && prevC;
+      const kind = deal.buyerType === "financial" ? " (private equity / financial buyer)" : "";
+      const why = deal.status === "acquired"
+        ? `acquired${deal.by ? ` by ${deal.by}` : ""}${kind}; delisted ${deal.since}${kept ? "; moved to the Acquired by big pharma list" : ""}`
+        : `delisted ${deal.since}`;
+      if (kept) {
+        // The last reading Helixora published, as of the refresh that produced it.
+        const f = computeFPS(prevC, toDate((previous.__meta?.generatedAt || TODAY_ISO).slice(0, 10)));
+        acquired = acquired.filter((a) => a.t !== ticker);
+        acquired.push({ ...prevC, stale: false, acquired: { by: deal.by, closed: deal.since, how: deal.how, lastScore: f.score, lastBand: f.band, lastRunway: f.runway, lastDataDate: prevC.src?.asOf || null } });
+      }
       leaving.push({ t: ticker, n: prevC?.n || ticker, why });
       warn(`${ticker}: ${why}. Removed from coverage.`);
       continue;
     }
     try {
       const c = await buildCompany(ticker, assumptions[ticker] || {}, cikByTicker, classes[ticker] || {}, trialHist, durTables);
-      if (deal?.status === "pending") c.deal = { status: "pending", how: deal.how, since: deal.since, by: deal.by || null };
+      if (deal?.status === "pending") c.deal = { status: "pending", how: deal.how, since: deal.since, by: deal.by || null, buyerType: deal.buyerType, bigPharma: !!deal.bigPharma };
       companies.push(c);
       console.log(`  ${c.n}: cash $${c.cash}M, burn $${c.burn}M/mo, ${c.pipeline.length} programs, mcap $${c.mcap}M`);
     } catch (e) {
@@ -1005,6 +1023,7 @@ async function main() {
       leftCoverage: leaving,
     },
     companies,
+    acquired,
   };
   await mkdir(OUT_DIR, { recursive: true });
   await writeFile(OUT_FILE, JSON.stringify(out, null, 1) + "\n");
