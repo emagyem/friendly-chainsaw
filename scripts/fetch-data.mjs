@@ -224,19 +224,28 @@ const IFRS_MAP = {
 async function normalizeIfrs(facts) {
   const ifrs = facts?.["ifrs-full"];
   if (!ifrs || facts?.["us-gaap"]?.CashAndCashEquivalentsAtCarryingValue) return { facts, currency: "USD", fx: 1 };
-  // The reporting currency: whatever unit the cash figure is in.
-  const currency = Object.keys(ifrs.CashAndCashEquivalents?.units || {})[0] || "USD";
-  let fx = 1;
-  if (currency !== "USD") {
-    const q = await yahooQuote(`${currency}USD=X`);
-    if (!(q?.price > 0)) throw new Error(`no ${currency}/USD exchange rate`);
-    fx = q.price;
-  }
+  // Convert every currency a tag was reported in (companies sometimes switch, as argenx did from euros to dollars
+  // in 2025), so the newest figures win whatever currency they came in.
+  const units = ifrs.CashAndCashEquivalents?.units || {};
+  const newestIn = (u) => (units[u] || []).reduce((m, r) => (r.end > m ? r.end : m), "");
+  const currency = Object.keys(units).sort((a, b) => (newestIn(a) < newestIn(b) ? 1 : -1))[0] || "USD";
+  const rates = { USD: 1 };
+  const rate = async (cur) => {
+    if (!(cur in rates)) { const q = await yahooQuote(`${cur}USD=X`); rates[cur] = q?.price > 0 ? q.price : null; }
+    return rates[cur];
+  };
+  if (!(await rate(currency))) throw new Error(`no ${currency}/USD exchange rate`);
+  const fx = rates[currency];
   const gaap = {};
   for (const [from, to] of Object.entries(IFRS_MAP)) {
-    const rows = ifrs[from]?.units?.[currency];
-    if (!rows?.length || gaap[to]) continue;
-    gaap[to] = { units: { USD: rows.map((r) => ({ ...r, val: r.val * fx })) } };
+    if (gaap[to] || !ifrs[from]?.units) continue;
+    const rows = [];
+    for (const [cur, list] of Object.entries(ifrs[from].units)) {
+      if (!/^[A-Z]{3}$/.test(cur)) continue;
+      const r = await rate(cur);
+      if (r) rows.push(...list.map((x) => ({ ...x, val: x.val * r })));
+    }
+    if (rows.length) gaap[to] = { units: { USD: rows } };
   }
   // Share count: the cover-page figure is missing or years old for some filers; use the balance-sheet count when newer.
   let dei = facts.dei || {};

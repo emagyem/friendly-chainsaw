@@ -102,7 +102,7 @@
     "IKT",
     "OBX"
   ],
-  "_industryReadme": "Drug-industry companies tracked for comparison, by segment: big-pharma, generics, otc (over-the-counter), api (ingredients and contract manufacturing), compounding. Shown on Markets > Drug Industry; never ranked with or counted in the 100-company coverage. Only SEC filers can be included. 'sponsor' is the lead-sponsor name on ClinicalTrials.gov; 'adr' is ordinary shares per US-listed share where that isn't 1 (checked 2026-11-06).",
+  "_industryReadme": "Drug-industry companies tracked for comparison, by segment: big-pharma, generics, otc (over-the-counter), api (ingredients and contract manufacturing), compounding, orphan (companies selling mainly rare-disease drugs). Shown on Markets > Drug Industry; never ranked with or counted in the 100-company coverage. Only SEC filers can be included. 'sponsor' is the lead-sponsor name on ClinicalTrials.gov; 'adr' is ordinary shares per US-listed share where that isn't 1 (checked 2026-11-06).",
   "industry": [
     {
       "t": "LLY",
@@ -324,6 +324,125 @@
       "name": "Hims & Hers Health",
       "area": "Telehealth & compounded medicines",
       "sponsor": "Hims"
+    },
+    {
+      "t": "BMRN",
+      "segment": "orphan",
+      "name": "BioMarin",
+      "area": "Enzyme therapies & skeletal conditions",
+      "sponsor": "BioMarin"
+    },
+    {
+      "t": "ALNY",
+      "segment": "orphan",
+      "name": "Alnylam",
+      "area": "RNAi medicines for rare & cardiometabolic disease",
+      "sponsor": "Alnylam"
+    },
+    {
+      "t": "SRPT",
+      "segment": "orphan",
+      "name": "Sarepta Therapeutics",
+      "area": "Duchenne muscular dystrophy",
+      "sponsor": "Sarepta"
+    },
+    {
+      "t": "RARE",
+      "segment": "orphan",
+      "name": "Ultragenyx",
+      "area": "Rare genetic diseases",
+      "sponsor": "Ultragenyx"
+    },
+    {
+      "t": "UTHR",
+      "segment": "orphan",
+      "name": "United Therapeutics",
+      "area": "Pulmonary arterial hypertension",
+      "sponsor": "United Therapeutics"
+    },
+    {
+      "t": "INSM",
+      "segment": "orphan",
+      "name": "Insmed",
+      "area": "Rare lung diseases",
+      "sponsor": "Insmed"
+    },
+    {
+      "t": "ASND",
+      "segment": "orphan",
+      "name": "Ascendis Pharma",
+      "area": "Rare endocrine diseases",
+      "sponsor": "Ascendis"
+    },
+    {
+      "t": "ARGX",
+      "segment": "orphan",
+      "name": "argenx",
+      "area": "Rare autoimmune diseases",
+      "sponsor": "argenx"
+    },
+    {
+      "t": "KRYS",
+      "segment": "orphan",
+      "name": "Krystal Biotech",
+      "area": "Rare skin diseases (gene therapy)",
+      "sponsor": "Krystal Biotech"
+    },
+    {
+      "t": "PTCT",
+      "segment": "orphan",
+      "name": "PTC Therapeutics",
+      "area": "Rare neuromuscular & metabolic diseases",
+      "sponsor": "PTC Therapeutics"
+    },
+    {
+      "t": "IONS",
+      "segment": "orphan",
+      "name": "Ionis",
+      "area": "RNA medicines for rare & common disease",
+      "sponsor": "Ionis"
+    },
+    {
+      "t": "JAZZ",
+      "segment": "orphan",
+      "name": "Jazz Pharmaceuticals",
+      "area": "Rare sleep disorders & oncology",
+      "sponsor": "Jazz"
+    },
+    {
+      "t": "HRMY",
+      "segment": "orphan",
+      "name": "Harmony Biosciences",
+      "area": "Narcolepsy & rare neurology",
+      "sponsor": "Harmony Biosciences"
+    },
+    {
+      "t": "MIRM",
+      "segment": "orphan",
+      "name": "Mirum",
+      "area": "Rare liver diseases",
+      "sponsor": "Mirum"
+    },
+    {
+      "t": "RYTM",
+      "segment": "orphan",
+      "name": "Rhythm",
+      "area": "Rare genetic obesity",
+      "sponsor": "Rhythm Pharmaceuticals"
+    },
+    {
+      "t": "BBIO",
+      "segment": "orphan",
+      "name": "BridgeBio",
+      "area": "Genetic diseases",
+      "sponsor": "BridgeBio"
+    },
+    {
+      "t": "TVTX",
+      "segment": "orphan",
+      "name": "Travere",
+      "area": "Rare kidney & metabolic diseases",
+      "sponsor": "Travere"
     }
   ]
 }

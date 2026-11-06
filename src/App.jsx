@@ -12,6 +12,7 @@ const SEGMENTS = [
   ["generics", "Generics", "Makers of off-patent copies of medicines, including biosimilars, plus older brands."],
   ["otc", "Over-the-counter", "Medicines sold without a prescription: pain relief, cold and allergy, store brands."],
   ["api", "Ingredients & contract manufacturing", "Companies that make drugs, drug ingredients or drug packaging for other drugmakers. Most active-ingredient makers are in India, China and Europe and don't file with the SEC."],
+  ["orphan", "Rare disease (orphan drugs)", "Companies whose medicines are mainly orphan drugs: treatments the FDA designates for diseases affecting fewer than 200,000 people in the US, which earn extra years of market exclusivity. Unlike the rest of this page, several still spend more cash than they bring in."],
   ["compounding", "Compounding", "Pharmacies that mix custom or sterile medicines, including large-scale compounded weight-loss drugs."],
 ];
 const segLabel = (g) => SEGMENTS.find(([k]) => k === g)?.[1] || null;
