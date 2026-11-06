@@ -64,29 +64,83 @@ export function toText(html) {
     .replace(/\s+/g, " ");
 }
 
-export function expectedEvents(text, filed) {
-  const maxDate = new Date(Date.parse(filed) + 3 * 365 * 86400000).toISOString().slice(0, 10);
+// Readout or decision language: a future verb tied to the result itself, not
+// to something done with results already in hand ("submit the results to a journal").
+const READOUT = [
+  /\b(report|announce|release|disclose|share|receive|obtain|have|expect|anticipate)\w*\b[^.;]{0,80}?\b(top-?line|initial|interim|preliminary|primary(?:[ -]endpoint)?|final|full|key|clinical|trial|study|phase \d\w*)?\s*(data|results?|read-?outs?)\b/i,
+  /\b(top-?line|interim|preliminary|initial)\s+(data|results?|read-?outs?|analys[ie]s)\b[^.;]{0,80}?\b(expected|anticipated|planned|on track|scheduled)\b/i,
+  /\b(data|results?)\b[^.;]{0,60}?\b(expected|anticipated|planned|on track|scheduled)\b/i,
+  /\bread-?outs?\b/i,
+  /\b(PDUFA|target action date|action date|approval decision|regulatory decision|FDA decision|FDA approval)\b/i,
+];
+// Things that mention data or results but aren't a market-moving readout.
+const NOT_READOUT = /\b(journal|publication|publish|medical meetings?|scientific (?:meeting|conference)s?|congress|poster|initiate|commence|begin|start|enrol(?:l|ment|led|ling)|dose the first|IND|CTA|financial results|conference call|earnings)\b/i;
+const STRONG = /\b(top-?line|PDUFA|action date|read-?out)\b/i;
+
+// Sentences worth keeping from a filing: forward-looking catalyst talk with a date-like phrase.
+// Cached per filing so the date logic below can change without re-downloading.
+export function candidateSentences(text) {
   const out = [];
-  const sentences = text.split(/(?<=[.;!?])\s+(?=[A-Z(])/);
-  for (const s of sentences) {
+  for (const s of text.split(/(?<=[.;!?])\s+(?=[A-Z(])/)) {
     if (s.length < 30 || s.length > 600) continue;
     if (!EVENT.test(s) || !FUTURE.test(s)) continue;
-    // Skip sentences about cash runway or financial reporting, which name dates for other reasons.
-    if (NOT_CATALYST.test(s) && !/\b(top-?line|PDUFA|read-?out)\b/i.test(s)) continue;
+    if (!/\b20\d\d\b|\b\d?[QH][1-4]?\s*'?\d\d\b|this year|next year|year-?end/i.test(s)) continue;
+    if (NOT_CATALYST.test(s) && !STRONG.test(s)) continue;
+    if (!out.includes(s)) out.push(s);
+    if (out.length >= 60) break;
+  }
+  return out;
+}
+
+// Of the periods named in a sentence, use the one that follows the readout words most
+// closely ("report top-line data in the first half of 2017"), so other dates in the same
+// sentence ("end enrollment in 2016") don't get used.
+function closestPeriod(s, found) {
+  const anchors = [];
+  const re = /\b(top-?line|data|results?|read-?outs?|PDUFA|action date|approval|decision)\b/gi;
+  let m;
+  while ((m = re.exec(s))) anchors.push(m.index);
+  if (!anchors.length) return found[0];
+  let best = found[0], bestD = Infinity;
+  for (const f of found) {
+    const before = anchors.filter((a) => a < f.at).map((a) => f.at - a);
+    const d = before.length ? Math.min(...before) : 1000 + Math.min(...anchors.map((a) => a - f.at));
+    if (d < bestD) { bestD = d; best = f; }
+  }
+  return best;
+}
+
+export function eventsFromSentences(sentences, filed) {
+  const maxDate = new Date(Date.parse(filed) + 3 * 365 * 86400000).toISOString().slice(0, 10);
+  const out = [];
+  for (const raw of sentences) {
+    const s = raw.replace(/&#x2019;|&#8217;/g, "'");
+    if (!READOUT.some((r) => r.test(s))) continue;
+    if (NOT_READOUT.test(s) && !STRONG.test(s)) continue;
+    // Keep only periods that haven't ended and aren't too far out, then pick the one nearest the readout words.
     const found = [];
     for (const [re, fn] of PERIODS) {
       re.lastIndex = 0;
       let m;
       while ((m = re.exec(s))) {
-        try { const p = fn(m); if (p && !found.some((f) => f[0] === p[0] && f[1] === p[1])) found.push(p); } catch { /* bad date */ }
+        try {
+          const p = fn(m);
+          if (!p || p[1] <= filed || found.some((f) => f.p[0] === p[0] && f.p[1] === p[1])) continue;
+          // A period already under way counts from the filing date to its end.
+          const a = p[0] < filed ? filed : p[0];
+          if (mid(a, p[1]) > maxDate) continue;
+          found.push({ p: [a, p[1]], at: m.index });
+        } catch { /* bad date */ }
       }
     }
-    if (!found.length) { const r = relative(s, filed); if (r) found.push(r); }
-    for (const [a, b] of found) {
-      const d = mid(a, b);
-      if (b <= filed || d > maxDate) continue; // the period has already ended, or it's too far out
-      out.push({ date: d < filed ? filed : d, kind: /PDUFA|action date|approval decision|regulatory decision|FDA decision/i.test(s) ? "regulatory" : "clinical", text: s.slice(0, 240) });
-    }
+    if (!found.length) { const r = relative(s, filed); if (r) found.push({ p: r, at: 0 }); }
+    if (!found.length) continue;
+    const { p } = closestPeriod(s, found);
+    out.push({ date: mid(p[0], p[1]), kind: /PDUFA|action date|approval decision|regulatory decision|FDA decision|FDA approval/i.test(s) ? "regulatory" : "clinical", text: s.slice(0, 240) });
   }
   return out.sort((a, b) => (a.date < b.date ? -1 : 1));
+}
+
+export function expectedEvents(text, filed) {
+  return eventsFromSentences(candidateSentences(text), filed);
 }

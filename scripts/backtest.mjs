@@ -32,7 +32,7 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
-import { expectedEvents, toText } from "./guidance.mjs";
+import { candidateSentences, eventsFromSentences, toText } from "./guidance.mjs";
 
 const UA = process.env.SEC_USER_AGENT;
 if (!UA) { console.error("Set SEC_USER_AGENT"); process.exit(1); }
@@ -263,14 +263,19 @@ let guidanceDocs = 0, guidanceFound = 0;
 async function guidanceAt(cik, filings, filed) {
   const f = filings.find((x) => x.date === filed && /^10-[QK]/.test(x.form) && x.doc);
   if (!f) return [];
-  const key = `guid-${f.adsh}.json`;
+  // Cache the candidate sentences, not the dates, so the date rules can be tuned without re-reading filings.
+  const key = `guids-${f.adsh}.json`;
   const file = new URL(key, CACHE);
-  if (existsSync(file)) return JSON.parse(await readFile(file, "utf8"));
-  const html = await sec(`https://www.sec.gov/Archives/edgar/data/${cik}/${f.adsh.replace(/-/g, "")}/${f.doc}`, { json: false });
+  let sentences;
+  if (existsSync(file)) sentences = JSON.parse(await readFile(file, "utf8"));
+  else {
+    const html = await sec(`https://www.sec.gov/Archives/edgar/data/${cik}/${f.adsh.replace(/-/g, "")}/${f.doc}`, { json: false });
+    sentences = html && html.length < 25e6 ? candidateSentences(toText(html)) : [];
+    await writeFile(file, JSON.stringify(sentences));
+  }
   guidanceDocs++;
-  const events = html && html.length < 25e6 ? expectedEvents(toText(html), filed).slice(0, 12) : [];
+  const events = eventsFromSentences(sentences, filed).slice(0, 12);
   if (events.length) guidanceFound++;
-  await writeFile(file, JSON.stringify(events));
   return events;
 }
 
