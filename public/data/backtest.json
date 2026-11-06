@@ -1,0 +1,291 @@
+{
+ "generatedAt": "2026-11-06T06:25:12.126Z",
+ "fpsVersion": "1.1",
+ "question": "Did the Financing Pressure Score flag biotechs before they sold stock?",
+ "universe": "Every company with industry code 2834, 2836 or 8731 that reported R&D spending to the SEC, burned cash, and had under $50M of trailing revenue, at each balance sheet filed 2012–2025. Includes companies that later stopped filing.",
+ "outcome": "A stock offering filing (424B4 or 424B5) or a jump of 15%+ in shares outstanding within 12 months after the balance sheet was filed.",
+ "pointInTime": "Each row uses only figures filed with the SEC on or before its date.",
+ "limits": [
+  "Catalyst timing isn't included: past expected trial dates aren't available in bulk, so every company gets the score's standard assumption of an event 18 months out.",
+  "Pipeline concentration isn't included; the score is re-weighted over the parts that are.",
+  "Market access uses the public float reported in each 10-K instead of daily market value, because price history isn't freely available for delisted companies.",
+  "An ATM program is detected from sales-agreement language in prospectus supplements found by SEC full-text search; a few may be missed or misread.",
+  "A share-count jump can also come from a merger or debt conversion, not only a stock sale."
+ ],
+ "requests": 7373,
+ "rows": 23927,
+ "companies": 1073,
+ "companiesNoLongerFiling": 538,
+ "events12": 14159,
+ "base12": 0.592,
+ "base6": 0.374,
+ "auc": 0.581,
+ "aucRunwayOnly": 0.522,
+ "components": {
+  "gap": {
+   "n": 23927,
+   "auc": 0.546
+  },
+  "trend": {
+   "n": 22606,
+   "auc": 0.485
+  },
+  "capacity": {
+   "n": 23927,
+   "auc": 0.596
+  },
+  "debt": {
+   "n": 23927,
+   "auc": 0.504
+  },
+  "access": {
+   "n": 21092,
+   "auc": 0.573
+  }
+ },
+ "bands": [
+  {
+   "band": "High",
+   "n": 6843,
+   "raised12": 0.68,
+   "raised6": 0.469
+  },
+  {
+   "band": "Elevated",
+   "n": 11572,
+   "raised12": 0.58,
+   "raised6": 0.364
+  },
+  {
+   "band": "Low",
+   "n": 5512,
+   "raised12": 0.506,
+   "raised6": 0.277
+  }
+ ],
+ "deciles": [
+  {
+   "from": 4,
+   "to": 24,
+   "n": 2392,
+   "raised12": 0.463
+  },
+  {
+   "from": 24,
+   "to": 36,
+   "n": 2393,
+   "raised12": 0.534
+  },
+  {
+   "from": 36,
+   "to": 49,
+   "n": 2393,
+   "raised12": 0.55
+  },
+  {
+   "from": 49,
+   "to": 57,
+   "n": 2392,
+   "raised12": 0.554
+  },
+  {
+   "from": 57,
+   "to": 61,
+   "n": 2393,
+   "raised12": 0.55
+  },
+  {
+   "from": 61,
+   "to": 66,
+   "n": 2393,
+   "raised12": 0.625
+  },
+  {
+   "from": 66,
+   "to": 69,
+   "n": 2392,
+   "raised12": 0.601
+  },
+  {
+   "from": 69,
+   "to": 73,
+   "n": 2393,
+   "raised12": 0.651
+  },
+  {
+   "from": 73,
+   "to": 78,
+   "n": 2393,
+   "raised12": 0.701
+  },
+  {
+   "from": 78,
+   "to": 96,
+   "n": 2393,
+   "raised12": 0.69
+  }
+ ],
+ "years": [
+  {
+   "year": "2012",
+   "n": 1139,
+   "base": 0.54,
+   "high": 0.561,
+   "low": 0.561,
+   "auc": 0.483
+  },
+  {
+   "year": "2013",
+   "n": 1196,
+   "base": 0.593,
+   "high": 0.667,
+   "low": 0.533,
+   "auc": 0.562
+  },
+  {
+   "year": "2014",
+   "n": 1378,
+   "base": 0.582,
+   "high": 0.611,
+   "low": 0.593,
+   "auc": 0.502
+  },
+  {
+   "year": "2015",
+   "n": 1528,
+   "base": 0.507,
+   "high": 0.63,
+   "low": 0.417,
+   "auc": 0.603
+  },
+  {
+   "year": "2016",
+   "n": 1569,
+   "base": 0.568,
+   "high": 0.606,
+   "low": 0.528,
+   "auc": 0.542
+  },
+  {
+   "year": "2017",
+   "n": 1581,
+   "base": 0.636,
+   "high": 0.694,
+   "low": 0.612,
+   "auc": 0.537
+  },
+  {
+   "year": "2018",
+   "n": 1691,
+   "base": 0.601,
+   "high": 0.672,
+   "low": 0.562,
+   "auc": 0.563
+  },
+  {
+   "year": "2019",
+   "n": 1793,
+   "base": 0.674,
+   "high": 0.772,
+   "low": 0.609,
+   "auc": 0.595
+  },
+  {
+   "year": "2020",
+   "n": 1853,
+   "base": 0.726,
+   "high": 0.836,
+   "low": 0.621,
+   "auc": 0.626
+  },
+  {
+   "year": "2021",
+   "n": 2189,
+   "base": 0.492,
+   "high": 0.6,
+   "low": 0.384,
+   "auc": 0.6
+  },
+  {
+   "year": "2022",
+   "n": 2367,
+   "base": 0.523,
+   "high": 0.618,
+   "low": 0.422,
+   "auc": 0.587
+  },
+  {
+   "year": "2023",
+   "n": 2215,
+   "base": 0.594,
+   "high": 0.661,
+   "low": 0.44,
+   "auc": 0.589
+  },
+  {
+   "year": "2024",
+   "n": 1997,
+   "base": 0.601,
+   "high": 0.699,
+   "low": 0.453,
+   "auc": 0.613
+  },
+  {
+   "year": "2025",
+   "n": 1431,
+   "base": 0.67,
+   "high": 0.763,
+   "low": 0.615,
+   "auc": 0.592
+  }
+ ],
+ "runwayBuckets": [
+  {
+   "from": 0,
+   "to": 6,
+   "n": 6244,
+   "raised12": 0.549
+  },
+  {
+   "from": 6,
+   "to": 12,
+   "n": 3521,
+   "raised12": 0.702
+  },
+  {
+   "from": 12,
+   "to": 18,
+   "n": 3048,
+   "raised12": 0.675
+  },
+  {
+   "from": 18,
+   "to": 24,
+   "n": 2468,
+   "raised12": 0.617
+  },
+  {
+   "from": 24,
+   "to": 36,
+   "n": 3368,
+   "raised12": 0.593
+  },
+  {
+   "from": 36,
+   "to": null,
+   "n": 5277,
+   "raised12": 0.509
+  }
+ ],
+ "leadMonthsHigh": 4,
+ "survivors": {
+  "rows": 13531,
+  "auc": 0.636,
+  "base12": 0.647
+ },
+ "nonSurvivors": {
+  "rows": 10396,
+  "auc": 0.526,
+  "base12": 0.52
+ }
+}
