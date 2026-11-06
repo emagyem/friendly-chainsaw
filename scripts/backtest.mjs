@@ -1,0 +1,409 @@
+#!/usr/bin/env node
+/* ------------------------------------------------------------------
+   HELIXORA historical backtest
+
+   Question: did the Financing Pressure Score flag biotechs before they
+   sold stock? Tested on every cash-burning biotech that filed with the
+   SEC since 2012, including companies that later went bankrupt, were
+   acquired or delisted, so the result isn't flattered by survivors.
+
+   Everything is point-in-time: each company-quarter only uses figures
+   that had been filed with the SEC by that date.
+
+   Sources (all SEC EDGAR, free):
+     - XBRL frames        every company reporting R&D spending, by period
+                          (this finds dead companies too)
+     - submissions        industry code, every filing and its date
+     - companyfacts       cash, investments, operating cash flow, debt,
+                          revenue, shares, public float, with filing dates
+     - full-text search   at-the-market (ATM) sales agreements in
+                          prospectus supplements, 2009 onward
+
+   Not included in this version (see "limits" in the output):
+     - catalyst timing: past expected trial dates aren't available in bulk,
+       so every company gets the score's standard 18-month assumption
+     - pipeline concentration
+     - stock prices: market access uses the public float companies report
+       in their 10-K instead, which exists for delisted companies too
+
+   Usage: SEC_USER_AGENT="Name you@example.com" node scripts/backtest.mjs
+------------------------------------------------------------------- */
+
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { computeFPS, FPS_VERSION, bandOf } from "../src/fps.js";
+
+const UA = process.env.SEC_USER_AGENT;
+if (!UA) { console.error("Set SEC_USER_AGENT"); process.exit(1); }
+const ROOT = new URL("../", import.meta.url);
+const OUT = new URL("public/data/backtest.json", ROOT);
+const CACHE = new URL(".cache/backtest/", ROOT);
+
+const DAY = 86400000;
+const TODAY = new Date();
+const TODAY_ISO = TODAY.toISOString().slice(0, 10);
+const START = "2012-01-01";
+const SICS = new Set(["2834", "2836", "8731"]); // pharma preparations, biological products, commercial biological research
+const MAX_REVENUE_M = 50; // trailing revenue above this isn't "clinical stage"
+const JUMP = 0.15; // a 15%+ jump in shares outstanding counts as a raise (catches ATM sales and private placements)
+
+const toDate = (iso) => new Date(iso + "T00:00:00Z");
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const addDays = (iso, n) => new Date(toDate(iso).getTime() + n * DAY).toISOString().slice(0, 10);
+const shiftYears = (iso, y) => { const d = toDate(iso); d.setUTCFullYear(d.getUTCFullYear() + y); return d.toISOString().slice(0, 10); };
+const monthsBetween = (a, b) => (toDate(b) - toDate(a)) / DAY / 30.44;
+const near = (a, b, tol = 20) => Math.abs(toDate(a) - toDate(b)) <= tol * DAY;
+const M = (v) => v / 1e6;
+const LAST_ASOF = addDays(TODAY_ISO, -365 - 45); // need a full year of outcomes after each date, plus filing lag
+
+/* ------------------------------ fetching ------------------------------ */
+
+let calls = 0;
+async function sec(url, { cacheKey, json = true } = {}) {
+  const file = cacheKey ? new URL(cacheKey.replace(/[^\w.-]/g, "_"), CACHE) : null;
+  if (file && existsSync(file)) { const t = await readFile(file, "utf8"); return json ? JSON.parse(t) : t; }
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    await sleep(125); // SEC fair access: under 10 requests a second
+    calls++;
+    let res;
+    try { res = await fetch(url, { headers: { "User-Agent": UA, "Accept-Encoding": "gzip, deflate" } }); }
+    catch { await sleep(2000 * attempt); continue; }
+    if (res.status === 404) return null;
+    if (res.status === 429 || res.status >= 500) { await sleep(3000 * attempt); continue; }
+    if (!res.ok) throw new Error(`HTTP ${res.status} ${url}`);
+    const t = await res.text();
+    if (file) await writeFile(file, t);
+    return json ? JSON.parse(t) : t;
+  }
+  return null;
+}
+
+/* ------------------------- 1. the universe ------------------------- */
+
+async function candidates() {
+  const ciks = new Map();
+  const periods = [];
+  for (let y = 2010; y <= TODAY.getUTCFullYear(); y++) {
+    periods.push(`CY${y}`);
+    for (let q = 1; q <= 4; q++) periods.push(`CY${y}Q${q}`);
+  }
+  for (const p of periods) {
+    const f = await sec(`https://data.sec.gov/api/xbrl/frames/us-gaap/ResearchAndDevelopmentExpense/USD/${p}.json`, { cacheKey: `frame-${p}.json` });
+    for (const r of f?.data || []) if (!ciks.has(r.cik)) ciks.set(r.cik, r.entityName);
+  }
+  return ciks;
+}
+
+const pad = (cik) => String(cik).padStart(10, "0");
+
+async function filingsFor(cik) {
+  const sub = await sec(`https://data.sec.gov/submissions/CIK${pad(cik)}.json`, { cacheKey: `sub-${cik}.json` });
+  if (!sub) return null;
+  const rows = [];
+  const add = (r) => { for (let i = 0; i < r.form.length; i++) rows.push({ form: r.form[i], date: r.filingDate[i], adsh: r.accessionNumber[i] }); };
+  add(sub.filings.recent);
+  return { sub, rows, add };
+}
+
+/* -------------------- 2. ATM programs (full-text search) -------------------- */
+
+// The defined terms brokers use for at-the-market sales agreements.
+const ATM_PHRASES = ['"sales agreement"', '"equity distribution agreement"', '"open market sale agreement"', '"controlled equity offering"', '"at market issuance sales agreement"', '"at-the-market sales agreement"', '"equity sales agreement"'];
+
+async function atmFilings() {
+  const hits = new Map(); // cik -> sorted dates
+  for (let y = 2009; y <= TODAY.getUTCFullYear(); y++) {
+    for (const phrase of ATM_PHRASES) {
+      for (let from = 0; from < 3000; from += 100) {
+        const q = `https://efts.sec.gov/LATEST/search-index?q=${encodeURIComponent(phrase)}&forms=424B5&dateRange=custom&startdt=${y}-01-01&enddt=${y}-12-31&from=${from}`;
+        const r = await sec(q, { cacheKey: `efts-${y}-${phrase}-${from}.json` });
+        const list = r?.hits?.hits || [];
+        for (const h of list) {
+          const s = h._source;
+          if (!(s.sics || []).some((x) => SICS.has(String(x)))) continue;
+          for (const c of s.ciks || []) {
+            const k = Number(c);
+            if (!hits.has(k)) hits.set(k, new Set());
+            hits.get(k).add(s.file_date);
+          }
+        }
+        if (list.length < 100) break;
+      }
+    }
+  }
+  const out = new Map();
+  for (const [k, v] of hits) out.set(k, [...v].sort());
+  return out;
+}
+
+/* --------------------- 3. point-in-time financials --------------------- */
+
+const CASH = ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", "Cash"];
+const ST_INV = ["ShortTermInvestments", "MarketableSecuritiesCurrent", "AvailableForSaleSecuritiesDebtSecuritiesCurrent", "AvailableForSaleSecuritiesCurrent", "HeldToMaturitySecuritiesCurrent"];
+const LT_INV = ["LongTermInvestments", "MarketableSecuritiesNoncurrent", "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent", "AvailableForSaleSecuritiesNoncurrent", "HeldToMaturitySecuritiesNoncurrent"];
+const OCF = ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"];
+const REV = ["Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax", "RevenueFromContractWithCustomerIncludingAssessedTax", "SalesRevenueNet"];
+const CUR_DEBT = ["LongTermDebtCurrent", "DebtCurrent", "ConvertibleNotesPayableCurrent", "ConvertibleDebtCurrent", "NotesPayableCurrent", "LoansPayableCurrent"];
+
+// Only rows filed on or before `asOf`; for each period keep the latest of those.
+function series(facts, tags, asOf, { instant, ns = "us-gaap", unit = "USD" } = {}) {
+  let best = null;
+  for (const tag of tags) {
+    const raw = facts?.[ns]?.[tag]?.units?.[unit];
+    if (!raw) continue;
+    const byPeriod = new Map();
+    for (const r of raw) {
+      if (!r.filed || r.filed > asOf || (instant ? !!r.start : !r.start)) continue;
+      const key = (r.start || "") + "|" + r.end;
+      const prev = byPeriod.get(key);
+      if (!prev || r.filed > prev.filed) byPeriod.set(key, r);
+    }
+    const rows = [...byPeriod.values()].sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0));
+    if (rows.length && (!best || rows.at(-1).end > best.rows.at(-1).end)) best = { tag, rows };
+  }
+  return best;
+}
+
+function instantAt(facts, tags, end, asOf) {
+  let val = 0;
+  for (const tag of tags) {
+    const s = series(facts, [tag], asOf, { instant: true });
+    const hit = s?.rows.find((r) => r.end === end);
+    if (hit && hit.val > val) val = hit.val;
+  }
+  return val;
+}
+
+// Trailing twelve months ending near `end` (10-Qs report year-to-date figures).
+function ttm(s, end) {
+  if (!s) return null;
+  const rows = s.rows.filter((r) => near(r.end, end, 20));
+  if (!rows.length) return null;
+  const cur = rows.reduce((a, b) => (monthsBetween(a.start, a.end) >= monthsBetween(b.start, b.end) ? a : b));
+  const dur = monthsBetween(cur.start, cur.end);
+  if (dur > 11 && dur < 13) return cur.val;
+  const annual = s.rows.find((r) => { const d = monthsBetween(r.start, r.end); return d > 11 && d < 13 && near(r.end, cur.start, 20); });
+  const prior = s.rows.find((r) => near(r.start, shiftYears(cur.start, -1)) && near(r.end, shiftYears(cur.end, -1)));
+  if (annual && prior) return annual.val + cur.val - prior.val;
+  return dur >= 2.5 ? (cur.val * 12) / dur : null;
+}
+
+// Shares outstanding from cover pages and balance sheets, one figure per date, with when it was filed.
+function shareRows(facts) {
+  const raw = [...(facts?.dei?.EntityCommonStockSharesOutstanding?.units?.shares || [])];
+  const byFiling = new Map();
+  for (const r of raw) {
+    const key = r.accn + "|" + r.end;
+    const g = byFiling.get(key) || { end: r.end, filed: r.filed, vals: new Set() };
+    g.vals.add(r.val);
+    byFiling.set(key, g);
+  }
+  const byEnd = new Map();
+  for (const g of byFiling.values()) {
+    const total = [...g.vals].reduce((s, v) => s + v, 0);
+    const prev = byEnd.get(g.end);
+    if (!prev || g.filed < prev.filed) byEnd.set(g.end, { end: g.end, filed: g.filed, val: total });
+  }
+  return [...byEnd.values()].filter((r) => r.val > 0).sort((a, b) => (a.end < b.end ? -1 : 1));
+}
+
+function companyQuarters(facts, filings, atmDates) {
+  // Balance-sheet dates from 10-Q / 10-K filings, dated by when they were first filed.
+  const firstFiled = new Map();
+  for (const tag of CASH) for (const r of facts?.["us-gaap"]?.[tag]?.units?.USD || []) {
+    if (r.start || !r.filed || !/^10-[QK]/.test(r.form || "")) continue;
+    if (!firstFiled.has(r.end) || r.filed < firstFiled.get(r.end)) firstFiled.set(r.end, r.filed);
+  }
+  const shelves = filings.filter((f) => f.form === "S-3" || f.form === "S-3ASR").map((f) => f.date);
+  const floats = (facts?.dei?.EntityPublicFloat?.units?.USD || []).filter((r) => r.val > 0);
+  const out = [];
+  for (const [end, filed] of [...firstFiled.entries()].sort()) {
+    if (filed < START || filed > LAST_ASOF || monthsBetween(end, filed) > 6) continue;
+    const cashS = series(facts, CASH, filed, { instant: true });
+    const cashRow = cashS?.rows.find((r) => r.end === end);
+    if (!cashRow) continue;
+    const cash = M(cashRow.val + instantAt(facts, ST_INV, end, filed) + instantAt(facts, LT_INV, end, filed));
+    const ocfS = series(facts, OCF, filed);
+    const ocf = ttm(ocfS, end);
+    if (ocf == null) continue;
+    const revS = series(facts, REV, filed);
+    const rev = M(Math.max(0, ttm(revS, end) || 0));
+    if (rev > MAX_REVENUE_M) continue;
+    const ocfPrior = ttm(ocfS, shiftYears(end, -1));
+    const burn = Math.max(0.1, -M(ocf) / 12);
+    const fl = floats.filter((r) => r.filed <= filed && monthsBetween(r.end, filed) <= 18).sort((a, b) => (a.filed < b.filed ? -1 : 1)).at(-1);
+    const shelf = shelves.filter((d) => d <= filed && d > shiftYears(filed, -3)).at(-1);
+    const atm = (atmDates || []).filter((d) => d <= filed && d > shiftYears(filed, -2)).at(-1);
+    const c = {
+      cash, burn,
+      burnPrior: ocfPrior != null && ocfPrior < 0 ? -M(ocfPrior) / 12 : null,
+      cashFlowPositive: ocf > 0,
+      debtDue24: M(instantAt(facts, CUR_DEBT, end, filed)),
+      mcap: fl ? M(fl.val) : 0,
+      raise: atm ? { capacity: "atm", atm: { form: "424B5", date: atm }, shelf: shelf ? { form: "S-3", date: shelf } : null }
+        : shelf ? { capacity: "shelf", atm: null, shelf: { form: "S-3", date: shelf } } : { capacity: "none", atm: null, shelf: null },
+      pipeline: [], catalysts: [],
+    };
+    if (c.cashFlowPositive) continue; // not burning cash: outside the question
+    const f = computeFPS(c, toDate(filed));
+    out.push({ end, filed, cash: Math.round(cash), runway: f.runway, score: f.score, band: f.band,
+      parts: Object.fromEntries(f.parts.filter((p) => p.present).map((p) => [p.key, p.score])), coverage: f.coverage });
+  }
+  return out;
+}
+
+/* ------------------------------ 4. outcomes ------------------------------ */
+
+function raiseEvents(filings, shares) {
+  const ev = [];
+  const seen = new Set();
+  for (const f of filings) {
+    if ((f.form === "424B4" || f.form === "424B5") && !seen.has(f.date)) { seen.add(f.date); ev.push({ date: f.date, how: "offering filing" }); }
+  }
+  for (let i = 1; i < shares.length; i++) {
+    const a = shares[i - 1], b = shares[i];
+    if (monthsBetween(a.end, b.end) > 7) continue; // gaps too long to date the raise
+    if (b.val / a.val - 1 >= JUMP) ev.push({ date: b.end, how: "share count jump" });
+  }
+  return ev.sort((a, b) => (a.date < b.date ? -1 : 1));
+}
+
+/* ----------------------------- 5. evaluation ----------------------------- */
+
+function auc(rows, key, higherIsRiskier = true) {
+  const pos = rows.filter((r) => r.y12).map((r) => r[key]);
+  const neg = rows.filter((r) => !r.y12).map((r) => r[key]);
+  if (!pos.length || !neg.length) return null;
+  const all = [...pos.map((v) => [v, 1]), ...neg.map((v) => [v, 0])].sort((a, b) => a[0] - b[0]);
+  // Rank-sum (Mann-Whitney) with ties averaged.
+  let rankSum = 0;
+  for (let i = 0; i < all.length;) {
+    let j = i;
+    while (j < all.length && all[j][0] === all[i][0]) j++;
+    const avg = (i + j + 1) / 2;
+    for (let k = i; k < j; k++) if (all[k][1]) rankSum += avg;
+    i = j;
+  }
+  const a = (rankSum - (pos.length * (pos.length + 1)) / 2) / (pos.length * neg.length);
+  return higherIsRiskier ? a : 1 - a;
+}
+
+const rate = (rows, k = "y12") => (rows.length ? rows.filter((r) => r[k]).length / rows.length : null);
+const r3 = (x) => (x == null ? null : Math.round(x * 1000) / 1000);
+const median = (xs) => { if (!xs.length) return null; const s = [...xs].sort((a, b) => a - b); return s[Math.floor(s.length / 2)]; };
+
+function evaluate(rows, companies) {
+  const bands = ["High", "Elevated", "Low"].map((b) => {
+    const g = rows.filter((r) => r.band === b);
+    return { band: b, n: g.length, raised12: r3(rate(g)), raised6: r3(rate(g, "y6")) };
+  });
+  const deciles = [];
+  const sorted = [...rows].sort((a, b) => a.score - b.score);
+  for (let d = 0; d < 10; d++) {
+    const g = sorted.slice(Math.floor((d * sorted.length) / 10), Math.floor(((d + 1) * sorted.length) / 10));
+    if (g.length) deciles.push({ from: g[0].score, to: g.at(-1).score, n: g.length, raised12: r3(rate(g)) });
+  }
+  const years = [...new Set(rows.map((r) => r.filed.slice(0, 4)))].sort().map((y) => {
+    const g = rows.filter((r) => r.filed.startsWith(y));
+    const hi = g.filter((r) => r.band === "High"), lo = g.filter((r) => r.band === "Low");
+    return { year: y, n: g.length, base: r3(rate(g)), high: r3(rate(hi)), low: r3(rate(lo)), auc: r3(auc(g, "score")) };
+  });
+  const runwayBuckets = [[0, 6], [6, 12], [12, 18], [18, 24], [24, 36], [36, 999]].map(([a, b]) => {
+    const g = rows.filter((r) => r.runway >= a && r.runway < b);
+    return { from: a, to: b === 999 ? null : b, n: g.length, raised12: r3(rate(g)) };
+  });
+  const lead = rows.filter((r) => r.band === "High" && r.y12).map((r) => r.lead);
+  const alive = rows.filter((r) => companies.get(r.cik)?.alive);
+  const dead = rows.filter((r) => !companies.get(r.cik)?.alive);
+  const comp = {};
+  for (const k of ["gap", "trend", "capacity", "debt", "access"]) {
+    const g = rows.filter((r) => r.parts[k] != null).map((r) => ({ ...r, v: r.parts[k] }));
+    comp[k] = { n: g.length, auc: r3(auc(g, "v")) };
+  }
+  return {
+    rows: rows.length,
+    companies: new Set(rows.map((r) => r.cik)).size,
+    companiesNoLongerFiling: new Set(dead.map((r) => r.cik)).size,
+    events12: rows.filter((r) => r.y12).length,
+    base12: r3(rate(rows)), base6: r3(rate(rows, "y6")),
+    auc: r3(auc(rows, "score")),
+    aucRunwayOnly: r3(auc(rows.map((r) => ({ ...r, neg: -r.runway })), "neg")),
+    components: comp,
+    bands, deciles, years, runwayBuckets,
+    leadMonthsHigh: median(lead),
+    survivors: { rows: alive.length, auc: r3(auc(alive, "score")), base12: r3(rate(alive)) },
+    nonSurvivors: { rows: dead.length, auc: r3(auc(dead, "score")), base12: r3(rate(dead)) },
+  };
+}
+
+/* -------------------------------- main -------------------------------- */
+
+async function main() {
+  await mkdir(CACHE, { recursive: true });
+  console.log("Finding every company that reported R&D spending since 2010…");
+  const cands = await candidates();
+  console.log(`  ${cands.size} companies`);
+
+  console.log("Keeping drug and biotech companies…");
+  const companies = new Map();
+  let i = 0;
+  for (const [cik, name] of cands) {
+    if (++i % 500 === 0) console.log(`  ${i}/${cands.size}`);
+    const f = await filingsFor(cik);
+    if (!f || !SICS.has(String(f.sub.sic))) continue;
+    for (const file of f.sub.filings.files || []) {
+      if (file.filingTo < "2009-01-01") continue;
+      const older = await sec(`https://data.sec.gov/submissions/${file.name}`, { cacheKey: `subx-${file.name}` });
+      if (older) f.add(older);
+    }
+    const last = f.rows.reduce((m, r) => (r.date > m ? r.date : m), "");
+    companies.set(cik, { cik, name: f.sub.name || name, sic: String(f.sub.sic), filings: f.rows, alive: last >= addDays(TODAY_ISO, -400) && (f.sub.tickers || []).length > 0 });
+  }
+  console.log(`  ${companies.size} drug and biotech companies`);
+
+  console.log("Finding at-the-market sales agreements…");
+  const atm = await atmFilings();
+  console.log(`  ${atm.size} companies with an ATM prospectus`);
+
+  console.log("Scoring every company-quarter…");
+  const rows = [];
+  i = 0;
+  for (const co of companies.values()) {
+    if (++i % 200 === 0) console.log(`  ${i}/${companies.size}, ${rows.length} rows, ${calls} requests`);
+    const facts = (await sec(`https://data.sec.gov/api/xbrl/companyfacts/CIK${pad(co.cik)}.json`, {}))?.facts;
+    if (!facts) continue;
+    const qs = companyQuarters(facts, co.filings, atm.get(co.cik));
+    if (!qs.length) continue;
+    const events = raiseEvents(co.filings, shareRows(facts));
+    for (const q of qs) {
+      const next = events.find((e) => e.date > q.filed);
+      const y12 = !!next && next.date <= addDays(q.filed, 365);
+      const y6 = !!next && next.date <= addDays(q.filed, 182);
+      rows.push({ cik: co.cik, ...q, y12, y6, how: y12 ? next.how : null, lead: y12 ? Math.round(monthsBetween(q.filed, next.date) * 10) / 10 : null });
+    }
+  }
+  console.log(`  ${rows.length} company-quarters`);
+
+  const result = evaluate(rows, companies);
+  const out = {
+    generatedAt: new Date().toISOString(),
+    fpsVersion: FPS_VERSION,
+    question: "Did the Financing Pressure Score flag biotechs before they sold stock?",
+    universe: `Every company with industry code 2834, 2836 or 8731 that reported R&D spending to the SEC, burned cash, and had under $${MAX_REVENUE_M}M of trailing revenue, at each balance sheet filed ${START.slice(0, 4)}–${LAST_ASOF.slice(0, 4)}. Includes companies that later stopped filing.`,
+    outcome: `A stock offering filing (424B4 or 424B5) or a jump of ${JUMP * 100}%+ in shares outstanding within 12 months after the balance sheet was filed.`,
+    pointInTime: "Each row uses only figures filed with the SEC on or before its date.",
+    limits: [
+      "Catalyst timing isn't included: past expected trial dates aren't available in bulk, so every company gets the score's standard assumption of an event 18 months out.",
+      "Pipeline concentration isn't included; the score is re-weighted over the parts that are.",
+      "Market access uses the public float reported in each 10-K instead of daily market value, because price history isn't freely available for delisted companies.",
+      "An ATM program is detected from sales-agreement language in prospectus supplements found by SEC full-text search; a few may be missed or misread.",
+      "A share-count jump can also come from a merger or debt conversion, not only a stock sale.",
+    ],
+    requests: calls,
+    ...result,
+  };
+  await writeFile(OUT, JSON.stringify(out, null, 1) + "\n");
+  console.log(JSON.stringify({ ...out, deciles: undefined, years: undefined }, null, 1));
+}
+
+main().catch((e) => { console.error(e); process.exit(1); });

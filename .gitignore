@@ -27,3 +27,6 @@ dist-ssr
 
 # Local Cloudflare test runs
 .wrangler
+
+# Backtest download cache
+.cache
