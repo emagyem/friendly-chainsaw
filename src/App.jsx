@@ -3090,7 +3090,7 @@ export default function App() {
             )}
             Helixora publishes general research about companies' financing situations. It is not investment advice, is not tailored to any reader, and does not recommend buying or selling any security.
                       </p>
-            <p className="foot-copy">© {new Date().getFullYear()} Helixora. Data from SEC EDGAR, ClinicalTrials.gov, openFDA and Yahoo Finance.</p>
+            <p className="foot-copy">© {TODAY.getFullYear()} Helixora. Data from SEC EDGAR, ClinicalTrials.gov, openFDA and Yahoo Finance.</p>
           </div>
         </div>
       </footer>
