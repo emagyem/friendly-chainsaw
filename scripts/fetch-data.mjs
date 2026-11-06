@@ -662,7 +662,7 @@ async function rivalsFor(pipeline, sponsor) {
     if (!want.length) continue;
     try {
       const u = new URL("https://clinicaltrials.gov/api/v2/studies");
-      u.searchParams.set("query.cond", p.ind.split(",")[0].slice(0, 80)); // a long list of conditions makes the registry reject the query
+      u.searchParams.set("query.cond", p.ind.split(/[,(;]/)[0].trim().slice(0, 80)); // a long list of conditions makes the registry reject the query
       u.searchParams.set("filter.overallStatus", "RECRUITING,ACTIVE_NOT_RECRUITING,NOT_YET_RECRUITING,ENROLLING_BY_INVITATION");
       u.searchParams.set("filter.advanced", `AREA[Phase](PHASE2 OR PHASE3) AND AREA[PrimaryCompletionDate]RANGE[${TODAY_ISO},${later}] AND AREA[LeadSponsorClass]INDUSTRY`);
       u.searchParams.set("fields", "NCTId,BriefTitle,LeadSponsorName,Phase,PrimaryCompletionDate,OverallStatus,InterventionName,InterventionType,LocationCountry,Condition,EnrollmentCount");
