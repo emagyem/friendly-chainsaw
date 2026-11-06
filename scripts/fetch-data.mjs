@@ -620,7 +620,7 @@ async function rivalsFor(pipeline, sponsor) {
         const have = new Set(keyWords(conds + " " + (ps.identificationModule?.briefTitle || "")));
         const hits = want.filter((w) => have.has(w)).length;
         if (hits < Math.min(2, want.length)) continue; // must share the disease, not just one word
-        const drugs = (ps.armsInterventionsModule?.interventions || []).filter((i) => ASSET_TYPES.has(i.type) && !NOT_AN_ASSET.test(i.name || "")).map((i) => cleanDrug(i.name)).filter(Boolean)
+        const drugs = (ps.armsInterventionsModule?.interventions || []).filter((i) => i.name && ASSET_TYPES.has(i.type) && !NOT_AN_ASSET.test(i.name)).map((i) => cleanDrug(i.name)).filter(Boolean)
           .map((d) => (d.length > 40 ? d.split(/[,;.]/)[0].split(" ").slice(0, 4).join(" ") + "…" : d));
         if (!drugs.length) continue;
         const countries = (ps.contactsLocationsModule?.locations || []).map((l) => l.country).filter(Boolean);
