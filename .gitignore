@@ -30,3 +30,5 @@ dist-ssr
 
 # Backtest download cache
 .cache
+.needs-rescreen
+.coverage-changed

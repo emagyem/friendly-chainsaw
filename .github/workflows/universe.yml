@@ -19,7 +19,7 @@ concurrency:
 jobs:
   screen:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -31,6 +31,13 @@ jobs:
       - name: Rebuild data if coverage changed
         run: |
           if [ -f .coverage-changed ]; then rm .coverage-changed; node scripts/fetch-data.mjs; fi
+          # A newly picked company whose data couldn't be built is swapped for the next one in line (up to 3 rounds).
+          for i in 1 2 3; do
+            [ -f .needs-rescreen ] || break
+            rm .needs-rescreen
+            node scripts/universe.mjs
+            if [ -f .coverage-changed ]; then rm .coverage-changed; node scripts/fetch-data.mjs; fi
+          done
         env:
           SEC_USER_AGENT: "Helixora research ${{ vars.SEC_CONTACT_EMAIL }}"
           ALPHA_VANTAGE_KEY: ${{ secrets.ALPHA_VANTAGE_KEY }}
@@ -41,5 +48,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/data config
           git commit -m "Coverage screen $(date -u +%Y-%m-%d)"
-          git pull --rebase
+          # This run's data is the newest, so it wins any clash with a refresh committed meanwhile.
+          git pull --rebase -X theirs
           git push

@@ -108,14 +108,19 @@ if (c.length < MIN_QUALIFIED) {
   const rank = new Map(c.map((r, i) => [r.ticker, i]));
   const original = new Set(uni.originalCoverage || []);
   const removed = [], added = [];
+  // Companies the data build failed on recently (no matching trials, no price…) are swapped for the next in line.
+  const cutoff = new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 10);
+  const broken = new Map(Object.entries(uni.unbuildable || {}).filter(([, v]) => v.date >= cutoff));
+  uni.unbuildable = Object.fromEntries(broken);
   const keep = (uni.selected || []).filter((t) => {
+    if (broken.has(t)) { removed.push({ t, why: `its data couldn't be built (${broken.get(t).why})` }); return false; }
     if (!rank.has(t)) { removed.push({ t, why: "no longer meets the coverage rules" }); return false; }
     if (rank.get(t) >= KEEP_RANK) { removed.push({ t, why: `next Phase II/III completion now ranks ${rank.get(t) + 1} of ${c.length}` }); return false; }
     return true;
   });
   for (const r of c) {
     if (keep.length >= TARGET) break;
-    if (keep.includes(r.ticker) || original.has(r.ticker)) continue;
+    if (keep.includes(r.ticker) || original.has(r.ticker) || broken.has(r.ticker)) continue;
     keep.push(r.ticker); added.push({ t: r.ticker, why: `ranks ${rank.get(r.ticker) + 1} of ${c.length} by soonest Phase II/III completion` });
   }
   uni.funnel = funnel; uni.screenedOn = today; uni.selected = keep;

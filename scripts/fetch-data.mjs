@@ -919,6 +919,7 @@ async function main() {
 
   const companies = [];
   const leaving = [];
+  const unbuildable = []; // new companies the data can't be built for; the coverage screen swaps them out
   for (const raw of config.tickers) {
     const ticker = raw.toUpperCase();
     console.log(`${ticker}…`);
@@ -968,8 +969,19 @@ async function main() {
         companies.push({ ...prevC, stale: true, staleSince: prevC.staleSince || TODAY_ISO });
       } else {
         warn(`${ticker}: ${e.message}. Skipped.`);
+        unbuildable.push({ t: ticker, why: e.message });
       }
     }
+  }
+
+  // Tell the coverage screen which newly selected companies couldn't be built, so it can fill their places.
+  if (unbuildable.length) {
+    const uniFile = new URL("config/universe.json", ROOT);
+    const uni = JSON.parse(await readFile(uniFile, "utf8"));
+    uni.unbuildable = { ...(uni.unbuildable || {}) };
+    for (const { t, why } of unbuildable) uni.unbuildable[t] = { date: TODAY_ISO, why };
+    await writeFile(uniFile, JSON.stringify(uni, null, 2) + "\n");
+    if (unbuildable.some(({ t }) => (uni.selected || []).includes(t))) await writeFile(new URL(".needs-rescreen", ROOT), "1");
   }
 
   // Take companies that left off the coverage list for good, and log why on the About page.
