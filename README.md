@@ -55,6 +55,7 @@ config/programs.json           corrections to the automatic program labels
 config/assumptions.json        your analyst inputs and drug-name aliases (all optional)
 scripts/fetch-data.mjs         builds everything in public/data/ (no dependencies, Node 20+)
 scripts/universe.mjs           the monthly coverage screen
+scripts/deal-status.mjs        spots companies that were bought or are being bought (from SEC filings)
 scripts/backtest.mjs           historical backtest of the score (results on the Research page)
 .github/workflows/refresh-data.yml   runs fetch-data every weekday and commits the result
 .github/workflows/universe.yml       runs the coverage screen on the 3rd of each month
@@ -167,3 +168,5 @@ How each program is classified lives in `config/programs.json`; edit it to corre
 ## Coverage
 
 Helixora covers 38 companies: 30 chosen by published rules (`config/universe.json`: listed, burning cash, clinical stage, drug-developer industry code, $100M–$5B market value, at least $1M a day traded, an active company-sponsored Phase II or III trial; the 30 with the soonest Phase II/III completions) plus the original 8. `scripts/universe.mjs` re-runs the screen monthly and publishes `public/data/universe.json`; changing coverage stays a manual, approved edit to `config/companies.json`.
+
+Acquisitions: every daily refresh checks each company's SEC filing list. A company whose takeover has closed (a tender offer or merger vote, then a Nasdaq/NYSE delisting notice) is taken off the site and out of `config/companies.json`, and the removal is logged, with the buyer's name where the filings give it, under Coverage changes on the About page. A company with a deal still pending stays, marked "Being acquired". A company that disappears from the SEC's list of listed companies without a deal filing leaves after five days without fresh data. The monthly screen never adds a company that is being bought.

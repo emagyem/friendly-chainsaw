@@ -157,6 +157,7 @@ function alertsFor(c) {
   if (atm) out.push({ sev: "med", text: `It has had an at-the-market program since ${fmtDate(atm.date)}, so it can sell new shares quietly, without announcing a deal.` });
   const dil = shareGrowth(c);
   if (dil > 25) out.push({ sev: "med", text: `The number of shares has grown about ${num(dil, 0)}% ${dilutionPhrase(c)}, which shrinks each existing holder's slice.` });
+  if (c.deal?.status === "pending") out.push({ sev: "high", text: `Being bought${c.deal.by ? ` by ${c.deal.by}` : ""}: a ${c.deal.how} has been under way since ${fmtDate(c.deal.since)}. Its financing risk matters little while the deal is pending, and it leaves Helixora once the deal closes.` });
   if (c.stale) out.push({ sev: "low", text: "We couldn't update this company in the latest refresh, so these figures are from an earlier run." });
   const evpv = c.ev / Math.max(pipelineValue(c), 1);
   if (evpv < 0.8) out.push({ sev: "low", text: `The company is valued about ${num((1 - evpv) * 100, 0)}% below our rough estimate of what its pipeline is worth. That estimate leans on a placeholder sales figure, so check it before calling the stock cheap.` });
@@ -761,7 +762,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
       <section className="quote">
         <div className="q-top">
           <div className="q-id">
-            <h1>{c.n}</h1>
+            <h1>{c.n}{c.deal?.status === "pending" && <span className="deal-tag">Being acquired</span>}</h1>
             <span className="q-tk">{c.t}</span>
             <span className="q-area">{c.area}</span>
           </div>
@@ -2923,7 +2924,7 @@ function CoveragePanel() {
           <tbody>{UNIVERSE.funnel.map(([rule, n], i) => <tr key={i}><td>{i + 1}. {rule}</td><td className="r">{n.toLocaleString("en-US")}</td></tr>)}</tbody>
         </table>
       </div>
-      <p className="prose" style={{ marginTop: 14 }}>{UNIVERSE.selection} Helixora also keeps its first {UNIVERSE.originalCoverage.length} companies, including {Object.keys(g).length} that sit outside today's rules: {Object.entries(g).map(([t, why]) => `${t} (${why.toLowerCase()})`).join(", ")}. Companies are never dropped quietly; any change is listed here.</p>
+      <p className="prose" style={{ marginTop: 14 }}>{UNIVERSE.selection} Helixora also keeps its first {UNIVERSE.originalCoverage.length} companies, including {Object.keys(g).length} that sit outside today's rules: {Object.entries(g).map(([t, why]) => `${t} (${why.toLowerCase()})`).join(", ")}. Companies are never dropped quietly; any change is listed here. The one exception to keeping the first companies: a company that is bought and delisted leaves on the next daily refresh, because it no longer trades on its own. A company with a deal still pending stays, marked "Being acquired", until the deal closes.</p>
       {UNIVERSE.policy && <p className="prose">Turnover (approved {fmtDate(UNIVERSE.policy.approved)}): the screen re-runs on the 3rd of each month. A selected company stays while it still qualifies and ranks in the top {UNIVERSE.policy.keepRank} by soonest Phase II or III completion; otherwise it leaves, and open places are filled in rank order up to {UNIVERSE.policy.target}. Companies that leave keep their full score history.</p>}
       {(UNIVERSE.changes || []).length > 0 && (
         <>
@@ -3974,6 +3975,7 @@ details.more summary:hover{color:var(--teal);}
 .lead-h button:hover{color:var(--teal-d);}
 .utility-cta{background:var(--mint);color:#062B2E !important;border:0;border-radius:3px;padding:5px 12px;font-size:12.5px;font-weight:700;}
 .utility-cta:hover{background:#fff;}
+.deal-tag { display:inline-block; vertical-align:middle; margin-left:12px; font: 600 11px/1 var(--sans, system-ui); letter-spacing:.06em; text-transform:uppercase; padding:5px 8px; border-radius:3px; background:#b4232a; color:#fff; }
 .cta-band{background:var(--mast);color:#fff;margin-top:56px;}
 .cta-in{max-width:1320px;margin:0 auto;padding:44px 24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:center;}
 .cta-kicker{margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mint);}

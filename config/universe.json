@@ -8,7 +8,8 @@
     "SEC industry code for drug developers (2834, 2836, 8731)",
     "Market value $100M to $5B",
     "Trades at least $1M a day (3-month average)",
-    "At least one active, company-sponsored Phase II or III trial"
+    "At least one active, company-sponsored Phase II or III trial",
+    "Not acquired or being acquired: no tender offer or merger vote under way"
   ],
   "selection": "The 30 qualifying companies whose next Phase II or III trial finishes soonest.",
   "funnel": [

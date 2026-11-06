@@ -7,7 +7,9 @@
 //  5. Market value between $100M and $5B (small and micro cap).
 //  6. Tradable: average daily dollar volume over the last 3 months of at least $1M.
 //  7. At least one active, company-sponsored Phase II or III trial on ClinicalTrials.gov.
+//  8. Not acquired and not being acquired (no tender offer or merger vote under way).
 //  Rank: soonest Phase II/III primary completion. Coverage changes are approved by hand (config/universe.json).
+import { dealStatus } from "./deal-status.mjs";
 const UA = process.env.SEC_USER_AGENT || "Helixora research contact@example.com";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function get(url, sec = false) {
@@ -42,9 +44,11 @@ const keep = [];
 for (const r of c) {
   const s = await get(`https://data.sec.gov/submissions/CIK${String(r.cik).padStart(10, "0")}.json`, true);
   await sleep(120);
-  if (["2834", "2836", "8731"].includes(String(s?.sic))) keep.push({ ...r, sic: s.sic, sponsor: (s.name || r.name).replace(/,?\s+(inc|corp|corporation|ltd|limited|plc|n\.v|s\.a)\.?$/i, "").trim() });
+  if (["2834", "2836", "8731"].includes(String(s?.sic))) keep.push({ ...r, sic: s.sic, deal: dealStatus(s), sponsor: (s.name || r.name).replace(/,?\s+(inc|corp|corporation|ltd|limited|plc|n\.v|s\.a)\.?$/i, "").trim() });
 }
 c = keep; funnel.push(["Drug developer industry code (2834, 2836, 8731)", c.length]);
+// A bare delisting notice on a company still on the exchange list is a share-class or tier change, not a sale.
+c = c.filter((r) => !r.deal || r.deal.status === "delisted"); funnel.push(["Not acquired or being acquired", c.length]);
 const cash = await frame("us-gaap", "CashAndCashEquivalentsAtCarryingValue", "USD", "CY2026Q2I");
 const sh = await frame("dei", "EntityCommonStockSharesOutstanding", "shares", "CY2026Q2I");
 const priced = [];

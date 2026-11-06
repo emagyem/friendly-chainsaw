@@ -21,6 +21,7 @@
 ------------------------------------------------------------------- */
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { dealStatus, buyerName, tidyName } from "./deal-status.mjs";
 import { pathToFileURL } from "node:url";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
 import { runwaySim, QUANT_VERSION } from "../src/quant.js";
@@ -75,6 +76,7 @@ const toDate = (s) => new Date(s + "T00:00:00Z");
 const monthsBetween = (a, b) => (toDate(b) - toDate(a)) / DAY / 30.44;
 const near = (a, b, tolDays = 20) => Math.abs(toDate(a) - toDate(b)) <= tolDays * DAY;
 const shiftYears = (iso, y) => { const d = toDate(iso); d.setUTCFullYear(d.getUTCFullYear() + y); return d.toISOString().slice(0, 10); };
+const shiftDays = (iso, n) => { const d = toDate(iso); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
 const addDays = (iso, n) => new Date(toDate(iso).getTime() + n * DAY).toISOString().slice(0, 10);
 const round = (n, d = 1) => (n == null || !isFinite(n) ? null : Math.round(n * 10 ** d) / 10 ** d);
 const M = (usd) => (usd == null ? null : usd / 1e6);
@@ -913,21 +915,57 @@ async function main() {
   catch (e) { warn(`Trial-duration download failed: ${e.message}`); durTables = previous.__meta?.durations || null; }
 
   const companies = [];
+  const leaving = [];
   for (const raw of config.tickers) {
     const ticker = raw.toUpperCase();
     console.log(`${ticker}…`);
+    // Acquired (or delisted) companies leave coverage; companies with a deal pending are flagged.
+    const prevC = previous[ticker];
+    const cik = cikByTicker.get(ticker) || prevC?.src?.cik;
+    let deal = null;
+    if (cik) {
+      const sub = await sec(`https://data.sec.gov/submissions/CIK${String(cik).padStart(10, "0")}.json`);
+      deal = dealStatus(sub, TODAY_ISO);
+      if (deal && deal.status !== "delisted") deal.by = tidyName(await buyerName(cik, deal.adsh, sub?.name, secText));
+    }
+    const listed = cikByTicker.has(ticker);
+    if (deal?.status === "acquired" || (deal?.status === "delisted" && !listed)) {
+      const why = deal.status === "acquired" ? `acquired${deal.by ? ` by ${deal.by}` : ""}; delisted ${deal.since}` : `delisted ${deal.since}`;
+      leaving.push({ t: ticker, n: prevC?.n || ticker, why });
+      warn(`${ticker}: ${why}. Removed from coverage.`);
+      continue;
+    }
     try {
       const c = await buildCompany(ticker, assumptions[ticker] || {}, cikByTicker, classes[ticker] || {}, trialHist, durTables);
+      if (deal?.status === "pending") c.deal = { status: "pending", how: deal.how, since: deal.since, by: deal.by || null };
       companies.push(c);
       console.log(`  ${c.n}: cash $${c.cash}M, burn $${c.burn}M/mo, ${c.pipeline.length} programs, mcap $${c.mcap}M`);
     } catch (e) {
-      if (previous[ticker]) {
+      if (!listed && prevC && prevC.staleSince && prevC.staleSince <= shiftDays(TODAY_ISO, -5)) {
+        // Off the SEC's list of listed companies and no fresh data for five days: no longer trading.
+        leaving.push({ t: ticker, n: prevC.n, why: "no longer listed" });
+        warn(`${ticker}: no longer listed. Removed from coverage.`);
+      } else if (prevC) {
         warn(`${ticker}: ${e.message}. Kept the previous run's figures.`);
-        companies.push({ ...previous[ticker], stale: true });
+        companies.push({ ...prevC, stale: true, staleSince: prevC.staleSince || TODAY_ISO });
       } else {
         warn(`${ticker}: ${e.message}. Skipped.`);
       }
     }
+  }
+
+  // Take companies that left off the coverage list for good, and log why on the About page.
+  if (leaving.length) {
+    const gone = new Set(leaving.map((x) => x.t));
+    config.tickers = config.tickers.filter((t) => !gone.has(t.toUpperCase()));
+    await writeFile(new URL("config/companies.json", ROOT), JSON.stringify(config, null, 2) + "\n");
+    const uniFile = new URL("config/universe.json", ROOT);
+    const uni = JSON.parse(await readFile(uniFile, "utf8"));
+    uni.originalCoverage = (uni.originalCoverage || []).filter((t) => !gone.has(t));
+    uni.selected = (uni.selected || []).filter((t) => !gone.has(t));
+    for (const t of gone) if (uni.grandfathered) delete uni.grandfathered[t];
+    uni.changes = [...(uni.changes || []), { date: TODAY_ISO, added: [], removed: leaving.map(({ t, why }) => ({ t, why })) }];
+    await writeFile(uniFile, JSON.stringify(uni, null, 2) + "\n");
   }
 
   if (!companies.length) {
@@ -964,6 +1002,7 @@ async function main() {
       durations: durTables,
       sources: ["SEC EDGAR XBRL company facts", "SEC EDGAR filing index", "ClinicalTrials.gov API v2", "Yahoo Finance"],
       warnings,
+      leftCoverage: leaving,
     },
     companies,
   };
