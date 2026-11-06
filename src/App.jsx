@@ -1513,7 +1513,7 @@ function useHumanCheck() {
   return { mount: setEl, token, ready: !on || !!token, used };
 }
 
-function Waitlist({ compact }) {
+function Waitlist({ compact, band }) {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [state, setState] = useState("idle");
@@ -1535,9 +1535,9 @@ function Waitlist({ compact }) {
   };
   if (state === "done") return <div className={"waitlist" + (compact ? " compact" : "")}><p className="wl-done">You're on the list. The next Financing Pressure Report will come to {email}.</p></div>;
   return (
-    <form className={"waitlist" + (compact ? " compact" : "")} name="waitlist" onSubmit={submit}>
-      <h3>Get the Financing Pressure Report by email</h3>
-      {!compact && <p>A short note when the Raise List changes, with every number linked to its filing. No hype, no stock picks.</p>}
+    <form className={"waitlist" + (compact ? " compact" : "") + (band ? " in-band" : "")} name="waitlist" onSubmit={submit}>
+      {!band && <h3>Get the Financing Pressure Report by email</h3>}
+      {!compact && !band && <p>A short note when the Raise List changes, with every number linked to its filing. No hype, no stock picks.</p>}
       <div className="wl-fields">
         <label className="sr" htmlFor={"wl-email" + (compact ? "-c" : "")}>Email</label>
         <input id={"wl-email" + (compact ? "-c" : "")} type="email" name="email" required placeholder="you@fund.com" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -1683,7 +1683,6 @@ function PressureReport({ go }) {
       <SurvivalMonitor go={go} />
       {top && (<><h2 className="section-h">Company spotlight: {top.n}</h2><FpsPanel c={top} go={go} /></>)}
 
-      <Waitlist />
       <p className="disclaimer">This report is general research about companies' financing situations. It is not investment advice, is not tailored to any reader, and does not recommend buying or selling any security.</p>
     </div>
   );
@@ -2762,7 +2761,6 @@ function About({ go, anchor }) {
         </section>
       </div>
 
-      <Waitlist />
       <p className="disclaimer">Helixora publishes general research about companies' financing situations. It is not investment advice, is not tailored to any reader, and does not recommend buying or selling any security.</p>
     </div>
   );
@@ -2970,6 +2968,7 @@ export default function App() {
             <span className="hide-sm">Financing risk research on {COMPANIES.length} clinical-stage biotechs</span>
             <span className="utility-sp" />
             <button className="utility-btn" onClick={() => setLayout("side")}>Menu on side</button>
+            <button className="utility-cta" onClick={() => document.getElementById("signup")?.scrollIntoView({ behavior: "smooth" })}>Get the report</button>
           </div>
         </div>
         <div className="mast-in">
@@ -3041,10 +3040,48 @@ export default function App() {
         {view === "outlook" && <Outlook go={go} />}
       </main>
 
+      <section className="cta-band" id="signup" aria-labelledby="cta-h">
+        <div className="cta-in">
+          <div className="cta-copy">
+            <p className="cta-kicker">Free while in early access</p>
+            <h2 id="cta-h">Get the Financing Pressure Report by email</h2>
+            <p>A short note when the Raise List changes, with every number linked to its filing. No hype, no stock picks.</p>
+          </div>
+          <Waitlist band />
+        </div>
+      </section>
       <footer className="foot">
-        <div className="foot-in">
-          <span className="wordmark small" aria-label="Helixora"><Wordmark /></span>
-          <p>
+        <div className="foot-wrap foot-top">
+          <div className="foot-brand">
+            <span className="wordmark small" aria-label="Helixora"><Wordmark /></span>
+            <p>Financing-risk research on {COMPANIES.length} clinical-stage biotechs. We help investors see the next stock sale coming, with every number traced to its filing.</p>
+          </div>
+          <nav className="foot-col" aria-label="Markets">
+            <h3>Markets</h3>
+            <button onClick={() => go("home")}>Overview</button>
+            <button onClick={() => go("company")}>Quotes</button>
+            <button onClick={() => go("screen")}>Screener</button>
+            <button onClick={() => go("compare")}>Compare</button>
+          </nav>
+          <nav className="foot-col" aria-label="Research">
+            <h3>Research</h3>
+            <button onClick={() => go("report")}>Financing Pressure Report</button>
+            <button onClick={() => go("research")}>Research</button>
+            <button onClick={() => go("outlook")}>Trials &amp; FDA outlook</button>
+            <button onClick={() => go("catalysts")}>Catalyst calendar</button>
+            <button onClick={() => go("ask")}>Ask Helixora</button>
+          </nav>
+          <nav className="foot-col" aria-label="Company">
+            <h3>Company</h3>
+            <button onClick={() => go("about")}>About us</button>
+            <button onClick={() => go("method")}>How the score works</button>
+            <a href="#privacy">Privacy</a>
+            <button onClick={() => document.getElementById("signup")?.scrollIntoView({ behavior: "smooth" })}>Get the report</button>
+          </nav>
+        </div>
+        <div className="foot-bottom">
+          <div className="foot-wrap">
+            <p>
             {LIVE ? (
               <>Financials from SEC EDGAR filings, trial data from ClinicalTrials.gov, prices from Yahoo Finance at the previous close. Refreshed {new Date(META.generatedAt).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })}.
                 {" "}Headlines on the front page are written automatically from these figures. Trial readout dates are registry estimates unless marked otherwise, and peak sales marked as placeholders are defaults, not forecasts.{" "}</>
@@ -3052,8 +3089,9 @@ export default function App() {
               <>Showing the built-in sample dataset: companies, figures, and dates are fictional.{" "}</>
             )}
             Helixora publishes general research about companies' financing situations. It is not investment advice, is not tailored to any reader, and does not recommend buying or selling any security.
-            {" "}<a className="foot-link" href="#privacy">Privacy</a>
-          </p>
+                      </p>
+            <p className="foot-copy">© {new Date().getFullYear()} Helixora. Data from SEC EDGAR, ClinicalTrials.gov, openFDA and Yahoo Finance.</p>
+          </div>
         </div>
       </footer>
       </div>
@@ -3773,5 +3811,49 @@ details.more summary:hover{color:var(--teal);}
   .app.lay-top .nav .nav-top,.app.lay-top .nav-group:first-child .nav-top{padding:11px 10px;font-size:14px;color:var(--ink);background:none;}
   .app.lay-top .nav-group.cur .nav-top{color:var(--ink);background:none;box-shadow:inset 0 -3px 0 var(--teal);}
   .main{padding:18px 16px 44px;}
+}
+/* ---------- theme finish: spacing, story cards, sign-up band, footer ---------- */
+.stack{gap:32px;}
+.front-wrap{gap:32px;}
+.main{padding-top:32px;}
+.briefs{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px;border-top:0;}
+.brief{display:flex;flex-direction:column;padding:18px 20px 20px;border:1px solid var(--rule2);border-top:3px solid var(--teal);border-radius:4px;background:#fff;box-shadow:0 1px 2px rgba(16,20,23,.04);transition:box-shadow .2s,transform .2s;}
+.brief:hover{box-shadow:0 10px 26px rgba(16,20,23,.09);transform:translateY(-2px);}
+.brief h2 button:hover{color:var(--teal-d);}
+.lead-h button:hover{color:var(--teal-d);}
+.utility-cta{background:var(--mint);color:#062B2E !important;border:0;border-radius:3px;padding:5px 12px;font-size:12.5px;font-weight:700;}
+.utility-cta:hover{background:#fff;}
+.cta-band{background:var(--mast);color:#fff;margin-top:56px;}
+.cta-in{max-width:1320px;margin:0 auto;padding:44px 24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:center;}
+.cta-kicker{margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mint);}
+.cta-copy h2{font-family:var(--serif);font-size:clamp(24px,2.4vw,32px);line-height:1.15;font-weight:700;letter-spacing:-.01em;margin:0 0 10px;color:#fff;}
+.cta-copy p{margin:0;color:#B9CFCD;font-size:15px;line-height:1.55;max-width:52ch;}
+.waitlist.in-band{background:none;border:0;padding:0;}
+.waitlist.in-band .wl-fields input,.waitlist.in-band .wl-fields select{border-color:transparent;border-radius:3px;padding:12px 14px;}
+.waitlist.in-band .wl-fields button{background:var(--mint);color:#062B2E !important;border-radius:3px;padding:12px 22px;font-weight:700;}
+.waitlist.in-band .wl-fields button:hover{background:#fff;}
+.waitlist.in-band .wl-fine{color:#9DB8B5 !important;}
+.waitlist.in-band .wl-fine .src{color:#fff !important;}
+.waitlist.in-band .wl-done{color:#fff;font-size:16px;}
+.waitlist.in-band .wl-err{color:#FFB4B4 !important;}
+.foot{margin-top:0;}
+.foot-wrap{max-width:1320px;margin:0 auto;padding:0 24px;}
+.foot-top{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:40px;padding-top:52px;padding-bottom:44px;}
+.foot-brand p{margin:14px 0 0;max-width:38ch;font-size:14px;line-height:1.6;}
+.foot-col{display:flex;flex-direction:column;align-items:flex-start;gap:2px;}
+.foot-col h3{margin:4px 0 12px;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#fff;}
+.foot-col button,.foot-col a{background:none;border:0;padding:5px 0;font-size:14px;color:#A9B3B8 !important;text-align:left;text-decoration:none;}
+.foot-col button:hover,.foot-col a:hover{color:#fff !important;}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);}
+.foot-bottom .foot-wrap{padding-top:22px;padding-bottom:30px;display:grid;gap:10px;}
+.foot-bottom p{margin:0;font-size:12.5px !important;line-height:1.6;color:#8D989E !important;max-width:none;}
+.foot-copy{color:#C3CCD0 !important;}
+@media (max-width:960px){
+  .briefs{grid-template-columns:minmax(0,1fr);}
+  .cta-in{grid-template-columns:minmax(0,1fr);gap:22px;padding:34px 16px;}
+  .foot-wrap{padding:0 16px;}
+  .foot-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px;padding-top:38px;padding-bottom:32px;}
+  .foot-brand{grid-column:1/-1;}
+  .main{padding-top:22px;}
 }
 `;
