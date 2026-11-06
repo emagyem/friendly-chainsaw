@@ -2932,7 +2932,7 @@ function IndustryTable({ rows, go }) {
   const [sort, setSort] = useState("mcap");
   const keys = {
     mcap: (c) => -(c.mcap || 0), rev: (c) => -(c.rev || 0), ocf: (c) => -(c.ocf ?? -1e12), cash: (c) => -(c.cash || 0),
-    next: (c) => { const n = nextCatalyst(c); return n ? days(n.date) : 1e9; }, chg: (c) => -(c.quote?.chgPct ?? -1e9),
+    next: (c) => { const n = (c.catalysts || []).filter((x) => x.kind !== "earnings" && days(x.date) >= 0).map((x) => days(x.date)); return n.length ? Math.min(...n) : 1e9; }, chg: (c) => -(c.quote?.chgPct ?? -1e9),
   };
   const sorted = [...rows].sort((a, b) => keys[sort](a) - keys[sort](b));
   const th = (k, label) => <th className="r" onClick={() => setSort(k)}>{label}<span className="sortmark">{sort === k ? "▾" : ""}</span></th>;
@@ -2941,7 +2941,8 @@ function IndustryTable({ rows, go }) {
       <table className="grid">
         <thead><tr><th>Company</th>{th("mcap", "Market value")}{th("rev", "Revenue, last 12 mo")}{th("ocf", "Operating cash flow, 12 mo")}{th("cash", "Cash")}<th className="r">Debt</th><th className="r">Phase III programs</th>{th("next", "Next late-stage result")}{th("chg", "Price")}</tr></thead>
         <tbody>{sorted.map((c) => {
-          const n = c.pipeline.length ? nextCatalyst(c) : null;
+          // The next trial result or FDA decision; a routine quarterly report doesn't count here.
+          const n = (c.catalysts || []).filter((x) => x.kind !== "earnings" && days(x.date) >= 0).sort((a, b) => (a.date < b.date ? -1 : 1))[0] || null;
           return (
             <tr key={c.t} onClick={() => go("company", c.t)}>
               <td className="nm"><span className="tick">{c.t}</span> {c.n}<span className="sub">{c.area}{c.src?.currency ? ` · reports in ${c.src.currency}` : ""}{c.stale ? " · not updated today" : ""}</span></td>
