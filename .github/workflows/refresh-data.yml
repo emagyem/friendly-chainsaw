@@ -48,4 +48,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/data config
           git commit -m "Refresh data $(date -u +%Y-%m-%d)"
+          # Code may have been pushed while this ran; this run's data wins any clash.
+          git pull --rebase -X theirs
           git push
