@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-06T06:33:13.852Z",
+ "generatedAt": "2026-11-06T06:40:44.728Z",
  "fpsVersion": "1.1",
  "question": "Did the Financing Pressure Score flag biotechs before they sold stock?",
  "universe": "Every company with industry code 2834, 2836 or 8731 that reported R&D spending to the SEC, burned cash, and had under $50M of trailing revenue, at each balance sheet filed 2012–2025. Includes companies that later stopped filing.",
@@ -296,203 +296,53 @@
     "band": "High",
     "n": 6843,
     "raised12": 0.516,
-    "raised6": 0.469
+    "raised6": 0.357
    },
    {
     "band": "Elevated",
     "n": 11572,
     "raised12": 0.45,
-    "raised6": 0.364
+    "raised6": 0.277
    },
    {
     "band": "Low",
     "n": 5512,
     "raised12": 0.457,
-    "raised6": 0.277
+    "raised6": 0.25
    }
   ]
+ },
+ "raisedOrEnded": {
+  "base12": 0.626,
+  "auc": 0.592,
+  "bands": [
+   {
+    "band": "High",
+    "n": 6843,
+    "raised12": 0.72,
+    "raised6": 0.484
+   },
+   {
+    "band": "Elevated",
+    "n": 11572,
+    "raised12": 0.616,
+    "raised6": 0.379
+   },
+   {
+    "band": "Low",
+    "n": 5512,
+    "raised12": 0.529,
+    "raised6": 0.286
+   }
+  ],
+  "survivorsAuc": 0.636,
+  "nonSurvivorsAuc": 0.542
  },
  "eventsByHow": {
   "offering filing": 10322,
   "share count jump": 3837
  },
  "examples": [
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2012-02-09",
-   "cash": 7,
-   "runway": 11.2,
-   "score": 69,
-   "band": "Elevated",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2012-08-13"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2012-05-08",
-   "cash": 4,
-   "runway": 5.8,
-   "score": 52,
-   "band": "Elevated",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2012-08-13"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2012-08-13",
-   "cash": 2,
-   "runway": 3.7,
-   "score": 60,
-   "band": "Elevated",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2012-08-14"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2012-12-28",
-   "cash": 3,
-   "runway": 5.2,
-   "score": 61,
-   "band": "Elevated",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2013-01-25"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2013-02-13",
-   "cash": 3,
-   "runway": 4.3,
-   "score": 68,
-   "band": "Elevated",
-   "raisedWithinYear": true,
-   "how": "share count jump",
-   "nextRaise": "2013-05-07"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2013-05-09",
-   "cash": 3,
-   "runway": 4.7,
-   "score": 67,
-   "band": "Elevated",
-   "raisedWithinYear": true,
-   "how": "share count jump",
-   "nextRaise": "2013-12-16"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2013-08-07",
-   "cash": 33,
-   "runway": 45.1,
-   "score": 23,
-   "band": "Low",
-   "raisedWithinYear": true,
-   "how": "share count jump",
-   "nextRaise": "2013-12-16"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2013-12-18",
-   "cash": 30,
-   "runway": 39.3,
-   "score": 30,
-   "band": "Low",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2014-02-19"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2014-02-04",
-   "cash": 85,
-   "runway": 107.3,
-   "score": 26,
-   "band": "Low",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2014-02-19"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2014-05-06",
-   "cash": 195,
-   "runway": 120,
-   "score": 27,
-   "band": "Low",
-   "raisedWithinYear": false,
-   "how": null,
-   "nextRaise": "2016-12-12"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2014-08-12",
-   "cash": 188,
-   "runway": 75.7,
-   "score": 39,
-   "band": "Low",
-   "raisedWithinYear": false,
-   "how": null,
-   "nextRaise": "2016-12-12"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2014-11-25",
-   "cash": 177,
-   "runway": 60.1,
-   "score": 28,
-   "band": "Low",
-   "raisedWithinYear": false,
-   "how": null,
-   "nextRaise": "2016-12-12"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2015-02-09",
-   "cash": 145,
-   "runway": 33.2,
-   "score": 43,
-   "band": "Elevated",
-   "raisedWithinYear": false,
-   "how": null,
-   "nextRaise": "2016-12-12"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2015-05-11",
-   "cash": 128,
-   "runway": 25.1,
-   "score": 56,
-   "band": "Elevated",
-   "raisedWithinYear": false,
-   "how": null,
-   "nextRaise": "2016-12-12"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2015-08-04",
-   "cash": 112,
-   "runway": 20.7,
-   "score": 63,
-   "band": "Elevated",
-   "raisedWithinYear": false,
-   "how": null,
-   "nextRaise": "2016-12-12"
-  },
-  {
-   "name": "ARROWHEAD PHARMACEUTICALS, INC.",
-   "filed": "2015-12-14",
-   "cash": 99,
-   "runway": 18,
-   "score": 69,
-   "band": "Elevated",
-   "raisedWithinYear": true,
-   "how": "share count jump",
-   "nextRaise": "2016-12-12"
-  },
   {
    "name": "ARROWHEAD PHARMACEUTICALS, INC.",
    "filed": "2016-02-09",
@@ -671,72 +521,6 @@
   },
   {
    "name": "Achaogen, Inc.",
-   "filed": "2014-08-11",
-   "cash": 74,
-   "runway": 120,
-   "score": 5,
-   "band": "Low",
-   "raisedWithinYear": false,
-   "how": null,
-   "nextRaise": "2015-09-01"
-  },
-  {
-   "name": "Achaogen, Inc.",
-   "filed": "2014-11-10",
-   "cash": 72,
-   "runway": 117.3,
-   "score": 5,
-   "band": "Low",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2015-09-01"
-  },
-  {
-   "name": "Achaogen, Inc.",
-   "filed": "2015-03-16",
-   "cash": 64,
-   "runway": 53.5,
-   "score": 11,
-   "band": "Low",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2015-09-01"
-  },
-  {
-   "name": "Achaogen, Inc.",
-   "filed": "2015-05-11",
-   "cash": 62,
-   "runway": 43.1,
-   "score": 28,
-   "band": "Low",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2015-09-01"
-  },
-  {
-   "name": "Achaogen, Inc.",
-   "filed": "2015-08-10",
-   "cash": 61,
-   "runway": 53.4,
-   "score": 27,
-   "band": "Low",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2015-09-01"
-  },
-  {
-   "name": "Achaogen, Inc.",
-   "filed": "2015-11-05",
-   "cash": 70,
-   "runway": 45.9,
-   "score": 35,
-   "band": "Low",
-   "raisedWithinYear": true,
-   "how": "share count jump",
-   "nextRaise": "2016-08-02"
-  },
-  {
-   "name": "Achaogen, Inc.",
    "filed": "2016-03-15",
    "cash": 59,
    "runway": 33.4,
@@ -877,39 +661,6 @@
    "raisedWithinYear": false,
    "how": null,
    "nextRaise": null
-  },
-  {
-   "name": "Viking Therapeutics, Inc.",
-   "filed": "2015-06-12",
-   "cash": 0,
-   "runway": 2.3,
-   "score": 80,
-   "band": "High",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2016-04-08"
-  },
-  {
-   "name": "Viking Therapeutics, Inc.",
-   "filed": "2015-08-14",
-   "cash": 22,
-   "runway": 63,
-   "score": 26,
-   "band": "Low",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2016-04-08"
-  },
-  {
-   "name": "Viking Therapeutics, Inc.",
-   "filed": "2015-11-05",
-   "cash": 17,
-   "runway": 28.8,
-   "score": 51,
-   "band": "Elevated",
-   "raisedWithinYear": true,
-   "how": "offering filing",
-   "nextRaise": "2016-04-08"
   },
   {
    "name": "Viking Therapeutics, Inc.",
