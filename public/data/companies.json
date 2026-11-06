@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-06T03:19:16.491Z",
+  "generatedAt": "2026-11-06T13:09:50.706Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -2074,7 +2074,8 @@
    "ClinicalTrials.gov API v2",
    "Yahoo Finance"
   ],
-  "warnings": []
+  "warnings": [],
+  "leftCoverage": []
  },
  "companies": [
   {
@@ -15990,7 +15991,7 @@
     "chg": -1.83,
     "chgPct": -5.72,
     "hi52": 56.05,
-    "lo52": 23.05,
+    "lo52": 23.86,
     "volume": 1417373,
     "date": "2026-11-05",
     "history": [
@@ -21902,7 +21903,7 @@
     "chg": -0.63,
     "chgPct": -2.93,
     "hi52": 40.65,
-    "lo52": 13.35,
+    "lo52": 13.83,
     "volume": 694655,
     "date": "2026-11-05",
     "history": [
@@ -26975,7 +26976,7 @@
     "chg": -0.88,
     "chgPct": -4.33,
     "hi52": 39.53,
-    "lo52": 16.59,
+    "lo52": 16.77,
     "volume": 109567,
     "date": "2026-11-05",
     "history": [
@@ -47053,7 +47054,7 @@
     "chg": -0.96,
     "chgPct": -9.03,
     "hi52": 17.25,
-    "lo52": 6.23,
+    "lo52": 6.68,
     "volume": 748813,
     "date": "2026-11-05",
     "history": [
@@ -54627,6 +54628,14 @@
    },
    "news": [
     {
+     "date": "2026-11-06",
+     "time": "2026-11-06T13:05:21.000Z",
+     "form": "8-K",
+     "formLabel": "Current report",
+     "headline": "Protara Therapeutics reports quarterly results",
+     "url": "https://www.sec.gov/Archives/edgar/data/1359931/000121390026116607/ea0309567-8k_protara.htm"
+    },
+    {
      "date": "2026-08-11",
      "time": "2026-08-11T12:10:59.000Z",
      "form": "10-Q",
@@ -54697,14 +54706,6 @@
      "formLabel": "Proxy statement",
      "headline": "Protara Therapeutics files its proxy statement",
      "url": "https://www.sec.gov/Archives/edgar/data/1359931/000121390026048536/ea0286228-04.htm"
-    },
-    {
-     "date": "2026-03-30",
-     "time": "2026-03-30T12:00:37.000Z",
-     "form": "8-K",
-     "formLabel": "Current report",
-     "headline": "Protara Therapeutics issues an investor update",
-     "url": "https://www.sec.gov/Archives/edgar/data/1359931/000121390026035971/ea0283949-8k_protara.htm"
     }
    ],
    "cashFlowPositive": false,
