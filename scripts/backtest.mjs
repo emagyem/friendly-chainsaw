@@ -31,7 +31,7 @@
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { computeFPS, FPS_VERSION, bandOf } from "../src/fps.js";
+import { computeFPS, FPS_VERSION } from "../src/fps.js";
 
 const UA = process.env.SEC_USER_AGENT;
 if (!UA) { console.error("Set SEC_USER_AGENT"); process.exit(1); }
