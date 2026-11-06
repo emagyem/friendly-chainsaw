@@ -101,5 +101,79 @@
     "EDIT",
     "IKT",
     "OBX"
+  ],
+  "_bigPharmaReadme": "Large drugmakers tracked for comparison. They are shown as their own group and never ranked with, or counted in, the 100-company coverage. 'sponsor' is the lead-sponsor name used on ClinicalTrials.gov; 'adr' is ordinary shares per US-listed share where that isn't 1 (checked 2026-11-06). Roche, Bayer, Merck KGaA, Boehringer Ingelheim, Daiichi Sankyo and Astellas don't file with the SEC, so they can't be included.",
+  "bigPharma": [
+    {
+      "t": "LLY",
+      "sponsor": "Eli Lilly"
+    },
+    {
+      "t": "JNJ",
+      "sponsor": "Janssen"
+    },
+    {
+      "t": "ABBV",
+      "sponsor": "AbbVie"
+    },
+    {
+      "t": "MRK",
+      "sponsor": "Merck Sharp"
+    },
+    {
+      "t": "PFE",
+      "sponsor": "Pfizer"
+    },
+    {
+      "t": "BMY",
+      "sponsor": "Bristol-Myers Squibb"
+    },
+    {
+      "t": "AMGN",
+      "sponsor": "Amgen"
+    },
+    {
+      "t": "GILD",
+      "sponsor": "Gilead Sciences"
+    },
+    {
+      "t": "REGN",
+      "sponsor": "Regeneron"
+    },
+    {
+      "t": "VRTX",
+      "sponsor": "Vertex Pharmaceuticals"
+    },
+    {
+      "t": "BIIB",
+      "sponsor": "Biogen"
+    },
+    {
+      "t": "NVO",
+      "sponsor": "Novo Nordisk"
+    },
+    {
+      "t": "NVS",
+      "sponsor": "Novartis"
+    },
+    {
+      "t": "AZN",
+      "sponsor": "AstraZeneca"
+    },
+    {
+      "t": "SNY",
+      "sponsor": "Sanofi",
+      "adr": 0.5
+    },
+    {
+      "t": "GSK",
+      "sponsor": "GlaxoSmithKline",
+      "adr": 2
+    },
+    {
+      "t": "TAK",
+      "sponsor": "Takeda",
+      "adr": 0.5
+    }
   ]
 }

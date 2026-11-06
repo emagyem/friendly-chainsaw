@@ -195,6 +195,51 @@ function shareHistory(facts) {
   return [...byEnd.values()].sort((a, b) => (a.end < b.end ? -1 : 1));
 }
 
+/* Foreign drugmakers (Novartis, Novo Nordisk, Sanofi…) file 20-Fs tagged with the IFRS taxonomy,
+   often in their own currency. Map the handful of IFRS tags Helixora uses onto their US GAAP
+   equivalents and convert to US dollars at today's exchange rate, so the rest of the pipeline is unchanged. */
+const IFRS_MAP = {
+  CashAndCashEquivalents: "CashAndCashEquivalentsAtCarryingValue",
+  CurrentInvestments: "ShortTermInvestments",
+  OtherCurrentFinancialAssets: "MarketableSecuritiesCurrent",
+  CashFlowsFromUsedInOperatingActivities: "NetCashProvidedByUsedInOperatingActivities",
+  Revenue: "Revenues",
+  RevenueFromContractsWithCustomers: "RevenueFromContractWithCustomerExcludingAssessedTax",
+  RevenueFromSaleOfGoods: "RevenueFromContractWithCustomerIncludingAssessedTax",
+  Borrowings: "LongTermDebt", // total borrowings, current and non-current
+  NoncurrentPortionOfNoncurrentBorrowings: "LongTermDebtNoncurrent",
+  LongtermBorrowings: "LongTermDebtNoncurrent",
+  CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings: "DebtCurrent",
+  CurrentPortionOfLongtermBorrowings: "LongTermDebtCurrent",
+};
+async function normalizeIfrs(facts) {
+  const ifrs = facts?.["ifrs-full"];
+  if (!ifrs || facts?.["us-gaap"]?.CashAndCashEquivalentsAtCarryingValue) return { facts, currency: "USD", fx: 1 };
+  // The reporting currency: whatever unit the cash figure is in.
+  const currency = Object.keys(ifrs.CashAndCashEquivalents?.units || {})[0] || "USD";
+  let fx = 1;
+  if (currency !== "USD") {
+    const q = await yahooQuote(`${currency}USD=X`);
+    if (!(q?.price > 0)) throw new Error(`no ${currency}/USD exchange rate`);
+    fx = q.price;
+  }
+  const gaap = {};
+  for (const [from, to] of Object.entries(IFRS_MAP)) {
+    const rows = ifrs[from]?.units?.[currency];
+    if (!rows?.length || gaap[to]) continue;
+    gaap[to] = { units: { USD: rows.map((r) => ({ ...r, val: r.val * fx })) } };
+  }
+  // Share count: the cover-page figure is missing or years old for some filers; use the balance-sheet count when newer.
+  let dei = facts.dei || {};
+  const latestEnd = (rows) => (rows || []).reduce((m, r) => (r.end > m ? r.end : m), "");
+  const own = dei.EntityCommonStockSharesOutstanding?.units?.shares;
+  // Last resort: the weighted average share count from the income statement (AstraZeneca reports no other).
+  const wavg = ifrs.WeightedAverageShares?.units?.shares?.filter((r) => r.start && monthsBetween(r.start, r.end) > 11).map(({ start: _start, ...r }) => r);
+  const bs = ifrs.NumberOfSharesOutstanding?.units?.shares || ifrs.NumberOfSharesIssued?.units?.shares || wavg;
+  if (bs?.length && latestEnd(bs) > latestEnd(own)) dei = { ...dei, EntityCommonStockSharesOutstanding: { units: { shares: bs.filter((r) => !r.start) } } };
+  return { facts: { ...facts, dei, "us-gaap": { ...(facts["us-gaap"] || {}), ...gaap } }, currency, fx };
+}
+
 function financialsFromFacts(facts) {
   const CASH = ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", "Cash"];
   const ST_INV = ["ShortTermInvestments", "MarketableSecuritiesCurrent", "AvailableForSaleSecuritiesDebtSecuritiesCurrent", "HeldToMaturitySecuritiesCurrent"];
@@ -262,6 +307,7 @@ function financialsFromFacts(facts) {
     debt: M(debt?.val || 0),
     burn: ocfM == null ? null : Math.max(0.1, -ocfM / 12),
     cashFlowPositive: ocfM != null && ocfM > 0,
+    ocf: ocfM,
     burnHow: ocf?.how || null,
     burnPrior: ocfPrior ? -M(ocfPrior.val) / 12 : null,
     debtDue24: M(Math.max(curDebt, sched)),
@@ -346,7 +392,7 @@ function filingsFromSubmissions(sub, cik) {
   let lastPeriodic = null;
   for (let i = 0; i < r.form.length; i++) {
     const form = r.form[i], date = r.filingDate[i];
-    if (!lastPeriodic && (form === "10-Q" || form === "10-K")) lastPeriodic = { form, date, url: docUrl(i) };
+    if (!lastPeriodic && (form === "10-Q" || form === "10-K" || form === "20-F")) lastPeriodic = { form, date, url: docUrl(i) };
     if (date < cutoff) continue;
     if (form === "424B4" || form === "424B5") {
       if (seen.has(date)) continue;
@@ -437,12 +483,17 @@ async function priceFor(ticker) {
 
 const normName = (s) => s.toLowerCase().replace(/[.,]/g, " ").replace(/\b(inc|corp|corporation|ltd|limited|llc|plc|co|company|holdings|sa|ag|nv)\b/g, "").replace(/\s+/g, " ").trim();
 
-async function trialsFor(sponsor) {
+async function trialsFor(sponsor, { lateActive = false } = {}) {
   const out = [];
   let token = null;
   do {
     const u = new URL("https://clinicaltrials.gov/api/v2/studies");
     u.searchParams.set("query.spons", sponsor);
+    if (lateActive) {
+      // Big pharma: only Phase III trials still under way, or the hundreds of old trials crowd them out.
+      u.searchParams.set("filter.overallStatus", "RECRUITING,ACTIVE_NOT_RECRUITING,NOT_YET_RECRUITING,ENROLLING_BY_INVITATION");
+      u.searchParams.set("filter.advanced", "AREA[Phase]PHASE3");
+    }
     u.searchParams.set("pageSize", "100");
     if (token) u.searchParams.set("pageToken", token);
     const j = await getJSON(u.toString(), { "Accept": "application/json" });
@@ -521,7 +572,7 @@ function trialRow(p) {
 
 // Group a sponsor's trials into drug programs. In combination trials the company's own
 // asset is usually the intervention that shows up across the most of its trials.
-function programsFromTrials(trials, assumed = {}) {
+function programsFromTrials(trials, assumed = {}, max = 6) {
   const rows = trials.map(trialRow).filter((t) => t.ph && t.drugs.length);
   const freq = new Map();
   for (const t of rows) for (const d of new Set(t.drugs.map((x) => x.toLowerCase()))) freq.set(d, (freq.get(d) || 0) + 1);
@@ -582,7 +633,7 @@ function programsFromTrials(trials, assumed = {}) {
     });
   }
   programs.sort((x, y) => PHASE_ORDER.indexOf(y.ph) - PHASE_ORDER.indexOf(x.ph) || (x.ro < y.ro ? -1 : 1));
-  return programs.slice(0, 6);
+  return programs.slice(0, max);
 }
 
 /* ---------------------------- read-through ----------------------------
@@ -747,6 +798,9 @@ function titleCase(s) {
   return s.toLowerCase().replace(/\b([a-z])/g, (m) => m.toUpperCase()).replace(/\bInc\b/g, "Inc.");
 }
 
+// Old standard treatments that show up in big pharma trials as comparators or backbones, not as the drug being tested.
+const STANDARD_DRUGS = /^(prednisone|prednisolone|methylprednisolone|dexamethasone|methotrexate|leucovorin|folinic acid|fluorouracil|5-fu|cisplatin|carboplatin|oxaliplatin|paclitaxel|nab-paclitaxel|docetaxel|gemcitabine|pemetrexed|etoposide|cyclophosphamide|doxorubicin|capecitabine|irinotecan|bevacizumab|rituximab|lenalidomide|pomalidomide|bortezomib|abiraterone|abiraterone acetate|enzalutamide|tamoxifen|letrozole|anastrozole|fulvestrant|insulin|metformin|aspirin|warfarin|heparin|placebo|standard of care|best supportive care|tenofovir df|emtricitabine)\b/i;
+
 async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, durTables = null) {
   const cik = cikByTicker.get(ticker);
   if (!cik) throw new Error(`ticker not found in SEC's company list`);
@@ -754,7 +808,8 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
 
   const [facts, sub] = [await sec(`https://data.sec.gov/api/xbrl/companyfacts/CIK${cik10}.json`), await sec(`https://data.sec.gov/submissions/CIK${cik10}.json`)];
   if (!facts?.facts) throw new Error("no XBRL financial data on EDGAR");
-  const fin = financialsFromFacts(facts.facts);
+  const { facts: factsUsd, currency, fx } = await normalizeIfrs(facts.facts);
+  const fin = financialsFromFacts(factsUsd);
   if (!fin) throw new Error("no cash figure in XBRL data");
   if (fin.burn == null) throw new Error("no operating cash flow in XBRL data");
   if (!fin.shares) throw new Error("no shares outstanding figure");
@@ -767,11 +822,18 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
 
   const px = a.price ? { price: a.price, date: TODAY_ISO, source: "config/assumptions.json", prev: null, history: [] } : await priceFor(ticker);
   if (!px) throw new Error("no stock price available");
-  const mcap = px.price * fin.shares;
+  // An American depositary share can stand for more or less than one ordinary share (config: "adr").
+  const mcap = px.price * fin.shares / (a.adr || 1);
 
   const sponsor = a.sponsor || shortName(sub?.name || facts.entityName);
-  const trials = await trialsFor(sponsor);
-  const pipeline = programsFromTrials(trials, a.programs || {});
+  const trials = await trialsFor(sponsor, { lateActive: !!a.big });
+  let pipeline = programsFromTrials(trials, a.programs || {}, a.big ? 200 : 6);
+  // Big pharma runs hundreds of trials; keep the late-stage programs that move the stock, soonest first.
+  if (a.big) {
+    pipeline = pipeline
+      .filter((p) => ["Phase III", "Filed"].includes(p.ph) && !STANDARD_DRUGS.test(p.d) && (p.ph === "Filed" || !p.ro || p.ro >= TODAY_ISO))
+      .sort((x, y) => (x.ro || "9") < (y.ro || "9") ? -1 : 1).slice(0, 20);
+  }
   if (!pipeline.length) throw new Error(`no active trials found for sponsor "${sponsor}" (set "sponsor" in assumptions.json)`);
 
   // Classification for the drug-development models, then timing, design and odds per program.
@@ -865,10 +927,14 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
     },
     news: newsFromSubmissions(sub, cik, name),
     cashFlowPositive: fin.cashFlowPositive,
+    ocf: fin.ocf == null ? null : Math.round(fin.ocf),
+    ...(a.big ? { group: "big-pharma" } : {}),
     src: {
       cik: String(cik),
       asOf: fin.asOf,
       cashParts: fin.cashParts,
+      ...(currency !== "USD" ? { currency, fx: Math.round(fx * 10000) / 10000, fxNote: `Reported in ${currency}; converted at today's rate of ${fx.toFixed(4)} USD per ${currency}` } : {}),
+      ...(a.adr && a.adr !== 1 ? { adr: a.adr } : {}),
       burnHow: fin.burnHow,
       sharesAsOf: fin.sharesAsOf,
       filing: lastPeriodic,
@@ -902,7 +968,7 @@ async function main() {
   let acquired = [];
   try {
     const prev = JSON.parse(await readFile(OUT_FILE, "utf8"));
-    for (const c of prev.companies || []) previous[c.t] = c;
+    for (const c of [...(prev.companies || []), ...(prev.bigPharma || [])]) previous[c.t] = c;
     previous.__meta = prev.meta;
     acquired = prev.acquired || [];
   } catch { /* first run */ }
@@ -974,6 +1040,21 @@ async function main() {
     }
   }
 
+  // Big pharma: tracked alongside coverage for comparison, never ranked with it or screened out.
+  const bigPharma = [];
+  for (const bp of config.bigPharma || []) {
+    const ticker = bp.t.toUpperCase();
+    console.log(`${ticker} (big pharma)…`);
+    try {
+      const c = await buildCompany(ticker, { ...(assumptions[ticker] || {}), ...bp, big: true }, cikByTicker, classes[ticker] || {}, trialHist, durTables);
+      bigPharma.push(c);
+      console.log(`  ${c.n}: cash $${c.cash}M, revenue $${c.rev}M, ${c.pipeline.length} late-stage programs, mcap $${c.mcap}M`);
+    } catch (e) {
+      if (previous[ticker]) { warn(`${ticker}: ${e.message}. Kept the previous run's figures.`); bigPharma.push({ ...previous[ticker], stale: true }); }
+      else warn(`${ticker}: ${e.message}. Skipped.`);
+    }
+  }
+
   // Tell the coverage screen which newly selected companies couldn't be built, so it can fill their places.
   if (unbuildable.length) {
     const uniFile = new URL("config/universe.json", ROOT);
@@ -1035,6 +1116,7 @@ async function main() {
       leftCoverage: leaving,
     },
     companies,
+    bigPharma,
     acquired,
   };
   await mkdir(OUT_DIR, { recursive: true });
@@ -1074,7 +1156,7 @@ async function main() {
 }
 
 // Export internals for tests; run only when invoked directly.
-export { financialsFromFacts, trailing12, programsFromTrials, filingsFromSubmissions, newsFromSubmissions, shareHistory, main };
+export { financialsFromFacts, trailing12, programsFromTrials, filingsFromSubmissions, newsFromSubmissions, shareHistory, buildCompany, normalizeIfrs, sec, trialsFor, main };
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((e) => { console.error(e); process.exit(1); });
 }

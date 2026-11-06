@@ -15,6 +15,8 @@ export let META = { live: false };
 export let HISTORY = { snapshots: [] };
 // Companies bought by a larger drugmaker, kept at their last figures.
 export let ACQUIRED = [];
+// Large drugmakers tracked for comparison, kept apart from the ranked coverage.
+export let BIG_PHARMA = [];
 
 export async function loadData() {
   try {
@@ -24,6 +26,7 @@ export async function loadData() {
     if (!Array.isArray(json.companies) || json.companies.length === 0) throw new Error("no companies in file");
     COMPANIES = json.companies;
     ACQUIRED = Array.isArray(json.acquired) ? json.acquired : [];
+    BIG_PHARMA = Array.isArray(json.bigPharma) ? json.bigPharma : [];
     META = { ...json.meta, live: true };
     try {
       const h = await fetch(`${import.meta.env.BASE_URL}data/fps-history.json`, { cache: "no-cache" });

@@ -3,7 +3,9 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   ScatterChart, Scatter, ZAxis, ReferenceLine, BarChart, Bar, Cell, AreaChart, Area, ComposedChart
 } from "recharts";
-import { COMPANIES, META, HISTORY, ACQUIRED } from "./data.js";
+import { COMPANIES, META, HISTORY, ACQUIRED, BIG_PHARMA } from "./data.js";
+// Any company on the site, coverage or big pharma.
+const findCo = (t) => COMPANIES.find((x) => x.t === t) || BIG_PHARMA.find((x) => x.t === t);
 import UNIVERSE from "../config/universe.json";
 import { offeringStudy, raiseRunway, PRE, POST } from "./research.js";
 import { successOdds, exclusivity, reviewOffice, windowConfidence, ODDS_SOURCE, TRIALS_VERSION } from "./trials.js";
@@ -553,7 +555,7 @@ function Home({ go, watch, toggleWatch }) {
             <h2 id="wl-h" className="colhead">Your watchlist</h2>
             {watch.length === 0 && <p className="colnote">Star a company on its quote page to follow it here.</p>}
             <ul className="wl">
-              {watch.map((t) => COMPANIES.find((x) => x.t === t)).filter(Boolean).map((c) => (
+              {watch.map((t) => findCo(t)).filter(Boolean).map((c) => (
                 <li key={c.t}>
                   <button className="wl-row" onClick={() => go("company", c.t)}>
                     <b>{c.t}</b><span>{c.quote ? fmtPx(c.quote.price) : money(c.mcap)}</span>{c.quote ? <Change c={c} /> : <span />}
@@ -728,7 +730,7 @@ function Screen({ go }) {
 }
 
 function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
-  const c = COMPANIES.find((x) => x.t === ticker) || COMPANIES[0];
+  const c = findCo(ticker) || COMPANIES[0];
   const [tab, setTab] = useState(initialTab);
   const [newShares, setNewShares] = useState(0);
   const [raise, setRaise] = useState(0);
@@ -762,7 +764,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
       <section className="quote">
         <div className="q-top">
           <div className="q-id">
-            <h1>{c.n}{c.deal?.status === "pending" && <span className="deal-tag">Being acquired</span>}</h1>
+            <h1>{c.n}{c.deal?.status === "pending" && <span className="deal-tag">Being acquired</span>}{c.group === "big-pharma" && <span className="deal-tag bp-tag">Big pharma</span>}</h1>
             <span className="q-tk">{c.t}</span>
             <span className="q-area">{c.area}</span>
           </div>
@@ -770,6 +772,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
             {watch.includes(c.t) ? "★ On your watchlist" : "☆ Add to watchlist"}
           </button>
         </div>
+        {c.group === "big-pharma" && <p className="bp-note">Tracked for comparison, not ranked with the biotechs. {c.n} {c.cashFlowPositive ? "generates cash from its business" : "is spending more cash than it brings in"}, so the financing-pressure measures on this page mostly don't apply. Its pipeline here shows only its own Phase III programs.{c.src?.fxNote ? ` ${c.src.fxNote}.` : ""}</p>}
         {c.quote ? (
           <div className="q-px">
             <span className="q-price">{fmtPx(c.quote.price)}</span>
@@ -1128,7 +1131,7 @@ function Catalysts({ go }) {
 function Compare() {
   const [sel, setSel] = useState(() => COMPANIES.slice(0, 3).map((c) => c.t));
   const set = (i, v) => setSel(sel.map((s, j) => (j === i ? v : s)));
-  const cols = sel.map((t) => COMPANIES.find((c) => c.t === t)).filter(Boolean);
+  const cols = sel.map((t) => findCo(t)).filter(Boolean);
 
   const rows = [
     ["Therapeutic area", (c) => c.area],
@@ -1138,8 +1141,8 @@ function Compare() {
     ["Enterprise value", (c) => money(c.ev), 1],
     ["Cash", (c) => money(c.cash), 1],
     ["Debt", (c) => (c.debt ? money(c.debt) : "None"), 1],
-    ["Monthly burn", (c) => `$${num(c.burn)}M`, 1],
-    ["Runway", (c) => `${num(runway(c))} mo`, 1],
+    ["Monthly burn", (c) => (c.cashFlowPositive ? "Cash-generating" : `$${num(c.burn)}M`), 1],
+    ["Runway", (c) => (c.cashFlowPositive ? "Not needed" : `${num(runway(c))} mo`), 1],
     ["Next catalyst", (c) => (nextCatalyst(c) ? `${days(nextCatalyst(c).date)}d` : "—"), 1],
     ["Pipeline rNPV", (c) => money(pipelineValue(c)), 1],
     ["EV / rNPV", (c) => `${num((c.ev / pipelineValue(c)) * 100, 0)}%`, 1],
@@ -1160,7 +1163,8 @@ function Compare() {
             {sel.map((s, i) => (
               <th key={i}>
                 <select value={s} onChange={(e) => set(i, e.target.value)}>
-                  {COMPANIES.map((c) => <option key={c.t} value={c.t}>{c.t} — {c.n}</option>)}
+                  <optgroup label="Coverage">{COMPANIES.map((c) => <option key={c.t} value={c.t}>{c.t} — {c.n}</option>)}</optgroup>
+                  {BIG_PHARMA.length > 0 && <optgroup label="Big pharma">{BIG_PHARMA.map((c) => <option key={c.t} value={c.t}>{c.t} — {c.n}</option>)}</optgroup>}
                 </select>
               </th>
             ))}
@@ -2912,6 +2916,53 @@ function About({ go, anchor }) {
   );
 }
 
+/* ------------------------------ big pharma ------------------------------ */
+
+function BigPharma({ go }) {
+  const [sort, setSort] = useState("mcap");
+  const keys = {
+    mcap: (c) => -(c.mcap || 0), rev: (c) => -(c.rev || 0), ocf: (c) => -(c.ocf || 0), cash: (c) => -(c.cash || 0),
+    next: (c) => { const n = nextCatalyst(c); return n ? days(n.date) : 1e9; }, chg: (c) => -(c.quote?.chgPct ?? -1e9),
+  };
+  const rows = [...BIG_PHARMA].sort((a, b) => keys[sort](a) - keys[sort](b));
+  const total = BIG_PHARMA.reduce((s, c) => s + (c.mcap || 0), 0);
+  const th = (k, label) => <th className="r" onClick={() => setSort(k)}>{label}<span className="sortmark">{sort === k ? "▾" : ""}</span></th>;
+  if (!BIG_PHARMA.length) return <section className="panel"><header className="ph"><h2>Big Pharma</h2></header><p className="prose">Big pharma figures arrive with the next data refresh.</p></section>;
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">Big Pharma</p>
+        <h1 className="report-h">The {BIG_PHARMA.length} largest drugmakers that file with the SEC</h1>
+        <p className="lead-dek">These are the companies that buy, partner with and compete against the {COMPANIES.length} biotechs Helixora covers. Together they're worth about {money(total)}. They make money, so the Financing Pressure Score mostly doesn't apply. They're here for comparison and are never ranked with the biotechs. Each row shows the Phase III programs they run themselves, soonest result first.</p>
+      </section>
+      <section className="panel">
+        <div className="tablewrap">
+          <table className="grid">
+            <thead><tr><th>Company</th>{th("mcap", "Market value")}{th("rev", "Revenue, last 12 mo")}{th("ocf", "Operating cash flow, 12 mo")}{th("cash", "Cash")}<th className="r">Debt</th><th className="r">Phase III programs</th>{th("next", "Next late-stage result")}{th("chg", "Price")}</tr></thead>
+            <tbody>{rows.map((c) => {
+              const n = nextCatalyst(c);
+              return (
+                <tr key={c.t} onClick={() => go("company", c.t)}>
+                  <td className="nm"><span className="tick">{c.t}</span> {c.n}{c.src?.currency ? <span className="sub"> · reports in {c.src.currency}</span> : null}{c.stale ? <span className="sub"> · not updated today</span> : null}</td>
+                  <td className="r num">{money(c.mcap)}</td>
+                  <td className="r num">{money(c.rev)}</td>
+                  <td className="r num">{c.ocf == null ? "—" : money(c.ocf)}</td>
+                  <td className="r num">{money(c.cash)}</td>
+                  <td className="r num">{c.debt ? money(c.debt) : "None"}</td>
+                  <td className="r num">{c.pipeline.length}</td>
+                  <td className="r">{n ? <>{fmtDate(n.date)}<span className="sub"> {shortLabel(n.label)}</span></> : "—"}</td>
+                  <td className="r num">{c.quote?.price != null ? `$${num(c.quote.price)} ` : "—"}<Change c={c} /></td>
+                </tr>
+              );
+            })}</tbody>
+          </table>
+        </div>
+        <p className="colnote">From each company's latest 10-Q, 10-K or 20-F on SEC EDGAR, and ClinicalTrials.gov. Foreign companies' figures are converted to US dollars at today's exchange rate. Novo Nordisk, Novartis and the other foreign filers report in detail only once or twice a year, so their figures can be older; each company page gives the date. Roche, Bayer, Merck KGaA, Boehringer Ingelheim, Daiichi Sankyo and Astellas aren't included because they don't file with the SEC.</p>
+      </section>
+    </div>
+  );
+}
+
 function CoveragePanel() {
   const g = UNIVERSE.grandfathered || {};
   return (
@@ -3060,7 +3111,7 @@ function Wordmark({ underline = false }) {
 
 // Sections and their pages, grouped the way a financial news site groups them.
 const NAV = [
-  { k: "markets", l: "Markets", items: [["home", "Overview"], ["company", "Quotes"], ["screen", "Screener"], ["compare", "Compare"]] },
+  { k: "markets", l: "Markets", items: [["home", "Overview"], ["company", "Quotes"], ["screen", "Screener"], ["compare", "Compare"], ["bigpharma", "Big Pharma"]] },
   { k: "risk", l: "Financing Risk", items: [["report", "Pressure Report"], ["research", "Research"]] },
   { k: "trials", l: "Trials & FDA", items: [["outlook", "Outlook"], ["catalysts", "Catalyst Calendar"]] },
   { k: "ask", l: "Ask Helixora", items: [["ask", "Ask Helixora"]] },
@@ -3108,7 +3159,7 @@ export default function App() {
   const toggleWatch = (t) => setWatch((w) => (w.includes(t) ? w.filter((x) => x !== t) : [...w, t]));
 
   const matches = omni.trim()
-    ? COMPANIES.filter((c) => (c.t + " " + c.n).toLowerCase().includes(omni.toLowerCase())).slice(0, 6)
+    ? [...COMPANIES, ...BIG_PHARMA].filter((c) => (c.t + " " + c.n).toLowerCase().includes(omni.toLowerCase())).slice(0, 6)
     : [];
 
   const cur = groupOf(view);
@@ -3142,7 +3193,7 @@ export default function App() {
               <div className="omnilist">
                 {matches.map((c) => (
                   <button key={c.t} onClick={() => { go("company", c.t); setOmni(""); }}>
-                    <b>{c.t}</b>{c.n}<span className="sub">{c.area}</span>
+                    <b>{c.t}</b>{c.n}<span className="sub">{c.group === "big-pharma" ? "Big pharma" : c.area}</span>
                   </button>
                 ))}
               </div>
@@ -3193,6 +3244,7 @@ export default function App() {
         {view === "report" && <PressureReport go={go} />}
         {view === "catalysts" && <Catalysts go={go} />}
         {view === "compare" && <Compare />}
+        {view === "bigpharma" && <BigPharma go={go} />}
         {view === "ask" && <Ask />}
         {view === "research" && <Research go={go} />}
         {view === "about" && <About key={anchor || "top"} go={go} anchor={anchor} />}
@@ -3989,6 +4041,8 @@ details.more summary:hover{color:var(--teal);}
 .lead-h button:hover{color:var(--teal-d);}
 .utility-cta{background:var(--mint);color:#062B2E !important;border:0;border-radius:3px;padding:5px 12px;font-size:12.5px;font-weight:700;}
 .utility-cta:hover{background:#fff;}
+.bp-tag { background: var(--teal, #0f766e); }
+.bp-note { margin: 8px 0 0; font-size: 14px; color: var(--mut); max-width: 760px; }
 .deal-tag { display:inline-block; vertical-align:middle; margin-left:12px; font: 600 11px/1 var(--sans, system-ui); letter-spacing:.06em; text-transform:uppercase; padding:5px 8px; border-radius:3px; background:#b4232a; color:#fff; }
 .cta-band{background:var(--mast);color:#fff;margin-top:56px;}
 .cta-in{max-width:1320px;margin:0 auto;padding:44px 24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:center;}
