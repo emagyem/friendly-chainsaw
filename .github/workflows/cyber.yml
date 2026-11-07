@@ -1,0 +1,44 @@
+name: Cyber risk
+
+# Weekly: SEC cyber disclosures and passive public-setup checks for every
+# company on the site, plus the incident share-price study.
+on:
+  schedule:
+    - cron: "17 9 * * 1"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Limit to these tickers (comma-separated); blank for all"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  cyber:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 22 }
+      - name: Build cyber.json
+        run: node scripts/cyber.mjs
+        env:
+          SEC_USER_AGENT: "Helixora research ${{ vars.SEC_CONTACT_EMAIL }}"
+          CYBER_ONLY: ${{ github.event.inputs.only }}
+      - name: Commit if changed
+        if: ${{ github.event.inputs.only == '' || github.event_name == 'schedule' }}
+        run: |
+          if git diff --quiet -- public/data && [ -z "$(git ls-files --others --exclude-standard public/data)" ]; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/cyber.json
+          git commit -m "Cyber risk $(date -u +%Y-%m-%d)"
+          git pull --rebase -X theirs
+          git push

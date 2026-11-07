@@ -33,7 +33,13 @@ export async function onRequestPost({ request, env }) {
     loadDataFile: async () => {
       const res = await env.ASSETS.fetch(new URL("/data/companies.json", request.url));
       if (!res.ok) throw new Error(`data file returned ${res.status}`);
-      return res.json();
+      const file = await res.json();
+      // Cyber Risk grades, if published.
+      try {
+        const cy = await env.ASSETS.fetch(new URL("/data/cyber.json", request.url));
+        if (cy.ok) file.cyber = (await cy.json()).companies || {};
+      } catch { /* optional */ }
+      return file;
     },
   });
 }

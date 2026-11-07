@@ -3,7 +3,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   ScatterChart, Scatter, ZAxis, ReferenceLine, BarChart, Bar, Cell, AreaChart, Area, ComposedChart
 } from "recharts";
-import { COMPANIES, META, HISTORY, INDUSTRY } from "./data.js";
+import { COMPANIES, META, HISTORY, INDUSTRY, CYBER } from "./data.js";
 // Any company on the site, coverage or drug industry.
 const findCo = (t) => COMPANIES.find((x) => x.t === t) || INDUSTRY.find((x) => x.t === t);
 // Drug-industry segments, in the order the Drug Industry page shows them.
@@ -767,7 +767,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
     return { post, pct: newShares === 0 ? 0 : (newShares / post) * 100, proceeds: newShares * (c.mcap / c.shares) * 0.88 };
   }, [c, newShares]);
 
-  const tabs = [["overview", "Overview"], ["pressure", "Financing pressure"], ["financials", "Financials"], ["pipeline", "Pipeline"], ["catalysts", "Catalysts"], ["valuation", "Valuation"], ["score", "Score"]];
+  const tabs = [["overview", "Overview"], ["pressure", "Financing pressure"], ["financials", "Financials"], ["pipeline", "Pipeline"], ["catalysts", "Catalysts"], ["valuation", "Valuation"], ["score", "Score"], ...(CYBER.companies?.[c.t] ? [["cyber", "Cyber"]] : [])];
 
   return (
     <div className="stack">
@@ -825,6 +825,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
       </nav>
 
       {tab === "pressure" && <div className="stack"><FpsPanel c={c} go={go} /><RunwaySimPanel c={c} /></div>}
+      {tab === "cyber" && <CyberPanel t={c.t} go={go} />}
 
       {tab === "overview" && (
         <div className="two">
@@ -2745,7 +2746,7 @@ const JUDGED = [
 ];
 
 // One page for who Helixora is and how it works (the former About and Methodology pages).
-const ABOUT_SECTIONS = [["problem", "The problem"], ["compare", "How it compares"], ["score", "The score"], ["coverage", "Coverage"], ["track", "Track record"], ["roadmap", "Roadmap"], ["sources", "Sources"]];
+const ABOUT_SECTIONS = [["problem", "The problem"], ["compare", "How it compares"], ["score", "The score"], ["coverage", "Coverage"], ["cyber", "Cyber Risk"], ["track", "Track record"], ["roadmap", "Roadmap"], ["sources", "Sources"]];
 
 function About({ go, anchor }) {
   const rr = useMemo(() => raiseRunway(COMPANIES), []);
@@ -2860,6 +2861,7 @@ function About({ go, anchor }) {
       </section>
 
       <div id="coverage" className="anchor"><CoveragePanel /></div>
+      <div id="cyber" className="anchor"><CyberAbout go={go} /></div>
       <div id="track" className="anchor"><TrackRecord go={go} /></div>
 
       <section className="panel" id="roadmap">
@@ -2926,6 +2928,228 @@ function About({ go, anchor }) {
   );
 }
 
+/* ------------------------------ cyber risk ------------------------------ */
+
+const GRADE_TONE = { A: "g-a", B: "g-b", C: "g-c", D: "g-d", F: "g-f" };
+const CyberGrade = ({ g, big }) => (g ? <span className={"cgrade " + GRADE_TONE[g] + (big ? " big" : "")}>{g}</span> : <span className="cgrade none">—</span>);
+const pctMove = (v) => (v == null ? "—" : `${v > 0 ? "+" : ""}${v.toFixed(1)}%`);
+const groupName = (g) => (g === "coverage" ? "Biotech coverage" : segLabel(g) || g);
+
+// What the grade is made of, said once and used on every cyber page.
+function CyberMethodNote({ go }) {
+  return (
+    <p className="colnote">
+      <b>How the grade works.</b> Half comes from the company's own annual report: the cybersecurity section every US-listed company must now include (10-K Item 1C, or Item 16K in a foreign company's 20-F), scored against an 11-point checklist. Half comes from passive checks of its public website and email setup: the same things a browser or mail server sees on a normal visit. Each material incident filed under 8-K Item 1.05 in the last two years takes off 10 points (up to 20). A ≥ 80, B ≥ 65, C ≥ 50, D ≥ 35, F below. A good grade means the company describes and shows sound basics; it can't prove a company is secure, and a weak public setup doesn't mean it has been breached. <button className="linkish" onClick={() => go("cybermethod")}>More on the method, and how to dispute a finding</button>.
+    </p>
+  );
+}
+
+function CyberScores({ go }) {
+  const all = Object.values(CYBER.companies || {});
+  const [grp, setGrp] = useState("all");
+  const [sort, setSort] = useState("overall");
+  const [q, setQ] = useState("");
+  if (!all.length) return <section className="panel"><header className="ph"><h2>Cyber Scores</h2></header><p className="prose">Cyber scores arrive with the next weekly cyber check.</p></section>;
+  const groups = [["all", "All"], ["coverage", "Biotech coverage"], ...SEGMENTS.filter(([g]) => all.some((x) => x.group === g)).map(([g, l]) => [g, l])];
+  const keys = {
+    overall: (x) => x.overall ?? -1, gov: (x) => x.governance?.score ?? -1, setup: (x) => x.setup?.score ?? -1,
+    inc: (x) => x.incidents.length, name: (x) => x.n,
+  };
+  const rows = all
+    .filter((x) => grp === "all" || x.group === grp)
+    .filter((x) => !q || (x.t + " " + x.n).toLowerCase().includes(q.toLowerCase()))
+    .sort((a, b) => (sort === "name" ? a.n.localeCompare(b.n) : sort === "inc" ? keys.inc(b) - keys.inc(a) : keys[sort](a) - keys[sort](b)));
+  const th = (k, label, r = true) => <th className={r ? "r" : ""} onClick={() => setSort(k)}>{label}<span className="sortmark">{sort === k ? "▾" : ""}</span></th>;
+  const m = CYBER.meta || {};
+  const withInc = all.filter((x) => x.incidents.some((i) => i.item === "1.05"));
+  const gap = (x) => {
+    const miss = (x.setup?.items || []).filter((i) => i.got === 0).map((i) => i.key);
+    return [miss.includes("dmarc") && "email can be spoofed", miss.includes("securitytxt") && "no bug-report contact", x.governance == null && "no cyber section found", x.governance?.noStaff && "no dedicated security staff"].filter(Boolean).slice(0, 2).join("; ");
+  };
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">Cyber Risk</p>
+        <h1 className="report-h">How well do drug companies guard their systems?</h1>
+        <p className="lead-dek">A grade for each of the {all.length} companies on Helixora, from what they tell the SEC about cybersecurity and what anyone can see of their public web and email setup. Lowest grades first. Click a company for the evidence behind every point.</p>
+        <div className="metrics four">
+          {["A", "B", "C", "D"].map((g) => <div className="metric" key={g}><span>Grade {g}{g === "D" ? " or F" : ""}</span><b>{g === "D" ? (m.grades?.D || 0) + (m.grades?.F || 0) : m.grades?.[g] || 0}</b></div>)}
+        </div>
+        <p className="byline">{withInc.length ? <>{withInc.length} {withInc.length === 1 ? "company has" : "companies have"} filed a material cyber incident since the SEC rule began in December 2023: {withInc.map((x) => x.t).join(", ")}. </> : "None of these companies has filed a material cyber incident since the SEC rule began in December 2023. "}Checked {fmtDate((m.generatedAt || "").slice(0, 10))}.</p>
+      </section>
+      <section className="panel">
+        <div className="chips">{groups.map(([k, l]) => <button key={k} className={"chip" + (grp === k ? " on" : "")} onClick={() => setGrp(k)}>{l}</button>)}</div>
+        <input className="cyber-search" placeholder="Filter by company or ticker" value={q} onChange={(e) => setQ(e.target.value)} />
+        <div className="tablewrap">
+          <table className="grid">
+            <thead><tr>{th("name", "Company", false)}{th("overall", "Grade")}{th("gov", "Governance (annual report)")}{th("setup", "Public setup")}{th("inc", "Incidents filed")}<th>Biggest gaps</th></tr></thead>
+            <tbody>{rows.map((x) => (
+              <tr key={x.t} onClick={() => go("company", x.t, "cyber")}>
+                <td className="nm"><span className="tick">{x.t}</span> {x.n}<span className="sub">{groupName(x.group)}{x.domain ? ` · ${x.domain}` : ""}</span></td>
+                <td className="r"><CyberGrade g={x.grade} /> <span className="num">{x.overall ?? ""}</span></td>
+                <td className="r num">{x.governance ? x.governance.score : <span className="sub">not found</span>}</td>
+                <td className="r num">{x.setup ? x.setup.score : <span className="sub">not checked</span>}</td>
+                <td className="r num">{x.incidents.length ? <b className="down">{x.incidents.length}</b> : "0"}</td>
+                <td className="sub">{gap(x) || "—"}</td>
+              </tr>
+            ))}</tbody>
+          </table>
+        </div>
+        <CyberMethodNote go={go} />
+      </section>
+    </div>
+  );
+}
+
+function CyberIncidents({ go }) {
+  const st = CYBER.study;
+  const ours = Object.values(CYBER.companies || {}).flatMap((x) => x.incidents.map((i) => ({ ...i, t: x.t, n: x.n }))).sort((a, b) => (a.date < b.date ? 1 : -1));
+  const onSite = (t) => !!findCo(t);
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">Cyber Incidents</p>
+        <h1 className="report-h">What happens to a stock after a company reports a cyber attack</h1>
+        <p className="lead-dek">Since 18 December 2023, a US-listed company must file an 8-K under Item 1.05 within four business days of deciding a cybersecurity incident is material. This page follows every such first filing and measures the share price against the S&P 500 afterwards.</p>
+      </section>
+      {st && st.day1 ? (
+        <section className="panel">
+          <header className="ph"><h2>Share price against the S&P 500 after a first Item 1.05 filing</h2><span className="ph-note">{st.day1.n} incidents with prices, of {st.firstFilings} first filings ({st.allFilings} Item 1.05 filings in all, counting updates)</span></header>
+          <div className="metrics four">
+            <div className="metric"><span>Next trading day, average</span><b className={st.day1.mean < 0 ? "down" : "up"}>{pctMove(st.day1.mean)}</b></div>
+            <div className="metric"><span>After a week, average</span><b className={st.day5.mean < 0 ? "down" : "up"}>{pctMove(st.day5.mean)}</b></div>
+            <div className="metric"><span>After a month, average</span><b className={st.day30.mean < 0 ? "down" : "up"}>{pctMove(st.day30.mean)}</b></div>
+            <div className="metric"><span>Fell behind the market within a month</span><b>{st.day30.shareDown}%</b></div>
+          </div>
+          <p className="finding">The typical company (the median) was {pctMove(st.day1.median)} the next day, {pctMove(st.day5.median)} after a week and {pctMove(st.day30.median)} after a month, against the S&P 500. Most of the damage comes after the first day, as the cost and scope of an incident become clearer.</p>
+          <p className="colnote">Day 0 is the first trading day on or after the filing date, measured from the previous close (8-Ks are often filed after the market closes). "After a week" is five trading days; "after a month" is 21. Small sample, many industries, and other news can land in the same window, so read these as a rough guide, not a forecast.</p>
+          <div className="tablewrap">
+            <table className="grid">
+              <thead><tr><th>Filed</th><th>Company</th><th className="r">Next day</th><th className="r">Week</th><th className="r">Month</th><th></th></tr></thead>
+              <tbody>{st.events.map((e) => (
+                <tr key={e.cik + e.date} onClick={onSite(e.ticker) ? () => go("company", e.ticker, "cyber") : undefined} className={onSite(e.ticker) ? "" : "noclick"}>
+                  <td>{fmtDate(e.date)}</td>
+                  <td className="nm"><span className="tick">{e.ticker}</span> {tidy(e.name)}{onSite(e.ticker) ? <span className="sub"> · on Helixora</span> : null}</td>
+                  <td className={"r num " + (e.d1 < 0 ? "down" : "up")}>{pctMove(e.d1)}</td>
+                  <td className={"r num " + (e.d5 < 0 ? "down" : "up")}>{pctMove(e.d5)}</td>
+                  <td className={"r num " + (e.d30 < 0 ? "down" : "up")}>{pctMove(e.d30)}</td>
+                  <td><a className="src" href={e.url} target="_blank" rel="noopener noreferrer" onClick={(ev) => ev.stopPropagation()}>8-K</a></td>
+                </tr>
+              ))}</tbody>
+            </table>
+          </div>
+        </section>
+      ) : <section className="panel"><p className="prose">The incident study arrives with the next weekly cyber check.</p></section>}
+      <section className="panel">
+        <header className="ph"><h2>Incidents at companies on Helixora</h2></header>
+        {ours.length ? (
+          <ul className="cy-inc">{ours.map((i) => (
+            <li key={i.t + i.date + i.item}><button className="linkish" onClick={() => go("company", i.t, "cyber")}><b>{i.t}</b> {i.n}</button> · {fmtDate(i.date)} · {i.item === "1.05" ? "material incident (Item 1.05)" : `voluntary disclosure (Item ${i.item})`}{i.amended ? " · update" : ""} · <a className="src" href={i.url} target="_blank" rel="noopener noreferrer">filing</a>{i.text ? <span className="sub"> "{i.text}"</span> : null}</li>
+          ))}</ul>
+        ) : <p className="prose">None of the companies on Helixora has disclosed a cybersecurity incident to the SEC since December 2023.</p>}
+      </section>
+    </div>
+  );
+}
+
+// "BOSTON SCIENTIFIC CORP" → "Boston Scientific Corp"
+const tidy = (n) => (n && n === n.toUpperCase() ? n.toLowerCase().replace(/\b[a-z]/g, (ch) => ch.toUpperCase()).replace(/\/[a-z]+\/?$/i, "").trim() : n);
+
+function CyberPanel({ t }) {
+  const x = CYBER.companies?.[t];
+  if (!x) return null;
+  const g = x.governance, s = x.setup;
+  return (
+    <div className="stack">
+      <section className="panel">
+        <header className="ph"><h2>Cyber risk</h2><span className="ph-note">Checked {fmtDate((CYBER.meta?.generatedAt || "").slice(0, 10))}</span></header>
+        <div className="cy-head">
+          <CyberGrade g={x.grade} big />
+          <div className="metrics four">
+            <div className="metric"><span>Overall</span><b>{x.overall ?? "—"}</b></div>
+            <div className="metric"><span>Governance, from the annual report</span><b>{g ? g.score : "—"}</b></div>
+            <div className="metric"><span>Public setup{x.domain ? ` (${x.domain})` : ""}</span><b>{s ? s.score : "—"}</b></div>
+            <div className="metric"><span>Incidents filed since Dec 2023</span><b className={x.incidents.length ? "down" : ""}>{x.incidents.length}</b></div>
+          </div>
+        </div>
+        {x.incidentPenalty ? <p className="finding">{x.incidentPenalty} points off for material incidents filed in the last two years.</p> : null}
+        {x.incidents.length > 0 && (
+          <ul className="cy-inc">{x.incidents.map((i) => <li key={i.date + i.item}>{fmtDate(i.date)} · {i.item === "1.05" ? "material incident (8-K Item 1.05)" : `voluntary disclosure (8-K Item ${i.item})`}{i.amended ? " · update" : ""} · <a className="src" href={i.url} target="_blank" rel="noopener noreferrer">read the filing</a>{i.text ? <span className="sub"> "{i.text}"</span> : null}</li>)}</ul>
+        )}
+      </section>
+      <section className="panel">
+        <header className="ph"><h2>What its annual report says</h2>{x.annual && <span className="ph-note"><a className="src" href={x.annual.url} target="_blank" rel="noopener noreferrer">{x.annual.form} filed {fmtDate(x.annual.date)}</a></span>}</header>
+        {g ? (
+          <>
+            <table className="grid plain cy-check">
+              <tbody>{g.items.map((i) => (
+                <tr key={i.key}>
+                  <td className={"cy-mark " + (i.got === i.pts ? "ok" : i.got ? "part" : "no")}>{i.got === i.pts ? "✓" : i.got ? "◐" : "✗"}</td>
+                  <td><b>{i.label}</b>{i.evidence ? <span className="cy-quote">"{i.evidence}"</span> : <span className="sub"> Not found in the section.</span>}</td>
+                  <td className="r num">{i.got}/{i.pts}</td>
+                </tr>
+              ))}</tbody>
+            </table>
+            {g.noStaff && <p className="finding">10 points off: the company says it has no dedicated security staff. <span className="cy-quote">"{g.noStaff}"</span></p>}
+            {g.saysNoMaterial && <p className="colnote">The company also states: "{g.saysNoMaterial}"</p>}
+          </>
+        ) : <p className="prose">We couldn't find the cybersecurity section in its latest annual report{x.annual ? ` (${x.annual.form}, ${fmtDate(x.annual.date)})` : ""}. That can mean it's worded or laid out unusually rather than missing; the grade uses the public setup alone.</p>}
+      </section>
+      <section className="panel">
+        <header className="ph"><h2>What anyone can see of its setup</h2>{x.domain && <span className="ph-note">{x.web?.host || x.domain}</span>}</header>
+        {s ? (
+          <table className="grid plain cy-check">
+            <tbody>{s.items.map((i) => (
+              <tr key={i.key}>
+                <td className={"cy-mark " + (i.got === i.pts ? "ok" : i.got ? "part" : "no")}>{i.got === i.pts ? "✓" : i.got ? "◐" : "✗"}</td>
+                <td><b>{i.label}</b><span className="sub"> {i.detail}</span></td>
+                <td className="r num">{i.got}/{i.pts}</td>
+              </tr>
+            ))}</tbody>
+          </table>
+        ) : <p className="prose">We couldn't find or reach the company's website, so its public setup isn't scored.</p>}
+        <p className="colnote">These are passive checks: a few DNS lookups and two or three ordinary page requests, identified as Helixora. Nothing is scanned, probed or logged into. Missing items are common good practice, not proof of a weakness.</p>
+      </section>
+      <CorrectionForm ticker={t} topic="cyber" />
+    </div>
+  );
+}
+
+function CorrectionForm({ ticker, topic = "other" }) {
+  const [msg, setMsg] = useState("");
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState("idle");
+  const { mount, token, ready, used } = useHumanCheck();
+  const submit = async (e) => {
+    e.preventDefault();
+    if (!ready) return;
+    setState("sending");
+    try {
+      const res = await fetch("/api/correction", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ticker, topic, message: msg, email, botField: "", turnstileToken: token }) });
+      used();
+      setState(res.ok ? "done" : "error");
+    } catch { setState("error"); }
+  };
+  if (state === "done") return <section className="panel"><p className="wl-done">Thanks. We'll review it, and if we got something wrong we'll correct it and note the change.</p></section>;
+  return (
+    <section className="panel">
+      <header className="ph"><h2>Something wrong here?</h2></header>
+      <form className="correction" onSubmit={submit}>
+        <p className="prose">If you work at {ticker ? ticker : "a company we cover"} or spot a mistake, tell us what's wrong and, if you can, where to see the right answer. We read every report and correct mistakes.</p>
+        <label className="sr" htmlFor="corr-msg">What's wrong</label>
+        <textarea id="corr-msg" required minLength={10} maxLength={2000} rows={4} placeholder="What's wrong, and where can we check it?" value={msg} onChange={(e) => setMsg(e.target.value)} />
+        <div className="wl-fields">
+          <label className="sr" htmlFor="corr-email">Email (optional)</label>
+          <input id="corr-email" type="email" placeholder="Your email, if you'd like a reply (optional)" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <button type="submit" disabled={state === "sending" || !ready}>{state === "sending" ? "Sending…" : ready ? "Send" : "Checking…"}</button>
+        </div>
+        <div ref={mount} className="ts-box" />
+        {state === "error" && <p className="wl-err">That didn't go through. Try again in a minute.</p>}
+      </form>
+    </section>
+  );
+}
+
 /* ---------------------------- drug industry ---------------------------- */
 
 function IndustryTable({ rows, go }) {
@@ -2985,6 +3209,20 @@ function Industry({ go }) {
       })}
       <p className="colnote">From each company's latest 10-Q, 10-K or 20-F on SEC EDGAR, and ClinicalTrials.gov. Foreign companies' figures are converted to US dollars at today's exchange rate; they report in detail once or twice a year, so their figures can be older (each company page gives the date). Only companies that file with the SEC can be included, which leaves out Roche, Bayer, Merck KGaA, Boehringer Ingelheim, Daiichi Sankyo, Astellas, Sandoz and most Indian, Chinese and European generic and ingredient makers.</p>
     </div>
+  );
+}
+
+function CyberAbout({ go }) {
+  const m = CYBER.meta;
+  return (
+    <section className="panel">
+      <header className="ph"><h2>Cyber Risk: method and fairness</h2></header>
+      <p className="prose">Helixora grades the cybersecurity of every company on the site from two kinds of public information, refreshed weekly. <button className="linkish" onClick={() => go("cyber")}>See the scores</button> or <button className="linkish" onClick={() => go("incidents")}>the incident study</button>.</p>
+      <p className="prose"><b>What companies tell the SEC.</b> Since December 2023, every US-listed company must describe in its annual report how it manages cyber risk (10-K Item 1C; 20-F Item 16K for foreign companies), and must file an 8-K under Item 1.05 within four business days of deciding an incident is material. We read the cybersecurity section and award points for: {(m?.checks || []).map((c) => `${c.label.toLowerCase()} (${c.pts})`).join("; ")}. A company saying it has no dedicated security staff loses 10 points. Every point on a company's Cyber tab shows the sentence that earned it, linked to the filing. We also look for voluntary incident disclosures (8-K Items 8.01 and 7.01) where the company says it found an incident.</p>
+      <p className="prose"><b>What anyone can see.</b> For each company's own website domain we check, passively: whether its email domain is protected against spoofing (DMARC, SPF), whether certificate issuance is restricted (CAA), whether the site uses HTTPS with current encryption, a valid certificate and HSTS, four common browser security headers, and whether it publishes a security.txt file telling researchers how to report a problem. That takes a few DNS lookups and two or three ordinary page requests per company, sent with the user agent "{m?.userAgent || "HelixoraCyberCheck"}". We don't scan ports, test for vulnerabilities, try logins or touch anything a normal visitor wouldn't.</p>
+      <p className="prose"><b>What a grade can't tell you.</b> A strong report and tidy public setup are signs of sound basics, not proof a company is secure; a missing header is common practice, not a breach. The checks only cover a company's main website and email domain. If you work at a company we grade and think a finding is wrong, use the "Something wrong here?" form on its Cyber tab, or the one below. We review every report, correct mistakes and note the change.</p>
+      <CorrectionForm topic="cyber" />
+    </section>
   );
 }
 
@@ -3126,6 +3364,7 @@ const NAV = [
   { k: "markets", l: "Markets", items: [["home", "Overview"], ["company", "Quotes"], ["screen", "Screener"], ["compare", "Compare"], ["industry", "Drug Industry"]] },
   { k: "risk", l: "Financing Risk", items: [["report", "Pressure Report"], ["research", "Research"]] },
   { k: "trials", l: "Trials & FDA", items: [["outlook", "Outlook"], ["catalysts", "Catalyst Calendar"]] },
+  { k: "cyber", l: "Cyber Risk", items: [["cyber", "Cyber Scores"], ["incidents", "Cyber Incidents"]] },
   { k: "ask", l: "Ask Helixora", items: [["ask", "Ask Helixora"]] },
   { k: "about", l: "About us", items: [["about", "About us"]] },
 ];
@@ -3155,7 +3394,7 @@ export default function App() {
   // "method" (the old Methodology page) now opens the About us page at the score section.
   const [anchor, setAnchor] = useState(null);
   const go = (v, t, tab) => {
-    const a = v === "method" ? "score" : null;
+    const a = v === "method" ? "score" : v === "cybermethod" ? "cyber" : null;
     if (a) v = "about";
     if (t) setTicker(t); setCompanyTab(tab || "overview"); setAnchor(a); setView(v);
     if (!a) window.scrollTo({ top: 0, behavior: "smooth" });
@@ -3257,6 +3496,8 @@ export default function App() {
         {view === "catalysts" && <Catalysts go={go} />}
         {view === "compare" && <Compare />}
         {(view === "industry" || view === "bigpharma") && <Industry go={go} />}
+        {view === "cyber" && <CyberScores go={go} />}
+        {view === "incidents" && <CyberIncidents go={go} />}
         {view === "ask" && <Ask />}
         {view === "research" && <Research go={go} />}
         {view === "about" && <About key={anchor || "top"} go={go} anchor={anchor} />}
@@ -3766,6 +4007,16 @@ details.more summary:hover{color:var(--teal);}
 .tl-days{font-size:13px;}
 
 /* calendar */
+.cgrade{display:inline-block;min-width:26px;text-align:center;font-weight:700;font-size:13px;padding:3px 7px;border-radius:4px;color:#fff;}
+.cgrade.big{font-size:34px;min-width:64px;padding:10px 0;border-radius:8px;}
+.cgrade.g-a{background:#1f7a4d;}.cgrade.g-b{background:#4f8f3a;}.cgrade.g-c{background:#b7891b;}.cgrade.g-d{background:#c4622d;}.cgrade.g-f{background:#b4232a;}.cgrade.none{background:var(--rule);color:var(--mut);}
+.cy-head{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}.cy-head .metrics{flex:1;min-width:0;}
+.cy-check td{vertical-align:top;padding:10px 8px;}.cy-mark{width:28px;font-weight:700;}.cy-mark.ok{color:#1f7a4d;}.cy-mark.part{color:#b7891b;}.cy-mark.no{color:#b4232a;}
+.cy-quote{display:block;margin-top:4px;font-size:13px;color:var(--mut);font-style:italic;}
+.cy-inc{margin:8px 0 0;padding-left:18px;}.cy-inc li{margin:6px 0;font-size:14px;}
+.cyber-search{width:100%;max-width:340px;margin:0 0 12px;padding:8px 10px;border:1px solid var(--rule);border-radius:6px;font:inherit;}
+.correction textarea{width:100%;box-sizing:border-box;padding:10px;border:1px solid var(--rule);border-radius:6px;font:inherit;margin:8px 0;}
+tr.noclick{cursor:default;}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
 .chip{font-size:13px;font-weight:600;padding:6px 14px;border:1px solid var(--rule);background:#fff;border-radius:999px;color:var(--mut) !important;transition:background .15s,border-color .15s;}
 .chip:hover{border-color:var(--teal);}
