@@ -742,6 +742,9 @@ function Screen({ go }) {
 function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
   const c = findCo(ticker) || COMPANIES[0];
   const [tab, setTab] = useState(initialTab);
+  // Opened straight to a tab (e.g. Cyber, from the Cyber Scores page): bring the tabs into view.
+  const tabsRef = useRef(null);
+  useEffect(() => { if (initialTab !== "overview") setTimeout(() => tabsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 350); }, [initialTab]);
   const [newShares, setNewShares] = useState(0);
   const [raise, setRaise] = useState(0);
   const [disc, setDisc] = useState(11);
@@ -804,7 +807,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
             <dt>Cash and investments</dt><dd className="num">{money(c.cash)}</dd>
             <dt>Cash runway</dt><dd className={"num " + (r < 12 ? "warn" : "")}>{c.cashFlowPositive ? "Cash flow positive" : fmtRunway(r, "months")}</dd>
             <dt>Next catalyst</dt><dd>{nc ? <>{fmtDate(nc.date)} <span className="sub inline">({days(nc.date)} days)</span></> : "None dated"}</dd>
-            <dt>Research score</dt><dd className="num">{score} <span className="sub inline">of 100</span></dd>
+            <dt>Research score</dt><dd className="num">{Number.isFinite(score) ? <>{score} <span className="sub inline">of 100</span></> : "—"}</dd>
           </dl>
         </div>
         {c.note && <p className="q-note">{c.note}</p>}
@@ -820,7 +823,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
         )}
       </section>
 
-      <nav className="tabs">
+      <nav className="tabs" ref={tabsRef}>
         {tabs.map(([k, l]) => <button key={k} className={tab === k ? "on" : ""} onClick={() => setTab(k)}>{l}</button>)}
       </nav>
 
@@ -1161,7 +1164,7 @@ function Compare() {
     ["Financing Pressure Score", (c) => <BandBadge c={c} />],
     ["Runway-to-catalyst gap", (c) => fmtGap(fpsOf(c).gap), 1],
     ["Raise-ready capacity", (c) => capacityLabel(c)],
-    ["Research score", (c) => bis(c), 1],
+    ["Research score", (c) => { const v = bis(c); return Number.isFinite(v) ? v : "—"; }, 1],
   ];
 
   return (
