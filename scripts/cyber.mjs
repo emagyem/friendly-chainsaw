@@ -139,25 +139,26 @@ function cyberSection(text, form) {
 }
 
 // Each check: what a reader of the section would look for. Points add to 100.
+const ROLE = /\b(Chief Information Security Officer|CISO|Chief Security Officer|(?:Vice President|Head|Director|Senior Director|Manager|Lead)\b[ ,]+(?:of |for )?(?:\w+ ){0,2}(?:Information|Cyber|IT)[- ]?security)\b/i;
 const CHECKS = [
-  ["leader", 15, "Names a security leader (a general IT head earns 8 of 15)", /\b(Chief Information Security Officer|CISO|Chief Security Officer|(?:Vice President|Head|Director)[^.]{0,30}(?:Information|Cyber|IT)[- ]?Security)\b/],
-  ["experience", 5, "Describes that person's experience or credentials", /\b(\d+|more than \w+|over \w+|approximately \w+)\+? years of (?:\w+ ){0,4}experience\b|\b(CISSP|CISM|CISA|CRISC)\b/i],
-  ["board", 15, "A board committee oversees cyber risk", /\b(Audit|Risk|Technology|Cybersecurity|Compliance)[\w ,&]{0,40}Committee\b[^.]{0,120}\b(oversee|oversight|responsib|review)/i],
-  ["cadence", 10, "Says how often the board is briefed", /\b(quarterly|at least (?:annually|twice|semi-annually|once a year)|each regular(?:ly scheduled)? meeting|semi-annual(?:ly)?|monthly)\b[^.]{0,100}\b(report|update|brief|present)|\b(report|update|brief)\w*\b[^.]{0,100}\b(quarterly|at least annually|semi-annually|each regular)/i],
-  ["outside", 10, "Uses outside assessors or testers", /\b(third[- ]party|external|independent|outside)\b[^.]{0,60}\b(assessor|consultant|auditor|penetration|assessment|advisor|expert|firm|audit)/i],
-  ["testing", 5, "Tests defences (penetration tests, tabletop exercises)", /penetration test|tabletop|red[- ]team|vulnerability scan|breach simulation|incident (?:response )?simulation/i],
-  ["irp", 10, "Has an incident response plan", /incident response (?:plan|policy|procedures?|program|playbook)/i],
-  ["framework", 10, "Follows a recognised framework (NIST, ISO 27001, CIS, SOC 2)", /\bNIST\b|ISO(?:\/IEC)?\s?27001|\bCIS (?:Controls|Critical)|\bSOC ?2\b|\bHITRUST\b/i],
-  ["vendors", 10, "Manages third-party and vendor risk", /(third[- ]party|vendor|supplier|service provider)s?\b[^.]{0,80}\b(risk|assess|due diligence|oversight|review|monitor)/i],
-  ["training", 5, "Trains staff (security awareness, phishing tests)", /\b(security awareness|phishing (?:simulation|test|exercise)|cybersecurity training|employee training)\b/i],
-  ["insurance", 5, "Carries cyber insurance", /cyber(?:security)?[- ](?:liability )?insurance/i],
+  ["leader", 15, "Names a security leader (a general IT head earns 8 of 15)", ROLE],
+  ["experience", 5, "Describes that person's experience or credentials", /\b(\d+|[a-z]+-?[a-z]*)\+? years\b[^.]{0,60}\b(experience|in the (?:\w+ ){0,3}(?:field|industry)|in (?:information )?(?:technology|security|cybersecurity))|\b(?:over|more than|nearly|approximately|about)\s+(?:\d+|[a-z]+)\s+years\b|\b(significant|extensive|deep|substantial|broad)\b[^.]{0,30}\bexperience\b|\b(CISSP|CISM|CISA|CRISC|CEH|GIAC)\b/i],
+  ["board", 15, "A board committee or the board oversees cyber risk", /\b(Board|Committee)\b[^.]{0,160}\b(oversight|oversee|oversees|responsib\w*|monitor\w*|receives? (?:\w+ ){0,3}(?:reports?|updates?|briefings?))\b|\b(oversight|oversee|reports?|updates?|briefs?)\b[^.]{0,120}\b(Board of Directors|Audit Committee|Risk Committee|the Board)\b/i],
+  ["cadence", 10, "Says how often the board is briefed", /\b(quarterly|at least (?:annually|twice|semi-annually|once a year|once per year|yearly)|annually|each (?:regular(?:ly scheduled)? )?(?:board |committee )?meeting|semi-annual(?:ly)?|monthly|twice a year|every (?:quarter|year))\b[^.]{0,120}\b(report|update|brief|present|review|meet)|\b(report|update|brief|present|review|meet)\w*\b[^.]{0,120}\b(quarterly|at least (?:annually|twice|semi-annually)|annually|semi-annual(?:ly)?|twice a year|every quarter|each (?:regular(?:ly scheduled)? )?(?:board |committee )?meeting)/i],
+  ["outside", 10, "Uses outside assessors or testers", /\b(third[- ]party|third parties|external|independent|outside)\b[^.]{0,80}\b(assessor|consultant|auditor|penetration|assessment|advisor|expert|firm|audit|vendor|partner|specialist)s?\b/i],
+  ["testing", 5, "Tests defences (penetration tests, simulations, tabletop exercises)", /penetration test|tabletop|red[- ]team|vulnerability (?:scan|assessment|test)|(?:threat|breach|incident|attack|phishing)[- ](?:response )?simulation|simulat\w+ (?:of )?(?:cyber|attack|incident|phishing)/i],
+  ["irp", 10, "Has an incident response plan or process", /incident response|response plans?\b|incident (?:management|handling|escalation) (?:plan|process|policy|procedures?)|escalation (?:path|process|procedures?)\b[^.]{0,80}\bincident/i],
+  ["framework", 10, "Follows a recognised framework (NIST, ISO 27001, CIS, SOC 2)", /\bNIST\b|National Institute of Standards and Technology|ISO(?:\/IEC)?\s?2700[12]|\bCIS (?:Controls|Critical)|Center for Internet Security|\bSOC ?2\b|\bHITRUST\b|\bCOBIT\b/i],
+  ["vendors", 10, "Manages third-party and vendor risk", /(vendors?|suppliers?|service providers?|third[- ]party providers?|business partners)\b[^.]{0,100}\b(risk|assess|due diligence|oversight|review|monitor|evaluat|audit|contract)|\b(risk|assess|due diligence|oversight|review|monitor|evaluat|consider)\w*\b[^.]{0,100}\b(vendors?|suppliers?|service providers?|third[- ]party providers?)\b/i],
+  ["training", 5, "Trains staff (security awareness, phishing tests)", /\b(security awareness|phishing (?:simulation|test|exercise|campaign)s?|(?:cyber|security|data protection)[\w ,-]{0,60}training|train(?:s|ing)? (?:our |all )?(?:employees|personnel|staff|workforce)|(?:employees?|personnel|staff|workforce)\b[^.]{0,60}\btraining|education and training)\b/i],
+  ["insurance", 5, "Carries cyber insurance", /cyber(?:security)?[- ](?:liability |risk )?insurance|insurance[^.]{0,60}\bcyber/i],
 ];
 const NO_STAFF = /\b(do not|does not|don't)\b[^.]{0,30}\b(have|employ|maintain)\b[^.]{0,40}\b(dedicated|full-time|internal|in-house)\b[^.]{0,40}\b(security|cybersecurity|IT|information technology)\b/i;
 const NO_MATERIAL = /\b(have not|has not|did not|are not aware of)\b[^.]{0,80}\b(identified|experienced|encountered|been materially affected|any)\b[^.]{0,120}\b(material|cybersecurity (?:threats|incidents))\b/i;
 
 function scoreGovernance(section) {
   const ss = sentences(section);
-  const IT_HEAD = /\b(Chief Information Officer|CIO|Chief Technology Officer|Chief Digital Officer|(?:Vice President|Head|Director|Senior Director)[^.]{0,20}(?:of )?(?:Information Technology|IT)\b)/;
+  const IT_HEAD = /\b(Chief Information Officer|CIO|Chief Technology Officer|Chief Digital Officer|Chief Information and Digital Officer|(?:Vice President|Head|Director|Senior Director|Manager)\b[^.]{0,25}\b(?:of )?(?:Information Technology|IT|Technology Services)\b)/;
   const items = CHECKS.map(([key, pts, label, re]) => {
     let s = ss.find((x) => re.test(x));
     let got = s ? pts : 0;
