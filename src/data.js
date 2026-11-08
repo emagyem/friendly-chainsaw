@@ -18,6 +18,8 @@ export let HISTORY = { snapshots: [] };
 export let INDUSTRY = [];
 // Cyber Risk: SEC cyber disclosures and passive public-setup checks (scripts/cyber.mjs).
 export let CYBER = { companies: {}, study: null, meta: null };
+// Markets: indexes, yields, commodities, currencies, crypto, funds (scripts/markets.mjs).
+export let MARKETS = { quotes: {}, meta: null };
 
 export async function loadData() {
   try {
@@ -28,6 +30,10 @@ export async function loadData() {
     COMPANIES = json.companies;
     INDUSTRY = Array.isArray(json.industry) ? json.industry : Array.isArray(json.bigPharma) ? json.bigPharma : [];
     META = { ...json.meta, live: true };
+    try {
+      const mk = await fetch(`${import.meta.env.BASE_URL}data/markets.json`, { cache: "no-cache" });
+      if (mk.ok) MARKETS = await mk.json();
+    } catch { /* no markets data yet */ }
     try {
       const cy = await fetch(`${import.meta.env.BASE_URL}data/cyber.json`, { cache: "no-cache" });
       if (cy.ok) CYBER = await cy.json();

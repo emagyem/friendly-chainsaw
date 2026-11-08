@@ -3,7 +3,8 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   ScatterChart, Scatter, ZAxis, ReferenceLine, BarChart, Bar, Cell, AreaChart, Area, ComposedChart
 } from "recharts";
-import { COMPANIES, META, HISTORY, INDUSTRY, CYBER } from "./data.js";
+import { COMPANIES, META, HISTORY, INDUSTRY, CYBER, MARKETS } from "./data.js";
+import { MARKET_GROUPS, TRADABLE_FUNDS } from "../server/markets-list.js";
 // Any company on the site, coverage or drug industry.
 const findCo = (t) => COMPANIES.find((x) => x.t === t) || INDUSTRY.find((x) => x.t === t);
 // Drug-industry segments, in the order the Drug Industry page shows them.
@@ -272,7 +273,7 @@ function TickerStrip({ go }) {
 
 const RANGES = [["1M", 31], ["3M", 92], ["6M", 183], ["1Y", 366]];
 
-function PriceChart({ c, height = 260, compact = false }) {
+function PriceChart({ c, height = 260, compact = false, fmt = null }) {
   const [range, setRange] = useState(compact ? "6M" : "1Y");
   const h = c.quote?.history || [];
   if (h.length < 2) {
@@ -303,11 +304,11 @@ function PriceChart({ c, height = 260, compact = false }) {
           <XAxis dataKey="d" hide={compact} axisLine={false} tickLine={false} minTickGap={48} tick={axisTick}
             tickFormatter={(d) => new Date(d + "T00:00:00").toLocaleDateString("en-US", span > 100 ? { month: "short", year: "2-digit" } : { month: "short", day: "numeric" })} />
           <YAxis orientation="right" hide={compact} domain={["auto", "auto"]} axisLine={false} tickLine={false} width={52} tick={axisTick}
-            tickFormatter={(v) => `$${v < 10 ? v.toFixed(2) : Math.round(v)}`} />
+            tickFormatter={(v) => (fmt ? fmt(v, true) : `$${v < 10 ? v.toFixed(2) : Math.round(v)}`)} />
           <Tooltip cursor={{ stroke: "#8A979E", strokeDasharray: "3 3" }} content={({ payload }) => {
             if (!payload || !payload.length) return null;
             const d = payload[0].payload;
-            return <div className="rtip"><b>{fmtPx(d.p)}</b><br />{fmtDate(d.d)}</div>;
+            return <div className="rtip"><b>{fmt ? fmt(d.p) : fmtPx(d.p)}</b><br />{fmtDate(d.d)}</div>;
           }} />
           <Area type="linear" dataKey="p" stroke={color} strokeWidth={2} fill={color} fillOpacity={0.07}
             dot={false} activeDot={{ r: 4, stroke: "#fff", strokeWidth: 2, fill: color }} isAnimationActive={false} />
@@ -2931,6 +2932,506 @@ function About({ go, anchor }) {
   );
 }
 
+/* ------------------------------ market data ------------------------------ */
+
+const MARKET_NAMES = Object.fromEntries([...MARKET_GROUPS.flatMap((g) => g.items), ...TRADABLE_FUNDS]);
+const unitOf = (s) => (MARKET_GROUPS.find((g) => g.items.some(([x]) => x === s))?.unit) || null;
+// How to show a price: yields as %, currencies to 4 places, indexes without $, everything else in dollars.
+function mfmt(s, v, axis = false) {
+  if (v == null || !isFinite(v)) return "—";
+  if (unitOf(s) === "%") return `${v.toFixed(axis ? 1 : 2)}%`;
+  const isIndex = s.startsWith("^") || s === "DX-Y.NYB";
+  const isFx = s.endsWith("=X");
+  const d = isFx ? (v < 20 ? 4 : 2) : v >= 1000 ? (axis ? 0 : 2) : v < 1 ? 4 : 2;
+  const body = v.toLocaleString("en-US", { minimumFractionDigits: axis ? 0 : d, maximumFractionDigits: d });
+  return isIndex || isFx ? body : `$${body}`;
+}
+
+// Delayed live prices from /api/quotes, refreshed every two minutes while the page is open.
+function useLiveQuotes(symbols) {
+  const key = [...new Set(symbols)].filter(Boolean).sort().join(",");
+  const [live, setLive] = useState({});
+  useEffect(() => {
+    if (!key) return undefined;
+    const run = { stop: false };
+    const load = async () => {
+      const list = key.split(",");
+      const out = {};
+      for (let i = 0; i < list.length; i += 40) {
+        try {
+          const r = await fetch(`/api/quotes?s=${encodeURIComponent(list.slice(i, i + 40).join(","))}`);
+          if (r.ok) Object.assign(out, (await r.json()).quotes || {});
+        } catch { /* keep the end-of-day figures */ }
+      }
+      if (!run.stop) setLive((prev) => ({ ...prev, ...out }));
+    };
+    load();
+    const id = setInterval(() => { if (document.visibilityState === "visible") load(); }, 120000);
+    return () => { run.stop = true; clearInterval(id); };
+  }, [key]);
+  return live;
+}
+
+// The latest price for a symbol: delayed live if we have it, else the daily file.
+function marketQuote(s, live) {
+  const q = MARKETS.quotes?.[s];
+  const l = live?.[s];
+  if (!q && !l) return null;
+  const price = l?.price ?? q?.price, prev = l?.prev ?? q?.prev;
+  return { s, n: MARKET_NAMES[s] || s, price, prev, chg: price != null && prev ? price - prev : null, pct: price != null && prev ? (price / prev - 1) * 100 : null, time: l?.time || null, hi52: q?.hi52, lo52: q?.lo52, history: q?.history || [] };
+}
+
+function MRangeBar({ lo, hi, v }) {
+  if (lo == null || hi == null || v == null || hi <= lo) return <span className="sub">—</span>;
+  const x = Math.max(0, Math.min(100, ((v - lo) / (hi - lo)) * 100));
+  return <span className="mrbar" title="Where the price sits in its 52-week range"><i style={{ left: `${x}%` }} /></span>;
+}
+
+function MarketData() {
+  const all = MARKET_GROUPS.flatMap((g) => g.items.map(([s]) => s));
+  const live = useLiveQuotes(all);
+  const [sel, setSel] = useState("^GSPC");
+  const board = ["^GSPC", "^DJI", "^IXIC", "^NBI", "^TNX", "CL=F", "GC=F", "BTC-USD"];
+  if (!Object.keys(MARKETS.quotes || {}).length) return <section className="panel"><header className="ph"><h2>Market Data</h2></header><p className="prose">Market data arrives with the next daily refresh.</p></section>;
+  const q = marketQuote(sel, live);
+  const lastLive = Object.values(live).map((x) => x.time).filter(Boolean).sort().at(-1);
+  const yr = (x) => (x?.history?.length > 1 ? (x.price / x.history.find(([d]) => d >= new Date(Date.parse(x.history.at(-1)[0]) - 365 * 86400000).toISOString().slice(0, 10))[1] - 1) * 100 : null);
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">Market Data</p>
+        <h1 className="report-h">Markets at a glance</h1>
+        <div className="mboard">{board.map((s) => { const x = marketQuote(s, live); return x ? (
+          <button key={s} className={"mtile" + (sel === s ? " on" : "")} onClick={() => setSel(s)}>
+            <span>{x.n.replace(/,.*$/, "")}</span><b>{mfmt(s, x.price)}</b><em className={dirOf(x.pct)}><Arrow v={x.pct} />{signed(x.pct)}%</em>
+          </button>) : null; })}</div>
+        <p className="byline">{lastLive ? `Delayed prices, last updated ${new Date(lastLive).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" })}` : `End-of-day prices as of ${fmtDate((MARKETS.meta?.generatedAt || "").slice(0, 10))}`}. US stock prices are delayed at least 15 minutes. Source: Yahoo Finance.</p>
+      </section>
+      {q && (
+        <section className="panel">
+          <header className="ph"><h2>{q.n}</h2><span className="ph-note"><b className="num">{mfmt(sel, q.price)}</b> <span className={dirOf(q.pct)}>{signed(q.chg, unitOf(sel) === "%" ? 3 : 2)} ({signed(q.pct)}%)</span></span></header>
+          <PriceChart key={sel} c={{ quote: { history: q.history } }} fmt={(v, axis) => mfmt(sel, v, axis)} />
+        </section>
+      )}
+      {MARKET_GROUPS.map((g) => (
+        <section className="panel" key={g.k}>
+          <header className="ph"><h2>{g.l}</h2></header>
+          <div className="tablewrap">
+            <table className="grid">
+              <thead><tr><th>Name</th><th className="r">Last</th><th className="r">Change</th><th className="r">%</th><th className="r hide-sm">52-week range</th><th className="r">1 year</th></tr></thead>
+              <tbody>{g.items.map(([s]) => { const x = marketQuote(s, live); if (!x) return null; const y = yr(x); return (
+                <tr key={s} onClick={() => { setSel(s); window.scrollTo({ top: 0, behavior: "smooth" }); }} className={sel === s ? "selrow" : ""}>
+                  <td className="nm">{x.n}<span className="sub">{s}</span></td>
+                  <td className="r num">{mfmt(s, x.price)}</td>
+                  <td className={"r num " + dirOf(x.chg)}>{signed(x.chg, unitOf(s) === "%" ? 3 : x.price < 20 ? 4 : 2)}</td>
+                  <td className={"r num " + dirOf(x.pct)}>{signed(x.pct)}%</td>
+                  <td className="r hide-sm"><MRangeBar lo={x.lo52} hi={x.hi52} v={x.price} /></td>
+                  <td className={"r num " + dirOf(y)}>{y == null ? "—" : `${signed(y, 1)}%`}</td>
+                </tr>); })}</tbody>
+            </table>
+          </div>
+        </section>
+      ))}
+      <p className="colnote">Treasury yields are shown in percent. Commodity prices are front-month futures. Currency rows read as written ("Euro in dollars" is how many dollars one euro buys). For information only; not an offer or advice to trade.</p>
+    </div>
+  );
+}
+
+/* ---------------------------- virtual exchange ---------------------------- */
+
+const VSE_KEY = "helixora-vse-v1";
+const START_CASH = 100000;
+const nowIso = () => new Date().toISOString();
+const todayIso = () => nowIso().slice(0, 10);
+function loadAccount() {
+  try { const a = JSON.parse(localStorage.getItem(VSE_KEY) || "null"); if (a && typeof a.cash === "number") return a; } catch { /* storage blocked */ }
+  return null;
+}
+function saveAccount(a) { try { localStorage.setItem(VSE_KEY, JSON.stringify(a)); } catch { /* storage blocked: the game still works until the page closes */ } }
+const usd = (v, d = 2) => (v == null || !isFinite(v) ? "—" : `${v < 0 ? "−" : ""}$${Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d })}`);
+
+// Everything tradable: the companies on the site and a handful of broad funds.
+function tradables() {
+  const cos = [...COMPANIES, ...INDUSTRY].map((c) => ({ s: c.t, n: c.n, kind: c.group ? "Drug industry" : "Biotech", price: c.quote?.price ?? null, prev: c.quote?.prev ?? null }));
+  const funds = TRADABLE_FUNDS.map(([s, n]) => ({ s, n, kind: "Fund", price: MARKETS.quotes?.[s]?.price ?? null, prev: MARKETS.quotes?.[s]?.prev ?? null }));
+  return [...funds, ...cos].filter((x) => x.price > 0);
+}
+
+function VirtualExchange({ go }) {
+  const universe = useMemo(() => tradables(), []);
+  const bySym = useMemo(() => Object.fromEntries(universe.map((x) => [x.s, x])), [universe]);
+  const [acct, setAcct] = useState(loadAccount);
+  const [sym, setSym] = useState("SPY");
+  const [side, setSide] = useState("buy");
+  const [qty, setQty] = useState("10");
+  const [msg, setMsg] = useState(null);
+  const [confirmReset, setConfirmReset] = useState(false);
+  const held = Object.keys(acct?.positions || {});
+  const live = useLiveQuotes([...held, sym, "SPY"]);
+  const px = (s) => live[s]?.price ?? bySym[s]?.price ?? null;
+
+  const start = () => {
+    const a = { cash: START_CASH, created: todayIso(), spyAtStart: px("SPY"), positions: {}, trades: [], history: [[todayIso(), START_CASH]] };
+    saveAccount(a); setAcct(a); setMsg(null);
+  };
+  const value = acct ? acct.cash + Object.entries(acct.positions).reduce((t, [s, p]) => t + p.shares * (px(s) ?? p.cost), 0) : 0;
+  // One value snapshot per day, for the chart.
+  useEffect(() => {
+    if (!acct) return;
+    const d = todayIso();
+    const h = acct.history || [];
+    if (!h.length || h.at(-1)[0] !== d || Math.abs(h.at(-1)[1] - value) > 0.005) {
+      const next = { ...acct, history: [...h.filter(([x]) => x !== d), [d, Math.round(value * 100) / 100]] };
+      saveAccount(next);
+    }
+  }, [acct, value]);
+
+  if (!acct) {
+    return (
+      <div className="stack">
+        <section className="panel report-head">
+          <p className="kicker-static">Virtual Exchange</p>
+          <h1 className="report-h">Practise investing with $100,000 of pretend money</h1>
+          <p className="lead-dek">Buy and sell the {COMPANIES.length + INDUSTRY.length} companies on Helixora and {TRADABLE_FUNDS.length} broad funds at delayed market prices, and see how you'd do against the S&P 500. Nothing is real: no money, no account, no sign-up. Your portfolio is saved in this browser only.</p>
+          <button className="btn-primary" onClick={start}>Start with $100,000</button>
+        </section>
+      </div>
+    );
+  }
+
+  const q = bySym[sym];
+  const price = px(sym);
+  const n = Math.floor(Number(qty));
+  const pos = acct.positions[sym];
+  const cost = n > 0 && price ? n * price : 0;
+  const trade = (e) => {
+    e.preventDefault();
+    if (!q || !price) return setMsg({ bad: true, text: "No price for that symbol right now." });
+    if (!(n > 0)) return setMsg({ bad: true, text: "Enter a whole number of shares." });
+    const a = { ...acct, positions: { ...acct.positions }, trades: [...acct.trades] };
+    if (side === "buy") {
+      if (cost > a.cash + 1e-9) return setMsg({ bad: true, text: `Not enough cash: that costs ${usd(cost)} and you have ${usd(a.cash)}.` });
+      const p = a.positions[sym] || { shares: 0, cost: 0 };
+      a.positions[sym] = { shares: p.shares + n, cost: (p.shares * p.cost + cost) / (p.shares + n) };
+      a.cash -= cost;
+    } else {
+      if (!pos || pos.shares < n) return setMsg({ bad: true, text: `You hold ${pos?.shares || 0} shares of ${sym}.` });
+      const left = pos.shares - n;
+      if (left) a.positions[sym] = { ...pos, shares: left }; else delete a.positions[sym];
+      a.cash += cost;
+    }
+    a.trades.unshift({ at: nowIso(), s: sym, side, shares: n, price, gain: side === "sell" ? (price - pos.cost) * n : null });
+    a.cash = Math.round(a.cash * 100) / 100;
+    saveAccount(a); setAcct(a);
+    setMsg({ text: `${side === "buy" ? "Bought" : "Sold"} ${n} ${sym} at ${usd(price)} for ${usd(cost)}.` });
+  };
+
+  const ret = (value / START_CASH - 1) * 100;
+  const spyNow = px("SPY");
+  const spyRet = acct.spyAtStart && spyNow ? (spyNow / acct.spyAtStart - 1) * 100 : null;
+  const rows = Object.entries(acct.positions).map(([s, p]) => {
+    const last = px(s) ?? p.cost;
+    return { s, n: bySym[s]?.n || s, ...p, last, val: p.shares * last, gain: (last - p.cost) * p.shares, pct: (last / p.cost - 1) * 100, day: live[s]?.prev ?? bySym[s]?.prev };
+  }).sort((a, b) => b.val - a.val);
+  const hist = (acct.history || []).map(([d, v]) => [d, v]);
+
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">Virtual Exchange</p>
+        <h1 className="report-h">Your practice portfolio</h1>
+        <div className="metrics four">
+          <div className="metric"><span>Portfolio value</span><b>{usd(value)}</b></div>
+          <div className="metric"><span>Return since {fmtDate(acct.created)}</span><b className={dirOf(ret)}>{signed(ret)}%</b></div>
+          <div className="metric"><span>S&P 500 (SPY) over the same time</span><b className={dirOf(spyRet)}>{spyRet == null ? "—" : `${signed(spyRet)}%`}</b></div>
+          <div className="metric"><span>Cash to invest</span><b>{usd(acct.cash)}</b></div>
+        </div>
+        <p className="byline">Pretend money and delayed prices; saved in this browser only. Trades fill instantly at the latest delayed price, with no fees.</p>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Place a trade</h2></header>
+        <form className="ticket" onSubmit={trade}>
+          <label>Stock or fund
+            <input list="vse-syms" value={sym} onChange={(e) => { setSym(e.target.value.toUpperCase().split(" ")[0]); setMsg(null); }} />
+            <datalist id="vse-syms">{universe.map((x) => <option key={x.s} value={x.s}>{x.n} · {x.kind}</option>)}</datalist>
+          </label>
+          <div className="seg2" role="group" aria-label="Buy or sell">
+            <button type="button" className={side === "buy" ? "on" : ""} onClick={() => setSide("buy")}>Buy</button>
+            <button type="button" className={side === "sell" ? "on" : ""} onClick={() => setSide("sell")}>Sell</button>
+          </div>
+          <label>Shares<input type="number" min="1" step="1" inputMode="numeric" value={qty} onChange={(e) => setQty(e.target.value)} /></label>
+          <div className="ticket-sum">
+            {q ? <><b>{q.n}</b> · {usd(price)} {live[sym] ? <span className="sub">delayed</span> : <span className="sub">last close</span>}<br />{n > 0 ? `${side === "buy" ? "Cost" : "Proceeds"}: ${usd(cost)}` : ""}{pos ? <span className="sub"> · you hold {pos.shares}</span> : null}</> : <span className="sub">Pick a symbol from the list.</span>}
+          </div>
+          <button type="submit" className="btn-primary" disabled={!q}>{side === "buy" ? "Buy" : "Sell"}</button>
+        </form>
+        {msg && <p className={msg.bad ? "wl-err" : "wl-done"}>{msg.text}</p>}
+        {q && findCo(sym) && <p className="colnote"><button className="linkish" onClick={() => go("company", sym)}>Research {sym} on Helixora</button> before you buy.</p>}
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Holdings</h2><span className="ph-note">{rows.length} positions</span></header>
+        {rows.length ? (
+          <div className="tablewrap">
+            <table className="grid">
+              <thead><tr><th>Holding</th><th className="r">Shares</th><th className="r">Avg cost</th><th className="r">Last</th><th className="r">Value</th><th className="r">Gain</th><th></th></tr></thead>
+              <tbody>{rows.map((r) => (
+                <tr key={r.s} className="noclick">
+                  <td className="nm"><span className="tick">{r.s}</span> {r.n}</td>
+                  <td className="r num">{r.shares}</td>
+                  <td className="r num">{usd(r.cost)}</td>
+                  <td className="r num">{usd(r.last)}</td>
+                  <td className="r num">{usd(r.val)}</td>
+                  <td className={"r num " + dirOf(r.gain)}>{usd(r.gain)} ({signed(r.pct, 1)}%)</td>
+                  <td className="r"><button className="linkish" onClick={() => { setSym(r.s); setSide("sell"); setQty(String(r.shares)); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Sell</button></td>
+                </tr>
+              ))}</tbody>
+            </table>
+          </div>
+        ) : <p className="prose">No holdings yet. Try buying a broad fund like SPY, or a company from the Financing Pressure report.</p>}
+      </section>
+
+      {hist.length > 1 && (
+        <section className="panel">
+          <header className="ph"><h2>Portfolio value</h2></header>
+          <PriceChart c={{ quote: { history: hist } }} fmt={(v, axis) => (axis ? `$${Math.round(v / 1000)}k` : usd(v))} />
+        </section>
+      )}
+
+      <section className="panel">
+        <header className="ph"><h2>Trade history</h2></header>
+        {acct.trades.length ? (
+          <ul className="cy-inc">{acct.trades.slice(0, 50).map((t, i) => (
+            <li key={t.at + i}>{new Date(t.at).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })} · <b>{t.side === "buy" ? "Bought" : "Sold"}</b> {t.shares} {t.s} at {usd(t.price)}{t.gain != null ? <span className={dirOf(t.gain)}> · {t.gain >= 0 ? "gain" : "loss"} {usd(Math.abs(t.gain))}</span> : null}</li>
+          ))}</ul>
+        ) : <p className="prose">Your trades will be listed here.</p>}
+        <p className="colnote">
+          {confirmReset
+            ? <>Start over with $100,000? Your holdings and history will be cleared. <button className="linkish" onClick={() => { start(); setConfirmReset(false); }}>Yes, start over</button> · <button className="linkish" onClick={() => setConfirmReset(false)}>Cancel</button></>
+            : <button className="linkish" onClick={() => setConfirmReset(true)}>Start over</button>}
+        </p>
+      </section>
+      <p className="colnote">The Virtual Exchange is a learning tool. It isn't connected to a broker, and nothing here is a recommendation to buy or sell.</p>
+    </div>
+  );
+}
+
+/* ---------------------------- money calculators ---------------------------- */
+
+// 2026 federal income tax (IRS, inflation adjustments for tax year 2026, incl. One Big Beautiful Bill amendments).
+const TAX_2026 = {
+  single: { label: "Single", std: 16100, brackets: [[12400, 10], [50400, 12], [105700, 22], [201775, 24], [256225, 32], [640600, 35], [Infinity, 37]] },
+  mfj: { label: "Married filing jointly", std: 32200, brackets: [[24800, 10], [100800, 12], [211400, 22], [403550, 24], [512450, 32], [768700, 35], [Infinity, 37]] },
+};
+function NumIn({ label, value, set, step = 1, min = 0, suffix, prefix, hint }) {
+  return (
+    <label className="calc-in">
+      <span>{label}</span>
+      <span className="calc-box">{prefix && <i>{prefix}</i>}<input type="number" inputMode="decimal" step={step} min={min} value={value} onChange={(e) => set(e.target.value === "" ? "" : Number(e.target.value))} />{suffix && <i>{suffix}</i>}</span>
+      {hint && <small>{hint}</small>}
+    </label>
+  );
+}
+const n0 = (v) => (v === "" || v == null || !isFinite(v) ? 0 : Number(v));
+
+function RetirementCalc() {
+  const [age, setAge] = useState(35), [retire, setRetire] = useState(65), [saved, setSaved] = useState(50000), [monthly, setMonthly] = useState(800);
+  const [ret, setRet] = useState(6), [infl, setInfl] = useState(2.5), [wd, setWd] = useState(4);
+  const years = Math.max(0, n0(retire) - n0(age));
+  const r = n0(ret) / 100 / 12;
+  const series = [];
+  let bal = n0(saved);
+  for (let m = 0; m <= years * 12; m++) {
+    if (m % 12 === 0) series.push({ d: n0(age) + m / 12, p: Math.round(bal), real: Math.round(bal / Math.pow(1 + n0(infl) / 100, m / 12)) });
+    bal = bal * (1 + r) + n0(monthly);
+  }
+  const end = series.at(-1) || { p: 0, real: 0 };
+  const contributed = n0(saved) + n0(monthly) * 12 * years;
+  return (
+    <div className="calc">
+      <div className="calc-form">
+        <NumIn label="Your age" value={age} set={setAge} /><NumIn label="Retirement age" value={retire} set={setRetire} />
+        <NumIn label="Saved so far" prefix="$" value={saved} set={setSaved} step={1000} /><NumIn label="Added each month" prefix="$" value={monthly} set={setMonthly} step={50} />
+        <NumIn label="Yearly return" suffix="%" value={ret} set={setRet} step={0.5} hint="Before inflation. Stocks have averaged roughly 7–10% a year over long periods, with big swings." />
+        <NumIn label="Inflation" suffix="%" value={infl} set={setInfl} step={0.25} /><NumIn label="Withdrawal rate" suffix="%" value={wd} set={setWd} step={0.25} hint="The share you'd take out in the first year of retirement. 4% is a common rule of thumb." />
+      </div>
+      <div className="calc-out">
+        <div className="metrics four">
+          <div className="metric"><span>At {n0(retire)}</span><b>{usd(end.p, 0)}</b></div>
+          <div className="metric"><span>In today's dollars</span><b>{usd(end.real, 0)}</b></div>
+          <div className="metric"><span>Income a month, today's dollars</span><b>{usd(end.real * n0(wd) / 100 / 12, 0)}</b></div>
+          <div className="metric"><span>You put in</span><b>{usd(contributed, 0)}</b></div>
+        </div>
+        {series.length > 1 && (
+          <ResponsiveContainer width="100%" height={240}>
+            <AreaChart data={series} margin={{ top: 6, right: 0, bottom: 0, left: 0 }}>
+              <CartesianGrid stroke="#E4E9EB" vertical={false} />
+              <XAxis dataKey="d" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#5E6B73" }} />
+              <YAxis orientation="right" axisLine={false} tickLine={false} width={56} tick={{ fontSize: 11, fill: "#5E6B73" }} tickFormatter={(v) => (v >= 1e6 ? `$${(v / 1e6).toFixed(1)}M` : `$${Math.round(v / 1000)}k`)} />
+              <Tooltip formatter={(v, k) => [usd(v, 0), k === "p" ? "Balance" : "In today's dollars"]} labelFormatter={(l) => `Age ${l}`} />
+              <Area type="monotone" dataKey="p" stroke={UP} fill={UP} fillOpacity={0.08} strokeWidth={2} isAnimationActive={false} />
+              <Area type="monotone" dataKey="real" stroke="#5E6B73" fill="none" strokeDasharray="4 3" strokeWidth={1.5} isAnimationActive={false} />
+            </AreaChart>
+          </ResponsiveContainer>
+        )}
+        <p className="colnote">Assumes a steady return, monthly additions and monthly compounding, with no taxes or fees. Real markets go up and down, so treat this as a rough guide, not a promise.</p>
+      </div>
+    </div>
+  );
+}
+
+const BUDGET_ROWS = [
+  ["needs", "Housing (rent or mortgage)", 1600], ["needs", "Utilities and phone", 250], ["needs", "Groceries", 500], ["needs", "Transport", 350], ["needs", "Insurance and health", 300], ["needs", "Minimum debt payments", 150],
+  ["wants", "Eating out", 250], ["wants", "Entertainment and subscriptions", 150], ["wants", "Shopping", 200], ["wants", "Travel and other", 150],
+  ["save", "Savings and investing", 600], ["save", "Extra debt payments", 100],
+];
+function BudgetCalc() {
+  const [income, setIncome] = useState(5500);
+  const [vals, setVals] = useState(() => BUDGET_ROWS.map(([, , v]) => v));
+  const sum = (k) => BUDGET_ROWS.reduce((t, [g], i) => t + (g === k ? n0(vals[i]) : 0), 0);
+  const total = sum("needs") + sum("wants") + sum("save");
+  const parts = [["needs", "Needs", 50], ["wants", "Wants", 30], ["save", "Savings & debt", 20]];
+  return (
+    <div className="calc">
+      <div className="calc-form">
+        <NumIn label="Take-home pay a month" prefix="$" value={income} set={setIncome} step={100} hint="After tax and payroll deductions." />
+        {BUDGET_ROWS.map(([g, l], i) => <NumIn key={l} label={`${l} · ${g === "needs" ? "need" : g === "wants" ? "want" : "saving"}`} prefix="$" step={25} value={vals[i]} set={(v) => setVals((x) => x.map((y, j) => (j === i ? v : y)))} />)}
+      </div>
+      <div className="calc-out">
+        <p className="prose">The 50/30/20 guide splits take-home pay into about half for needs, 30% for wants and 20% for saving and paying down debt.</p>
+        {parts.map(([k, l, target]) => {
+          const amt = sum(k), share = n0(income) ? (amt / n0(income)) * 100 : 0;
+          const off = k === "save" ? share < target - 2 : share > target + 2;
+          return (
+            <div className="budget-row" key={k}>
+              <div><b>{l}</b> <span className="sub">{usd(amt, 0)} · {share.toFixed(0)}% of pay · guide {target}% ({usd(n0(income) * target / 100, 0)})</span></div>
+              <div className="budget-bar"><i style={{ width: `${Math.min(100, share)}%` }} className={off ? "warn" : ""} /><em style={{ left: `${target}%` }} /></div>
+            </div>
+          );
+        })}
+        <div className="metrics four">
+          <div className="metric"><span>Planned spending and saving</span><b>{usd(total, 0)}</b></div>
+          <div className="metric"><span>{n0(income) - total >= 0 ? "Left over" : "Over budget by"}</span><b className={n0(income) - total >= 0 ? "up" : "down"}>{usd(Math.abs(n0(income) - total), 0)}</b></div>
+        </div>
+        <p className="colnote">A guide, not a rule: in high-cost cities, needs often take more than half. What matters most is that the total fits your pay and something goes to savings every month.</p>
+      </div>
+    </div>
+  );
+}
+
+function MortgageCalc() {
+  const [price, setPrice] = useState(400000), [down, setDown] = useState(20), [rate, setRate] = useState(6.25), [term, setTerm] = useState(30);
+  const [taxPct, setTaxPct] = useState(1.1), [ins, setIns] = useState(1800), [hoa, setHoa] = useState(0);
+  const loan = n0(price) * (1 - n0(down) / 100);
+  const r = n0(rate) / 100 / 12, nper = n0(term) * 12;
+  const pi = nper ? (r ? (loan * r) / (1 - Math.pow(1 + r, -nper)) : loan / nper) : 0;
+  const pmi = n0(down) < 20 ? (loan * 0.005) / 12 : 0;
+  const tax = (n0(price) * n0(taxPct)) / 100 / 12, insM = n0(ins) / 12;
+  const monthly = pi + pmi + tax + insM + n0(hoa);
+  const series = [];
+  let bal = loan, interest = 0;
+  for (let m = 0; m <= nper; m++) {
+    if (m % 12 === 0) series.push({ d: m / 12, p: Math.max(0, Math.round(bal)) });
+    const i = bal * r; interest += i; bal = bal + i - pi;
+  }
+  return (
+    <div className="calc">
+      <div className="calc-form">
+        <NumIn label="Home price" prefix="$" value={price} set={setPrice} step={5000} /><NumIn label="Down payment" suffix="%" value={down} set={setDown} step={1} />
+        <NumIn label="Interest rate" suffix="%" value={rate} set={setRate} step={0.125} /><NumIn label="Loan term" suffix="years" value={term} set={setTerm} step={5} />
+        <NumIn label="Property tax" suffix="% a year" value={taxPct} set={setTaxPct} step={0.1} hint="Varies a lot by place; check your county's rate." />
+        <NumIn label="Home insurance" prefix="$" suffix="a year" value={ins} set={setIns} step={100} /><NumIn label="HOA dues" prefix="$" suffix="a month" value={hoa} set={setHoa} step={25} />
+      </div>
+      <div className="calc-out">
+        <div className="metrics four">
+          <div className="metric"><span>Monthly payment, all in</span><b>{usd(monthly, 0)}</b></div>
+          <div className="metric"><span>Principal and interest</span><b>{usd(pi, 0)}</b></div>
+          <div className="metric"><span>Loan amount</span><b>{usd(loan, 0)}</b></div>
+          <div className="metric"><span>Total interest over the loan</span><b>{usd(interest, 0)}</b></div>
+        </div>
+        <table className="grid plain"><tbody>
+          <tr><td>Principal and interest</td><td className="r num">{usd(pi)}</td></tr>
+          <tr><td>Property tax</td><td className="r num">{usd(tax)}</td></tr>
+          <tr><td>Home insurance</td><td className="r num">{usd(insM)}</td></tr>
+          {pmi > 0 && <tr><td>Mortgage insurance (PMI), estimated at 0.5% a year until you reach 20% equity</td><td className="r num">{usd(pmi)}</td></tr>}
+          {n0(hoa) > 0 && <tr><td>HOA dues</td><td className="r num">{usd(n0(hoa))}</td></tr>}
+        </tbody></table>
+        {series.length > 1 && (
+          <ResponsiveContainer width="100%" height={200}>
+            <AreaChart data={series} margin={{ top: 6, right: 0, bottom: 0, left: 0 }}>
+              <CartesianGrid stroke="#E4E9EB" vertical={false} />
+              <XAxis dataKey="d" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#5E6B73" }} tickFormatter={(v) => `Yr ${v}`} />
+              <YAxis orientation="right" axisLine={false} tickLine={false} width={56} tick={{ fontSize: 11, fill: "#5E6B73" }} tickFormatter={(v) => `$${Math.round(v / 1000)}k`} />
+              <Tooltip formatter={(v) => [usd(v, 0), "Loan balance"]} labelFormatter={(l) => `Year ${l}`} />
+              <Area type="monotone" dataKey="p" stroke="#0f766e" fill="#0f766e" fillOpacity={0.08} strokeWidth={2} isAnimationActive={false} />
+            </AreaChart>
+          </ResponsiveContainer>
+        )}
+        <p className="colnote">A fixed-rate estimate. Lenders' fees, your credit and local taxes change the real figure; get a Loan Estimate from a lender before you decide.</p>
+      </div>
+    </div>
+  );
+}
+
+function TaxCalc() {
+  const [status, setStatus] = useState("single"), [gross, setGross] = useState(85000), [pre, setPre] = useState(6000);
+  const t = TAX_2026[status];
+  const taxable = Math.max(0, n0(gross) - n0(pre) - t.std);
+  let prev = 0, tax = 0, marginal = 10;
+  const rows = [];
+  for (const [top, rate] of t.brackets) {
+    const slice = Math.max(0, Math.min(taxable, top) - prev);
+    if (slice > 0) { rows.push({ from: prev, to: Math.min(taxable, top), rate, tax: slice * rate / 100 }); tax += slice * rate / 100; marginal = rate; }
+    prev = top;
+    if (taxable <= top) break;
+  }
+  return (
+    <div className="calc">
+      <div className="calc-form">
+        <label className="calc-in"><span>Filing status</span><select value={status} onChange={(e) => setStatus(e.target.value)}>{Object.entries(TAX_2026).map(([k, v]) => <option key={k} value={k}>{v.label}</option>)}</select></label>
+        <NumIn label="Income for the year" prefix="$" value={gross} set={setGross} step={1000} hint="Wages and other taxable income." />
+        <NumIn label="Pre-tax retirement savings" prefix="$" value={pre} set={setPre} step={500} hint="E.g. traditional 401(k) contributions." />
+      </div>
+      <div className="calc-out">
+        <div className="metrics four">
+          <div className="metric"><span>Federal income tax</span><b>{usd(tax, 0)}</b></div>
+          <div className="metric"><span>Top (marginal) rate</span><b>{marginal}%</b></div>
+          <div className="metric"><span>Average (effective) rate</span><b>{n0(gross) ? ((tax / n0(gross)) * 100).toFixed(1) : "0.0"}%</b></div>
+          <div className="metric"><span>Taxable income</span><b>{usd(taxable, 0)}</b></div>
+        </div>
+        <p className="prose">After the {usd(t.std, 0)} standard deduction, each slice of income is taxed at its own rate. Only the part above a threshold pays the higher rate.</p>
+        <table className="grid plain"><thead><tr><th>Income slice</th><th className="r">Rate</th><th className="r">Tax</th></tr></thead><tbody>
+          {rows.map((r) => <tr key={r.rate}><td>{usd(r.from, 0)} – {usd(r.to, 0)}</td><td className="r num">{r.rate}%</td><td className="r num">{usd(r.tax, 0)}</td></tr>)}
+        </tbody></table>
+        <p className="colnote">2026 federal income tax brackets and standard deduction from the IRS. This leaves out tax credits, itemized and other deductions (such as those for seniors, tips or overtime), capital gains rates, Social Security and Medicare tax, and state tax. For a real return, use tax software or a tax professional.</p>
+      </div>
+    </div>
+  );
+}
+
+function MoneyCalculators() {
+  const tabs = [["retire", "Retirement"], ["budget", "Budget"], ["mortgage", "Mortgage"], ["tax", "Income tax"]];
+  const [tab, setTab] = useState("retire");
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">Money Calculators</p>
+        <h1 className="report-h">Work out the numbers yourself</h1>
+        <p className="lead-dek">Four calculators that show their maths: how much you could have for retirement, whether your budget balances, what a mortgage really costs a month, and how US federal income tax brackets work. Nothing you type leaves your browser.</p>
+      </section>
+      <section className="panel">
+        <nav className="tabs">{tabs.map(([k, l]) => <button key={k} className={tab === k ? "on" : ""} onClick={() => setTab(k)}>{l}</button>)}</nav>
+        {tab === "retire" && <RetirementCalc />}
+        {tab === "budget" && <BudgetCalc />}
+        {tab === "mortgage" && <MortgageCalc />}
+        {tab === "tax" && <TaxCalc />}
+      </section>
+      <p className="colnote">For learning and planning only, not financial, tax or legal advice.</p>
+    </div>
+  );
+}
+
 /* ------------------------------ cyber risk ------------------------------ */
 
 const GRADE_TONE = { A: "g-a", B: "g-b", C: "g-c", D: "g-d", F: "g-f" };
@@ -3364,10 +3865,11 @@ function Wordmark({ underline = false }) {
 
 // Sections and their pages, grouped the way a financial news site groups them.
 const NAV = [
-  { k: "markets", l: "Markets", items: [["home", "Overview"], ["company", "Quotes"], ["screen", "Screener"], ["compare", "Compare"], ["industry", "Drug Industry"]] },
+  { k: "markets", l: "Markets", items: [["home", "Overview"], ["company", "Quotes"], ["screen", "Screener"], ["compare", "Compare"], ["industry", "Drug Industry"], ["marketdata", "Market Data"]] },
   { k: "risk", l: "Financing Risk", items: [["report", "Pressure Report"], ["research", "Research"]] },
   { k: "trials", l: "Trials & FDA", items: [["outlook", "Outlook"], ["catalysts", "Catalyst Calendar"]] },
   { k: "cyber", l: "Cyber Risk", items: [["cyber", "Cyber Scores"], ["incidents", "Cyber Incidents"]] },
+  { k: "tools", l: "Tools", items: [["trade", "Virtual Exchange"], ["calc", "Money Calculators"]] },
   { k: "ask", l: "Ask Helixora", items: [["ask", "Ask Helixora"]] },
   { k: "about", l: "About us", items: [["about", "About us"]] },
 ];
@@ -3500,6 +4002,9 @@ export default function App() {
         {view === "compare" && <Compare />}
         {(view === "industry" || view === "bigpharma") && <Industry go={go} />}
         {view === "cyber" && <CyberScores go={go} />}
+        {view === "marketdata" && <MarketData />}
+        {view === "trade" && <VirtualExchange go={go} />}
+        {view === "calc" && <MoneyCalculators />}
         {view === "incidents" && <CyberIncidents go={go} />}
         {view === "ask" && <Ask />}
         {view === "research" && <Research go={go} />}
@@ -4010,6 +4515,27 @@ details.more summary:hover{color:var(--teal);}
 .tl-days{font-size:13px;}
 
 /* calendar */
+.btn-primary{display:inline-block;padding:10px 18px;border:0;border-radius:6px;background:var(--ink,#0b1418);color:#fff;font:inherit;font-weight:600;cursor:pointer;}.btn-primary:disabled{opacity:.5;cursor:default;}
+.ticket{display:grid;grid-template-columns:minmax(0,1.3fr) auto minmax(0,.7fr) minmax(0,1.6fr) auto;gap:14px;align-items:end;}
+.ticket label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mut);}.ticket input{padding:9px 10px;border:1px solid var(--rule);border-radius:6px;font:inherit;color:var(--ink,#0b1418);min-width:0;}
+.ticket-sum{font-size:14px;line-height:1.4;align-self:center;}
+.seg2{display:inline-flex;border:1px solid var(--rule);border-radius:6px;overflow:hidden;}.seg2 button{padding:9px 14px;border:0;background:transparent;font:inherit;cursor:pointer;}.seg2 button.on{background:var(--ink,#0b1418);color:#fff;}
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:28px;margin-top:16px;}
+.calc-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px;align-content:start;}
+.calc-in{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mut);}.calc-in small{font-size:12px;line-height:1.35;}
+.calc-box{display:flex;align-items:center;border:1px solid var(--rule);border-radius:6px;background:var(--paper,#fff);}.calc-box i{font-style:normal;padding:0 8px;color:var(--mut);font-size:13px;white-space:nowrap;}.calc-box input{flex:1;min-width:0;border:0;padding:9px 8px;font:inherit;background:transparent;color:var(--ink,#0b1418);}
+.calc-in select{padding:9px 8px;border:1px solid var(--rule);border-radius:6px;font:inherit;}
+.calc-out{min-width:0;}
+.budget-row{margin:14px 0;}.budget-bar{position:relative;height:10px;border-radius:5px;background:var(--rule);margin-top:6px;}.budget-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:#0f766e;}.budget-bar i.warn{background:#c4622d;}.budget-bar em{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink,#0b1418);}
+@media (max-width:900px){.ticket{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}.ticket-sum{grid-column:1/-1;}.calc{grid-template-columns:minmax(0,1fr);}}
+@media (max-width:480px){.calc-form{grid-template-columns:minmax(0,1fr);}}
+.mboard{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0 8px;}
+.mtile{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 14px;border:1px solid var(--rule);border-radius:8px;background:var(--paper,#fff);font:inherit;text-align:left;cursor:pointer;min-width:0;}
+.mtile span{font-size:12px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}.mtile b{font-size:18px;font-variant-numeric:tabular-nums;}.mtile em{font-style:normal;font-size:13px;font-variant-numeric:tabular-nums;}
+.mtile.on{border-color:var(--ink,#0b1418);box-shadow:inset 0 0 0 1px var(--ink,#0b1418);}
+.mrbar{display:inline-block;position:relative;width:90px;height:4px;border-radius:2px;background:var(--rule);vertical-align:middle;}.mrbar i{position:absolute;top:-3px;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--ink,#0b1418);}
+tr.selrow td{background:rgba(15,118,110,.06);}
+@media (max-width:700px){.mboard{grid-template-columns:repeat(2,minmax(0,1fr));}.hide-sm{display:none;}}
 .cgrade{display:inline-block;min-width:26px;text-align:center;font-weight:700;font-size:13px;padding:3px 7px;border-radius:4px;color:#fff;}
 .cgrade.big{font-size:34px;min-width:64px;padding:10px 0;border-radius:8px;}
 .cgrade.g-a{background:#1f7a4d;}.cgrade.g-b{background:#4f8f3a;}.cgrade.g-c{background:#b7891b;}.cgrade.g-d{background:#c4622d;}.cgrade.g-f{background:#b4232a;}.cgrade.none{background:var(--rule);color:var(--mut);}

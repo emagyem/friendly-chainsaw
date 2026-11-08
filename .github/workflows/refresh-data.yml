@@ -9,7 +9,7 @@ on:
   workflow_dispatch:           # adds a "Run workflow" button on the Actions tab
   push:                        # also refresh when the ticker list, assumptions or script change
     branches: [main]
-    paths: ["config/**", "scripts/fetch-data.mjs"]
+    paths: ["config/**", "scripts/fetch-data.mjs", "scripts/markets.mjs", "server/markets-list.js"]
 
 permissions:
   contents: write
@@ -37,6 +37,13 @@ jobs:
           # Optional. Without it, prices come from Yahoo Finance's public endpoint.
           ALPHA_VANTAGE_KEY: ${{ secrets.ALPHA_VANTAGE_KEY }}
         run: node scripts/fetch-data.mjs
+
+      # Indexes, yields, commodities, currencies, crypto and tradable funds for the Markets page.
+      - name: Markets data
+        continue-on-error: true
+        env:
+          SEC_USER_AGENT: "Helixora research ${{ vars.SEC_CONTACT_EMAIL }}"
+        run: node scripts/markets.mjs
 
       - name: Commit if changed
         run: |
