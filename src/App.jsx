@@ -3005,7 +3005,7 @@ function MarketData() {
           <button key={s} className={"mtile" + (sel === s ? " on" : "")} onClick={() => setSel(s)}>
             <span>{x.n.replace(/,.*$/, "")}</span><b>{mfmt(s, x.price)}</b><em className={dirOf(x.pct)}><Arrow v={x.pct} />{signed(x.pct)}%</em>
           </button>) : null; })}</div>
-        <p className="byline">{lastLive ? `Delayed prices, last updated ${new Date(lastLive).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" })}` : `End-of-day prices as of ${fmtDate((MARKETS.meta?.generatedAt || "").slice(0, 10))}`}. US stock prices are delayed at least 15 minutes. Source: Yahoo Finance.</p>
+        <p className="byline">{lastLive ? `Delayed prices, last updated ${new Date(lastLive).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" })}` : `Closing prices for ${fmtDate(MARKETS.quotes?.["^GSPC"]?.date || (MARKETS.meta?.generatedAt || "").slice(0, 10))} (crypto and currencies trade around the clock)`}. US stock prices are delayed at least 15 minutes. Source: Yahoo Finance.</p>
       </section>
       {q && (
         <section className="panel">
@@ -3042,7 +3042,8 @@ function MarketData() {
 const VSE_KEY = "helixora-vse-v1";
 const START_CASH = 100000;
 const nowIso = () => new Date().toISOString();
-const todayIso = () => nowIso().slice(0, 10);
+// The visitor's own calendar date, not UTC's.
+const todayIso = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
 function loadAccount() {
   try { const a = JSON.parse(localStorage.getItem(VSE_KEY) || "null"); if (a && typeof a.cash === "number") return a; } catch { /* storage blocked */ }
   return null;
@@ -4532,6 +4533,7 @@ details.more summary:hover{color:var(--teal);}
 .mboard{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0 8px;}
 .mtile{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 14px;border:1px solid var(--rule);border-radius:8px;background:var(--paper,#fff);font:inherit;text-align:left;cursor:pointer;min-width:0;}
 .mtile span{font-size:12px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}.mtile b{font-size:18px;font-variant-numeric:tabular-nums;}.mtile em{font-style:normal;font-size:13px;font-variant-numeric:tabular-nums;}
+.mtile em.up{color:#0A7D4F;}.mtile em.down{color:#C2272D;}.mtile em.flat{color:var(--mut);}
 .mtile.on{border-color:var(--ink,#0b1418);box-shadow:inset 0 0 0 1px var(--ink,#0b1418);}
 .mrbar{display:inline-block;position:relative;width:90px;height:4px;border-radius:2px;background:var(--rule);vertical-align:middle;}.mrbar i{position:absolute;top:-3px;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--ink,#0b1418);}
 tr.selrow td{background:rgba(15,118,110,.06);}

@@ -63,6 +63,16 @@ try {
   else ok("Waitlist (D1 database)", false, `HTTP ${r.status} ${(await r.json().catch(() => ({}))).error || ""}`);
 } catch (e) { ok("Waitlist (D1 database)", false, e.message); }
 
+// Delayed quotes for the Markets page and Virtual Exchange; only the site's own symbols are allowed.
+try {
+  const r = await get("/api/quotes?s=SPY,%5EGSPC,BTC-USD");
+  const j = await r.json().catch(() => ({}));
+  const n = Object.keys(j.quotes || {}).length;
+  ok("Delayed quotes", r.status === 200 && n >= 2, `HTTP ${r.status}, ${n} of 3 prices${j.quotes?.SPY ? ` (SPY ${j.quotes.SPY.price})` : ""}`);
+  const bad = await get("/api/quotes?s=GOOG");
+  ok("Quotes refuse symbols not on the site", bad.status === 400, `HTTP ${bad.status}`);
+} catch (e) { ok("Delayed quotes", false, e.message); }
+
 for (const [name, url] of [["Old Netlify site", "https://jolly-seahorse-c530f0.netlify.app/"], ["Old Cloudflare project", "https://friendly-chainsaw.pages.dev/"]]) {
   try {
     const r = await get(url);
