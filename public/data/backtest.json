@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-09T20:06:20.116Z",
+ "generatedAt": "2026-11-09T20:21:21.203Z",
  "fpsVersion": "1.1",
  "question": "Did the Financing Pressure Score flag biotechs before they sold stock?",
  "universe": "Every company with industry code 2834, 2836 or 8731 that reported R&D spending to the SEC, burned cash, and had under $50M of trailing revenue, at each balance sheet filed 2012–2025. Includes companies that later stopped filing.",
@@ -12,7 +12,7 @@
   "An ATM program is detected from sales-agreement language in prospectus supplements found by SEC full-text search; a few may be missed or misread.",
   "A share-count jump can also come from a merger or debt conversion, not only a stock sale."
  ],
- "requests": 1258,
+ "requests": 1256,
  "rows": 23929,
  "companies": 1073,
  "companiesNoLongerFiling": 538,
@@ -290,38 +290,38 @@
  },
  "returns": {
   "benchmark": "XBI (SPDR S&P Biotech ETF)",
-  "priced": 2001,
-  "pricedCompanies": 474,
+  "priced": 12795,
+  "pricedCompanies": 535,
   "rows": 23929,
   "bands": [
    {
     "band": "High",
     "m12": {
-     "n": 425,
-     "mean": 481.1,
-     "median": -55.8,
-     "shareBehind": 75
+     "n": 2421,
+     "mean": -32.9,
+     "median": -51.5,
+     "shareBehind": 76
     },
     "m6": {
-     "n": 419,
-     "mean": 1180.3,
-     "median": -33.9,
-     "shareBehind": 73
+     "n": 2467,
+     "mean": -20.8,
+     "median": -32.2,
+     "shareBehind": 72
     }
    },
    {
     "band": "Elevated",
     "m12": {
-     "n": 939,
-     "mean": 89.6,
-     "median": -40.1,
+     "n": 6016,
+     "mean": -21.8,
+     "median": -38.8,
      "shareBehind": 72
     },
     "m6": {
-     "n": 904,
-     "mean": 3.7,
-     "median": -23.4,
-     "shareBehind": 70
+     "n": 6049,
+     "mean": -9.6,
+     "median": -21.2,
+     "shareBehind": 67
     }
    },
    {
@@ -332,15 +332,15 @@
    {
     "band": "Low",
     "m12": {
-     "n": 637,
-     "mean": 0,
-     "median": -23.1,
-     "shareBehind": 68
+     "n": 4358,
+     "mean": -10.5,
+     "median": -24.3,
+     "shareBehind": 67
     },
     "m6": {
-     "n": 618,
-     "mean": -2.1,
-     "median": -14.5,
+     "n": 4366,
+     "mean": -3.9,
+     "median": -13.3,
      "shareBehind": 64
     }
    }
@@ -348,164 +348,202 @@
   "deciles": [
    {
     "decile": 1,
-    "n": 200,
-    "mean12": -2.9,
-    "median12": -22.9
+    "n": 1279,
+    "mean12": -12,
+    "median12": -23.9
    },
    {
     "decile": 2,
-    "n": 200,
-    "mean12": -3.8,
-    "median12": -24.4
+    "n": 1280,
+    "mean12": -9,
+    "median12": -24
    },
    {
     "decile": 3,
-    "n": 200,
-    "mean12": 2.2,
-    "median12": -22.5
+    "n": 1279,
+    "mean12": -11.9,
+    "median12": -25.3
    },
    {
     "decile": 4,
-    "n": 200,
-    "mean12": -3.6,
-    "median12": -32.3
+    "n": 1280,
+    "mean12": -13,
+    "median12": -28.9
    },
    {
     "decile": 5,
-    "n": 200,
-    "mean12": -12.2,
-    "median12": -36.1
+    "n": 1279,
+    "mean12": -19.7,
+    "median12": -36.3
    },
    {
     "decile": 6,
-    "n": 200,
-    "mean12": 26.9,
-    "median12": -29.8
+    "n": 1280,
+    "mean12": -21.3,
+    "median12": -39.2
    },
    {
     "decile": 7,
-    "n": 200,
-    "mean12": -19.1,
-    "median12": -41.5
+    "n": 1279,
+    "mean12": -22.6,
+    "median12": -40.5
    },
    {
     "decile": 8,
-    "n": 200,
-    "mean12": 426.1,
-    "median12": -53.5
+    "n": 1280,
+    "mean12": -25.2,
+    "median12": -43.6
    },
    {
     "decile": 9,
-    "n": 200,
-    "mean12": 1042.2,
-    "median12": -43.4
+    "n": 1279,
+    "mean12": -30.3,
+    "median12": -48.2
    },
    {
     "decile": 10,
-    "n": 201,
-    "mean12": -12.7,
-    "median12": -58.9
+    "n": 1280,
+    "mean12": -35.7,
+    "median12": -54.9
    }
   ],
   "years": [
    {
-    "year": "2016",
-    "low": -13.7,
-    "high": -61.7,
-    "spread": 48,
-    "nLow": 31,
-    "nHigh": 26
+    "year": "2012",
+    "low": -10.4,
+    "high": -73,
+    "spread": 62.6,
+    "nLow": 138,
+    "nHigh": 41
    },
    {
-    "year": "2017",
-    "low": -0.5,
-    "high": -24.4,
-    "spread": 23.9,
-    "nLow": 22,
-    "nHigh": 22
+    "year": "2013",
+    "low": -33.6,
+    "high": -13.8,
+    "spread": -19.8,
+    "nLow": 162,
+    "nHigh": 57
    },
    {
-    "year": "2018",
-    "low": -17.1,
-    "high": 48.9,
-    "spread": -66,
-    "nLow": 24,
-    "nHigh": 21
-   },
-   {
-    "year": "2019",
-    "low": 22.7,
-    "high": -27.2,
-    "spread": 49.9,
-    "nLow": 41,
-    "nHigh": 24
-   },
-   {
-    "year": "2020",
-    "low": 17.7,
-    "high": 184.5,
-    "spread": -166.8,
-    "nLow": 45,
-    "nHigh": 29
-   },
-   {
-    "year": "2021",
-    "low": -9.2,
-    "high": -12.3,
-    "spread": 3.1,
-    "nLow": 90,
-    "nHigh": 32
-   },
-   {
-    "year": "2022",
-    "low": -14.7,
-    "high": -21.5,
-    "spread": 6.8,
-    "nLow": 105,
-    "nHigh": 32
-   },
-   {
-    "year": "2023",
-    "low": 19.8,
-    "high": -1.4,
-    "spread": 21.2,
-    "nLow": 50,
-    "nHigh": 56
-   },
-   {
-    "year": "2024",
-    "low": -31.3,
-    "high": 2827.6,
-    "spread": -2858.9,
-    "nLow": 56,
+    "year": "2014",
+    "low": -62.9,
+    "high": -60.7,
+    "spread": -2.2,
+    "nLow": 234,
     "nHigh": 72
    },
    {
+    "year": "2015",
+    "low": -19.1,
+    "high": -19.9,
+    "spread": 0.8,
+    "nLow": 259,
+    "nHigh": 104
+   },
+   {
+    "year": "2016",
+    "low": -42.6,
+    "high": -81.7,
+    "spread": 39.1,
+    "nLow": 257,
+    "nHigh": 130
+   },
+   {
+    "year": "2017",
+    "low": -10.1,
+    "high": -39.4,
+    "spread": 29.3,
+    "nLow": 180,
+    "nHigh": 164
+   },
+   {
+    "year": "2018",
+    "low": -16.8,
+    "high": -42.5,
+    "spread": 25.7,
+    "nLow": 213,
+    "nHigh": 172
+   },
+   {
+    "year": "2019",
+    "low": -23.2,
+    "high": -40,
+    "spread": 16.8,
+    "nLow": 264,
+    "nHigh": 174
+   },
+   {
+    "year": "2020",
+    "low": -23.7,
+    "high": -24.4,
+    "spread": 0.7,
+    "nLow": 324,
+    "nHigh": 184
+   },
+   {
+    "year": "2021",
+    "low": -23.1,
+    "high": -30.9,
+    "spread": 7.8,
+    "nLow": 638,
+    "nHigh": 164
+   },
+   {
+    "year": "2022",
+    "low": -23.5,
+    "high": -49.5,
+    "spread": 26,
+    "nLow": 601,
+    "nHigh": 191
+   },
+   {
+    "year": "2023",
+    "low": -13.9,
+    "high": -57.4,
+    "spread": 43.5,
+    "nLow": 395,
+    "nHigh": 318
+   },
+   {
+    "year": "2024",
+    "low": -32,
+    "high": -57.7,
+    "spread": 25.7,
+    "nLow": 398,
+    "nHigh": 326
+   },
+   {
     "year": "2025",
-    "low": 51.4,
-    "high": -62.4,
-    "spread": 113.8,
-    "nLow": 67,
-    "nHigh": 68
+    "low": -9.1,
+    "high": -110.2,
+    "spread": 101.1,
+    "nLow": 295,
+    "nHigh": 324
    }
   ],
-  "spread12": -481.1,
-  "yearsLowBeatHigh": 7,
-  "yearsCounted": 10,
+  "spread12": 27.2,
+  "spread12Mean": 22.4,
+  "trim": [
+   -116.8,
+   165.6
+  ],
+  "yearsLowBeatHigh": 12,
+  "yearsCounted": 14,
   "raisedVsNot": {
    "raised6": {
-    "n": 780,
-    "mean": -3,
-    "median": -24.3,
-    "shareBehind": 68
+    "n": 5336,
+    "mean": -8.3,
+    "median": -22.8,
+    "shareBehind": 65
    },
    "notRaised6": {
-    "n": 1161,
-    "mean": 429.8,
-    "median": -20.1,
-    "shareBehind": 69
+    "n": 7546,
+    "mean": -10.9,
+    "median": -18.4,
+    "shareBehind": 68
    }
   },
+  "method": "Medians, and means with each return capped at the 5th and 95th percentiles of all returns. Moves of more than tenfold, or a near-total loss within the window, are treated as price-data errors and left out.",
   "caveat": "Prices are only available for companies still listed under their current ticker, so companies that were delisted, went bankrupt or were bought are missing. Those were often the worst (and sometimes best) outcomes, so treat these returns as indicative. Returns are before trading costs, and short-selling small biotechs is costly and sometimes impossible."
  },
  "offeringsOnly": {
