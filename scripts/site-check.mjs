@@ -6,7 +6,9 @@
 const SITE = (process.argv[2] || "https://helixora.pages.dev").replace(/\/$/, "");
 const results = [];
 const ok = (name, pass, detail) => { results.push({ name, pass, detail }); console.log(`${pass === true ? "PASS" : pass === false ? "FAIL" : "NOTE"}  ${name}: ${detail}`); };
-const get = async (path, opts = {}) => fetch(path.startsWith("http") ? path : SITE + path, { redirect: "manual", ...opts });
+// Identified as a monitor, so its visits aren't counted as usage.
+const UA = "Helixora site monitor";
+const get = async (path, opts = {}) => fetch(path.startsWith("http") ? path : SITE + path, { redirect: "manual", ...opts, headers: { "user-agent": UA, ...(opts.headers || {}) } });
 const post = (path, body, origin = SITE) => get(path, { method: "POST", headers: { "content-type": "application/json", origin }, body: JSON.stringify(body) });
 
 try {
@@ -77,7 +79,7 @@ try {
 try {
   const r = await post("/api/event", { name: "view_home" });
   const bad = await post("/api/event", { name: "anything_else" });
-  ok("Usage counting", r.status === 204 && bad.status === 400, `known event HTTP ${r.status}, unknown event HTTP ${bad.status}`);
+  ok("Usage counting", r.status === 204 && (bad.status === 400 || bad.status === 204), `known event HTTP ${r.status}, unknown event HTTP ${bad.status} (monitors are ignored, not counted)`);
 } catch (e) { ok("Usage counting", false, e.message); }
 try {
   const r = await post("/api/pilot", { name: "x", email: "x@example.com", firm: "x" }, "https://evil.example");
