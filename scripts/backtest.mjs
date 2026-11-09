@@ -365,6 +365,94 @@ function evaluate(rows, companies) {
 
 /* -------------------------------- main -------------------------------- */
 
+/* ------------------------- share-price returns -------------------------
+   What a simple strategy would have earned: each company's share return over
+   the 6 and 12 months after a balance sheet was filed, against the XBI biotech
+   ETF over the same days. Prices exist only for companies still listed under
+   their current ticker (delisted companies drop out), so these figures lean
+   towards survivors; the raise test above doesn't have that problem. */
+
+async function dailyCloses(ticker) {
+  const key = `px-${ticker.replace(/[^A-Za-z0-9.-]/g, "_")}.json`;
+  const file = new URL(key, CACHE);
+  if (existsSync(file)) return JSON.parse(await readFile(file, "utf8"));
+  await new Promise((r) => setTimeout(r, 250));
+  let out = [];
+  try {
+    const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?range=max&interval=1d`, { headers: { "User-Agent": "Mozilla/5.0 (Helixora backtest)" } });
+    const res = r.ok ? (await r.json())?.chart?.result?.[0] : null;
+    const adj = res?.indicators?.adjclose?.[0]?.adjclose || res?.indicators?.quote?.[0]?.close || [];
+    out = (res?.timestamp || []).map((t, i) => [new Date(t * 1000).toISOString().slice(0, 10), adj[i]]).filter(([, v]) => v != null && v > 0);
+  } catch { out = []; }
+  await writeFile(file, JSON.stringify(out));
+  return out;
+}
+
+// Close on the first trading day on or after a date (within 10 days), by binary search.
+function closeOn(px, date) {
+  let lo = 0, hi = px.length - 1, ans = -1;
+  while (lo <= hi) { const m = (lo + hi) >> 1; if (px[m][0] >= date) { ans = m; hi = m - 1; } else lo = m + 1; }
+  if (ans < 0 || monthsBetween(date, px[ans][0]) > 0.35) return null;
+  return px[ans][1];
+}
+
+function excess(px, bench, from, months) {
+  const to = addDays(from, Math.round(months * 30.44));
+  if (to > TODAY_ISO) return null;
+  const a = closeOn(px, from), b = closeOn(px, to), x = closeOn(bench, from), y = closeOn(bench, to);
+  if (!a || !b || !x || !y) return null;
+  return { ret: b / a - 1, excess: (b / a) - (y / x) };
+}
+
+const r1 = (v) => Math.round(v * 1000) / 10;
+function retStats(rows, key) {
+  const v = rows.map((r) => r[key]).filter((x) => x != null).sort((a, b) => a - b);
+  if (v.length < 20) return null;
+  return { n: v.length, mean: r1(v.reduce((a, b) => a + b, 0) / v.length), median: r1(v[Math.floor(v.length / 2)]), shareBehind: Math.round((v.filter((x) => x < 0).length / v.length) * 100) };
+}
+
+async function addReturns(rows, companies) {
+  const bench = await dailyCloses("XBI");
+  const tick = [...companies.values()].filter((c) => c.ticker);
+  let n = 0;
+  const px = new Map();
+  for (const c of tick) {
+    if (++n % 100 === 0) console.log(`  prices ${n}/${tick.length}`);
+    px.set(c.cik, await dailyCloses(c.ticker));
+  }
+  for (const r of rows) {
+    const p = px.get(r.cik);
+    if (!p?.length) continue;
+    const e6 = excess(p, bench, r.filed, 6), e12 = excess(p, bench, r.filed, 12);
+    if (e6) r.x6 = e6.excess;
+    if (e12) { r.x12 = e12.excess; r.ret12 = e12.ret; }
+  }
+  const priced = rows.filter((r) => r.x12 != null);
+  const bands = ["High", "Elevated", "Moderate", "Low"].map((b) => ({ band: b, m12: retStats(priced.filter((r) => r.band === b), "x12"), m6: retStats(rows.filter((r) => r.x6 != null && r.band === b), "x6") }));
+  // Deciles of the score, riskiest last.
+  const sorted = [...priced].sort((a, b) => a.score - b.score);
+  const deciles = Array.from({ length: 10 }, (_, i) => {
+    const part = sorted.slice(Math.floor((i * sorted.length) / 10), Math.floor(((i + 1) * sorted.length) / 10));
+    return { decile: i + 1, n: part.length, mean12: retStats(part, "x12")?.mean ?? null, median12: retStats(part, "x12")?.median ?? null };
+  });
+  // A simple yearly strategy: hold the Low band and avoid (or short) the High band, equal-weighted, from each filing for 12 months.
+  const years = [...new Set(priced.map((r) => r.filed.slice(0, 4)))].sort().map((y) => {
+    const yr = priced.filter((r) => r.filed.startsWith(y));
+    const lo = retStats(yr.filter((r) => r.band === "Low"), "x12"), hi = retStats(yr.filter((r) => r.band === "High"), "x12");
+    return { year: y, low: lo?.mean ?? null, high: hi?.mean ?? null, spread: lo && hi ? Math.round((lo.mean - hi.mean) * 10) / 10 : null, nLow: lo?.n || 0, nHigh: hi?.n || 0 };
+  }).filter((y) => y.spread != null);
+  const hiS = bands[0].m12, loS = bands[3].m12;
+  return {
+    benchmark: "XBI (SPDR S&P Biotech ETF)",
+    priced: priced.length, pricedCompanies: new Set(priced.map((r) => r.cik)).size, rows: rows.length,
+    bands, deciles, years,
+    spread12: hiS && loS ? Math.round((loS.mean - hiS.mean) * 10) / 10 : null,
+    yearsLowBeatHigh: years.filter((y) => y.spread > 0).length, yearsCounted: years.length,
+    raisedVsNot: { raised6: retStats(rows.filter((r) => r.x6 != null && r.y6), "x6"), notRaised6: retStats(rows.filter((r) => r.x6 != null && !r.y6), "x6") },
+    caveat: "Prices are only available for companies still listed under their current ticker, so companies that were delisted, went bankrupt or were bought are missing. Those were often the worst (and sometimes best) outcomes, so treat these returns as indicative. Returns are before trading costs, and short-selling small biotechs is costly and sometimes impossible.",
+  };
+}
+
 async function main() {
   await mkdir(CACHE, { recursive: true });
   console.log("Finding every company that reported R&D spending since 2010…");
@@ -384,7 +472,7 @@ async function main() {
       if (older) f.add(older);
     }
     const last = f.rows.reduce((m, r) => (r.date > m ? r.date : m), "");
-    companies.set(cik, { cik, name: f.sub.name || name, sic: String(f.sub.sic), filings: f.rows, last, alive: last >= addDays(TODAY_ISO, -400) && (f.sub.tickers || []).length > 0 });
+    companies.set(cik, { cik, name: f.sub.name || name, sic: String(f.sub.sic), filings: f.rows, last, alive: last >= addDays(TODAY_ISO, -400) && (f.sub.tickers || []).length > 0, ticker: (f.sub.tickers || [])[0] || null });
   }
   console.log(`  ${companies.size} drug and biotech companies`);
 
@@ -427,7 +515,12 @@ async function main() {
   }
   console.log(`  ${rows.length} company-quarters`);
 
+  console.log("Share-price returns after each filing…");
+  const returns = await addReturns(rows, companies);
+  console.log(`  ${returns.priced} company-quarters priced, from ${returns.pricedCompanies} companies; Low minus High 12-month: ${returns.spread12} points`);
+
   const result = evaluate(rows, companies);
+  result.returns = returns;
   // Robustness: count only formal offering filings as a raise, ignoring share-count jumps.
   const off = evaluate(rows.map((r) => ({ ...r, y12: r.yOff12, y6: r.yOff6 })), companies);
   result.offeringsOnly = { base12: off.base12, auc: off.auc, bands: off.bands };
