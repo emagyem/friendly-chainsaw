@@ -46,10 +46,8 @@ export function sameOrigin(request) {
 export function buildFacts(dataFile, today = new Date()) {
   const days = (iso) => Math.round((new Date(iso + "T00:00:00") - today) / 86400000);
   const all = [...(dataFile.companies || []), ...(dataFile.industry || dataFile.bigPharma || [])];
-  const cyber = dataFile.cyber || {};
   return all.map((c) => {
     const f = computeFPS(c, today);
-    const cy = cyber[c.t];
     return {
       ticker: c.t, name: c.n, area: c.area, ...(c.group ? { industry_segment: c.group, operating_cash_flow_ttm_musd: c.ocf ?? null } : {}),
       market_cap_musd: c.mcap, enterprise_value_musd: c.ev, cash_musd: c.cash, debt_musd: c.debt,
@@ -63,11 +61,6 @@ export function buildFacts(dataFile, today = new Date()) {
       catalysts: (c.catalysts || []).map((x) => ({ date: x.date, days_away: days(x.date), event: x.label })),
       financings: (c.financings || []).map(({ date, type }) => ({ date, type })),
       note: c.note || null,
-      ...(cy ? { cyber: {
-        grade: cy.grade, overall: cy.overall, governance_score: cy.governance?.score ?? null, public_setup_score: cy.setup?.score ?? null,
-        incidents_since_2023: (cy.incidents || []).map((i) => ({ date: i.date, item: i.item })),
-        missing: [...(cy.governance?.items || []), ...(cy.setup?.items || [])].filter((i) => !i.got).map((i) => i.label),
-      } } : {}),
     };
   });
 }
@@ -83,7 +76,6 @@ export function compactFacts(facts) {
       financing_pressure_score: f.financing_pressure_score, band: f.financing_pressure_band,
       raise_capacity: f.raise_capacity, market_cap_musd: f.market_cap_musd,
       next_major_catalyst: f.next_major_catalyst,
-      ...(f.cyber ? { cyber_grade: f.cyber.grade, cyber_incidents: f.cyber.incidents_since_2023.length } : {}),
       programs: (f.programs || []).slice(0, 4).map((p) => `${p.drug} (${p.phase}, ${p.indication})`),
     }));
 }
@@ -109,7 +101,7 @@ export async function answer({ question, apiKey, model, loadDataFile, ai }) {
 
   const prompt = `You are the research assistant on Helixora, a biotech financing-risk research site. Answer only from the JSON dataset below. Never invent a company, number, or date that is not present. Cite the specific figures you used inline, in plain prose, e.g. "$412M cash against $21.5M monthly burn". If the data cannot answer the question, say exactly what is missing. If the question is not about the companies in the dataset, say you can only answer questions about them. Do not give buy or sell recommendations. Companies with an industry_segment (big-pharma, generics, otc, api, orphan, compounding) are established drug-industry companies tracked for comparison: leave them out of lists about runway, financing pressure or who may need to raise money unless the question asks about them. Keep the answer under 180 words, no markdown headers, no bullet symbols other than plain hyphens. End with one line beginning "Worth checking:" naming the single assumption that most affects the conclusion.
 
-DATA (all dollar figures in millions USD). Figures come from SEC EDGAR filings, ClinicalTrials.gov and previous-close market prices, refreshed ${cache.asOf || "recently"}. Trial readout dates are registry estimates. The Financing Pressure Score (0-100) estimates how likely a company is to need new money before its next major catalyst. The "cyber" field is Helixora's Cyber Risk grade (A best to F worst): half from the cybersecurity section of the company's annual report, half from passive checks of its public website and email setup, less points for material incidents filed under 8-K Item 1.05; "missing" lists the checks it didn't meet. It measures described and visible basics, not proof of security.
+DATA (all dollar figures in millions USD). Figures come from SEC EDGAR filings, ClinicalTrials.gov and previous-close market prices, refreshed ${cache.asOf || "recently"}. Trial readout dates are registry estimates. The Financing Pressure Score (0-100) estimates how likely a company is to need new money before its next major catalyst.
 ${JSON.stringify(cache.facts)}
 
 QUESTION: ${q}`;

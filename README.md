@@ -177,16 +177,6 @@ Acquisitions: every daily refresh checks each company's SEC filing list. A compa
 
 `scripts/backtest.mjs` also measures each company's share return over the 6 and 12 months after every balance sheet, against the XBI biotech ETF (`returns` in `backtest.json`): by band, by score decile and by year, with medians as the headline and means capped at the 5th/95th percentiles. Prices exist only for companies still listed, so these figures lean towards survivors; the raise test doesn't.
 
-## Cyber Risk
-
-`scripts/cyber.mjs` (weekly, `.github/workflows/cyber.yml`) grades every company on the site from public information and writes `public/data/cyber.json`:
-
-- **SEC disclosures:** 8-K Item 1.05 material cybersecurity incidents (required since 18 Dec 2023) and voluntary 8-K Item 8.01/7.01 incident disclosures; the cybersecurity section of the latest annual report (10-K Item 1C, 20-F Item 16K) scored against an 11-point checklist, keeping the sentence that earned each point.
-- **Passive public-setup checks** on the company's own domain (from its annual report; overrides in `config/cyber-domains.json`): SPF, DMARC, CAA, HTTPS redirect, TLS version and certificate, HSTS, CSP, frame protection, nosniff, Referrer-Policy, security.txt. A few DNS lookups and two or three ordinary requests per company, with a user agent that names Helixora. No scanning or probing.
-- **Grade:** half governance, half public setup, less 10 points per material incident in the last two years (max 20). A ≥ 80 … F < 35.
-- **Incident study:** every first 8-K Item 1.05 by a listed company, share price against the S&P 500 after 1, 5 and 21 trading days.
-
-Shown under Cyber Risk → Cyber Scores and Cyber Incidents, on each company's Cyber tab and in Ask. Disputes come in through `functions/api/correction.js` (D1 table `corrections`, same database as the waitlist).
 
 ## Markets, Virtual Exchange and Money Calculators
 

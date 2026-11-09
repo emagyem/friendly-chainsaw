@@ -16,8 +16,6 @@ export let HISTORY = { snapshots: [] };
 // Drug-industry companies (big pharma, generics, over-the-counter, ingredients, compounding),
 // tracked for comparison and kept apart from the ranked coverage.
 export let INDUSTRY = [];
-// Cyber Risk: SEC cyber disclosures and passive public-setup checks (scripts/cyber.mjs).
-export let CYBER = { companies: {}, study: null, meta: null };
 // Markets: indexes, yields, commodities, currencies, crypto, funds (scripts/markets.mjs).
 export let MARKETS = { quotes: {}, meta: null };
 
@@ -34,10 +32,6 @@ export async function loadData() {
       const mk = await fetch(`${import.meta.env.BASE_URL}data/markets.json`, { cache: "no-cache" });
       if (mk.ok) MARKETS = await mk.json();
     } catch { /* no markets data yet */ }
-    try {
-      const cy = await fetch(`${import.meta.env.BASE_URL}data/cyber.json`, { cache: "no-cache" });
-      if (cy.ok) CYBER = await cy.json();
-    } catch { /* no cyber data yet */ }
     try {
       const h = await fetch(`${import.meta.env.BASE_URL}data/fps-history.json`, { cache: "no-cache" });
       if (h.ok) HISTORY = await h.json();

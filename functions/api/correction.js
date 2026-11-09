@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------
    POST /api/correction: a company (or anyone) reports that something on
-   Helixora is wrong, most often a Cyber Risk finding. Stored in the same
+   Helixora is wrong (a figure, a date, a classification). Stored in the same
    Cloudflare D1 database as the waitlist (binding WAITLIST), in a
    "corrections" table created on first use.
 
@@ -12,7 +12,7 @@ import { json, sameOrigin } from "../../server/ask-core.js";
 import { humanCheck, rateLimit } from "../../server/guard.js";
 
 const EMAIL = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[A-Za-z]{2,}$/;
-const TOPICS = new Set(["cyber", "financing", "data", "other"]);
+const TOPICS = new Set(["financing", "data", "other"]);
 
 export async function onRequestPost({ request, env }) {
   if (!sameOrigin(request)) return json(403, { error: "Not allowed" });

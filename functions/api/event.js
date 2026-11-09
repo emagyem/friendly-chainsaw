@@ -11,7 +11,7 @@
 
 import { json, sameOrigin } from "../../server/ask-core.js";
 
-const VIEWS = ["home", "report", "screen", "research", "company", "compare", "catalysts", "outlook", "ask", "pro", "industry", "marketdata", "cyber", "incidents", "trade", "calc", "about", "privacy"];
+const VIEWS = ["home", "report", "screen", "research", "company", "compare", "catalysts", "outlook", "ask", "pro", "industry", "marketdata", "trade", "calc", "about", "privacy"];
 const ACTIONS = ["ask_question", "waitlist_signup", "pilot_request_institutional-pilot", "pilot_request_professional", "pilot_request_data", "pilot_request_other", "csv_download", "vse_start", "vse_trade", "calc_retire", "calc_budget", "calc_mortgage", "calc_tax", "correction_sent", "watch_add"];
 const ALLOWED = new Set([...VIEWS.map((v) => `view_${v}`), ...ACTIONS]);
 const BOT = /bot|crawl|spider|slurp|preview|headless|lighthouse|monitor|curl|wget|python|node-fetch|go-http/i;
