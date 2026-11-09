@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-06T11:06:20.373Z",
+ "generatedAt": "2026-11-09T20:06:20.116Z",
  "fpsVersion": "1.1",
  "question": "Did the Financing Pressure Score flag biotechs before they sold stock?",
  "universe": "Every company with industry code 2834, 2836 or 8731 that reported R&D spending to the SEC, burned cash, and had under $50M of trailing revenue, at each balance sheet filed 2012–2025. Includes companies that later stopped filing.",
@@ -12,34 +12,34 @@
   "An ATM program is detected from sales-agreement language in prospectus supplements found by SEC full-text search; a few may be missed or misread.",
   "A share-count jump can also come from a merger or debt conversion, not only a stock sale."
  ],
- "requests": 25135,
- "rows": 23927,
+ "requests": 1258,
+ "rows": 23929,
  "companies": 1073,
  "companiesNoLongerFiling": 538,
- "events12": 14159,
+ "events12": 14161,
  "base12": 0.592,
  "base6": 0.374,
  "auc": 0.562,
  "aucRunwayOnly": 0.522,
  "components": {
   "gap": {
-   "n": 23927,
+   "n": 23929,
    "auc": 0.524
   },
   "trend": {
-   "n": 22606,
+   "n": 22608,
    "auc": 0.485
   },
   "capacity": {
-   "n": 23927,
+   "n": 23929,
    "auc": 0.596
   },
   "debt": {
-   "n": 23927,
+   "n": 23929,
    "auc": 0.504
   },
   "access": {
-   "n": 21092,
+   "n": 21094,
    "auc": 0.573
   }
  },
@@ -52,7 +52,7 @@
   },
   {
    "band": "Elevated",
-   "n": 11279,
+   "n": 11281,
    "raised12": 0.601,
    "raised6": 0.387
   },
@@ -85,7 +85,7 @@
   {
    "from": 38,
    "to": 47,
-   "n": 2392,
+   "n": 2393,
    "raised12": 0.585
   },
   {
@@ -103,8 +103,8 @@
   {
    "from": 60,
    "to": 66,
-   "n": 2392,
-   "raised12": 0.62
+   "n": 2393,
+   "raised12": 0.621
   },
   {
    "from": 66,
@@ -232,8 +232,8 @@
   },
   {
    "year": "2025",
-   "n": 1431,
-   "base": 0.67,
+   "n": 1433,
+   "base": 0.671,
    "high": 0.749,
    "low": 0.609,
    "auc": 0.578
@@ -243,7 +243,7 @@
   {
    "from": 0,
    "to": 6,
-   "n": 6244,
+   "n": 6245,
    "raised12": 0.549
   },
   {
@@ -255,7 +255,7 @@
   {
    "from": 12,
    "to": 18,
-   "n": 3048,
+   "n": 3049,
    "raised12": 0.675
   },
   {
@@ -279,7 +279,7 @@
  ],
  "leadMonthsHigh": 4.1,
  "survivors": {
-  "rows": 13531,
+  "rows": 13533,
   "auc": 0.619,
   "base12": 0.647
  },
@@ -287,6 +287,226 @@
   "rows": 10396,
   "auc": 0.504,
   "base12": 0.52
+ },
+ "returns": {
+  "benchmark": "XBI (SPDR S&P Biotech ETF)",
+  "priced": 2001,
+  "pricedCompanies": 474,
+  "rows": 23929,
+  "bands": [
+   {
+    "band": "High",
+    "m12": {
+     "n": 425,
+     "mean": 481.1,
+     "median": -55.8,
+     "shareBehind": 75
+    },
+    "m6": {
+     "n": 419,
+     "mean": 1180.3,
+     "median": -33.9,
+     "shareBehind": 73
+    }
+   },
+   {
+    "band": "Elevated",
+    "m12": {
+     "n": 939,
+     "mean": 89.6,
+     "median": -40.1,
+     "shareBehind": 72
+    },
+    "m6": {
+     "n": 904,
+     "mean": 3.7,
+     "median": -23.4,
+     "shareBehind": 70
+    }
+   },
+   {
+    "band": "Moderate",
+    "m12": null,
+    "m6": null
+   },
+   {
+    "band": "Low",
+    "m12": {
+     "n": 637,
+     "mean": 0,
+     "median": -23.1,
+     "shareBehind": 68
+    },
+    "m6": {
+     "n": 618,
+     "mean": -2.1,
+     "median": -14.5,
+     "shareBehind": 64
+    }
+   }
+  ],
+  "deciles": [
+   {
+    "decile": 1,
+    "n": 200,
+    "mean12": -2.9,
+    "median12": -22.9
+   },
+   {
+    "decile": 2,
+    "n": 200,
+    "mean12": -3.8,
+    "median12": -24.4
+   },
+   {
+    "decile": 3,
+    "n": 200,
+    "mean12": 2.2,
+    "median12": -22.5
+   },
+   {
+    "decile": 4,
+    "n": 200,
+    "mean12": -3.6,
+    "median12": -32.3
+   },
+   {
+    "decile": 5,
+    "n": 200,
+    "mean12": -12.2,
+    "median12": -36.1
+   },
+   {
+    "decile": 6,
+    "n": 200,
+    "mean12": 26.9,
+    "median12": -29.8
+   },
+   {
+    "decile": 7,
+    "n": 200,
+    "mean12": -19.1,
+    "median12": -41.5
+   },
+   {
+    "decile": 8,
+    "n": 200,
+    "mean12": 426.1,
+    "median12": -53.5
+   },
+   {
+    "decile": 9,
+    "n": 200,
+    "mean12": 1042.2,
+    "median12": -43.4
+   },
+   {
+    "decile": 10,
+    "n": 201,
+    "mean12": -12.7,
+    "median12": -58.9
+   }
+  ],
+  "years": [
+   {
+    "year": "2016",
+    "low": -13.7,
+    "high": -61.7,
+    "spread": 48,
+    "nLow": 31,
+    "nHigh": 26
+   },
+   {
+    "year": "2017",
+    "low": -0.5,
+    "high": -24.4,
+    "spread": 23.9,
+    "nLow": 22,
+    "nHigh": 22
+   },
+   {
+    "year": "2018",
+    "low": -17.1,
+    "high": 48.9,
+    "spread": -66,
+    "nLow": 24,
+    "nHigh": 21
+   },
+   {
+    "year": "2019",
+    "low": 22.7,
+    "high": -27.2,
+    "spread": 49.9,
+    "nLow": 41,
+    "nHigh": 24
+   },
+   {
+    "year": "2020",
+    "low": 17.7,
+    "high": 184.5,
+    "spread": -166.8,
+    "nLow": 45,
+    "nHigh": 29
+   },
+   {
+    "year": "2021",
+    "low": -9.2,
+    "high": -12.3,
+    "spread": 3.1,
+    "nLow": 90,
+    "nHigh": 32
+   },
+   {
+    "year": "2022",
+    "low": -14.7,
+    "high": -21.5,
+    "spread": 6.8,
+    "nLow": 105,
+    "nHigh": 32
+   },
+   {
+    "year": "2023",
+    "low": 19.8,
+    "high": -1.4,
+    "spread": 21.2,
+    "nLow": 50,
+    "nHigh": 56
+   },
+   {
+    "year": "2024",
+    "low": -31.3,
+    "high": 2827.6,
+    "spread": -2858.9,
+    "nLow": 56,
+    "nHigh": 72
+   },
+   {
+    "year": "2025",
+    "low": 51.4,
+    "high": -62.4,
+    "spread": 113.8,
+    "nLow": 67,
+    "nHigh": 68
+   }
+  ],
+  "spread12": -481.1,
+  "yearsLowBeatHigh": 7,
+  "yearsCounted": 10,
+  "raisedVsNot": {
+   "raised6": {
+    "n": 780,
+    "mean": -3,
+    "median": -24.3,
+    "shareBehind": 68
+   },
+   "notRaised6": {
+    "n": 1161,
+    "mean": 429.8,
+    "median": -20.1,
+    "shareBehind": 69
+   }
+  },
+  "caveat": "Prices are only available for companies still listed under their current ticker, so companies that were delisted, went bankrupt or were bought are missing. Those were often the worst (and sometimes best) outcomes, so treat these returns as indicative. Returns are before trading costs, and short-selling small biotechs is costly and sometimes impossible."
  },
  "offeringsOnly": {
   "base12": 0.47,
@@ -300,8 +520,8 @@
    },
    {
     "band": "Elevated",
-    "n": 11279,
-    "raised12": 0.467,
+    "n": 11281,
+    "raised12": 0.468,
     "raised6": 0.296
    },
    {
@@ -324,7 +544,7 @@
    },
    {
     "band": "Elevated",
-    "n": 11279,
+    "n": 11281,
     "raised12": 0.637,
     "raised6": 0.402
    },
@@ -339,8 +559,8 @@
   "nonSurvivorsAuc": 0.52
  },
  "eventsByHow": {
-  "offering filing": 10322,
-  "share count jump": 3837
+  "offering filing": 10323,
+  "share count jump": 3838
  },
  "examples": [
   {
@@ -1297,7 +1517,7 @@
   }
  ],
  "catalystTiming": {
-  "filingsRead": 23923,
+  "filingsRead": 23925,
   "filingsWithGuidance": 11972,
   "rowsWithGuidance": 11972,
   "shareWithGuidance": 0.5,
@@ -1312,8 +1532,8 @@
     },
     {
      "band": "Elevated",
-     "n": 11572,
-     "raised12": 0.58,
+     "n": 11574,
+     "raised12": 0.581,
      "raised6": 0.364
     },
     {
