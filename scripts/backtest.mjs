@@ -373,13 +373,14 @@ function evaluate(rows, companies) {
    towards survivors; the raise test above doesn't have that problem. */
 
 async function dailyCloses(ticker) {
-  const key = `px-${ticker.replace(/[^A-Za-z0-9.-]/g, "_")}.json`;
+  const key = `px2-${ticker.replace(/[^A-Za-z0-9.-]/g, "_")}.json`;
   const file = new URL(key, CACHE);
   if (existsSync(file)) return JSON.parse(await readFile(file, "utf8"));
   await new Promise((r) => setTimeout(r, 250));
   let out = [];
   try {
-    const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?range=max&interval=1d`, { headers: { "User-Agent": "Mozilla/5.0 (Helixora backtest)" } });
+    // Ask for daily prices by date range: "range=max" quietly switches to monthly prices for long histories.
+    const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?period1=1104537600&period2=${Math.floor(Date.now() / 1000)}&interval=1d`, { headers: { "User-Agent": "Mozilla/5.0 (Helixora backtest)" } });
     const res = r.ok ? (await r.json())?.chart?.result?.[0] : null;
     const adj = res?.indicators?.adjclose?.[0]?.adjclose || res?.indicators?.quote?.[0]?.close || [];
     out = (res?.timestamp || []).map((t, i) => [new Date(t * 1000).toISOString().slice(0, 10), adj[i]]).filter(([, v]) => v != null && v > 0);
@@ -401,14 +402,21 @@ function excess(px, bench, from, months) {
   if (to > TODAY_ISO) return null;
   const a = closeOn(px, from), b = closeOn(px, to), x = closeOn(bench, from), y = closeOn(bench, to);
   if (!a || !b || !x || !y) return null;
-  return { ret: b / a - 1, excess: (b / a) - (y / x) };
+  const ret = b / a - 1;
+  // A tenfold move in a few months is almost always a price-data error around a reverse split; skip it.
+  if (ret > 9 || ret < -0.995) return null;
+  return { ret, excess: (b / a) - (y / x) };
 }
 
 const r1 = (v) => Math.round(v * 1000) / 10;
+// Median first: small-biotech returns are dominated by a few huge winners and price-data glitches.
+// The mean is "trimmed": each value is capped at the 5th and 95th percentiles of the whole sample.
+let CAP = [-Infinity, Infinity];
 function retStats(rows, key) {
   const v = rows.map((r) => r[key]).filter((x) => x != null).sort((a, b) => a - b);
   if (v.length < 20) return null;
-  return { n: v.length, mean: r1(v.reduce((a, b) => a + b, 0) / v.length), median: r1(v[Math.floor(v.length / 2)]), shareBehind: Math.round((v.filter((x) => x < 0).length / v.length) * 100) };
+  const t = v.map((x) => Math.min(CAP[1], Math.max(CAP[0], x)));
+  return { n: v.length, mean: r1(t.reduce((a, b) => a + b, 0) / t.length), median: r1(v[Math.floor(v.length / 2)]), shareBehind: Math.round((v.filter((x) => x < 0).length / v.length) * 100) };
 }
 
 async function addReturns(rows, companies) {
@@ -428,6 +436,8 @@ async function addReturns(rows, companies) {
     if (e12) { r.x12 = e12.excess; r.ret12 = e12.ret; }
   }
   const priced = rows.filter((r) => r.x12 != null);
+  const all12 = priced.map((r) => r.x12).sort((a, b) => a - b);
+  CAP = [all12[Math.floor(all12.length * 0.05)], all12[Math.floor(all12.length * 0.95)]];
   const bands = ["High", "Elevated", "Moderate", "Low"].map((b) => ({ band: b, m12: retStats(priced.filter((r) => r.band === b), "x12"), m6: retStats(rows.filter((r) => r.x6 != null && r.band === b), "x6") }));
   // Deciles of the score, riskiest last.
   const sorted = [...priced].sort((a, b) => a.score - b.score);
@@ -439,16 +449,19 @@ async function addReturns(rows, companies) {
   const years = [...new Set(priced.map((r) => r.filed.slice(0, 4)))].sort().map((y) => {
     const yr = priced.filter((r) => r.filed.startsWith(y));
     const lo = retStats(yr.filter((r) => r.band === "Low"), "x12"), hi = retStats(yr.filter((r) => r.band === "High"), "x12");
-    return { year: y, low: lo?.mean ?? null, high: hi?.mean ?? null, spread: lo && hi ? Math.round((lo.mean - hi.mean) * 10) / 10 : null, nLow: lo?.n || 0, nHigh: hi?.n || 0 };
+    return { year: y, low: lo?.median ?? null, high: hi?.median ?? null, spread: lo && hi ? Math.round((lo.median - hi.median) * 10) / 10 : null, nLow: lo?.n || 0, nHigh: hi?.n || 0 };
   }).filter((y) => y.spread != null);
   const hiS = bands[0].m12, loS = bands[3].m12;
   return {
     benchmark: "XBI (SPDR S&P Biotech ETF)",
     priced: priced.length, pricedCompanies: new Set(priced.map((r) => r.cik)).size, rows: rows.length,
     bands, deciles, years,
-    spread12: hiS && loS ? Math.round((loS.mean - hiS.mean) * 10) / 10 : null,
+    spread12: hiS && loS ? Math.round((loS.median - hiS.median) * 10) / 10 : null,
+    spread12Mean: hiS && loS ? Math.round((loS.mean - hiS.mean) * 10) / 10 : null,
+    trim: [r1(CAP[0]), r1(CAP[1])],
     yearsLowBeatHigh: years.filter((y) => y.spread > 0).length, yearsCounted: years.length,
     raisedVsNot: { raised6: retStats(rows.filter((r) => r.x6 != null && r.y6), "x6"), notRaised6: retStats(rows.filter((r) => r.x6 != null && !r.y6), "x6") },
+    method: "Medians, and means with each return capped at the 5th and 95th percentiles of all returns. Moves of more than tenfold, or a near-total loss within the window, are treated as price-data errors and left out.",
     caveat: "Prices are only available for companies still listed under their current ticker, so companies that were delisted, went bankrupt or were bought are missing. Those were often the worst (and sometimes best) outcomes, so treat these returns as indicative. Returns are before trading costs, and short-selling small biotechs is costly and sometimes impossible.",
   };
 }

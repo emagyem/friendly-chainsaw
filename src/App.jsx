@@ -1757,44 +1757,44 @@ function useBacktest() {
 // What a simple strategy would have earned (backtest.json → returns).
 function BacktestReturns({ r }) {
   const b = Object.fromEntries((r.bands || []).map((x) => [x.band, x]));
-  const dec = (r.deciles || []).filter((d) => d.mean12 != null);
+  const dec = (r.deciles || []).filter((d) => d.median12 != null);
   return (
     <div className="bt-returns">
       <h3 className="subh">What would a simple strategy have earned?</h3>
       <p className="prose">For every company-quarter with share prices, we measured the stock's return over the next 6 and 12 months against the XBI biotech ETF over the same days. If the score is useful, High-band companies should have trailed and Low-band companies held up better.</p>
       <div className="metrics four">
-        <div className="metric"><span>High band, 12 months vs XBI (average)</span><b className={dirOf(b.High?.m12?.mean)}>{b.High?.m12 ? `${signed(b.High.m12.mean, 1)} pts` : "—"}</b></div>
-        <div className="metric"><span>Low band, 12 months vs XBI (average)</span><b className={dirOf(b.Low?.m12?.mean)}>{b.Low?.m12 ? `${signed(b.Low.m12.mean, 1)} pts` : "—"}</b></div>
-        <div className="metric"><span>Low minus High</span><b className={dirOf(r.spread12)}>{r.spread12 != null ? `${signed(r.spread12, 1)} pts` : "—"}</b></div>
+        <div className="metric"><span>High band: typical 12 months vs XBI</span><b className={dirOf(b.High?.m12?.median)}>{b.High?.m12 ? `${signed(b.High.m12.median, 1)} pts` : "—"}</b></div>
+        <div className="metric"><span>Low band: typical 12 months vs XBI</span><b className={dirOf(b.Low?.m12?.median)}>{b.Low?.m12 ? `${signed(b.Low.m12.median, 1)} pts` : "—"}</b></div>
+        <div className="metric"><span>Low minus High (typical company)</span><b className={dirOf(r.spread12)}>{r.spread12 != null ? `${signed(r.spread12, 1)} pts` : "—"}</b></div>
         <div className="metric"><span>Years Low beat High</span><b>{r.yearsLowBeatHigh} of {r.yearsCounted}</b></div>
       </div>
       <div className="tablewrap">
         <table className="grid plain">
-          <thead><tr><th>Band</th><th className="r">Company-quarters</th><th className="r">6 months vs XBI</th><th className="r">12 months vs XBI</th><th className="r">Median, 12 months</th><th className="r">Share that trailed XBI</th></tr></thead>
+          <thead><tr><th>Band</th><th className="r">Company-quarters</th><th className="r">Typical, 6 months</th><th className="r">Typical, 12 months</th><th className="r">Trimmed average, 12 months</th><th className="r">Share that trailed XBI</th></tr></thead>
           <tbody>{(r.bands || []).filter((x) => x.m12).map((x) => (
-            <tr key={x.band}><td><b>{x.band}</b></td><td className="r num">{x.m12.n.toLocaleString("en-US")}</td><td className={"r num " + dirOf(x.m6?.mean)}>{x.m6 ? `${signed(x.m6.mean, 1)} pts` : "—"}</td><td className={"r num " + dirOf(x.m12.mean)}>{signed(x.m12.mean, 1)} pts</td><td className={"r num " + dirOf(x.m12.median)}>{signed(x.m12.median, 1)} pts</td><td className="r num">{x.m12.shareBehind}%</td></tr>
+            <tr key={x.band}><td><b>{x.band}</b></td><td className="r num">{x.m12.n.toLocaleString("en-US")}</td><td className={"r num " + dirOf(x.m6?.median)}>{x.m6 ? `${signed(x.m6.median, 1)} pts` : "—"}</td><td className={"r num " + dirOf(x.m12.median)}>{signed(x.m12.median, 1)} pts</td><td className={"r num " + dirOf(x.m12.mean)}>{signed(x.m12.mean, 1)} pts</td><td className="r num">{x.m12.shareBehind}%</td></tr>
           ))}</tbody>
         </table>
       </div>
       {dec.length > 0 && (
         <>
-          <p className="colnote">Average 12-month return against XBI by score decile (1 = lowest pressure, 10 = highest):</p>
+          <p className="colnote">Typical (median) 12-month return against XBI by score decile, 1 = lowest pressure, 10 = highest:</p>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={dec} margin={{ top: 6, right: 0, bottom: 0, left: 0 }}>
               <CartesianGrid stroke="#E4E9EB" vertical={false} />
               <XAxis dataKey="decile" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#5E6B73" }} />
               <YAxis orientation="right" axisLine={false} tickLine={false} width={44} tick={{ fontSize: 11, fill: "#5E6B73" }} tickFormatter={(v) => `${v}`} />
               <ReferenceLine y={0} stroke="#8A979E" />
-              <Tooltip formatter={(v) => [`${signed(v, 1)} pts vs XBI`, "Average 12-month return"]} labelFormatter={(l) => `Decile ${l}`} />
-              <Bar dataKey="mean12" isAnimationActive={false}>{dec.map((d) => <Cell key={d.decile} fill={d.mean12 >= 0 ? UP : DOWN} />)}</Bar>
+              <Tooltip formatter={(v) => [`${signed(v, 1)} pts vs XBI`, "Median 12-month return"]} labelFormatter={(l) => `Decile ${l}`} />
+              <Bar dataKey="median12" isAnimationActive={false}>{dec.map((d) => <Cell key={d.decile} fill={d.median12 >= 0 ? UP : DOWN} />)}</Bar>
             </BarChart>
           </ResponsiveContainer>
         </>
       )}
       {r.raisedVsNot?.raised6 && r.raisedVsNot?.notRaised6 && (
-        <p className="prose"><b>Raising hurts.</b> Over the six months after a balance sheet, companies that went on to raise money in that window returned {signed(r.raisedVsNot.raised6.mean, 1)} points against XBI on average, against {signed(r.raisedVsNot.notRaised6.mean, 1)} for those that didn't. That gap is why seeing a raise coming matters.</p>
+        <p className="prose"><b>Raising hurts.</b> Over the six months after a balance sheet, the typical company that went on to raise money in that window returned {signed(r.raisedVsNot.raised6.median, 1)} points against XBI, against {signed(r.raisedVsNot.notRaised6.median, 1)} for the typical company that didn't. That gap is why seeing a raise coming matters.</p>
       )}
-      <p className="colnote"><b>Read with care.</b> {r.caveat} Based on {r.priced?.toLocaleString("en-US")} company-quarters from {r.pricedCompanies?.toLocaleString("en-US")} companies. Past results don't guarantee future ones.</p>
+      <p className="colnote"><b>Read with care.</b> {r.method ? `${r.method} ` : ""}{r.caveat} Based on {r.priced?.toLocaleString("en-US")} company-quarters from {r.pricedCompanies?.toLocaleString("en-US")} companies. Past results don't guarantee future ones.</p>
     </div>
   );
 }
@@ -3077,10 +3077,10 @@ function ForFunds({ go }) {
               <div className="metric"><span>Low band: raised within 12 months</span><b>{lo ? `${Math.round(lo.raised12 * 100)}%` : "—"}</b></div>
               <div className="metric"><span>Company-quarters tested</span><b>{bt.rows?.toLocaleString("en-US")}</b></div>
               {ret?.spread12 != null
-                ? <div className="metric"><span>Low band minus High band, 12-month return vs XBI</span><b className={dirOf(ret.spread12)}>{signed(ret.spread12, 1)} pts</b></div>
+                ? <div className="metric"><span>Low minus High band, typical 12-month return vs XBI</span><b className={dirOf(ret.spread12)}>{signed(ret.spread12, 1)} pts</b></div>
                 : <div className="metric"><span>Companies tested</span><b>{bt.companies?.toLocaleString("en-US")}</b></div>}
             </div>
-            <p className="finding">Companies in the High band went on to raise money {hi && lo ? `${Math.round((hi.raised12 / lo.raised12 - 1) * 100)}% more often` : "more often"} than those in the Low band{bt.years ? `, and did so in ${bt.years.filter((y) => y.high > y.low).length} of ${bt.years.length} years` : ""}.{ret?.spread12 != null ? ` Over the following year their shares returned ${signed(ret.bands?.find((x) => x.band === "High")?.m12?.mean, 1)} points against the XBI biotech index on average, against ${signed(ret.bands?.find((x) => x.band === "Low")?.m12?.mean, 1)} for the Low band (share prices cover companies still listed).` : ""} It's an honest edge, not a crystal ball: the score's accuracy (AUC) is {bt.auc?.toFixed(2)}, where 0.5 is a coin flip.</p>
+            <p className="finding">Companies in the High band went on to raise money {hi && lo ? `${Math.round((hi.raised12 / lo.raised12 - 1) * 100)}% more often` : "more often"} than those in the Low band{bt.years ? `, and did so in ${bt.years.filter((y) => y.high > y.low).length} of ${bt.years.length} years` : ""}.{ret?.spread12 != null ? ` Over the following year the typical High-band stock returned ${signed(ret.bands?.find((x) => x.band === "High")?.m12?.median, 1)} points against the XBI biotech index, against ${signed(ret.bands?.find((x) => x.band === "Low")?.m12?.median, 1)} for the typical Low-band stock (share prices cover companies still listed).` : ""} It's an honest edge, not a crystal ball: the score's accuracy (AUC) is {bt.auc?.toFixed(2)}, where 0.5 is a coin flip.</p>
             <p className="colnote"><button className="linkish" onClick={() => go("research")}>See the full track record</button>, including where the score is weakest.</p>
           </>
         ) : <p className="prose">Loading the track record…</p>}
