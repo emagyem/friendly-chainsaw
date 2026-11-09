@@ -2954,10 +2954,12 @@ const PILOT_ROLES = ["Hedge or crossover fund", "Long-only or mutual fund", "Ven
 
 // Today's Pressure Report as a spreadsheet-friendly CSV, made in the browser.
 function downloadReportCsv() {
-  const head = ["Ticker", "Company", "Financing Pressure Score", "Band", "Runway (months)", "Cash ($M)", "Monthly burn ($M)", "Market value ($M)", "Raise capacity", "Next catalyst", "Next catalyst date", "Data as of"];
+  const head = ["Ticker", "Company", "Financing Pressure Score", "Band", "Runway (months)", "Cash ($M)", "Monthly burn ($M)", "Market value ($M)", "Raise capacity", "Next trial result or FDA decision", "Expected date", "Figures as of"];
   const esc = (v) => (v == null ? "" : /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
-  const rows = [...COMPANIES].map((c) => ({ c, f: fpsOf(c), n: nextCatalyst(c) })).sort((a, b) => b.f.score - a.f.score)
-    .map(({ c, f, n }) => [c.t, c.n, f.score, f.band, Math.round(runway(c) * 10) / 10, Math.round(c.cash), Math.round(c.burn * 10) / 10, Math.round(c.mcap), c.raise?.capacity || "", n?.label || "", n?.date || "", c.src?.asOf || ""]);
+  // The next trial result or FDA decision; routine quarterly reports are left out.
+  const nextEvent = (c) => nextMajorCatalyst(c, TODAY);
+  const rows = [...COMPANIES].map((c) => ({ c, f: fpsOf(c), n: nextEvent(c) })).sort((a, b) => b.f.score - a.f.score)
+    .map(({ c, f, n }) => [c.t, c.n, f.score, f.band, Math.round(runway(c) * 10) / 10, Math.round(c.cash), Math.round(c.burn * 10) / 10, Math.round(c.mcap), c.raise?.capacity || "", n ? shortLabel(n.label) : "None dated", n?.date || "", c.src?.asOf || ""]);
   const csv = [head, ...rows].map((r) => r.map(esc).join(",")).join("\n");
   const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
   const a = document.createElement("a");
@@ -4383,8 +4385,10 @@ a.src:hover{color:var(--teal);}
 .id-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px;}
 .hero .btn.primary{background:var(--mint);border-color:var(--mint);color:var(--mast) !important;}
 .hero .btn.primary:hover{background:#9AF0E0;border-color:#9AF0E0;}
-.btn.ghost{background:transparent;border-color:rgba(255,255,255,.22);color:#fff !important;}
-.btn.ghost:hover{border-color:var(--mint);background:rgba(255,255,255,.05);}
+.hero .btn.ghost{background:transparent;border-color:rgba(255,255,255,.22);color:#fff !important;}
+.hero .btn.ghost:hover{border-color:var(--mint);background:rgba(255,255,255,.05);}
+.btn.ghost{background:transparent;border:1px solid var(--ink,#0b1418);color:var(--ink,#0b1418);cursor:pointer;font:inherit;font-weight:600;padding:10px 18px;}
+.btn.ghost:hover{background:rgba(11,20,24,.05);}
 .hero-rail{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:var(--r-lg);padding:20px 22px 16px;}
 .rail-cap{margin:0 0 6px;font-size:13px;color:#A9C4C3;}
 
