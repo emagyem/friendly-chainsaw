@@ -73,6 +73,17 @@ try {
   ok("Quotes refuse symbols not on the site", bad.status === 400, `HTTP ${bad.status}`);
 } catch (e) { ok("Delayed quotes", false, e.message); }
 
+// Usage counting accepts known events only, and the pilot form refuses other websites.
+try {
+  const r = await post("/api/event", { name: "view_home" });
+  const bad = await post("/api/event", { name: "anything_else" });
+  ok("Usage counting", r.status === 204 && bad.status === 400, `known event HTTP ${r.status}, unknown event HTTP ${bad.status}`);
+} catch (e) { ok("Usage counting", false, e.message); }
+try {
+  const r = await post("/api/pilot", { name: "x", email: "x@example.com", firm: "x" }, "https://evil.example");
+  ok("Pilot form refuses other websites", r.status === 403, `HTTP ${r.status}`);
+} catch (e) { ok("Pilot form refuses other websites", false, e.message); }
+
 for (const [name, url] of [["Old Netlify site", "https://jolly-seahorse-c530f0.netlify.app/"], ["Old Cloudflare project", "https://friendly-chainsaw.pages.dev/"]]) {
   try {
     const r = await get(url);

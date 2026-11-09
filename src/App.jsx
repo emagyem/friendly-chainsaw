@@ -5,6 +5,14 @@ import {
 } from "recharts";
 import { COMPANIES, META, HISTORY, INDUSTRY, CYBER, MARKETS } from "./data.js";
 import { MARKET_GROUPS, TRADABLE_FUNDS } from "../server/markets-list.js";
+// Count a page view or key action (daily totals only; see functions/api/event.js).
+function track(name) {
+  try {
+    const body = JSON.stringify({ name });
+    if (navigator.sendBeacon) navigator.sendBeacon("/api/event", new Blob([body], { type: "application/json" }));
+    else fetch("/api/event", { method: "POST", headers: { "Content-Type": "application/json" }, body, keepalive: true }).catch(() => {});
+  } catch { /* counting is best-effort */ }
+}
 // Any company on the site, coverage or drug industry.
 const findCo = (t) => COMPANIES.find((x) => x.t === t) || INDUSTRY.find((x) => x.t === t);
 // Drug-industry segments, in the order the Drug Industry page shows them.
@@ -1249,6 +1257,7 @@ function Ask() {
         body: JSON.stringify({ question: text, turnstileToken: tsToken }),
       });
       tsUsed();
+      track("ask_question");
       if (res.status === 429) {
         setLog((l) => [...l, { role: "ai", text: "That's a lot of questions in a short time. Wait a minute and ask again.", fallback: true }]);
         setBusy(false);
@@ -1550,6 +1559,7 @@ function Waitlist({ compact, band }) {
         body: JSON.stringify({ email, role, botField: "", turnstileToken: tsToken }),
       });
       tsUsed();
+      if (res.ok) track("waitlist_signup");
       setState(res.ok ? "done" : "error");
     } catch { setState("error"); }
   };
@@ -1661,7 +1671,7 @@ function PressureReport({ go }) {
         <p className="kicker-static">The Financing Pressure Report, edition of {edition}</p>
         <h1 className="report-h">{high.length} of {ranked.length} companies {high.length === 1 ? "has" : "have"} high financing pressure</h1>
         <p className="lead-dek">{headline}</p>
-        <p className="byline">Built from SEC filings, ClinicalTrials.gov and market prices. Every figure links to its source on the company pages.</p>
+        <p className="byline">Built from SEC filings, ClinicalTrials.gov and market prices. Every figure links to its source on the company pages. <button className="linkish" onClick={downloadReportCsv}>Download this report (CSV)</button> · <button className="linkish" onClick={() => go("pro")}>Weekly reports and data for funds</button></p>
       </section>
 
       <div className="two wide-left">
@@ -2932,6 +2942,135 @@ function About({ go, anchor }) {
   );
 }
 
+/* --------------------------- for funds & banks --------------------------- */
+
+// Plans and prices live here so they're easy to change.
+const PLANS = [
+  { k: "free", name: "Research", price: "Free", status: "Available now", for: "Anyone following small biotech stocks", items: ["Financing Pressure Report and score for 100 clinical-stage biotechs", "Company pages with every figure linked to its SEC filing", "Catalyst calendar and trial outlook", "Ask Helixora (fair-use limit)", "Today's report as a CSV download"], cta: null },
+  { k: "professional", name: "Professional", price: "$49 a month", status: "Coming soon: join the list", for: "Independent analysts, advisers and active investors", items: ["Everything in Research", "Email alerts when a company's band, runway or next catalyst changes", "Full score history for every company", "Downloads of every table", "Unlimited Ask Helixora"], cta: "professional" },
+  { k: "institutional", name: "Institutional", price: "From $12,000 a year", status: "30-day pilots open now", for: "Hedge and crossover funds, healthcare funds, ECM and biotech bankers", items: ["Weekly Financing Pressure Report for your coverage list", "Data feed (CSV or JSON) with point-in-time history since 2010", "Custom universes: your watchlists, your thresholds", "Backtest and method walk-through with your team", "A monthly call with the analyst"], cta: "institutional-pilot" },
+];
+const PILOT_ROLES = ["Hedge or crossover fund", "Long-only or mutual fund", "Venture capital", "Investment bank", "Biotech company", "Consultant or advisor", "Individual investor", "Other"];
+
+// Today's Pressure Report as a spreadsheet-friendly CSV, made in the browser.
+function downloadReportCsv() {
+  const head = ["Ticker", "Company", "Financing Pressure Score", "Band", "Runway (months)", "Cash ($M)", "Monthly burn ($M)", "Market value ($M)", "Raise capacity", "Next catalyst", "Next catalyst date", "Data as of"];
+  const esc = (v) => (v == null ? "" : /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
+  const rows = [...COMPANIES].map((c) => ({ c, f: fpsOf(c), n: nextCatalyst(c) })).sort((a, b) => b.f.score - a.f.score)
+    .map(({ c, f, n }) => [c.t, c.n, f.score, f.band, Math.round(runway(c) * 10) / 10, Math.round(c.cash), Math.round(c.burn * 10) / 10, Math.round(c.mcap), c.raise?.capacity || "", n?.label || "", n?.date || "", c.src?.asOf || ""]);
+  const csv = [head, ...rows].map((r) => r.map(esc).join(",")).join("\n");
+  const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+  const a = document.createElement("a");
+  a.href = url; a.download = `helixora-financing-pressure-${(META.generatedAt || "").slice(0, 10) || "today"}.csv`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  track("csv_download");
+}
+
+function PilotForm({ plan, setPlan }) {
+  const [f, setF] = useState({ name: "", email: "", firm: "", role: PILOT_ROLES[0], note: "" });
+  const [state, setState] = useState("idle");
+  const [err, setErr] = useState("");
+  const { mount, token, ready, used } = useHumanCheck();
+  const set = (k) => (e) => setF((x) => ({ ...x, [k]: e.target.value }));
+  const submit = async (e) => {
+    e.preventDefault();
+    if (!ready) return;
+    setState("sending"); setErr("");
+    try {
+      const r = await fetch("/api/pilot", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...f, plan, botField: "", turnstileToken: token }) });
+      used();
+      if (r.ok) { setState("done"); track(`pilot_request_${plan}`); }
+      else { setState("error"); setErr((await r.json().catch(() => ({}))).error || "That didn't go through."); }
+    } catch { setState("error"); setErr("That didn't go through. Try again in a minute."); }
+  };
+  if (state === "done") return <p className="wl-done">Thanks, {f.name.split(" ")[0] || "we've got it"}. We'll email you within two working days to set things up.</p>;
+  return (
+    <form className="pilot" onSubmit={submit} id="pilot-form">
+      <div className="pilot-grid">
+        <label>Name<input required maxLength={120} value={f.name} onChange={set("name")} autoComplete="name" /></label>
+        <label>Work email<input required type="email" maxLength={254} value={f.email} onChange={set("email")} autoComplete="email" /></label>
+        <label>Firm<input required maxLength={160} value={f.firm} onChange={set("firm")} autoComplete="organization" /></label>
+        <label>You are<select value={f.role} onChange={set("role")}>{PILOT_ROLES.map((r) => <option key={r}>{r}</option>)}</select></label>
+        <label>Interested in<select value={plan} onChange={(e) => setPlan(e.target.value)}>
+          <option value="institutional-pilot">Institutional: 30-day pilot</option><option value="professional">Professional: tell me at launch</option><option value="data">Data feed only</option><option value="other">Something else</option>
+        </select></label>
+        <label className="wide">What would you use it for? (optional)<textarea rows={3} maxLength={2000} value={f.note} onChange={set("note")} placeholder="E.g. screening our small-cap biotech book for dilution risk ahead of readouts" /></label>
+      </div>
+      <div ref={mount} className="ts-box" />
+      <button type="submit" className="btn-primary" disabled={state === "sending" || !ready}>{state === "sending" ? "Sending…" : ready ? "Send request" : "Checking…"}</button>
+      {state === "error" && <p className="wl-err">{err}</p>}
+      <p className="colnote">We use these details only to reply to you. See the privacy notice on the About page; you can remove them at any time.</p>
+    </form>
+  );
+}
+
+function ForFunds({ go }) {
+  const bt = useBacktest();
+  const [plan, setPlan] = useState("institutional-pilot");
+  const hi = bt?.bands?.find((b) => b.band === "High"), lo = bt?.bands?.find((b) => b.band === "Low");
+  const ret = bt?.returns;
+  const pick = (p) => { setPlan(p); setTimeout(() => document.getElementById("pilot-form")?.scrollIntoView({ behavior: "smooth", block: "start" }), 50); };
+  return (
+    <div className="stack">
+      <section className="panel report-head">
+        <p className="kicker-static">For funds & banks</p>
+        <h1 className="report-h">See which small biotechs will need to raise money, months before the deal</h1>
+        <p className="lead-dek">Helixora scores every clinical-stage biotech it covers on how likely it is to sell stock before its next big result, from cash, burn, catalyst timing and how easily it could raise. Funds use that to size positions and avoid getting diluted; bankers use it to find the next companies that need capital.</p>
+        <div className="id-ctas"><button className="btn-primary" onClick={() => pick("institutional-pilot")}>Request a 30-day pilot</button> <button className="btn ghost" onClick={downloadReportCsv}>Download today's report (CSV)</button></div>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Tested on 15 years of SEC filings</h2><span className="ph-note">Point in time, including companies that later stopped filing</span></header>
+        {bt ? (
+          <>
+            <div className="metrics four">
+              <div className="metric"><span>High band: raised within 12 months</span><b>{hi ? `${Math.round(hi.raised12 * 100)}%` : "—"}</b></div>
+              <div className="metric"><span>Low band: raised within 12 months</span><b>{lo ? `${Math.round(lo.raised12 * 100)}%` : "—"}</b></div>
+              <div className="metric"><span>Company-quarters tested</span><b>{bt.rows?.toLocaleString("en-US")}</b></div>
+              {ret?.spread12 != null
+                ? <div className="metric"><span>Low band minus High band, 12-month return vs XBI</span><b className={dirOf(ret.spread12)}>{signed(ret.spread12, 1)} pts</b></div>
+                : <div className="metric"><span>Companies tested</span><b>{bt.companies?.toLocaleString("en-US")}</b></div>}
+            </div>
+            <p className="finding">Companies in the High band went on to raise money {hi && lo ? `${Math.round((hi.raised12 / lo.raised12 - 1) * 100)}% more often` : "more often"} than those in the Low band{bt.years ? `, and did so in ${bt.years.filter((y) => y.high > y.low).length} of ${bt.years.length} years` : ""}.{ret?.spread12 != null ? ` Their shares also trailed the XBI biotech index by ${Math.abs(ret.bands?.[0]?.m12?.mean ?? 0).toFixed(1)} points on average over the following year, against ${(ret.bands?.[3]?.m12?.mean ?? 0).toFixed(1)} for the Low band.` : ""} It's an honest edge, not a crystal ball: the score's accuracy (AUC) is {bt.auc?.toFixed(2)}, where 0.5 is a coin flip.</p>
+            <p className="colnote"><button className="linkish" onClick={() => go("research")}>See the full track record</button>, including where the score is weakest.</p>
+          </>
+        ) : <p className="prose">Loading the track record…</p>}
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Who it's for</h2></header>
+        <div className="for-grid">
+          <div><b>Hedge and crossover funds</b><p>Spot dilution risk before a readout, size positions around it, and find names likely to come to market.</p></div>
+          <div><b>Healthcare and long-only funds</b><p>Check whether a holding can fund itself to its next catalyst, with every number traced to a filing.</p></div>
+          <div><b>ECM and biotech bankers</b><p>A ranked list of companies running low on cash with a catalyst coming, and how much they could raise.</p></div>
+          <div><b>Biotech CFOs and investor relations</b><p>Benchmark your runway and financing position against peers the way investors will.</p></div>
+        </div>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Plans</h2></header>
+        <div className="plans">{PLANS.map((p) => (
+          <div className={"plan" + (p.k === "institutional" ? " feat" : "")} key={p.k}>
+            <span className="plan-status">{p.status}</span>
+            <h3>{p.name}</h3>
+            <b className="plan-price">{p.price}</b>
+            <p className="sub">{p.for}</p>
+            <ul>{p.items.map((i) => <li key={i}>{i}</li>)}</ul>
+            {p.cta ? <button className={p.k === "institutional" ? "btn-primary" : "btn ghost"} onClick={() => pick(p.cta)}>{p.k === "institutional" ? "Request a pilot" : "Tell me at launch"}</button> : <button className="btn ghost" onClick={() => go("report")}>Open the report</button>}
+          </div>
+        ))}</div>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Request a pilot or a plan</h2></header>
+        <PilotForm plan={plan} setPlan={setPlan} />
+      </section>
+      <p className="colnote">Helixora is research, not investment advice. Pilot terms and prices may change before launch.</p>
+    </div>
+  );
+}
+
 /* ------------------------------ market data ------------------------------ */
 
 const MARKET_NAMES = Object.fromEntries([...MARKET_GROUPS.flatMap((g) => g.items), ...TRADABLE_FUNDS]);
@@ -3073,7 +3212,7 @@ function VirtualExchange({ go }) {
 
   const start = () => {
     const a = { cash: START_CASH, created: todayIso(), spyAtStart: px("SPY"), positions: {}, trades: [], history: [[todayIso(), START_CASH]] };
-    saveAccount(a); setAcct(a); setMsg(null);
+    saveAccount(a); setAcct(a); setMsg(null); track("vse_start");
   };
   const value = acct ? acct.cash + Object.entries(acct.positions).reduce((t, [s, p]) => t + p.shares * (px(s) ?? p.cost), 0) : 0;
   // One value snapshot per day, for the chart.
@@ -3123,7 +3262,7 @@ function VirtualExchange({ go }) {
     }
     a.trades.unshift({ at: nowIso(), s: sym, side, shares: n, price, gain: side === "sell" ? (price - pos.cost) * n : null });
     a.cash = Math.round(a.cash * 100) / 100;
-    saveAccount(a); setAcct(a);
+    saveAccount(a); setAcct(a); track("vse_trade");
     setMsg({ text: `${side === "buy" ? "Bought" : "Sold"} ${n} ${sym} at ${usd(price)} for ${usd(cost)}.` });
   };
 
@@ -3422,7 +3561,7 @@ function MoneyCalculators() {
         <p className="lead-dek">Four calculators that show their maths: how much you could have for retirement, whether your budget balances, what a mortgage really costs a month, and how US federal income tax brackets work. Nothing you type leaves your browser.</p>
       </section>
       <section className="panel">
-        <nav className="tabs">{tabs.map(([k, l]) => <button key={k} className={tab === k ? "on" : ""} onClick={() => setTab(k)}>{l}</button>)}</nav>
+        <nav className="tabs">{tabs.map(([k, l]) => <button key={k} className={tab === k ? "on" : ""} onClick={() => { setTab(k); track(`calc_${k}`); }}>{l}</button>)}</nav>
         {tab === "retire" && <RetirementCalc />}
         {tab === "budget" && <BudgetCalc />}
         {tab === "mortgage" && <MortgageCalc />}
@@ -3632,6 +3771,7 @@ function CorrectionForm({ ticker, topic = "other" }) {
     try {
       const res = await fetch("/api/correction", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ticker, topic, message: msg, email, botField: "", turnstileToken: token }) });
       used();
+      if (res.ok) track("correction_sent");
       setState(res.ok ? "done" : "error");
     } catch { setState("error"); }
   };
@@ -3809,6 +3949,9 @@ function Privacy() {
             <thead><tr><th>When</th><th>What</th><th>Why</th><th>How long</th></tr></thead>
             <tbody>
               <tr><td><b>You join the waitlist</b></td><td>Your email, the role you pick (optional), your country as reported by Cloudflare, and the sign-up time</td><td>To send the Financing Pressure Report and see who it's useful to</td><td>Until you remove it</td></tr>
+              <tr><td><b>You request a pilot or plan</b></td><td>Your name, work email, firm, role, the plan you picked and any note</td><td>To reply and set up the pilot</td><td>Until you remove it, or two years after we last spoke</td></tr>
+              <tr><td><b>You report a mistake</b></td><td>The company, your message and, if you give one, your email</td><td>To check and correct the site, and reply if you asked</td><td>Until the report is resolved, then up to a year</td></tr>
+              <tr><td><b>You visit a page or use a tool</b></td><td>A daily count of how many times each page or action was used (for example "Pressure Report viewed", "trade placed"), with nothing that identifies you: no cookies, IP address or device ID</td><td>To see which parts of the site people use</td><td>Kept as totals</td></tr>
               <tr><td><b>You use Ask Helixora</b></td><td>Your question, sent to Anthropic's API to write the answer</td><td>To answer it. Helixora doesn't store questions.</td><td>Not kept by Helixora; Anthropic handles API data under its own terms</td></tr>
               <tr><td><b>You submit a form</b></td><td>A one-way scrambled code made from your IP address and the date; Cloudflare Turnstile may check your browser</td><td>To limit abuse and stop bots</td><td>Codes expire within a day</td></tr>
               <tr><td><b>You change a setting</b></td><td>Your watchlist and menu layout, stored in your own browser</td><td>To remember your choices</td><td>Until you clear your browser data; never sent to us</td></tr>
@@ -3819,7 +3962,7 @@ function Privacy() {
       </section>
       <section className="panel">
         <header className="ph"><h2>Remove your email</h2></header>
-        <p className="prose">Enter the address you signed up with and it will be deleted from the waitlist straight away.</p>
+        <p className="prose">Enter your email and it will be deleted straight away from the waitlist, pilot requests and mistake reports.</p>
         <RemoveMe />
       </section>
       <p className="disclaimer">Last updated November 4, 2026. If this page changes, the date above will change too.</p>
@@ -3865,13 +4008,13 @@ function Wordmark({ underline = false }) {
 /* ------------------------------- shell ------------------------------- */
 
 // Sections and their pages, grouped the way a financial news site groups them.
+// One product up front: biotech financing risk. Everything else sits under More.
 const NAV = [
-  { k: "markets", l: "Markets", items: [["home", "Overview"], ["company", "Quotes"], ["screen", "Screener"], ["compare", "Compare"], ["industry", "Drug Industry"], ["marketdata", "Market Data"]] },
-  { k: "risk", l: "Financing Risk", items: [["report", "Pressure Report"], ["research", "Research"]] },
-  { k: "trials", l: "Trials & FDA", items: [["outlook", "Outlook"], ["catalysts", "Catalyst Calendar"]] },
-  { k: "cyber", l: "Cyber Risk", items: [["cyber", "Cyber Scores"], ["incidents", "Cyber Incidents"]] },
-  { k: "tools", l: "Tools", items: [["trade", "Virtual Exchange"], ["calc", "Money Calculators"]] },
+  { k: "risk", l: "Financing Risk", items: [["home", "Overview"], ["report", "Pressure Report"], ["screen", "Screener"], ["research", "Track Record"]] },
+  { k: "companies", l: "Companies", items: [["company", "Quotes"], ["compare", "Compare"], ["catalysts", "Catalyst Calendar"], ["outlook", "Trial Outlook"]] },
   { k: "ask", l: "Ask Helixora", items: [["ask", "Ask Helixora"]] },
+  { k: "pro", l: "For Funds & Banks", items: [["pro", "For Funds & Banks"]] },
+  { k: "more", l: "More", items: [["industry", "Drug Industry"], ["marketdata", "Market Data"], ["cyber", "Cyber Scores"], ["incidents", "Cyber Incidents"], ["trade", "Virtual Exchange"], ["calc", "Money Calculators"]] },
   { k: "about", l: "About us", items: [["about", "About us"]] },
 ];
 const groupOf = (v) => NAV.find((g) => g.items.some(([k]) => k === (v === "privacy" ? "about" : v))) || NAV[0];
@@ -3887,6 +4030,8 @@ function loadWatch() {
 
 export default function App() {
   const [view, setView] = useState("home");
+  // One count per page view (daily totals only).
+  useEffect(() => { track(`view_${view}`); }, [view]);
   const [ticker, setTicker] = useState(COMPANIES[0].t);
   const [watch, setWatch] = useState(loadWatch);
   const [omni, setOmni] = useState("");
@@ -3913,7 +4058,7 @@ export default function App() {
     return () => window.removeEventListener("hashchange", fromHash);
   }, []);
   useEffect(() => { if (view !== "privacy" && window.location.hash === "#privacy") history.replaceState(null, "", window.location.pathname); }, [view]);
-  const toggleWatch = (t) => setWatch((w) => (w.includes(t) ? w.filter((x) => x !== t) : [...w, t]));
+  const toggleWatch = (t) => setWatch((w) => { if (!w.includes(t)) track("watch_add"); return w.includes(t) ? w.filter((x) => x !== t) : [...w, t]; });
 
   const matches = omni.trim()
     ? [...COMPANIES, ...INDUSTRY].filter((c) => (c.t + " " + c.n).toLowerCase().includes(omni.toLowerCase())).slice(0, 6)
@@ -4004,6 +4149,7 @@ export default function App() {
         {(view === "industry" || view === "bigpharma") && <Industry go={go} />}
         {view === "cyber" && <CyberScores go={go} />}
         {view === "marketdata" && <MarketData />}
+        {view === "pro" && <ForFunds go={go} />}
         {view === "trade" && <VirtualExchange go={go} />}
         {view === "calc" && <MoneyCalculators />}
         {view === "incidents" && <CyberIncidents go={go} />}
@@ -4516,6 +4662,14 @@ details.more summary:hover{color:var(--teal);}
 .tl-days{font-size:13px;}
 
 /* calendar */
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.plan{border:1px solid var(--rule);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:6px;}.plan.feat{border-color:var(--ink,#0b1418);box-shadow:inset 0 0 0 1px var(--ink,#0b1418);}
+.plan h3{margin:4px 0 0;font-size:20px;}.plan-price{font-size:22px;}.plan-status{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#0f766e;font-weight:600;}
+.plan ul{margin:6px 0 12px;padding-left:18px;flex:1;}.plan li{margin:4px 0;font-size:14px;}.plan button{align-self:flex-start;}
+.for-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px;}.for-grid p{margin:4px 0 0;font-size:14px;color:var(--mut);}
+.pilot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;margin-bottom:12px;}.pilot-grid label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mut);}.pilot-grid .wide{grid-column:1/-1;}
+.pilot-grid input,.pilot-grid select,.pilot-grid textarea{padding:9px 10px;border:1px solid var(--rule);border-radius:6px;font:inherit;color:var(--ink,#0b1418);}
+@media (max-width:800px){.plans,.for-grid,.pilot-grid{grid-template-columns:minmax(0,1fr);}}
 .btn-primary{display:inline-block;padding:10px 18px;border:0;border-radius:6px;background:var(--ink,#0b1418);color:#fff;font:inherit;font-weight:600;cursor:pointer;}.btn-primary:disabled{opacity:.5;cursor:default;}
 .ticket{display:grid;grid-template-columns:minmax(0,1.3fr) auto minmax(0,.7fr) minmax(0,1.6fr) auto;gap:14px;align-items:end;}
 .ticket label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mut);}.ticket input{padding:9px 10px;border:1px solid var(--rule);border-radius:6px;font:inherit;color:var(--ink,#0b1418);min-width:0;}

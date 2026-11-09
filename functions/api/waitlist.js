@@ -36,9 +36,12 @@ export async function onRequestPost({ request, env }) {
   if (!email || email.length > 254 || !EMAIL.test(email)) return json(400, { error: "Enter a valid email address" });
 
   if (body?.action === "remove") {
-    try {
-      await env.WAITLIST.prepare("DELETE FROM waitlist WHERE email = ?1").bind(email).run();
-    } catch { /* table not created yet: nothing to remove */ }
+    // Remove the address everywhere the site keeps it: waitlist, pilot requests and correction reports.
+    for (const table of ["waitlist", "pilots", "corrections"]) {
+      try {
+        await env.WAITLIST.prepare(`DELETE FROM ${table} WHERE email = ?1`).bind(email).run();
+      } catch { /* table not created yet: nothing to remove */ }
+    }
     // Same answer whether or not the address was on the list, so the form can't be used to check who signed up.
     return json(200, { ok: true });
   }
