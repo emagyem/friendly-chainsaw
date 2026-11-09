@@ -173,6 +173,10 @@ Drug industry: `config/companies.json` → `industry` lists established drug-ind
 
 Acquisitions: every daily refresh checks each company's SEC filing list. A company whose takeover has closed (a tender offer or merger vote, then a Nasdaq/NYSE delisting notice) is removed from the site and from `config/companies.json`, whoever the buyer. The same applies to the drug-industry companies. A tender offer a company makes for someone else doesn't count. Every removal is logged under Coverage changes on the About page. A company with a deal still pending stays, marked "Being acquired". A company that disappears from the SEC's list of listed companies without a deal filing leaves after five days without fresh data. The monthly screen never adds a company that is being bought.
 
+## Backtest returns
+
+`scripts/backtest.mjs` also measures each company's share return over the 6 and 12 months after every balance sheet, against the XBI biotech ETF (`returns` in `backtest.json`): by band, by score decile and by year, with medians as the headline and means capped at the 5th/95th percentiles. Prices exist only for companies still listed, so these figures lean towards survivors; the raise test doesn't.
+
 ## Cyber Risk
 
 `scripts/cyber.mjs` (weekly, `.github/workflows/cyber.yml`) grades every company on the site from public information and writes `public/data/cyber.json`:

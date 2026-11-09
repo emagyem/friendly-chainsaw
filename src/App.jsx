@@ -1783,7 +1783,7 @@ function BacktestReturns({ r }) {
             <BarChart data={dec} margin={{ top: 6, right: 0, bottom: 0, left: 0 }}>
               <CartesianGrid stroke="#E4E9EB" vertical={false} />
               <XAxis dataKey="decile" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#5E6B73" }} />
-              <YAxis orientation="right" axisLine={false} tickLine={false} width={44} tick={{ fontSize: 11, fill: "#5E6B73" }} tickFormatter={(v) => `${v}`} />
+              <YAxis orientation="right" domain={[(lo) => Math.min(0, Math.floor(lo / 10) * 10), (hi) => Math.max(0, hi)]} axisLine={false} tickLine={false} width={44} tick={{ fontSize: 11, fill: "#5E6B73" }} tickFormatter={(v) => `${v}`} />
               <ReferenceLine y={0} stroke="#8A979E" />
               <Tooltip formatter={(v) => [`${signed(v, 1)} pts vs XBI`, "Median 12-month return"]} labelFormatter={(l) => `Decile ${l}`} />
               <Bar dataKey="median12" isAnimationActive={false}>{dec.map((d) => <Cell key={d.decile} fill={d.median12 >= 0 ? UP : DOWN} />)}</Bar>
@@ -1792,7 +1792,7 @@ function BacktestReturns({ r }) {
         </>
       )}
       {r.raisedVsNot?.raised6 && r.raisedVsNot?.notRaised6 && (
-        <p className="prose"><b>Raising hurts.</b> Over the six months after a balance sheet, the typical company that went on to raise money in that window returned {signed(r.raisedVsNot.raised6.median, 1)} points against XBI, against {signed(r.raisedVsNot.notRaised6.median, 1)} for the typical company that didn't. That gap is why seeing a raise coming matters.</p>
+        <p className="prose"><b>Around a raise.</b> Over the six months after a balance sheet, the typical company that went on to raise money in that window returned {signed(r.raisedVsNot.raised6.median, 1)} points against XBI, against {signed(r.raisedVsNot.notRaised6.median, 1)} for the typical company that didn't{(r.raisedVsNot.raised6.median < r.raisedVsNot.notRaised6.median) === (r.raisedVsNot.raised6.mean < r.raisedVsNot.notRaised6.mean) ? "" : `; the trimmed averages point the other way (${signed(r.raisedVsNot.raised6.mean, 1)} vs ${signed(r.raisedVsNot.notRaised6.mean, 1)}), so the raise itself isn't the whole story. The gap between bands above is larger and more consistent`}.</p>
       )}
       <p className="colnote"><b>Read with care.</b> {r.method ? `${r.method} ` : ""}{r.caveat} Based on {r.priced?.toLocaleString("en-US")} company-quarters from {r.pricedCompanies?.toLocaleString("en-US")} companies. Past results don't guarantee future ones.</p>
     </div>
