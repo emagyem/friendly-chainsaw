@@ -831,7 +831,7 @@ async function readOfferings(financings, sharesNowM) {
     if (p === undefined) { p = { ...(parseOffering(await secText(f.url), sharesNowM) || { kind: "unread" }), v: OFFERING_PARSER }; OFFER_CACHE.set(f.url, p); }
     f.parsed = p;
     if (p.kind === "priced") {
-      Object.assign(f, { amt: p.amt, dil: p.dil, price: p.price, newShares: p.shares, ...(p.approx ? { dilApprox: true } : {}), ...(p.ipo ? { type: "Initial public offering (424B4)" } : {}) });
+      Object.assign(f, { amt: p.amt, dil: p.dil, price: p.price, newShares: p.shares, ...(p.approx ? { dilApprox: true } : {}), type: p.ipo ? "Initial public offering (424B4)" : f.type.startsWith("Shelf takedown") ? "Stock offering (424B5)" : f.type });
     } else if (p.kind === "atm") {
       Object.assign(f, { type: "ATM program (424B5)", amt: p.amt, upTo: true, dil: null });
     } else if (p.kind === "resale") {
