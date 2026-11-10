@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-10T00:46:19.497Z",
+  "generatedAt": "2026-11-10T01:01:42.849Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -1004,10 +1004,6 @@
     [
      "2026-11-06",
      152.21
-    ],
-    [
-     "2026-11-09",
-     156.9
     ]
    ]
   },
@@ -2329,7 +2325,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 225,
-      "convertible": true
+      "convertible": true,
+      "v": 2
      }
     },
     {
@@ -2344,7 +2341,8 @@
       "shares": 6.47,
       "price": 85,
       "before": 101.5,
-      "dil": 6.4
+      "dil": 6.4,
+      "v": 2
      },
      "price": 85,
      "newShares": 6.47
@@ -2358,7 +2356,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 151.9,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -4643,21 +4642,11 @@
       "shares": 3.1,
       "price": 64.5,
       "before": 135.7,
-      "dil": 2.3
+      "dil": 2.3,
+      "v": 2
      },
      "price": 64.5,
      "newShares": 3.1
-    },
-    {
-     "date": "2026-01-07",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/879407/000119312526005087/d13080d424b5.htm",
-     "parsed": {
-      "kind": "resale"
-     },
-     "resale": true
     },
     {
      "date": "2024-01-04",
@@ -4671,7 +4660,8 @@
       "shares": 15.79,
       "price": 28.5,
       "before": 107.3,
-      "dil": 14.7
+      "dil": 14.7,
+      "v": 2
      },
      "price": 28.5,
      "newShares": 15.79
@@ -6669,7 +6659,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 100,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -6685,7 +6676,8 @@
       "shares": 13.2,
       "price": 12.5,
       "before": 91.1,
-      "dil": 14.5
+      "dil": 14.5,
+      "v": 2
      },
      "price": 12.5,
      "newShares": 13.2
@@ -8244,25 +8236,31 @@
    "financings": [
     {
      "date": "2026-08-06",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
+     "type": "ATM program (424B5)",
+     "amt": 200,
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1727196/000110465926091699/tm2622083-1_424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "atm",
+      "amt": 200,
+      "upTo": true,
+      "v": 2
      },
-     "resale": true
+     "upTo": true
     },
     {
      "date": "2025-11-14",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
+     "type": "ATM program (424B5)",
+     "amt": 200,
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1727196/000110465925111955/tm2530774-1_424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "atm",
+      "amt": 200,
+      "upTo": true,
+      "v": 2
      },
-     "resale": true
+     "upTo": true
     },
     {
      "date": "2024-10-09",
@@ -8276,21 +8274,11 @@
       "shares": 10.62,
       "price": 28.25,
       "before": 80,
-      "dil": 13.3
+      "dil": 13.3,
+      "v": 2
      },
      "price": 28.25,
      "newShares": 10.62
-    },
-    {
-     "date": "2024-10-07",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/1727196/000110465924106713/tm2425688-11_424b5.htm",
-     "parsed": {
-      "kind": "resale"
-     },
-     "resale": true
     }
    ],
    "note": "",
@@ -10384,7 +10372,8 @@
       "shares": 11.11,
       "price": 27,
       "before": 87.9,
-      "dil": 12.6
+      "dil": 12.6,
+      "v": 2
      },
      "price": 27,
      "newShares": 11.11
@@ -10398,7 +10387,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 350,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -10414,7 +10404,8 @@
       "shares": 7.51,
       "price": 35,
       "before": 74.8,
-      "dil": 10.1
+      "dil": 10.1,
+      "v": 2
      },
      "price": 35,
      "newShares": 7.51
@@ -10428,7 +10419,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 350,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -12166,14 +12158,17 @@
    "financings": [
     {
      "date": "2026-02-26",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
+     "type": "ATM program (424B5)",
+     "amt": 500,
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312526073542/d108564d424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "atm",
+      "amt": 500,
+      "upTo": true,
+      "v": 2
      },
-     "resale": true
+     "upTo": true
     },
     {
      "date": "2025-12-10",
@@ -12187,21 +12182,11 @@
       "shares": 7,
       "price": 86,
       "before": 71.7,
-      "dil": 9.8
+      "dil": 9.8,
+      "v": 2
      },
      "price": 86,
      "newShares": 7
-    },
-    {
-     "date": "2025-12-08",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312525311268/d848302d424b5.htm",
-     "parsed": {
-      "kind": "resale"
-     },
-     "resale": true
     },
     {
      "date": "2025-06-27",
@@ -12215,7 +12200,8 @@
       "shares": 5.7,
       "price": 44,
       "before": 65.1,
-      "dil": 8.8
+      "dil": 8.8,
+      "v": 2
      },
      "price": 44,
      "newShares": 5.7
@@ -12232,7 +12218,8 @@
       "shares": 5.52,
       "price": 40.75,
       "before": 61.6,
-      "dil": 9
+      "dil": 9,
+      "v": 2
      },
      "price": 40.75,
      "newShares": 5.52
@@ -12249,7 +12236,8 @@
       "shares": 10.89,
       "price": 25.25,
       "before": 55.5,
-      "dil": 19.6
+      "dil": 19.6,
+      "v": 2
      },
      "price": 25.25,
      "newShares": 10.89
@@ -14072,7 +14060,8 @@
       "price": 20.5,
       "before": 187.4,
       "dil": 9.8,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 20.5,
      "newShares": 18.3,
@@ -14091,7 +14080,8 @@
       "price": 18.44,
       "before": 187.4,
       "dil": 10.1,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 18.44,
      "newShares": 18.98,
@@ -14110,7 +14100,8 @@
       "price": 8.25,
       "before": 187.4,
       "dil": 12.9,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 8.25,
      "newShares": 24.24,
@@ -14125,7 +14116,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 300,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -14142,7 +14134,8 @@
       "price": 31,
       "before": 187.4,
       "dil": 5.6,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 31,
      "newShares": 10.5,
@@ -15817,7 +15810,8 @@
       "shares": 6.14,
       "price": 42.5,
       "before": 63.9,
-      "dil": 9.6
+      "dil": 9.6,
+      "v": 2
      },
      "price": 42.5,
      "newShares": 6.14
@@ -15831,7 +15825,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 200,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -15847,7 +15842,8 @@
       "shares": 7.14,
       "price": 42,
       "before": 54.8,
-      "dil": 13
+      "dil": 13,
+      "v": 2
      },
      "price": 42,
      "newShares": 7.14
@@ -15864,7 +15860,8 @@
       "shares": 8.06,
       "price": 31,
       "before": 44.4,
-      "dil": 18.1
+      "dil": 18.1,
+      "v": 2
      },
      "price": 31,
      "newShares": 8.06
@@ -17834,7 +17831,8 @@
       "shares": 35.29,
       "price": 0.85,
       "before": 250.2,
-      "dil": 14.1
+      "dil": 14.1,
+      "v": 2
      },
      "price": 0.85,
      "newShares": 35.29
@@ -19891,7 +19889,8 @@
       "shares": 17.65,
       "price": 8.5,
       "before": 139.5,
-      "dil": 12.7
+      "dil": 12.7,
+      "v": 2
      },
      "price": 8.5,
      "newShares": 17.65
@@ -22004,7 +22003,8 @@
       "shares": 18.16,
       "price": 22.03,
       "before": 59.7,
-      "dil": 30.4
+      "dil": 30.4,
+      "v": 2
      },
      "price": 22.03,
      "newShares": 18.16
@@ -22018,7 +22018,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 150,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -23697,7 +23698,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 150,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -25216,7 +25218,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1681087/000119312525139142/d48536d424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "resale",
+      "v": 2
      },
      "resale": true
     },
@@ -25227,7 +25230,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1681087/000119312525122540/d80666d424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "resale",
+      "v": 2
      },
      "resale": true
     },
@@ -25238,7 +25242,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1681087/000119312525025168/d887017d424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "resale",
+      "v": 2
      },
      "resale": true
     },
@@ -25249,7 +25254,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1681087/000119312524189184/d861966d424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "resale",
+      "v": 2
      },
      "resale": true
     }
@@ -27301,7 +27307,8 @@
       "shares": 4.95,
       "price": 45.5,
       "before": 63,
-      "dil": 7.8
+      "dil": 7.8,
+      "v": 2
      },
      "price": 45.5,
      "newShares": 4.95
@@ -27318,7 +27325,8 @@
       "shares": 6.32,
       "price": 47.5,
       "before": 54.9,
-      "dil": 11.5
+      "dil": 11.5,
+      "v": 2
      },
      "price": 47.5,
      "newShares": 6.32
@@ -27332,7 +27340,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 200,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -27348,7 +27357,8 @@
       "shares": 4.41,
       "price": 17,
       "before": 48.7,
-      "dil": 9.1
+      "dil": 9.1,
+      "v": 2
      },
      "price": 17,
      "newShares": 4.41
@@ -29339,7 +29349,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 200,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -29352,7 +29363,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 85,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -29368,7 +29380,8 @@
       "shares": 49.63,
       "price": 4.03,
       "before": 40.6,
-      "dil": 122.3
+      "dil": 122.3,
+      "v": 2
      },
      "price": 4.03,
      "newShares": 49.63
@@ -31110,7 +31123,8 @@
       "shares": 43.39,
       "price": 6,
       "before": 63.6,
-      "dil": 68.2
+      "dil": 68.2,
+      "v": 2
      },
      "price": 6,
      "newShares": 43.39
@@ -31127,7 +31141,8 @@
       "shares": 15.31,
       "price": 4.9,
       "before": 50.2,
-      "dil": 30.5
+      "dil": 30.5,
+      "v": 2
      },
      "price": 4.9,
      "newShares": 15.31
@@ -32582,7 +32597,8 @@
       "shares": 5.9,
       "price": 19.5,
       "before": 35.9,
-      "dil": 16.5
+      "dil": 16.5,
+      "v": 2
      },
      "price": 19.5,
      "newShares": 5.9
@@ -32601,7 +32617,8 @@
       "price": 18,
       "before": 46,
       "dil": null,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 18,
      "newShares": 11,
@@ -35520,7 +35537,8 @@
       "shares": 23,
       "price": 3.5,
       "before": 71.7,
-      "dil": 32.1
+      "dil": 32.1,
+      "v": 2
      },
      "price": 3.5,
      "newShares": 23
@@ -37778,7 +37796,8 @@
       "price": 17.5,
       "before": 160.3,
       "dil": 7.1,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 17.5,
      "newShares": 11.43,
@@ -40026,7 +40045,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 350,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -40042,21 +40062,11 @@
       "shares": 23.33,
       "price": 7.5,
       "before": 105.8,
-      "dil": 22.1
+      "dil": 22.1,
+      "v": 2
      },
      "price": 7.5,
      "newShares": 23.33
-    },
-    {
-     "date": "2025-11-12",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/1935979/000162828025051257/biohaven-424b511122025.htm",
-     "parsed": {
-      "kind": "resale"
-     },
-     "resale": true
     },
     {
      "date": "2024-10-01",
@@ -40070,21 +40080,11 @@
       "shares": 5.26,
       "price": 47.5,
       "before": 92.3,
-      "dil": 5.7
+      "dil": 5.7,
+      "v": 2
      },
      "price": 47.5,
      "newShares": 5.26
-    },
-    {
-     "date": "2024-09-30",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/1935979/000162828024041609/biohaven-preliminaryprospe.htm",
-     "parsed": {
-      "kind": "resale"
-     },
-     "resale": true
     },
     {
      "date": "2024-08-16",
@@ -40095,7 +40095,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 300,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -40111,21 +40112,11 @@
       "shares": 5.61,
       "price": 41,
       "before": 81.8,
-      "dil": 6.9
+      "dil": 6.9,
+      "v": 2
      },
      "price": 41,
      "newShares": 5.61
-    },
-    {
-     "date": "2024-04-17",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/1935979/000162828024016576/prospectussupplement-424b5.htm",
-     "parsed": {
-      "kind": "resale"
-     },
-     "resale": true
     }
    ],
    "note": "",
@@ -41810,7 +41801,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 150,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -41826,7 +41818,8 @@
       "shares": 5.37,
       "price": 4.1,
       "before": 61.8,
-      "dil": 8.7
+      "dil": 8.7,
+      "v": 2
      },
      "price": 4.1,
      "newShares": 5.37
@@ -43860,7 +43853,8 @@
       "shares": 3.78,
       "price": 26.48,
       "before": 35.1,
-      "dil": 10.8
+      "dil": 10.8,
+      "v": 2
      },
      "price": 26.48,
      "newShares": 3.78
@@ -43878,7 +43872,8 @@
       "shares": 8.04,
       "price": 16,
       "before": 17.5,
-      "dil": null
+      "dil": null,
+      "v": 2
      },
      "price": 16,
      "newShares": 8.04
@@ -45632,7 +45627,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 200,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -50604,7 +50600,8 @@
       "price": 8,
       "before": 82,
       "dil": 20.6,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 8,
      "newShares": 16.88,
@@ -50619,7 +50616,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 75,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -52241,7 +52239,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 100,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -52257,7 +52256,8 @@
       "shares": 13.04,
       "price": 5.75,
       "before": 38.6,
-      "dil": 33.8
+      "dil": 33.8,
+      "v": 2
      },
      "price": 5.75,
      "newShares": 13.04
@@ -52274,7 +52274,8 @@
       "shares": 16.02,
       "price": 6.25,
       "before": 20.6,
-      "dil": 77.6
+      "dil": 77.6,
+      "v": 2
      },
      "price": 6.25,
      "newShares": 16.02
@@ -55772,7 +55773,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1390478/000110465925102602/tm2529505d2_424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -55787,7 +55789,8 @@
       "shares": 19.69,
       "price": 1.27,
       "before": 64.4,
-      "dil": 30.6
+      "dil": 30.6,
+      "v": 2
      },
      "price": 1.27,
      "newShares": 19.69
@@ -55804,7 +55807,8 @@
       "shares": 15.85,
       "price": 1.33,
       "before": 56.3,
-      "dil": 28.2
+      "dil": 28.2,
+      "v": 2
      },
      "price": 1.33,
      "newShares": 15.85
@@ -55821,7 +55825,8 @@
       "shares": 13.03,
       "price": 1.54,
       "before": 44.1,
-      "dil": 29.5
+      "dil": 29.5,
+      "v": 2
      },
      "price": 1.54,
      "newShares": 13.03
@@ -55838,7 +55843,8 @@
       "shares": 12,
       "price": 0.75,
       "before": 28.4,
-      "dil": 42.3
+      "dil": 42.3,
+      "v": 2
      },
      "price": 0.75,
      "newShares": 12
@@ -57600,7 +57606,8 @@
       "shares": 10,
       "price": 20,
       "before": 72.1,
-      "dil": 13.9
+      "dil": 13.9,
+      "v": 2
      },
      "price": 20,
      "newShares": 10
@@ -57617,7 +57624,8 @@
       "shares": 7.14,
       "price": 10.5,
       "before": 64.2,
-      "dil": 11.1
+      "dil": 11.1,
+      "v": 2
      },
      "price": 10.5,
      "newShares": 7.14
@@ -59472,7 +59480,8 @@
       "shares": 9.94,
       "price": 20.13,
       "before": 94.8,
-      "dil": 10.5
+      "dil": 10.5,
+      "v": 2
      },
      "price": 20.13,
      "newShares": 9.94
@@ -59489,7 +59498,8 @@
       "shares": 21.82,
       "price": 11,
       "before": 63.5,
-      "dil": 34.4
+      "dil": 34.4,
+      "v": 2
      },
      "price": 11,
      "newShares": 21.82
@@ -61185,7 +61195,8 @@
       "shares": 11.4,
       "price": 57,
       "before": 80,
-      "dil": 14.3
+      "dil": 14.3,
+      "v": 2
      },
      "price": 57,
      "newShares": 11.4
@@ -61199,7 +61210,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 400,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -61215,7 +61227,8 @@
       "shares": 9.23,
       "price": 32.5,
       "before": 65,
-      "dil": 14.2
+      "dil": 14.2,
+      "v": 2
      },
      "price": 32.5,
      "newShares": 9.23
@@ -62801,7 +62814,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1062822/000119312526033160/d32612d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -62813,7 +62827,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 75,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -62826,7 +62841,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 75,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -64369,7 +64385,8 @@
       "price": 5,
       "before": 103.9,
       "dil": 19.3,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 5,
      "newShares": 20,
@@ -64388,7 +64405,8 @@
       "price": 3.2,
       "before": 103.9,
       "dil": 18,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 3.2,
      "newShares": 18.75,
@@ -64407,7 +64425,8 @@
       "price": 8.74,
       "before": 103.9,
       "dil": 16.5,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 8.74,
      "newShares": 17.16,
@@ -65967,7 +65986,8 @@
       "shares": 30.3,
       "price": 1.65,
       "before": 59.9,
-      "dil": 50.6
+      "dil": 50.6,
+      "v": 2
      },
      "price": 1.65,
      "newShares": 30.3
@@ -65984,7 +66004,8 @@
       "shares": 23.29,
       "price": 3.65,
       "before": 38.5,
-      "dil": 60.5
+      "dil": 60.5,
+      "v": 2
      },
      "price": 3.65,
      "newShares": 23.29
@@ -67837,7 +67858,8 @@
       "price": 1.5,
       "before": 339.3,
       "dil": 4.4,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 1.5,
      "newShares": 15,
@@ -67856,7 +67878,8 @@
       "price": 1,
       "before": 339.3,
       "dil": 5.9,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 1,
      "newShares": 20,
@@ -67875,7 +67898,8 @@
       "price": 1.15,
       "before": 339.3,
       "dil": 9,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 1.15,
      "newShares": 30.43,
@@ -69700,7 +69724,8 @@
       "shares": 18.35,
       "price": 5.45,
       "before": 54.9,
-      "dil": 33.4
+      "dil": 33.4,
+      "v": 2
      },
      "price": 5.45,
      "newShares": 18.35
@@ -69717,7 +69742,8 @@
       "shares": 3.22,
       "price": 4.67,
       "before": 49.2,
-      "dil": 6.5
+      "dil": 6.5,
+      "v": 2
      },
      "price": 4.67,
      "newShares": 3.22
@@ -69734,7 +69760,8 @@
       "shares": 13.33,
       "price": 6,
       "before": 32.1,
-      "dil": 41.5
+      "dil": 41.5,
+      "v": 2
      },
      "price": 6,
      "newShares": 13.33
@@ -69748,7 +69775,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 75,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -69761,7 +69789,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 75,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -71592,7 +71621,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1888886/000110465926057160/tm2613720-1_424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -71607,7 +71637,8 @@
       "shares": 13.08,
       "price": 65,
       "before": 60.7,
-      "dil": 21.6
+      "dil": 21.6,
+      "v": 2
      },
      "price": 65,
      "newShares": 13.08
@@ -71624,7 +71655,8 @@
       "shares": 9.07,
       "price": 52.5,
       "before": 46.6,
-      "dil": 19.4
+      "dil": 19.4,
+      "v": 2
      },
      "price": 52.5,
      "newShares": 9.07
@@ -73253,7 +73285,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 150,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -73269,7 +73302,8 @@
       "shares": 10,
       "price": 10,
       "before": 6.3,
-      "dil": 159.2
+      "dil": 159.2,
+      "v": 2
      },
      "price": 10,
      "newShares": 10
@@ -73283,7 +73317,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 125,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -74727,7 +74762,8 @@
       "shares": 31.25,
       "price": 3.2,
       "before": 32.8,
-      "dil": 95.3
+      "dil": 95.3,
+      "v": 2
      },
      "price": 3.2,
      "newShares": 31.25
@@ -74744,7 +74780,8 @@
       "shares": 7.53,
       "price": 10.64,
       "before": 23.8,
-      "dil": 31.6
+      "dil": 31.6,
+      "v": 2
      },
      "price": 10.64,
      "newShares": 7.53
@@ -76314,7 +76351,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 100,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -76330,7 +76368,8 @@
       "shares": 13.33,
       "price": 7.5,
       "before": 43.8,
-      "dil": 30.4
+      "dil": 30.4,
+      "v": 2
      },
      "price": 7.5,
      "newShares": 13.33
@@ -76344,7 +76383,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 50,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -76361,7 +76401,8 @@
       "shares": 14.5,
       "price": 22,
       "before": 26.3,
-      "dil": null
+      "dil": null,
+      "v": 2
      },
      "price": 22,
      "newShares": 14.5
@@ -78124,7 +78165,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 100,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -78140,7 +78182,8 @@
       "shares": 24.01,
       "price": 10,
       "before": 49.2,
-      "dil": 48.8
+      "dil": 48.8,
+      "v": 2
      },
      "price": 10,
      "newShares": 24.01
@@ -80034,7 +80077,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1816736/000119312526450184/d187305d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -80049,7 +80093,8 @@
       "shares": 6,
       "price": 75,
       "before": 38.3,
-      "dil": 15.6
+      "dil": 15.6,
+      "v": 2
      },
      "price": 75,
      "newShares": 6
@@ -80066,21 +80111,11 @@
       "shares": 2.68,
       "price": 84,
       "before": 34.7,
-      "dil": 7.7
+      "dil": 7.7,
+      "v": 2
      },
      "price": 84,
      "newShares": 2.68
-    },
-    {
-     "date": "2025-10-20",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/1816736/000119312525242995/d271637d424b5.htm",
-     "parsed": {
-      "kind": "resale"
-     },
-     "resale": true
     },
     {
      "date": "2025-01-23",
@@ -80094,7 +80129,8 @@
       "shares": 4.1,
       "price": 55,
       "before": 29.7,
-      "dil": 13.8
+      "dil": 13.8,
+      "v": 2
      },
      "price": 55,
      "newShares": 4.1
@@ -80108,7 +80144,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 200,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -81718,7 +81755,8 @@
       "shares": 20,
       "price": 6.25,
       "before": 65,
-      "dil": 30.8
+      "dil": 30.8,
+      "v": 2
      },
      "price": 6.25,
      "newShares": 20
@@ -83931,7 +83969,8 @@
       "price": 3.25,
       "before": 622.8,
       "dil": 9.9,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 3.25,
      "newShares": 61.54,
@@ -83939,25 +83978,31 @@
     },
     {
      "date": "2026-02-25",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
+     "type": "ATM program (424B5)",
+     "amt": 300,
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1601830/000160183026000041/rxrx-2026atm.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "atm",
+      "amt": 300,
+      "upTo": true,
+      "v": 2
      },
-     "resale": true
+     "upTo": true
     },
     {
      "date": "2025-02-28",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
+     "type": "ATM program (424B5)",
+     "amt": 500,
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1601830/000119312525040678/d927546d424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "atm",
+      "amt": 500,
+      "upTo": true,
+      "v": 2
      },
-     "resale": true
+     "upTo": true
     },
     {
      "date": "2024-06-27",
@@ -83972,7 +84017,8 @@
       "price": 6.5,
       "before": 622.8,
       "dil": 4.9,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 6.5,
      "newShares": 30.77,
@@ -85688,7 +85734,8 @@
       "shares": 19,
       "price": 15,
       "before": 3.4,
-      "dil": null
+      "dil": null,
+      "v": 2
      },
      "price": 15,
      "newShares": 19
@@ -87889,7 +87936,8 @@
       "shares": 31.25,
       "price": 8,
       "before": 90.5,
-      "dil": 34.5
+      "dil": 34.5,
+      "v": 2
      },
      "price": 8,
      "newShares": 31.25
@@ -87906,7 +87954,8 @@
       "shares": 12.41,
       "price": 7.25,
       "before": 66.7,
-      "dil": 18.6
+      "dil": 18.6,
+      "v": 2
      },
      "price": 7.25,
      "newShares": 12.41
@@ -87923,7 +87972,8 @@
       "shares": 18.33,
       "price": 3,
       "before": 25.3,
-      "dil": 72.4
+      "dil": 72.4,
+      "v": 2
      },
      "price": 3,
      "newShares": 18.33
@@ -89556,7 +89606,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 200,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -91247,7 +91298,8 @@
       "shares": 30.95,
       "price": 4.2,
       "before": 172.8,
-      "dil": 17.9
+      "dil": 17.9,
+      "v": 2
      },
      "price": 4.2,
      "newShares": 30.95
@@ -91264,7 +91316,8 @@
       "shares": 26.25,
       "price": 3.81,
       "before": 138.2,
-      "dil": 19
+      "dil": 19,
+      "v": 2
      },
      "price": 3.81,
      "newShares": 26.25
@@ -92832,7 +92885,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 100,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -92848,7 +92902,8 @@
       "shares": 7.9,
       "price": null,
       "before": 74.7,
-      "dil": 10.6
+      "dil": 10.6,
+      "v": 2
      },
      "price": null,
      "newShares": 7.9
@@ -92865,7 +92920,8 @@
       "shares": 21.8,
       "price": null,
       "before": 49,
-      "dil": 44.5
+      "dil": 44.5,
+      "v": 2
      },
      "price": null,
      "newShares": 21.8
@@ -94714,7 +94770,8 @@
       "shares": 1.6,
       "price": 125,
       "before": 11.1,
-      "dil": 14.4
+      "dil": 14.4,
+      "v": 2
      },
      "price": 125,
      "newShares": 1.6
@@ -96211,7 +96268,8 @@
       "shares": 11.6,
       "price": 13,
       "before": 128.3,
-      "dil": 9
+      "dil": 9,
+      "v": 2
      },
      "price": 13,
      "newShares": 11.6
@@ -96228,7 +96286,8 @@
       "shares": 17.4,
       "price": 5.75,
       "before": 99.9,
-      "dil": 17.4
+      "dil": 17.4,
+      "v": 2
      },
      "price": 5.75,
      "newShares": 17.4
@@ -96245,7 +96304,8 @@
       "shares": 12.5,
       "price": 4,
       "before": 75.5,
-      "dil": 16.6
+      "dil": 16.6,
+      "v": 2
      },
      "price": 4,
      "newShares": 12.5
@@ -98041,7 +98101,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 100,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -98054,7 +98115,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 22.4,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -100012,7 +100074,8 @@
       "shares": 11,
       "price": 2.09,
       "before": 65,
-      "dil": 16.9
+      "dil": 16.9,
+      "v": 2
      },
      "price": 2.09,
      "newShares": 11
@@ -100026,7 +100089,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 40,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -100037,7 +100101,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1228627/000114036125012357/ef20046936_424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -100053,7 +100118,8 @@
       "price": 0.95,
       "before": 83.2,
       "dil": 25.3,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 0.95,
      "newShares": 21.05,
@@ -100068,7 +100134,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 40,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -101552,7 +101619,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1703647/000119312526117883/d42330d424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "resale",
+      "v": 2
      },
      "resale": true
     },
@@ -101565,7 +101633,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 100,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -103360,7 +103429,8 @@
       "shares": 40,
       "price": 3,
       "before": 138.3,
-      "dil": 28.9
+      "dil": 28.9,
+      "v": 2
      },
      "price": 3,
      "newShares": 40
@@ -105337,7 +105407,8 @@
       "shares": 18.42,
       "price": 19,
       "before": 160.3,
-      "dil": 11.5
+      "dil": 11.5,
+      "v": 2
      },
      "price": 19,
      "newShares": 18.42
@@ -105354,7 +105425,8 @@
       "shares": 25,
       "price": 8,
       "before": 122.5,
-      "dil": 20.4
+      "dil": 20.4,
+      "v": 2
      },
      "price": 8,
      "newShares": 25
@@ -105371,7 +105443,8 @@
       "shares": 20,
       "price": 5,
       "before": 99,
-      "dil": 20.2
+      "dil": 20.2,
+      "v": 2
      },
      "price": 5,
      "newShares": 20
@@ -107107,7 +107180,8 @@
       "shares": 46.56,
       "price": 2.9,
       "before": 8,
-      "dil": 584.9
+      "dil": 584.9,
+      "v": 2
      },
      "price": 2.9,
      "newShares": 46.56
@@ -107121,7 +107195,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 300,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -107132,7 +107207,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1501697/000162828025032526/xforprospectussupplement06.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -108647,7 +108723,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 150,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -108664,7 +108741,8 @@
       "shares": 15,
       "price": 17,
       "before": 36.3,
-      "dil": null
+      "dil": null,
+      "v": 2
      },
      "price": 17,
      "newShares": 15
@@ -110309,7 +110387,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 50,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -110325,7 +110404,8 @@
       "shares": 28.6,
       "price": 1.75,
       "before": 120.9,
-      "dil": 23.7
+      "dil": 23.7,
+      "v": 2
      },
      "price": 1.75,
      "newShares": 28.6
@@ -110339,7 +110419,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 64.9,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -111902,7 +111983,8 @@
       "price": 3,
       "before": 194.5,
       "dil": 38.6,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 3,
      "newShares": 75,
@@ -111921,7 +112003,8 @@
       "price": 4.4,
       "before": 194.5,
       "dil": 8.8,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 4.4,
      "newShares": 17.05,
@@ -111936,7 +112019,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 200,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -113770,7 +113854,8 @@
       "shares": 12.5,
       "price": 24,
       "before": 61.8,
-      "dil": 20.2
+      "dil": 20.2,
+      "v": 2
      },
      "price": 24,
      "newShares": 12.5
@@ -113787,7 +113872,8 @@
       "shares": 21.28,
       "price": 4.7,
       "before": 50.2,
-      "dil": 42.4
+      "dil": 42.4,
+      "v": 2
      },
      "price": 4.7,
      "newShares": 21.28
@@ -115533,7 +115619,8 @@
       "shares": 9.38,
       "price": 16,
       "before": 20.7,
-      "dil": null
+      "dil": null,
+      "v": 2
      },
      "price": 16,
      "newShares": 9.38
@@ -117264,7 +117351,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1553643/000121390026010313/ea0274727-424b5_relmada.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -117280,7 +117368,8 @@
       "price": 2.2,
       "before": 106.7,
       "dil": 42.6,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 2.2,
      "newShares": 45.46,
@@ -117293,7 +117382,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1553643/000121390025035961/ea0239654-424b5_relmada.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -119045,7 +119135,8 @@
       "shares": 22.08,
       "price": 3.85,
       "before": 47.6,
-      "dil": 46.4
+      "dil": 46.4,
+      "v": 2
      },
      "price": 3.85,
      "newShares": 22.08
@@ -119059,7 +119150,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 20,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -120913,7 +121005,8 @@
       "shares": 37.93,
       "price": 2.9,
       "before": 83,
-      "dil": 45.7
+      "dil": 45.7,
+      "v": 2
      },
      "price": 2.9,
      "newShares": 37.93
@@ -122495,7 +122588,8 @@
       "shares": 6.39,
       "price": 23.5,
       "before": 49.3,
-      "dil": 13
+      "dil": 13,
+      "v": 2
      },
      "price": 23.5,
      "newShares": 6.39
@@ -122513,7 +122607,8 @@
       "shares": 8.75,
       "price": 16,
       "before": 35,
-      "dil": null
+      "dil": null,
+      "v": 2
      },
      "price": 16,
      "newShares": 8.75
@@ -124022,7 +124117,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 135,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -124038,7 +124134,8 @@
       "shares": 87.5,
       "price": 2,
       "before": 229.4,
-      "dil": 38.1
+      "dil": 38.1,
+      "v": 2
      },
      "price": 2,
      "newShares": 87.5
@@ -124055,7 +124152,8 @@
       "shares": 37.93,
       "price": 2.9,
       "before": 170.5,
-      "dil": 22.3
+      "dil": 22.3,
+      "v": 2
      },
      "price": 2.9,
      "newShares": 37.93
@@ -125796,7 +125894,8 @@
       "shares": 71.43,
       "price": 1.05,
       "before": 110.2,
-      "dil": 64.8
+      "dil": 64.8,
+      "v": 2
      },
      "price": 1.05,
      "newShares": 71.43
@@ -125813,7 +125912,8 @@
       "shares": 63.16,
       "price": 0.95,
       "before": 69.8,
-      "dil": 90.5
+      "dil": 90.5,
+      "v": 2
      },
      "price": 0.95,
      "newShares": 63.16
@@ -125830,7 +125930,8 @@
       "shares": 25,
       "price": 1.4,
       "before": 69,
-      "dil": 36.2
+      "dil": 36.2,
+      "v": 2
      },
      "price": 1.4,
      "newShares": 25
@@ -125842,7 +125943,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1055726/000119312526024500/d103977d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -125857,7 +125959,8 @@
       "shares": 13.16,
       "price": 1.9,
       "before": 53.6,
-      "dil": 24.6
+      "dil": 24.6,
+      "v": 2
      },
      "price": 1.9,
      "newShares": 13.16
@@ -125874,7 +125977,8 @@
       "shares": 28.57,
       "price": 1.75,
       "before": 36.7,
-      "dil": 77.9
+      "dil": 77.9,
+      "v": 2
      },
      "price": 1.75,
      "newShares": 28.57
@@ -127790,7 +127894,8 @@
       "shares": 11.11,
       "price": 18,
       "before": 33.6,
-      "dil": 33.1
+      "dil": 33.1,
+      "v": 2
      },
      "price": 18,
      "newShares": 11.11
@@ -127808,7 +127913,8 @@
       "shares": 10.2,
       "price": 16,
       "before": 21.7,
-      "dil": null
+      "dil": null,
+      "v": 2
      },
      "price": 16,
      "newShares": 10.2
@@ -129384,7 +129490,8 @@
       "shares": 26.04,
       "price": 11.52,
       "before": 24.7,
-      "dil": 105.4
+      "dil": 105.4,
+      "v": 2
      },
      "price": 11.52,
      "newShares": 26.04
@@ -129402,7 +129509,8 @@
       "shares": 13.92,
       "price": 12,
       "before": 9.4,
-      "dil": null
+      "dil": null,
+      "v": 2
      },
      "price": 12,
      "newShares": 13.92
@@ -130810,7 +130918,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/2012593/000119312526439869/d98241d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -130822,7 +130931,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 110,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -130838,7 +130948,8 @@
       "shares": 9.62,
       "price": 26,
       "before": 36.5,
-      "dil": 26.3
+      "dil": 26.3,
+      "v": 2
      },
      "price": 26,
      "newShares": 9.62
@@ -130857,7 +130968,8 @@
       "price": 17,
       "before": 59.3,
       "dil": null,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 17,
      "newShares": 8,
@@ -132399,7 +132511,8 @@
       "shares": 9.38,
       "price": 16,
       "before": 54.6,
-      "dil": 17.2
+      "dil": 17.2,
+      "v": 2
      },
      "price": 16,
      "newShares": 9.38
@@ -132413,7 +132526,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 150,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -132430,7 +132544,8 @@
       "shares": 17.5,
       "price": 18,
       "before": 34.3,
-      "dil": null
+      "dil": null,
+      "v": 2
      },
      "price": 18,
      "newShares": 17.5
@@ -134242,7 +134357,8 @@
       "shares": 31.43,
       "price": 17.5,
       "before": 310.8,
-      "dil": 10.1
+      "dil": 10.1,
+      "v": 2
      },
      "price": 17.5,
      "newShares": 31.43
@@ -134259,7 +134375,8 @@
       "shares": 22.5,
       "price": 10,
       "before": 283.7,
-      "dil": 7.9
+      "dil": 7.9,
+      "v": 2
      },
      "price": 10,
      "newShares": 22.5
@@ -134276,7 +134393,8 @@
       "shares": 86.49,
       "price": 1.85,
       "before": 151.5,
-      "dil": 57.1
+      "dil": 57.1,
+      "v": 2
      },
      "price": 1.85,
      "newShares": 86.49
@@ -135943,7 +136061,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 213,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -135959,21 +136078,25 @@
       "shares": 22.92,
       "price": null,
       "before": 189.2,
-      "dil": 12.1
+      "dil": 12.1,
+      "v": 2
      },
      "price": null,
      "newShares": 22.92
     },
     {
      "date": "2026-05-19",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
+     "type": "ATM program (424B5)",
+     "amt": 87,
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1812364/000119312526231113/d139941d424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "atm",
+      "amt": 87,
+      "upTo": true,
+      "v": 2
      },
-     "resale": true
+     "upTo": true
     },
     {
      "date": "2024-09-11",
@@ -135987,21 +136110,25 @@
       "shares": 28.57,
       "price": null,
       "before": 133.3,
-      "dil": 21.4
+      "dil": 21.4,
+      "v": 2
      },
      "price": null,
      "newShares": 28.57
     },
     {
      "date": "2024-09-09",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
+     "type": "ATM program (424B5)",
+     "amt": 250,
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1812364/000119312524215956/d856973d424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "atm",
+      "amt": 250,
+      "upTo": true,
+      "v": 2
      },
-     "resale": true
+     "upTo": true
     }
    ],
    "note": "",
@@ -137669,14 +137796,14 @@
    "financings": [
     {
      "date": "2025-12-18",
-     "type": "Resale by existing holders, no money raised",
+     "type": "Shelf takedown or ATM (424B5)",
      "amt": null,
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1806952/000119312525324801/d72300d424b5.htm",
      "parsed": {
-      "kind": "resale"
-     },
-     "resale": true
+      "kind": "unread",
+      "v": 2
+     }
     },
     {
      "date": "2025-07-31",
@@ -137685,7 +137812,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1806952/000119312525170528/d93614d424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "resale",
+      "v": 2
      },
      "resale": true
     },
@@ -137696,7 +137824,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1806952/000119312524272943/d907660d424b5.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "resale",
+      "v": 2
      },
      "resale": true
     },
@@ -137709,7 +137838,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 150,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -139588,7 +139718,8 @@
       "shares": 50,
       "price": 3,
       "before": 544.9,
-      "dil": 9.2
+      "dil": 9.2,
+      "v": 2
      },
      "price": 3,
      "newShares": 50
@@ -141524,14 +141655,17 @@
    "financings": [
     {
      "date": "2025-10-15",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
+     "type": "ATM program (424B5)",
+     "amt": 600,
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1674416/000119312525240259/crsp-20251015.htm",
      "parsed": {
-      "kind": "resale"
+      "kind": "atm",
+      "amt": 600,
+      "upTo": true,
+      "v": 2
      },
-     "resale": true
+     "upTo": true
     },
     {
      "date": "2025-05-19",
@@ -141546,7 +141680,8 @@
       "price": null,
       "before": 97,
       "dil": 1.9,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": null,
      "newShares": 1.84,
@@ -141564,7 +141699,8 @@
       "shares": 3.92,
       "price": 71.5,
       "before": 79.4,
-      "dil": 4.9
+      "dil": 4.9,
+      "v": 2
      },
      "price": 71.5,
      "newShares": 3.92
@@ -143303,7 +143439,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1672688/000119312526281131/d76291d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -143318,7 +143455,8 @@
       "shares": 16.67,
       "price": 3,
       "before": 127.5,
-      "dil": 13.1
+      "dil": 13.1,
+      "v": 2
      },
      "price": 3,
      "newShares": 16.67
@@ -143335,7 +143473,8 @@
       "shares": 16.7,
       "price": 4.5,
       "before": 92.9,
-      "dil": 18
+      "dil": 18,
+      "v": 2
      },
      "price": 4.5,
      "newShares": 16.7
@@ -145000,7 +145139,8 @@
       "shares": 18.75,
       "price": 4,
       "before": 89.7,
-      "dil": 20.9
+      "dil": 20.9,
+      "v": 2
      },
      "price": 4,
      "newShares": 18.75
@@ -145014,7 +145154,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 75,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -145027,7 +145168,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 75,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -145043,7 +145185,8 @@
       "shares": 7.75,
       "price": 6.45,
       "before": 42.5,
-      "dil": 18.2
+      "dil": 18.2,
+      "v": 2
      },
      "price": 6.45,
      "newShares": 7.75
@@ -146800,7 +146943,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1759138/000119312526202441/d930265d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -146810,7 +146954,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1759138/000119312525139512/d49180d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -150374,7 +150519,8 @@
       "shares": 8.62,
       "price": 14.5,
       "before": 27.6,
-      "dil": 31.3
+      "dil": 31.3,
+      "v": 2
      },
      "price": 14.5,
      "newShares": 8.62
@@ -152366,7 +152512,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 100,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -152377,7 +152524,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1434316/000119312524072868/d804447d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -154113,7 +154261,8 @@
       "shares": 33.33,
       "price": 6,
       "before": 287.3,
-      "dil": 11.6
+      "dil": 11.6,
+      "v": 2
      },
      "price": 6,
      "newShares": 33.33
@@ -154130,7 +154279,8 @@
       "shares": 72.73,
       "price": 2.75,
       "before": 205.1,
-      "dil": 35.5
+      "dil": 35.5,
+      "v": 2
      },
      "price": 2.75,
      "newShares": 72.73
@@ -154147,7 +154297,8 @@
       "shares": 33.33,
       "price": 2.25,
       "before": 187,
-      "dil": 17.8
+      "dil": 17.8,
+      "v": 2
      },
      "price": 2.25,
      "newShares": 33.33
@@ -155759,7 +155910,8 @@
       "shares": 18.75,
       "price": 8,
       "before": 96,
-      "dil": 19.5
+      "dil": 19.5,
+      "v": 2
      },
      "price": 8,
      "newShares": 18.75
@@ -155773,7 +155925,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 150,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -155784,7 +155937,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1816590/000162828025001142/cmps-prospectussupplement.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -155796,7 +155950,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 93.5,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -157554,7 +157709,8 @@
       "shares": 38,
       "price": 3.3,
       "before": 131.2,
-      "dil": 29
+      "dil": 29,
+      "v": 2
      },
      "price": 3.3,
      "newShares": 38
@@ -157571,7 +157727,8 @@
       "shares": 22.4,
       "price": null,
       "before": 100.5,
-      "dil": 22.3
+      "dil": 22.3,
+      "v": 2
      },
      "price": null,
      "newShares": 22.4
@@ -159327,7 +159484,8 @@
       "shares": 4.17,
       "price": 30,
       "before": 15.6,
-      "dil": 26.7
+      "dil": 26.7,
+      "v": 2
      },
      "price": 30,
      "newShares": 4.17
@@ -159341,7 +159499,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 150,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -160869,7 +161028,8 @@
       "shares": 10,
       "price": 19,
       "before": 68.7,
-      "dil": 14.6
+      "dil": 14.6,
+      "v": 2
      },
      "price": 19,
      "newShares": 10
@@ -160883,7 +161043,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 150,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -160896,7 +161057,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 150,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -162692,7 +162854,8 @@
       "shares": 10.67,
       "price": 37.5,
       "before": 60.9,
-      "dil": 17.5
+      "dil": 17.5,
+      "v": 2
      },
      "price": 37.5,
      "newShares": 10.67
@@ -162709,7 +162872,8 @@
       "shares": 10.18,
       "price": 19.66,
       "before": 49,
-      "dil": 20.7
+      "dil": 20.7,
+      "v": 2
      },
      "price": 19.66,
      "newShares": 10.18
@@ -166605,7 +166769,8 @@
       "shares": 10,
       "price": 15,
       "before": 49.3,
-      "dil": 20.3
+      "dil": 20.3,
+      "v": 2
      },
      "price": 15,
      "newShares": 10
@@ -168576,7 +168741,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 250,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -168593,7 +168759,8 @@
       "price": 19.5,
       "before": 51.7,
       "dil": 7.4,
-      "approx": true
+      "approx": true,
+      "v": 2
      },
      "price": 19.5,
      "newShares": 3.85,
@@ -168612,7 +168779,8 @@
       "shares": 9.72,
       "price": 18,
       "before": 22.2,
-      "dil": null
+      "dil": null,
+      "v": 2
      },
      "price": 18,
      "newShares": 9.72
@@ -170335,7 +170503,8 @@
       "shares": 6.73,
       "price": 14.85,
       "before": 33.6,
-      "dil": 20
+      "dil": 20,
+      "v": 2
      },
      "price": 14.85,
      "newShares": 6.73
@@ -174190,7 +174359,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 80,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -175846,7 +176016,8 @@
       "shares": 55.56,
       "price": 2.25,
       "before": 97.9,
-      "dil": 56.7
+      "dil": 56.7,
+      "v": 2
      },
      "price": 2.25,
      "newShares": 55.56
@@ -177535,7 +177706,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 185,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -177551,7 +177723,8 @@
       "shares": 68.97,
       "price": 1.45,
       "before": 74.8,
-      "dil": 92.2
+      "dil": 92.2,
+      "v": 2
      },
      "price": 1.45,
      "newShares": 68.97
@@ -177563,7 +177736,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1750149/000119312524144499/d818275d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -177573,7 +177747,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1750149/000119312524142213/d818622d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -177585,7 +177760,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 5.7,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -184255,7 +184431,8 @@
      "url": "https://www.sec.gov/Archives/edgar/data/200406/000119312525029057/d867955d424b5.htm",
      "parsed": {
       "kind": "preliminary",
-      "amt": null
+      "amt": null,
+      "v": 2
      },
      "approxAmt": true
     },
@@ -184267,7 +184444,8 @@
      "url": "https://www.sec.gov/Archives/edgar/data/200406/000119312524137660/d838744d424b5.htm",
      "parsed": {
       "kind": "preliminary",
-      "amt": null
+      "amt": null,
+      "v": 2
      },
      "approxAmt": true
     }
@@ -187592,7 +187770,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 500,
-      "convertible": false
+      "convertible": false,
+      "v": 2
      }
     },
     {
@@ -187604,7 +187783,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 750,
-      "convertible": false
+      "convertible": false,
+      "v": 2
      }
     },
     {
@@ -187616,7 +187796,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 1250,
-      "convertible": false
+      "convertible": false,
+      "v": 2
      }
     },
     {
@@ -187628,7 +187809,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 2250,
-      "convertible": false
+      "convertible": false,
+      "v": 2
      }
     }
    ],
@@ -191251,7 +191433,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 500,
-      "convertible": false
+      "convertible": false,
+      "v": 2
      }
     },
     {
@@ -191263,7 +191446,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 500,
-      "convertible": false
+      "convertible": false,
+      "v": 2
      }
     },
     {
@@ -191275,7 +191459,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 500,
-      "convertible": false
+      "convertible": false,
+      "v": 2
      }
     },
     {
@@ -191285,7 +191470,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/310158/000162828024024209/merckco-424b5final.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -195029,7 +195215,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/78003/000119312525289779/d95338d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -195039,7 +195226,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/78003/000119312525120844/d910320d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -197681,7 +197869,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000114036125041159/ny20057651x5_424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -197691,7 +197880,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/14272/000114036124008373/ny20020700x2_424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -202437,7 +202627,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 500,
-      "convertible": false
+      "convertible": false,
+      "v": 2
      }
     },
     {
@@ -202449,7 +202640,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 750,
-      "convertible": false
+      "convertible": false,
+      "v": 2
      }
     }
    ],
@@ -215260,7 +215452,8 @@
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000110465926124201/tm2629242-2_424b5.htm",
      "parsed": {
       "kind": "preliminary",
-      "amt": null
+      "amt": null,
+      "v": 2
      },
      "approxAmt": true
     },
@@ -215271,7 +215464,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000110465926029551/tm268725-2_424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -215281,7 +215475,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000110465925106338/tm2529850-2_424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -215291,7 +215486,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1114448/000110465924100712/tm2423681-5_424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -220139,11 +220335,11 @@
    "n": "Sanofi",
    "area": "Immunology & vaccines",
    "mcap": 117357.7,
-   "ev": 128860.4,
-   "cash": 9480.9,
-   "debt": 20983.6,
+   "ev": 128863.5,
+   "cash": 9483.4,
+   "debt": 20989.3,
    "burn": 0.1,
-   "rev": 48948.4,
+   "rev": 48961.5,
    "shares": 1219.43,
    "own": null,
    "emp": null,
@@ -222193,7 +222389,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1121404/000119312525255563/d24040d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -222203,134 +222400,134 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-16",
-     "cash": 10279,
-     "burn": -775.1,
+     "cash": 10281,
+     "burn": -775.3,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-16",
-     "cash": 11561,
-     "burn": -732.9,
+     "cash": 11564,
+     "burn": -733,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-16",
-     "cash": 11660,
-     "burn": -689.9,
+     "cash": 11663,
+     "burn": -690.1,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-08",
-     "cash": 7993,
-     "burn": -518.6,
+     "cash": 7995,
+     "burn": -518.8,
      "runway": null
     },
     {
      "end": "2019-06-30",
      "filed": "2020-07-29",
-     "cash": 7565,
-     "burn": -603.2,
+     "cash": 7567,
+     "burn": -603.4,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-05",
-     "cash": 11055,
-     "burn": -721.4,
+     "cash": 11058,
+     "burn": -721.5,
      "runway": null
     },
     {
      "end": "2020-06-30",
      "filed": "2020-07-29",
-     "cash": 17917,
-     "burn": -791.2,
+     "cash": 17922,
+     "burn": -791.4,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-04",
-     "cash": 16622,
-     "burn": -693.6,
+     "cash": 16627,
+     "burn": -693.8,
      "runway": null
     },
     {
      "end": "2021-06-30",
      "filed": "2021-07-29",
-     "cash": 10908,
-     "burn": -768.5,
+     "cash": 10911,
+     "burn": -768.7,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-23",
-     "cash": 12513,
-     "burn": -983.8,
+     "cash": 12516,
+     "burn": -984.1,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-07-28",
-     "cash": 7741,
-     "burn": -899.5,
+     "cash": 7743,
+     "burn": -899.7,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-24",
-     "cash": 14870,
-     "burn": -984.2,
+     "cash": 14874,
+     "burn": -984.4,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-07-28",
-     "cash": 8968,
-     "burn": -959.7,
+     "cash": 8971,
+     "burn": -959.9,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-23",
-     "cash": 9950,
-     "burn": -959.1,
+     "cash": 9953,
+     "burn": -959.4,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-07-25",
-     "cash": 7624,
-     "burn": -758.9,
+     "cash": 7626,
+     "burn": -759.1,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-13",
-     "cash": 8765,
-     "burn": -849.1,
+     "cash": 8767,
+     "burn": -849.3,
      "runway": null
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-31",
-     "cash": 17233,
-     "burn": -1048.5,
+     "cash": 17237,
+     "burn": -1048.8,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-17",
-     "cash": 9481,
-     "burn": -1005.1,
+     "cash": 9483,
+     "burn": -1005.4,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -849.07,
-   "debtDue24": 4871.7,
+   "burnPrior": -849.3,
+   "debtDue24": 4873,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -223435,7 +223632,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 12062,
+   "ocf": 12065,
    "group": "big-pharma",
    "src": {
     "cik": "1121404",
@@ -223445,8 +223642,8 @@
      "MarketableSecuritiesCurrent"
     ],
     "currency": "EUR",
-    "fx": 1.122,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1220 USD per EUR",
+    "fx": 1.1223,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1223 USD per EUR",
     "adr": 0.5,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -223473,11 +223670,11 @@
    "n": "GSK",
    "area": "Vaccines & respiratory",
    "mcap": 111209,
-   "ev": 126403.1,
-   "cash": 4563.2,
-   "debt": 19757.3,
+   "ev": 126407.6,
+   "cash": 4564.5,
+   "debt": 19763.1,
    "burn": 0.1,
-   "rev": 43881.6,
+   "rev": 43894.6,
    "shares": 4315.45,
    "own": null,
    "emp": null,
@@ -225488,15 +225685,15 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-20",
-     "cash": 7831,
-     "burn": -287.6,
+     "cash": 7834,
+     "burn": -287.7,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-20",
-     "cash": 6578,
-     "burn": -727.3,
+     "cash": 6580,
+     "burn": -727.5,
      "runway": null
     },
     {
@@ -225516,15 +225713,15 @@
     {
      "end": "2019-12-31",
      "filed": "2020-03-06",
-     "cash": 6429,
-     "burn": -897.8,
+     "cash": 6431,
+     "burn": -898,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-12",
-     "cash": 8557,
-     "burn": -944.9,
+     "cash": 8559,
+     "burn": -945.2,
      "runway": null
     },
     {
@@ -225537,35 +225734,35 @@
     {
      "end": "2022-12-31",
      "filed": "2023-03-10",
-     "cash": 5091,
-     "burn": -828.7,
+     "cash": 5093,
+     "burn": -829,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-05",
-     "cash": 4000,
-     "burn": -757.6,
+     "cash": 4002,
+     "burn": -757.8,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-03",
-     "cash": 5199,
-     "burn": -733.7,
+     "cash": 5200,
+     "burn": -733.9,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-06",
-     "cash": 4563,
-     "burn": -866.5,
+     "cash": 4565,
+     "burn": -866.8,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -733.67,
+   "burnPrior": -733.88,
    "debtDue24": 0,
    "raise": {
     "capacity": "none",
@@ -226607,7 +226804,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 10398,
+   "ocf": 10402,
    "group": "big-pharma",
    "src": {
     "cik": "1131399",
@@ -226616,8 +226813,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3433,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3433 USD per GBP",
+    "fx": 1.3437,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3437 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -228703,7 +228900,8 @@
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000139506425000101/takeda-424b5prelimmultixtr.htm",
      "parsed": {
       "kind": "preliminary",
-      "amt": null
+      "amt": null,
+      "v": 2
      },
      "approxAmt": true
     },
@@ -228715,7 +228913,8 @@
      "url": "https://www.sec.gov/Archives/edgar/data/1395064/000139506424000091/a424b5-pps_062724.htm",
      "parsed": {
       "kind": "preliminary",
-      "amt": null
+      "amt": null,
+      "v": 2
      },
      "approxAmt": true
     }
@@ -230179,7 +230378,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/818686/000119312526389382/d158426d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -230189,7 +230389,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/818686/000119312525125044/d830217d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -231792,7 +231993,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1792044/000114036126025215/ny20068251x4_424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -234496,10 +234698,6 @@
      [
       "2026-11-06",
       20.14
-     ],
-     [
-      "2026-11-09",
-      21.28
      ]
     ]
    },
@@ -235727,10 +235925,6 @@
      [
       "2026-11-06",
       14.91
-     ],
-     [
-      "2026-11-09",
-      15.05
      ]
     ]
    },
@@ -237003,10 +237197,6 @@
      [
       "2026-11-06",
       67.41
-     ],
-     [
-      "2026-11-09",
-      67.79
      ]
     ]
    },
@@ -238359,10 +238549,6 @@
      [
       "2026-11-06",
       28.49
-     ],
-     [
-      "2026-11-09",
-      29.38
      ]
     ]
    },
@@ -239822,10 +240008,6 @@
      [
       "2026-11-06",
       8.18
-     ],
-     [
-      "2026-11-09",
-      8.4
      ]
     ]
    },
@@ -239975,7 +240157,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1585364/000119312524218965/d888079d424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -241194,10 +241377,6 @@
      [
       "2026-11-06",
       15.85
-     ],
-     [
-      "2026-11-09",
-      16.95
      ]
     ]
    },
@@ -241316,11 +241495,11 @@
    "n": "Haleon",
    "area": "Over-the-counter consumer health",
    "mcap": 40151.3,
-   "ev": 49937.2,
-   "cash": 1778.5,
-   "debt": 11564.5,
+   "ev": 49938.7,
+   "cash": 1778.8,
+   "debt": 11566.2,
    "burn": 0.1,
-   "rev": 14816.6,
+   "rev": 14818.8,
    "shares": 8952.35,
    "own": null,
    "emp": null,
@@ -241346,7 +241525,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/1900304/000110465926095880/tm2622443-3_424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     }
    ],
@@ -241419,8 +241599,8 @@
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -257.58,
-   "debtDue24": 1123,
+   "burnPrior": -257.62,
+   "debtDue24": 1123.2,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -242435,10 +242615,6 @@
      [
       "2026-11-06",
       9.14
-     ],
-     [
-      "2026-11-09",
-      8.97
      ]
     ]
    },
@@ -242486,8 +242662,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3433,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3433 USD per GBP",
+    "fx": 1.3435,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3435 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2026-03-13",
@@ -243747,10 +243923,6 @@
      [
       "2026-11-06",
       42.98
-     ],
-     [
-      "2026-11-09",
-      43.67
      ]
     ]
    },
@@ -243901,7 +244073,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 1000,
-      "convertible": false
+      "convertible": false,
+      "v": 2
      }
     },
     {
@@ -243911,7 +244084,8 @@
      "dil": null,
      "url": "https://www.sec.gov/Archives/edgar/data/97745/000114036125043343/ny20059811x4_424b5.htm",
      "parsed": {
-      "kind": "unread"
+      "kind": "unread",
+      "v": 2
      }
     },
     {
@@ -243923,7 +244097,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 500,
-      "convertible": false
+      "convertible": false,
+      "v": 2
      }
     },
     {
@@ -243935,7 +244110,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 1000,
-      "convertible": false
+      "convertible": false,
+      "v": 2
      }
     }
    ],
@@ -245154,10 +245330,6 @@
      [
       "2026-11-06",
       694.76
-     ],
-     [
-      "2026-11-09",
-      721.63
      ]
     ]
    },
@@ -246511,10 +246683,6 @@
      [
       "2026-11-06",
       399.81
-     ],
-     [
-      "2026-11-09",
-      413.09
      ]
     ]
    },
@@ -247985,10 +248153,6 @@
      [
       "2026-11-06",
       26.89
-     ],
-     [
-      "2026-11-09",
-      27.47
      ]
     ]
    },
@@ -249346,10 +249510,6 @@
      [
       "2026-11-06",
       26
-     ],
-     [
-      "2026-11-09",
-      22.94
      ]
     ]
    },
@@ -250799,10 +250959,6 @@
      [
       "2026-11-06",
       56.03
-     ],
-     [
-      "2026-11-09",
-      57.18
      ]
     ]
    },
@@ -252369,10 +252525,6 @@
      [
       "2026-11-06",
       155.94
-     ],
-     [
-      "2026-11-09",
-      156.61
      ]
     ]
    },
@@ -253849,10 +254001,6 @@
      [
       "2026-11-06",
       17.82
-     ],
-     [
-      "2026-11-09",
-      17.24
      ]
     ]
    },
@@ -254472,21 +254620,11 @@
       "shares": 8.97,
       "price": 39,
       "before": 84.8,
-      "dil": 10.6
+      "dil": 10.6,
+      "v": 2
      },
      "price": 39,
      "newShares": 8.97
-    },
-    {
-     "date": "2024-06-12",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/1515673/000119312524160052/d742037d424b5.htm",
-     "parsed": {
-      "kind": "resale"
-     },
-     "resale": true
     }
    ],
    "note": "",
@@ -255709,10 +255847,6 @@
      [
       "2026-11-06",
       15.43
-     ],
-     [
-      "2026-11-09",
-      16.41
      ]
     ]
    },
@@ -257381,10 +257515,6 @@
      [
       "2026-11-06",
       562.02
-     ],
-     [
-      "2026-11-09",
-      582.46
      ]
     ]
    },
@@ -257755,21 +257885,11 @@
       "shares": 7.81,
       "price": 96,
       "before": 181.9,
-      "dil": 4.3
+      "dil": 4.3,
+      "v": 2
      },
      "price": 96,
      "newShares": 7.81
-    },
-    {
-     "date": "2025-06-11",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/1104506/000114036125022201/ny20050461x1_424b5.htm",
-     "parsed": {
-      "kind": "resale"
-     },
-     "resale": true
     },
     {
      "date": "2024-05-30",
@@ -257783,21 +257903,11 @@
       "shares": 12.62,
       "price": 51.5,
       "before": 148.6,
-      "dil": 8.5
+      "dil": 8.5,
+      "v": 2
      },
      "price": 51.5,
      "newShares": 12.62
-    },
-    {
-     "date": "2024-05-29",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/1104506/000114036124027751/ny20029730x1_424b5.htm",
-     "parsed": {
-      "kind": "resale"
-     },
-     "resale": true
     },
     {
      "date": "2024-02-22",
@@ -257808,7 +257918,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 500,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -259028,10 +259139,6 @@
      [
       "2026-11-06",
       114.41
-     ],
-     [
-      "2026-11-09",
-      116.1
      ]
     ]
    },
@@ -259153,10 +259260,10 @@
    "area": "Rare endocrine diseases",
    "mcap": 16104.8,
    "ev": 16221.8,
-   "cash": 691.2,
-   "debt": 808.1,
+   "cash": 691.4,
+   "debt": 808.4,
    "burn": 0.1,
-   "rev": 808,
+   "rev": 808.2,
    "shares": 61.98,
    "own": null,
    "emp": null,
@@ -259832,7 +259939,8 @@
       "shares": 2,
       "price": 150,
       "before": 58.2,
-      "dil": 3.4
+      "dil": 3.4,
+      "v": 2
      },
      "price": 150,
      "newShares": 2
@@ -259844,7 +259952,7 @@
     {
      "end": "2021-06-30",
      "filed": "2021-08-27",
-     "cash": 431,
+     "cash": 432,
      "burn": 32.3,
      "runway": 13.4
     },
@@ -259872,7 +259980,7 @@
     {
      "end": "2022-06-30",
      "filed": "2022-08-10",
-     "cash": 754,
+     "cash": 755,
      "burn": 44.5,
      "runway": 17
     },
@@ -259900,7 +260008,7 @@
     {
      "end": "2023-03-31",
      "filed": "2023-04-27",
-     "cash": 562,
+     "cash": 563,
      "burn": 47.9,
      "runway": 11.7
     },
@@ -260021,19 +260129,19 @@
     ],
     [
      "2025-06-30",
-     177.3
+     177.4
     ],
     [
      "2025-09-30",
-     239.7
+     239.8
     ],
     [
      "2025-12-31",
-     277.7
+     277.8
     ]
    ],
    "rivals": [],
-   "burnPrior": 28.63,
+   "burnPrior": 28.64,
    "debtDue24": 0,
    "raise": {
     "capacity": "none",
@@ -261049,10 +261157,6 @@
      [
       "2026-11-06",
       256.82
-     ],
-     [
-      "2026-11-09",
-      259.85
      ]
     ]
    },
@@ -261148,8 +261252,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "EUR",
-    "fx": 1.122,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1220 USD per EUR",
+    "fx": 1.1223,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1223 USD per EUR",
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
     "filing": {
@@ -262449,10 +262553,6 @@
      [
       "2026-11-06",
       927.21
-     ],
-     [
-      "2026-11-09",
-      962.27
      ]
     ]
    },
@@ -263912,10 +264012,6 @@
      [
       "2026-11-06",
       300.88
-     ],
-     [
-      "2026-11-09",
-      303.06
      ]
     ]
    },
@@ -265527,10 +265623,6 @@
      [
       "2026-11-06",
       65.44
-     ],
-     [
-      "2026-11-09",
-      65.03
      ]
     ]
    },
@@ -266161,21 +266253,11 @@
       "shares": 11.5,
       "price": null,
       "before": 146,
-      "dil": 7.9
+      "dil": 7.9,
+      "v": 2
      },
      "price": null,
      "newShares": 11.5
-    },
-    {
-     "date": "2024-09-09",
-     "type": "Resale by existing holders, no money raised",
-     "amt": null,
-     "dil": null,
-     "url": "https://www.sec.gov/Archives/edgar/data/874015/000119312524215922/d818194d424b5.htm",
-     "parsed": {
-      "kind": "resale"
-     },
-     "resale": true
     }
    ],
    "note": "",
@@ -267393,10 +267475,6 @@
      [
       "2026-11-06",
       39.42
-     ],
-     [
-      "2026-11-09",
-      31
      ]
     ]
    },
@@ -269159,10 +269237,6 @@
      [
       "2026-11-06",
       234.76
-     ],
-     [
-      "2026-11-09",
-      243.54
      ]
     ]
    },
@@ -270742,10 +270816,6 @@
      [
       "2026-11-06",
       33.11
-     ],
-     [
-      "2026-11-09",
-      33.78
      ]
     ]
    },
@@ -272105,10 +272175,6 @@
      [
       "2026-11-06",
       93.72
-     ],
-     [
-      "2026-11-09",
-      93.18
      ]
     ]
    },
@@ -272264,7 +272330,8 @@
       "shares": 2.06,
       "price": 85,
       "before": 63.5,
-      "dil": 3.2
+      "dil": 3.2,
+      "v": 2
      },
      "price": 85,
      "newShares": 2.06
@@ -272278,7 +272345,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 200,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -273503,10 +273571,6 @@
      [
       "2026-11-06",
       112.28
-     ],
-     [
-      "2026-11-09",
-      113.94
      ]
     ]
    },
@@ -273897,7 +273961,8 @@
       "shares": 8.62,
       "price": 29,
       "before": 175.1,
-      "dil": 4.9
+      "dil": 4.9,
+      "v": 2
      },
      "price": 29,
      "newShares": 8.62
@@ -275118,10 +275183,6 @@
      [
       "2026-11-06",
       74.29
-     ],
-     [
-      "2026-11-09",
-      77.93
      ]
     ]
    },
@@ -275395,7 +275456,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 475,
-      "convertible": true
+      "convertible": true,
+      "v": 2
      }
     },
     {
@@ -275407,7 +275469,8 @@
      "parsed": {
       "kind": "notes",
       "amt": 400,
-      "convertible": true
+      "convertible": true,
+      "v": 2
      }
     },
     {
@@ -275422,7 +275485,8 @@
       "shares": 7.81,
       "price": 16,
       "before": 77.9,
-      "dil": 10
+      "dil": 10,
+      "v": 2
      },
      "price": 16,
      "newShares": 7.81
@@ -275436,7 +275500,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 100,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     },
@@ -275449,7 +275514,8 @@
      "parsed": {
       "kind": "atm",
       "amt": 100,
-      "upTo": true
+      "upTo": true,
+      "v": 2
      },
      "upTo": true
     }
@@ -276674,10 +276740,6 @@
      [
       "2026-11-06",
       49.6
-     ],
-     [
-      "2026-11-09",
-      51.63
      ]
     ]
    },
