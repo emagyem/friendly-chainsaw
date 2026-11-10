@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-10T07:28:15.816Z",
+  "generatedAt": "2026-11-10T07:36:20.626Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -14089,18 +14089,21 @@
    },
    "insiders": {
     "days": 365,
-    "bought": 172.5,
-    "buyers": 1,
-    "sold": 195.36,
-    "sellers": 2,
+    "bought": 0,
+    "buyers": 0,
+    "sold": 21.7,
+    "sellers": 1,
     "planSold": 265.55,
     "taxSold": 4.09,
     "bought90": 0,
     "sold90": 0,
     "holders": {
-     "bought": 0,
-     "sold": 0,
-     "names": []
+     "bought": 172.5,
+     "sold": 173.67,
+     "names": [
+      "BVF PARTNERS L P/IL",
+      "BAKER BROS. ADVISORS LP"
+     ]
     },
     "trades": [
      {
@@ -64829,16 +64832,18 @@
     "days": 365,
     "bought": 0,
     "buyers": 0,
-    "sold": 65.71,
-    "sellers": 2,
+    "sold": 2.75,
+    "sellers": 1,
     "planSold": 9.66,
     "taxSold": 7.65,
     "bought90": 0,
     "sold90": 0,
     "holders": {
      "bought": 0,
-     "sold": 0,
-     "names": []
+     "sold": 62.96,
+     "names": [
+      "BVF PARTNERS L P/IL"
+     ]
     },
     "trades": [
      {
@@ -70818,8 +70823,8 @@
    },
    "insiders": {
     "days": 365,
-    "bought": 2.77,
-    "buyers": 3,
+    "bought": 0.77,
+    "buyers": 2,
     "sold": 0,
     "sellers": 0,
     "planSold": 0,
@@ -70827,9 +70832,11 @@
     "bought90": 0.05,
     "sold90": 0,
     "holders": {
-     "bought": 0,
+     "bought": 2,
      "sold": 0,
-     "names": []
+     "names": [
+      "Invus Global Management, LLC"
+     ]
     },
     "trades": [
      {
@@ -70919,17 +70926,6 @@
       "role": "insider",
       "url": "https://www.sec.gov/Archives/edgar/data/1062822/000106282226000029/form4.xml",
       "usd": 0.08
-     },
-     {
-      "date": "2026-02-02",
-      "kind": "buy",
-      "shares": 1538462,
-      "price": 1.3,
-      "owner": "Invus Global Management, LLC",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1062822/000119312526037644/ownership.xml",
-      "usd": 2
      }
     ]
    },
@@ -82209,186 +82205,20 @@
     "days": 365,
     "bought": 0,
     "buyers": 0,
-    "sold": 49.42,
-    "sellers": 1,
+    "sold": 0,
+    "sellers": 0,
     "planSold": 0,
     "taxSold": 0,
     "bought90": 0,
     "sold90": 0,
     "holders": {
      "bought": 0,
-     "sold": 0,
+     "sold": 49.42,
      "names": [
       "RA CAPITAL MANAGEMENT, L.P."
      ]
     },
-    "trades": [
-     {
-      "date": "2026-04-22",
-      "kind": "sold",
-      "shares": 165150,
-      "price": 15.77,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000409/form4-04242026_100450.xml",
-      "usd": 2.6
-     },
-     {
-      "date": "2026-04-20",
-      "kind": "sold",
-      "shares": 171963,
-      "price": 15.77,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000385/form4-04212026_110443.xml",
-      "usd": 2.71
-     },
-     {
-      "date": "2026-04-17",
-      "kind": "sold",
-      "shares": 458411,
-      "price": 16.28,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000385/form4-04212026_110443.xml",
-      "usd": 7.46
-     },
-     {
-      "date": "2026-04-15",
-      "kind": "sold",
-      "shares": 53644,
-      "price": 16.01,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000355/form4-04152026_090428.xml",
-      "usd": 0.86
-     },
-     {
-      "date": "2026-04-14",
-      "kind": "sold",
-      "shares": 153735,
-      "price": 15.97,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000355/form4-04152026_090428.xml",
-      "usd": 2.46
-     },
-     {
-      "date": "2026-04-13",
-      "kind": "sold",
-      "shares": 530610,
-      "price": 16.15,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000355/form4-04152026_090428.xml",
-      "usd": 8.57
-     },
-     {
-      "date": "2026-04-10",
-      "kind": "sold",
-      "shares": 828,
-      "price": 15.75,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000333/form4-04102026_100442.xml",
-      "usd": 0.01
-     },
-     {
-      "date": "2026-04-09",
-      "kind": "sold",
-      "shares": 135201,
-      "price": 16.59,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000333/form4-04102026_100442.xml",
-      "usd": 2.24
-     },
-     {
-      "date": "2026-04-08",
-      "kind": "sold",
-      "shares": 130862,
-      "price": 16.91,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000333/form4-04102026_100442.xml",
-      "usd": 2.21
-     },
-     {
-      "date": "2026-04-08",
-      "kind": "sold",
-      "shares": 353242,
-      "price": 16.32,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000333/form4-04102026_100442.xml",
-      "usd": 5.76
-     },
-     {
-      "date": "2026-04-06",
-      "kind": "sold",
-      "shares": 6775,
-      "price": 18.5,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000320/form4-04062026_100458.xml",
-      "usd": 0.13
-     },
-     {
-      "date": "2026-04-06",
-      "kind": "sold",
-      "shares": 44728,
-      "price": 17.31,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000320/form4-04062026_100458.xml",
-      "usd": 0.77
-     },
-     {
-      "date": "2026-04-06",
-      "kind": "sold",
-      "shares": 537754,
-      "price": 16.51,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000320/form4-04062026_100458.xml",
-      "usd": 8.88
-     },
-     {
-      "date": "2026-04-02",
-      "kind": "sold",
-      "shares": 1525,
-      "price": 19.06,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000320/form4-04062026_100458.xml",
-      "usd": 0.03
-     },
-     {
-      "date": "2026-04-02",
-      "kind": "sold",
-      "shares": 258475,
-      "price": 18.23,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000123191926000320/form4-04062026_100458.xml",
-      "usd": 4.71
-     }
-    ]
+    "trades": []
    },
    "quote": {
     "price": 19.98,
@@ -110104,8 +109934,8 @@
    },
    "insiders": {
     "days": 365,
-    "bought": 0.78,
-    "buyers": 1,
+    "bought": 0,
+    "buyers": 0,
     "sold": 0,
     "sellers": 0,
     "planSold": 2.25,
@@ -110113,9 +109943,11 @@
     "bought90": 0,
     "sold90": 0,
     "holders": {
-     "bought": 0,
+     "bought": 0.78,
      "sold": 0,
-     "names": []
+     "names": [
+      "RA CAPITAL MANAGEMENT, L.P."
+     ]
     },
     "trades": [
      {
@@ -110183,39 +110015,6 @@
       "role": "insider",
       "url": "https://www.sec.gov/Archives/edgar/data/1768446/000119312526054568/ownership.xml",
       "usd": 0.47
-     },
-     {
-      "date": "2026-01-05",
-      "kind": "buy",
-      "shares": 7111,
-      "price": 3.5,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1768446/000123191926000018/form4-01072026_090137.xml",
-      "usd": 0.02
-     },
-     {
-      "date": "2025-12-12",
-      "kind": "buy",
-      "shares": 101462,
-      "price": 2.86,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1768446/000123191925000616/form4-12162025_121255.xml",
-      "usd": 0.29
-     },
-     {
-      "date": "2025-12-11",
-      "kind": "buy",
-      "shares": 213099,
-      "price": 2.18,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1768446/000123191925000616/form4-12162025_121255.xml",
-      "usd": 0.46
      }
     ]
    },
@@ -112184,16 +111983,18 @@
     "days": 365,
     "bought": 0.32,
     "buyers": 1,
-    "sold": 18.75,
-    "sellers": 1,
+    "sold": 0,
+    "sellers": 0,
     "planSold": 0,
     "taxSold": 0.92,
     "bought90": 0,
-    "sold90": 2.76,
+    "sold90": 0,
     "holders": {
      "bought": 0,
-     "sold": 0,
-     "names": []
+     "sold": 18.75,
+     "names": [
+      "Foundation Fighting Blindness Retinal Degeneration Fund"
+     ]
     },
     "trades": [
      {
@@ -112263,17 +112064,6 @@
       "usd": 0.02
      },
      {
-      "date": "2026-09-30",
-      "kind": "sold",
-      "shares": 556000,
-      "price": 4.96,
-      "owner": "Foundation Fighting Blindness Retinal Degeneration Fund",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1228627/000204226626000002/primary_doc.xml",
-      "usd": 2.76
-     },
-     {
       "date": "2026-09-03",
       "kind": "tax",
       "shares": 28000,
@@ -112329,17 +112119,6 @@
       "usd": 0.02
      },
      {
-      "date": "2026-05-18",
-      "kind": "sold",
-      "shares": 1700000,
-      "price": 4.35,
-      "owner": "Foundation Fighting Blindness Retinal Degeneration Fund",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1228627/000204226626000001/primary_doc.xml",
-      "usd": 7.39
-     },
-     {
       "date": "2026-04-23",
       "kind": "tax",
       "shares": 7842,
@@ -112360,6 +112139,28 @@
       "role": "insider",
       "url": "https://www.sec.gov/Archives/edgar/data/1228627/000090514826001863/form4.xml",
       "usd": 0.04
+     },
+     {
+      "date": "2026-04-23",
+      "kind": "tax",
+      "shares": 9511,
+      "price": 5.22,
+      "owner": "George Magrath",
+      "title": "Chief Executive Officer",
+      "role": "insider",
+      "url": "https://www.sec.gov/Archives/edgar/data/1228627/000090514826001864/form4.xml",
+      "usd": 0.05
+     },
+     {
+      "date": "2026-04-23",
+      "kind": "tax",
+      "shares": 1641,
+      "price": 5.2,
+      "owner": "Rabourn Amy Zaremba",
+      "title": "Head of Fin. Quality Assurance",
+      "role": "insider",
+      "url": "https://www.sec.gov/Archives/edgar/data/1228627/000090514826001865/form4.xml",
+      "usd": 0.01
      }
     ]
    },
@@ -118439,8 +118240,8 @@
    },
    "insiders": {
     "days": 365,
-    "bought": 54.63,
-    "buyers": 1,
+    "bought": 0,
+    "buyers": 0,
     "sold": 0,
     "sellers": 0,
     "planSold": 15.9,
@@ -118448,9 +118249,10 @@
     "bought90": 0,
     "sold90": 0,
     "holders": {
-     "bought": 27.93,
+     "bought": 82.56,
      "sold": 0,
      "names": [
+      "RA CAPITAL MANAGEMENT, L.P.",
       "plc Gsk"
      ]
     },
@@ -118498,50 +118300,6 @@
       "role": "insider",
       "url": "https://www.sec.gov/Archives/edgar/data/1631574/000119312526349963/ownership.xml",
       "usd": 0.04
-     },
-     {
-      "date": "2026-03-30",
-      "kind": "buy",
-      "shares": 971091,
-      "price": 6.5,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1631574/000123191926000297/form4-03312026_120347.xml",
-      "usd": 6.31
-     },
-     {
-      "date": "2026-03-27",
-      "kind": "buy",
-      "shares": 2495623,
-      "price": 6.43,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1631574/000123191926000297/form4-03312026_120347.xml",
-      "usd": 16.05
-     },
-     {
-      "date": "2026-03-26",
-      "kind": "buy",
-      "shares": 351224,
-      "price": 6.38,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1631574/000123191926000297/form4-03312026_120347.xml",
-      "usd": 2.24
-     },
-     {
-      "date": "2026-03-26",
-      "kind": "buy",
-      "shares": 4954558,
-      "price": 6.06,
-      "owner": "RA CAPITAL MANAGEMENT, L.P.",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1631574/000123191926000297/form4-03312026_120347.xml",
-      "usd": 30.02
      },
      {
       "date": "2026-02-26",
@@ -118619,6 +118377,50 @@
       "role": "insider",
       "url": "https://www.sec.gov/Archives/edgar/data/1631574/000119312526005195/ownership.xml",
       "usd": 0.02
+     },
+     {
+      "date": "2026-01-02",
+      "kind": "plan",
+      "shares": 8080,
+      "price": 15.92,
+      "owner": "Chris Francis",
+      "title": "See Remarks",
+      "role": "insider",
+      "url": "https://www.sec.gov/Archives/edgar/data/1631574/000119312526005195/ownership.xml",
+      "usd": 0.13
+     },
+     {
+      "date": "2025-12-09",
+      "kind": "plan",
+      "shares": 50000,
+      "price": 20.02,
+      "owner": "Kyle Moran",
+      "title": "Chief Financial Officer",
+      "role": "insider",
+      "url": "https://www.sec.gov/Archives/edgar/data/1631574/000119312525314736/ownership.xml",
+      "usd": 1
+     },
+     {
+      "date": "2025-12-09",
+      "kind": "plan",
+      "shares": 36,
+      "price": 20.25,
+      "owner": "Kyle Moran",
+      "title": "Chief Financial Officer",
+      "role": "insider",
+      "url": "https://www.sec.gov/Archives/edgar/data/1631574/000119312525314736/ownership.xml",
+      "usd": 0
+     },
+     {
+      "date": "2025-12-08",
+      "kind": "plan",
+      "shares": 6515,
+      "price": 14.07,
+      "owner": "Mark Corrigan",
+      "title": "Director",
+      "role": "insider",
+      "url": "https://www.sec.gov/Archives/edgar/data/1631574/000119312525314735/ownership.xml",
+      "usd": 0.09
      }
     ]
    },
@@ -145166,8 +144968,8 @@
    },
    "insiders": {
     "days": 365,
-    "bought": 92.62,
-    "buyers": 1,
+    "bought": 0,
+    "buyers": 0,
     "sold": 0,
     "sellers": 0,
     "planSold": 0.57,
@@ -145175,9 +144977,10 @@
     "bought90": 0,
     "sold90": 0,
     "holders": {
-     "bought": 16.5,
+     "bought": 109.12,
      "sold": 0,
      "names": [
+      "RA CAPITAL MANAGEMENT, L.P.",
       "Corp. Gc"
      ]
     },
@@ -148958,8 +148761,8 @@
    },
    "insiders": {
     "days": 365,
-    "bought": 4.8,
-    "buyers": 1,
+    "bought": 0,
+    "buyers": 0,
     "sold": 0,
     "sellers": 0,
     "planSold": 9.91,
@@ -148967,9 +148770,11 @@
     "bought90": 0,
     "sold90": 0,
     "holders": {
-     "bought": 0,
+     "bought": 4.8,
      "sold": 0,
-     "names": []
+     "names": [
+      "RA CAPITAL MANAGEMENT, L.P."
+     ]
     },
     "trades": [
      {
@@ -169268,8 +169073,8 @@
    },
    "insiders": {
     "days": 365,
-    "bought": 30.61,
-    "buyers": 1,
+    "bought": 0,
+    "buyers": 0,
     "sold": 0,
     "sellers": 0,
     "planSold": 0,
@@ -169277,9 +169082,11 @@
     "bought90": 0,
     "sold90": 0,
     "holders": {
-     "bought": 0,
+     "bought": 30.61,
      "sold": 0,
-     "names": []
+     "names": [
+      "Fairmount Funds Management LLC"
+     ]
     },
     "trades": [
      {
@@ -169382,17 +169189,6 @@
       "usd": 0
      },
      {
-      "date": "2026-07-16",
-      "kind": "buy",
-      "shares": 853450,
-      "price": 14.5,
-      "owner": "Fairmount Funds Management LLC",
-      "title": "Director",
-      "role": "insider",
-      "url": "https://www.sec.gov/Archives/edgar/data/1253689/000110465926085113/tm2620801-1_4seq1.xml",
-      "usd": 12.38
-     },
-     {
       "date": "2026-06-22",
       "kind": "tax",
       "shares": 42305,
@@ -169445,6 +169241,17 @@
       "title": "Chief Financial Officer",
       "role": "insider",
       "url": "https://www.sec.gov/Archives/edgar/data/1253689/000162828026044890/wk-form4_1782245034.xml",
+      "usd": 0.02
+     },
+     {
+      "date": "2026-06-22",
+      "kind": "tax",
+      "shares": 1288,
+      "price": 17.99,
+      "owner": "Jan Pinkas",
+      "title": "Chief Scientific Officer",
+      "role": "insider",
+      "url": "https://www.sec.gov/Archives/edgar/data/1253689/000162828026044892/wk-form4_1782245062.xml",
       "usd": 0.02
      }
     ]
@@ -233996,11 +233803,11 @@
    "n": "Novo Nordisk",
    "area": "Diabetes & obesity",
    "mcap": 183892.7,
-   "ev": 199608.6,
-   "cash": 3980.2,
-   "debt": 19696.1,
+   "ev": 199598.2,
+   "cash": 3977.5,
+   "debt": 19683,
    "burn": 0.1,
-   "rev": 46483.2,
+   "rev": 46452.3,
    "shares": 4444,
    "own": null,
    "emp": null,
@@ -234998,85 +234805,85 @@
     {
      "end": "2015-12-31",
      "filed": "2018-02-08",
-     "cash": 2917,
-     "burn": -479.9,
+     "cash": 2915,
+     "burn": -479.5,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-02-08",
-     "cash": 3079,
-     "burn": -605.5,
+     "cash": 3077,
+     "burn": -605.1,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-02-08",
-     "cash": 2581,
-     "burn": -516,
+     "cash": 2579,
+     "burn": -515.6,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-02-04",
-     "cash": 2351,
-     "burn": -559.2,
+     "cash": 2349,
+     "burn": -558.8,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-02-05",
-     "cash": 2318,
-     "burn": -586.3,
+     "cash": 2316,
+     "burn": -585.9,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-02-03",
-     "cash": 1839,
-     "burn": -651.1,
+     "cash": 1838,
+     "burn": -650.7,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-02",
-     "cash": 1612,
-     "burn": -689.3,
+     "cash": 1611,
+     "burn": -688.9,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-01",
-     "cash": 1903,
-     "burn": -988.7,
+     "cash": 1902,
+     "burn": -988.1,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-01-31",
-     "cash": 2165,
-     "burn": -1365,
+     "cash": 2163,
+     "burn": -1364.1,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-05",
-     "cash": 2355,
-     "burn": -1516.1,
+     "cash": 2353,
+     "burn": -1515.1,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-04",
-     "cash": 3980,
-     "burn": -1492.7,
+     "cash": 3978,
+     "burn": -1491.8,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -1516.13,
-   "debtDue24": 1807.4,
+   "burnPrior": -1515.12,
+   "debtDue24": 1806.2,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -236201,7 +236008,7 @@
    },
    "news": [],
    "cashFlowPositive": true,
-   "ocf": 17913,
+   "ocf": 17901,
    "group": "big-pharma",
    "src": {
     "cik": "353278",
@@ -236210,8 +236017,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "DKK",
-    "fx": 0.1504,
-    "fxNote": "Reported in DKK; converted at today's rate of 0.1504 USD per DKK",
+    "fx": 0.1503,
+    "fxNote": "Reported in DKK; converted at today's rate of 0.1503 USD per DKK",
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
     "filing": {
@@ -243616,11 +243423,11 @@
    "n": "Sanofi",
    "area": "Immunology & vaccines",
    "mcap": 117357.7,
-   "ev": 128878.9,
-   "cash": 9496.1,
-   "debt": 21017.3,
+   "ev": 128876.8,
+   "cash": 9494.4,
+   "debt": 21013.6,
    "burn": 0.1,
-   "rev": 49026.9,
+   "rev": 49018.2,
    "shares": 1219.43,
    "own": null,
    "emp": null,
@@ -245681,134 +245488,134 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-16",
-     "cash": 10295,
-     "burn": -776.4,
+     "cash": 10293,
+     "burn": -776.2,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-16",
-     "cash": 11580,
-     "burn": -734,
+     "cash": 11578,
+     "burn": -733.9,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-16",
-     "cash": 11679,
-     "burn": -691,
+     "cash": 11676,
+     "burn": -690.9,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-08",
-     "cash": 8006,
-     "burn": -519.5,
+     "cash": 8005,
+     "burn": -519.4,
      "runway": null
     },
     {
      "end": "2019-06-30",
      "filed": "2020-07-29",
-     "cash": 7577,
-     "burn": -604.2,
+     "cash": 7575,
+     "burn": -604.1,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-05",
-     "cash": 11073,
-     "burn": -722.5,
+     "cash": 11071,
+     "burn": -722.4,
      "runway": null
     },
     {
      "end": "2020-06-30",
      "filed": "2020-07-29",
-     "cash": 17946,
-     "burn": -792.5,
+     "cash": 17943,
+     "burn": -792.3,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-04",
-     "cash": 16649,
-     "burn": -694.7,
+     "cash": 16646,
+     "burn": -694.6,
      "runway": null
     },
     {
      "end": "2021-06-30",
      "filed": "2021-07-29",
-     "cash": 10926,
-     "burn": -769.7,
+     "cash": 10924,
+     "burn": -769.6,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-23",
-     "cash": 12533,
-     "burn": -985.4,
+     "cash": 12530,
+     "burn": -985.2,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-07-28",
-     "cash": 7753,
-     "burn": -900.9,
+     "cash": 7752,
+     "burn": -900.8,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-24",
-     "cash": 14894,
-     "burn": -985.8,
+     "cash": 14891,
+     "burn": -985.6,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-07-28",
-     "cash": 8983,
-     "burn": -961.2,
+     "cash": 8981,
+     "burn": -961.1,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-23",
-     "cash": 9966,
-     "burn": -960.7,
+     "cash": 9964,
+     "burn": -960.5,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-07-25",
-     "cash": 7636,
-     "burn": -760.2,
+     "cash": 7635,
+     "burn": -760,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-13",
-     "cash": 8779,
-     "burn": -850.4,
+     "cash": 8778,
+     "burn": -850.3,
      "runway": null
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-31",
-     "cash": 17260,
-     "burn": -1050.2,
+     "cash": 17257,
+     "burn": -1050,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-17",
-     "cash": 9496,
-     "burn": -1006.7,
+     "cash": 9494,
+     "burn": -1006.6,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -850.44,
-   "debtDue24": 4879.5,
+   "burnPrior": -850.28,
+   "debtDue24": 4878.7,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -247014,7 +246821,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 12081,
+   "ocf": 12079,
    "group": "big-pharma",
    "src": {
     "cik": "1121404",
@@ -247024,8 +246831,8 @@
      "MarketableSecuritiesCurrent"
     ],
     "currency": "EUR",
-    "fx": 1.1238,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1238 USD per EUR",
+    "fx": 1.1236,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1236 USD per EUR",
     "adr": 0.5,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -247052,11 +246859,11 @@
    "n": "GSK",
    "area": "Vaccines & respiratory",
    "mcap": 111209,
-   "ev": 126429.1,
-   "cash": 4571,
-   "debt": 19791.1,
+   "ev": 126428,
+   "cash": 4570.7,
+   "debt": 19789.6,
    "burn": 0.1,
-   "rev": 43956.7,
+   "rev": 43953.4,
    "shares": 4315.45,
    "own": null,
    "emp": null,
@@ -249067,8 +248874,8 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-20",
-     "cash": 7845,
-     "burn": -288.1,
+     "cash": 7844,
+     "burn": -288,
      "runway": null
     },
     {
@@ -249081,42 +248888,42 @@
     {
      "end": "2017-12-31",
      "filed": "2018-03-20",
-     "cash": 5158,
+     "cash": 5157,
      "burn": -775.7,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-15",
-     "cash": 5326,
-     "burn": -944.3,
+     "cash": 5325,
+     "burn": -944.2,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-06",
      "cash": 6440,
-     "burn": -899.3,
+     "burn": -899.2,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-12",
      "cash": 8571,
-     "burn": -946.5,
+     "burn": -946.4,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-03-08",
      "cash": 5833,
-     "burn": -891.7,
+     "burn": -891.6,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-10",
-     "cash": 5100,
+     "cash": 5099,
      "burn": -830.1,
      "runway": null
     },
@@ -249144,7 +248951,7 @@
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -734.92,
+   "burnPrior": -734.87,
    "debtDue24": 0,
    "raise": {
     "capacity": "none",
@@ -250296,8 +250103,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3456,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3456 USD per GBP",
+    "fx": 1.3455,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3455 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -265911,11 +265718,11 @@
    "n": "Haleon",
    "area": "Over-the-counter consumer health",
    "mcap": 40151.3,
-   "ev": 49954,
-   "cash": 1781.6,
-   "debt": 11584.3,
+   "ev": 49952.5,
+   "cash": 1781.3,
+   "debt": 11582.5,
    "burn": 0.1,
-   "rev": 14842,
+   "rev": 14839.8,
    "shares": 8952.35,
    "own": null,
    "emp": null,
@@ -265953,14 +265760,14 @@
      "end": "2020-12-31",
      "filed": "2023-03-20",
      "cash": 448,
-     "burn": -157.8,
+     "burn": -157.7,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2023-03-20",
      "cash": 557,
-     "burn": -152.1,
+     "burn": -152,
      "runway": null
     },
     {
@@ -265981,42 +265788,42 @@
      "end": "2023-06-30",
      "filed": "2023-08-02",
      "cash": 659,
-     "burn": -239.1,
+     "burn": -239,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-15",
      "cash": 1405,
-     "burn": -235.5,
+     "burn": -235.4,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-01",
-     "cash": 715,
+     "cash": 714,
      "burn": -245.9,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-20",
-     "cash": 3028,
+     "cash": 3027,
      "burn": -258,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-13",
-     "cash": 1782,
-     "burn": -295.4,
+     "cash": 1781,
+     "burn": -295.3,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -258.02,
-   "debtDue24": 1124.9,
+   "burnPrior": -257.98,
+   "debtDue24": 1124.8,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -267183,8 +266990,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3456,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3456 USD per GBP",
+    "fx": 1.3454,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3454 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2026-03-13",
@@ -284935,11 +284742,11 @@
    "n": "Ascendis Pharma",
    "area": "Rare endocrine diseases",
    "mcap": 16104.8,
-   "ev": 16222,
-   "cash": 692.4,
-   "debt": 809.6,
+   "ev": 16221.9,
+   "cash": 692.2,
+   "debt": 809.3,
    "burn": 0.1,
-   "rev": 809.4,
+   "rev": 809.1,
    "shares": 61.98,
    "own": null,
    "emp": null,
@@ -285642,7 +285449,7 @@
     {
      "end": "2021-12-31",
      "filed": "2022-03-02",
-     "cash": 502,
+     "cash": 501,
      "burn": 39.1,
      "runway": 12.8
     },
@@ -285656,7 +285463,7 @@
     {
      "end": "2022-06-30",
      "filed": "2022-08-10",
-     "cash": 756,
+     "cash": 755,
      "burn": 44.6,
      "runway": 17
     },
@@ -285685,7 +285492,7 @@
      "end": "2023-03-31",
      "filed": "2023-04-27",
      "cash": 563,
-     "burn": 48,
+     "burn": 47.9,
      "runway": 11.7
     },
     {
@@ -285748,7 +285555,7 @@
      "end": "2025-06-30",
      "filed": "2025-08-07",
      "cash": 555,
-     "burn": 15.5,
+     "burn": 15.4,
      "runway": 35.9
     },
     {
@@ -285769,7 +285576,7 @@
    "revQ": [
     [
      "2023-03-31",
-     37.8
+     37.7
     ],
     [
      "2023-06-30",
@@ -285781,15 +285588,15 @@
     ],
     [
      "2023-12-31",
-     154.8
+     154.7
     ],
     [
      "2024-03-31",
-     107.8
+     107.7
     ],
     [
      "2024-06-30",
-     40.5
+     40.4
     ],
     [
      "2024-09-30",
@@ -285797,11 +285604,11 @@
     ],
     [
      "2024-12-31",
-     195.5
+     195.4
     ],
     [
      "2025-03-31",
-     113.5
+     113.4
     ],
     [
      "2025-06-30",
@@ -285809,15 +285616,15 @@
     ],
     [
      "2025-09-30",
-     240.1
+     240
     ],
     [
      "2025-12-31",
-     278.2
+     278.1
     ]
    ],
    "rivals": [],
-   "burnPrior": 28.68,
+   "burnPrior": 28.67,
    "debtDue24": 0,
    "raise": {
     "capacity": "none",
@@ -287033,8 +286840,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "EUR",
-    "fx": 1.124,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1240 USD per EUR",
+    "fx": 1.1236,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1236 USD per EUR",
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
     "filing": {
@@ -287199,7 +287006,7 @@
     {
      "end": "2017-12-31",
      "filed": "2018-03-26",
-     "cash": 215,
+     "cash": 214,
      "burn": 3.4,
      "runway": 62.7
     },
@@ -287236,7 +287043,7 @@
      "filed": "2020-07-31",
      "cash": 1345,
      "burn": 21.2,
-     "runway": 63.3
+     "runway": 63.4
     },
     {
      "end": "2020-12-31",
