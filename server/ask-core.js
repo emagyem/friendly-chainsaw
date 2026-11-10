@@ -59,7 +59,9 @@ export function buildFacts(dataFile, today = new Date()) {
       price: c.quote?.price ?? null, price_change_pct: c.quote?.chgPct ?? null,
       programs: (c.pipeline || []).map((p) => ({ drug: p.d, indication: p.ind, phase: p.ph, expected_readout: p.ro })),
       catalysts: (c.catalysts || []).map((x) => ({ date: x.date, days_away: days(x.date), event: x.label })),
-      financings: (c.financings || []).map(({ date, type }) => ({ date, type })),
+      financings: (c.financings || []).map(({ date, type, amt, dil, upTo }) => ({ date, type, amount_musd: amt ?? null, up_to: !!upTo, dilution_pct: dil ?? null })),
+      short_interest: c.short ? { as_of: c.short.date, pct_of_shares: c.short.pct, days_to_cover: c.short.dtc, change_3m_pct: c.short.chg3m } : null,
+      insider_trades_12m: c.insiders ? { bought_musd: c.insiders.bought, sold_by_choice_musd: c.insiders.sold, sold_10b5_1_plan_musd: c.insiders.planSold, sold_for_taxes_musd: c.insiders.taxSold, large_holders: c.insiders.holders || null } : null,
       note: c.note || null,
     };
   });

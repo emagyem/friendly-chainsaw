@@ -61,6 +61,9 @@ const CAT_KIND = {
 const TODAY = new Date();
 const days = (iso) => Math.round((new Date(iso + "T00:00:00") - TODAY) / 86400000);
 const fmtDate = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+// Small dollar amounts in millions: 0.45 → "$450K", 12.3 → "$12.3M".
+const usdSmall = (m) => (!(m > 0) ? "None" : m < 1 ? `$${Math.max(1, Math.round(m * 1000))}K` : m < 100 ? `$${m.toFixed(1)}M` : money(m));
+const TRADE_KIND = { buy: "Bought", sold: "Sold", plan: "Sold under a 10b5-1 plan", tax: "Sold to cover taxes" };
 const money = (m) => (m >= 1e6 ? `$${(m / 1e6).toFixed(2)}T` : m >= 100000 ? `$${Math.round(m / 1000)}B` : m >= 1000 ? `$${(m / 1000).toFixed(2)}B` : `$${Math.round(m)}M`);
 const num = (n, d = 1) => (n == null || !isFinite(n) ? "—" : n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }));
 const LIVE = META.live;
@@ -195,6 +198,9 @@ function alertsFor(c) {
   if (atm) out.push({ sev: "med", text: `It has had an at-the-market program since ${fmtDate(atm.date)}, so it can sell new shares quietly, without announcing a deal.` });
   const dil = shareGrowth(c);
   if (dil > 25) out.push({ sev: "med", text: `The number of shares has grown about ${num(dil, 0)}% ${dilutionPhrase(c)}, which shrinks each existing holder's slice.` });
+  if (c.short?.pct >= 20) out.push({ sev: "med", text: `${num(c.short.pct, 0)}% of its shares are sold short${c.short.dtc ? `, about ${num(c.short.dtc, 0)} days of normal trading to buy back` : ""}. Short sellers often build positions when they expect a share sale.` });
+  if (c.insiders?.bought90 >= 0.25) out.push({ sev: "low", text: `Officers or directors bought ${usdSmall(c.insiders.bought90)} of stock on the open market in the last 90 days.` });
+  if (c.insiders?.sold90 >= 1) out.push({ sev: "low", text: `Officers or directors sold ${usdSmall(c.insiders.sold90)} of stock in the last 90 days outside pre-set trading plans and tax sales.` });
   if (c.deal?.status === "pending") out.push({ sev: "high", text: `Being bought${c.deal.by ? ` by ${c.deal.by}` : ""}: a ${c.deal.how} has been under way since ${fmtDate(c.deal.since)}. Its financing risk matters little while the deal is pending, and it leaves Helixora once the deal closes.` });
   if (c.stale) out.push({ sev: "low", text: "We couldn't update this company in the latest refresh, so these figures are from an earlier run." });
   const evpv = c.ev / Math.max(pipelineValue(c), 1);
@@ -799,7 +805,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
     return { post, pct: newShares === 0 ? 0 : (newShares / post) * 100, proceeds: newShares * (c.mcap / c.shares) * 0.88 };
   }, [c, newShares]);
 
-  const tabs = [["overview", "Overview"], ["pressure", "Financing pressure"], ["financials", "Financials"], ["pipeline", "Pipeline"], ["catalysts", "Catalysts"], ["valuation", "Valuation"], ["score", "Score"]];
+  const tabs = [["overview", "Overview"], ["pressure", "Financing pressure"], ["financials", "Financials"], ["ownership", "Insiders & shorts"], ["pipeline", "Pipeline"], ["catalysts", "Catalysts"], ["valuation", "Valuation"], ["score", "Score"]];
 
   return (
     <div className="stack">
@@ -928,6 +934,84 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
         </div>
       )}
       {tab === "overview" && <AlertsPanel go={go} only={c.t} />}
+
+      {tab === "ownership" && (
+        <div className="stack">
+          <section className="panel">
+            <header className="ph"><h2>Short interest</h2>
+              <span className="ph-note">Shares borrowed and sold by investors betting the price will fall, reported by brokers to FINRA twice a month.</span></header>
+            {!c.short ? <p className="empty">FINRA has no short-interest figures for this ticker yet.</p> : (<>
+              <div className="metrics">
+                <div className="metric"><span>Share of stock sold short</span><b className="mono">{num(c.short.pct, 1)}%</b></div>
+                <div className="metric"><span>Days to cover</span><b className="mono">{c.short.dtc != null ? num(c.short.dtc, 1) : "—"}</b></div>
+                <div className="metric"><span>Change over about 3 months</span><b className={"mono " + (c.short.chg3m > 0 ? "warn" : "")}>{c.short.chg3m == null ? "—" : `${c.short.chg3m > 0 ? "+" : ""}${num(c.short.chg3m, 0)}%`}</b></div>
+                <div className="metric"><span>As of</span><b className="mono">{fmtDate(c.short.date)}</b></div>
+              </div>
+              {c.short.history?.length > 3 && (
+                <div className="chart">
+                  <ResponsiveContainer width="100%" height={200}>
+                    <AreaChart data={c.short.history} margin={{ top: 10, right: 20, bottom: 4, left: 0 }}>
+                      <CartesianGrid stroke="#E4E9EB" vertical={false} />
+                      <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#5A6B76" }} tickFormatter={(d) => new Date(d + "T00:00:00").toLocaleDateString("en-US", { month: "short", year: "2-digit" })} minTickGap={40} />
+                      <YAxis tick={{ fontSize: 11, fill: "#5A6B76" }} tickFormatter={(v) => `${v}%`} width={44} />
+                      <Tooltip formatter={(v) => [`${v}% of shares`, "Sold short"]} labelFormatter={fmtDate} />
+                      <Area type="monotone" dataKey="pct" stroke="#12706B" strokeWidth={2} fill="#12706B" fillOpacity={0.1} />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </div>
+              )}
+              <p className="colnote">Days to cover is shares sold short divided by average daily trading volume: how long short sellers would need to buy their shares back. Above about 20% of shares, or a sharp rise, often means investors expect a stock sale or bad news. Source: <a href="https://www.finra.org/finra-data/browse-catalog/equity-short-interest" target="_blank" rel="noreferrer">FINRA</a>.</p>
+            </>)}
+          </section>
+
+          <section className="panel">
+            <header className="ph"><h2>Insider trades, last 12 months</h2>
+              <span className="ph-note">Open-market buys and sales by officers and directors, from their Form 4 filings with the SEC. Stock grants and option exercises are left out.</span></header>
+            {!c.insiders ? <p className="empty">Insider trades are tracked for the 100 biotechs in coverage.</p> : (() => {
+              const ins = c.insiders;
+              const net = ins.bought - ins.sold;
+              return (<>
+                <p className="prose">{ins.bought === 0 && ins.sold === 0 && ins.planSold === 0 && ins.taxSold === 0
+                  ? "No officer or director bought or sold stock on the open market in the last year."
+                  : ins.bought > 0 && ins.bought >= ins.sold
+                    ? `Officers and directors were net buyers: ${usdSmall(ins.bought)} bought by ${ins.buyers} ${ins.buyers === 1 ? "person" : "people"}${ins.sold > 0 ? `, against ${usdSmall(ins.sold)} sold by choice` : ""}. Insiders putting their own money in is one of the few clear signals of confidence.`
+                    : ins.sold > 0
+                      ? `Officers and directors sold ${usdSmall(ins.sold)} by choice (not under a pre-set plan or to cover taxes)${ins.bought > 0 ? ` and bought ${usdSmall(ins.bought)}` : ", and bought none"}.`
+                      : "Insider sales were all under pre-set 10b5-1 plans or to cover taxes on vesting stock, which says little about their view of the company."}</p>
+                <div className="metrics">
+                  <div className="metric"><span>Bought</span><b className="mono">{usdSmall(ins.bought)}</b></div>
+                  <div className="metric"><span>Sold by choice</span><b className={"mono " + (ins.sold > 1 && net < 0 ? "warn" : "")}>{usdSmall(ins.sold)}</b></div>
+                  <div className="metric"><span>Sold under 10b5-1 plans</span><b className="mono">{usdSmall(ins.planSold)}</b></div>
+                  <div className="metric"><span>Sold to cover taxes</span><b className="mono">{usdSmall(ins.taxSold)}</b></div>
+                </div>
+                {ins.trades.length > 0 && (
+                  <div className="tablewrap">
+                    <table className="grid plain">
+                      <thead><tr><th>Date</th><th>Who</th><th>What</th><th className="r">Shares</th><th className="r">Price</th><th className="r">Value</th></tr></thead>
+                      <tbody>
+                        {ins.trades.map((t, i) => (
+                          <tr key={i}>
+                            <td className="mono">{fmtDate(t.date)}</td>
+                            <td>{t.owner}<span className="sub">{t.title}</span></td>
+                            <td>{t.url ? <a href={t.url} target="_blank" rel="noreferrer">{TRADE_KIND[t.kind]}</a> : TRADE_KIND[t.kind]}</td>
+                            <td className="r mono">{num(t.shares, 0)}</td>
+                            <td className="r mono">{t.price ? `$${num(t.price, 2)}` : "—"}</td>
+                            <td className="r mono">{usdSmall(t.usd)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+                {(ins.holders?.bought > 0 || ins.holders?.sold > 0) && (
+                  <p className="colnote">Large holders (10% or more, usually investment funds) also traded: {usdSmall(ins.holders.bought)} bought and {usdSmall(ins.holders.sold)} sold{ins.holders.names?.length ? `, mainly ${ins.holders.names.join(", ")}` : ""}. These are kept out of the totals above because funds trade their own positions for many reasons.</p>
+                )}
+                <p className="colnote">A 10b5-1 plan is set up months ahead, so sales under it say little about the insider's current view. Sales to cover taxes happen automatically when stock awards vest.</p>
+              </>);
+            })()}
+          </section>
+        </div>
+      )}
 
       {tab === "financials" && (
         <div className="stack">
@@ -1194,6 +1278,9 @@ function Compare() {
     ["Monthly burn", (c) => (c.cashFlowPositive ? "Cash-generating" : `$${num(c.burn)}M`), 1],
     ["Runway", (c) => (c.cashFlowPositive ? "Not needed" : `${num(runway(c))} mo`), 1],
     ["Next catalyst", (c) => (nextCatalyst(c) ? `${days(nextCatalyst(c).date)}d` : "—"), 1],
+    ["Sold short", (c) => (c.short ? `${num(c.short.pct, 1)}%` : "—"), 1],
+    ["Insider buying, 12 mo", (c) => (c.insiders ? usdSmall(c.insiders.bought) : "—"), 1],
+    ["Insider selling by choice, 12 mo", (c) => (c.insiders ? usdSmall(c.insiders.sold) : "—"), 1],
     ["Pipeline rNPV", (c) => <>{money(pipelineValue(c))}{placeholderPeaks(c) && <span className="sub">illustrative</span>}</>, 1],
     ["EV / rNPV", (c) => <>{num((c.ev / pipelineValue(c)) * 100, 0)}%{placeholderPeaks(c) && <span className="sub">illustrative</span>}</>, 1],
     ["Institutional ownership", (c) => (c.own == null ? "—" : `${num(c.own, 0)}%`), 1],
@@ -4122,6 +4209,7 @@ export default function App() {
               Financials from <a href="https://www.sec.gov/edgar/search/" target="_blank" rel="noreferrer">SEC EDGAR</a> filings,
               trials from <a href="https://clinicaltrials.gov/" target="_blank" rel="noreferrer">ClinicalTrials.gov</a>,
               approvals from <a href="https://open.fda.gov/" target="_blank" rel="noreferrer">openFDA</a>,
+              insider trades from SEC Form 4, short interest from <a href="https://www.finra.org/finra-data/browse-catalog/equity-short-interest" target="_blank" rel="noreferrer">FINRA</a>,
               and prices from <a href="https://finance.yahoo.com/" target="_blank" rel="noreferrer">Yahoo Finance</a> at the previous close.
               {LIVE ? <> Trial readout dates are registry estimates unless marked otherwise, and peak sales marked as placeholders are defaults, not forecasts. Front-page headlines are written automatically from these figures.</> : <> This is the built-in sample dataset: companies, figures and dates are fictional.</>}
             </p>

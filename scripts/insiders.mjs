@@ -48,7 +48,7 @@ export function parseForm4(xml) {
   const yes = (tag) => /^(1|true)$/i.test(val(rel, tag) || "");
   const title = unescape(val(rel, "officerTitle") || "") || (yes("isDirector") ? "Director" : yes("isTenPercentOwner") ? "10% owner" : "Insider");
   // Officers and directors run the company; a 10% holder is usually an investment fund trading its own position.
-  const role = yes("isOfficer") || yes("isDirector") ? "insider" : yes("isTenPercentOwner") ? "holder" : "insider";
+  const role = isEntity(owner) ? "holder" : yes("isOfficer") || yes("isDirector") ? "insider" : yes("isTenPercentOwner") ? "holder" : "insider";
   const footnotes = Object.fromEntries([...xml.matchAll(/<footnote id="([^"]+)">([\s\S]*?)<\/footnote>/gi)].map((m) => [m[1], unescape(m[2]).replace(/\s+/g, " ")]));
   const planBox = /<aff10b5One>\s*(?:<value>)?\s*(1|true)/i.test(xml);
   const tx = [];
@@ -65,10 +65,14 @@ export function parseForm4(xml) {
   return { owner: tidyOwner(owner), title, role, tx };
 }
 
+// Funds and companies file under their own names, sometimes as "directors" because they hold a board seat.
+const ENTITY = /\b(LLC|L\.?L\.?C|L\.?P\.?|Ltd|Limited|Fund|Funds|Capital|Partners|Holdings|Management|Inc|Corp|Corporation|Trust|Advisors|Advisers|Ventures|Investments?|Group|AG|S\.?A|N\.?V|plc|GmbH|Foundation)\b\.?/i;
+export const isEntity = (name) => ENTITY.test(name || "");
+
 // "ZANTE GREG" → "Greg Zante"; fund names keep their capitals.
 function tidyOwner(n) {
   if (!n) return "";
-  if (/\b(LLC|L\.?P\.?|Ltd|Fund|Capital|Partners|Holdings|Management|Inc|Trust|Advisors|Ventures)\b/i.test(n)) return n;
+  if (isEntity(n)) return n;
   const parts = n.split(/\s+/).map((w) => (w === w.toUpperCase() || w === w.toLowerCase() ? w.charAt(0) + w.slice(1).toLowerCase() : w));
   return parts.length >= 2 ? [...parts.slice(1), parts[0]].join(" ") : parts.join(" ");
 }
@@ -78,7 +82,8 @@ export function summarizeInsiders(rows, today = new Date(), days = 365) {
   const since = new Date(today.getTime() - days * 864e5).toISOString().slice(0, 10);
   const recent90 = new Date(today.getTime() - 90 * 864e5).toISOString().slice(0, 10);
   const all = rows.filter((r) => r.date >= since).sort((a, b) => (a.date < b.date ? 1 : -1));
-  const inWin = all.filter((r) => r.role !== "holder"), funds = all.filter((r) => r.role === "holder");
+  const fund = (r) => r.role === "holder" || isEntity(r.owner);
+  const inWin = all.filter((r) => !fund(r)), funds = all.filter(fund);
   const usd = (r) => (r.price ? (r.shares * r.price) / 1e6 : 0);
   const sum = (kind, from = since) => inWin.filter((r) => r.kind === kind && r.date >= from).reduce((s, r) => s + usd(r), 0);
   const people = (kind) => new Set(inWin.filter((r) => r.kind === kind).map((r) => r.owner)).size;
