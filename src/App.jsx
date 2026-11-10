@@ -62,7 +62,18 @@ const TODAY = new Date();
 const days = (iso) => Math.round((new Date(iso + "T00:00:00") - TODAY) / 86400000);
 const fmtDate = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 // Small dollar amounts in millions: 0.45 → "$450K", 12.3 → "$12.3M".
-const usdSmall = (m) => (!(m > 0) ? "None" : m < 1 ? `$${Math.max(1, Math.round(m * 1000))}K` : m < 100 ? `$${m.toFixed(1)}M` : money(m));
+const usdSmall = (m) => (!(m > 0) ? "None" : m < 0.001 ? "under $1K" : m < 1 ? `$${Math.round(m * 1000)}K` : m < 100 ? `$${m.toFixed(1)}M` : money(m));
+// One row per person, day and kind of trade (a sale is often filed as several lots at different prices).
+function groupTrades(trades) {
+  const by = new Map();
+  for (const t of trades) {
+    const k = `${t.date}|${t.owner}|${t.kind}`;
+    const g = by.get(k) || { ...t, shares: 0, value: 0 };
+    g.shares += t.shares; g.value += (t.price || 0) * t.shares;
+    by.set(k, g);
+  }
+  return [...by.values()].map((g) => ({ ...g, price: g.shares ? g.value / g.shares : null, usd: g.value / 1e6 }));
+}
 const TRADE_KIND = { buy: "Bought", sold: "Sold", plan: "Sold under a 10b5-1 plan", tax: "Sold to cover taxes" };
 const money = (m) => (m >= 1e6 ? `$${(m / 1e6).toFixed(2)}T` : m >= 100000 ? `$${Math.round(m / 1000)}B` : m >= 1000 ? `$${(m / 1000).toFixed(2)}B` : `$${Math.round(m)}M`);
 const num = (n, d = 1) => (n == null || !isFinite(n) ? "—" : n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }));
@@ -986,10 +997,10 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
                 </div>
                 {ins.trades.length > 0 && (
                   <div className="tablewrap">
-                    <table className="grid plain">
+                    <table className="grid plain trades">
                       <thead><tr><th>Date</th><th>Who</th><th>What</th><th className="r">Shares</th><th className="r">Price</th><th className="r">Value</th></tr></thead>
                       <tbody>
-                        {ins.trades.map((t, i) => (
+                        {groupTrades(ins.trades).map((t, i) => (
                           <tr key={i}>
                             <td className="mono">{fmtDate(t.date)}</td>
                             <td>{t.owner}<span className="sub">{t.title}</span></td>
@@ -4590,6 +4601,8 @@ button.tick:hover{color:var(--teal) !important;}
 
 /* metrics + trace */
 .metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.grid.trades{min-width:600px;}
+.grid.trades td .sub{display:block;}
 .metrics.two-up{grid-template-columns:1fr 1fr;}
 .metric{background:var(--tint);border-radius:var(--r-md);padding:12px 14px;}
 .metric>span{display:block;font-size:12.5px;color:var(--mut);margin-bottom:3px;}
