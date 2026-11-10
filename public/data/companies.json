@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-10T00:37:32.574Z",
+  "generatedAt": "2026-11-10T00:46:19.497Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -220139,11 +220139,11 @@
    "n": "Sanofi",
    "area": "Immunology & vaccines",
    "mcap": 117357.7,
-   "ev": 128861.4,
-   "cash": 9481.7,
-   "debt": 20985.5,
+   "ev": 128860.4,
+   "cash": 9480.9,
+   "debt": 20983.6,
    "burn": 0.1,
-   "rev": 48952.7,
+   "rev": 48948.4,
    "shares": 1219.43,
    "own": null,
    "emp": null,
@@ -222203,29 +222203,29 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-16",
-     "cash": 10280,
-     "burn": -775.2,
+     "cash": 10279,
+     "burn": -775.1,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-16",
-     "cash": 11562,
+     "cash": 11561,
      "burn": -732.9,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-16",
-     "cash": 11661,
-     "burn": -690,
+     "cash": 11660,
+     "burn": -689.9,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-08",
-     "cash": 7994,
-     "burn": -518.7,
+     "cash": 7993,
+     "burn": -518.6,
      "runway": null
     },
     {
@@ -222238,99 +222238,99 @@
     {
      "end": "2019-12-31",
      "filed": "2020-03-05",
-     "cash": 11056,
+     "cash": 11055,
      "burn": -721.4,
      "runway": null
     },
     {
      "end": "2020-06-30",
      "filed": "2020-07-29",
-     "cash": 17919,
-     "burn": -791.3,
+     "cash": 17917,
+     "burn": -791.2,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-04",
-     "cash": 16624,
+     "cash": 16622,
      "burn": -693.6,
      "runway": null
     },
     {
      "end": "2021-06-30",
      "filed": "2021-07-29",
-     "cash": 10909,
+     "cash": 10908,
      "burn": -768.5,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-23",
-     "cash": 12514,
-     "burn": -983.9,
+     "cash": 12513,
+     "burn": -983.8,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-07-28",
      "cash": 7741,
-     "burn": -899.6,
+     "burn": -899.5,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-24",
-     "cash": 14871,
-     "burn": -984.3,
+     "cash": 14870,
+     "burn": -984.2,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-07-28",
-     "cash": 8969,
-     "burn": -959.8,
+     "cash": 8968,
+     "burn": -959.7,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-23",
-     "cash": 9951,
-     "burn": -959.2,
+     "cash": 9950,
+     "burn": -959.1,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-07-25",
-     "cash": 7625,
-     "burn": -759,
+     "cash": 7624,
+     "burn": -758.9,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-13",
-     "cash": 8766,
+     "cash": 8765,
      "burn": -849.1,
      "runway": null
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-31",
-     "cash": 17234,
-     "burn": -1048.6,
+     "cash": 17233,
+     "burn": -1048.5,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-17",
-     "cash": 9482,
-     "burn": -1005.2,
+     "cash": 9481,
+     "burn": -1005.1,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -849.15,
-   "debtDue24": 4872.2,
+   "burnPrior": -849.07,
+   "debtDue24": 4871.7,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -223435,7 +223435,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 12063,
+   "ocf": 12062,
    "group": "big-pharma",
    "src": {
     "cik": "1121404",
@@ -223445,8 +223445,8 @@
      "MarketableSecuritiesCurrent"
     ],
     "currency": "EUR",
-    "fx": 1.1221,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1221 USD per EUR",
+    "fx": 1.122,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1220 USD per EUR",
     "adr": 0.5,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -223473,11 +223473,11 @@
    "n": "GSK",
    "area": "Vaccines & respiratory",
    "mcap": 111209,
-   "ev": 126406.5,
-   "cash": 4564.2,
-   "debt": 19761.7,
+   "ev": 126403.1,
+   "cash": 4563.2,
+   "debt": 19757.3,
    "burn": 0.1,
-   "rev": 43891.4,
+   "rev": 43881.6,
    "shares": 4315.45,
    "own": null,
    "emp": null,
@@ -225488,84 +225488,84 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-20",
-     "cash": 7833,
+     "cash": 7831,
      "burn": -287.6,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-20",
-     "cash": 6580,
-     "burn": -727.4,
+     "cash": 6578,
+     "burn": -727.3,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-20",
-     "cash": 5150,
-     "burn": -774.6,
+     "cash": 5149,
+     "burn": -774.4,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-15",
-     "cash": 5318,
-     "burn": -942.9,
+     "cash": 5317,
+     "burn": -942.7,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-06",
-     "cash": 6430,
-     "burn": -898,
+     "cash": 6429,
+     "burn": -897.8,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-12",
-     "cash": 8559,
-     "burn": -945.1,
+     "cash": 8557,
+     "burn": -944.9,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-03-08",
-     "cash": 5825,
-     "burn": -890.4,
+     "cash": 5823,
+     "burn": -890.2,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-10",
-     "cash": 5092,
-     "burn": -828.9,
+     "cash": 5091,
+     "burn": -828.7,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-05",
-     "cash": 4001,
-     "burn": -757.8,
+     "cash": 4000,
+     "burn": -757.6,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-03",
-     "cash": 5200,
-     "burn": -733.8,
+     "cash": 5199,
+     "burn": -733.7,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-06",
-     "cash": 4564,
-     "burn": -866.7,
+     "cash": 4563,
+     "burn": -866.5,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -733.83,
+   "burnPrior": -733.67,
    "debtDue24": 0,
    "raise": {
     "capacity": "none",
@@ -226607,7 +226607,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 10401,
+   "ocf": 10398,
    "group": "big-pharma",
    "src": {
     "cik": "1131399",
@@ -226616,8 +226616,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3436,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3436 USD per GBP",
+    "fx": 1.3433,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3433 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -241316,11 +241316,11 @@
    "n": "Haleon",
    "area": "Over-the-counter consumer health",
    "mcap": 40151.3,
-   "ev": 49939.4,
-   "cash": 1778.9,
-   "debt": 11567.1,
+   "ev": 49937.2,
+   "cash": 1778.5,
+   "debt": 11564.5,
    "burn": 0.1,
-   "rev": 14819.9,
+   "rev": 14816.6,
    "shares": 8952.35,
    "own": null,
    "emp": null,
@@ -241378,7 +241378,7 @@
      "end": "2022-12-31",
      "filed": "2023-03-20",
      "cash": 919,
-     "burn": -231,
+     "burn": -230.9,
      "runway": null
     },
     {
@@ -241391,7 +241391,7 @@
     {
      "end": "2023-12-31",
      "filed": "2024-03-15",
-     "cash": 1403,
+     "cash": 1402,
      "burn": -235.1,
      "runway": null
     },
@@ -241405,7 +241405,7 @@
     {
      "end": "2024-12-31",
      "filed": "2025-03-20",
-     "cash": 3023,
+     "cash": 3022,
      "burn": -257.6,
      "runway": null
     },
@@ -241419,8 +241419,8 @@
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -257.64,
-   "debtDue24": 1123.2,
+   "burnPrior": -257.58,
+   "debtDue24": 1123,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -242477,7 +242477,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 3539,
+   "ocf": 3538,
    "group": "otc",
    "src": {
     "cik": "1900304",
@@ -242486,8 +242486,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3436,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3436 USD per GBP",
+    "fx": 1.3433,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3433 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2026-03-13",
@@ -259153,10 +259153,10 @@
    "area": "Rare endocrine diseases",
    "mcap": 16104.8,
    "ev": 16221.8,
-   "cash": 691.3,
-   "debt": 808.2,
+   "cash": 691.2,
+   "debt": 808.1,
    "burn": 0.1,
-   "rev": 808.1,
+   "rev": 808,
    "shares": 61.98,
    "own": null,
    "emp": null,
@@ -259851,7 +259851,7 @@
     {
      "end": "2021-09-30",
      "filed": "2021-11-10",
-     "cash": 778,
+     "cash": 777,
      "burn": 36,
      "runway": 21.6
     },
@@ -259866,7 +259866,7 @@
      "end": "2022-03-31",
      "filed": "2022-05-11",
      "cash": 848,
-     "burn": 43.7,
+     "burn": 43.6,
      "runway": 19.4
     },
     {
@@ -259887,14 +259887,14 @@
      "end": "2022-12-31",
      "filed": "2023-02-16",
      "cash": 499,
-     "burn": 46.4,
+     "burn": 46.3,
      "runway": 10.8
     },
     {
      "end": "2023-01-01",
      "filed": "2025-02-12",
      "cash": 499,
-     "burn": 46.4,
+     "burn": 46.3,
      "runway": 10.8
     },
     {
@@ -259929,7 +259929,7 @@
      "end": "2024-03-31",
      "filed": "2024-05-02",
      "cash": 359,
-     "burn": 39.5,
+     "burn": 39.4,
      "runway": 9.1
     },
     {
@@ -259943,7 +259943,7 @@
      "end": "2024-09-30",
      "filed": "2024-11-14",
      "cash": 702,
-     "burn": 24.5,
+     "burn": 24.4,
      "runway": 28.7
     },
     {
@@ -260013,7 +260013,7 @@
     ],
     [
      "2024-12-31",
-     195.2
+     195.1
     ],
     [
      "2025-03-31",
@@ -261148,8 +261148,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "EUR",
-    "fx": 1.1221,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1221 USD per EUR",
+    "fx": 1.122,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1220 USD per EUR",
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
     "filing": {
@@ -261351,7 +261351,7 @@
      "filed": "2020-07-31",
      "cash": 1345,
      "burn": 21.2,
-     "runway": 63.4
+     "runway": 63.5
     },
     {
      "end": "2020-12-31",
