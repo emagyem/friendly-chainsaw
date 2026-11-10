@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-09T20:21:21.203Z",
+ "generatedAt": "2026-11-10T00:24:48.979Z",
  "fpsVersion": "1.1",
  "question": "Did the Financing Pressure Score flag biotechs before they sold stock?",
  "universe": "Every company with industry code 2834, 2836 or 8731 that reported R&D spending to the SEC, burned cash, and had under $50M of trailing revenue, at each balance sheet filed 2012–2025. Includes companies that later stopped filing.",
@@ -1554,6 +1554,47 @@
    "nextRaise": "2026-09-23"
   }
  ],
+ "weightTest": {
+  "split": "2019-01-01",
+  "trainRows": 10082,
+  "testRows": 13847,
+  "published": {
+   "weights": {
+    "gap": 0.35,
+    "trend": 0.15,
+    "capacity": 0.2,
+    "debt": 0.1,
+    "access": 0.1
+   },
+   "train": {
+    "auc": 0.529,
+    "spread": 19
+   },
+   "test": {
+    "auc": 0.587,
+    "spread": 26.8
+   }
+  },
+  "tuned": {
+   "weights": {
+    "gap": 0,
+    "trend": 0,
+    "capacity": 0.7,
+    "debt": 0,
+    "access": 0.2
+   },
+   "train": {
+    "auc": 0.622,
+    "spread": -4.2
+   },
+   "test": {
+    "auc": 0.611,
+    "spread": 2.9
+   }
+  },
+  "adopt": false,
+  "rule": "The tuned weights replace the published ones only if, on the later years the search never saw, they separate raisers from non-raisers better (AUC up by at least 0.01) and the safest-vs-riskiest return gap doesn't shrink."
+ },
  "catalystTiming": {
   "filingsRead": 23925,
   "filingsWithGuidance": 11972,
