@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-10T01:01:42.849Z",
+  "generatedAt": "2026-11-10T01:09:31.273Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -2331,7 +2331,7 @@
     },
     {
      "date": "2024-03-01",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 550,
      "dil": 6.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1607678/000095017024023848/vktx-2024-03-01-424b5.htm",
@@ -3818,10 +3818,6 @@
      [
       "2026-11-06",
       26.84
-     ],
-     [
-      "2026-11-09",
-      28.99
      ]
     ]
    },
@@ -4632,7 +4628,7 @@
    "financings": [
     {
      "date": "2026-01-09",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 2.3,
      "url": "https://www.sec.gov/Archives/edgar/data/879407/000119312526007968/d13080d424b5.htm",
@@ -4650,7 +4646,7 @@
     },
     {
      "date": "2024-01-04",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 450,
      "dil": 14.7,
      "url": "https://www.sec.gov/Archives/edgar/data/879407/000119312524002527/d681719d424b5.htm",
@@ -6118,10 +6114,6 @@
      [
       "2026-11-06",
       58.16
-     ],
-     [
-      "2026-11-09",
-      49.24
      ]
     ]
    },
@@ -6666,7 +6658,7 @@
     },
     {
      "date": "2024-12-12",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 165,
      "dil": 14.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1281895/000114036124049074/ny20039717x3_424b5.htm",
@@ -7898,10 +7890,6 @@
      [
       "2026-11-06",
       2.38
-     ],
-     [
-      "2026-11-09",
-      2.53
      ]
     ]
    },
@@ -8264,7 +8252,7 @@
     },
     {
      "date": "2024-10-09",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 300,
      "dil": 13.3,
      "url": "https://www.sec.gov/Archives/edgar/data/1727196/000110465924107346/tm2425688-13_424b5.htm",
@@ -9596,10 +9584,6 @@
      [
       "2026-11-06",
       46.94
-     ],
-     [
-      "2026-11-09",
-      51.55
      ]
     ]
    },
@@ -10362,7 +10346,7 @@
    "financings": [
     {
      "date": "2026-06-09",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 300,
      "dil": 12.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312526264032/d160204d424b5.htm",
@@ -10394,7 +10378,7 @@
     },
     {
      "date": "2024-07-10",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 263,
      "dil": 10.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1676725/000119312524177309/d856352d424b5.htm",
@@ -11894,10 +11878,6 @@
      [
       "2026-11-06",
       31.24
-     ],
-     [
-      "2026-11-09",
-      32.03
      ]
     ]
    },
@@ -12172,7 +12152,7 @@
     },
     {
      "date": "2025-12-10",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 602,
      "dil": 9.8,
      "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312525314256/d848302d424b5.htm",
@@ -12190,7 +12170,7 @@
     },
     {
      "date": "2025-06-27",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 250.8,
      "dil": 8.8,
      "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312525151288/d909559d424b5.htm",
@@ -12208,7 +12188,7 @@
     },
     {
      "date": "2024-08-20",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 225,
      "dil": 9,
      "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312524203691/d875859d424b5.htm",
@@ -12226,7 +12206,7 @@
     },
     {
      "date": "2024-01-05",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 275,
      "dil": 19.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1815442/000119312524003347/d625325d424b5.htm",
@@ -13692,10 +13672,6 @@
      [
       "2026-11-06",
       131.73
-     ],
-     [
-      "2026-11-09",
-      138.86
      ]
     ]
    },
@@ -14049,7 +14025,7 @@
    "financings": [
     {
      "date": "2026-07-22",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 375.2,
      "dil": 9.8,
      "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312526312576/d98164d424b5.htm",
@@ -14069,7 +14045,7 @@
     },
     {
      "date": "2025-12-10",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 350,
      "dil": 10.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312525314307/d72555d424b5.htm",
@@ -14089,7 +14065,7 @@
     },
     {
      "date": "2025-07-01",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 12.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312525154084/d21859d424b5.htm",
@@ -14123,7 +14099,7 @@
     },
     {
      "date": "2024-05-22",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 325.5,
      "dil": 5.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1818794/000119312524144991/d839833d424b5.htm",
@@ -15565,10 +15541,6 @@
      [
       "2026-11-06",
       18.07
-     ],
-     [
-      "2026-11-09",
-      18.62
      ]
     ]
    },
@@ -15800,7 +15772,7 @@
    "financings": [
     {
      "date": "2025-12-10",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 260.9,
      "dil": 9.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312525314244/d79646d424b5.htm",
@@ -15832,7 +15804,7 @@
     },
     {
      "date": "2024-10-30",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 300,
      "dil": 13,
      "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312524247568/d846833d424b5.htm",
@@ -15850,7 +15822,7 @@
     },
     {
      "date": "2024-01-30",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 250,
      "dil": 18.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1831828/000119312524019492/d729909d424b5.htm",
@@ -17284,10 +17256,6 @@
      [
       "2026-11-06",
       29.78
-     ],
-     [
-      "2026-11-09",
-      30.61
      ]
     ]
    },
@@ -17821,7 +17789,7 @@
    "financings": [
     {
      "date": "2024-08-08",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 30,
      "dil": 14.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1356090/000110465924087288/tm2418262-3_424b5.htm",
@@ -19286,10 +19254,6 @@
      [
       "2026-11-06",
       4.47
-     ],
-     [
-      "2026-11-09",
-      4.73
      ]
     ]
    },
@@ -19879,7 +19843,7 @@
    "financings": [
     {
      "date": "2026-02-26",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 150,
      "dil": 12.7,
      "url": "https://www.sec.gov/Archives/edgar/data/1706431/000119312526077336/d25135d424b5.htm",
@@ -21318,10 +21282,6 @@
      [
       "2026-11-06",
       12.21
-     ],
-     [
-      "2026-11-09",
-      13.65
      ]
     ]
    },
@@ -21993,7 +21953,7 @@
    "financings": [
     {
      "date": "2026-09-15",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 400,
      "dil": 30.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1863127/000119312526390947/d84692d424b5.htm",
@@ -23304,10 +23264,6 @@
      [
       "2026-11-06",
       21.15
-     ],
-     [
-      "2026-11-09",
-      22.3
      ]
     ]
    },
@@ -24944,10 +24900,6 @@
      [
       "2026-11-06",
       10.45
-     ],
-     [
-      "2026-11-09",
-      11.05
      ]
     ]
    },
@@ -26688,10 +26640,6 @@
      [
       "2026-11-06",
       20.64
-     ],
-     [
-      "2026-11-09",
-      21.89
      ]
     ]
    },
@@ -27297,7 +27245,7 @@
    "financings": [
     {
      "date": "2026-06-24",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 225,
      "dil": 7.8,
      "url": "https://www.sec.gov/Archives/edgar/data/1590560/000110465926077336/tm2618428-2_424b5.htm",
@@ -27315,7 +27263,7 @@
     },
     {
      "date": "2025-09-29",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 300,
      "dil": 11.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1590560/000110465925093983/tm2526258-2_424b5.htm",
@@ -27347,7 +27295,7 @@
     },
     {
      "date": "2025-01-08",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 75,
      "dil": 9.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1590560/000110465925002037/tm251946-4_424b5.htm",
@@ -28791,10 +28739,6 @@
      [
       "2026-11-06",
       21.7
-     ],
-     [
-      "2026-11-09",
-      22.79
      ]
     ]
    },
@@ -29370,7 +29314,7 @@
     },
     {
      "date": "2025-02-18",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 122.3,
      "url": "https://www.sec.gov/Archives/edgar/data/1707502/000119312525028685/d833320d424b5.htm",
@@ -30849,10 +30793,6 @@
      [
       "2026-11-06",
       6.59
-     ],
-     [
-      "2026-11-09",
-      7.02
      ]
     ]
    },
@@ -31113,7 +31053,7 @@
    "financings": [
     {
      "date": "2026-05-05",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 260.3,
      "dil": 68.2,
      "url": "https://www.sec.gov/Archives/edgar/data/1501796/000119312526204513/d145684d424b5.htm",
@@ -31131,7 +31071,7 @@
     },
     {
      "date": "2025-05-16",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 75,
      "dil": 30.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1501796/000119312525121280/d936971d424b5.htm",
@@ -32319,10 +32259,6 @@
      [
       "2026-11-06",
       6.56
-     ],
-     [
-      "2026-11-09",
-      7.66
      ]
     ]
    },
@@ -32587,7 +32523,7 @@
    "financings": [
     {
      "date": "2026-01-22",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 115,
      "dil": 16.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1709941/000119312526019530/d88736d424b5.htm",
@@ -33791,10 +33727,6 @@
      [
       "2026-11-06",
       5.34
-     ],
-     [
-      "2026-11-09",
-      5.69
      ]
     ]
    },
@@ -35267,10 +35199,6 @@
      [
       "2026-11-06",
       7.53
-     ],
-     [
-      "2026-11-09",
-      7.02
      ]
     ]
    },
@@ -35527,7 +35455,7 @@
    "financings": [
     {
      "date": "2026-08-14",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 80.5,
      "dil": 32.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1725160/000162828026057108/zentalis-finalprosupp.htm",
@@ -37005,10 +36933,6 @@
      [
       "2026-11-06",
       1.72
-     ],
-     [
-      "2026-11-09",
-      1.74
      ]
     ]
    },
@@ -37785,7 +37709,7 @@
    "financings": [
     {
      "date": "2025-12-10",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 7.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1714899/000162828025056361/denaliprosupp424b5final.htm",
@@ -39250,10 +39174,6 @@
      [
       "2026-11-06",
       20.07
-     ],
-     [
-      "2026-11-09",
-      20.33
      ]
     ]
    },
@@ -40052,7 +39972,7 @@
     },
     {
      "date": "2025-11-13",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 175,
      "dil": 22.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1935979/000162828025051841/biohaven-final424b5.htm",
@@ -40070,7 +39990,7 @@
     },
     {
      "date": "2024-10-01",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 250,
      "dil": 5.7,
      "url": "https://www.sec.gov/Archives/edgar/data/1935979/000162828024041729/biohaven-finalprospectussu.htm",
@@ -40102,7 +40022,7 @@
     },
     {
      "date": "2024-04-19",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 230,
      "dil": 6.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1935979/000162828024016854/a2024prospectussupplementf.htm",
@@ -41416,10 +41336,6 @@
      [
       "2026-11-06",
       14.48
-     ],
-     [
-      "2026-11-09",
-      15.23
      ]
     ]
    },
@@ -41808,7 +41724,7 @@
     },
     {
      "date": "2025-07-25",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 22,
      "dil": 8.7,
      "url": "https://www.sec.gov/Archives/edgar/data/1285819/000110465925070553/tm2516030-3_424b3.htm",
@@ -43270,10 +43186,6 @@
      [
       "2026-11-06",
       16.92
-     ],
-     [
-      "2026-11-09",
-      17.55
      ]
     ]
    },
@@ -43843,7 +43755,7 @@
    "financings": [
     {
      "date": "2026-07-14",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100,
      "dil": 10.8,
      "url": "https://www.sec.gov/Archives/edgar/data/1999480/000110465926083268/tm2620333-1_424b5.htm",
@@ -45245,10 +45157,6 @@
      [
       "2026-11-06",
       25.16
-     ],
-     [
-      "2026-11-09",
-      27.8
      ]
     ]
    },
@@ -46919,10 +46827,6 @@
      [
       "2026-11-06",
       10.21
-     ],
-     [
-      "2026-11-09",
-      10.8
      ]
     ]
    },
@@ -48581,10 +48485,6 @@
      [
       "2026-11-06",
       9.36
-     ],
-     [
-      "2026-11-09",
-      9.65
      ]
     ]
    },
@@ -50138,10 +50038,6 @@
      [
       "2026-11-06",
       4.31
-     ],
-     [
-      "2026-11-09",
-      4.41
      ]
     ]
    },
@@ -50589,7 +50485,7 @@
    "financings": [
     {
      "date": "2025-10-17",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 125,
      "dil": 20.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1907108/000119312525242649/d18447d424b5.htm",
@@ -51861,10 +51757,6 @@
      [
       "2026-11-06",
       2.89
-     ],
-     [
-      "2026-11-09",
-      3.14
      ]
     ]
    },
@@ -52246,7 +52138,7 @@
     },
     {
      "date": "2025-12-05",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 75,
      "dil": 33.8,
      "url": "https://www.sec.gov/Archives/edgar/data/1359931/000121390025118744/ea0268632-424b5_protara.htm",
@@ -52264,7 +52156,7 @@
     },
     {
      "date": "2024-12-11",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100.1,
      "dil": 77.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1359931/000121390024107640/ea0224193-424b5_protara.htm",
@@ -53637,10 +53529,6 @@
      [
       "2026-11-06",
       2.3
-     ],
-     [
-      "2026-11-09",
-      2.51
      ]
     ]
    },
@@ -55368,10 +55256,6 @@
      [
       "2026-11-06",
       9.77
-     ],
-     [
-      "2026-11-09",
-      10.65
      ]
     ]
    },
@@ -55779,7 +55663,7 @@
     },
     {
      "date": "2025-01-29",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 25,
      "dil": 30.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1390478/000110465925007097/tm254790d2_424b5.htm",
@@ -55797,7 +55681,7 @@
     },
     {
      "date": "2024-08-01",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 21,
      "dil": 28.2,
      "url": "https://www.sec.gov/Archives/edgar/data/1390478/000110465924084492/tm2420558d1_424b5.htm",
@@ -55815,7 +55699,7 @@
     },
     {
      "date": "2024-03-18",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 20,
      "dil": 29.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1390478/000110465924035594/tm249084d1_424b5.htm",
@@ -55833,7 +55717,7 @@
     },
     {
      "date": "2024-01-05",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 9,
      "dil": 42.3,
      "url": "https://www.sec.gov/Archives/edgar/data/1390478/000110465924001817/tm242191d1_424b5.htm",
@@ -57331,10 +57215,6 @@
      [
       "2026-11-06",
       8.42
-     ],
-     [
-      "2026-11-09",
-      8.58
      ]
     ]
    },
@@ -57596,7 +57476,7 @@
    "financings": [
     {
      "date": "2026-06-24",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 13.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1821586/000121390026071586/ea0295767-424b5_moonlake.htm",
@@ -57614,7 +57494,7 @@
     },
     {
      "date": "2025-11-05",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 75,
      "dil": 11.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1821586/000121390025106722/ea0263850-424b5_moonlake.htm",
@@ -58986,10 +58866,6 @@
      [
       "2026-11-06",
       11.53
-     ],
-     [
-      "2026-11-09",
-      12.62
      ]
     ]
    },
@@ -59470,7 +59346,7 @@
    "financings": [
     {
      "date": "2025-04-02",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 10.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1710072/000110465925031266/tm2510462d2_424b5.htm",
@@ -59488,7 +59364,7 @@
     },
     {
      "date": "2024-01-19",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 240,
      "dil": 34.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1710072/000110465924005260/tm243583-5_424b5.htm",
@@ -60932,10 +60808,6 @@
      [
       "2026-11-06",
       45.04
-     ],
-     [
-      "2026-11-09",
-      48.74
      ]
     ]
    },
@@ -61185,7 +61057,7 @@
    "financings": [
     {
      "date": "2026-03-12",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 650,
      "dil": 14.3,
      "url": "https://www.sec.gov/Archives/edgar/data/1582313/000119312526102517/d83218d424b5.htm",
@@ -61217,7 +61089,7 @@
     },
     {
      "date": "2023-11-30",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 300,
      "dil": 14.2,
      "url": "https://www.sec.gov/Archives/edgar/data/1582313/000095017023067043/2023-11-29-final_prosupp.htm",
@@ -62537,10 +62409,6 @@
      [
       "2026-11-06",
       39.17
-     ],
-     [
-      "2026-11-09",
-      40.45
      ]
     ]
    },
@@ -64125,10 +63993,6 @@
      [
       "2026-11-06",
       1.78
-     ],
-     [
-      "2026-11-09",
-      1.82
      ]
     ]
    },
@@ -64374,7 +64238,7 @@
    "financings": [
     {
      "date": "2026-02-26",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100,
      "dil": 19.3,
      "url": "https://www.sec.gov/Archives/edgar/data/1374690/000119312526076775/d28728d424b5.htm",
@@ -64394,7 +64258,7 @@
     },
     {
      "date": "2025-07-31",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 60,
      "dil": 18,
      "url": "https://www.sec.gov/Archives/edgar/data/1374690/000119312525169661/d942574d424b5.htm",
@@ -64414,7 +64278,7 @@
     },
     {
      "date": "2024-02-14",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 150,
      "dil": 16.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1374690/000119312524036565/d779512d424b5.htm",
@@ -65729,10 +65593,6 @@
      [
       "2026-11-06",
       2.39
-     ],
-     [
-      "2026-11-09",
-      2.53
      ]
     ]
    },
@@ -65976,7 +65836,7 @@
    "financings": [
     {
      "date": "2025-11-13",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 50,
      "dil": 50.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1404281/000119312525278390/d83352d424b5.htm",
@@ -65994,7 +65854,7 @@
     },
     {
      "date": "2024-10-30",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 85,
      "dil": 60.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1404281/000119312524246779/d905709d424b5.htm",
@@ -67273,10 +67133,6 @@
      [
       "2026-11-06",
       2.61
-     ],
-     [
-      "2026-11-09",
-      2.87
      ]
     ]
    },
@@ -67847,7 +67703,7 @@
    "financings": [
     {
      "date": "2026-01-21",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 22.5,
      "dil": 4.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1372299/000110465926005452/tm263710d1_424b5.htm",
@@ -67867,7 +67723,7 @@
     },
     {
      "date": "2025-08-11",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 20,
      "dil": 5.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1372299/000110465925075953/tm2523075d1_424b5.htm",
@@ -67887,7 +67743,7 @@
     },
     {
      "date": "2024-08-01",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 35,
      "dil": 9,
      "url": "https://www.sec.gov/Archives/edgar/data/1372299/000110465924084690/tm2420013d2_424a.htm",
@@ -69354,10 +69210,6 @@
      [
       "2026-11-06",
       0.93
-     ],
-     [
-      "2026-11-09",
-      0.97
      ]
     ]
    },
@@ -69714,7 +69566,7 @@
    "financings": [
     {
      "date": "2026-02-20",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100,
      "dil": 33.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1841387/000119312526061389/d116198d424b5.htm",
@@ -69732,7 +69584,7 @@
     },
     {
      "date": "2025-06-24",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 15,
      "dil": 6.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1841387/000119312525145401/d917630d424b5.htm",
@@ -69750,7 +69602,7 @@
     },
     {
      "date": "2024-12-13",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 80,
      "dil": 41.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1841387/000119312524278628/d883046d424b5.htm",
@@ -71258,10 +71110,6 @@
      [
       "2026-11-06",
       8.75
-     ],
-     [
-      "2026-11-09",
-      9.49
      ]
     ]
    },
@@ -71627,7 +71475,7 @@
     },
     {
      "date": "2025-12-10",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 650,
      "dil": 21.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1888886/000110465925120013/tm2532078-4_424b5.htm",
@@ -73036,10 +72884,6 @@
      [
       "2026-11-06",
       20.35
-     ],
-     [
-      "2026-11-09",
-      21.41
      ]
     ]
    },
@@ -73292,7 +73136,7 @@
     },
     {
      "date": "2025-11-12",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100,
      "dil": 159.2,
      "url": "https://www.sec.gov/Archives/edgar/data/1817229/000119312525275659/d89411d424b5.htm",
@@ -74494,10 +74338,6 @@
      [
       "2026-11-06",
       19.88
-     ],
-     [
-      "2026-11-09",
-      19.98
      ]
     ]
    },
@@ -74752,7 +74592,7 @@
    "financings": [
     {
      "date": "2025-09-25",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100,
      "dil": 95.3,
      "url": "https://www.sec.gov/Archives/edgar/data/1835597/000119312525217663/d25212d424b5.htm",
@@ -74770,7 +74610,7 @@
     },
     {
      "date": "2024-02-07",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 80.1,
      "dil": 31.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1835597/000119312524026769/d739482d424b5.htm",
@@ -76072,10 +75912,6 @@
      [
       "2026-11-06",
       2.47
-     ],
-     [
-      "2026-11-09",
-      2.39
      ]
     ]
    },
@@ -76358,7 +76194,7 @@
     },
     {
      "date": "2025-12-18",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100,
      "dil": 30.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1994702/000121390025123032/ea0270045-424b5_kyverna.htm",
@@ -77795,10 +77631,6 @@
      [
       "2026-11-06",
       4.88
-     ],
-     [
-      "2026-11-09",
-      5.17
      ]
     ]
    },
@@ -78172,7 +78004,7 @@
     },
     {
      "date": "2024-03-26",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 240.1,
      "dil": 48.8,
      "url": "https://www.sec.gov/Archives/edgar/data/1787400/000114036124015094/ny20024912x1_424b5.htm",
@@ -79595,10 +79427,6 @@
      [
       "2026-11-06",
       1.73
-     ],
-     [
-      "2026-11-09",
-      1.59
      ]
     ]
    },
@@ -80083,7 +79911,7 @@
     },
     {
      "date": "2026-10-21",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 450,
      "dil": 15.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1816736/000119312526427982/d190758d424b5.htm",
@@ -80101,7 +79929,7 @@
     },
     {
      "date": "2025-10-21",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 250,
      "dil": 7.7,
      "url": "https://www.sec.gov/Archives/edgar/data/1816736/000119312525245368/d271637d424b5.htm",
@@ -80119,7 +79947,7 @@
     },
     {
      "date": "2025-01-23",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 225.5,
      "dil": 13.8,
      "url": "https://www.sec.gov/Archives/edgar/data/1816736/000119312525011517/d858281d424b5.htm",
@@ -81490,10 +81318,6 @@
      [
       "2026-11-06",
       78.91
-     ],
-     [
-      "2026-11-09",
-      81.26
      ]
     ]
    },
@@ -81745,7 +81569,7 @@
    "financings": [
     {
      "date": "2026-02-25",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 125,
      "dil": 30.8,
      "url": "https://www.sec.gov/Archives/edgar/data/1855644/000110465926019767/tm267012d2_424b5.htm",
@@ -83188,10 +83012,6 @@
      [
       "2026-11-06",
       4.09
-     ],
-     [
-      "2026-11-09",
-      1.24
      ]
     ]
    },
@@ -83958,7 +83778,7 @@
    "financings": [
     {
      "date": "2026-10-15",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 9.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1601830/000160183026000134/rxrx-finalprosuppxoct2026o.htm",
@@ -84006,7 +83826,7 @@
     },
     {
      "date": "2024-06-27",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 4.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1601830/000160183024000093/rxrxfinalprospectussupplem.htm",
@@ -85469,10 +85289,6 @@
      [
       "2026-11-06",
       3.52
-     ],
-     [
-      "2026-11-09",
-      3.81
      ]
     ]
    },
@@ -87045,10 +86861,6 @@
      [
       "2026-11-06",
       42.01
-     ],
-     [
-      "2026-11-09",
-      45.12
      ]
     ]
    },
@@ -87926,7 +87738,7 @@
    "financings": [
     {
      "date": "2026-10-14",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 250,
      "dil": 34.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1526119/000110465926115879/tm2627537-5_424b5.htm",
@@ -87944,7 +87756,7 @@
     },
     {
      "date": "2025-11-17",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 90,
      "dil": 18.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1526119/000110465925112799/tm2529742-3_424b5.htm",
@@ -87962,7 +87774,7 @@
     },
     {
      "date": "2024-07-24",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 55,
      "dil": 72.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1526119/000110465924082374/tm2413643-4_424b5.htm",
@@ -89213,10 +89025,6 @@
      [
       "2026-11-06",
       8.41
-     ],
-     [
-      "2026-11-09",
-      8.7
      ]
     ]
    },
@@ -91020,10 +90828,6 @@
      [
       "2026-11-06",
       8.82
-     ],
-     [
-      "2026-11-09",
-      9.23
      ]
     ]
    },
@@ -91288,7 +91092,7 @@
    "financings": [
     {
      "date": "2025-10-30",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 130,
      "dil": 17.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1160308/000119312525258725/d28079d424b5.htm",
@@ -91306,7 +91110,7 @@
     },
     {
      "date": "2024-06-28",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100,
      "dil": 19,
      "url": "https://www.sec.gov/Archives/edgar/data/1160308/000119312524171555/d835747d424b5.htm",
@@ -92519,10 +92323,6 @@
      [
       "2026-11-06",
       4.83
-     ],
-     [
-      "2026-11-09",
-      5.05
      ]
     ]
    },
@@ -92892,7 +92692,7 @@
     },
     {
      "date": "2026-01-23",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": null,
      "dil": 10.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1626971/000110465926005967/tm263501-5_424b5.htm",
@@ -92910,7 +92710,7 @@
     },
     {
      "date": "2024-05-03",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": null,
      "dil": 44.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1626971/000119312524130685/d835411d424b5.htm",
@@ -94340,10 +94140,6 @@
      [
       "2026-11-06",
       10.54
-     ],
-     [
-      "2026-11-09",
-      11.35
      ]
     ]
    },
@@ -94760,7 +94556,7 @@
    "financings": [
     {
      "date": "2026-02-26",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 14.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1583648/000110465926020659/tm2534019-7_424b5.htm",
@@ -95992,10 +95788,6 @@
      [
       "2026-11-06",
       175.92
-     ],
-     [
-      "2026-11-09",
-      174.08
      ]
     ]
    },
@@ -96258,7 +96050,7 @@
    "financings": [
     {
      "date": "2026-04-17",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 150.8,
      "dil": 9,
      "url": "https://www.sec.gov/Archives/edgar/data/1563880/000119312526161582/d106297d424b5.htm",
@@ -96276,7 +96068,7 @@
     },
     {
      "date": "2025-06-04",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100.1,
      "dil": 17.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1563880/000119312525134905/d934008d424b5.htm",
@@ -96294,7 +96086,7 @@
     },
     {
      "date": "2024-12-16",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 50,
      "dil": 16.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1563880/000119312524279709/d853760d424b5.htm",
@@ -97727,10 +97519,6 @@
      [
       "2026-11-06",
       14.33
-     ],
-     [
-      "2026-11-09",
-      15.31
      ]
     ]
    },
@@ -99500,10 +99288,6 @@
      [
       "2026-11-06",
       10.29
-     ],
-     [
-      "2026-11-09",
-      11.01
      ]
     ]
    },
@@ -100064,7 +99848,7 @@
    "financings": [
     {
      "date": "2025-11-06",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 23,
      "dil": 16.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1228627/000114036125040671/ny20058362x1_424b5.htm",
@@ -100107,7 +99891,7 @@
     },
     {
      "date": "2025-03-24",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 20,
      "dil": 25.3,
      "url": "https://www.sec.gov/Archives/edgar/data/1228627/000114036125009961/ny20045877x3_424b5.htm",
@@ -101360,10 +101144,6 @@
      [
       "2026-11-06",
       4.18
-     ],
-     [
-      "2026-11-09",
-      4.2
      ]
     ]
    },
@@ -102870,10 +102650,6 @@
      [
       "2026-11-06",
       14.75
-     ],
-     [
-      "2026-11-09",
-      14.96
      ]
     ]
    },
@@ -103419,7 +103195,7 @@
    "financings": [
     {
      "date": "2025-08-13",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 120,
      "dil": 28.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1738021/000119312525179955/d935026d424b5.htm",
@@ -104892,10 +104668,6 @@
      [
       "2026-11-06",
       0.76
-     ],
-     [
-      "2026-11-09",
-      0.84
      ]
     ]
    },
@@ -105397,7 +105169,7 @@
    "financings": [
     {
      "date": "2025-12-11",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 350,
      "dil": 11.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1631574/000119312525314747/d16654d424b5.htm",
@@ -105415,7 +105187,7 @@
     },
     {
      "date": "2024-09-27",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 20.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1631574/000119312524227080/d872484d424b5.htm",
@@ -105433,7 +105205,7 @@
     },
     {
      "date": "2023-12-08",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100,
      "dil": 20.2,
      "url": "https://www.sec.gov/Archives/edgar/data/1631574/000119312523291137/d638595d424b5.htm",
@@ -106904,10 +106676,6 @@
      [
       "2026-11-06",
       3.37
-     ],
-     [
-      "2026-11-09",
-      3.48
      ]
     ]
    },
@@ -107170,7 +106938,7 @@
    "financings": [
     {
      "date": "2025-10-24",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 135,
      "dil": 584.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1501697/000150169725000031/xforregistrationstatement4.htm",
@@ -108451,10 +108219,6 @@
      [
       "2026-11-06",
       3.18
-     ],
-     [
-      "2026-11-09",
-      3.33
      ]
     ]
    },
@@ -110158,10 +109922,6 @@
      [
       "2026-11-06",
       3.23
-     ],
-     [
-      "2026-11-09",
-      3.58
      ]
     ]
    },
@@ -110394,7 +110154,7 @@
     },
     {
      "date": "2026-02-13",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 50.1,
      "dil": 23.7,
      "url": "https://www.sec.gov/Archives/edgar/data/1512762/000110465926015358/tm265579-2_424b5.htm",
@@ -111724,10 +111484,6 @@
      [
       "2026-11-06",
       0.77
-     ],
-     [
-      "2026-11-09",
-      0.82
      ]
     ]
    },
@@ -111972,7 +111728,7 @@
    "financings": [
     {
      "date": "2026-04-24",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 225,
      "dil": 38.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1326190/000110465926047979/alt-20260423x424b5.htm",
@@ -111992,7 +111748,7 @@
     },
     {
      "date": "2026-01-28",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 75,
      "dil": 8.8,
      "url": "https://www.sec.gov/Archives/edgar/data/1326190/000132619026000004/alt-20260128x424b5.htm",
@@ -113468,10 +113224,6 @@
      [
       "2026-11-06",
       2.08
-     ],
-     [
-      "2026-11-09",
-      2.12
      ]
     ]
    },
@@ -113844,7 +113596,7 @@
    "financings": [
     {
      "date": "2026-01-09",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 300,
      "dil": 20.2,
      "url": "https://www.sec.gov/Archives/edgar/data/1826457/000119312526009001/d55012d424b5.htm",
@@ -113862,7 +113614,7 @@
     },
     {
      "date": "2024-05-16",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100,
      "dil": 42.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1826457/000119312524140518/d779806d424b5.htm",
@@ -115351,10 +115103,6 @@
      [
       "2026-11-06",
       10.57
-     ],
-     [
-      "2026-11-09",
-      10.58
      ]
     ]
    },
@@ -116987,10 +116735,6 @@
      [
       "2026-11-06",
       6.65
-     ],
-     [
-      "2026-11-09",
-      7.65
      ]
     ]
    },
@@ -117357,7 +117101,7 @@
     },
     {
      "date": "2025-11-05",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100,
      "dil": 42.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1553643/000121390025106396/ea0263307-424b5_relmada.htm",
@@ -118853,10 +118597,6 @@
      [
       "2026-11-06",
       3.9
-     ],
-     [
-      "2026-11-09",
-      4.14
      ]
     ]
    },
@@ -119125,7 +118865,7 @@
    "financings": [
     {
      "date": "2026-03-19",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 85,
      "dil": 46.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1833214/000119312526114728/prosupp_sabs_fy26.htm",
@@ -120620,10 +120360,6 @@
      [
       "2026-11-06",
       3.03
-     ],
-     [
-      "2026-11-09",
-      3.1
      ]
     ]
    },
@@ -120995,7 +120731,7 @@
    "financings": [
     {
      "date": "2026-10-01",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 110,
      "dil": 45.7,
      "url": "https://www.sec.gov/Archives/edgar/data/1782223/000143774926031667/pyxs20260930_424b5.htm",
@@ -122200,10 +121936,6 @@
      [
       "2026-11-06",
       1.66
-     ],
-     [
-      "2026-11-09",
-      1.7
      ]
     ]
    },
@@ -122578,7 +122310,7 @@
    "financings": [
     {
      "date": "2026-04-22",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 150.2,
      "dil": 13,
      "url": "https://www.sec.gov/Archives/edgar/data/1842295/000119312526170687/d15217d424b5.htm",
@@ -123846,10 +123578,6 @@
      [
       "2026-11-06",
       34.19
-     ],
-     [
-      "2026-11-09",
-      34.91
      ]
     ]
    },
@@ -124124,7 +123852,7 @@
     },
     {
      "date": "2026-04-15",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 175,
      "dil": 38.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1737287/000119312526157128/d112190d424b5.htm",
@@ -124142,7 +123870,7 @@
     },
     {
      "date": "2024-05-14",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 110,
      "dil": 22.3,
      "url": "https://www.sec.gov/Archives/edgar/data/1737287/000119312524138311/d840153d424b5.htm",
@@ -125625,10 +125353,6 @@
      [
       "2026-11-06",
       1.04
-     ],
-     [
-      "2026-11-09",
-      1.06
      ]
     ]
    },
@@ -125884,7 +125608,7 @@
    "financings": [
     {
      "date": "2026-11-06",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 75,
      "dil": 64.8,
      "url": "https://www.sec.gov/Archives/edgar/data/1055726/000119312526451932/d141720d424b5.htm",
@@ -125902,7 +125626,7 @@
     },
     {
      "date": "2026-07-30",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 60,
      "dil": 90.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1055726/000119312526326370/d155272d424b5.htm",
@@ -125920,7 +125644,7 @@
     },
     {
      "date": "2026-04-02",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 35,
      "dil": 36.2,
      "url": "https://www.sec.gov/Archives/edgar/data/1055726/000119312526140421/d114107d424b5.htm",
@@ -125949,7 +125673,7 @@
     },
     {
      "date": "2025-11-12",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 25,
      "dil": 24.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1055726/000119312525275689/d10087d424b5.htm",
@@ -125967,7 +125691,7 @@
     },
     {
      "date": "2025-07-03",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 50,
      "dil": 77.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1055726/000119312525155531/d93396d424b5.htm",
@@ -127435,10 +127159,6 @@
      [
       "2026-11-06",
       1.22
-     ],
-     [
-      "2026-11-09",
-      1.51
      ]
     ]
    },
@@ -129116,10 +128836,6 @@
      [
       "2026-11-06",
       51.35
-     ],
-     [
-      "2026-11-09",
-      54.06
      ]
     ]
    },
@@ -129480,7 +129196,7 @@
    "financings": [
     {
      "date": "2026-05-08",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 300,
      "dil": 105.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1817241/000119312526214706/d119010d424b5.htm",
@@ -130666,10 +130382,6 @@
      [
       "2026-11-06",
       4.15
-     ],
-     [
-      "2026-11-09",
-      4.22
      ]
     ]
    },
@@ -130938,7 +130650,7 @@
     },
     {
      "date": "2025-09-10",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 250,
      "dil": 26.3,
      "url": "https://www.sec.gov/Archives/edgar/data/2012593/000119312525200200/d847769d424b5.htm",
@@ -132130,10 +131842,6 @@
      [
       "2026-11-06",
       24.44
-     ],
-     [
-      "2026-11-09",
-      26.07
      ]
     ]
    },
@@ -132501,7 +132209,7 @@
    "financings": [
     {
      "date": "2026-02-26",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 150,
      "dil": 17.2,
      "url": "https://www.sec.gov/Archives/edgar/data/2023658/000119312526072875/d106443d424b5.htm",
@@ -133886,10 +133594,6 @@
      [
       "2026-11-06",
       8.65
-     ],
-     [
-      "2026-11-09",
-      9.98
      ]
     ]
    },
@@ -134347,7 +134051,7 @@
    "financings": [
     {
      "date": "2026-07-14",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 550,
      "dil": 10.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1761918/000119312526303352/d116467d424b5.htm",
@@ -134365,7 +134069,7 @@
     },
     {
      "date": "2026-01-22",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 225,
      "dil": 7.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1761918/000119312526019641/d63320d424b5.htm",
@@ -134383,7 +134087,7 @@
     },
     {
      "date": "2024-05-17",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 160,
      "dil": 57.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1761918/000119312524141858/d815398d424b5.htm",
@@ -135571,10 +135275,6 @@
      [
       "2026-11-06",
       14.41
-     ],
-     [
-      "2026-11-09",
-      15.61
      ]
     ]
    },
@@ -136068,7 +135768,7 @@
     },
     {
      "date": "2026-05-21",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": null,
      "dil": 12.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1812364/000119312526234428/d139941d424b5.htm",
@@ -136100,7 +135800,7 @@
     },
     {
      "date": "2024-09-11",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": null,
      "dil": 21.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1812364/000119312524217294/d856973d424b5.htm",
@@ -137442,10 +137142,6 @@
      [
       "2026-11-06",
       18.6
-     ],
-     [
-      "2026-11-09",
-      20.39
      ]
     ]
    },
@@ -139309,10 +139005,6 @@
      [
       "2026-11-06",
       14.86
-     ],
-     [
-      "2026-11-09",
-      15.42
      ]
     ]
    },
@@ -139708,7 +139400,7 @@
    "financings": [
     {
      "date": "2024-03-20",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 150,
      "dil": 9.2,
      "url": "https://www.sec.gov/Archives/edgar/data/886744/000119312524071810/d781386d424b5.htm",
@@ -141211,10 +140903,6 @@
      [
       "2026-11-06",
       0.99
-     ],
-     [
-      "2026-11-09",
-      1
      ]
     ]
    },
@@ -141669,7 +141357,7 @@
     },
     {
      "date": "2025-05-19",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": null,
      "dil": 1.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1674416/000095017025074553/crsp-20250519.htm",
@@ -141689,7 +141377,7 @@
     },
     {
      "date": "2024-02-13",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 280,
      "dil": 4.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1674416/000119312524032975/d774146d424b5.htm",
@@ -143179,10 +142867,6 @@
      [
       "2026-11-06",
       50.07
-     ],
-     [
-      "2026-11-09",
-      50.04
      ]
     ]
    },
@@ -143445,7 +143129,7 @@
     },
     {
      "date": "2025-07-25",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 50,
      "dil": 13.1,
      "url": "https://www.sec.gov/Archives/edgar/data/1672688/000119312525165469/d908325d424b5.htm",
@@ -143463,7 +143147,7 @@
     },
     {
      "date": "2024-02-28",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 75.2,
      "dil": 18,
      "url": "https://www.sec.gov/Archives/edgar/data/1672688/000119312524049377/d783567d424b5.htm",
@@ -144883,10 +144567,6 @@
      [
       "2026-11-06",
       10.17
-     ],
-     [
-      "2026-11-09",
-      10.8
      ]
     ]
    },
@@ -145129,7 +144809,7 @@
    "financings": [
     {
      "date": "2026-06-11",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 75,
      "dil": 20.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1680367/000119312526266618/d122207d424b5.htm",
@@ -145175,7 +144855,7 @@
     },
     {
      "date": "2023-12-22",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 30,
      "dil": 18.2,
      "url": "https://www.sec.gov/Archives/edgar/data/1680367/000119312523302092/d81501d424b5.htm",
@@ -146671,10 +146351,6 @@
      [
       "2026-11-06",
       4.62
-     ],
-     [
-      "2026-11-09",
-      4.99
      ]
     ]
    },
@@ -148364,10 +148040,6 @@
      [
       "2026-11-06",
       1.3
-     ],
-     [
-      "2026-11-09",
-      1.5
      ]
     ]
    },
@@ -150133,10 +149805,6 @@
      [
       "2026-11-06",
       22.05
-     ],
-     [
-      "2026-11-09",
-      12.68
      ]
     ]
    },
@@ -150509,7 +150177,7 @@
    "financings": [
     {
      "date": "2026-07-15",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 125,
      "dil": 31.3,
      "url": "https://www.sec.gov/Archives/edgar/data/1253689/000162828026048344/prospectussupplementfollow.htm",
@@ -151945,10 +151613,6 @@
      [
       "2026-11-06",
       13.54
-     ],
-     [
-      "2026-11-09",
-      13.65
      ]
     ]
    },
@@ -153993,10 +153657,6 @@
      [
       "2026-11-06",
       1.84
-     ],
-     [
-      "2026-11-09",
-      1.94
      ]
     ]
    },
@@ -154251,7 +153911,7 @@
    "financings": [
     {
      "date": "2026-06-25",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 11.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1806310/000119312526282846/d95601d424b5.htm",
@@ -154269,7 +153929,7 @@
     },
     {
      "date": "2025-05-29",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 35.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1806310/000119312525130693/d887492d424b5.htm",
@@ -154287,7 +153947,7 @@
     },
     {
      "date": "2024-06-26",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 75,
      "dil": 17.8,
      "url": "https://www.sec.gov/Archives/edgar/data/1806310/000119312524169188/d849125d424b5.htm",
@@ -155544,10 +155204,6 @@
      [
       "2026-11-06",
       4.33
-     ],
-     [
-      "2026-11-09",
-      4.37
      ]
     ]
    },
@@ -155900,7 +155556,7 @@
    "financings": [
     {
      "date": "2026-02-19",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 150,
      "dil": 19.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1816590/000162828026009499/cmps-2025prosuppfinal.htm",
@@ -157253,10 +156909,6 @@
      [
       "2026-11-06",
       8.61
-     ],
-     [
-      "2026-11-09",
-      9.18
      ]
     ]
    },
@@ -157699,7 +157351,7 @@
    "financings": [
     {
      "date": "2025-07-31",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 125.4,
      "dil": 29,
      "url": "https://www.sec.gov/Archives/edgar/data/1894562/000162828025037072/primemedicine424b5finalpro.htm",
@@ -157717,7 +157369,7 @@
     },
     {
      "date": "2024-02-16",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": null,
      "dil": 22.3,
      "url": "https://www.sec.gov/Archives/edgar/data/1894562/000162828024005201/primemedicinefinal424b5216.htm",
@@ -159101,10 +158753,6 @@
      [
       "2026-11-06",
       4.65
-     ],
-     [
-      "2026-11-09",
-      4.3
      ]
     ]
    },
@@ -159474,7 +159122,7 @@
    "financings": [
     {
      "date": "2026-07-02",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 125,
      "dil": 26.7,
      "url": "https://www.sec.gov/Archives/edgar/data/1404644/000162828026046666/ngne-june2026cmpoxfinalpro.htm",
@@ -160741,10 +160389,6 @@
      [
       "2026-11-06",
       25.31
-     ],
-     [
-      "2026-11-09",
-      26
      ]
     ]
    },
@@ -161018,7 +160662,7 @@
    "financings": [
     {
      "date": "2025-11-19",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 190,
      "dil": 14.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1750284/000119312525288287/d846460d424b5.htm",
@@ -162481,10 +162125,6 @@
      [
       "2026-11-06",
       7.33
-     ],
-     [
-      "2026-11-09",
-      7.36
      ]
     ]
    },
@@ -162844,7 +162484,7 @@
    "financings": [
     {
      "date": "2026-06-12",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 400,
      "dil": 17.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1672619/000119312526269621/d114232d424b5.htm",
@@ -162862,7 +162502,7 @@
     },
     {
      "date": "2025-06-16",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 200,
      "dil": 20.7,
      "url": "https://www.sec.gov/Archives/edgar/data/1672619/000119312525140928/d851714d424b5.htm",
@@ -164275,10 +163915,6 @@
      [
       "2026-11-06",
       49.43
-     ],
-     [
-      "2026-11-09",
-      51.55
      ]
     ]
    },
@@ -166408,10 +166044,6 @@
      [
       "2026-11-06",
       11.31
-     ],
-     [
-      "2026-11-09",
-      11.73
      ]
     ]
    },
@@ -166759,7 +166391,7 @@
    "financings": [
     {
      "date": "2026-06-04",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 150,
      "dil": 20.3,
      "url": "https://www.sec.gov/Archives/edgar/data/1798749/000119312526257722/d144482d424b5.htm",
@@ -168161,10 +167793,6 @@
      [
       "2026-11-06",
       15.07
-     ],
-     [
-      "2026-11-09",
-      15.6
      ]
     ]
    },
@@ -168748,7 +168376,7 @@
     },
     {
      "date": "2025-07-02",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 75,
      "dil": 7.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1868279/000110465925065391/tm2519401-2_424b5.htm",
@@ -170145,10 +169773,6 @@
      [
       "2026-11-06",
       13.64
-     ],
-     [
-      "2026-11-09",
-      14.16
      ]
     ]
    },
@@ -170493,7 +170117,7 @@
    "financings": [
     {
      "date": "2024-06-24",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100,
      "dil": 20,
      "url": "https://www.sec.gov/Archives/edgar/data/1689375/000110465924074127/tm2417848-1_424b5.htm",
@@ -171974,10 +171598,6 @@
      [
       "2026-11-06",
       4.89
-     ],
-     [
-      "2026-11-09",
-      4.69
      ]
     ]
    },
@@ -174104,10 +173724,6 @@
      [
       "2026-11-06",
       29.41
-     ],
-     [
-      "2026-11-09",
-      31.38
      ]
     ]
    },
@@ -175635,10 +175251,6 @@
      [
       "2026-11-06",
       4
-     ],
-     [
-      "2026-11-09",
-      4
      ]
     ]
    },
@@ -176006,7 +175618,7 @@
    "financings": [
     {
      "date": "2026-05-26",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 125,
      "dil": 56.7,
      "url": "https://www.sec.gov/Archives/edgar/data/1650664/000110465926066382/tm2615433-4_424b5.htm",
@@ -177444,10 +177056,6 @@
      [
       "2026-11-06",
       2.57
-     ],
-     [
-      "2026-11-09",
-      2.75
      ]
     ]
    },
@@ -177713,7 +177321,7 @@
     },
     {
      "date": "2025-11-21",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 100,
      "dil": 92.2,
      "url": "https://www.sec.gov/Archives/edgar/data/1750149/000119312525291433/d944552d424b5.htm",
@@ -179248,10 +178856,6 @@
      [
       "2026-11-06",
       1.5
-     ],
-     [
-      "2026-11-09",
-      1.68
      ]
     ]
    },
@@ -179906,10 +179510,6 @@
      [
       "2026-11-06",
       13.87
-     ],
-     [
-      "2026-11-09",
-      13.71
      ]
     ]
    },
@@ -182926,10 +182526,6 @@
      [
       "2026-11-06",
       1354
-     ],
-     [
-      "2026-11-09",
-      1411.95
      ]
     ]
    },
@@ -185665,10 +185261,6 @@
      [
       "2026-11-06",
       276.22
-     ],
-     [
-      "2026-11-09",
-      282.11
      ]
     ]
    },
@@ -189029,10 +188621,6 @@
      [
       "2026-11-06",
       291.31
-     ],
-     [
-      "2026-11-09",
-      293.3
      ]
     ]
    },
@@ -192683,10 +192271,6 @@
      [
       "2026-11-06",
       146.73
-     ],
-     [
-      "2026-11-09",
-      148.76
      ]
     ]
    },
@@ -196446,10 +196030,6 @@
      [
       "2026-11-06",
       29.39
-     ],
-     [
-      "2026-11-09",
-      29.23
      ]
     ]
    },
@@ -199099,10 +198679,6 @@
      ],
      [
       "2026-11-06",
-      62.14
-     ],
-     [
-      "2026-11-09",
       62.14
      ]
     ]
@@ -202117,10 +201693,6 @@
      [
       "2026-11-06",
       460.42
-     ],
-     [
-      "2026-11-09",
-      465.23
      ]
     ]
    },
@@ -203860,10 +203432,6 @@
      [
       "2026-11-06",
       166.89
-     ],
-     [
-      "2026-11-09",
-      169.32
      ]
     ]
    },
@@ -206321,10 +205889,6 @@
      [
       "2026-11-06",
       904.35
-     ],
-     [
-      "2026-11-09",
-      919.96
      ]
     ]
    },
@@ -208640,10 +208204,6 @@
      [
       "2026-11-06",
       547.09
-     ],
-     [
-      "2026-11-09",
-      550.87
      ]
     ]
    },
@@ -210893,10 +210453,6 @@
      [
       "2026-11-06",
       248.35
-     ],
-     [
-      "2026-11-09",
-      254.87
      ]
     ]
    },
@@ -211018,11 +210574,11 @@
    "n": "Novo Nordisk",
    "area": "Diabetes & obesity",
    "mcap": 183892.7,
-   "ev": 199577.3,
-   "cash": 3972.2,
-   "debt": 19656.8,
+   "ev": 199587.7,
+   "cash": 3974.9,
+   "debt": 19669.9,
    "burn": 0.1,
-   "rev": 46390.5,
+   "rev": 46421.4,
    "shares": 4444,
    "own": null,
    "emp": null,
@@ -212020,85 +211576,85 @@
     {
      "end": "2015-12-31",
      "filed": "2018-02-08",
-     "cash": 2911,
-     "burn": -478.9,
+     "cash": 2913,
+     "burn": -479.2,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-02-08",
-     "cash": 3073,
-     "burn": -604.3,
+     "cash": 3075,
+     "burn": -604.7,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-02-08",
-     "cash": 2575,
-     "burn": -514.9,
+     "cash": 2577,
+     "burn": -515.3,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-02-04",
-     "cash": 2346,
-     "burn": -558.1,
+     "cash": 2347,
+     "burn": -558.4,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-02-05",
-     "cash": 2313,
-     "burn": -585.2,
+     "cash": 2315,
+     "burn": -585.6,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-02-03",
-     "cash": 1835,
-     "burn": -649.8,
+     "cash": 1836,
+     "burn": -650.3,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-02",
-     "cash": 1609,
-     "burn": -688,
+     "cash": 1610,
+     "burn": -688.4,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-01",
-     "cash": 1899,
-     "burn": -986.7,
+     "cash": 1900,
+     "burn": -987.4,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-01-31",
-     "cash": 2160,
-     "burn": -1362.3,
+     "cash": 2162,
+     "burn": -1363.2,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-05",
-     "cash": 2350,
-     "burn": -1513.1,
+     "cash": 2351,
+     "burn": -1514.1,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-04",
-     "cash": 3972,
-     "burn": -1489.8,
+     "cash": 3975,
+     "burn": -1490.8,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -1513.11,
-   "debtDue24": 1803.8,
+   "burnPrior": -1514.12,
+   "debtDue24": 1805,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -213113,16 +212669,12 @@
      [
       "2026-11-06",
       40.31
-     ],
-     [
-      "2026-11-09",
-      41.38
      ]
     ]
    },
    "news": [],
    "cashFlowPositive": true,
-   "ocf": 17877,
+   "ocf": 17889,
    "group": "big-pharma",
    "src": {
     "cik": "353278",
@@ -213131,8 +212683,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "DKK",
-    "fx": 0.1501,
-    "fxNote": "Reported in DKK; converted at today's rate of 0.1501 USD per DKK",
+    "fx": 0.1502,
+    "fxNote": "Reported in DKK; converted at today's rate of 0.1502 USD per DKK",
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
     "filing": {
@@ -216648,10 +216200,6 @@
      [
       "2026-11-06",
       162.55
-     ],
-     [
-      "2026-11-09",
-      163.69
      ]
     ]
    },
@@ -220267,10 +219815,6 @@
      [
       "2026-11-06",
       186.43
-     ],
-     [
-      "2026-11-09",
-      189.39
      ]
     ]
    },
@@ -220335,11 +219879,11 @@
    "n": "Sanofi",
    "area": "Immunology & vaccines",
    "mcap": 117357.7,
-   "ev": 128863.5,
-   "cash": 9483.4,
-   "debt": 20989.3,
+   "ev": 128867.6,
+   "cash": 9486.8,
+   "debt": 20996.7,
    "burn": 0.1,
-   "rev": 48961.5,
+   "rev": 48978.9,
    "shares": 1219.43,
    "own": null,
    "emp": null,
@@ -222400,134 +221944,134 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-16",
-     "cash": 10281,
-     "burn": -775.3,
+     "cash": 10285,
+     "burn": -775.6,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-16",
-     "cash": 11564,
-     "burn": -733,
+     "cash": 11568,
+     "burn": -733.3,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-16",
-     "cash": 11663,
-     "burn": -690.1,
+     "cash": 11667,
+     "burn": -690.4,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-08",
-     "cash": 7995,
-     "burn": -518.8,
+     "cash": 7998,
+     "burn": -519,
      "runway": null
     },
     {
      "end": "2019-06-30",
      "filed": "2020-07-29",
-     "cash": 7567,
-     "burn": -603.4,
+     "cash": 7569,
+     "burn": -603.6,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-05",
-     "cash": 11058,
-     "burn": -721.5,
+     "cash": 11062,
+     "burn": -721.8,
      "runway": null
     },
     {
      "end": "2020-06-30",
      "filed": "2020-07-29",
-     "cash": 17922,
-     "burn": -791.4,
+     "cash": 17928,
+     "burn": -791.7,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-04",
-     "cash": 16627,
-     "burn": -693.8,
+     "cash": 16633,
+     "burn": -694,
      "runway": null
     },
     {
      "end": "2021-06-30",
      "filed": "2021-07-29",
-     "cash": 10911,
-     "burn": -768.7,
+     "cash": 10915,
+     "burn": -769,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-23",
-     "cash": 12516,
-     "burn": -984.1,
+     "cash": 12520,
+     "burn": -984.4,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-07-28",
-     "cash": 7743,
-     "burn": -899.7,
+     "cash": 7746,
+     "burn": -900,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-24",
-     "cash": 14874,
-     "burn": -984.4,
+     "cash": 14879,
+     "burn": -984.8,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-07-28",
-     "cash": 8971,
-     "burn": -959.9,
+     "cash": 8974,
+     "burn": -960.3,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-23",
-     "cash": 9953,
-     "burn": -959.4,
+     "cash": 9956,
+     "burn": -959.7,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-07-25",
-     "cash": 7626,
-     "burn": -759.1,
+     "cash": 7629,
+     "burn": -759.4,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-13",
-     "cash": 8767,
-     "burn": -849.3,
+     "cash": 8771,
+     "burn": -849.6,
      "runway": null
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-31",
-     "cash": 17237,
-     "burn": -1048.8,
+     "cash": 17244,
+     "burn": -1049.2,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-17",
-     "cash": 9483,
-     "burn": -1005.4,
+     "cash": 9487,
+     "burn": -1005.8,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -849.3,
-   "debtDue24": 4873,
+   "burnPrior": -849.6,
+   "debtDue24": 4874.8,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -223542,10 +223086,6 @@
      [
       "2026-11-06",
       47.04
-     ],
-     [
-      "2026-11-09",
-      48.12
      ]
     ]
    },
@@ -223632,7 +223172,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 12065,
+   "ocf": 12069,
    "group": "big-pharma",
    "src": {
     "cik": "1121404",
@@ -223642,8 +223182,8 @@
      "MarketableSecuritiesCurrent"
     ],
     "currency": "EUR",
-    "fx": 1.1223,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1223 USD per EUR",
+    "fx": 1.1227,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1227 USD per EUR",
     "adr": 0.5,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -223670,11 +223210,11 @@
    "n": "GSK",
    "area": "Vaccines & respiratory",
    "mcap": 111209,
-   "ev": 126407.6,
-   "cash": 4564.5,
-   "debt": 19763.1,
+   "ev": 126413.3,
+   "cash": 4566.2,
+   "debt": 19770.5,
    "burn": 0.1,
-   "rev": 43894.6,
+   "rev": 43911,
    "shares": 4315.45,
    "own": null,
    "emp": null,
@@ -225685,84 +225225,84 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-20",
-     "cash": 7834,
-     "burn": -287.7,
+     "cash": 7837,
+     "burn": -287.8,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-20",
-     "cash": 6580,
-     "burn": -727.5,
+     "cash": 6583,
+     "burn": -727.8,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-20",
-     "cash": 5149,
-     "burn": -774.4,
+     "cash": 5152,
+     "burn": -774.9,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-15",
-     "cash": 5317,
-     "burn": -942.7,
+     "cash": 5320,
+     "burn": -943.3,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-06",
-     "cash": 6431,
-     "burn": -898,
+     "cash": 6433,
+     "burn": -898.4,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-12",
-     "cash": 8559,
-     "burn": -945.2,
+     "cash": 8563,
+     "burn": -945.5,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-03-08",
-     "cash": 5823,
-     "burn": -890.2,
+     "cash": 5827,
+     "burn": -890.8,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-10",
-     "cash": 5093,
-     "burn": -829,
+     "cash": 5095,
+     "burn": -829.3,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-05",
-     "cash": 4002,
-     "burn": -757.8,
+     "cash": 4003,
+     "burn": -758.1,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-03",
-     "cash": 5200,
-     "burn": -733.9,
+     "cash": 5202,
+     "burn": -734.2,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-06",
-     "cash": 4565,
-     "burn": -866.8,
+     "cash": 4566,
+     "burn": -867.1,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -733.88,
+   "burnPrior": -734.16,
    "debtDue24": 0,
    "raise": {
     "capacity": "none",
@@ -226778,10 +226318,6 @@
      [
       "2026-11-06",
       50.33
-     ],
-     [
-      "2026-11-09",
-      51.54
      ]
     ]
    },
@@ -226804,7 +226340,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 10402,
+   "ocf": 10405,
    "group": "big-pharma",
    "src": {
     "cik": "1131399",
@@ -226813,8 +226349,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3437,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3437 USD per GBP",
+    "fx": 1.3442,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3442 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -230004,10 +229540,6 @@
      [
       "2026-11-06",
       21.02
-     ],
-     [
-      "2026-11-09",
-      21.09
      ]
     ]
    },
@@ -231609,10 +231141,6 @@
      [
       "2026-11-06",
       42.61
-     ],
-     [
-      "2026-11-09",
-      42.97
      ]
     ]
    },
@@ -233213,10 +232741,6 @@
      [
       "2026-11-06",
       19.91
-     ],
-     [
-      "2026-11-09",
-      20.49
      ]
     ]
    },
@@ -241495,11 +241019,11 @@
    "n": "Haleon",
    "area": "Over-the-counter consumer health",
    "mcap": 40151.3,
-   "ev": 49938.7,
-   "cash": 1778.8,
-   "debt": 11566.2,
+   "ev": 49943.8,
+   "cash": 1779.7,
+   "debt": 11572.2,
    "burn": 0.1,
-   "rev": 14818.8,
+   "rev": 14826.5,
    "shares": 8952.35,
    "own": null,
    "emp": null,
@@ -241536,71 +241060,71 @@
     {
      "end": "2020-12-31",
      "filed": "2023-03-20",
-     "cash": 447,
-     "burn": -157.5,
+     "cash": 448,
+     "burn": -157.6,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2023-03-20",
      "cash": 556,
-     "burn": -151.8,
+     "burn": -151.9,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2023-08-02",
-     "cash": 1792,
-     "burn": -154.5,
+     "cash": 1793,
+     "burn": -154.6,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-20",
      "cash": 919,
-     "burn": -230.9,
+     "burn": -231.1,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-02",
-     "cash": 658,
-     "burn": -238.7,
+     "cash": 659,
+     "burn": -238.8,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-15",
-     "cash": 1402,
-     "burn": -235.1,
+     "cash": 1403,
+     "burn": -235.2,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-01",
-     "cash": 713,
-     "burn": -245.5,
+     "cash": 714,
+     "burn": -245.7,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-20",
-     "cash": 3022,
-     "burn": -257.6,
+     "cash": 3024,
+     "burn": -257.8,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-13",
-     "cash": 1779,
-     "burn": -294.9,
+     "cash": 1780,
+     "burn": -295.1,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -257.62,
-   "debtDue24": 1123.2,
+   "burnPrior": -257.75,
+   "debtDue24": 1123.8,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -242653,7 +242177,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 3538,
+   "ocf": 3541,
    "group": "otc",
    "src": {
     "cik": "1900304",
@@ -242662,8 +242186,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3435,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3435 USD per GBP",
+    "fx": 1.3442,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3442 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2026-03-13",
@@ -254610,7 +254134,7 @@
    "financings": [
     {
      "date": "2024-06-14",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 350,
      "dil": 10.6,
      "url": "https://www.sec.gov/Archives/edgar/data/1515673/000119312524161716/d742037d424b5.htm",
@@ -257875,7 +257399,7 @@
    "financings": [
     {
      "date": "2025-06-12",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 750,
      "dil": 4.3,
      "url": "https://www.sec.gov/Archives/edgar/data/1104506/000114036125022332/ny20050461x2_424b5.htm",
@@ -257893,7 +257417,7 @@
     },
     {
      "date": "2024-05-30",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 650,
      "dil": 8.5,
      "url": "https://www.sec.gov/Archives/edgar/data/1104506/000114036124028102/ny20029730x3_424b5.htm",
@@ -259260,10 +258784,10 @@
    "area": "Rare endocrine diseases",
    "mcap": 16104.8,
    "ev": 16221.8,
-   "cash": 691.4,
-   "debt": 808.4,
+   "cash": 691.6,
+   "debt": 808.6,
    "burn": 0.1,
-   "rev": 808.2,
+   "rev": 808.5,
    "shares": 61.98,
    "own": null,
    "emp": null,
@@ -259929,7 +259453,7 @@
    "financings": [
     {
      "date": "2024-09-20",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 300,
      "dil": 3.4,
      "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312524222869/d889666d424b5.htm",
@@ -259959,7 +259483,7 @@
     {
      "end": "2021-09-30",
      "filed": "2021-11-10",
-     "cash": 777,
+     "cash": 778,
      "burn": 36,
      "runway": 21.6
     },
@@ -259974,7 +259498,7 @@
      "end": "2022-03-31",
      "filed": "2022-05-11",
      "cash": 848,
-     "burn": 43.6,
+     "burn": 43.7,
      "runway": 19.4
     },
     {
@@ -259988,21 +259512,21 @@
      "end": "2022-09-30",
      "filed": "2022-11-02",
      "cash": 683,
-     "burn": 44.6,
+     "burn": 44.7,
      "runway": 15.3
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-16",
      "cash": 499,
-     "burn": 46.3,
+     "burn": 46.4,
      "runway": 10.8
     },
     {
      "end": "2023-01-01",
      "filed": "2025-02-12",
      "cash": 499,
-     "burn": 46.3,
+     "burn": 46.4,
      "runway": 10.8
     },
     {
@@ -260015,7 +259539,7 @@
     {
      "end": "2023-06-30",
      "filed": "2023-09-05",
-     "cash": 442,
+     "cash": 443,
      "burn": 50.6,
      "runway": 8.7
     },
@@ -260036,8 +259560,8 @@
     {
      "end": "2024-03-31",
      "filed": "2024-05-02",
-     "cash": 359,
-     "burn": 39.4,
+     "cash": 360,
+     "burn": 39.5,
      "runway": 9.1
     },
     {
@@ -260051,7 +259575,7 @@
      "end": "2024-09-30",
      "filed": "2024-11-14",
      "cash": 702,
-     "burn": 24.4,
+     "burn": 24.5,
      "runway": 28.7
     },
     {
@@ -260071,7 +259595,7 @@
     {
      "end": "2025-06-30",
      "filed": "2025-08-07",
-     "cash": 554,
+     "cash": 555,
      "burn": 15.4,
      "runway": 35.9
     },
@@ -260085,7 +259609,7 @@
     {
      "end": "2025-12-31",
      "filed": "2026-02-11",
-     "cash": 691,
+     "cash": 692,
      "burn": -5,
      "runway": null
     }
@@ -260105,11 +259629,11 @@
     ],
     [
      "2023-12-31",
-     154.5
+     154.6
     ],
     [
      "2024-03-31",
-     107.6
+     107.7
     ],
     [
      "2024-06-30",
@@ -260121,7 +259645,7 @@
     ],
     [
      "2024-12-31",
-     195.1
+     195.3
     ],
     [
      "2025-03-31",
@@ -260137,11 +259661,11 @@
     ],
     [
      "2025-12-31",
-     277.8
+     277.9
     ]
    ],
    "rivals": [],
-   "burnPrior": 28.64,
+   "burnPrior": 28.65,
    "debtDue24": 0,
    "raise": {
     "capacity": "none",
@@ -261243,7 +260767,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 60,
+   "ocf": 61,
    "group": "orphan",
    "src": {
     "cik": "1612042",
@@ -261252,8 +260776,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "EUR",
-    "fx": 1.1223,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1223 USD per EUR",
+    "fx": 1.1227,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1227 USD per EUR",
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
     "filing": {
@@ -261455,7 +260979,7 @@
      "filed": "2020-07-31",
      "cash": 1345,
      "burn": 21.2,
-     "runway": 63.5
+     "runway": 63.4
     },
     {
      "end": "2020-12-31",
@@ -266243,7 +265767,7 @@
    "financings": [
     {
      "date": "2024-09-10",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": null,
      "dil": 7.9,
      "url": "https://www.sec.gov/Archives/edgar/data/874015/000119312524216700/d818194d424b5.htm",
@@ -272320,7 +271844,7 @@
    "financings": [
     {
      "date": "2025-07-10",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 175,
      "dil": 3.2,
      "url": "https://www.sec.gov/Archives/edgar/data/1649904/000110465925067023/tm2520063-2_424b5.htm",
@@ -273951,7 +273475,7 @@
    "financings": [
     {
      "date": "2024-03-06",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 250,
      "dil": 4.9,
      "url": "https://www.sec.gov/Archives/edgar/data/1743881/000114036124011764/ny20019103x2_424b5.htm",
@@ -275475,7 +274999,7 @@
     },
     {
      "date": "2024-11-08",
-     "type": "Shelf takedown or ATM (424B5)",
+     "type": "Stock offering (424B5)",
      "amt": 125,
      "dil": 10,
      "url": "https://www.sec.gov/Archives/edgar/data/1438533/000119312524254147/d848172d424b5.htm",
