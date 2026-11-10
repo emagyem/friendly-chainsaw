@@ -3934,6 +3934,13 @@ export default function App() {
   const [ticker, setTicker] = useState(COMPANIES[0].t);
   const [watch, setWatch] = useState(loadWatch);
   const [omni, setOmni] = useState("");
+  const [navOpen, setNavOpen] = useState(false);
+  useEffect(() => {
+    if (!navOpen) return;
+    const esc = (e) => { if (e.key === "Escape") setNavOpen(false); };
+    window.addEventListener("keydown", esc);
+    return () => window.removeEventListener("keydown", esc);
+  }, [navOpen]);
   // Menu down the left side ("side") or across the top ("top"); remembered per visitor.
   const [layout, setLayout] = useState(() => { try { return localStorage.getItem("helixora-layout") === "side" ? "side" : "top"; } catch { return "top"; } });
   useEffect(() => { try { localStorage.setItem("helixora-layout", layout); } catch { /* ignore */ } }, [layout]);
@@ -3944,7 +3951,7 @@ export default function App() {
   // "method" (the old Methodology page) now opens the About us page at the score section.
   const [anchor, setAnchor] = useState(null);
   const go = (v, t, tab) => {
-    const a = v === "method" ? "score" : null;
+    const a = v === "method" ? "score" : v === "corrections" ? "corrections" : null;
     if (a) v = "about";
     if (t) setTicker(t); setCompanyTab(tab || "overview"); setAnchor(a); setView(v);
     if (!a) window.scrollTo({ top: 0, behavior: "smooth" });
@@ -3964,25 +3971,17 @@ export default function App() {
     : [];
 
   const cur = groupOf(view);
-  const pick = (k) => { go(k); if (document.activeElement) document.activeElement.blur(); };
+  const pick = (k) => { go(k); setNavOpen(false); if (document.activeElement) document.activeElement.blur(); };
+  const asOf = LIVE ? new Date(META.generatedAt).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : null;
+  const toSignup = () => { setNavOpen(false); document.getElementById("signup")?.scrollIntoView({ behavior: "smooth" }); };
   const dateline = TODAY.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
 
   return (
-    <div className={"app lay-" + layout}>
+    <div className={"app v2 lay-" + layout + (navOpen ? " nav-open" : "")}>
       <style>{CSS}</style>
       <a className="skip" href="#main">Skip to content</a>
 
       <header className="mast">
-        <div className="utility">
-          <div className="utility-in">
-            <span className="utility-date">{dateline}</span>
-            {LIVE && <span className="hide-sm">Data refreshed {new Date(META.generatedAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}</span>}
-            <span className="hide-sm">Financing risk research on {COMPANIES.length} clinical-stage biotechs</span>
-            <span className="utility-sp" />
-            <button className="utility-btn" onClick={() => setLayout("side")}>Menu on side</button>
-            <button className="utility-cta" onClick={() => document.getElementById("signup")?.scrollIntoView({ behavior: "smooth" })}>Get the report</button>
-          </div>
-        </div>
         <div className="mast-in">
           <button className="wordmark" onClick={() => go("home")} aria-label="Helixora home">
             <Wordmark underline />
@@ -4000,7 +3999,12 @@ export default function App() {
               </div>
             )}
           </div>
-          <nav className="nav" aria-label="Sections">
+          <button className="mast-cta" onClick={toSignup}>Get the report</button>
+          <button className="menu-btn" aria-expanded={navOpen} aria-controls="site-nav" onClick={() => setNavOpen((o) => !o)}>
+            <svg viewBox="0 0 20 20" aria-hidden="true">{navOpen ? <path d="M5 5l10 10M15 5L5 15" /> : <path d="M3 6h14M3 10h14M3 14h14" />}</svg>
+            <span>{navOpen ? "Close" : "Menu"}</span>
+          </button>
+          <nav className="nav" id="site-nav" aria-label="Sections">
             {NAV.map((g) => (
               <div key={g.k} className={"nav-group" + (g === cur ? " cur" : "") + (g.items.length === 1 ? " solo" : "")}>
                 <button className="nav-top" onClick={() => pick(g.items[0][0])}>{g.l}</button>
@@ -4009,6 +4013,7 @@ export default function App() {
                 </div>
               </div>
             ))}
+            <button className="nav-cta" onClick={toSignup}>Get the report</button>
           </nav>
           <div className="side-foot">
             <span className="dateline">{dateline}</span>
@@ -4031,6 +4036,7 @@ export default function App() {
           {cur.items.length > 1
             ? cur.items.map(([k, l]) => <button key={k} className={view === k ? "on" : ""} aria-current={view === k ? "page" : undefined} onClick={() => go(k)}>{l}</button>)
             : view !== "about" ? null : ABOUT_SECTIONS.map(([id, l]) => <button key={id} onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{l}</button>)}
+          {asOf && <span className="subnav-status"><i aria-hidden="true" />Data as of {asOf}</span>}
         </div>
       </nav>
       <div className="tape">
@@ -4068,46 +4074,70 @@ export default function App() {
         </div>
       </section>
       <footer className="foot">
+        <svg className="foot-helix" viewBox="0 0 1440 24" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 12 C 30 0, 60 0, 90 12 S 150 24, 180 12 S 240 0, 270 12 S 330 24, 360 12 S 420 0, 450 12 S 510 24, 540 12 S 600 0, 630 12 S 690 24, 720 12 S 780 0, 810 12 S 870 24, 900 12 S 960 0, 990 12 S 1050 24, 1080 12 S 1140 0, 1170 12 S 1230 24, 1260 12 S 1320 0, 1350 12 S 1410 24, 1440 12" />
+          <path d="M0 12 C 30 24, 60 24, 90 12 S 150 0, 180 12 S 240 24, 270 12 S 330 0, 360 12 S 420 24, 450 12 S 510 0, 540 12 S 600 24, 630 12 S 690 0, 720 12 S 780 24, 810 12 S 870 0, 900 12 S 960 24, 990 12 S 1050 0, 1080 12 S 1140 24, 1170 12 S 1230 0, 1260 12 S 1320 24, 1350 12 S 1410 0, 1440 12" />
+        </svg>
         <div className="foot-wrap foot-top">
           <div className="foot-brand">
-            <span className="wordmark small" aria-label="Helixora"><Wordmark /></span>
-            <p>Financing-risk research on {COMPANIES.length} clinical-stage biotechs. We help investors see the next stock sale coming, with every number traced to its filing.</p>
+            <button className="wordmark small" onClick={() => go("home")} aria-label="Helixora home"><Wordmark /></button>
+            <p>Financing-risk research on {COMPANIES.length} clinical-stage biotechs. See the next stock sale coming, with every number traced to its filing.</p>
+            <button className="foot-cta" onClick={toSignup}>Get the report by email</button>
           </div>
-          <nav className="foot-col" aria-label="Markets">
-            <h3>Markets</h3>
+          <nav className="foot-col" aria-label="Financing risk">
+            <h3>Financing risk</h3>
             <button onClick={() => go("home")}>Overview</button>
-            <button onClick={() => go("company")}>Quotes</button>
+            <button onClick={() => go("report")}>Pressure Report</button>
             <button onClick={() => go("screen")}>Screener</button>
+            <button onClick={() => go("research")}>Track Record</button>
+          </nav>
+          <nav className="foot-col" aria-label="Companies">
+            <h3>Companies</h3>
+            <button onClick={() => go("company")}>Quotes</button>
             <button onClick={() => go("compare")}>Compare</button>
+            <button onClick={() => go("catalysts")}>Catalyst Calendar</button>
+            <button onClick={() => go("outlook")}>Trial Outlook</button>
+            <button onClick={() => go("industry")}>Drug Industry</button>
           </nav>
-          <nav className="foot-col" aria-label="Research">
-            <h3>Research</h3>
-            <button onClick={() => go("report")}>Financing Pressure Report</button>
-            <button onClick={() => go("research")}>Research</button>
-            <button onClick={() => go("outlook")}>Trials &amp; FDA outlook</button>
-            <button onClick={() => go("catalysts")}>Catalyst calendar</button>
+          <nav className="foot-col" aria-label="Tools">
+            <h3>Tools</h3>
             <button onClick={() => go("ask")}>Ask Helixora</button>
+            <button onClick={() => go("marketdata")}>Market Data</button>
+            <button onClick={() => go("trade")}>Virtual Exchange</button>
+            <button onClick={() => go("calc")}>Money Calculators</button>
           </nav>
-          <nav className="foot-col" aria-label="Company">
-            <h3>Company</h3>
-            <button onClick={() => go("about")}>About us</button>
+          <nav className="foot-col" aria-label="Helixora">
+            <h3>Helixora</h3>
+            <button onClick={() => go("pro")}>For Funds &amp; Banks</button>
             <button onClick={() => go("method")}>How the score works</button>
+            <button onClick={() => go("about")}>About us</button>
+            <button onClick={() => go("corrections")}>Report a correction</button>
             <a href="#privacy">Privacy</a>
-            <button onClick={() => document.getElementById("signup")?.scrollIntoView({ behavior: "smooth" })}>Get the report</button>
           </nav>
+        </div>
+        <div className="foot-wrap foot-notes">
+          <div>
+            <h3>Where the numbers come from</h3>
+            <p>
+              Financials from <a href="https://www.sec.gov/edgar/search/" target="_blank" rel="noreferrer">SEC EDGAR</a> filings,
+              trials from <a href="https://clinicaltrials.gov/" target="_blank" rel="noreferrer">ClinicalTrials.gov</a>,
+              approvals from <a href="https://open.fda.gov/" target="_blank" rel="noreferrer">openFDA</a>,
+              and prices from <a href="https://finance.yahoo.com/" target="_blank" rel="noreferrer">Yahoo Finance</a> at the previous close.
+              {LIVE ? <> Trial readout dates are registry estimates unless marked otherwise, and peak sales marked as placeholders are defaults, not forecasts. Front-page headlines are written automatically from these figures.</> : <> This is the built-in sample dataset: companies, figures and dates are fictional.</>}
+            </p>
+          </div>
+          <div>
+            <h3>Not investment advice</h3>
+            <p>Helixora publishes general research about companies' financing situations. It isn't tailored to any reader and doesn't recommend buying or selling any security.</p>
+          </div>
         </div>
         <div className="foot-bottom">
           <div className="foot-wrap">
-            <p>
-            {LIVE ? (
-              <>Financials from SEC EDGAR filings, trial data from ClinicalTrials.gov, prices from Yahoo Finance at the previous close. Refreshed {new Date(META.generatedAt).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })}.
-                {" "}Headlines on the front page are written automatically from these figures. Trial readout dates are registry estimates unless marked otherwise, and peak sales marked as placeholders are defaults, not forecasts.{" "}</>
-            ) : (
-              <>Showing the built-in sample dataset: companies, figures, and dates are fictional.{" "}</>
-            )}
-            Helixora publishes general research about companies' financing situations. It is not investment advice, is not tailored to any reader, and does not recommend buying or selling any security.
-                      </p>
-            <p className="foot-copy">© {TODAY.getFullYear()} Helixora. Data from SEC EDGAR, ClinicalTrials.gov, openFDA and Yahoo Finance.</p>
+            <span>© {TODAY.getFullYear()} Helixora</span>
+            {asOf && <span>Data as of {asOf}</span>}
+            <span className="foot-sp" />
+            <button onClick={() => setLayout(layout === "side" ? "top" : "side")}>{layout === "side" ? "Show the menu on top" : "Show the menu on the side"}</button>
+            <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Back to top</button>
           </div>
         </div>
       </footer>
@@ -4919,4 +4949,94 @@ tr.noclick{cursor:default;}
   .foot-brand{grid-column:1/-1;}
   .main{padding-top:22px;}
 }
+
+/* ---------- header and footer (v2): one bar, section row, footer on the brand's deep teal ---------- */
+.mast-cta,.menu-btn,.nav-cta,.subnav-status{display:none;}
+.app.v2.lay-top .utility{display:none;}
+.app.v2.lay-top .mast{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:saturate(160%) blur(10px);-webkit-backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--rule);}
+.app.v2.lay-top .mast-in{flex-wrap:nowrap;align-items:stretch;gap:28px;min-height:64px;padding:0 24px;max-width:1320px;margin:0 auto;}
+.app.v2.lay-top .mast .wordmark{order:1;align-self:center;font-size:30px;padding:0;margin:0;}
+.app.v2.lay-top .nav{order:2;flex:1;flex-basis:auto;margin:0;padding:0;border:0;gap:4px;align-items:stretch;}
+.app.v2.lay-top .nav-group{display:flex;flex-direction:row;align-items:stretch;}
+.app.v2.lay-top .nav .nav-top{align-self:stretch;display:inline-flex;align-items:center;gap:7px;padding:0 12px;border-radius:0;font-size:14.5px;font-weight:600;color:var(--ink2);box-shadow:none;background:none;}
+.app.v2.lay-top .nav-group:first-child .nav-top{padding-left:12px;}
+.app.v2.lay-top .nav .nav-top::after{width:5px;height:5px;margin-top:-3px;opacity:.55;}
+.app.v2.lay-top .nav-group:hover .nav-top,.app.v2.lay-top .nav-group:focus-within .nav-top{color:var(--ink);background:none;}
+.app.v2.lay-top .nav-group.cur .nav-top{color:var(--ink);box-shadow:inset 0 -3px 0 var(--teal);border-radius:0;}
+.app.v2.lay-top .nav-menu{top:calc(100% + 1px);left:0;min-width:220px;padding:6px;border:1px solid var(--rule);border-top:0;border-radius:0 0 10px 10px;box-shadow:0 14px 30px rgba(7,43,45,.12);}
+.app.v2.lay-top .omni{order:3;align-self:center;width:250px;margin:0;}
+.app.v2.lay-top .omni input{height:38px;border-radius:8px;font-size:14px;}
+.app.v2.lay-top .mast-cta{order:4;display:inline-flex;align-items:center;align-self:center;height:38px;margin-left:-14px;padding:0 16px;border:0;border-radius:8px;background:var(--mast);color:#fff;font-size:14px;font-weight:600;white-space:nowrap;}
+.app.v2.lay-top .mast-cta:hover{background:var(--teal-d);}
+.app.v2.lay-top .subnav{background:var(--paper);}
+.app.v2.lay-top .subnav-h{display:none;}
+.app.v2.lay-top .subnav-in{min-height:44px;gap:4px;}
+.app.v2.lay-top .subnav button{padding:12px 10px 10px;font-size:13.5px;border-bottom-width:2px;}
+.app.v2.lay-top .subnav button:first-of-type{margin-left:-10px;}
+.app.v2.lay-top .subnav button.on{border-bottom-width:2px;border-bottom-color:var(--teal);}
+.app.v2.lay-top .subnav-status{display:inline-flex;align-items:center;gap:8px;margin-left:auto;padding-left:16px;font-size:12.5px;color:var(--mut);white-space:nowrap;}
+.app.v2.lay-top .subnav-status i{width:7px;height:7px;border-radius:50%;background:var(--up);box-shadow:0 0 0 3px rgba(10,125,79,.14);}
+
+.app.v2 .foot{position:relative;background:var(--mast);color:#D6E6E4;margin-top:0;border:0;}
+.app.v2 .foot-helix{display:block;width:100%;height:24px;margin:0;padding-top:2px;fill:none;stroke-width:1.5;overflow:visible;}
+.app.v2 .foot-helix path:first-child{stroke:var(--mint);}
+.app.v2 .foot-helix path:last-child{stroke:#2E8F86;}
+.app.v2 .foot-top{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(4,minmax(0,1fr));gap:32px;padding-top:48px;padding-bottom:40px;}
+.app.v2 .foot-brand .wordmark.small{background:none;border:0;padding:0;font-size:26px;color:#fff !important;--strand2:var(--mint);}
+.app.v2 .foot-brand p{margin:14px 0 20px;max-width:36ch;font-size:14px;line-height:1.6;color:#B9CFCC;}
+.app.v2 .foot-cta{height:38px;padding:0 16px;border:1px solid rgba(110,231,210,.55);border-radius:8px;background:none;color:var(--mint);font-size:14px;font-weight:600;}
+.app.v2 .foot-cta:hover{background:rgba(110,231,210,.1);}
+.app.v2 .foot-col{gap:0;}
+.app.v2 .foot-col h3{margin:2px 0 12px;font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;color:#fff;}
+.app.v2 .foot-col button,.app.v2 .foot-col a{padding:5px 0;font-size:14px;color:#A8C2BF !important;}
+.app.v2 .foot-col button:hover,.app.v2 .foot-col a:hover{color:var(--mint) !important;}
+.app.v2 .foot-notes{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:32px;padding-top:28px;padding-bottom:32px;border-top:1px solid rgba(255,255,255,.1);}
+.app.v2 .foot-notes h3{margin:0 0 8px;font-size:13px;font-weight:600;color:#fff;}
+.app.v2 .foot-notes p{margin:0;max-width:78ch;font-size:13px !important;line-height:1.65;color:#9DB8B5 !important;}
+.app.v2 .foot-notes a{color:#D6E6E4;text-decoration:underline;text-decoration-color:rgba(110,231,210,.45);text-underline-offset:3px;}
+.app.v2 .foot-notes a:hover{color:var(--mint);}
+.app.v2 .foot-bottom{background:rgba(0,0,0,.18);border-top:0;}
+.app.v2 .foot-bottom .foot-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding-top:16px;padding-bottom:18px;font-size:12.5px;color:#9DB8B5;}
+.app.v2 .foot-sp{flex:1;}
+.app.v2 .foot-bottom button{background:none;border:0;padding:0;font-size:12.5px;color:#C9DCDA;}
+.app.v2 .foot-bottom button:hover{color:var(--mint);}
+.app.v2 .foot :focus-visible{outline-color:var(--mint);}
+
+@media (max-width:1180px){
+  .app.v2.lay-top .mast-in{gap:16px;}
+  .app.v2.lay-top .omni{width:190px;}
+  .app.v2.lay-top .nav .nav-top{padding:0 9px;font-size:14px;}
+  .app.v2 .foot-top{grid-template-columns:repeat(4,minmax(0,1fr));}
+  .app.v2 .foot-brand{grid-column:1/-1;}
+}
+@media (max-width:960px){
+  .app.v2:is(.lay-top,.lay-side) .mast{position:relative;z-index:50;background:#fff;color:var(--ink);border-bottom:1px solid var(--rule);height:auto;overflow:visible;}
+  .app.v2:is(.lay-top,.lay-side) .mast-in{flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px 12px;min-height:0;padding:10px 16px;}
+  .app.v2:is(.lay-top,.lay-side) .mast .wordmark{order:1;font-size:26px;margin:0;color:var(--ink) !important;--strand2:var(--teal);}
+  .app.v2:is(.lay-top,.lay-side) .mast-cta{display:none;}
+  .app.v2:is(.lay-top,.lay-side) .menu-btn{order:2;display:inline-flex;align-items:center;gap:8px;margin-left:auto;height:38px;padding:0 12px;border:1px solid var(--rule);border-radius:8px;background:#fff;color:var(--ink);font-size:14px;font-weight:600;}
+  .app.v2 .menu-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;}
+  .app.v2:is(.lay-top,.lay-side) .omni{order:3;flex:1 1 100%;width:auto;margin:0;}
+  .app.v2:is(.lay-top,.lay-side) .omni input{height:40px;background:var(--tint);border:1px solid var(--rule);color:var(--ink);border-radius:8px;}
+  .app.v2:is(.lay-top,.lay-side) .nav{display:none;order:4;flex:1 1 100%;flex-direction:column;gap:18px;margin:4px 0 6px;padding:12px 0 4px;border-top:1px solid var(--rule);overflow:visible;}
+  .app.v2.nav-open:is(.lay-top,.lay-side) .nav{display:flex;max-height:calc(100vh - 140px);overflow-y:auto;}
+  .app.v2:is(.lay-top,.lay-side) .nav-group{display:flex;flex-direction:column;gap:0;}
+  .app.v2:is(.lay-top,.lay-side) .nav .nav-top{display:block;padding:0 0 6px;font-size:13px;font-weight:600;color:var(--mut);background:none;box-shadow:none;border-radius:0;text-transform:none;letter-spacing:0;}
+  .app.v2:is(.lay-top,.lay-side) .nav .nav-top::after{display:none;}
+  .app.v2:is(.lay-top,.lay-side) .nav-group.solo .nav-top{display:none;}
+  .app.v2:is(.lay-top,.lay-side) .nav-group.cur .nav-top,.app.v2:is(.lay-top,.lay-side) .nav-group:first-child .nav-top{padding:0 0 6px;box-shadow:none;background:none;color:var(--mut);}
+  .app.v2:is(.lay-top,.lay-side) .nav{gap:14px;}
+  .app.v2:is(.lay-top,.lay-side) .nav-group.solo + .nav-group.solo{margin-top:-14px;}
+  .app.v2:is(.lay-top,.lay-side) .nav-menu,.app.v2:is(.lay-top,.lay-side) .nav-group:hover .nav-menu,.app.v2:is(.lay-top,.lay-side) .nav-group:focus-within .nav-menu,.app.v2:is(.lay-top,.lay-side) .nav-group.solo .nav-menu{display:flex;flex-direction:column;position:static;min-width:0;padding:0;border:0;box-shadow:none;background:none;}
+  .app.v2:is(.lay-top,.lay-side) .nav-menu button{padding:9px 0;font-size:16px;font-weight:500;color:var(--ink);background:none;border-radius:0;text-align:left;}
+  .app.v2:is(.lay-top,.lay-side) .nav-menu button.on{color:var(--teal-d);font-weight:600;background:none;}
+  .app.v2:is(.lay-top,.lay-side) .nav-cta{display:block;height:44px;border:0;border-radius:8px;background:var(--mast);color:#fff;font-size:15px;font-weight:600;}
+  .app.v2:is(.lay-top,.lay-side) .side-foot{display:none;}
+  .app.v2 .subnav-status{display:none !important;}
+  .app.v2 .foot-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px;padding-top:36px;padding-bottom:28px;}
+  .app.v2 .foot-notes{grid-template-columns:1fr;gap:20px;}
+  .app.v2 .foot-wrap{padding-left:16px;padding-right:16px;}
+  .app.v2 .foot-bottom button:first-of-type{display:none;}
+}
+@media (prefers-reduced-motion:reduce){.app.v2 *{scroll-behavior:auto;}}
 `;
