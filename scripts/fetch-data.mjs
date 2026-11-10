@@ -22,6 +22,7 @@
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dealStatus, buyerInfo, tidyName } from "./deal-status.mjs";
+import { parseOffering } from "./offering.mjs";
 import { pathToFileURL } from "node:url";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
 import { runwaySim, QUANT_VERSION } from "../src/quant.js";
@@ -819,6 +820,32 @@ function titleCase(s) {
 // Old standard treatments that show up in big pharma trials as comparators or backbones, not as the drug being tested.
 const STANDARD_DRUGS = /^(prednisone|prednisolone|methylprednisolone|dexamethasone|methotrexate|leucovorin|folinic acid|fluorouracil|5-fu|cisplatin|carboplatin|oxaliplatin|paclitaxel|nab-paclitaxel|docetaxel|gemcitabine|pemetrexed|etoposide|cyclophosphamide|doxorubicin|capecitabine|irinotecan|bevacizumab|rituximab|lenalidomide|pomalidomide|bortezomib|abiraterone|abiraterone acetate|enzalutamide|tamoxifen|letrozole|anastrozole|fulvestrant|insulin|metformin|aspirin|warfarin|heparin|placebo|standard of care|best supportive care|tenofovir df|emtricitabine)\b/i;
 
+// Prospectuses already read in an earlier run, by URL (they never change once filed).
+const OFFER_CACHE = new Map();
+
+// Fill in what each stock sale raised and how many new shares it added, from the prospectus itself.
+async function readOfferings(financings, sharesNowM) {
+  for (const f of financings) {
+    if (!f.url) continue;
+    let p = OFFER_CACHE.get(f.url);
+    if (p === undefined) { p = parseOffering(await secText(f.url), sharesNowM) || { kind: "unread" }; OFFER_CACHE.set(f.url, p); }
+    f.parsed = p;
+    if (p.kind === "priced") {
+      Object.assign(f, { amt: p.amt, dil: p.dil, price: p.price, newShares: p.shares, ...(p.approx ? { dilApprox: true } : {}), ...(p.ipo ? { type: "Initial public offering (424B4)" } : {}) });
+    } else if (p.kind === "atm") {
+      Object.assign(f, { type: "ATM program (424B5)", amt: p.amt, upTo: true, dil: null });
+    } else if (p.kind === "resale") {
+      Object.assign(f, { type: "Resale by existing holders, no money raised", amt: null, dil: null, resale: true });
+    } else if (p.kind === "notes") {
+      Object.assign(f, { type: `${p.convertible ? "Convertible notes" : "Notes"} (${f.type.match(/424B\d/)?.[0] || "424B5"})`, amt: p.amt, dil: null });
+    }
+  }
+  // A preliminary prospectus is followed within days by the final one for the same deal: show the deal once.
+  return financings.filter((f) => f.parsed?.kind !== "preliminary"
+    || !financings.some((g) => g !== f && g.date > f.date && g.date <= addDays(f.date, 7)))
+    .map((f) => (f.parsed?.kind === "preliminary" ? { ...f, type: "Preliminary prospectus, final terms not found", amt: f.parsed.amt, approxAmt: true } : f));
+}
+
 async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, durTables = null) {
   const cik = cikByTicker.get(ticker);
   if (!cik) throw new Error(`ticker not found in SEC's company list`);
@@ -902,7 +929,7 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
   }
   for (const c of a.catalysts || []) catalysts.push({ drug: null, ...c });
 
-  const mergedFinancings = (a.financings?.length ? a.financings : financings)
+  const mergedFinancings = (a.financings?.length ? a.financings : await readOfferings(financings, fin.shares))
     .sort((x, y) => (x.date < y.date ? 1 : -1));
 
   return {
@@ -1008,6 +1035,7 @@ async function main() {
     const prev = JSON.parse(await readFile(OUT_FILE, "utf8"));
     for (const c of [...(prev.companies || []), ...(prev.industry || prev.bigPharma || [])]) previous[c.t] = c;
     previous.__meta = prev.meta;
+    for (const c of Object.values(previous)) for (const f of c?.financings || []) if (f.url && f.parsed && f.parsed.kind !== "unread") OFFER_CACHE.set(f.url, f.parsed);
   } catch { /* first run */ }
 
   console.log("Loading SEC ticker list…");

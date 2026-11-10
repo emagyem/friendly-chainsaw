@@ -124,6 +124,18 @@ const cap = (t) => (t && /^[a-z]+[\s,]/.test(t) ? t.charAt(0).toUpperCase() + t.
 
 function phaseRank(ph) { return PHASES.indexOf(ph); }
 
+// Every program's peak sales is Helixora's standard figure by phase, not a forecast for this company.
+const placeholderPeaks = (c) => c.pipeline.length > 0 && c.pipeline.every((p) => p.est);
+const defaulted = (c, what) => (c.src?.defaults || []).includes(what);
+// Score parts that rest on placeholder inputs. They're shown, but left out of the total until real estimates exist.
+function guessedParts(c) {
+  return {
+    market: defaulted(c, "market opportunity"),
+    valuation: placeholderPeaks(c),
+    strategic: defaulted(c, "patent life") && !(c.partners || []).length,
+  };
+}
+
 function scoreParts(c) {
   const r = runway(c);
   const financial = Math.max(0, Math.min(100,
@@ -131,7 +143,10 @@ function scoreParts(c) {
 
   const best = Math.max(...c.pipeline.map((p) => phaseRank(p.ph)));
   const depth = Math.min(1, c.pipeline.length / 3);
-  const pipeline = Math.min(100, (best / 6) * 62 + depth * 20 + c.diff * 18);
+  // Without a company-specific differentiation rating, score phase and depth alone, on the same 0-100 scale.
+  const pipeline = defaulted(c, "differentiation")
+    ? Math.min(100, ((best / 6) * 62 + depth * 20) / 82 * 100)
+    : Math.min(100, (best / 6) * 62 + depth * 20 + c.diff * 18);
 
   const nc = nextCatalyst(c);
   const d = nc ? days(nc.date) : 999;
@@ -160,8 +175,10 @@ const WEIGHTS = [
 ];
 
 function bis(c) {
-  const p = scoreParts(c);
-  return Math.round(WEIGHTS.reduce((s, [, k, w]) => s + p[k] * w, 0));
+  const p = scoreParts(c), g = guessedParts(c);
+  const used = WEIGHTS.filter(([, k]) => !g[k]);
+  const wsum = used.reduce((s, [, , w]) => s + w, 0);
+  return wsum > 0 ? Math.round(used.reduce((s, [, k, w]) => s + p[k] * w, 0) / wsum) : null;
 }
 
 function alertsFor(c) {
@@ -174,14 +191,14 @@ function alertsFor(c) {
   if (nc && nc.kind === "earnings") out.push({ sev: "low", text: `${shortLabel(nc.label)} in ${days(nc.date)} days.` });
   else if (nc && days(nc.date) <= 45) out.push({ sev: "high", text: `${shortLabel(nc.label)} in ${days(nc.date)} days.` });
   else if (nc && days(nc.date) <= 120) out.push({ sev: "low", text: `${shortLabel(nc.label)} in ${days(nc.date)} days.` });
-  const atm = c.financings.find((f) => f.type === "ATM program" && days(f.date) > -540);
+  const atm = c.financings.find((f) => /^ATM program/.test(f.type) && days(f.date) > -540);
   if (atm) out.push({ sev: "med", text: `It has had an at-the-market program since ${fmtDate(atm.date)}, so it can sell new shares quietly, without announcing a deal.` });
   const dil = shareGrowth(c);
   if (dil > 25) out.push({ sev: "med", text: `The number of shares has grown about ${num(dil, 0)}% ${dilutionPhrase(c)}, which shrinks each existing holder's slice.` });
   if (c.deal?.status === "pending") out.push({ sev: "high", text: `Being bought${c.deal.by ? ` by ${c.deal.by}` : ""}: a ${c.deal.how} has been under way since ${fmtDate(c.deal.since)}. Its financing risk matters little while the deal is pending, and it leaves Helixora once the deal closes.` });
   if (c.stale) out.push({ sev: "low", text: "We couldn't update this company in the latest refresh, so these figures are from an earlier run." });
   const evpv = c.ev / Math.max(pipelineValue(c), 1);
-  if (evpv < 0.8) out.push({ sev: "low", text: `The company is valued about ${num((1 - evpv) * 100, 0)}% below our rough estimate of what its pipeline is worth. That estimate leans on a placeholder sales figure, so check it before calling the stock cheap.` });
+  if (evpv < 0.8 && !placeholderPeaks(c)) out.push({ sev: "low", text: `The company is valued about ${num((1 - evpv) * 100, 0)}% below our rough estimate of what its pipeline is worth. That estimate leans on a placeholder sales figure, so check it before calling the stock cheap.` });
   return out;
 }
 
@@ -672,9 +689,9 @@ function Screen({ go }) {
       return true;
     }).map((c) => {
       const nc = nextCatalyst(c);
-      return { c, bis: bis(c), fps: fpsOf(c).score ?? -1, run: runway(c), nd: nc ? days(nc.date) : 9999, nc, pv: pipelineValue(c) };
+      return { c, bis: bis(c), fps: fpsOf(c).score ?? -1, run: runway(c), nd: nc ? days(nc.date) : 9999, nc, dil: c.dil24 ?? -999 };
     });
-    const key = { fps: (r) => r.fps, bis: (r) => r.bis, run: (r) => r.run, cap: (r) => r.c.mcap, cash: (r) => r.c.cash, next: (r) => -r.nd, pv: (r) => r.pv, ticker: (r) => r.c.t };
+    const key = { fps: (r) => r.fps, bis: (r) => r.bis, run: (r) => r.run, cap: (r) => r.c.mcap, cash: (r) => r.c.cash, next: (r) => -r.nd, dil: (r) => r.dil, ticker: (r) => r.c.t };
     return out.sort((a, b) => {
       const A = key[sort](a), B = key[sort](b);
       return (typeof A === "string" ? A.localeCompare(B) : A - B) * dir;
@@ -720,10 +737,10 @@ function Screen({ go }) {
               <thead><tr>
                 {th("ticker", "Ticker")}<th>Company</th><th>Lead program</th>
                 {th("cap", "Market cap", "r")}{th("cash", "Cash", "r")}{th("run", "Runway", "r")}
-                {th("next", "Next catalyst", "r")}{th("pv", "Pipeline rNPV", "r")}{th("fps", "Financing pressure", "r")}
+                {th("next", "Next catalyst", "r")}{th("dil", "Share growth, 2 yrs", "r")}{th("fps", "Financing pressure", "r")}
               </tr></thead>
               <tbody>
-                {rows.map(({ c, run, nd, nc, pv }) => {
+                {rows.map(({ c, run, nd, nc }) => {
                   const lead = leadProgram(c);
                   return (
                     <tr key={c.t} onClick={() => go("company", c.t)}>
@@ -734,7 +751,7 @@ function Screen({ go }) {
                       <td className="r mono">{money(c.cash)}</td>
                       <td className={"r mono nowrap " + (run < 12 ? "warn" : "")}>{fmtRunway(run)}</td>
                       <td className="r mono">{nd > 9000 ? "—" : `${nd}d`}<span className="sub r clip" title={nc?.label}>{nc ? shortLabel(nc.label) : ""}</span></td>
-                      <td className="r mono">{money(pv)}</td>
+                      <td className={"r mono " + (c.dil24 > 25 ? "warn" : "")}>{c.dil24 == null ? "—" : `${c.dil24 > 0 ? "+" : ""}${num(c.dil24, 0)}%`}</td>
                       <td className="r"><BandBadge c={c} /></td>
                     </tr>
                   );
@@ -762,6 +779,9 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
   const r = runway(c);
   const parts = scoreParts(c);
   const score = bis(c);
+  const guessed = guessedParts(c);
+  const usedWeight = WEIGHTS.filter(([, k]) => !guessed[k]).reduce((s, [, , w]) => s + w, 0);
+  const illus = placeholderPeaks(c);
   const pv = pipelineValue(c, { discount: disc / 100 });
   const nc = nextCatalyst(c);
 
@@ -816,7 +836,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
             <dt>Cash and investments</dt><dd className="num">{money(c.cash)}</dd>
             <dt>Cash runway</dt><dd className={"num " + (r < 12 ? "warn" : "")}>{c.cashFlowPositive ? "Cash flow positive" : fmtRunway(r, "months")}</dd>
             <dt>Next catalyst</dt><dd>{nc ? <>{fmtDate(nc.date)} <span className="sub inline">({days(nc.date)} days)</span></> : "None dated"}</dd>
-            <dt>Research score</dt><dd className="num">{Number.isFinite(score) ? <>{score} <span className="sub inline">of 100</span></> : "—"}</dd>
+            <dt>Research score</dt><dd className="num">{Number.isFinite(score) ? <>{score} <span className="sub inline">of 100{Object.values(guessed).some(Boolean) ? ", measured parts" : ""}</span></> : "—"}</dd>
           </dl>
         </div>
         {c.note && <p className="q-note">{c.note}</p>}
@@ -950,14 +970,15 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
             </section>
 
             <section className="panel">
-              <header className="ph"><h2>Financing history</h2><span className="ph-note">Offering filings from the past three years.</span></header>
+              <header className="ph"><h2>Financing history</h2><span className="ph-note">Offering filings from the past three years. Size and share impact are read from each prospectus's cover page; an ATM shows the most the company may sell.</span></header>
               <table className="grid plain">
                 <thead><tr><th>Date</th><th>Instrument</th><th className="r">Size</th><th className="r">Share count impact</th></tr></thead>
                 <tbody>
                   {c.financings.length === 0 && <tr><td colSpan="4" className="empty">No offering filings in the last three years.</td></tr>}
                   {c.financings.map((f, i) => (
                     <tr key={i}><td className="mono">{fmtDate(f.date)}</td><td><ExtLink href={f.url}>{f.type}</ExtLink></td>
-                      <td className="r mono">{f.amt != null ? money(f.amt) : "—"}</td><td className="r mono">{f.dil ? `+${num(f.dil)}%` : "—"}</td></tr>
+                      <td className="r mono">{f.amt != null ? <>{f.upTo ? "up to " : ""}{money(f.amt)}</> : f.resale ? "None" : "—"}</td>
+                      <td className="r mono">{f.dil ? <span title={f.dilApprox ? "Measured against today's share count, because the prospectus didn't state the count before the sale" : `${num(f.newShares, 1)}M new shares at $${num(f.price, 2)}`}>{f.dilApprox ? "about " : ""}+{num(f.dil)}%</span> : f.upTo ? <span className="sub inline">sold over time</span> : "—"}</td></tr>
                   ))}
                 </tbody>
               </table>
@@ -1039,7 +1060,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
         <div className="stack">
           <section className="panel">
             <header className="ph"><h2>Risk-adjusted pipeline value</h2>
-              <span className="ph-note">Adjust the assumptions to test the model. This is not a price target.</span></header>
+              <span className="ph-note">{illus ? "Illustrative only: every program uses Helixora's standard peak-sales figure for its phase ($500M to $900M), not a forecast for this company." : "Adjust the assumptions to test the model. This is not a price target."}</span></header>
             <div className="two">
               <label className="f wide"><span>Discount rate {disc}%</span>
                 <input type="range" min="6" max="20" value={disc} onChange={(e) => setDisc(+e.target.value)} /></label>
@@ -1064,9 +1085,9 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
               </ResponsiveContainer>
             </div>
             <div className="metrics two-up">
-              <div className="metric"><span>Modeled pipeline value</span><b className="mono">{money(c.pipeline.reduce((s, p) => s + rnpv(p, { discount: disc / 100, posOverride: Math.max(0.01, (p.odds?.loa ?? POS[p.ph]) + posAdj / 100) }), 0))}</b></div>
+              <div className="metric"><span>Modeled pipeline value{illus ? " (illustrative)" : ""}</span><b className="mono">{money(c.pipeline.reduce((s, p) => s + rnpv(p, { discount: disc / 100, posOverride: Math.max(0.01, (p.odds?.loa ?? POS[p.ph]) + posAdj / 100) }), 0))}</b></div>
               <div className="metric"><span>Enterprise value today</span><b className="mono">{money(c.ev)}</b></div>
-              <div className="metric"><span>Enterprise value as a share of modeled value</span><b className="mono">{num((c.ev / pv) * 100, 0)}%</b></div>
+              <div className="metric"><span>Enterprise value as a share of modeled value{illus ? " (illustrative)" : ""}</span><b className="mono">{num((c.ev / pv) * 100, 0)}%</b></div>
               <div className="metric"><span>Cash per share</span><b className="mono">${num(c.cash / c.shares, 2)}</b></div>
             </div>
           </section>
@@ -1082,15 +1103,22 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
           <div className="scorewrap">
             <div className="bigscore"><span className="mono">{score}</span><small>out of 100</small></div>
             <div className="scorelist">
-              {WEIGHTS.map(([label, key, w]) => (
+              {WEIGHTS.map(([label, key, w]) => guessed[key] ? (
+                <div key={key} className="scorerow off">
+                  <span className="sl">{label}<em>not scored</em></span>
+                  <span className="sub">Needs a company-specific estimate; Helixora only has a placeholder</span>
+                  <span className="mono sv">—</span>
+                </div>
+              ) : (
                 <div key={key} className="scorerow">
-                  <span className="sl">{label}<em>{Math.round(w * 100)}% weight</em></span>
+                  <span className="sl">{label}<em>{Math.round((w / usedWeight) * 100)}% weight</em></span>
                   <Bar100 v={parts[key]} color={PHASE_COLOR[PHASES[Math.min(6, Math.floor(parts[key] / 16))]]} />
                   <span className="mono sv">{Math.round(parts[key])}</span>
                 </div>
               ))}
             </div>
           </div>
+          {Object.values(guessed).some(Boolean) && <p className="colnote">Parts that rest on placeholder figures (standard peak sales by phase, a default market rating, a default patent life) are left out, and the score is the weighted average of the parts measured from filings and trial registries. They come back in once there's a real estimate for this company.{defaulted(c, "differentiation") ? " Pipeline quality is scored on phase and number of programs only, without a differentiation rating." : ""}</p>}
         </section>
       )}
     </div>
@@ -1166,8 +1194,8 @@ function Compare() {
     ["Monthly burn", (c) => (c.cashFlowPositive ? "Cash-generating" : `$${num(c.burn)}M`), 1],
     ["Runway", (c) => (c.cashFlowPositive ? "Not needed" : `${num(runway(c))} mo`), 1],
     ["Next catalyst", (c) => (nextCatalyst(c) ? `${days(nextCatalyst(c).date)}d` : "—"), 1],
-    ["Pipeline rNPV", (c) => money(pipelineValue(c)), 1],
-    ["EV / rNPV", (c) => `${num((c.ev / pipelineValue(c)) * 100, 0)}%`, 1],
+    ["Pipeline rNPV", (c) => <>{money(pipelineValue(c))}{placeholderPeaks(c) && <span className="sub">illustrative</span>}</>, 1],
+    ["EV / rNPV", (c) => <>{num((c.ev / pipelineValue(c)) * 100, 0)}%{placeholderPeaks(c) && <span className="sub">illustrative</span>}</>, 1],
     ["Institutional ownership", (c) => (c.own == null ? "—" : `${num(c.own, 0)}%`), 1],
     ["Financing Pressure Score", (c) => <BandBadge c={c} />],
     ["Runway-to-catalyst gap", (c) => fmtGap(fpsOf(c).gap), 1],
@@ -1238,7 +1266,7 @@ function Ask() {
     }
     const list = [...pool].sort((a, b) => bis(b) - bis(a)).slice(0, 5);
     return "By composite score:\n\n" + list.map((c) =>
-      `${c.t} — score ${bis(c)}. ${money(c.cash)} cash, ${num(runway(c))} months runway, enterprise value ${money(c.ev)} against modeled pipeline value of ${money(pipelineValue(c))}.`).join("\n");
+      `${c.t} — score ${bis(c)}. ${money(c.cash)} cash, ${num(runway(c))} months runway, enterprise value ${money(c.ev)} against modeled pipeline value of ${money(pipelineValue(c))}${placeholderPeaks(c) ? " (illustrative: standard peak sales by phase)" : ""}.`).join("\n");
   };
 
   const send = async (question) => {
@@ -4567,6 +4595,8 @@ tr.noclick{cursor:default;}
 .sl{font-size:14px;}
 .sl em{display:block;font-style:normal;font-size:12px;color:var(--mut);}
 .scorerow .bar100{width:100%;height:8px;margin:0;}
+.scorerow.off .sl{opacity:.6;}
+.scorerow.off .sub{font-size:12px;}
 .sv{font-size:14px;text-align:right;}
 
 /* ask */
