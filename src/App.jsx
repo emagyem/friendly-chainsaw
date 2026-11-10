@@ -1941,6 +1941,9 @@ function Backtest() {
               </tbody>
             </table>
             <p className="colnote">Weights shown add up to 90%; pipeline concentration keeps its 10% because it can't be tested on past data. Return gap: median 12-month return against XBI of the safest 30% of company-quarters minus the riskiest 30%. {w.rule} {w.adopt ? "The new weights passed and are now used in the live score (version history on About us)." : "They didn't pass, so the published weights stay."}</p>
+            {!w.adopt && w.tuned.test.auc > w.published.test.auc && (w.tuned.test.spread ?? 0) < (w.published.test.spread ?? 0) && (
+              <p className="prose"><b>Why not switch?</b> The best-fit mix leans on whether a shelf or ATM is on file. That predicts a raise slightly better (AUC {w.tuned.test.auc.toFixed(3)} vs {w.published.test.auc.toFixed(3)}), but it loses most of the return gap ({num(w.tuned.test.spread, 1)} points vs {num(w.published.test.spread, 1)}). Having a shelf shows a company <i>can</i> sell stock; running short of cash before its next readout is what goes with the shares lagging. The published mix does both jobs, so it stays.</p>
+            )}
           </div>
         );
       })()}

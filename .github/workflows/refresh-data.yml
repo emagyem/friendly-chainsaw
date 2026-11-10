@@ -9,7 +9,7 @@ on:
   workflow_dispatch:           # adds a "Run workflow" button on the Actions tab
   push:                        # also refresh when the ticker list, assumptions or script change
     branches: [main]
-    paths: ["config/**", "scripts/fetch-data.mjs", "scripts/markets.mjs", "server/markets-list.js"]
+    paths: ["config/**", "scripts/fetch-data.mjs", "scripts/offering.mjs", "scripts/markets.mjs", "server/markets-list.js"]
 
 permissions:
   contents: write
