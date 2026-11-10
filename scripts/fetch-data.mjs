@@ -23,6 +23,8 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dealStatus, buyerInfo, tidyName } from "./deal-status.mjs";
 import { parseOffering, OFFERING_PARSER } from "./offering.mjs";
+import { form4Filings, parseForm4, summarizeInsiders } from "./insiders.mjs";
+import { shortInterest, summarizeShort } from "./shorts.mjs";
 import { pathToFileURL } from "node:url";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
 import { runwaySim, QUANT_VERSION } from "../src/quant.js";
@@ -35,6 +37,11 @@ const HISTORY_FILE = new URL("fps-history.json", OUT_DIR);
 const BENCHMARK = { symbol: "XBI", name: "SPDR S&P Biotech ETF" };
 const TRIAL_HISTORY_FILE = new URL("trial-history.json", OUT_DIR);
 const PREDICTIONS_FILE = new URL("predictions.json", OUT_DIR);
+// Form 4 filings already read, by accession number (a filing never changes once made).
+const INSIDER_CACHE_FILE = new URL("insider-cache.json", OUT_DIR);
+let INSIDER_CACHE = {};
+// Short interest history by ticker, loaded once per run from FINRA.
+let SHORTS = {};
 
 const UA = process.env.SEC_USER_AGENT;
 const AV_KEY = process.env.ALPHA_VANTAGE_KEY;
@@ -846,6 +853,21 @@ async function readOfferings(financings, sharesNowM) {
     .map((f) => (f.parsed?.kind === "preliminary" ? { ...f, type: "Preliminary prospectus, final terms not found", amt: f.parsed.amt, approxAmt: true } : f));
 }
 
+// Open-market insider trades over the last year (biotechs in coverage only).
+async function insidersFor(sub, cik) {
+  const filings = form4Filings(sub, cik).slice(0, 80);
+  const rows = [];
+  for (const f of filings) {
+    if (!INSIDER_CACHE[f.acc]) {
+      const p = parseForm4(await secText(f.url));
+      INSIDER_CACHE[f.acc] = { filed: f.filed, owner: p?.owner || "", title: p?.title || "", role: p?.role || "insider", tx: p?.tx || [] };
+    }
+    const c = INSIDER_CACHE[f.acc];
+    for (const t of c.tx) rows.push({ ...t, owner: c.owner, title: c.title, role: c.role, url: f.url });
+  }
+  return summarizeInsiders(rows);
+}
+
 async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, durTables = null) {
   const cik = cikByTicker.get(ticker);
   if (!cik) throw new Error(`ticker not found in SEC's company list`);
@@ -960,6 +982,8 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
     burnPrior: round(fin.burnPrior, 2),
     debtDue24: round(fin.debtDue24, 1),
     raise,
+    short: summarizeShort(SHORTS[ticker], fin.shares, a.adr),
+    ...(a.segment ? {} : { insiders: await insidersFor(sub, cik) }),
     quote: {
       price: round(px.price, 2),
       prev: round(px.prev, 2),
@@ -1043,6 +1067,14 @@ async function main() {
   const cikByTicker = new Map(Object.values(tickers || {}).map((r) => [r.ticker.toUpperCase(), r.cik_str]));
   // The ticker list keeps companies' own capitalization ("DBV Technologies"); EDGAR's filer names are all caps.
   cikByTicker.titles = new Map(Object.values(tickers || {}).map((r) => [r.ticker.toUpperCase(), r.title]));
+
+  try { INSIDER_CACHE = JSON.parse(await readFile(INSIDER_CACHE_FILE, "utf8")); } catch { /* first run */ }
+  console.log("Loading short interest from FINRA…");
+  try {
+    const all = [...config.tickers, ...(config.industry || []).map((x) => x.t)].map((t) => t.toUpperCase());
+    SHORTS = await shortInterest(all);
+    console.log(`  ${Object.values(SHORTS).filter((h) => h.length).length} of ${all.length} tickers have short-interest data`);
+  } catch (e) { warn(`Short interest download failed: ${e.message}`); }
 
   let durTables = null;
   try { durTables = await durationTables(); console.log(`Trial-duration tables: ${Object.entries(durTables).map(([k, v]) => `${k} n=${v.n}`).join("; ")}`); }
@@ -1164,6 +1196,9 @@ async function main() {
   }
   await mkdir(OUT_DIR, { recursive: true });
   await writeFile(TRIAL_HISTORY_FILE, JSON.stringify(trialHist) + "\n");
+  // Keep only filings from the last ~13 months so the cache doesn't grow forever.
+  const keepFrom = new Date(Date.now() - 400 * 864e5).toISOString().slice(0, 10);
+  await writeFile(INSIDER_CACHE_FILE, JSON.stringify(Object.fromEntries(Object.entries(INSIDER_CACHE).filter(([, v]) => v.filed >= keepFrom))) + "\n");
 
   const out = {
     meta: {
