@@ -31,7 +31,8 @@
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { computeFPS, FPS_VERSION } from "../src/fps.js";
+import { computeFPS, FPS_VERSION, FPS_COMPONENTS } from "../src/fps.js";
+const FPS_WEIGHTS = Object.fromEntries(FPS_COMPONENTS.map((k) => [k.key, k.weight]));
 import { candidateSentences, eventsFromSentences, toText } from "./guidance.mjs";
 
 const UA = process.env.SEC_USER_AGENT;
@@ -363,6 +364,62 @@ function evaluate(rows, companies) {
   };
 }
 
+/* ---------------------------- weight test ----------------------------
+   Are the published weights any good? Try every mix of the five testable
+   checks (steps of 5 points) on the earlier years, pick the mix that best
+   separates companies that raised from those that didn't, then compare it
+   with the published weights on the later years, which the search never saw.
+   Pipeline concentration can't be tested and keeps its 10%. */
+
+const TESTABLE = ["gap", "trend", "capacity", "debt", "access"];
+const SPLIT = "2019-01-01";
+
+function mixes(total = 18, k = TESTABLE.length) {
+  if (k === 1) return [[total]];
+  const out = [];
+  for (let i = 0; i <= total; i++) for (const rest of mixes(total - i, k - 1)) out.push([i, ...rest]);
+  return out;
+}
+
+function scoreWith(rows, w) {
+  return rows.map((r) => {
+    let s = 0, ws = 0;
+    TESTABLE.forEach((k, i) => { const v = r.parts[k]; if (v != null && w[i] > 0) { s += v * w[i]; ws += w[i]; } });
+    return { y12: r.y12, x12: r.x12, s: ws > 0 ? s / ws : 0 };
+  });
+}
+
+// Median 12-month excess return of the safest 30% minus the riskiest 30% (by score), in points.
+function spreadOf(scored) {
+  const p = scored.filter((r) => r.x12 != null).sort((a, b) => a.s - b.s);
+  if (p.length < 100) return null;
+  const cut = Math.floor(p.length * 0.3);
+  const med = (xs) => { const s = xs.map((r) => r.x12).sort((a, b) => a - b); return s[Math.floor(s.length / 2)]; };
+  return Math.round((med(p.slice(0, cut)) - med(p.slice(-cut))) * 1000) / 10;
+}
+
+function weightTest(rows) {
+  const train = rows.filter((r) => r.filed < SPLIT), test = rows.filter((r) => r.filed >= SPLIT);
+  const published = TESTABLE.map((k) => FPS_WEIGHTS[k]);
+  let best = null;
+  for (const m of mixes()) {
+    const w = m.map((x) => x * 0.05);
+    const a = auc(scoreWith(train, w), "s");
+    if (a != null && (!best || a > best.auc)) best = { w, auc: a };
+  }
+  const evalOn = (set, w) => { const sc = scoreWith(set, w); return { auc: r3(auc(sc, "s")), spread: spreadOf(sc) }; };
+  const pub = { train: evalOn(train, published), test: evalOn(test, published) };
+  const tuned = { train: evalOn(train, best.w), test: evalOn(test, best.w) };
+  const adopt = tuned.test.auc - pub.test.auc >= 0.01 && (tuned.test.spread ?? -99) >= (pub.test.spread ?? 99);
+  return {
+    split: SPLIT, trainRows: train.length, testRows: test.length,
+    published: { weights: Object.fromEntries(TESTABLE.map((k, i) => [k, published[i]])), ...pub },
+    tuned: { weights: Object.fromEntries(TESTABLE.map((k, i) => [k, Math.round(best.w[i] * 100) / 100])), ...tuned },
+    adopt,
+    rule: "The tuned weights replace the published ones only if, on the later years the search never saw, they separate raisers from non-raisers better (AUC up by at least 0.01) and the safest-vs-riskiest return gap doesn't shrink.",
+  };
+}
+
 /* -------------------------------- main -------------------------------- */
 
 /* ------------------------- share-price returns -------------------------
@@ -541,6 +598,9 @@ async function main() {
   result.raisedOrEnded = { base12: end.base12, auc: end.auc, bands: end.bands, survivorsAuc: end.survivors.auc, nonSurvivorsAuc: end.nonSurvivors.auc };
   result.eventsByHow = { "offering filing": rows.filter((r) => r.how === "offering filing").length, "share count jump": rows.filter((r) => r.how === "share count jump").length };
   result.examples = examples;
+  console.log("Testing other score weights…");
+  result.weightTest = weightTest(rows);
+  console.log(JSON.stringify(result.weightTest));
   // Catalyst timing: how much the company-guided dates add.
   const nc = evaluate(rows.map((r) => ({ ...r, score: r.scoreNoCat, band: r.bandNoCat, parts: r.partsNoCat })), companies);
   const gRows = rows.filter((r) => r.guided);
