@@ -15,6 +15,9 @@
 
 import { toText } from "./guidance.mjs";
 
+// Bump when the reading rules change, so prospectuses read under older rules are read again.
+export const OFFERING_PARSER = 2;
+
 const num = (s) => parseFloat(String(s).replace(/,/g, ""));
 const scale = (v, unit) => (/billion/i.test(unit || "") ? v * 1000 : /million/i.test(unit || "") ? v : v / 1e6);
 
@@ -26,7 +29,8 @@ const ATM_UPTO = [
   /may offer and sell (?:shares of (?:our )?common stock (?:having an aggregate offering price of )?)?up to (?:an additional )?\$\s?([\d,]+(?:\.\d+)?)\s*(million|billion)?/i,
 ];
 const SALES_AGENT = /\b(sales agreement|sale agreement|equity distribution agreement|open market sale agreement|at[- ]the[- ]market|controlled equity offering|sales agent)\b/i;
-const SELLING_HOLDERS = /\bselling (?:stock|share)holders?\b/i;
+// Shareholders selling their own shares: explicit resale wording, not a passing mention of "selling stockholders".
+const RESALE = /\b(?:resale|re-sale|offer and (?:re)?sale|disposition|offer and sell)\b[^.]{0,250}?\bby (?:the )?selling (?:stock|share)holders?\b|\bwe will not receive any (?:of the )?proceeds from (?:the|any) (?:re)?sales? (?:of (?:the )?(?:shares|securities) )?by (?:the )?selling (?:stock|share)holders?\b/i;
 const OFFERING_SHARES = new RegExp(`${SUBJ}([\\d,]{5,})\\s+(?:of\\s+)?(?:(?:our|its)\\s+)?${STOCK}`, "i");
 // A preliminary prospectus: the deal is sized in dollars and the share count is left blank until pricing.
 const PRELIM_DOLLARS = new RegExp(`${SUBJ}\\$\\s?([\\d,.]+)\\s*(million|billion)?\\s+(?:of\\s+)?(?:(?:our|its)\\s+)?(?:shares|${STOCK})`, "i");
@@ -52,7 +56,7 @@ export function parseOffering(html, sharesNowM = null) {
   const cover = text.slice(0, 25000);
   const sm = cover.match(OFFERING_SHARES);
 
-  if (SELLING_HOLDERS.test(cover.slice(0, 4000)) && !sm) return { kind: "resale" };
+  const resale = RESALE.test(cover.slice(0, 8000)) && !/\bwe are offering\b/i.test(cover.slice(0, 8000));
 
   const notes = cover.match(NOTES);
   if (notes) {
@@ -65,6 +69,8 @@ export function parseOffering(html, sharesNowM = null) {
     const amt = scale(num(atm[1]), atm[2]);
     if (amt >= 1 && amt <= 20000) return { kind: "atm", amt: round(amt), upTo: true };
   }
+
+  if (resale) return { kind: "resale" };
 
   if (!sm) {
     const pd = cover.match(PRELIM_DOLLARS);

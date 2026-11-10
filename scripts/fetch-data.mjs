@@ -22,7 +22,7 @@
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dealStatus, buyerInfo, tidyName } from "./deal-status.mjs";
-import { parseOffering } from "./offering.mjs";
+import { parseOffering, OFFERING_PARSER } from "./offering.mjs";
 import { pathToFileURL } from "node:url";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
 import { runwaySim, QUANT_VERSION } from "../src/quant.js";
@@ -828,7 +828,7 @@ async function readOfferings(financings, sharesNowM) {
   for (const f of financings) {
     if (!f.url) continue;
     let p = OFFER_CACHE.get(f.url);
-    if (p === undefined) { p = parseOffering(await secText(f.url), sharesNowM) || { kind: "unread" }; OFFER_CACHE.set(f.url, p); }
+    if (p === undefined) { p = { ...(parseOffering(await secText(f.url), sharesNowM) || { kind: "unread" }), v: OFFERING_PARSER }; OFFER_CACHE.set(f.url, p); }
     f.parsed = p;
     if (p.kind === "priced") {
       Object.assign(f, { amt: p.amt, dil: p.dil, price: p.price, newShares: p.shares, ...(p.approx ? { dilApprox: true } : {}), ...(p.ipo ? { type: "Initial public offering (424B4)" } : {}) });
@@ -1035,7 +1035,7 @@ async function main() {
     const prev = JSON.parse(await readFile(OUT_FILE, "utf8"));
     for (const c of [...(prev.companies || []), ...(prev.industry || prev.bigPharma || [])]) previous[c.t] = c;
     previous.__meta = prev.meta;
-    for (const c of Object.values(previous)) for (const f of c?.financings || []) if (f.url && f.parsed && f.parsed.kind !== "unread") OFFER_CACHE.set(f.url, f.parsed);
+    for (const c of Object.values(previous)) for (const f of c?.financings || []) if (f.url && f.parsed?.v === OFFERING_PARSER && f.parsed.kind !== "unread") OFFER_CACHE.set(f.url, f.parsed);
   } catch { /* first run */ }
 
   console.log("Loading SEC ticker list…");

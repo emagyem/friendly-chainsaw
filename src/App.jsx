@@ -1782,6 +1782,8 @@ function useBacktest() {
 }
 
 // What a simple strategy would have earned (backtest.json → returns).
+const TESTABLE_PARTS = ["gap", "trend", "capacity", "debt", "access"];
+
 function BacktestReturns({ r }) {
   const b = Object.fromEntries((r.bands || []).map((x) => [x.band, x]));
   const dec = (r.deciles || []).filter((d) => d.median12 != null);
@@ -1923,13 +1925,33 @@ function Backtest() {
         </div>
       )}
 
+      {bt.weightTest && (() => {
+        const w = bt.weightTest, pc = (x) => `${Math.round(x * 100)}%`;
+        const yr = w.split.slice(0, 4);
+        return (
+          <div className="tablewrap">
+            <h3 className="subh">Are the score's weights right?</h3>
+            <p className="prose">We tried every mix of the five testable parts, in 5-point steps, on balance sheets filed before {yr}, and kept the mix that best separated companies that raised from those that didn't. Then we compared it with the published weights on {yr} onward, years the search never saw ({w.testRows.toLocaleString()} company-quarters).</p>
+            <table className="grid plain">
+              <thead><tr><th>Weights</th>{TESTABLE_PARTS.map((k) => <th key={k} className="num">{COMP[k] || k}</th>)}<th className="num">AUC, {yr} onward</th><th className="num">Return gap, {yr} onward</th></tr></thead>
+              <tbody>
+                {[["Published", w.published], ["Best fit on earlier years", w.tuned]].map(([l, v]) => (
+                  <tr key={l}><td><b>{l}</b></td>{TESTABLE_PARTS.map((k) => <td key={k} className="num">{pc(v.weights[k])}</td>)}<td className="num">{v.test.auc?.toFixed(3)}</td><td className="num">{v.test.spread != null ? `${num(v.test.spread, 1)} pts` : "—"}</td></tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="colnote">Weights shown add up to 90%; pipeline concentration keeps its 10% because it can't be tested on past data. Return gap: median 12-month return against XBI of the safest 30% of company-quarters minus the riskiest 30%. {w.rule} {w.adopt ? "The new weights passed and are now used in the live score (version history on About us)." : "They didn't pass, so the published weights stay."}</p>
+          </div>
+        );
+      })()}
+
       <div className="takeaways">
         <h3 className="subh">What this tells us</h3>
         <ul className="watch">
           <li><b>The score points the right way, but the signal is modest.</b> High-band companies raised more often than Low-band ones in {yrs.filter((y) => y.high > y.low).length} of {yrs.length} years, but an AUC of {bt.auc?.toFixed(2)} is a long way from perfect. Treat a High score as "more likely", not "certain".</li>
           <li><b>Almost every cash-burning biotech raises often.</b> {P(bt.base12)} of company-quarters were followed by a raise within a year, so the useful question is less "will they raise?" than "how soon, and how badly do they need it?"</li>
           {(() => { const a = bt.runwayBuckets[0], b = bt.runwayBuckets[1]; return a && b && a.raised12 < b.raised12 ? <li><b>Companies nearly out of cash often can't raise at all.</b> With under 6 months left, only {P(a.raised12)} raised within a year, fewer than the {P(b.raised12)} with 6–12 months. Many of the rest were sold, wound down or went bankrupt instead. The "raised or stopped filing" row counts those too.</li> : null; })()}
-          {(() => { const c = Object.entries(bt.components).sort((x, y) => (y[1].auc || 0) - (x[1].auc || 0))[0]; return c ? <li><b>The strongest single part is "{COMP[c[0]] || c[0]}"</b> (AUC {c[1].auc?.toFixed(2)}). Burn trend and debt add almost nothing on their own. That points to re-weighting the score toward what works; any change will be logged on the About us page.</li> : null; })()}
+          {(() => { const c = Object.entries(bt.components).sort((x, y) => (y[1].auc || 0) - (x[1].auc || 0))[0]; return c ? <li><b>The strongest single part is "{COMP[c[0]] || c[0]}"</b> (AUC {c[1].auc?.toFixed(2)}). Burn trend and debt add almost nothing on their own. {bt.weightTest ? (bt.weightTest.adopt ? "Re-weighting toward what works held up on later years, so the live score now uses the new weights." : "But shifting weight toward it didn't hold up on later years (see \"Are the score's weights right?\" above), so the weights are unchanged.") : "That points to re-weighting the score toward what works; any change will be logged on the About us page."}</li> : null; })()}
           {bt.catalystTiming ? (
             <li><b>Catalyst timing comes from what companies told investors at the time.</b> We read {bt.catalystTiming.filingsRead.toLocaleString()} quarterly and annual reports for dated guidance like "topline data in the second half of 2019"; {P(bt.catalystTiming.shareWithGuidance)} of company-quarters had some. With those dates the score's ranking accuracy is {bt.auc?.toFixed(2)}, against {bt.catalystTiming.withoutGuidance.auc?.toFixed(2)} with the flat 18-month assumption{bt.catalystTiming.guidedRowsOnly.auc != null ? ` (${bt.catalystTiming.guidedRowsOnly.auc.toFixed(2)} vs ${bt.catalystTiming.guidedRowsOnly.aucWithoutGuidance.toFixed(2)} on just the quarters that had guidance)` : ""}.{bt.auc < bt.catalystTiming.withoutGuidance.auc ? " So knowing when news is due made the score slightly worse, not better. One likely reason: biotechs often raise money right after a readout, while the shares are up, so a catalyst coming soon doesn't mean less need for cash, which is how the score treats it today." : ""}</li>
           ) : (
