@@ -12,7 +12,7 @@
 import { toText } from "./guidance.mjs";
 
 // Bump when the reading rules change, so reports read under older rules are read again.
-export const PERIODIC_PARSER = 2;
+export const PERIODIC_PARSER = 3;
 
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 const WORDNUM = { twelve: 12, eighteen: 18, "twenty-four": 24, "twenty four": 24, thirty: 30, "thirty-six": 36, "thirty six": 36, one: 1, two: 2, three: 3 };
@@ -84,6 +84,29 @@ function runwayGuidance(sents, filed) {
     if (!floor || h.until > floor.until) floor = { kind: "floor", say: h.say, until: h.until, text: clip(s) };
   }
   return floor;
+}
+
+/* ---- the cash total management states ---- */
+
+// "cash, cash equivalents and marketable securities of $848.6 million as of September 30, 2026".
+// Used as a cross-check on the figure worked out from the balance-sheet data, and only when the
+// sentence names the same balance-sheet date.
+const STATED = [
+  /\bcash(?:, cash equivalents)?(?:,| and)[^.$]{0,90}?(?:marketable securities|investments|securities)[^.$]{0,60}?\s(?:of|totaling|totaled|were|was)\s+(?:approximately\s+)?\$\s?([\d,]+(?:\.\d+)?)\s*(million|billion)/i,
+  /\$\s?([\d,]+(?:\.\d+)?)\s*(million|billion)\s+(?:of|in)\s+cash(?:, cash equivalents)?(?:,| and)[^.$]{0,70}?(?:marketable securities|investments|securities)/i,
+];
+function statedCash(sents, asOf) {
+  if (!asOf) return null;
+  const [y, m, d] = asOf.split("-").map(Number);
+  const dateWords = new RegExp(`\\b${MONTHS[m - 1]}\\s+${d},\\s+${y}\\b`, "i");
+  for (const s of sents) {
+    if (!dateWords.test(s) || /\b(pro forma|as adjusted|would have|net proceeds)\b/i.test(s)) continue;
+    for (const re of STATED) {
+      const hit = s.match(re);
+      if (hit) { const amt = dollars(hit[1], hit[2]); if (amt >= 5 && amt < 50000) return { amt: Math.round(amt * 10) / 10, text: clip(s) }; }
+    }
+  }
+  return null;
 }
 
 /* ---- at-the-market sales ---- */
@@ -183,9 +206,9 @@ function fdaEvents(sents, today, ownName = "") {
   return out.sort((a, b) => (a.date < b.date ? -1 : 1)).slice(0, 3);
 }
 
-export function readPeriodic(html, filed, today = new Date().toISOString().slice(0, 10), ownName = "") {
+export function readPeriodic(html, filed, today = new Date().toISOString().slice(0, 10), ownName = "", asOf = null) {
   if (!html) return null;
   const sents = sentences(toText(html).replace(/&#x2019;|&#8217;|’/g, "'").replace(/&#160;|&nbsp;/g, " "));
   if (sents.length < 50) return null;
-  return { v: PERIODIC_PARSER, runway: runwayGuidance(sents, filed), atm: atmUse(sents), other: otherMoney(sents), events: fdaEvents(sents, today, ownName) };
+  return { v: PERIODIC_PARSER, runway: runwayGuidance(sents, filed), cash: statedCash(sents, asOf), atm: atmUse(sents), other: otherMoney(sents), events: fdaEvents(sents, today, ownName) };
 }

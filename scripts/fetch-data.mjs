@@ -1013,17 +1013,25 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
   if (lastPeriodic && !a.segment) {
     let p = PERIODIC_CACHE[lastPeriodic.url];
     if (!p || p.v !== PERIODIC_PARSER) {
-      p = readPeriodic(await secText(lastPeriodic.url), lastPeriodic.date, TODAY_ISO, name) || { v: PERIODIC_PARSER, unread: true };
+      p = readPeriodic(await secText(lastPeriodic.url), lastPeriodic.date, TODAY_ISO, name, fin.asOf) || { v: PERIODIC_PARSER, unread: true };
       PERIODIC_CACHE[lastPeriodic.url] = { ...p, filed: lastPeriodic.date };
     }
     if (!p.unread) {
-      said = { form: lastPeriodic.form, date: lastPeriodic.date, url: lastPeriodic.url, runway: p.runway || null, atm: p.atm || null, other: p.other || [] };
+      said = { form: lastPeriodic.form, date: lastPeriodic.date, url: lastPeriodic.url, runway: p.runway || null, atm: p.atm || null, other: p.other || [], cash: p.cash || null };
       for (const e of p.events || []) {
         if (e.date < TODAY_ISO) continue;
         if (catalysts.some((x) => x.kind === "regulatory" && Math.abs((toDate(x.date) - toDate(e.date)) / DAY) < 15)) continue;
         catalysts.push({ date: e.date, kind: "regulatory", drug: null, est: false, guided: true, label: `${e.label} (company-announced)`, quote: e.text, src: lastPeriodic.url });
       }
     }
+  }
+
+  // If the report states a cash-and-investments total well above what the balance-sheet data adds
+  // up to, some investments are filed under a label of the company's own: use the stated total.
+  if (said?.cash && said.cash.amt > fin.cash * 1.3 && said.cash.amt - fin.cash > 20) {
+    warn(`${ticker}: cash taken from the report's own words ($${said.cash.amt}M) because the balance-sheet data adds up to only $${round(fin.cash, 1)}M`);
+    fin.cash = said.cash.amt;
+    fin.cashParts = ["Total stated in the report"];
   }
 
   const mergedFinancings = (a.financings?.length ? a.financings : await readOfferings(financings, fin.shares, ticker))
