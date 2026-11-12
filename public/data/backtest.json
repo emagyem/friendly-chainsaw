@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-12T05:27:32.492Z",
+ "generatedAt": "2026-11-12T05:47:38.015Z",
  "fpsVersion": "1.1",
  "question": "Did the Financing Pressure Score flag biotechs before they sold stock?",
  "universe": "Every company with industry code 2834, 2836 or 8731 that reported R&D spending to the SEC, burned cash, and had under $50M of trailing revenue, at each balance sheet filed 2012–2025. Includes companies that later stopped filing.",
@@ -19,12 +19,12 @@
  "events12": 14161,
  "base12": 0.592,
  "base6": 0.374,
- "auc": 0.562,
- "aucRunwayOnly": 0.522,
+ "auc": 0.559,
+ "aucRunwayOnly": 0.521,
  "components": {
   "gap": {
    "n": 23929,
-   "auc": 0.524
+   "auc": 0.522
   },
   "trend": {
    "n": 22608,
@@ -46,83 +46,83 @@
  "bands": [
   {
    "band": "High",
-   "n": 5034,
-   "raised12": 0.664,
-   "raised6": 0.459
+   "n": 4767,
+   "raised12": 0.662,
+   "raised6": 0.461
   },
   {
    "band": "Elevated",
-   "n": 11281,
-   "raised12": 0.601,
-   "raised6": 0.387
+   "n": 11004,
+   "raised12": 0.602,
+   "raised6": 0.389
   },
   {
    "band": "Low",
-   "n": 7614,
-   "raised12": 0.531,
-   "raised6": 0.297
+   "n": 8158,
+   "raised12": 0.538,
+   "raised6": 0.302
   }
  ],
  "deciles": [
   {
    "from": 4,
-   "to": 23,
+   "to": 22,
    "n": 2392,
-   "raised12": 0.462
+   "raised12": 0.467
   },
   {
-   "from": 23,
-   "to": 30,
+   "from": 22,
+   "to": 29,
    "n": 2393,
-   "raised12": 0.547
+   "raised12": 0.545
   },
   {
-   "from": 30,
-   "to": 38,
+   "from": 29,
+   "to": 36,
    "n": 2393,
-   "raised12": 0.571
+   "raised12": 0.581
   },
   {
-   "from": 38,
-   "to": 47,
+   "from": 36,
+   "to": 45,
    "n": 2393,
-   "raised12": 0.585
+   "raised12": 0.589
   },
   {
-   "from": 47,
-   "to": 55,
+   "from": 45,
+   "to": 54,
    "n": 2393,
-   "raised12": 0.608
+   "raised12": 0.603
   },
   {
-   "from": 55,
+   "from": 54,
    "to": 60,
    "n": 2393,
-   "raised12": 0.578
+   "raised12": 0.601
   },
   {
    "from": 60,
-   "to": 66,
+   "to": 65,
    "n": 2393,
-   "raised12": 0.621
+   "raised12": 0.594
   },
   {
-   "from": 66,
-   "to": 70,
+   "from": 65,
+   "to": 69,
    "n": 2393,
-   "raised12": 0.62
+   "raised12": 0.613
   },
   {
-   "from": 70,
-   "to": 76,
+   "from": 69,
+   "to": 75,
    "n": 2393,
-   "raised12": 0.654
+   "raised12": 0.65
   },
   {
-   "from": 76,
+   "from": 75,
    "to": 96,
    "n": 2393,
-   "raised12": 0.673
+   "raised12": 0.675
   }
  ],
  "years": [
@@ -130,7 +130,7 @@
    "year": "2012",
    "n": 1139,
    "base": 0.54,
-   "high": 0.538,
+   "high": 0.536,
    "low": 0.598,
    "auc": 0.457
   },
@@ -138,56 +138,56 @@
    "year": "2013",
    "n": 1196,
    "base": 0.593,
-   "high": 0.665,
-   "low": 0.54,
-   "auc": 0.558
+   "high": 0.668,
+   "low": 0.548,
+   "auc": 0.557
   },
   {
    "year": "2014",
    "n": 1378,
    "base": 0.582,
-   "high": 0.595,
+   "high": 0.584,
    "low": 0.596,
-   "auc": 0.504
+   "auc": 0.501
   },
   {
    "year": "2015",
    "n": 1528,
    "base": 0.507,
-   "high": 0.608,
-   "low": 0.415,
-   "auc": 0.584
+   "high": 0.611,
+   "low": 0.421,
+   "auc": 0.583
   },
   {
    "year": "2016",
    "n": 1569,
    "base": 0.568,
-   "high": 0.558,
-   "low": 0.545,
-   "auc": 0.519
+   "high": 0.567,
+   "low": 0.552,
+   "auc": 0.521
   },
   {
    "year": "2017",
    "n": 1581,
    "base": 0.636,
-   "high": 0.688,
-   "low": 0.616,
-   "auc": 0.516
+   "high": 0.68,
+   "low": 0.634,
+   "auc": 0.508
   },
   {
    "year": "2018",
    "n": 1691,
    "base": 0.601,
-   "high": 0.655,
-   "low": 0.57,
-   "auc": 0.534
+   "high": 0.649,
+   "low": 0.577,
+   "auc": 0.527
   },
   {
    "year": "2019",
    "n": 1793,
    "base": 0.674,
-   "high": 0.75,
-   "low": 0.631,
+   "high": 0.751,
+   "low": 0.633,
    "auc": 0.555
   },
   {
@@ -195,97 +195,97 @@
    "n": 1853,
    "base": 0.726,
    "high": 0.805,
-   "low": 0.65,
-   "auc": 0.589
+   "low": 0.66,
+   "auc": 0.585
   },
   {
    "year": "2021",
    "n": 2189,
    "base": 0.492,
-   "high": 0.589,
-   "low": 0.435,
-   "auc": 0.576
+   "high": 0.583,
+   "low": 0.441,
+   "auc": 0.569
   },
   {
    "year": "2022",
    "n": 2367,
    "base": 0.523,
-   "high": 0.605,
-   "low": 0.45,
-   "auc": 0.577
+   "high": 0.597,
+   "low": 0.471,
+   "auc": 0.565
   },
   {
    "year": "2023",
    "n": 2215,
    "base": 0.594,
-   "high": 0.643,
-   "low": 0.502,
-   "auc": 0.57
+   "high": 0.64,
+   "low": 0.516,
+   "auc": 0.567
   },
   {
    "year": "2024",
    "n": 1997,
    "base": 0.601,
-   "high": 0.734,
+   "high": 0.743,
    "low": 0.482,
-   "auc": 0.619
+   "auc": 0.622
   },
   {
    "year": "2025",
    "n": 1433,
    "base": 0.671,
-   "high": 0.749,
-   "low": 0.609,
-   "auc": 0.578
+   "high": 0.744,
+   "low": 0.592,
+   "auc": 0.589
   }
  ],
  "runwayBuckets": [
   {
    "from": 0,
    "to": 6,
-   "n": 6245,
-   "raised12": 0.549
+   "n": 5933,
+   "raised12": 0.545
   },
   {
    "from": 6,
    "to": 12,
-   "n": 3521,
-   "raised12": 0.702
+   "n": 3250,
+   "raised12": 0.7
   },
   {
    "from": 12,
    "to": 18,
-   "n": 3049,
-   "raised12": 0.675
+   "n": 2966,
+   "raised12": 0.678
   },
   {
    "from": 18,
    "to": 24,
-   "n": 2468,
-   "raised12": 0.617
+   "n": 2497,
+   "raised12": 0.622
   },
   {
    "from": 24,
    "to": 36,
-   "n": 3368,
-   "raised12": 0.593
+   "n": 3523,
+   "raised12": 0.595
   },
   {
    "from": 36,
    "to": null,
-   "n": 5277,
-   "raised12": 0.509
+   "n": 5760,
+   "raised12": 0.52
   }
  ],
- "leadMonthsHigh": 4.1,
+ "leadMonthsHigh": 4,
  "survivors": {
   "rows": 13533,
-  "auc": 0.619,
+  "auc": 0.618,
   "base12": 0.647
  },
  "nonSurvivors": {
   "rows": 10396,
-  "auc": 0.504,
+  "auc": 0.5,
   "base12": 0.52
  },
  "returns": {
@@ -297,30 +297,30 @@
    {
     "band": "High",
     "m12": {
-     "n": 2421,
-     "mean": -32.9,
-     "median": -51.5,
-     "shareBehind": 76
+     "n": 2252,
+     "mean": -34.5,
+     "median": -53.7,
+     "shareBehind": 77
     },
     "m6": {
-     "n": 2467,
-     "mean": -20.8,
-     "median": -32.2,
-     "shareBehind": 72
+     "n": 2298,
+     "mean": -21.6,
+     "median": -33.1,
+     "shareBehind": 73
     }
    },
    {
     "band": "Elevated",
     "m12": {
-     "n": 6016,
-     "mean": -21.8,
-     "median": -38.8,
+     "n": 5858,
+     "mean": -21.9,
+     "median": -39,
      "shareBehind": 72
     },
     "m6": {
-     "n": 6049,
-     "mean": -9.6,
-     "median": -21.2,
+     "n": 5891,
+     "mean": -10.1,
+     "median": -21.5,
      "shareBehind": 67
     }
    },
@@ -332,14 +332,14 @@
    {
     "band": "Low",
     "m12": {
-     "n": 4358,
-     "mean": -10.5,
-     "median": -24.3,
+     "n": 4685,
+     "mean": -10.8,
+     "median": -24.9,
      "shareBehind": 67
     },
     "m6": {
-     "n": 4366,
-     "mean": -3.9,
+     "n": 4693,
+     "mean": -3.8,
      "median": -13.3,
      "shareBehind": 64
     }
@@ -349,62 +349,62 @@
    {
     "decile": 1,
     "n": 1279,
-    "mean12": -12,
-    "median12": -23.9
+    "mean12": -12.8,
+    "median12": -24.1
    },
    {
     "decile": 2,
     "n": 1280,
-    "mean12": -9,
-    "median12": -24
+    "mean12": -10.1,
+    "median12": -25.5
    },
    {
     "decile": 3,
     "n": 1279,
-    "mean12": -11.9,
-    "median12": -25.3
+    "mean12": -11.1,
+    "median12": -25
    },
    {
     "decile": 4,
     "n": 1280,
-    "mean12": -13,
-    "median12": -28.9
+    "mean12": -12.4,
+    "median12": -28
    },
    {
     "decile": 5,
     "n": 1279,
-    "mean12": -19.7,
-    "median12": -36.3
+    "mean12": -18,
+    "median12": -34.1
    },
    {
     "decile": 6,
     "n": 1280,
-    "mean12": -21.3,
-    "median12": -39.2
+    "mean12": -21.2,
+    "median12": -39.4
    },
    {
     "decile": 7,
     "n": 1279,
-    "mean12": -22.6,
-    "median12": -40.5
+    "mean12": -21.3,
+    "median12": -39.7
    },
    {
     "decile": 8,
     "n": 1280,
-    "mean12": -25.2,
-    "median12": -43.6
+    "mean12": -24.5,
+    "median12": -43.4
    },
    {
     "decile": 9,
     "n": 1279,
-    "mean12": -30.3,
-    "median12": -48.2
+    "mean12": -31.6,
+    "median12": -52.1
    },
    {
     "decile": 10,
     "n": 1280,
-    "mean12": -35.7,
-    "median12": -54.9
+    "mean12": -37.4,
+    "median12": -55.3
    }
   ],
   "years": [
@@ -418,116 +418,116 @@
    },
    {
     "year": "2013",
-    "low": -33.6,
+    "low": -33,
     "high": -13.8,
-    "spread": -19.8,
-    "nLow": 162,
-    "nHigh": 57
+    "spread": -19.2,
+    "nLow": 166,
+    "nHigh": 56
    },
    {
     "year": "2014",
-    "low": -62.9,
-    "high": -60.7,
-    "spread": -2.2,
-    "nLow": 234,
-    "nHigh": 72
+    "low": -63.4,
+    "high": -62.6,
+    "spread": -0.8,
+    "nLow": 238,
+    "nHigh": 70
    },
    {
     "year": "2015",
-    "low": -19.1,
+    "low": -18.8,
     "high": -19.9,
-    "spread": 0.8,
-    "nLow": 259,
-    "nHigh": 104
+    "spread": 1.1,
+    "nLow": 266,
+    "nHigh": 102
    },
    {
     "year": "2016",
-    "low": -42.6,
-    "high": -81.7,
-    "spread": 39.1,
-    "nLow": 257,
-    "nHigh": 130
+    "low": -43.3,
+    "high": -80.8,
+    "spread": 37.5,
+    "nLow": 271,
+    "nHigh": 122
    },
    {
     "year": "2017",
-    "low": -10.1,
-    "high": -39.4,
-    "spread": 29.3,
-    "nLow": 180,
-    "nHigh": 164
+    "low": -1.6,
+    "high": -47.1,
+    "spread": 45.5,
+    "nLow": 196,
+    "nHigh": 152
    },
    {
     "year": "2018",
-    "low": -16.8,
+    "low": -17.2,
     "high": -42.5,
-    "spread": 25.7,
-    "nLow": 213,
-    "nHigh": 172
+    "spread": 25.3,
+    "nLow": 232,
+    "nHigh": 165
    },
    {
     "year": "2019",
-    "low": -23.2,
-    "high": -40,
-    "spread": 16.8,
-    "nLow": 264,
-    "nHigh": 174
+    "low": -28,
+    "high": -40.9,
+    "spread": 12.9,
+    "nLow": 289,
+    "nHigh": 163
    },
    {
     "year": "2020",
-    "low": -23.7,
-    "high": -24.4,
-    "spread": 0.7,
-    "nLow": 324,
-    "nHigh": 184
+    "low": -24.1,
+    "high": -22.9,
+    "spread": -1.2,
+    "nLow": 347,
+    "nHigh": 174
    },
    {
     "year": "2021",
-    "low": -23.1,
+    "low": -23.6,
     "high": -30.9,
-    "spread": 7.8,
-    "nLow": 638,
-    "nHigh": 164
+    "spread": 7.3,
+    "nLow": 665,
+    "nHigh": 153
    },
    {
     "year": "2022",
-    "low": -23.5,
-    "high": -49.5,
-    "spread": 26,
-    "nLow": 601,
-    "nHigh": 191
+    "low": -24.9,
+    "high": -49.8,
+    "spread": 24.9,
+    "nLow": 641,
+    "nHigh": 172
    },
    {
     "year": "2023",
-    "low": -13.9,
-    "high": -57.4,
-    "spread": 43.5,
-    "nLow": 395,
-    "nHigh": 318
+    "low": -16,
+    "high": -64.8,
+    "spread": 48.8,
+    "nLow": 444,
+    "nHigh": 279
    },
    {
     "year": "2024",
-    "low": -32,
-    "high": -57.7,
-    "spread": 25.7,
-    "nLow": 398,
-    "nHigh": 326
+    "low": -31.6,
+    "high": -60.1,
+    "spread": 28.5,
+    "nLow": 451,
+    "nHigh": 300
    },
    {
     "year": "2025",
-    "low": -9.1,
-    "high": -110.2,
-    "spread": 101.1,
-    "nLow": 295,
-    "nHigh": 324
+    "low": -14.8,
+    "high": -112.8,
+    "spread": 98,
+    "nLow": 341,
+    "nHigh": 303
    }
   ],
-  "spread12": 27.2,
-  "spread12Mean": 22.4,
+  "spread12": 28.8,
+  "spread12Mean": 23.7,
   "trim": [
    -116.8,
    165.6
   ],
-  "yearsLowBeatHigh": 12,
+  "yearsLowBeatHigh": 11,
   "yearsCounted": 14,
   "raisedVsNot": {
    "raised6": {
@@ -548,53 +548,53 @@
  },
  "offeringsOnly": {
   "base12": 0.47,
-  "auc": 0.497,
+  "auc": 0.491,
   "bands": [
    {
     "band": "High",
-    "n": 5034,
-    "raised12": 0.469,
-    "raised6": 0.329
+    "n": 4767,
+    "raised12": 0.459,
+    "raised6": 0.326
    },
    {
     "band": "Elevated",
-    "n": 11281,
-    "raised12": 0.468,
-    "raised6": 0.296
+    "n": 11004,
+    "raised12": 0.466,
+    "raised6": 0.295
    },
    {
     "band": "Low",
-    "n": 7614,
-    "raised12": 0.476,
-    "raised6": 0.268
+    "n": 8158,
+    "raised12": 0.482,
+    "raised6": 0.273
    }
   ]
  },
  "raisedOrEnded": {
   "base12": 0.626,
-  "auc": 0.573,
+  "auc": 0.57,
   "bands": [
    {
     "band": "High",
-    "n": 5034,
-    "raised12": 0.706,
-    "raised6": 0.475
+    "n": 4767,
+    "raised12": 0.705,
+    "raised6": 0.477
    },
    {
     "band": "Elevated",
-    "n": 11281,
-    "raised12": 0.637,
-    "raised6": 0.402
+    "n": 11004,
+    "raised12": 0.638,
+    "raised6": 0.404
    },
    {
     "band": "Low",
-    "n": 7614,
-    "raised12": 0.557,
-    "raised6": 0.307
+    "n": 8158,
+    "raised12": 0.563,
+    "raised6": 0.312
    }
   ],
-  "survivorsAuc": 0.619,
-  "nonSurvivorsAuc": 0.52
+  "survivorsAuc": 0.618,
+  "nonSurvivorsAuc": 0.516
  },
  "eventsByHow": {
   "offering filing": 10323,
@@ -842,7 +842,7 @@
   {
    "name": "Achaogen, Inc.",
    "filed": "2016-05-05",
-   "cash": 49,
+   "cash": 50,
    "runway": 21.7,
    "score": 59,
    "band": "Elevated",
@@ -954,11 +954,11 @@
   {
    "name": "Achaogen, Inc.",
    "filed": "2018-05-07",
-   "cash": 144,
-   "runway": 13.4,
-   "score": 57,
+   "cash": 239,
+   "runway": 22.3,
+   "score": 43,
    "band": "Elevated",
-   "scoreWithoutGuidance": 76,
+   "scoreWithoutGuidance": 69,
    "monthsToEvent": 1.6,
    "guidance": "The FDA has accepted review of the NDA and has granted the NDA Priority Review as well as set a Prescription Drug User Fee Act (\"PDUFA\") target action date of June 25, 2018.",
    "raisedWithinYear": true,
@@ -968,8 +968,8 @@
   {
    "name": "Achaogen, Inc.",
    "filed": "2018-08-06",
-   "cash": 101,
-   "runway": 6.7,
+   "cash": 164,
+   "runway": 10.9,
    "score": 78,
    "band": "High",
    "scoreWithoutGuidance": 78,
@@ -982,8 +982,8 @@
   {
    "name": "Achaogen, Inc.",
    "filed": "2018-11-08",
-   "cash": 58,
-   "runway": 3.9,
+   "cash": 120,
+   "runway": 8,
    "score": 78,
    "band": "High",
    "scoreWithoutGuidance": 78,
@@ -996,8 +996,8 @@
   {
    "name": "Achaogen, Inc.",
    "filed": "2019-04-01",
-   "cash": 31,
-   "runway": 2.3,
+   "cash": 61,
+   "runway": 4.5,
    "score": 94,
    "band": "High",
    "scoreWithoutGuidance": 94,
@@ -1567,12 +1567,12 @@
     "access": 0.1
    },
    "train": {
-    "auc": 0.529,
-    "spread": 19
+    "auc": 0.526,
+    "spread": 17.2
    },
    "test": {
-    "auc": 0.587,
-    "spread": 26.8
+    "auc": 0.585,
+    "spread": 27.5
    }
   },
   "tuned": {
@@ -1598,13 +1598,13 @@
  "baseline": {
   "score": {
    "n": 23929,
-   "auc": 0.562,
-   "spread": 24
+   "auc": 0.559,
+   "spread": 24.8
   },
   "runway": {
    "n": 23929,
-   "auc": 0.522,
-   "spread": 29.9
+   "auc": 0.521,
+   "spread": 30.5
   },
   "sizeGroups": [
    {
@@ -1612,13 +1612,13 @@
     "upTo": 33,
     "score": {
      "n": 7031,
-     "auc": 0.55,
-     "spread": 25.2
+     "auc": 0.547,
+     "spread": 24.8
     },
     "runway": {
      "n": 7031,
-     "auc": 0.432,
-     "spread": 20.8
+     "auc": 0.431,
+     "spread": 20.3
     }
    },
    {
@@ -1627,11 +1627,11 @@
     "score": {
      "n": 7031,
      "auc": 0.596,
-     "spread": 16.7
+     "spread": 15.4
     },
     "runway": {
      "n": 7031,
-     "auc": 0.578,
+     "auc": 0.58,
      "spread": 24.3
     }
    },
@@ -1640,13 +1640,13 @@
     "upTo": 511316440,
     "score": {
      "n": 7032,
-     "auc": 0.584,
-     "spread": 13.5
+     "auc": 0.582,
+     "spread": 11.8
     },
     "runway": {
      "n": 7032,
-     "auc": 0.588,
-     "spread": 16.3
+     "auc": 0.583,
+     "spread": 17
     }
    }
   ],
@@ -1654,25 +1654,25 @@
    {
     "label": "Under 12 months",
     "score": {
-     "n": 9766,
-     "auc": 0.557,
-     "spread": 14.2
+     "n": 9183,
+     "auc": 0.558,
+     "spread": 16.9
     }
    },
    {
     "label": "12 to 24 months",
     "score": {
-     "n": 5517,
-     "auc": 0.552,
-     "spread": 3
+     "n": 5463,
+     "auc": 0.55,
+     "spread": 4.2
     }
    },
    {
     "label": "Over 24 months",
     "score": {
-     "n": 8645,
-     "auc": 0.558,
-     "spread": 0.5
+     "n": 9283,
+     "auc": 0.559,
+     "spread": 0.7
     }
    }
   ]
@@ -1683,32 +1683,32 @@
   "rowsWithGuidance": 11972,
   "shareWithGuidance": 0.5,
   "withoutGuidance": {
-   "auc": 0.581,
+   "auc": 0.578,
    "bands": [
     {
      "band": "High",
-     "n": 6843,
-     "raised12": 0.68,
-     "raised6": 0.469
+     "n": 6494,
+     "raised12": 0.679,
+     "raised6": 0.47
     },
     {
      "band": "Elevated",
-     "n": 11574,
-     "raised12": 0.581,
-     "raised6": 0.364
+     "n": 11482,
+     "raised12": 0.582,
+     "raised6": 0.367
     },
     {
      "band": "Low",
-     "n": 5512,
-     "raised12": 0.506,
-     "raised6": 0.277
+     "n": 5953,
+     "raised12": 0.515,
+     "raised6": 0.282
     }
    ]
   },
   "guidedRowsOnly": {
    "rows": 11972,
-   "auc": 0.5809995359378032,
-   "aucWithoutGuidance": 0.5966148119661285,
+   "auc": 0.5802513973204128,
+   "aucWithoutGuidance": 0.5945820245032264,
    "base12": 0.6148513197460742
   }
  }
