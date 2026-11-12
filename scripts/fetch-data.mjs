@@ -25,6 +25,7 @@ import { dealStatus, buyerInfo, tidyName } from "./deal-status.mjs";
 import { parseOffering, OFFERING_PARSER } from "./offering.mjs";
 import { form4Filings, parseForm4, summarizeInsiders } from "./insiders.mjs";
 import { shortInterest, summarizeShort } from "./shorts.mjs";
+import { readPeriodic, PERIODIC_PARSER } from "./periodic.mjs";
 import { pathToFileURL } from "node:url";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
 import { runwaySim, QUANT_VERSION } from "../src/quant.js";
@@ -40,6 +41,9 @@ const PREDICTIONS_FILE = new URL("predictions.json", OUT_DIR);
 // Form 4 filings already read, by accession number (a filing never changes once made).
 const INSIDER_CACHE_FILE = new URL("insider-cache.json", OUT_DIR);
 let INSIDER_CACHE = {};
+// Quarterly and annual reports already read, by URL.
+const PERIODIC_CACHE_FILE = new URL("periodic-cache.json", OUT_DIR);
+let PERIODIC_CACHE = {};
 // Short interest history by ticker, loaded once per run from FINRA.
 let SHORTS = {};
 
@@ -266,6 +270,19 @@ async function normalizeIfrs(facts) {
   return { facts: { ...facts, dei, "us-gaap": { ...(facts["us-gaap"] || {}), ...gaap } }, currency, fx };
 }
 
+// Cash flow statements are year-to-date, so the latest quarter is this year-to-date figure
+// minus the one three months earlier (or the figure itself in a first quarter).
+function latestQuarter(s) {
+  if (!s) return null;
+  const rows = s.rows;
+  const end = rows.at(-1).end;
+  const cur = rows.filter((r) => r.end === end).reduce((a, b) => (monthsBetween(a.start, a.end) >= monthsBetween(b.start, b.end) ? a : b));
+  const dur = monthsBetween(cur.start, cur.end);
+  if (dur > 2 && dur < 4) return { val: cur.val, end };
+  const prev = rows.find((r) => near(r.start, cur.start, 10) && near(r.end, addDays(cur.end, -91), 20));
+  return prev ? { val: cur.val - prev.val, end } : null;
+}
+
 function financialsFromFacts(facts) {
   const CASH = ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", "Cash"];
   const ST_INV = ["ShortTermInvestments", "MarketableSecuritiesCurrent", "AvailableForSaleSecuritiesDebtSecuritiesCurrent", "HeldToMaturitySecuritiesCurrent"];
@@ -283,6 +300,7 @@ function financialsFromFacts(facts) {
   const ocfS = pickSeries(facts, ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"]);
   const ocf = trailing12(ocfS);
   const ocfPrior = ocf ? trailing12(ocfS, shiftYears(ocf.end, -1)) : null;
+  const ocfQ = ocf ? latestQuarter(ocfS) : null;
 
   // Debt coming due within 24 months: the larger of debt classed as current on the latest balance
   // sheet and the scheduled principal repayments for the next two years (reported in the 10-K).
@@ -336,6 +354,8 @@ function financialsFromFacts(facts) {
     ocf: ocfM,
     burnHow: ocf?.how || null,
     burnPrior: ocfPrior ? -M(ocfPrior.val) / 12 : null,
+    // Monthly burn in the latest quarter alone (null when that quarter brought cash in).
+    burnQ: ocfQ && ocf && ocfQ.end === ocf.end && ocfQ.val < 0 ? -M(ocfQ.val) / 3 : null,
     debtDue24: M(Math.max(curDebt, sched)),
     rev: rev ? Math.max(0, M(rev.val)) : 0,
     shares: sharesNow ? sharesNow.val / 1e6 : null,
@@ -827,16 +847,33 @@ function titleCase(s) {
 // Old standard treatments that show up in big pharma trials as comparators or backbones, not as the drug being tested.
 const STANDARD_DRUGS = /^(prednisone|prednisolone|methylprednisolone|dexamethasone|methotrexate|leucovorin|folinic acid|fluorouracil|5-fu|cisplatin|carboplatin|oxaliplatin|paclitaxel|nab-paclitaxel|docetaxel|gemcitabine|pemetrexed|etoposide|cyclophosphamide|doxorubicin|capecitabine|irinotecan|bevacizumab|rituximab|lenalidomide|pomalidomide|bortezomib|abiraterone|abiraterone acetate|enzalutamide|tamoxifen|letrozole|anastrozole|fulvestrant|insulin|metformin|aspirin|warfarin|heparin|placebo|standard of care|best supportive care|tenofovir df|emtricitabine)\b/i;
 
+// Where the share price stood before a stock sale: the closing prices about three months before
+// and the day before. Split-adjusted by Yahoo, so only the ratio between the two is used.
+async function priceBefore(ticker, date) {
+  const p1 = Math.floor(toDate(addDays(date, -110)).getTime() / 1000), p2 = Math.floor(toDate(date).getTime() / 1000);
+  const j = await getJSON(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?period1=${p1}&period2=${p2}&interval=1d`,
+    { "User-Agent": "Mozilla/5.0 (Helixora data refresh)" });
+  const res = j?.chart?.result?.[0];
+  const closes = (res?.indicators?.quote?.[0]?.close || []).filter((c) => c > 0);
+  if (closes.length < 40) return null;
+  const then = closes.slice(0, 5).reduce((a, b) => a + b, 0) / 5, last = closes.at(-1);
+  return { run: Math.round((last / then - 1) * 1000) / 10 };
+}
+
 // Prospectuses already read in an earlier run, by URL (they never change once filed).
 const OFFER_CACHE = new Map();
 
 // Fill in what each stock sale raised and how many new shares it added, from the prospectus itself.
-async function readOfferings(financings, sharesNowM) {
+async function readOfferings(financings, sharesNowM, ticker) {
   for (const f of financings) {
     if (!f.url) continue;
     let p = OFFER_CACHE.get(f.url);
     if (p === undefined) { p = { ...(parseOffering(await secText(f.url), sharesNowM) || { kind: "unread" }), v: OFFERING_PARSER }; OFFER_CACHE.set(f.url, p); }
+    if (p.kind === "priced" && p.run === undefined && !p.ipo) {
+      try { p.run = (await priceBefore(ticker, f.date))?.run ?? null; } catch { p.run = null; }
+    }
     f.parsed = p;
+    if (p.kind === "priced" && p.run != null) f.run = p.run;
     if (p.kind === "priced") {
       Object.assign(f, { amt: p.amt, dil: p.dil, price: p.price, newShares: p.shares, ...(p.approx ? { dilApprox: true } : {}), type: p.ipo ? "Initial public offering (424B4)" : f.type.startsWith("Shelf takedown") ? "Stock offering (424B5)" : f.type });
     } else if (p.kind === "atm") {
@@ -951,7 +988,26 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
   }
   for (const c of a.catalysts || []) catalysts.push({ drug: null, ...c });
 
-  const mergedFinancings = (a.financings?.length ? a.financings : await readOfferings(financings, fin.shares))
+  // What the latest quarterly or annual report says in words: management's runway, ATM sales,
+  // other funding, and FDA dates the company has announced.
+  let said = null;
+  if (lastPeriodic && !a.segment) {
+    let p = PERIODIC_CACHE[lastPeriodic.url];
+    if (!p || p.v !== PERIODIC_PARSER) {
+      p = readPeriodic(await secText(lastPeriodic.url), lastPeriodic.date, TODAY_ISO) || { v: PERIODIC_PARSER, unread: true };
+      PERIODIC_CACHE[lastPeriodic.url] = { ...p, filed: lastPeriodic.date };
+    }
+    if (!p.unread) {
+      said = { form: lastPeriodic.form, date: lastPeriodic.date, url: lastPeriodic.url, runway: p.runway || null, atm: p.atm || null, other: p.other || [] };
+      for (const e of p.events || []) {
+        if (e.date < TODAY_ISO) continue;
+        if (catalysts.some((x) => x.kind === "regulatory" && Math.abs((toDate(x.date) - toDate(e.date)) / DAY) < 15)) continue;
+        catalysts.push({ date: e.date, kind: "regulatory", drug: null, est: false, guided: true, label: `${e.label} (company-announced)`, quote: e.text, src: lastPeriodic.url });
+      }
+    }
+  }
+
+  const mergedFinancings = (a.financings?.length ? a.financings : await readOfferings(financings, fin.shares, ticker))
     .sort((x, y) => (x.date < y.date ? 1 : -1));
 
   return {
@@ -980,6 +1036,8 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
     revQ: fin.revQ || [],
     rivals: a.segment ? [] : await rivalsFor(pipeline, sponsor),
     burnPrior: round(fin.burnPrior, 2),
+    burnQ: fin.burnQ == null ? null : round(fin.burnQ, 2),
+    said,
     debtDue24: round(fin.debtDue24, 1),
     raise,
     short: summarizeShort(SHORTS[ticker], fin.shares, a.adr),
@@ -1069,6 +1127,7 @@ async function main() {
   cikByTicker.titles = new Map(Object.values(tickers || {}).map((r) => [r.ticker.toUpperCase(), r.title]));
 
   try { INSIDER_CACHE = JSON.parse(await readFile(INSIDER_CACHE_FILE, "utf8")); } catch { /* first run */ }
+  try { PERIODIC_CACHE = JSON.parse(await readFile(PERIODIC_CACHE_FILE, "utf8")); } catch { /* first run */ }
   console.log("Loading short interest from FINRA…");
   try {
     const all = [...config.tickers, ...(config.industry || []).map((x) => x.t)].map((t) => t.toUpperCase());
@@ -1196,6 +1255,7 @@ async function main() {
   }
   await mkdir(OUT_DIR, { recursive: true });
   await writeFile(TRIAL_HISTORY_FILE, JSON.stringify(trialHist) + "\n");
+  await writeFile(PERIODIC_CACHE_FILE, JSON.stringify(Object.fromEntries(Object.entries(PERIODIC_CACHE).filter(([, v]) => v.filed >= new Date(Date.now() - 200 * 864e5).toISOString().slice(0, 10)))) + "\n");
   // Keep only filings from the last ~13 months so the cache doesn't grow forever.
   const keepFrom = new Date(Date.now() - 400 * 864e5).toISOString().slice(0, 10);
   await writeFile(INSIDER_CACHE_FILE, JSON.stringify(Object.fromEntries(Object.entries(INSIDER_CACHE).filter(([, v]) => v.filed >= keepFrom))) + "\n");
