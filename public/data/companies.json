@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-12T06:21:50.950Z",
+  "generatedAt": "2026-11-12T06:34:09.188Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -2074,7 +2074,9 @@
    "ClinicalTrials.gov API v2",
    "Yahoo Finance"
   ],
-  "warnings": [],
+  "warnings": [
+   "PRAX: cash set to the $1300M the report states (balance-sheet data added up to $1669.5M)"
+  ],
   "leftCoverage": []
  },
  "companies": [
@@ -2797,7 +2799,8 @@
     "other": [],
     "cash": {
      "amt": 960,
-     "text": "As of September 30, 2026, we had cash, cash equivalents, restricted cash and short-term investments of $960.0 million."
+     "text": "As of September 30, 2026, we had cash, cash equivalents, restricted cash and short-term investments of $960.0 million.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -7303,7 +7306,7 @@
     {
      "end": "2021-09-30",
      "filed": "2021-11-05",
-     "cash": 422,
+     "cash": 421,
      "burn": 8.6,
      "runway": 48.9
     },
@@ -7345,9 +7348,9 @@
     {
      "end": "2023-03-31",
      "filed": "2023-05-05",
-     "cash": 389,
+     "cash": 360,
      "burn": 16.4,
-     "runway": 23.8
+     "runway": 22
     },
     {
      "end": "2023-06-30",
@@ -7366,9 +7369,9 @@
     {
      "end": "2023-12-31",
      "filed": "2024-02-27",
-     "cash": 442,
+     "cash": 407,
      "burn": 16.2,
-     "runway": 27.2
+     "runway": 25.1
     },
     {
      "end": "2024-03-31",
@@ -7408,7 +7411,7 @@
     {
      "end": "2025-06-30",
      "filed": "2025-08-07",
-     "cash": 272,
+     "cash": 271,
      "burn": 17,
      "runway": 16
     },
@@ -10919,8 +10922,8 @@
    "n": "IDEAYA Biosciences",
    "area": "Oncology",
    "mcap": 3163.4,
-   "ev": 1917.4,
-   "cash": 1246,
+   "ev": 2012.5,
+   "cash": 1150.8,
    "debt": 0,
    "burn": 28.95,
    "rev": 36.5,
@@ -11665,9 +11668,9 @@
     {
      "end": "2022-12-31",
      "filed": "2023-03-07",
-     "cash": 377,
+     "cash": 373,
      "burn": 7.3,
-     "runway": 51.9
+     "runway": 51.4
     },
     {
      "end": "2023-03-31",
@@ -11679,100 +11682,100 @@
     {
      "end": "2023-06-30",
      "filed": "2023-08-10",
-     "cash": 580,
+     "cash": 510,
      "burn": 9.1,
-     "runway": 64
+     "runway": 56.2
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-07",
-     "cash": 623,
+     "cash": 511,
      "burn": 9.6,
-     "runway": 65.1
+     "runway": 53.4
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-20",
-     "cash": 751,
+     "cash": 633,
      "burn": 9.6,
-     "runway": 78.2
+     "runway": 65.9
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-07",
-     "cash": 1011,
+     "cash": 941,
      "burn": 10.9,
-     "runway": 92.5
+     "runway": 86.1
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-06",
-     "cash": 1063,
+     "cash": 953,
      "burn": 10.9,
-     "runway": 97.7
+     "runway": 87.5
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-04",
-     "cash": 1251,
+     "cash": 1200,
      "burn": 12.5,
-     "runway": 100.3
+     "runway": 96.2
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-18",
-     "cash": 1090,
+     "cash": 1082,
      "burn": 20.6,
-     "runway": 52.8
+     "runway": 52.5
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-06",
-     "cash": 1076,
+     "cash": 1051,
      "burn": 22,
-     "runway": 48.9
+     "runway": 47.8
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-05",
-     "cash": 1012,
+     "cash": 992,
      "burn": 24.5,
-     "runway": 41.3
+     "runway": 40.5
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-04",
-     "cash": 1146,
+     "cash": 1137,
      "burn": 8.5,
-     "runway": 134.5
+     "runway": 133.4
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-17",
-     "cash": 1058,
+     "cash": 1050,
      "burn": 5.9,
-     "runway": 178.7
+     "runway": 177.2
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-05",
-     "cash": 1011,
+     "cash": 973,
      "burn": 7.2,
-     "runway": 141.2
+     "runway": 135.9
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-04",
-     "cash": 1338,
+     "cash": 1243,
      "burn": 9.3,
-     "runway": 143.8
+     "runway": 133.6
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-03",
-     "cash": 1246,
+     "cash": 1151,
      "burn": 28.9,
-     "runway": 43
+     "runway": 39.8
     }
    ],
    "revQ": [
@@ -13399,7 +13402,8 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "MarketableSecuritiesCurrent",
+     "MarketableSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-31",
@@ -13426,8 +13430,8 @@
    "n": "Kymera Therapeutics",
    "area": "Immunology",
    "mcap": 11511.5,
-   "ev": 9865.5,
-   "cash": 1646,
+   "ev": 9865.6,
+   "cash": 1645.9,
    "debt": 0,
    "burn": 23.96,
    "rev": 102.2,
@@ -13679,7 +13683,7 @@
     {
      "end": "2022-06-30",
      "filed": "2022-08-09",
-     "cash": 483,
+     "cash": 482,
      "burn": 12.9,
      "runway": 37.4
     },
@@ -13693,16 +13697,16 @@
     {
      "end": "2022-12-31",
      "filed": "2023-02-23",
-     "cash": 560,
+     "cash": 559,
      "burn": 12.8,
      "runway": 43.9
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-04",
-     "cash": 516,
+     "cash": 458,
      "burn": 13.1,
-     "runway": 39.5
+     "runway": 35.1
     },
     {
      "end": "2023-06-30",
@@ -13756,7 +13760,7 @@
     {
      "end": "2025-03-31",
      "filed": "2025-05-09",
-     "cash": 776,
+     "cash": 775,
      "burn": 19.5,
      "runway": 39.8
     },
@@ -15357,7 +15361,9 @@
     "cik": "1815442",
     "asOf": "2026-09-30",
     "cashParts": [
-     "InvestmentsAndCash"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+     "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-23",
@@ -17824,16 +17830,16 @@
     {
      "end": "2024-03-31",
      "filed": "2024-05-10",
-     "cash": 421,
+     "cash": 404,
      "burn": 8.3,
-     "runway": 50.6
+     "runway": 48.6
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-08",
-     "cash": 388,
+     "cash": 384,
      "burn": 8.9,
-     "runway": 43.7
+     "runway": 43.2
     },
     {
      "end": "2024-09-30",
@@ -17845,9 +17851,9 @@
     {
      "end": "2024-12-31",
      "filed": "2025-02-28",
-     "cash": 645,
+     "cash": 641,
      "burn": 11.2,
-     "runway": 57.5
+     "runway": 57.1
     },
     {
      "end": "2025-03-31",
@@ -17866,23 +17872,23 @@
     {
      "end": "2025-09-30",
      "filed": "2025-11-05",
-     "cash": 503,
+     "cash": 497,
      "burn": 17.5,
-     "runway": 28.7
+     "runway": 28.4
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-26",
-     "cash": 722,
+     "cash": 715,
      "burn": 20.1,
-     "runway": 35.9
+     "runway": 35.6
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-07",
-     "cash": 652,
+     "cash": 597,
      "burn": 24.4,
-     "runway": 26.7
+     "runway": 24.4
     },
     {
      "end": "2026-06-30",
@@ -19607,8 +19613,8 @@
    "n": "Precigen",
    "area": "Pharmaceutical Preparations",
    "mcap": 1692.4,
-   "ev": 1730.7,
-   "cash": 55.9,
+   "ev": 1735.6,
+   "cash": 51,
    "debt": 94.3,
    "burn": 6.1,
    "rev": 156.9,
@@ -20137,9 +20143,9 @@
     {
      "end": "2025-03-31",
      "filed": "2025-05-14",
-     "cash": 82,
+     "cash": 81,
      "burn": 5.9,
-     "runway": 13.9
+     "runway": 13.8
     },
     {
      "end": "2025-06-30",
@@ -20151,23 +20157,23 @@
     {
      "end": "2025-09-30",
      "filed": "2025-11-13",
-     "cash": 126,
+     "cash": 124,
      "burn": 6.1,
-     "runway": 20.8
+     "runway": 20.4
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-25",
-     "cash": 103,
+     "cash": 100,
      "burn": 7.3,
-     "runway": 14.1
+     "runway": 13.7
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-13",
      "cash": 57,
      "burn": 9.6,
-     "runway": 6
+     "runway": 5.9
     },
     {
      "end": "2026-06-30",
@@ -20179,9 +20185,9 @@
     {
      "end": "2026-09-30",
      "filed": "2026-11-04",
-     "cash": 56,
+     "cash": 51,
      "burn": 6.1,
-     "runway": 9.2
+     "runway": 8.4
     }
    ],
    "revQ": [
@@ -20466,7 +20472,8 @@
     "other": [],
     "cash": {
      "amt": 51,
-     "text": "Interest rate risk We had cash, cash equivalents and short-term and long-term investments of $51.0 million and $100.4 million as of September 30, 2026 and December 31, 2025, respectively."
+     "text": "Interest rate risk We had cash, cash equivalents and short-term and long-term investments of $51.0 million and $100.4 million as of September 30, 2026 and December 31, 2025, respectively.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -21871,7 +21878,8 @@
     "cik": "1356090",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "ShortTermInvestments",
      "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -22393,86 +22401,86 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-28",
-     "cash": 1111,
+     "cash": 766,
      "burn": 4,
-     "runway": 280.1
+     "runway": 193.3
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-05",
-     "cash": 1504,
+     "cash": 1316,
      "burn": -49.3,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-09",
-     "cash": 2398,
+     "cash": 2257,
      "burn": -117.7,
      "runway": null
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-03",
-     "cash": 2434,
+     "cash": 2358,
      "burn": -136.3,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-28",
-     "cash": 2424,
+     "cash": 2394,
      "burn": -138.6,
      "runway": null
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-08",
-     "cash": 2349,
+     "cash": 2281,
      "burn": -82.3,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-04",
-     "cash": 1952,
+     "cash": 1886,
      "burn": 30.2,
-     "runway": 64.7
+     "runway": 62.5
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-03",
-     "cash": 1740,
+     "cash": 1725,
      "burn": 53,
-     "runway": 32.8
+     "runway": 32.6
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-26",
-     "cash": 1735,
+     "cash": 1618,
      "burn": 64.9,
-     "runway": 26.7
+     "runway": 24.9
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-03",
-     "cash": 1870,
+     "cash": 1506,
      "burn": 63.5,
-     "runway": 29.4
+     "runway": 23.7
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-01",
-     "cash": 1710,
+     "cash": 1427,
      "burn": 37.6,
-     "runway": 45.5
+     "runway": 38
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-04",
-     "cash": 1461,
+     "cash": 1180,
      "burn": 38.9,
-     "runway": 37.6
+     "runway": 30.4
     },
     {
      "end": "2024-12-31",
@@ -35506,7 +35514,7 @@
      "filed": "2023-11-09",
      "cash": 149,
      "burn": 5.4,
-     "runway": 27.8
+     "runway": 27.7
     },
     {
      "end": "2023-12-31",
@@ -45701,16 +45709,16 @@
     {
      "end": "2022-12-31",
      "filed": "2023-03-23",
-     "cash": 515,
+     "cash": 465,
      "burn": 24.8,
-     "runway": 20.8
+     "runway": 18.8
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-12",
-     "cash": 398,
+     "cash": 388,
      "burn": 26.4,
-     "runway": 15.1
+     "runway": 14.7
     },
     {
      "end": "2023-06-30",
@@ -45722,30 +45730,30 @@
     {
      "end": "2023-09-30",
      "filed": "2023-11-14",
-     "cash": 246,
+     "cash": 241,
      "burn": 24.4,
-     "runway": 10.1
+     "runway": 9.9
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-29",
-     "cash": 416,
+     "cash": 382,
      "burn": 27.6,
-     "runway": 15
+     "runway": 13.8
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-09",
-     "cash": 291,
+     "cash": 283,
      "burn": 29.7,
-     "runway": 9.8
+     "runway": 9.5
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-09",
-     "cash": 474,
+     "cash": 437,
      "burn": 40,
-     "runway": 11.8
+     "runway": 10.9
     },
     {
      "end": "2024-09-30",
@@ -45771,9 +45779,9 @@
     {
      "end": "2025-06-30",
      "filed": "2025-08-11",
-     "cash": 475,
+     "cash": 405,
      "burn": 53.8,
-     "runway": 8.8
+     "runway": 7.5
     },
     {
      "end": "2025-09-30",
@@ -45785,23 +45793,23 @@
     {
      "end": "2025-12-31",
      "filed": "2026-03-02",
-     "cash": 344,
+     "cash": 319,
      "burn": 50.8,
-     "runway": 6.8
+     "runway": 6.3
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-04",
-     "cash": 424,
+     "cash": 348,
      "burn": 49.5,
-     "runway": 8.6
+     "runway": 7
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-10",
-     "cash": 372,
+     "cash": 268,
      "burn": 42.6,
-     "runway": 8.7
+     "runway": 6.3
     },
     {
      "end": "2026-09-30",
@@ -48019,7 +48027,8 @@
     ],
     "cash": {
      "amt": 132,
-     "text": "Financial Summary As of June 30, 2026, we had cash, cash equivalents and short-term investments of $132.0 million."
+     "text": "Financial Summary As of June 30, 2026, we had cash, cash equivalents and short-term investments of $132.0 million.",
+     "partial": true
     }
    },
    "debtDue24": 17.1,
@@ -51956,7 +51965,7 @@
     {
      "end": "2024-12-31",
      "filed": "2025-03-10",
-     "cash": 246,
+     "cash": 245,
      "burn": 3.6,
      "runway": 68.3
     },
@@ -53572,9 +53581,9 @@
     {
      "end": "2021-12-31",
      "filed": "2022-03-14",
-     "cash": 50,
+     "cash": 45,
      "burn": 1,
-     "runway": 48.8
+     "runway": 44.2
     },
     {
      "end": "2022-03-31",
@@ -53614,16 +53623,16 @@
     {
      "end": "2023-06-30",
      "filed": "2023-08-14",
-     "cash": 81,
+     "cash": 61,
      "burn": 1.3,
-     "runway": 63.8
+     "runway": 47.7
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-13",
-     "cash": 66,
+     "cash": 56,
      "burn": 1.5,
-     "runway": 44.8
+     "runway": 38.1
     },
     {
      "end": "2023-12-31",
@@ -53663,9 +53672,9 @@
     {
      "end": "2025-03-31",
      "filed": "2025-05-13",
-     "cash": 38,
+     "cash": 37,
      "burn": 1.9,
-     "runway": 20.4
+     "runway": 19.8
     },
     {
      "end": "2025-06-30",
@@ -55542,7 +55551,7 @@
     {
      "end": "2024-03-31",
      "filed": "2024-05-14",
-     "cash": 542,
+     "cash": 541,
      "burn": 8,
      "runway": 68.1
     },
@@ -56927,8 +56936,8 @@
    "n": "Lexeo Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
    "mcap": 251.9,
-   "ev": -4.8,
-   "cash": 256.7,
+   "ev": 17.7,
+   "cash": 234.2,
    "debt": 0,
    "burn": 7.36,
    "rev": 0,
@@ -57345,16 +57354,16 @@
     {
      "end": "2024-12-31",
      "filed": "2025-03-24",
-     "cash": 136,
+     "cash": 129,
      "burn": 6.8,
-     "runway": 20
+     "runway": 19
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-12",
-     "cash": 114,
+     "cash": 107,
      "burn": 7.3,
-     "runway": 15.5
+     "runway": 14.6
     },
     {
      "end": "2025-06-30",
@@ -57380,16 +57389,16 @@
     {
      "end": "2026-03-31",
      "filed": "2026-05-11",
-     "cash": 262,
+     "cash": 228,
      "burn": 8.2,
-     "runway": 32.1
+     "runway": 27.9
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-12",
-     "cash": 257,
+     "cash": 234,
      "burn": 7.4,
-     "runway": 34.9
+     "runway": 31.8
     }
    ],
    "revQ": [
@@ -58933,7 +58942,8 @@
     "cik": "1907108",
     "asOf": "2026-06-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
      "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -61135,9 +61145,9 @@
     {
      "end": "2024-12-31",
      "filed": "2025-03-13",
-     "cash": 312,
+     "cash": 295,
      "burn": 0.3,
-     "runway": 1078.2
+     "runway": 1019.1
     },
     {
      "end": "2025-03-31",
@@ -65110,23 +65120,23 @@
     {
      "end": "2022-09-30",
      "filed": "2022-11-14",
-     "cash": 103,
+     "cash": 83,
      "burn": 1.4,
-     "runway": 72.2
+     "runway": 58.3
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-20",
-     "cash": 92,
+     "cash": 72,
      "burn": 4.7,
-     "runway": 19.8
+     "runway": 15.5
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-11",
-     "cash": 98,
+     "cash": 63,
      "burn": 4.2,
-     "runway": 23.1
+     "runway": 14.9
     },
     {
      "end": "2023-06-30",
@@ -65138,44 +65148,44 @@
     {
      "end": "2023-09-30",
      "filed": "2023-11-14",
-     "cash": 616,
+     "cash": 496,
      "burn": 3.5,
-     "runway": 175.8
+     "runway": 141.6
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-29",
-     "cash": 640,
+     "cash": 511,
      "burn": 3.6,
-     "runway": 179.6
+     "runway": 143.3
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-07",
-     "cash": 737,
+     "cash": 547,
      "burn": 4.1,
-     "runway": 181.5
+     "runway": 134.8
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-07",
-     "cash": 580,
+     "cash": 520,
      "burn": 5.4,
-     "runway": 108
+     "runway": 96.8
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-07",
-     "cash": 554,
+     "cash": 494,
      "burn": 6.7,
-     "runway": 82.6
+     "runway": 73.7
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-26",
-     "cash": 508,
+     "cash": 448,
      "burn": 9.7,
-     "runway": 52.3
+     "runway": 46.1
     },
     {
      "end": "2025-03-31",
@@ -65222,7 +65232,7 @@
     {
      "end": "2026-09-30",
      "filed": "2026-11-04",
-     "cash": 499,
+     "cash": 498,
      "burn": 20.3,
      "runway": 24.5
     }
@@ -66909,7 +66919,8 @@
     "cik": "1821586",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-01",
@@ -71576,7 +71587,8 @@
     ],
     "cash": {
      "amt": 183.2,
-     "text": "We had $183.2 million in cash and cash equivalents and short-term investments as of September 30, 2026."
+     "text": "We had $183.2 million in cash and cash equivalents and short-term investments as of September 30, 2026.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -73206,9 +73218,9 @@
     {
      "end": "2024-03-31",
      "filed": "2024-05-09",
-     "cash": 251,
+     "cash": 239,
      "burn": 3,
-     "runway": 82.8
+     "runway": 79
     },
     {
      "end": "2024-06-30",
@@ -73227,7 +73239,7 @@
     {
      "end": "2024-12-31",
      "filed": "2025-03-24",
-     "cash": 184,
+     "cash": 183,
      "burn": 5.9,
      "runway": 31.1
     },
@@ -74750,7 +74762,8 @@
     "cik": "1374690",
     "asOf": "2026-06-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-08-02",
@@ -75074,7 +75087,7 @@
      "filed": "2026-05-13",
      "cash": 111,
      "burn": 5.7,
-     "runway": 19.4
+     "runway": 19.3
     },
     {
      "end": "2026-06-30",
@@ -75196,7 +75209,8 @@
     "other": [],
     "cash": {
      "amt": 88.8,
-     "text": "As of June 30, 2026, the Company had cash and cash equivalents and short-term investments of $ 88.8 million, working capital of $ 81.3 million and an accumulated deficit of $ 471.9 million."
+     "text": "As of June 30, 2026, the Company had cash and cash equivalents and short-term investments of $ 88.8 million, working capital of $ 81.3 million and an accumulated deficit of $ 471.9 million.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -76440,7 +76454,8 @@
     "cik": "1404281",
     "asOf": "2026-06-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "ShortTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-08-10",
@@ -77422,7 +77437,8 @@
     "other": [],
     "cash": {
      "amt": 84.3,
-     "text": "As of September 30, 2026, the Company had an accumulated deficit of $ 455.7 million and cash and cash equivalents and short-term investments totaling $ 84.3 million."
+     "text": "As of September 30, 2026, the Company had an accumulated deficit of $ 455.7 million and cash and cash equivalents and short-term investments totaling $ 84.3 million.",
+     "partial": true
     }
    },
    "debtDue24": 29.8,
@@ -78717,7 +78733,8 @@
     "cik": "1372299",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-30",
@@ -80866,8 +80883,8 @@
    "n": "Structure Therapeutics",
    "area": "Pharmaceutical Preparations",
    "mcap": 4499.5,
-   "ev": 3041.4,
-   "cash": 1458.1,
+   "ev": 3259.5,
+   "cash": 1240,
    "debt": 0,
    "burn": 22.58,
    "rev": 0,
@@ -81158,9 +81175,9 @@
     {
      "end": "2022-12-31",
      "filed": "2023-05-11",
-     "cash": 110,
+     "cash": 91,
      "burn": 3.8,
-     "runway": 28.6
+     "runway": 23.6
     },
     {
      "end": "2023-03-31",
@@ -81186,86 +81203,86 @@
     {
      "end": "2023-12-31",
      "filed": "2024-03-08",
-     "cash": 592,
+     "cash": 467,
      "burn": 6.6,
-     "runway": 89.3
+     "runway": 70.5
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-09",
-     "cash": 525,
+     "cash": 436,
      "burn": 7.8,
-     "runway": 67.6
+     "runway": 56.2
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-08",
-     "cash": 1300,
+     "cash": 927,
      "burn": 8.6,
-     "runway": 151.8
+     "runway": 108.3
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-13",
-     "cash": 1077,
+     "cash": 915,
      "burn": 8.5,
-     "runway": 126.9
+     "runway": 107.8
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-27",
-     "cash": 1045,
+     "cash": 884,
      "burn": 9.7,
-     "runway": 107.5
+     "runway": 90.9
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-08",
-     "cash": 976,
+     "cash": 837,
      "burn": 11.2,
-     "runway": 86.9
+     "runway": 74.5
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-06",
-     "cash": 926,
+     "cash": 786,
      "burn": 13.6,
-     "runway": 68.2
+     "runway": 57.9
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-06",
-     "cash": 894,
+     "cash": 799,
      "burn": 16.2,
-     "runway": 55.3
+     "runway": 49.4
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-26",
-     "cash": 2241,
+     "cash": 1446,
      "burn": 18.5,
-     "runway": 121
+     "runway": 78.1
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-07",
-     "cash": 1769,
+     "cash": 1459,
      "burn": 12.9,
-     "runway": 137.2
+     "runway": 113.1
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-06",
-     "cash": 1610,
+     "cash": 1343,
      "burn": 18.4,
-     "runway": 87.7
+     "runway": 73.1
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-09",
-     "cash": 1458,
+     "cash": 1240,
      "burn": 22.6,
-     "runway": 64.6
+     "runway": 54.9
     }
    ],
    "revQ": [],
@@ -81522,7 +81539,8 @@
     "other": [],
     "cash": {
      "amt": 1240,
-     "text": "As of September 30, 2026, the Company had cash, cash equivalents and short-term investments of $ 1,240.0 million."
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents and short-term investments of $ 1,240.0 million.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -82767,7 +82785,7 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "DebtSecuritiesAvailableForSaleExcludingAccruedInterest"
+     "ShortTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-31",
@@ -82794,7 +82812,7 @@
    "n": "Vor Biopharma",
    "area": "Biological Products, (No Diagnostic Substances)",
    "mcap": 1234.2,
-   "ev": 752.6,
+   "ev": 752.7,
    "cash": 481.6,
    "debt": 0,
    "burn": 9.93,
@@ -83071,7 +83089,7 @@
     {
      "end": "2025-09-30",
      "filed": "2025-11-13",
-     "cash": 171,
+     "cash": 170,
      "burn": 12,
      "runway": 14.2
     },
@@ -84368,7 +84386,8 @@
     "cik": "1817229",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "MarketableSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-26",
@@ -84700,7 +84719,7 @@
     {
      "end": "2025-12-31",
      "filed": "2026-03-04",
-     "cash": 149,
+     "cash": 148,
      "burn": 6.8,
      "runway": 21.8
     },
@@ -86216,8 +86235,8 @@
    "n": "Kyverna Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
    "mcap": 316.6,
-   "ev": 115.1,
-   "cash": 226.4,
+   "ev": 142.1,
+   "cash": 199.4,
    "debt": 24.9,
    "burn": 13.23,
    "rev": 0,
@@ -86479,30 +86498,30 @@
     {
      "end": "2024-09-30",
      "filed": "2024-11-13",
-     "cash": 424,
+     "cash": 322,
      "burn": 8,
-     "runway": 53.1
+     "runway": 40.3
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-27",
-     "cash": 382,
+     "cash": 286,
      "burn": 9.5,
-     "runway": 40.1
+     "runway": 30
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-13",
-     "cash": 298,
+     "cash": 243,
      "burn": 11.1,
-     "runway": 26.8
+     "runway": 21.8
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-12",
-     "cash": 220,
+     "cash": 212,
      "burn": 11.8,
-     "runway": 18.7
+     "runway": 18
     },
     {
      "end": "2025-09-30",
@@ -86514,23 +86533,23 @@
     {
      "end": "2025-12-31",
      "filed": "2026-03-26",
-     "cash": 401,
+     "cash": 279,
      "burn": 12.8,
-     "runway": 31.3
+     "runway": 21.8
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-12",
-     "cash": 265,
+     "cash": 236,
      "burn": 12.5,
-     "runway": 21.2
+     "runway": 18.9
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-11",
-     "cash": 226,
+     "cash": 199,
      "burn": 13.2,
-     "runway": 17.1
+     "runway": 15.1
     }
    ],
    "revQ": [],
@@ -88093,7 +88112,7 @@
     "asOf": "2026-06-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "MarketableSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-08-03",
@@ -88469,16 +88488,16 @@
     {
      "end": "2024-06-30",
      "filed": "2024-08-13",
-     "cash": 544,
+     "cash": 424,
      "burn": 7.8,
-     "runway": 69.4
+     "runway": 54.1
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-07",
-     "cash": 459,
+     "cash": 403,
      "burn": 8.2,
-     "runway": 56.1
+     "runway": 49.1
     },
     {
      "end": "2024-12-31",
@@ -88490,23 +88509,23 @@
     {
      "end": "2025-03-31",
      "filed": "2025-05-14",
-     "cash": 401,
+     "cash": 349,
      "burn": 8.4,
-     "runway": 47.7
+     "runway": 41.6
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-12",
-     "cash": 384,
+     "cash": 331,
      "burn": 8.1,
-     "runway": 47.2
+     "runway": 40.7
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-10",
-     "cash": 374,
+     "cash": 314,
      "burn": 7.7,
-     "runway": 48.8
+     "runway": 41
     },
     {
      "end": "2025-12-31",
@@ -94755,37 +94774,37 @@
     {
      "end": "2021-12-31",
      "filed": "2022-03-23",
-     "cash": 684,
+     "cash": 517,
      "burn": 13.2,
-     "runway": 51.8
+     "runway": 39.1
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-10",
-     "cash": 907,
+     "cash": 591,
      "burn": 4.2,
-     "runway": 215.8
+     "runway": 140.5
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-09",
-     "cash": 854,
+     "cash": 515,
      "burn": 6.5,
-     "runway": 130.6
+     "runway": 78.9
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-08",
-     "cash": 856,
+     "cash": 455,
      "burn": 8.3,
-     "runway": 102.8
+     "runway": 54.6
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-27",
-     "cash": 955,
+     "cash": 550,
      "burn": 7,
-     "runway": 137.1
+     "runway": 79
     },
     {
      "end": "2023-03-31",
@@ -96779,16 +96798,16 @@
     {
      "end": "2024-12-31",
      "filed": "2025-11-06",
-     "cash": 48,
+     "cash": 28,
      "burn": 4.4,
-     "runway": 11
+     "runway": 6.3
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-06",
-     "cash": 580,
+     "cash": 314,
      "burn": 1.9,
-     "runway": 305.9
+     "runway": 165.7
     },
     {
      "end": "2025-12-31",
@@ -97068,7 +97087,8 @@
     "other": [],
     "cash": {
      "amt": 403.8,
-     "text": "Liquidity and Capital Resources As of September 30, 2026, the Company had approximately $ 403.8 million of cash, cash equivalents and short-term investments and working capital of approximately $ 416.9 million ."
+     "text": "Liquidity and Capital Resources As of September 30, 2026, the Company had approximately $ 403.8 million of cash, cash equivalents and short-term investments and working capital of approximately $ 416.9 million .",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -103324,7 +103344,8 @@
     ],
     "cash": {
      "amt": 129.6,
-     "text": "As of September 30, 2026, we had cash, cash equivalents, and short-term investments of approximately $129.6 million."
+     "text": "As of September 30, 2026, we had cash, cash equivalents, and short-term investments of approximately $129.6 million.",
+     "partial": true
     }
    },
    "debtDue24": 11.4,
@@ -104914,7 +104935,7 @@
     {
      "end": "2021-12-31",
      "filed": "2022-03-10",
-     "cash": 70,
+     "cash": 69,
      "burn": 3.1,
      "runway": 22.7
     },
@@ -104949,7 +104970,7 @@
     {
      "end": "2023-03-31",
      "filed": "2023-05-08",
-     "cash": 35,
+     "cash": 34,
      "burn": 2.4,
      "runway": 14.4
     },
@@ -104979,7 +105000,7 @@
      "filed": "2024-05-07",
      "cash": 22,
      "burn": 1.7,
-     "runway": 12.7
+     "runway": 12.6
     },
     {
      "end": "2024-06-30",
@@ -106621,7 +106642,7 @@
    "n": "Palvella Therapeutics",
    "area": "Pharmaceutical Preparations",
    "mcap": 2396.5,
-   "ev": 2159.8,
+   "ev": 2159.9,
    "cash": 236.7,
    "debt": 0,
    "burn": 3.59,
@@ -106962,7 +106983,7 @@
      "filed": "2022-05-11",
      "cash": 100,
      "burn": 1.5,
-     "runway": 66.3
+     "runway": 66.2
     },
     {
      "end": "2022-06-30",
@@ -106983,7 +107004,7 @@
      "filed": "2023-03-31",
      "cash": 59,
      "burn": 5,
-     "runway": 11.9
+     "runway": 11.8
     },
     {
      "end": "2023-03-31",
@@ -107009,16 +107030,16 @@
     {
      "end": "2023-12-31",
      "filed": "2024-03-29",
-     "cash": 26,
+     "cash": 16,
      "burn": 1.1,
-     "runway": 23.1
+     "runway": 14.3
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-15",
      "cash": 19,
      "burn": 0.3,
-     "runway": 60.2
+     "runway": 60.1
     },
     {
      "end": "2024-06-30",
@@ -107158,7 +107179,8 @@
     "other": [],
     "cash": {
      "amt": 236.7,
-     "text": "At September 30, 2026, the Company had an accumulated deficit of $ 197.7 million and cash and cash equivalents and short-term investments of $ 236.7 million ."
+     "text": "At September 30, 2026, the Company had an accumulated deficit of $ 197.7 million and cash and cash equivalents and short-term investments of $ 236.7 million .",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -108563,7 +108585,8 @@
     "cik": "1583648",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "ShortTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-02",
@@ -110796,16 +110819,16 @@
     {
      "end": "2021-12-31",
      "filed": "2022-03-07",
-     "cash": 186,
+     "cash": 161,
      "burn": 3,
-     "runway": 62
+     "runway": 53.7
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-16",
-     "cash": 176,
+     "cash": 150,
      "burn": 3.3,
-     "runway": 52.6
+     "runway": 44.8
     },
     {
      "end": "2022-06-30",
@@ -110908,9 +110931,9 @@
     {
      "end": "2025-12-31",
      "filed": "2026-03-05",
-     "cash": 220,
+     "cash": 161,
      "burn": 4.5,
-     "runway": 48.6
+     "runway": 35.5
     },
     {
      "end": "2026-03-31",
@@ -114715,8 +114738,8 @@
    "n": "Korro Bio",
    "area": "Pharmaceutical Preparations",
    "mcap": 197.8,
-   "ev": 32.8,
-   "cash": 165,
+   "ev": 73,
+   "cash": 124.8,
    "debt": 0,
    "burn": 5.31,
    "rev": 1.3,
@@ -114892,16 +114915,16 @@
     {
      "end": "2022-06-30",
      "filed": "2022-08-09",
-     "cash": 145,
+     "cash": 111,
      "burn": 5.3,
-     "runway": 27.3
+     "runway": 20.9
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-08",
-     "cash": 129,
+     "cash": 99,
      "burn": 5,
-     "runway": 25.6
+     "runway": 19.7
     },
     {
      "end": "2022-12-31",
@@ -114948,44 +114971,44 @@
     {
      "end": "2024-06-30",
      "filed": "2024-08-13",
-     "cash": 279,
+     "cash": 188,
      "burn": 5.8,
-     "runway": 48.3
+     "runway": 32.5
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-12",
-     "cash": 232,
+     "cash": 169,
      "burn": 6.1,
-     "runway": 37.8
+     "runway": 27.5
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-18",
-     "cash": 219,
+     "cash": 163,
      "burn": 5,
-     "runway": 43.7
+     "runway": 32.6
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-07",
-     "cash": 203,
+     "cash": 139,
      "burn": 5.2,
-     "runway": 38.9
+     "runway": 26.6
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-12",
-     "cash": 153,
+     "cash": 120,
      "burn": 5.6,
-     "runway": 27.3
+     "runway": 21.3
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-12",
-     "cash": 127,
+     "cash": 102,
      "burn": 5.7,
-     "runway": 22.2
+     "runway": 18
     },
     {
      "end": "2025-12-31",
@@ -114997,23 +115020,23 @@
     {
      "end": "2026-03-31",
      "filed": "2026-05-07",
-     "cash": 219,
+     "cash": 157,
      "burn": 5.8,
-     "runway": 37.4
+     "runway": 26.9
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-06",
-     "cash": 163,
+     "cash": 138,
      "burn": 5.7,
-     "runway": 28.8
+     "runway": 24.4
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-05",
-     "cash": 165,
+     "cash": 125,
      "burn": 5.3,
-     "runway": 31.1
+     "runway": 23.5
     }
    ],
    "revQ": [
@@ -116524,7 +116547,8 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "MarketableSecurities"
+     "MarketableSecuritiesCurrent",
+     "MarketableSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-03",
@@ -118737,8 +118761,8 @@
    "n": "Wave Life Sciences",
    "area": "Pharmaceutical Preparations",
    "mcap": 674.5,
-   "ev": 243.3,
-   "cash": 431.3,
+   "ev": 243.5,
+   "cash": 431,
    "debt": 0,
    "burn": 17.25,
    "rev": 70.9,
@@ -121032,7 +121056,8 @@
     "cik": "1631574",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "MarketableSecuritiesCurrent",
      "MarketableSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -121060,8 +121085,8 @@
    "n": "X4 Pharmaceuticals",
    "area": "Biological Products, (No Diagnostic Substances)",
    "mcap": 329.8,
-   "ev": 217.1,
-   "cash": 187.7,
+   "ev": 219,
+   "cash": 185.8,
    "debt": 75,
    "burn": 6.34,
    "rev": 9.8,
@@ -121385,9 +121410,9 @@
     {
      "end": "2026-09-30",
      "filed": "2026-11-04",
-     "cash": 188,
+     "cash": 186,
      "burn": 6.3,
-     "runway": 29.6
+     "runway": 29.3
     }
    ],
    "revQ": [
@@ -121476,7 +121501,8 @@
     "other": [],
     "cash": {
      "amt": 187.7,
-     "text": "As of September 30, 2026, the Company had $ 187.7 million of cash, cash equivalents and short-term marketable securities, and an accumulated deficit of $ 651.2 million."
+     "text": "As of September 30, 2026, the Company had $ 187.7 million of cash, cash equivalents and short-term marketable securities, and an accumulated deficit of $ 651.2 million.",
+     "partial": true
     }
    },
    "debtDue24": 76.7,
@@ -122787,8 +122813,7 @@
     "cik": "1501697",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashAndCashEquivalentsAtCarryingValue",
-     "MarketableSecurities"
+     "CashAndCashEquivalentsAtCarryingValue"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-02",
@@ -123406,7 +123431,8 @@
     "other": [],
     "cash": {
      "amt": 207.4,
-     "text": "As of September 30, 2026 , the Company's cash, cash equivalents and short-term investments were $ 207.4 million. 15 Upstream Bio, Inc."
+     "text": "As of September 30, 2026 , the Company's cash, cash equivalents and short-term investments were $ 207.4 million. 15 Upstream Bio, Inc.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -124844,8 +124870,8 @@
    "n": "Coherus Oncology",
    "area": "Biological Products, (No Diagnostic Substances)",
    "mcap": 90,
-   "ev": -46,
-   "cash": 136,
+   "ev": 6.4,
+   "cash": 83.6,
    "debt": 0,
    "burn": 14.48,
    "rev": 53.6,
@@ -125024,37 +125050,37 @@
     {
      "end": "2022-12-31",
      "filed": "2023-03-06",
-     "cash": 255,
+     "cash": 192,
      "burn": 20.1,
-     "runway": 12.7
+     "runway": 9.5
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-08",
-     "cash": 140,
+     "cash": 128,
      "burn": 21.3,
-     "runway": 6.6
+     "runway": 6
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-02",
-     "cash": 190,
+     "cash": 145,
      "burn": 20.4,
-     "runway": 9.3
+     "runway": 7.1
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-06",
-     "cash": 193,
+     "cash": 131,
      "burn": 21.8,
-     "runway": 8.9
+     "runway": 6
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-15",
-     "cash": 207,
+     "cash": 118,
      "burn": 14.6,
-     "runway": 14.2
+     "runway": 8.1
     },
     {
      "end": "2024-03-31",
@@ -125094,44 +125120,44 @@
     {
      "end": "2025-06-30",
      "filed": "2025-08-07",
-     "cash": 454,
+     "cash": 238,
      "burn": 8.8,
-     "runway": 51.5
+     "runway": 26.9
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-06",
-     "cash": 295,
+     "cash": 192,
      "burn": 7.5,
-     "runway": 39.2
+     "runway": 25.5
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-09",
-     "cash": 252,
+     "cash": 172,
      "burn": 11.5,
-     "runway": 21.8
+     "runway": 14.9
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-11",
-     "cash": 281,
+     "cash": 167,
      "burn": 14.2,
-     "runway": 19.8
+     "runway": 11.8
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-05",
-     "cash": 187,
+     "cash": 105,
      "burn": 15.5,
-     "runway": 12
+     "runway": 6.8
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-09",
-     "cash": 136,
+     "cash": 84,
      "burn": 14.5,
-     "runway": 9.4
+     "runway": 5.8
     }
    ],
    "revQ": [
@@ -126534,7 +126560,7 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "MarketableSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-31",
@@ -127172,7 +127198,8 @@
     "other": [],
     "cash": {
      "amt": 326.3,
-     "text": "Our cash, cash equivalents, restricted cash and short-term investments were $326.3 million as of June 30, 2026."
+     "text": "Our cash, cash equivalents, restricted cash and short-term investments were $326.3 million as of June 30, 2026.",
+     "partial": true
     }
    },
    "debtDue24": 23.3,
@@ -130748,8 +130775,7 @@
     "cik": "1826457",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashAndCashEquivalentsAtCarryingValue",
-     "MarketableSecurities"
+     "CashCashEquivalentsAndShortTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-30",
@@ -135401,7 +135427,8 @@
     "other": [],
     "cash": {
      "amt": 205.3,
-     "text": "As of September 30, 2026, the Company had cash, cash equivalents, and short-term and long-term investments of $ 205.3 million ."
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents, and short-term and long-term investments of $ 205.3 million .",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -137057,7 +137084,7 @@
      "filed": "2025-11-03",
      "cash": 76,
      "burn": 6,
-     "runway": 12.7
+     "runway": 12.6
     },
     {
      "end": "2025-12-31",
@@ -138381,7 +138408,8 @@
     "cik": "1782223",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "MarketableSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-04",
@@ -138749,9 +138777,9 @@
     {
      "end": "2025-09-30",
      "filed": "2025-11-06",
-     "cash": 389,
+     "cash": 384,
      "burn": 8.9,
-     "runway": 43.8
+     "runway": 43.2
     },
     {
      "end": "2025-12-31",
@@ -138763,9 +138791,9 @@
     {
      "end": "2026-03-31",
      "filed": "2026-05-12",
-     "cash": 373,
+     "cash": 363,
      "burn": 10.1,
-     "runway": 36.9
+     "runway": 35.8
     },
     {
      "end": "2026-06-30",
@@ -140371,8 +140399,8 @@
    "n": "Allogene Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
    "mcap": 311.9,
-   "ev": -173,
-   "cash": 484.8,
+   "ev": -77,
+   "cash": 388.9,
    "debt": 0,
    "burn": 9.05,
    "rev": 4.6,
@@ -140570,72 +140598,72 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-23",
-     "cash": 1162,
+     "cash": 809,
      "burn": 15.4,
-     "runway": 75.4
+     "runway": 52.6
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-04",
-     "cash": 1017,
+     "cash": 733,
      "burn": 17,
-     "runway": 59.9
+     "runway": 43.2
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-09",
-     "cash": 882,
+     "cash": 686,
      "burn": 17.1,
-     "runway": 51.6
+     "runway": 40.1
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-02",
-     "cash": 722,
+     "cash": 637,
      "burn": 17,
-     "runway": 42.5
+     "runway": 37.5
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-28",
-     "cash": 636,
+     "cash": 576,
      "burn": 18.4,
-     "runway": 34.6
+     "runway": 31.4
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-03",
-     "cash": 557,
+     "cash": 514,
      "burn": 18.2,
-     "runway": 30.5
+     "runway": 28.2
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-02",
-     "cash": 597,
+     "cash": 545,
      "burn": 19.9,
-     "runway": 30.1
+     "runway": 27.4
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-02",
-     "cash": 530,
+     "cash": 498,
      "burn": 20.5,
-     "runway": 25.8
+     "runway": 24.3
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-14",
-     "cash": 527,
+     "cash": 449,
      "burn": 19.8,
-     "runway": 26.6
+     "runway": 22.6
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-13",
-     "cash": 410,
+     "cash": 397,
      "burn": 18.9,
-     "runway": 21.7
+     "runway": 21
     },
     {
      "end": "2024-06-30",
@@ -140647,65 +140675,65 @@
     {
      "end": "2024-09-30",
      "filed": "2024-11-07",
-     "cash": 515,
+     "cash": 403,
      "burn": 18.1,
-     "runway": 28.5
+     "runway": 22.3
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-13",
-     "cash": 454,
+     "cash": 373,
      "burn": 16.7,
-     "runway": 27.2
+     "runway": 22.4
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-13",
-     "cash": 391,
+     "cash": 336,
      "burn": 16.4,
-     "runway": 23.8
+     "runway": 20.4
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-13",
-     "cash": 353,
+     "cash": 303,
      "burn": 14.4,
-     "runway": 24.5
+     "runway": 21
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-06",
-     "cash": 309,
+     "cash": 277,
      "burn": 13.2,
-     "runway": 23.4
+     "runway": 21
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-12",
-     "cash": 307,
+     "cash": 258,
      "burn": 12.4,
-     "runway": 24.7
+     "runway": 20.8
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-13",
-     "cash": 292,
+     "cash": 267,
      "burn": 9.1,
-     "runway": 32.1
+     "runway": 29.3
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-12",
-     "cash": 515,
+     "cash": 424,
      "burn": 8.5,
-     "runway": 60.4
+     "runway": 49.7
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-06",
-     "cash": 485,
+     "cash": 389,
      "burn": 9.1,
-     "runway": 53.6
+     "runway": 43
     }
    ],
    "revQ": [
@@ -142451,7 +142479,8 @@
     "cik": "1737287",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
      "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -142779,9 +142808,9 @@
     {
      "end": "2023-09-30",
      "filed": "2023-11-09",
-     "cash": 168,
+     "cash": 167,
      "burn": 11.2,
-     "runway": 15
+     "runway": 14.9
     },
     {
      "end": "2023-12-31",
@@ -143166,7 +143195,8 @@
     "other": [],
     "cash": {
      "amt": 48.4,
-     "text": "Working Capital and Liquidity As of September 30, 2026, we had cash, cash equivalents and short-term investments of $48.4 million and a working capital deficit of $38.0 million, compared with cash, cash equivalents and short-term investments of $58.5 million and positive working capital of $17.5 million as of…"
+     "text": "Working Capital and Liquidity As of September 30, 2026, we had cash, cash equivalents and short-term investments of $48.4 million and a working capital deficit of $38.0 million, compared with cash, cash equivalents and short-term investments of $58.5 million and positive working capital of $17.5 million as of…",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -144410,7 +144440,8 @@
     "cik": "1055726",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "ShortTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-10",
@@ -144437,8 +144468,8 @@
    "n": "MBX Biosciences",
    "area": "Pharmaceutical Preparations",
    "mcap": 2866.2,
-   "ev": 2383.6,
-   "cash": 482.6,
+   "ev": 2384.6,
+   "cash": 481.6,
    "debt": 0,
    "burn": 8,
    "rev": 0,
@@ -144814,30 +144845,30 @@
     {
      "end": "2024-09-30",
      "filed": "2024-11-07",
-     "cash": 320,
+     "cash": 277,
      "burn": 4.1,
-     "runway": 77.2
+     "runway": 66.8
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-17",
-     "cash": 272,
+     "cash": 262,
      "burn": 4.6,
-     "runway": 59.7
+     "runway": 57.5
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-12",
-     "cash": 242,
+     "cash": 241,
      "burn": 5.6,
-     "runway": 43.5
+     "runway": 43.4
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-07",
-     "cash": 226,
+     "cash": 225,
      "burn": 5.9,
-     "runway": 38.3
+     "runway": 38.1
     },
     {
      "end": "2025-09-30",
@@ -144870,9 +144901,9 @@
     {
      "end": "2026-09-30",
      "filed": "2026-11-09",
-     "cash": 483,
+     "cash": 482,
      "burn": 8,
-     "runway": 60.3
+     "runway": 60.2
     }
    ],
    "revQ": [],
@@ -146311,7 +146342,7 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "MarketableSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-05",
@@ -146658,9 +146689,9 @@
     {
      "end": "2024-09-30",
      "filed": "2024-11-12",
-     "cash": 253,
+     "cash": 200,
      "burn": 4.3,
-     "runway": 59.4
+     "runway": 46.9
     },
     {
      "end": "2024-12-31",
@@ -146688,7 +146719,7 @@
      "filed": "2025-11-12",
      "cash": 123,
      "burn": 6.4,
-     "runway": 19.3
+     "runway": 19.2
     },
     {
      "end": "2025-12-31",
@@ -146761,7 +146792,8 @@
     "other": [],
     "cash": {
      "amt": 319.1,
-     "text": "As of September 30, 2026, the Company has $ 319.1 million in cash, cash equivalents and short-term investments."
+     "text": "As of September 30, 2026, the Company has $ 319.1 million in cash, cash equivalents and short-term investments.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -148548,7 +148580,8 @@
     ],
     "cash": {
      "amt": 395,
-     "text": "Future Funding Requirements As of September 30, 2026, we had cash, cash equivalents and short-term investments of $395.0 million, excluding our restricted cash."
+     "text": "Future Funding Requirements As of September 30, 2026, we had cash, cash equivalents and short-term investments of $395.0 million, excluding our restricted cash.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -152064,8 +152097,8 @@
    "n": "Erasca",
    "area": "Pharmaceutical Preparations",
    "mcap": 5876,
-   "ev": 5376.2,
-   "cash": 499.8,
+   "ev": 5491.7,
+   "cash": 384.3,
    "debt": 0,
    "burn": 8.17,
    "rev": 0,
@@ -152488,9 +152521,9 @@
     {
      "end": "2022-06-30",
      "filed": "2022-08-11",
-     "cash": 391,
+     "cash": 312,
      "burn": 8.2,
-     "runway": 47.5
+     "runway": 38
     },
     {
      "end": "2022-09-30",
@@ -152572,37 +152605,37 @@
     {
      "end": "2025-06-30",
      "filed": "2025-08-12",
-     "cash": 473,
+     "cash": 387,
      "burn": 8.3,
-     "runway": 57.3
+     "runway": 46.8
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-12",
-     "cash": 436,
+     "cash": 362,
      "burn": 8.2,
-     "runway": 53.3
+     "runway": 44.2
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-12",
-     "cash": 408,
+     "cash": 342,
      "burn": 8,
-     "runway": 51.2
+     "runway": 43
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-11",
-     "cash": 573,
+     "cash": 409,
      "burn": 7.6,
-     "runway": 75.4
+     "runway": 53.7
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-11",
-     "cash": 500,
+     "cash": 384,
      "burn": 8.2,
-     "runway": 61.2
+     "runway": 47
     }
    ],
    "revQ": [],
@@ -153901,7 +153934,8 @@
     "cik": "1761918",
     "asOf": "2026-06-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "MarketableSecuritiesCurrent",
      "MarketableSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -156120,8 +156154,8 @@
    "n": "Lyell Immunopharma",
    "area": "Pharmaceutical Preparations",
    "mcap": 414.5,
-   "ev": 144.6,
-   "cash": 269.9,
+   "ev": 220.5,
+   "cash": 194,
    "debt": 0,
    "burn": 11.6,
    "rev": 0,
@@ -156462,86 +156496,86 @@
     {
      "end": "2023-12-31",
      "filed": "2024-02-28",
-     "cash": 690,
+     "cash": 563,
      "burn": 13.6,
-     "runway": 50.6
+     "runway": 41.3
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-06",
-     "cash": 627,
+     "cash": 526,
      "burn": 13.3,
-     "runway": 47.2
+     "runway": 39.6
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-07",
-     "cash": 611,
+     "cash": 491,
      "burn": 13.2,
-     "runway": 46.3
+     "runway": 37.2
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-07",
-     "cash": 539,
+     "cash": 461,
      "burn": 13,
-     "runway": 41.6
+     "runway": 35.5
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-11",
-     "cash": 464,
+     "cash": 384,
      "burn": 13.5,
-     "runway": 34.3
+     "runway": 28.3
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-13",
-     "cash": 428,
+     "cash": 330,
      "burn": 14.6,
-     "runway": 29.4
+     "runway": 22.6
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-12",
-     "cash": 380,
+     "cash": 297,
      "burn": 14.3,
-     "runway": 26.6
+     "runway": 20.8
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-12",
-     "cash": 428,
+     "cash": 320,
      "burn": 13.8,
-     "runway": 31.1
+     "runway": 23.2
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-12",
-     "cash": 297,
+     "cash": 247,
      "burn": 12.5,
-     "runway": 23.8
+     "runway": 19.8
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-06",
-     "cash": 335,
+     "cash": 261,
      "burn": 11.1,
-     "runway": 30
+     "runway": 23.4
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-06",
-     "cash": 289,
+     "cash": 228,
      "burn": 11.1,
-     "runway": 26
+     "runway": 20.5
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-04",
-     "cash": 270,
+     "cash": 194,
      "burn": 11.6,
-     "runway": 23.3
+     "runway": 16.7
     }
    ],
    "revQ": [
@@ -158281,7 +158315,8 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "MarketableSecuritiesCurrent",
+     "MarketableSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-30",
@@ -162652,8 +162687,8 @@
    "n": "Absci",
    "area": "Services-Commercial Physical & Biological Research",
    "mcap": 1736.7,
-   "ev": 1437.2,
-   "cash": 299.5,
+   "ev": 1535.6,
+   "cash": 201.1,
    "debt": 0,
    "burn": 9.01,
    "rev": 1.6,
@@ -162867,9 +162902,9 @@
     {
      "end": "2022-09-30",
      "filed": "2022-11-09",
-     "cash": 213,
+     "cash": 181,
      "burn": 6.7,
-     "runway": 32
+     "runway": 27.2
     },
     {
      "end": "2022-12-31",
@@ -162930,9 +162965,9 @@
     {
      "end": "2024-12-31",
      "filed": "2025-03-18",
-     "cash": 115,
+     "cash": 112,
      "burn": 6,
-     "runway": 19
+     "runway": 18.6
     },
     {
      "end": "2025-03-31",
@@ -162958,23 +162993,23 @@
     {
      "end": "2025-12-31",
      "filed": "2026-03-24",
-     "cash": 159,
+     "cash": 156,
      "burn": 7.7,
-     "runway": 20.5
+     "runway": 20.2
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-07",
      "cash": 131,
      "burn": 8.1,
-     "runway": 16.2
+     "runway": 16.1
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-11",
-     "cash": 300,
+     "cash": 201,
      "burn": 9,
-     "runway": 33.3
+     "runway": 22.3
     }
    ],
    "revQ": [
@@ -164558,7 +164593,8 @@
     "asOf": "2026-06-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "DebtSecuritiesAvailableForSaleExcludingAccruedInterest"
+     "MarketableSecuritiesCurrent",
+     "MarketableSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-07-31",
@@ -164585,8 +164621,8 @@
    "n": "Shattuck Labs",
    "area": "Pharmaceutical Preparations",
    "mcap": 514.3,
-   "ev": 260,
-   "cash": 254.3,
+   "ev": 318,
+   "cash": 196.3,
    "debt": 0,
    "burn": 4.13,
    "rev": 0,
@@ -164815,7 +164851,7 @@
     {
      "end": "2023-03-31",
      "filed": "2023-05-09",
-     "cash": 136,
+     "cash": 135,
      "burn": 7.9,
      "runway": 17.2
     },
@@ -164836,16 +164872,16 @@
     {
      "end": "2023-12-31",
      "filed": "2024-02-29",
-     "cash": 251,
+     "cash": 131,
      "burn": 6.8,
-     "runway": 37.1
+     "runway": 19.3
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-02",
-     "cash": 149,
+     "cash": 115,
      "burn": 5.9,
-     "runway": 25.2
+     "runway": 19.4
     },
     {
      "end": "2024-06-30",
@@ -164857,16 +164893,16 @@
     {
      "end": "2024-09-30",
      "filed": "2024-11-14",
-     "cash": 98,
+     "cash": 90,
      "burn": 5.2,
-     "runway": 18.9
+     "runway": 17.3
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-27",
-     "cash": 128,
+     "cash": 73,
      "burn": 5,
-     "runway": 25.4
+     "runway": 14.5
     },
     {
      "end": "2025-03-31",
@@ -164885,16 +164921,16 @@
     {
      "end": "2025-09-30",
      "filed": "2025-11-06",
-     "cash": 127,
+     "cash": 86,
      "burn": 4.1,
-     "runway": 31.2
+     "runway": 21.2
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-05",
-     "cash": 130,
+     "cash": 78,
      "burn": 3.3,
-     "runway": 39.2
+     "runway": 23.5
     },
     {
      "end": "2026-03-31",
@@ -164906,16 +164942,16 @@
     {
      "end": "2026-06-30",
      "filed": "2026-08-11",
-     "cash": 271,
+     "cash": 208,
      "burn": 3.4,
-     "runway": 79.1
+     "runway": 60.9
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-05",
-     "cash": 254,
+     "cash": 196,
      "burn": 4.1,
-     "runway": 61.6
+     "runway": 47.5
     }
    ],
    "revQ": [
@@ -165258,7 +165294,8 @@
     ],
     "cash": {
      "amt": 196.3,
-     "text": "Management believes that the Company's cash and cash equivalents and short-term investments of $ 196.3 million as of September 30, 2026 are sufficient to fund projected operations of the Company for at least the next twelve months following the date these financial statements are issued. 2."
+     "text": "Management believes that the Company's cash and cash equivalents and short-term investments of $ 196.3 million as of September 30, 2026 are sufficient to fund projected operations of the Company for at least the next twelve months following the date these financial statements are issued. 2.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -166580,8 +166617,7 @@
     "cik": "1680367",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashAndCashEquivalentsAtCarryingValue",
-     "DebtSecuritiesAvailableForSaleExcludingAccruedInterest"
+     "CashCashEquivalentsAndShortTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-02",
@@ -166787,30 +166823,30 @@
     {
      "end": "2022-03-31",
      "filed": "2022-05-12",
-     "cash": 169,
+     "cash": 109,
      "burn": 3.2,
-     "runway": 52.9
+     "runway": 34.3
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-11",
-     "cash": 144,
+     "cash": 97,
      "burn": 3.6,
-     "runway": 40
+     "runway": 26.9
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-10",
-     "cash": 147,
+     "cash": 86,
      "burn": 3.7,
-     "runway": 39.4
+     "runway": 23
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-16",
-     "cash": 188,
+     "cash": 107,
      "burn": 3.9,
-     "runway": 48.7
+     "runway": 27.6
     },
     {
      "end": "2023-03-31",
@@ -166822,44 +166858,44 @@
     {
      "end": "2023-06-30",
      "filed": "2023-08-10",
-     "cash": 304,
+     "cash": 176,
      "burn": 3.9,
-     "runway": 78.5
+     "runway": 45.5
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-09",
-     "cash": 280,
+     "cash": 164,
      "burn": 4.1,
-     "runway": 68.2
+     "runway": 40.1
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-21",
-     "cash": 434,
+     "cash": 241,
      "burn": 4.5,
-     "runway": 97.4
+     "runway": 54.1
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-15",
-     "cash": 399,
+     "cash": 224,
      "burn": 5.4,
-     "runway": 73.8
+     "runway": 41.4
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-08",
-     "cash": 382,
+     "cash": 203,
      "burn": 6.2,
-     "runway": 62.1
+     "runway": 33
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-14",
-     "cash": 354,
+     "cash": 183,
      "burn": 6.8,
-     "runway": 52
+     "runway": 26.9
     },
     {
      "end": "2024-12-31",
@@ -166878,23 +166914,23 @@
     {
      "end": "2025-06-30",
      "filed": "2025-08-07",
-     "cash": 340,
+     "cash": 195,
      "burn": 8.7,
-     "runway": 39
+     "runway": 22.3
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-10",
-     "cash": 220,
+     "cash": 160,
      "burn": 9.9,
-     "runway": 22.2
+     "runway": 16.1
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-23",
-     "cash": 217,
+     "cash": 134,
      "burn": 10.9,
-     "runway": 19.8
+     "runway": 12.2
     },
     {
      "end": "2026-03-31",
@@ -173447,7 +173483,8 @@
     "other": [],
     "cash": {
      "amt": 139.1,
-     "text": "As of September 30, 2026, we had aggregate cash and cash equivalents and short-term investments of $139.1 million."
+     "text": "As of September 30, 2026, we had aggregate cash and cash equivalents and short-term investments of $139.1 million.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -176985,9 +177022,9 @@
     {
      "end": "2023-12-31",
      "filed": "2024-02-29",
-     "cash": 221,
+     "cash": 220,
      "burn": 8.1,
-     "runway": 27.2
+     "runway": 27.1
     },
     {
      "end": "2024-03-31",
@@ -177013,9 +177050,9 @@
     {
      "end": "2024-12-31",
      "filed": "2025-02-27",
-     "cash": 166,
+     "cash": 165,
      "burn": 9.9,
-     "runway": 16.7
+     "runway": 16.6
     },
     {
      "end": "2025-03-31",
@@ -178895,65 +178932,65 @@
     {
      "end": "2022-09-30",
      "filed": "2022-11-14",
-     "cash": 147,
+     "cash": 137,
      "burn": 9.5,
-     "runway": 15.4
+     "runway": 14.4
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-09",
-     "cash": 294,
+     "cash": 286,
      "burn": 11,
-     "runway": 26.8
+     "runway": 26
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-11",
-     "cash": 250,
+     "cash": 243,
      "burn": 10.2,
-     "runway": 24.4
+     "runway": 23.8
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-07",
-     "cash": 208,
+     "cash": 201,
      "burn": 11.9,
-     "runway": 17.4
+     "runway": 16.9
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-03",
-     "cash": 165,
+     "cash": 161,
      "burn": 12.7,
-     "runway": 13
+     "runway": 12.6
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-01",
-     "cash": 122,
+     "cash": 116,
      "burn": 13.8,
-     "runway": 8.8
+     "runway": 8.4
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-10",
-     "cash": 211,
+     "cash": 204,
      "burn": 16,
-     "runway": 13.2
+     "runway": 12.8
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-08",
-     "cash": 163,
+     "cash": 158,
      "burn": 16.4,
-     "runway": 10
+     "runway": 9.7
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-12",
-     "cash": 176,
+     "cash": 171,
      "burn": 15.2,
-     "runway": 11.5
+     "runway": 11.2
     },
     {
      "end": "2024-12-31",
@@ -178965,23 +179002,23 @@
     {
      "end": "2025-03-31",
      "filed": "2025-05-08",
-     "cash": 144,
+     "cash": 140,
      "burn": 8.7,
-     "runway": 16.6
+     "runway": 16.2
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-07",
-     "cash": 102,
+     "cash": 98,
      "burn": 8.3,
-     "runway": 12.2
+     "runway": 11.8
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-07",
-     "cash": 213,
+     "cash": 208,
      "burn": 9.1,
-     "runway": 23.5
+     "runway": 22.9
     },
     {
      "end": "2025-12-31",
@@ -178993,7 +179030,7 @@
     {
      "end": "2026-03-31",
      "filed": "2026-05-07",
-     "cash": 136,
+     "cash": 135,
      "burn": 13,
      "runway": 10.4
     },
@@ -179219,7 +179256,8 @@
     "other": [],
     "cash": {
      "amt": 95.1,
-     "text": "As of June 30, 2026, the Company maintains cash, cash equivalents, and short-term investments of $ 95.1 million."
+     "text": "As of June 30, 2026, the Company maintains cash, cash equivalents, and short-term investments of $ 95.1 million.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -180463,7 +180501,8 @@
     "cik": "1894562",
     "asOf": "2026-06-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-07-31",
@@ -180807,30 +180846,30 @@
     {
      "end": "2022-12-31",
      "filed": "2023-03-20",
-     "cash": 178,
+     "cash": 141,
      "burn": 4.4,
-     "runway": 40.4
+     "runway": 31.9
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-08",
-     "cash": 119,
+     "cash": 83,
      "burn": 4.4,
-     "runway": 27.2
+     "runway": 19.1
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-10",
-     "cash": 113,
+     "cash": 82,
      "burn": 4.2,
-     "runway": 26.9
+     "runway": 19.6
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-14",
-     "cash": 103,
+     "cash": 79,
      "burn": 4.4,
-     "runway": 23.5
+     "runway": 17.9
     },
     {
      "end": "2023-12-31",
@@ -181008,7 +181047,8 @@
     "other": [],
     "cash": {
      "amt": 359.7,
-     "text": "As of September 30, 2026, the Company had cash, cash equivalents and short-term investments of approximately $ 359.7 million."
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents and short-term investments of approximately $ 359.7 million.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -182446,8 +182486,8 @@
    "n": "Olema Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
    "mcap": 704.4,
-   "ev": 243,
-   "cash": 461.4,
+   "ev": 290.6,
+   "cash": 413.8,
    "debt": 0,
    "burn": 14.78,
    "rev": 0,
@@ -182653,142 +182693,142 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-28",
-     "cash": 301,
+     "cash": 287,
      "burn": 4.2,
-     "runway": 71.3
+     "runway": 68
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-09",
-     "cash": 289,
+     "cash": 268,
      "burn": 4.8,
-     "runway": 60.4
+     "runway": 55.9
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-09",
-     "cash": 265,
+     "cash": 241,
      "burn": 6.3,
-     "runway": 42.4
+     "runway": 38.5
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-08",
-     "cash": 249,
+     "cash": 223,
      "burn": 6.7,
-     "runway": 37
+     "runway": 33
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-09",
-     "cash": 228,
+     "cash": 204,
      "burn": 6.8,
-     "runway": 33.4
+     "runway": 29.9
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-09",
-     "cash": 227,
+     "cash": 186,
      "burn": 7,
-     "runway": 32.2
+     "runway": 26.4
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-08",
-     "cash": 202,
+     "cash": 167,
      "burn": 6.7,
-     "runway": 30.3
+     "runway": 25.1
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-07",
-     "cash": 395,
+     "cash": 277,
      "burn": 7.1,
-     "runway": 55.7
+     "runway": 39.1
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-11",
-     "cash": 331,
+     "cash": 262,
      "burn": 7,
-     "runway": 47.4
+     "runway": 37.5
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-08",
-     "cash": 283,
+     "cash": 249,
      "burn": 7.2,
-     "runway": 39.1
+     "runway": 34.4
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-06",
-     "cash": 256,
+     "cash": 239,
      "burn": 7.7,
-     "runway": 33.3
+     "runway": 31.1
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-12",
-     "cash": 251,
+     "cash": 215,
      "burn": 8,
-     "runway": 31.2
+     "runway": 26.7
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-18",
-     "cash": 574,
+     "cash": 434,
      "burn": 8.7,
-     "runway": 66
+     "runway": 49.9
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-13",
-     "cash": 444,
+     "cash": 393,
      "burn": 10.4,
-     "runway": 42.6
+     "runway": 37.8
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-11",
-     "cash": 414,
+     "cash": 362,
      "burn": 10.6,
-     "runway": 39.1
+     "runway": 34.2
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-10",
-     "cash": 364,
+     "cash": 329,
      "burn": 11.2,
-     "runway": 32.5
+     "runway": 29.3
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-16",
-     "cash": 554,
+     "cash": 505,
      "burn": 12.2,
-     "runway": 45.3
+     "runway": 41.3
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-12",
-     "cash": 558,
+     "cash": 505,
      "burn": 12.4,
-     "runway": 45
+     "runway": 40.8
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-10",
-     "cash": 510,
+     "cash": 461,
      "burn": 13.7,
-     "runway": 37.1
+     "runway": 33.6
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-10",
-     "cash": 461,
+     "cash": 414,
      "burn": 14.8,
-     "runway": 31.2
+     "runway": 28
     }
    ],
    "revQ": [],
@@ -184483,7 +184523,7 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "MarketableSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-05",
@@ -184510,7 +184550,7 @@
    "n": "Enliven Therapeutics",
    "area": "Pharmaceutical Preparations",
    "mcap": 3767.3,
-   "ev": 2882.9,
+   "ev": 2883,
    "cash": 884.4,
    "debt": 0,
    "burn": 5.52,
@@ -184844,7 +184884,7 @@
     {
      "end": "2023-09-30",
      "filed": "2023-11-09",
-     "cash": 264,
+     "cash": 263,
      "burn": 4.7,
      "runway": 55.5
     },
@@ -186602,7 +186642,8 @@
     "cik": "1672619",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "MarketableSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-28",
@@ -186629,7 +186670,7 @@
    "n": "Cullinan Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
    "mcap": 736.9,
-   "ev": 425.3,
+   "ev": 425.4,
    "cash": 311.5,
    "debt": 0,
    "burn": 13.79,
@@ -187339,7 +187380,7 @@
     {
      "end": "2026-09-30",
      "filed": "2026-11-10",
-     "cash": 312,
+     "cash": 311,
      "burn": 13.8,
      "runway": 22.6
     }
@@ -187633,7 +187674,8 @@
     "other": [],
     "cash": {
      "amt": 289.6,
-     "text": "The Company expects that its cash, cash equivalents, and short-term investments of $ 289.6 million , and long-term investments and interest receivable of $ 24.2 million as of September 30, 2026, will be sufficient to fund its operating expenses and capital expenditure requirements through the next twelve months from…"
+     "text": "The Company expects that its cash, cash equivalents, and short-term investments of $ 289.6 million , and long-term investments and interest receivable of $ 24.2 million as of September 30, 2026, will be sufficient to fund its operating expenses and capital expenditure requirements through the next twelve months from…",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -189043,7 +189085,8 @@
     "cik": "1789972",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "ShortTermInvestments",
      "LongTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -189374,7 +189417,7 @@
      "filed": "2023-08-14",
      "cash": 150,
      "burn": 4.2,
-     "runway": 35.4
+     "runway": 35.3
     },
     {
      "end": "2023-09-30",
@@ -189414,9 +189457,9 @@
     {
      "end": "2024-12-31",
      "filed": "2025-03-27",
-     "cash": 114,
+     "cash": 69,
      "burn": 5.9,
-     "runway": 19.3
+     "runway": 11.7
     },
     {
      "end": "2025-03-31",
@@ -191855,7 +191898,8 @@
     ],
     "cash": {
      "amt": 393.2,
-     "text": "The Company has concluded that the aggregate balance of cash and cash equivalents and short-term investments of $ 393.2 million as of September 30, 2026 is sufficient to sustain planned operations through at least twelve months from the issuance date of these financial statements."
+     "text": "The Company has concluded that the aggregate balance of cash and cash equivalents and short-term investments of $ 393.2 million as of September 30, 2026 is sufficient to sustain planned operations through at least twelve months from the issuance date of these financial statements.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -195242,8 +195286,7 @@
     "cik": "1689375",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashAndCashEquivalentsAtCarryingValue",
-     "DebtSecuritiesAvailableForSaleExcludingAccruedInterest"
+     "CashCashEquivalentsAndShortTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-31",
@@ -195270,8 +195313,8 @@
    "n": "Agios Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
    "mcap": 1963,
-   "ev": 778.9,
-   "cash": 1184,
+   "ev": 1055.9,
+   "cash": 907,
    "debt": 0,
    "burn": 27.64,
    "rev": 140.8,
@@ -195841,142 +195884,142 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-24",
-     "cash": 1553,
+     "cash": 1286,
      "burn": 33.9,
-     "runway": 45.7
+     "runway": 37.9
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-05",
-     "cash": 1456,
+     "cash": 1179,
      "burn": 32,
-     "runway": 45.5
+     "runway": 36.8
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-04",
-     "cash": 1381,
+     "cash": 1100,
      "burn": 28.4,
-     "runway": 48.6
+     "runway": 38.7
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-03",
-     "cash": 1298,
+     "cash": 1026,
      "burn": 27.3,
-     "runway": 47.6
+     "runway": 37.6
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-23",
-     "cash": 1414,
+     "cash": 1097,
      "burn": 25.8,
-     "runway": 54.8
+     "runway": 42.5
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-04",
-     "cash": 1272,
+     "cash": 1011,
      "burn": 25.6,
-     "runway": 49.7
+     "runway": 39.5
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-03",
-     "cash": 1191,
+     "cash": 947,
      "burn": 25,
-     "runway": 47.7
+     "runway": 37.9
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-02",
-     "cash": 1097,
+     "cash": 872,
      "burn": 24.1,
-     "runway": 45.4
+     "runway": 36.1
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-15",
-     "cash": 836,
+     "cash": 806,
      "burn": 24.7,
-     "runway": 33.9
+     "runway": 32.7
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-02",
-     "cash": 831,
+     "cash": 714,
      "burn": 25.1,
-     "runway": 33.1
+     "runway": 28.5
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-01",
-     "cash": 721,
+     "cash": 645,
      "burn": 25.5,
-     "runway": 28.2
+     "runway": 25.3
     },
     {
      "end": "2024-09-30",
      "filed": "2024-10-31",
-     "cash": 2356,
+     "cash": 1661,
      "burn": 27.4,
-     "runway": 85.9
+     "runway": 60.5
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-13",
-     "cash": 2138,
+     "cash": 1532,
      "burn": 32.5,
-     "runway": 65.8
+     "runway": 47.2
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-01",
-     "cash": 1931,
+     "cash": 1425,
      "burn": 33.5,
-     "runway": 57.7
+     "runway": 42.6
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-31",
-     "cash": 1700,
+     "cash": 1339,
      "burn": 33.8,
-     "runway": 50.3
+     "runway": 39.6
     },
     {
      "end": "2025-09-30",
      "filed": "2025-10-30",
-     "cash": 1604,
+     "cash": 1257,
      "burn": 34.2,
-     "runway": 47
+     "runway": 36.8
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-12",
-     "cash": 1510,
+     "cash": 1164,
      "burn": 31.1,
-     "runway": 48.6
+     "runway": 37.5
     },
     {
      "end": "2026-03-31",
      "filed": "2026-04-29",
-     "cash": 1308,
+     "cash": 1045,
      "burn": 31.7,
-     "runway": 41.3
+     "runway": 33
     },
     {
      "end": "2026-06-30",
      "filed": "2026-07-30",
-     "cash": 1347,
+     "cash": 965,
      "burn": 30,
-     "runway": 44.8
+     "runway": 32.1
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-05",
-     "cash": 1184,
+     "cash": 907,
      "burn": 27.6,
-     "runway": 42.8
+     "runway": 32.8
     }
    ],
    "revQ": [
@@ -197689,7 +197732,8 @@
     "cik": "1439222",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
      "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -197888,9 +197932,9 @@
     {
      "end": "2022-12-31",
      "filed": "2023-03-29",
-     "cash": 103,
+     "cash": 99,
      "burn": 2.8,
-     "runway": 36.8
+     "runway": 35.6
     },
     {
      "end": "2023-03-31",
@@ -197974,7 +198018,7 @@
      "filed": "2026-03-17",
      "cash": 60,
      "burn": 2.5,
-     "runway": 24.2
+     "runway": 24.1
     },
     {
      "end": "2026-03-31",
@@ -199534,7 +199578,8 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "Investments"
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+     "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-05",
@@ -199561,8 +199606,8 @@
    "n": "Editas Medicine",
    "area": "Biological Products, (No Diagnostic Substances)",
    "mcap": 367.3,
-   "ev": 133.3,
-   "cash": 283.4,
+   "ev": 226.5,
+   "cash": 190.2,
    "debt": 49.3,
    "burn": 9.18,
    "rev": 49.8,
@@ -199833,121 +199878,121 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-24",
-     "cash": 823,
+     "cash": 620,
      "burn": 13.7,
-     "runway": 60.3
+     "runway": 45.4
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-04",
-     "cash": 777,
+     "cash": 566,
      "burn": 13.6,
-     "runway": 57
+     "runway": 41.6
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-03",
-     "cash": 697,
+     "cash": 528,
      "burn": 13.5,
-     "runway": 51.5
+     "runway": 39
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-02",
-     "cash": 689,
+     "cash": 478,
      "burn": 14.1,
-     "runway": 48.7
+     "runway": 33.8
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-22",
-     "cash": 579,
+     "cash": 437,
      "burn": 14.8,
-     "runway": 39.2
+     "runway": 29.6
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-05",
-     "cash": 531,
+     "cash": 402,
      "burn": 13.7,
-     "runway": 38.9
+     "runway": 29.4
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-02",
-     "cash": 701,
+     "cash": 480,
      "burn": 13.7,
-     "runway": 51
+     "runway": 35
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-03",
-     "cash": 529,
+     "cash": 446,
      "burn": 12.7,
-     "runway": 41.7
+     "runway": 35.2
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-28",
-     "cash": 551,
+     "cash": 427,
      "burn": 11,
-     "runway": 50
+     "runway": 38.8
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-08",
-     "cash": 446,
+     "cash": 377,
      "burn": 12.2,
-     "runway": 36.6
+     "runway": 30.9
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-07",
-     "cash": 383,
+     "cash": 318,
      "burn": 13.7,
-     "runway": 27.9
+     "runway": 23.2
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-04",
-     "cash": 361,
+     "cash": 265,
      "burn": 15.1,
-     "runway": 23.8
+     "runway": 17.5
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-05",
-     "cash": 401,
+     "cash": 270,
      "burn": 17.5,
-     "runway": 22.9
+     "runway": 15.4
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-12",
-     "cash": 360,
+     "cash": 221,
      "burn": 17.4,
-     "runway": 20.7
+     "runway": 12.7
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-12",
-     "cash": 317,
+     "cash": 179,
      "burn": 16.8,
-     "runway": 18.9
+     "runway": 10.6
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-10",
-     "cash": 331,
+     "cash": 166,
      "burn": 15,
-     "runway": 22.1
+     "runway": 11.1
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-09",
-     "cash": 293,
+     "cash": 147,
      "burn": 13.8,
-     "runway": 21.3
+     "runway": 10.6
     },
     {
      "end": "2026-03-31",
@@ -199959,16 +200004,16 @@
     {
      "end": "2026-06-30",
      "filed": "2026-08-05",
-     "cash": 393,
+     "cash": 212,
      "burn": 10,
-     "runway": 39.4
+     "runway": 21.2
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-09",
-     "cash": 283,
+     "cash": 190,
      "burn": 9.2,
-     "runway": 30.9
+     "runway": 20.7
     }
    ],
    "revQ": [
@@ -201703,7 +201748,7 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "MarketableSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-06",
@@ -203692,8 +203737,8 @@
    "n": "Obsidian Therapeutics",
    "area": "Pharmaceutical Preparations",
    "mcap": 795.6,
-   "ev": 743.2,
-   "cash": 52.4,
+   "ev": 761.2,
+   "cash": 34.4,
    "debt": 0,
    "burn": 7.65,
    "rev": 0,
@@ -203825,23 +203870,23 @@
     {
      "end": "2024-12-31",
      "filed": "2026-08-28",
-     "cash": 218,
+     "cash": 168,
      "burn": 6.3,
-     "runway": 34.9
+     "runway": 26.9
     },
     {
      "end": "2025-12-31",
      "filed": "2026-08-28",
-     "cash": 121,
+     "cash": 80,
      "burn": 7.5,
-     "runway": 16.1
+     "runway": 10.7
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-14",
-     "cash": 52,
+     "cash": 34,
      "burn": 7.7,
-     "runway": 6.9
+     "runway": 4.5
     }
    ],
    "revQ": [
@@ -204352,7 +204397,7 @@
     "asOf": "2026-06-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "DebtSecuritiesAvailableForSaleExcludingAccruedInterest"
+     "MarketableSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-08-10",
@@ -208299,8 +208344,8 @@
    "n": "Spyre Therapeutics",
    "area": "Pharmaceutical Preparations",
    "mcap": 10144.6,
-   "ev": 9044.6,
-   "cash": 1100,
+   "ev": 9072.7,
+   "cash": 1071.9,
    "debt": 0,
    "burn": 20.78,
    "rev": 0,
@@ -208796,7 +208841,7 @@
      "filed": "2024-02-29",
      "cash": 339,
      "burn": 8.3,
-     "runway": 40.8
+     "runway": 40.7
     },
     {
      "end": "2024-03-31",
@@ -208815,9 +208860,9 @@
     {
      "end": "2024-09-30",
      "filed": "2024-11-07",
-     "cash": 486,
+     "cash": 414,
      "burn": 12.6,
-     "runway": 38.5
+     "runway": 32.9
     },
     {
      "end": "2024-12-31",
@@ -208829,23 +208874,23 @@
     {
      "end": "2025-03-31",
      "filed": "2025-05-08",
-     "cash": 613,
+     "cash": 565,
      "burn": 14.2,
-     "runway": 43.3
+     "runway": 39.9
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-05",
-     "cash": 608,
+     "cash": 527,
      "burn": 12.8,
-     "runway": 47.3
+     "runway": 41
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-04",
-     "cash": 551,
+     "cash": 486,
      "burn": 13.5,
-     "runway": 40.9
+     "runway": 36
     },
     {
      "end": "2025-12-31",
@@ -208857,7 +208902,7 @@
     {
      "end": "2026-03-31",
      "filed": "2026-05-05",
-     "cash": 742,
+     "cash": 741,
      "burn": 15.5,
      "runway": 47.9
     },
@@ -208871,9 +208916,9 @@
     {
      "end": "2026-09-30",
      "filed": "2026-11-03",
-     "cash": 1100,
+     "cash": 1072,
      "burn": 20.8,
-     "runway": 52.9
+     "runway": 51.6
     }
    ],
    "revQ": [
@@ -210612,7 +210657,8 @@
     "cik": "1636282",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-27",
@@ -210639,8 +210685,8 @@
    "n": "Praxis Precision Medicines",
    "area": "Pharmaceutical Preparations",
    "mcap": 9677.1,
-   "ev": 7452.9,
-   "cash": 2224.2,
+   "ev": 8377.1,
+   "cash": 1300,
    "debt": 0,
    "burn": 26.81,
    "rev": 0,
@@ -211091,16 +211137,16 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-28",
-     "cash": 307,
+     "cash": 276,
      "burn": 10.4,
-     "runway": 29.6
+     "runway": 26.6
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-09",
-     "cash": 234,
+     "cash": 223,
      "burn": 12.7,
-     "runway": 18.4
+     "runway": 17.5
     },
     {
      "end": "2022-06-30",
@@ -211154,79 +211200,79 @@
     {
      "end": "2024-03-31",
      "filed": "2024-05-13",
-     "cash": 279,
+     "cash": 243,
      "burn": 8.3,
-     "runway": 33.8
+     "runway": 29.4
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-13",
-     "cash": 516,
+     "cash": 434,
      "burn": 7.9,
-     "runway": 65
+     "runway": 54.7
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-06",
-     "cash": 465,
+     "cash": 411,
      "burn": 8.3,
-     "runway": 56.1
+     "runway": 49.6
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-28",
-     "cash": 724,
+     "cash": 647,
      "burn": 11,
-     "runway": 65.9
+     "runway": 58.9
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-02",
-     "cash": 616,
+     "cash": 472,
      "burn": 13.7,
-     "runway": 45.1
+     "runway": 34.6
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-04",
-     "cash": 592,
+     "cash": 447,
      "burn": 15.9,
-     "runway": 37.1
+     "runway": 28
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-05",
-     "cash": 511,
+     "cash": 389,
      "burn": 19.1,
-     "runway": 26.8
+     "runway": 20.4
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-19",
-     "cash": 1495,
+     "cash": 1168,
      "burn": 20.8,
-     "runway": 72
+     "runway": 56.3
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-07",
-     "cash": 2311,
+     "cash": 1698,
      "burn": 23.5,
-     "runway": 98.3
+     "runway": 72.2
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-06",
-     "cash": 2299,
+     "cash": 1658,
      "burn": 25.4,
-     "runway": 90.4
+     "runway": 65.2
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-09",
-     "cash": 2224,
+     "cash": 1669,
      "burn": 26.8,
-     "runway": 83
+     "runway": 62.3
     }
    ],
    "revQ": [
@@ -212785,8 +212831,7 @@
     "cik": "1689548",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
-     "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"
+     "Total stated in the report"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-04",
@@ -212813,7 +212858,7 @@
    "n": "Veradermics",
    "area": "Pharmaceutical Preparations",
    "mcap": 6606.1,
-   "ev": 5807.7,
+   "ev": 5807.8,
    "cash": 798.4,
    "debt": 0,
    "burn": 6.85,
@@ -214357,7 +214402,8 @@
     "cik": "1827635",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-05",
@@ -227824,9 +227870,9 @@
     {
      "end": "2025-12-31",
      "filed": "2026-03-03",
-     "cash": 655,
+     "cash": 653,
      "burn": 15.9,
-     "runway": 41.2
+     "runway": 41.1
     },
     {
      "end": "2026-03-31",
@@ -229788,7 +229834,7 @@
     {
      "end": "2024-03-31",
      "filed": "2024-05-13",
-     "cash": 90,
+     "cash": 89,
      "burn": 3.5,
      "runway": 25.9
     },
@@ -229797,7 +229843,7 @@
      "filed": "2024-08-08",
      "cash": 83,
      "burn": 3.1,
-     "runway": 27.1
+     "runway": 27
     },
     {
      "end": "2024-09-30",
@@ -230021,7 +230067,8 @@
     "other": [],
     "cash": {
      "amt": 170.6,
-     "text": "As of June 30, 2026, the Company had cash, cash equivalents and short-term investments of $ 170.6 million and an accumulated deficit of $ 485.3 million."
+     "text": "As of June 30, 2026, the Company had cash, cash equivalents and short-term investments of $ 170.6 million and an accumulated deficit of $ 485.3 million.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -234120,7 +234167,8 @@
     ],
     "cash": {
      "amt": 946.5,
-     "text": "As of September 30, 2026, we had cash, cash equivalents, restricted cash and short-term investments of $946.5 million."
+     "text": "As of September 30, 2026, we had cash, cash equivalents, restricted cash and short-term investments of $946.5 million.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -235514,8 +235562,8 @@
    "n": "BridgeBio Oncology Therapeutics",
    "area": "Pharmaceutical Preparations",
    "mcap": 205.4,
-   "ev": -231.3,
-   "cash": 436.8,
+   "ev": -109.9,
+   "cash": 315.3,
    "debt": 0,
    "burn": 12.57,
    "rev": 0,
@@ -235702,30 +235750,30 @@
     {
      "end": "2025-12-31",
      "filed": "2026-03-05",
-     "cash": 426,
+     "cash": 425,
      "burn": 9.5,
      "runway": 44.8
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-12",
-     "cash": 526,
+     "cash": 389,
      "burn": 10.9,
-     "runway": 48.4
+     "runway": 35.8
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-11",
-     "cash": 463,
+     "cash": 344,
      "burn": 12.6,
-     "runway": 36.7
+     "runway": 27.3
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-10",
-     "cash": 437,
+     "cash": 315,
      "burn": 12.6,
-     "runway": 34.7
+     "runway": 25.1
     }
    ],
    "revQ": [],
@@ -236993,7 +237041,8 @@
     "cik": "1869105",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "MarketableSecuritiesCurrent",
      "MarketableSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -237320,9 +237369,9 @@
     {
      "end": "2022-03-31",
      "filed": "2022-05-11",
-     "cash": 214,
+     "cash": 210,
      "burn": 6.1,
-     "runway": 34.7
+     "runway": 34.2
     },
     {
      "end": "2022-06-30",
@@ -237334,65 +237383,65 @@
     {
      "end": "2022-09-30",
      "filed": "2022-11-10",
-     "cash": 150,
+     "cash": 149,
      "burn": 8.2,
      "runway": 18.3
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-08",
-     "cash": 222,
+     "cash": 204,
      "burn": 8.7,
-     "runway": 25.5
+     "runway": 23.5
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-10",
-     "cash": 199,
+     "cash": 174,
      "burn": 8.8,
-     "runway": 22.6
+     "runway": 19.7
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-09",
-     "cash": 171,
+     "cash": 152,
      "burn": 8.9,
-     "runway": 19.2
+     "runway": 17
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-08",
-     "cash": 134,
+     "cash": 128,
      "burn": 8.6,
-     "runway": 15.7
+     "runway": 15
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-18",
-     "cash": 150,
+     "cash": 105,
      "burn": 8.5,
-     "runway": 17.6
+     "runway": 12.3
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-14",
-     "cash": 181,
+     "cash": 122,
      "burn": 8.4,
-     "runway": 21.6
+     "runway": 14.6
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-08",
-     "cash": 156,
+     "cash": 99,
      "burn": 8.2,
-     "runway": 19.1
+     "runway": 12.2
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-06",
-     "cash": 86,
+     "cash": 79,
      "burn": 7.8,
-     "runway": 10.9
+     "runway": 10.1
     },
     {
      "end": "2024-12-31",
@@ -239024,7 +239073,7 @@
     "cik": "1858848",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-29",
@@ -239051,8 +239100,8 @@
    "n": "Cytokinetics",
    "area": "Pharmaceutical Preparations",
    "mcap": 8153.4,
-   "ev": 6344.1,
-   "cash": 2053.6,
+   "ev": 6814.1,
+   "cash": 1583.7,
    "debt": 244.3,
    "burn": 47.66,
    "rev": 113.3,
@@ -239491,142 +239540,142 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-25",
-     "cash": 776,
+     "cash": 624,
      "burn": 11.9,
-     "runway": 65.3
+     "runway": 52.5
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-06",
-     "cash": 798,
+     "cash": 686,
      "burn": 11.7,
-     "runway": 68.5
+     "runway": 58.9
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-05",
-     "cash": 689,
+     "cash": 597,
      "burn": 16.7,
-     "runway": 41.2
+     "runway": 35.7
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-04",
-     "cash": 1002,
+     "cash": 896,
      "burn": 20.5,
-     "runway": 48.8
+     "runway": 43.7
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-01",
-     "cash": 891,
+     "cash": 829,
      "burn": 25,
-     "runway": 35.7
+     "runway": 33.2
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-05",
-     "cash": 745,
+     "cash": 704,
      "burn": 32.9,
-     "runway": 22.6
+     "runway": 21.4
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-03",
-     "cash": 619,
+     "cash": 593,
      "burn": 35.5,
-     "runway": 17.4
+     "runway": 16.7
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-03",
-     "cash": 570,
+     "cash": 555,
      "burn": 36.5,
-     "runway": 15.6
+     "runway": 15.2
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-28",
-     "cash": 696,
+     "cash": 655,
      "burn": 34.5,
-     "runway": 20.2
+     "runway": 19
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-10",
-     "cash": 650,
+     "cash": 634,
      "burn": 35.1,
-     "runway": 18.5
+     "runway": 18.1
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-09",
-     "cash": 1705,
+     "cash": 1362,
      "burn": 33.3,
-     "runway": 51.3
+     "runway": 41
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-07",
-     "cash": 1569,
+     "cash": 1281,
      "burn": 33.7,
-     "runway": 46.6
+     "runway": 38
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-27",
-     "cash": 1345,
+     "cash": 1221,
      "burn": 33,
-     "runway": 40.8
+     "runway": 37
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-06",
-     "cash": 1251,
+     "cash": 1089,
      "burn": 33.2,
-     "runway": 37.7
+     "runway": 32.8
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-07",
-     "cash": 1178,
+     "cash": 1036,
      "burn": 35.6,
-     "runway": 33.1
+     "runway": 29.1
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-05",
-     "cash": 1589,
+     "cash": 1251,
      "burn": 36.1,
-     "runway": 44
+     "runway": 34.7
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-26",
-     "cash": 1535,
+     "cash": 1217,
      "burn": 42.5,
-     "runway": 36.1
+     "runway": 28.6
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-05",
-     "cash": 1355,
+     "cash": 1073,
      "burn": 43.7,
-     "runway": 31
+     "runway": 24.6
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-06",
-     "cash": 2238,
+     "cash": 1704,
      "burn": 46.3,
-     "runway": 48.4
+     "runway": 36.8
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-04",
-     "cash": 2054,
+     "cash": 1584,
      "burn": 47.7,
-     "runway": 43.1
+     "runway": 33.2
     }
    ],
    "revQ": [
@@ -241357,7 +241406,8 @@
     "cik": "1061983",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
      "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -241385,8 +241435,8 @@
    "n": "Oruka Therapeutics",
    "area": "Pharmaceutical Preparations",
    "mcap": 7268.5,
-   "ev": 5873.3,
-   "cash": 1395.2,
+   "ev": 6061.9,
+   "cash": 1206.6,
    "debt": 0,
    "burn": 10.3,
    "rev": 0,
@@ -241771,58 +241821,58 @@
     {
      "end": "2024-12-31",
      "filed": "2025-03-06",
-     "cash": 446,
+     "cash": 394,
      "burn": 5.4,
-     "runway": 83.3
+     "runway": 73.6
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-14",
-     "cash": 452,
+     "cash": 373,
      "burn": 7.1,
-     "runway": 63.4
+     "runway": 52.3
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-11",
-     "cash": 415,
+     "cash": 351,
      "burn": 7.4,
-     "runway": 55.7
+     "runway": 47.2
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-12",
-     "cash": 590,
+     "cash": 501,
      "burn": 7.3,
-     "runway": 80.3
+     "runway": 68.2
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-12",
-     "cash": 524,
+     "cash": 480,
      "burn": 7.4,
-     "runway": 71.3
+     "runway": 65.2
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-13",
-     "cash": 541,
+     "cash": 496,
      "burn": 7.6,
-     "runway": 71.5
+     "runway": 65.5
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-10",
-     "cash": 1393,
+     "cash": 1126,
      "burn": 8.4,
-     "runway": 165.6
+     "runway": 133.8
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-09",
-     "cash": 1395,
+     "cash": 1207,
      "burn": 10.3,
-     "runway": 135.4
+     "runway": 117.1
     }
    ],
    "revQ": [
@@ -243553,7 +243603,8 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "MarketableSecuritiesCurrent",
+     "MarketableSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-31",
@@ -243975,7 +244026,7 @@
     {
      "end": "2024-12-31",
      "filed": "2025-03-17",
-     "cash": 153,
+     "cash": 152,
      "burn": 18.6,
      "runway": 8.2
     },
@@ -244017,7 +244068,7 @@
     {
      "end": "2026-06-30",
      "filed": "2026-08-10",
-     "cash": 161,
+     "cash": 160,
      "burn": 11,
      "runway": 14.6
     },
@@ -247946,7 +247997,8 @@
     "other": [],
     "cash": {
      "amt": 201.7,
-     "text": "As of September 30, 2026, the Company had cash, cash equivalents and short-term investments of $ 201.7 million and total accumulated deficit of $ 420.3 million."
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents and short-term investments of $ 201.7 million and total accumulated deficit of $ 420.3 million.",
+     "partial": true
     }
    },
    "debtDue24": 1.6,
@@ -249216,7 +249268,8 @@
     "cik": "728387",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "ShortTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-04",
@@ -249243,8 +249296,8 @@
    "n": "Whitehawk Therapeutics",
    "area": "Pharmaceutical Preparations",
    "mcap": 191.2,
-   "ev": -47.2,
-   "cash": 238.4,
+   "ev": 21.5,
+   "cash": 169.7,
    "debt": 0,
    "burn": 6.14,
    "rev": 0,
@@ -249509,121 +249562,121 @@
     {
      "end": "2022-09-30",
      "filed": "2022-11-09",
-     "cash": 311,
+     "cash": 183,
      "burn": 4.2,
-     "runway": 73.5
+     "runway": 43.3
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-29",
-     "cash": 205,
+     "cash": 173,
      "burn": 4.1,
-     "runway": 49.5
+     "runway": 41.7
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-10",
-     "cash": 175,
+     "cash": 151,
      "burn": 4.3,
-     "runway": 40.7
+     "runway": 35.2
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-09",
-     "cash": 202,
+     "cash": 135,
      "burn": 4.8,
-     "runway": 42.1
+     "runway": 28.1
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-08",
-     "cash": 188,
+     "cash": 119,
      "burn": 5.1,
-     "runway": 36.7
+     "runway": 23.3
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-13",
-     "cash": 171,
+     "cash": 109,
      "burn": 5,
-     "runway": 34.4
+     "runway": 21.9
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-08",
-     "cash": 140,
+     "cash": 88,
      "burn": 4.8,
-     "runway": 29
+     "runway": 18.3
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-07",
-     "cash": 118,
+     "cash": 79,
      "burn": 4.2,
-     "runway": 28.2
+     "runway": 18.7
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-06",
-     "cash": 92,
+     "cash": 63,
      "burn": 4.5,
-     "runway": 20.5
+     "runway": 13.9
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-28",
-     "cash": 75,
+     "cash": 47,
      "burn": 5,
-     "runway": 15.1
+     "runway": 9.5
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-08",
-     "cash": 458,
+     "cash": 231,
      "burn": 4.3,
-     "runway": 106.3
+     "runway": 53.6
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-07",
-     "cash": 322,
+     "cash": 177,
      "burn": 8,
-     "runway": 40.4
+     "runway": 22.3
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-06",
-     "cash": 200,
+     "cash": 163,
      "burn": 7.9,
-     "runway": 25.2
+     "runway": 20.5
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-12",
-     "cash": 183,
+     "cash": 146,
      "burn": 8.1,
-     "runway": 22.5
+     "runway": 17.9
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-07",
-     "cash": 158,
+     "cash": 123,
      "burn": 9,
-     "runway": 17.5
+     "runway": 13.7
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-06",
-     "cash": 275,
+     "cash": 190,
      "burn": 5.8,
-     "runway": 47.6
+     "runway": 32.9
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-09",
-     "cash": 238,
+     "cash": 170,
      "burn": 6.1,
-     "runway": 38.8
+     "runway": 27.6
     }
    ],
    "revQ": [
@@ -249696,7 +249749,8 @@
     "other": [],
     "cash": {
      "amt": 169.7,
-     "text": "The Company had cash, cash equivalents and short-term investments of $ 169.7 million at September 30, 2026."
+     "text": "The Company had cash, cash equivalents and short-term investments of $ 169.7 million at September 30, 2026.",
+     "partial": true
     }
    },
    "debtDue24": 0,
@@ -251091,7 +251145,7 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "ShortTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-05",
@@ -251118,8 +251172,8 @@
    "n": "Summit Therapeutics",
    "area": "Pharmaceutical Preparations",
    "mcap": 13308.1,
-   "ev": 12535,
-   "cash": 773,
+   "ev": 12678.3,
+   "cash": 629.8,
    "debt": 0,
    "burn": 43.76,
    "rev": 0,
@@ -251515,58 +251569,58 @@
     {
      "end": "2024-12-31",
      "filed": "2025-02-24",
-     "cash": 501,
+     "cash": 412,
      "burn": 11.8,
-     "runway": 42.3
+     "runway": 34.8
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-01",
-     "cash": 565,
+     "cash": 361,
      "burn": 14.4,
-     "runway": 39.2
+     "runway": 25
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-11",
-     "cash": 591,
+     "cash": 298,
      "burn": 17.2,
-     "runway": 34.3
+     "runway": 17.3
     },
     {
      "end": "2025-09-30",
      "filed": "2025-10-20",
-     "cash": 472,
+     "cash": 239,
      "burn": 22.5,
-     "runway": 21
+     "runway": 10.6
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-23",
-     "cash": 922,
+     "cash": 713,
      "burn": 26.9,
-     "runway": 34.3
+     "runway": 26.5
     },
     {
      "end": "2026-03-31",
      "filed": "2026-04-30",
-     "cash": 697,
+     "cash": 599,
      "burn": 32,
-     "runway": 21.8
+     "runway": 18.7
     },
     {
      "end": "2026-06-30",
      "filed": "2026-07-23",
-     "cash": 1025,
+     "cash": 691,
      "burn": 38.2,
-     "runway": 26.8
+     "runway": 18.1
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-04",
-     "cash": 773,
+     "cash": 630,
      "burn": 43.8,
-     "runway": 17.7
+     "runway": 14.4
     }
    ],
    "revQ": [
@@ -253189,7 +253243,7 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "DebtSecuritiesAvailableForSaleExcludingAccruedInterest"
+     "ShortTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-30",
@@ -255114,9 +255168,9 @@
     {
      "end": "2021-06-30",
      "filed": "2021-08-16",
-     "cash": 4,
+     "cash": 2,
      "burn": 0.8,
-     "runway": 4.9
+     "runway": 2.8
     },
     {
      "end": "2021-09-30",
@@ -258933,30 +258987,30 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-24",
-     "cash": 827,
+     "cash": 685,
      "burn": 7.2,
-     "runway": 114.1
+     "runway": 94.5
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-05",
-     "cash": 552,
+     "cash": 422,
      "burn": 7.4,
-     "runway": 74.8
+     "runway": 57.1
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-04",
-     "cash": 738,
+     "cash": 648,
      "burn": 7.7,
-     "runway": 95.5
+     "runway": 83.8
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-03",
-     "cash": 682,
+     "cash": 630,
      "burn": 8.5,
-     "runway": 79.9
+     "runway": 73.8
     },
     {
      "end": "2022-12-31",
@@ -260648,7 +260702,8 @@
     "cik": "1662579",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "DebtSecuritiesAvailableForSaleExcludingAccruedInterest"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-30",
@@ -260675,8 +260730,8 @@
    "n": "Voyager Therapeutics",
    "area": "Biological Products, (No Diagnostic Substances)",
    "mcap": 109.5,
-   "ev": -47.9,
-   "cash": 157.4,
+   "ev": -22.6,
+   "cash": 132.1,
    "debt": 0,
    "burn": 9.1,
    "rev": 25.1,
@@ -261006,58 +261061,58 @@
     {
      "end": "2024-12-31",
      "filed": "2025-03-11",
-     "cash": 398,
+     "cash": 332,
      "burn": 1.3,
-     "runway": 312
+     "runway": 260.5
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-06",
-     "cash": 354,
+     "cash": 295,
      "burn": 9.3,
-     "runway": 38
+     "runway": 31.6
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-06",
-     "cash": 308,
+     "cash": 262,
      "burn": 9.5,
-     "runway": 32.6
+     "runway": 27.7
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-10",
-     "cash": 249,
+     "cash": 229,
      "burn": 9.7,
-     "runway": 25.6
+     "runway": 23.5
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-09",
-     "cash": 207,
+     "cash": 202,
      "burn": 11,
-     "runway": 18.7
+     "runway": 18.3
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-07",
-     "cash": 202,
+     "cash": 172,
      "burn": 10.7,
-     "runway": 18.9
+     "runway": 16.1
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-06",
-     "cash": 181,
+     "cash": 149,
      "burn": 10,
-     "runway": 18
+     "runway": 14.8
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-05",
-     "cash": 157,
+     "cash": 132,
      "burn": 9.1,
-     "runway": 17.3
+     "runway": 14.5
     }
    ],
    "revQ": [
@@ -262544,7 +262599,8 @@
     "cik": "1640266",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "MarketableSecuritiesCurrent",
      "MarketableSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -262572,7 +262628,7 @@
    "n": "Zenas BioPharma",
    "area": "Pharmaceutical Preparations",
    "mcap": 1946.4,
-   "ev": 1460.7,
+   "ev": 1460.8,
    "cash": 708.9,
    "debt": 223.2,
    "burn": 20.24,
@@ -264712,7 +264768,8 @@
     "cik": "1953926",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
      "LongTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -264901,9 +264958,9 @@
     {
      "end": "2021-12-31",
      "filed": "2022-03-14",
-     "cash": 159,
+     "cash": 121,
      "burn": 3,
-     "runway": 53.3
+     "runway": 40.6
     },
     {
      "end": "2022-03-31",
@@ -264922,37 +264979,37 @@
     {
      "end": "2022-09-30",
      "filed": "2022-11-10",
-     "cash": 108,
+     "cash": 90,
      "burn": 3.3,
-     "runway": 32.7
+     "runway": 27.3
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-16",
-     "cash": 102,
+     "cash": 79,
      "burn": 3.5,
-     "runway": 29.2
+     "runway": 22.8
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-15",
-     "cash": 190,
+     "cash": 119,
      "burn": 3.5,
-     "runway": 54.6
+     "runway": 34.2
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-14",
-     "cash": 216,
+     "cash": 121,
      "burn": 2.5,
-     "runway": 85.9
+     "runway": 48
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-13",
-     "cash": 204,
+     "cash": 108,
      "burn": 2.8,
-     "runway": 72.4
+     "runway": 38.4
     },
     {
      "end": "2023-12-31",
@@ -266356,7 +266413,7 @@
     "cik": "1683553",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-05",
@@ -266638,9 +266695,9 @@
     {
      "end": "2023-12-31",
      "filed": "2024-03-21",
-     "cash": 239,
+     "cash": 52,
      "burn": 6.8,
-     "runway": 35.3
+     "runway": 7.7
     },
     {
      "end": "2024-03-31",
@@ -266666,9 +266723,9 @@
     {
      "end": "2024-12-31",
      "filed": "2025-02-12",
-     "cash": 198,
+     "cash": 114,
      "burn": 13.9,
-     "runway": 14.3
+     "runway": 8.2
     },
     {
      "end": "2025-03-31",
@@ -270079,7 +270136,8 @@
     "cik": "1479615",
     "asOf": "2026-06-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments"
+     "CashAndCashEquivalentsAtCarryingValue",
+     "ShortTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-07-31",
@@ -270106,8 +270164,8 @@
    "n": "Aclaris Therapeutics",
    "area": "Pharmaceutical Preparations",
    "mcap": 688.4,
-   "ev": 393.5,
-   "cash": 294.9,
+   "ev": 483.8,
+   "cash": 204.6,
    "debt": 0,
    "burn": 6.27,
    "rev": 6.4,
@@ -270263,23 +270321,23 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-24",
-     "cash": 260,
+     "cash": 226,
      "burn": 4.3,
-     "runway": 59.8
+     "runway": 51.9
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-10",
-     "cash": 228,
+     "cash": 204,
      "burn": 5.1,
-     "runway": 44.9
+     "runway": 40.1
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-03",
-     "cash": 263,
+     "cash": 256,
      "burn": 5.7,
-     "runway": 46.2
+     "runway": 44.9
     },
     {
      "end": "2022-09-30",
@@ -270291,114 +270349,114 @@
     {
      "end": "2022-12-31",
      "filed": "2023-02-23",
-     "cash": 242,
+     "cash": 230,
      "burn": 5.6,
-     "runway": 43
+     "runway": 40.8
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-08",
-     "cash": 238,
+     "cash": 204,
      "burn": 6.1,
-     "runway": 39.1
+     "runway": 33.6
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-07",
-     "cash": 302,
+     "cash": 211,
      "burn": 6.2,
-     "runway": 49
+     "runway": 34.2
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-06",
-     "cash": 271,
+     "cash": 187,
      "burn": 7.6,
-     "runway": 35.9
+     "runway": 24.7
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-27",
-     "cash": 245,
+     "cash": 182,
      "burn": 6.5,
-     "runway": 37.5
+     "runway": 27.9
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-07",
-     "cash": 195,
+     "cash": 161,
      "burn": 6.1,
-     "runway": 32.1
+     "runway": 26.6
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-07",
-     "cash": 189,
+     "cash": 150,
      "burn": 5.4,
-     "runway": 35.1
+     "runway": 27.9
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-06",
-     "cash": 219,
+     "cash": 173,
      "burn": 1.5,
-     "runway": 146.9
+     "runway": 116.3
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-27",
-     "cash": 294,
+     "cash": 204,
      "burn": 1.7,
-     "runway": 175.9
+     "runway": 121.9
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-08",
-     "cash": 276,
+     "cash": 191,
      "burn": 1,
-     "runway": 268.6
+     "runway": 185.6
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-07",
-     "cash": 262,
+     "cash": 181,
      "burn": 0.8,
-     "runway": 314.8
+     "runway": 217.3
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-06",
-     "cash": 238,
+     "cash": 167,
      "burn": 3.6,
-     "runway": 66.7
+     "runway": 46.7
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-26",
-     "cash": 212,
+     "cash": 151,
      "burn": 3.9,
-     "runway": 54
+     "runway": 38.6
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-07",
-     "cash": 276,
+     "cash": 191,
      "burn": 4.4,
-     "runway": 63.5
+     "runway": 43.9
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-06",
-     "cash": 250,
+     "cash": 171,
      "burn": 5.2,
-     "runway": 48.3
+     "runway": 33
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-05",
-     "cash": 295,
+     "cash": 205,
      "burn": 6.3,
-     "runway": 47.1
+     "runway": 32.6
     }
    ],
    "revQ": [
@@ -271938,7 +271996,8 @@
     "cik": "1557746",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
      "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -272244,98 +272303,98 @@
     {
      "end": "2021-12-31",
      "filed": "2022-03-31",
-     "cash": 51,
+     "cash": 45,
      "burn": 5.5,
-     "runway": 9.3
+     "runway": 8.2
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-13",
-     "cash": 37,
+     "cash": 31,
      "burn": 5.5,
-     "runway": 6.8
+     "runway": 5.7
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-11",
-     "cash": 26,
+     "cash": 20,
      "burn": 5.3,
-     "runway": 4.9
+     "runway": 3.8
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-14",
-     "cash": 24,
+     "cash": 18,
      "burn": 5,
-     "runway": 4.7
+     "runway": 3.6
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-29",
-     "cash": 53,
+     "cash": 52,
      "burn": 3.6,
-     "runway": 14.5
+     "runway": 14.4
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-11",
-     "cash": 41,
+     "cash": 40,
      "burn": 3.5,
-     "runway": 11.8
+     "runway": 11.7
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-08",
      "cash": 37,
      "burn": 3.6,
-     "runway": 10.4
+     "runway": 10.3
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-13",
      "cash": 54,
      "burn": 3.5,
-     "runway": 15.5
+     "runway": 15.4
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-18",
-     "cash": 53,
+     "cash": 52,
      "burn": 3.1,
-     "runway": 17.1
+     "runway": 16.9
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-15",
-     "cash": 63,
+     "cash": 62,
      "burn": 3.3,
-     "runway": 18.9
+     "runway": 18.8
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-12",
      "cash": 123,
      "burn": 3.5,
-     "runway": 35
+     "runway": 34.9
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-14",
      "cash": 110,
      "burn": 4.1,
-     "runway": 27.1
+     "runway": 27
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-20",
      "cash": 98,
      "burn": 4.7,
-     "runway": 21
+     "runway": 20.9
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-15",
-     "cash": 85,
+     "cash": 84,
      "burn": 5,
      "runway": 16.9
     },
@@ -280802,8 +280861,8 @@
    "n": "Johnson & Johnson",
    "area": "Oncology & immunology",
    "mcap": 675033.9,
-   "ev": 690466.9,
-   "cash": 20366,
+   "ev": 693604.9,
+   "cash": 17228,
    "debt": 35799,
    "burn": 0.1,
    "rev": 99335,
@@ -282208,140 +282267,140 @@
     {
      "end": "2022-01-02",
      "filed": "2022-02-17",
-     "cash": 34214,
+     "cash": 31608,
      "burn": -1950.8,
      "runway": null
     },
     {
      "end": "2022-04-03",
      "filed": "2022-04-29",
-     "cash": 30408,
+     "cash": 30388,
      "burn": -1942.9,
      "runway": null
     },
     {
      "end": "2022-07-03",
      "filed": "2022-07-29",
-     "cash": 32614,
+     "cash": 32568,
      "burn": -1965.2,
      "runway": null
     },
     {
      "end": "2022-10-02",
      "filed": "2022-10-27",
-     "cash": 34128,
+     "cash": 34079,
      "burn": -1798,
      "runway": null
     },
     {
      "end": "2023-01-01",
      "filed": "2023-02-16",
-     "cash": 23376,
+     "cash": 22281,
      "burn": -1766.2,
      "runway": null
     },
     {
      "end": "2023-04-02",
      "filed": "2023-04-28",
-     "cash": 32321,
+     "cash": 24613,
      "burn": -1706,
      "runway": null
     },
     {
      "end": "2023-07-02",
      "filed": "2023-07-31",
-     "cash": 31014,
+     "cash": 28505,
      "burn": -1589.4,
      "runway": null
     },
     {
      "end": "2023-10-01",
      "filed": "2023-10-27",
-     "cash": 28135,
+     "cash": 23511,
      "burn": -1689.8,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-16",
-     "cash": 30733,
+     "cash": 22927,
      "burn": -1899.2,
      "runway": null
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-01",
-     "cash": 34819,
+     "cash": 26218,
      "burn": -1932.6,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-07-25",
-     "cash": 31718,
+     "cash": 25475,
      "burn": -2053.5,
      "runway": null
     },
     {
      "end": "2024-09-29",
      "filed": "2024-10-23",
-     "cash": 23798,
+     "cash": 20297,
      "burn": -2095.5,
      "runway": null
     },
     {
      "end": "2024-12-29",
      "filed": "2025-02-13",
-     "cash": 31321,
+     "cash": 24522,
      "burn": -2022.2,
      "runway": null
     },
     {
      "end": "2025-03-30",
      "filed": "2025-04-23",
-     "cash": 46922,
+     "cash": 38781,
      "burn": -2065.2,
      "runway": null
     },
     {
      "end": "2025-06-29",
      "filed": "2025-07-24",
-     "cash": 20671,
+     "cash": 18880,
      "burn": -1919,
      "runway": null
     },
     {
      "end": "2025-09-28",
      "filed": "2025-10-22",
-     "cash": 22056,
+     "cash": 18562,
      "burn": -2017,
      "runway": null
     },
     {
      "end": "2025-12-28",
      "filed": "2026-02-11",
-     "cash": 22563,
+     "cash": 20102,
      "burn": -2044.2,
      "runway": null
     },
     {
      "end": "2026-03-29",
      "filed": "2026-04-22",
-     "cash": 28363,
+     "cash": 22051,
      "burn": -1905.8,
      "runway": null
     },
     {
      "end": "2026-06-28",
      "filed": "2026-07-23",
-     "cash": 25782,
+     "cash": 20758,
      "burn": -2300.7,
      "runway": null
     },
     {
      "end": "2026-09-27",
      "filed": "2026-10-21",
-     "cash": 20366,
+     "cash": 17228,
      "burn": -2179.9,
      "runway": null
     }
@@ -283621,7 +283680,7 @@
     "asOf": "2026-09-27",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "MarketableSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-15",
@@ -296120,7 +296179,7 @@
     {
      "end": "2023-09-30",
      "filed": "2023-10-26",
-     "cash": 8010,
+     "cash": 7685,
      "burn": -1076.2,
      "runway": null
     },
@@ -299195,63 +299254,63 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-16",
-     "cash": 15293,
+     "cash": 8037,
      "burn": -771.7,
      "runway": null
     },
     {
      "end": "2022-03-31",
      "filed": "2022-04-28",
-     "cash": 12381,
+     "cash": 6544,
      "burn": -776.7,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-05",
-     "cash": 11616,
+     "cash": 7183,
      "burn": -776.7,
      "runway": null
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-04",
-     "cash": 20423,
+     "cash": 11478,
      "burn": -823.3,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-09",
-     "cash": 11964,
+     "cash": 9305,
      "burn": -810.1,
      "runway": null
     },
     {
      "end": "2023-03-31",
      "filed": "2023-04-28",
-     "cash": 62625,
+     "cash": 31561,
      "burn": -718.4,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-04",
-     "cash": 67866,
+     "cash": 34248,
      "burn": -900,
      "runway": null
     },
     {
      "end": "2023-09-30",
      "filed": "2023-10-31",
-     "cash": 68949,
+     "cash": 34741,
      "burn": -881.8,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-14",
-     "cash": 21348,
+     "cash": 10944,
      "burn": -705.9,
      "runway": null
     },
@@ -301046,63 +301105,63 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-23",
-     "cash": 7835,
+     "cash": 7829,
      "burn": -948.7,
      "runway": null
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-04",
-     "cash": 6810,
+     "cash": 6752,
      "burn": -884.5,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-08",
-     "cash": 7029,
+     "cash": 7000,
      "burn": -841.7,
      "runway": null
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-02",
-     "cash": 6989,
+     "cash": 6942,
      "burn": -809.2,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-22",
-     "cash": 7705,
+     "cash": 7630,
      "burn": -756,
      "runway": null
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-03",
-     "cash": 7262,
+     "cash": 7199,
      "burn": -748,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-04",
-     "cash": 8045,
+     "cash": 8001,
      "burn": -792.7,
      "runway": null
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-07",
-     "cash": 8087,
+     "cash": 8020,
      "burn": -700.3,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-23",
-     "cash": 8511,
+     "cash": 8427,
      "burn": -667.2,
      "runway": null
     },
@@ -301144,7 +301203,7 @@
     {
      "end": "2025-06-30",
      "filed": "2025-08-07",
-     "cash": 7136,
+     "cash": 7126,
      "burn": -822.3,
      "runway": null
     },
@@ -301158,7 +301217,7 @@
     {
      "end": "2025-12-31",
      "filed": "2026-02-24",
-     "cash": 10608,
+     "cash": 10606,
      "burn": -834.9,
      "runway": null
     },
@@ -306040,63 +306099,63 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-09",
-     "cash": 10772,
+     "cash": 7525,
      "burn": -220.3,
      "runway": null
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-06",
-     "cash": 12476,
+     "cash": 8238,
      "burn": -223.2,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-05",
-     "cash": 14385,
+     "cash": 9253,
      "burn": -334.8,
      "runway": null
     },
     {
      "end": "2022-09-30",
      "filed": "2022-10-28",
-     "cash": 13277,
+     "cash": 9771,
      "burn": -337.2,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-10",
-     "cash": 16147,
+     "cash": 10891,
      "burn": -344.2,
      "runway": null
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-02",
-     "cash": 16927,
+     "cash": 11496,
      "burn": -339.5,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-02",
-     "cash": 16452,
+     "cash": 12594,
      "burn": -339,
      "runway": null
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-07",
-     "cash": 17669,
+     "cash": 13628,
      "burn": -365.1,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-15",
-     "cash": 19254,
+     "cash": 13716,
      "burn": -294.8,
      "runway": null
     },
@@ -319492,11 +319551,11 @@
    "n": "Sanofi",
    "area": "Immunology & vaccines",
    "mcap": 118113.7,
-   "ev": 129475,
-   "cash": 9364.3,
-   "debt": 20725.6,
+   "ev": 129476,
+   "cash": 9365.1,
+   "debt": 20727.4,
    "burn": 0.1,
-   "rev": 48346.3,
+   "rev": 48350.7,
    "shares": 1219.43,
    "own": null,
    "emp": null,
@@ -321557,136 +321616,136 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-16",
-     "cash": 10152,
-     "burn": -765.6,
+     "cash": 10153,
+     "burn": -765.7,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-16",
-     "cash": 11419,
-     "burn": -723.8,
+     "cash": 11420,
+     "burn": -723.9,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-16",
-     "cash": 11516,
+     "cash": 11517,
      "burn": -681.5,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-08",
-     "cash": 7895,
+     "cash": 7896,
      "burn": -512.3,
      "runway": null
     },
     {
      "end": "2019-06-30",
      "filed": "2020-07-29",
-     "cash": 7471,
+     "cash": 7472,
      "burn": -595.8,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-05",
-     "cash": 10919,
+     "cash": 10920,
      "burn": -712.5,
      "runway": null
     },
     {
      "end": "2020-06-30",
      "filed": "2020-07-29",
-     "cash": 17697,
+     "cash": 17698,
      "burn": -781.5,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-04",
-     "cash": 16418,
+     "cash": 16419,
      "burn": -685.1,
      "runway": null
     },
     {
      "end": "2021-06-30",
      "filed": "2021-07-29",
-     "cash": 10774,
-     "burn": -759,
+     "cash": 10775,
+     "burn": -759.1,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-23",
-     "cash": 12359,
-     "burn": -971.7,
+     "cash": 12360,
+     "burn": -971.8,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-07-28",
-     "cash": 7645,
-     "burn": -888.4,
+     "cash": 7646,
+     "burn": -888.5,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-24",
-     "cash": 14687,
-     "burn": -972.1,
+     "cash": 14688,
+     "burn": -972.2,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-07-28",
-     "cash": 8858,
-     "burn": -947.9,
+     "cash": 8859,
+     "burn": -948,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-23",
      "cash": 9828,
-     "burn": -947.3,
+     "burn": -947.4,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-07-25",
-     "cash": 7530,
-     "burn": -749.6,
+     "cash": 7531,
+     "burn": -749.7,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-13",
-     "cash": 8657,
-     "burn": -838.6,
+     "cash": 8658,
+     "burn": -838.7,
      "runway": null
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-31",
-     "cash": 17021,
-     "burn": -1035.6,
+     "cash": 17022,
+     "burn": -1035.7,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-17",
-     "cash": 9364,
-     "burn": -992.8,
+     "cash": 9365,
+     "burn": -992.9,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -838.63,
+   "burnPrior": -838.71,
    "burnQ": null,
    "said": null,
-   "debtDue24": 4811.8,
+   "debtDue24": 4812.2,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -322896,7 +322955,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 11913,
+   "ocf": 11914,
    "group": "big-pharma",
    "src": {
     "cik": "1121404",
@@ -322906,8 +322965,8 @@
      "MarketableSecuritiesCurrent"
     ],
     "currency": "EUR",
-    "fx": 1.1082,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1082 USD per EUR",
+    "fx": 1.1083,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1083 USD per EUR",
     "adr": 0.5,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -322934,11 +322993,11 @@
    "n": "GSK",
    "area": "Vaccines & respiratory",
    "mcap": 109180.8,
-   "ev": 124176.9,
-   "cash": 4503.7,
-   "debt": 19499.9,
+   "ev": 124180.3,
+   "cash": 4504.8,
+   "debt": 19504.3,
    "burn": 0.1,
-   "rev": 43309.9,
+   "rev": 43319.7,
    "shares": 4315.45,
    "own": null,
    "emp": null,
@@ -324949,84 +325008,84 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-20",
-     "cash": 7729,
-     "burn": -283.8,
+     "cash": 7731,
+     "burn": -283.9,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-20",
-     "cash": 6492,
-     "burn": -717.8,
+     "cash": 6494,
+     "burn": -718,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-20",
-     "cash": 5082,
-     "burn": -764.3,
+     "cash": 5083,
+     "burn": -764.5,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-15",
-     "cash": 5248,
-     "burn": -930.4,
+     "cash": 5249,
+     "burn": -930.6,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-06",
-     "cash": 6345,
-     "burn": -886.1,
+     "cash": 6347,
+     "burn": -886.3,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-12",
-     "cash": 8445,
-     "burn": -932.6,
+     "cash": 8447,
+     "burn": -932.8,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-03-08",
-     "cash": 5747,
-     "burn": -878.6,
+     "cash": 5749,
+     "burn": -878.8,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-10",
-     "cash": 5025,
-     "burn": -817.9,
+     "cash": 5026,
+     "burn": -818.1,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-05",
-     "cash": 3948,
-     "burn": -747.8,
+     "cash": 3949,
+     "burn": -747.9,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-03",
-     "cash": 5131,
-     "burn": -724.1,
+     "cash": 5132,
+     "burn": -724.3,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-06",
-     "cash": 4504,
-     "burn": -855.3,
+     "cash": 4505,
+     "burn": -855.4,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -724.11,
+   "burnPrior": -724.27,
    "burnQ": null,
    "said": null,
    "debtDue24": 0,
@@ -326175,7 +326234,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 10263,
+   "ocf": 10265,
    "group": "big-pharma",
    "src": {
     "cik": "1131399",
@@ -326184,8 +326243,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3258,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3258 USD per GBP",
+    "fx": 1.3261,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3261 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -341853,11 +341912,11 @@
    "n": "Haleon",
    "area": "Over-the-counter consumer health",
    "mcap": 40733.2,
-   "ev": 50391.7,
-   "cash": 1755.4,
-   "debt": 11413.8,
+   "ev": 50393.8,
+   "cash": 1755.8,
+   "debt": 11416.4,
    "burn": 0.1,
-   "rev": 14623.6,
+   "rev": 14626.9,
    "shares": 8952.35,
    "own": null,
    "emp": null,
@@ -341894,7 +341953,7 @@
     {
      "end": "2020-12-31",
      "filed": "2023-03-20",
-     "cash": 441,
+     "cash": 442,
      "burn": -155.5,
      "runway": null
     },
@@ -341916,7 +341975,7 @@
      "end": "2022-12-31",
      "filed": "2023-03-20",
      "cash": 907,
-     "burn": -227.9,
+     "burn": -228,
      "runway": null
     },
     {
@@ -341930,7 +341989,7 @@
      "end": "2023-12-31",
      "filed": "2024-03-15",
      "cash": 1384,
-     "burn": -232,
+     "burn": -232.1,
      "runway": null
     },
     {
@@ -341943,24 +342002,24 @@
     {
      "end": "2024-12-31",
      "filed": "2025-03-20",
-     "cash": 2983,
-     "burn": -254.2,
+     "cash": 2984,
+     "burn": -254.3,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-13",
-     "cash": 1755,
-     "burn": -291,
+     "cash": 1756,
+     "burn": -291.1,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -254.22,
+   "burnPrior": -254.28,
    "burnQ": null,
    "said": null,
-   "debtDue24": 1108.4,
+   "debtDue24": 1108.6,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -343122,7 +343181,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 3492,
+   "ocf": 3493,
    "group": "otc",
    "src": {
     "cik": "1900304",
@@ -343131,8 +343190,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3258,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3258 USD per GBP",
+    "fx": 1.3261,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3261 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2026-03-13",
@@ -350654,8 +350713,8 @@
    "n": "BioMarin",
    "area": "Enzyme therapies & skeletal conditions",
    "mcap": 11298.2,
-   "ev": 13999.9,
-   "cash": 1472,
+   "ev": 14735.9,
+   "cash": 736,
    "debt": 4173.7,
    "burn": 0.1,
    "rev": 3655.1,
@@ -350778,140 +350837,140 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-25",
-     "cash": 2109,
+     "cash": 1522,
      "burn": -25.4,
      "runway": null
     },
     {
      "end": "2022-03-31",
      "filed": "2022-04-29",
-     "cash": 2125,
+     "cash": 1519,
      "burn": -12.1,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-04",
-     "cash": 2142,
+     "cash": 1522,
      "burn": -9.9,
      "runway": null
     },
     {
      "end": "2022-09-30",
      "filed": "2022-10-28",
-     "cash": 2408,
+     "cash": 1646,
      "burn": -15,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-27",
-     "cash": 2350,
+     "cash": 1625,
      "burn": -14.7,
      "runway": null
     },
     {
      "end": "2023-03-31",
      "filed": "2023-04-28",
-     "cash": 2073,
+     "cash": 1493,
      "burn": -12.3,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-02",
-     "cash": 2251,
+     "cash": 1557,
      "burn": -13.4,
      "runway": null
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-02",
-     "cash": 2459,
+     "cash": 1674,
      "burn": -11.5,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-26",
-     "cash": 2440,
+     "cash": 1685,
      "burn": -13.3,
      "runway": null
     },
     {
      "end": "2024-03-31",
      "filed": "2024-04-26",
-     "cash": 2414,
+     "cash": 1667,
      "burn": -23.3,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-05",
-     "cash": 2754,
+     "cash": 1781,
      "burn": -27.4,
      "runway": null
     },
     {
      "end": "2024-09-30",
      "filed": "2024-10-31",
-     "cash": 2168,
+     "cash": 1492,
      "burn": -34.6,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-24",
-     "cash": 2602,
+     "cash": 1659,
      "burn": -47.7,
      "runway": null
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-02",
-     "cash": 2828,
+     "cash": 1779,
      "burn": -58.4,
      "runway": null
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-05",
-     "cash": 3155,
+     "cash": 1941,
      "burn": -63.9,
      "runway": null
     },
     {
      "end": "2025-09-30",
      "filed": "2025-10-28",
-     "cash": 3241,
+     "cash": 1991,
      "burn": -76.2,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-26",
-     "cash": 3365,
+     "cash": 2053,
      "burn": -69,
      "runway": null
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-05",
-     "cash": 5295,
+     "cash": 2222,
      "burn": -72.9,
      "runway": null
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-06",
-     "cash": 1748,
+     "cash": 874,
      "burn": -71.4,
      "runway": null
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-03",
-     "cash": 1472,
+     "cash": 736,
      "burn": -56.4,
      "runway": null
     }
@@ -352187,7 +352246,8 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+     "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-26",
@@ -352454,119 +352514,119 @@
     {
      "end": "2021-09-30",
      "filed": "2021-10-28",
-     "cash": 2265,
+     "cash": 2255,
      "burn": 51.2,
-     "runway": 44.2
+     "runway": 44
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-10",
-     "cash": 2424,
+     "cash": 2369,
      "burn": 53.5,
-     "runway": 45.3
+     "runway": 44.3
     },
     {
      "end": "2022-03-31",
      "filed": "2022-04-28",
-     "cash": 2262,
+     "cash": 2208,
      "burn": 48.1,
-     "runway": 47
+     "runway": 45.9
     },
     {
      "end": "2022-06-30",
      "filed": "2022-07-28",
-     "cash": 2169,
+     "cash": 2080,
      "burn": 48.2,
-     "runway": 45
+     "runway": 43.2
     },
     {
      "end": "2022-09-30",
      "filed": "2022-10-27",
-     "cash": 2311,
+     "cash": 2242,
      "burn": 46.6,
-     "runway": 49.6
+     "runway": 48.1
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-23",
-     "cash": 2278,
+     "cash": 2164,
      "burn": 45.1,
-     "runway": 50.5
+     "runway": 48
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-04",
-     "cash": 2049,
+     "cash": 2045,
      "burn": 44.7,
-     "runway": 45.8
+     "runway": 45.7
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-03",
-     "cash": 2038,
+     "cash": 2030,
      "burn": 39.4,
-     "runway": 51.7
+     "runway": 51.5
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-02",
-     "cash": 2414,
+     "cash": 2396,
      "burn": -0.2,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-15",
-     "cash": 2462,
+     "cash": 2428,
      "burn": -8.7,
      "runway": null
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-02",
-     "cash": 2417,
+     "cash": 2360,
      "burn": -15.8,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-01",
-     "cash": 2657,
+     "cash": 2615,
      "burn": -31,
      "runway": null
     },
     {
      "end": "2024-09-30",
      "filed": "2024-10-31",
-     "cash": 2781,
+     "cash": 2772,
      "burn": -4.7,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-13",
-     "cash": 2755,
+     "cash": 2686,
      "burn": 0.7,
-     "runway": 3978
+     "runway": 3878.3
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-01",
-     "cash": 2666,
+     "cash": 2625,
      "burn": 3.8,
-     "runway": 709.2
+     "runway": 698.3
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-31",
-     "cash": 2877,
+     "cash": 2858,
      "burn": 3.5,
-     "runway": 832.7
+     "runway": 827.1
     },
     {
      "end": "2025-09-30",
      "filed": "2025-10-30",
-     "cash": 2750,
+     "cash": 2725,
      "burn": -17.6,
      "runway": null
     },
@@ -354037,65 +354097,65 @@
     {
      "end": "2021-12-31",
      "filed": "2022-03-01",
-     "cash": 2126,
+     "cash": 2116,
      "burn": 36.9,
-     "runway": 57.6
+     "runway": 57.3
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-04",
-     "cash": 2023,
+     "cash": 2013,
      "burn": 30.3,
-     "runway": 66.7
+     "runway": 66.4
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-02",
-     "cash": 1947,
+     "cash": 1928,
      "burn": 26.8,
-     "runway": 72.6
+     "runway": 71.9
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-02",
-     "cash": 2092,
+     "cash": 2072,
      "burn": 21.9,
-     "runway": 95.7
+     "runway": 94.8
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-28",
-     "cash": 2008,
+     "cash": 1989,
      "burn": 27.1,
-     "runway": 74.1
+     "runway": 73.4
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-02",
-     "cash": 1901,
+     "cash": 1882,
      "burn": 36.1,
-     "runway": 52.6
+     "runway": 52.1
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-02",
-     "cash": 1880,
+     "cash": 1861,
      "burn": 40.7,
-     "runway": 46.1
+     "runway": 45.7
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-01",
-     "cash": 1753,
+     "cash": 1734,
      "burn": 44.9,
-     "runway": 39
+     "runway": 38.6
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-28",
-     "cash": 2120,
+     "cash": 2105,
      "burn": 41.7,
-     "runway": 50.8
+     "runway": 50.4
     },
     {
      "end": "2024-03-31",
@@ -355478,8 +355538,8 @@
    "n": "Ultragenyx",
    "area": "Rare genetic diseases",
    "mcap": 1702.1,
-   "ev": 1235.1,
-   "cash": 467,
+   "ev": 1301.1,
+   "cash": 401,
    "debt": 0,
    "burn": 36.42,
    "rev": 730,
@@ -355991,142 +356051,142 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-15",
-     "cash": 1276,
+     "cash": 999,
      "burn": 28.2,
-     "runway": 45.2
+     "runway": 35.4
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-06",
-     "cash": 946,
+     "cash": 814,
      "burn": 24.7,
-     "runway": 38.2
+     "runway": 32.9
     },
     {
      "end": "2022-06-30",
      "filed": "2022-07-29",
-     "cash": 837,
+     "cash": 706,
      "burn": 25.7,
-     "runway": 32.5
+     "runway": 27.4
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-03",
-     "cash": 1367,
+     "cash": 996,
      "burn": 28.7,
-     "runway": 47.6
+     "runway": 34.7
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-17",
-     "cash": 1010,
+     "cash": 897,
      "burn": 31.7,
-     "runway": 31.8
+     "runway": 28.3
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-05",
-     "cash": 776,
+     "cash": 715,
      "burn": 35,
-     "runway": 22.2
+     "runway": 20.4
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-04",
-     "cash": 695,
+     "cash": 618,
      "burn": 38.2,
-     "runway": 18.2
+     "runway": 16.2
     },
     {
      "end": "2023-09-30",
      "filed": "2023-11-03",
-     "cash": 568,
+     "cash": 524,
      "burn": 40.1,
-     "runway": 14.2
+     "runway": 13.1
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-21",
-     "cash": 950,
+     "cash": 778,
      "burn": 39.6,
-     "runway": 24
+     "runway": 19.6
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-03",
-     "cash": 649,
+     "cash": 569,
      "burn": 42.4,
-     "runway": 15.3
+     "runway": 13.4
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-02",
-     "cash": 1313,
+     "cash": 874,
      "burn": 39.1,
-     "runway": 33.6
+     "runway": 22.3
     },
     {
      "end": "2024-09-30",
      "filed": "2024-11-06",
-     "cash": 926,
+     "cash": 825,
      "burn": 34.9,
-     "runway": 26.5
+     "runway": 23.6
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-19",
-     "cash": 870,
+     "cash": 745,
      "burn": 34.5,
-     "runway": 25.2
+     "runway": 21.6
     },
     {
      "end": "2025-03-31",
      "filed": "2025-05-07",
-     "cash": 637,
+     "cash": 563,
      "burn": 32.4,
-     "runway": 19.6
+     "runway": 17.4
     },
     {
      "end": "2025-06-30",
      "filed": "2025-08-06",
-     "cash": 656,
+     "cash": 539,
      "burn": 35.1,
-     "runway": 18.7
+     "runway": 15.3
     },
     {
      "end": "2025-09-30",
      "filed": "2025-11-05",
-     "cash": 572,
+     "cash": 448,
      "burn": 37.1,
-     "runway": 15.4
+     "runway": 12.1
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-18",
-     "cash": 1086,
+     "cash": 737,
      "burn": 38.8,
-     "runway": 28
+     "runway": 19
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-06",
-     "cash": 629,
+     "cash": 534,
      "burn": 41.4,
-     "runway": 15.2
+     "runway": 12.9
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-05",
-     "cash": 496,
+     "cash": 436,
      "burn": 40.4,
-     "runway": 12.3
+     "runway": 10.8
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-04",
-     "cash": 467,
+     "cash": 401,
      "burn": 36.4,
-     "runway": 12.8
+     "runway": 11
     }
    ],
    "revQ": [
@@ -357409,7 +357469,8 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+     "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-29",
@@ -357799,7 +357860,7 @@
     {
      "end": "2022-09-30",
      "filed": "2022-11-02",
-     "cash": 4101,
+     "cash": 4059,
      "burn": -70.7,
      "runway": null
     },
@@ -357827,28 +357888,28 @@
     {
      "end": "2023-09-30",
      "filed": "2023-11-01",
-     "cash": 4939,
+     "cash": 4936,
      "burn": -79.6,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-21",
-     "cash": 4965,
+     "cash": 4904,
      "burn": -81.5,
      "runway": null
     },
     {
      "end": "2024-03-31",
      "filed": "2024-05-01",
-     "cash": 4221,
+     "cash": 4200,
      "burn": -81.6,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-07-31",
-     "cash": 4308,
+     "cash": 4302,
      "burn": -92.1,
      "runway": null
     },
@@ -357869,21 +357930,21 @@
     {
      "end": "2025-03-31",
      "filed": "2025-04-30",
-     "cash": 5176,
+     "cash": 5032,
      "burn": -117.6,
      "runway": null
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-30",
-     "cash": 5378,
+     "cash": 4966,
      "burn": -114.3,
      "runway": null
     },
     {
      "end": "2025-09-30",
      "filed": "2025-10-29",
-     "cash": 4359,
+     "cash": 4335,
      "burn": -129.7,
      "runway": null
     },
@@ -359216,7 +359277,7 @@
    "area": "Rare lung diseases",
    "mcap": 26490.2,
    "ev": 25890.3,
-   "cash": 1146.7,
+   "cash": 1146.6,
    "debt": 546.8,
    "burn": 49.64,
    "rev": 1519.7,
@@ -360926,7 +360987,7 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "MarketableSecuritiesCurrent"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-23",
@@ -364590,7 +364651,7 @@
    "n": "Krystal Biotech",
    "area": "Rare skin diseases (gene therapy)",
    "mcap": 9151.1,
-   "ev": 7956.9,
+   "ev": 7957,
    "cash": 1194.2,
    "debt": 0,
    "burn": 0.1,
@@ -364739,7 +364800,7 @@
     {
      "end": "2022-06-30",
      "filed": "2022-08-08",
-     "cash": 439,
+     "cash": 438,
      "burn": 7.2,
      "runway": 60.7
     },
@@ -366133,7 +366194,8 @@
     "cik": "1711279",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashCashEquivalentsAndShortTermInvestments",
+     "CashAndCashEquivalentsAtCarryingValue",
+     "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
      "LongTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
@@ -370396,7 +370458,7 @@
     {
      "end": "2025-12-31",
      "filed": "2026-02-24",
-     "cash": 3834,
+     "cash": 2442,
      "burn": -113,
      "runway": null
     },
@@ -373412,8 +373474,8 @@
    "n": "Mirum",
    "area": "Rare liver diseases",
    "mcap": 6176.3,
-   "ev": 6237.7,
-   "cash": 669.9,
+   "ev": 6407.1,
+   "cash": 500.5,
    "debt": 731.3,
    "burn": 22.6,
    "rev": 670.8,
@@ -373520,7 +373582,7 @@
      "filed": "2024-11-12",
      "cash": 294,
      "burn": 0.1,
-     "runway": 2878
+     "runway": 2877.7
     },
     {
      "end": "2024-12-31",
@@ -373553,30 +373615,30 @@
     {
      "end": "2025-12-31",
      "filed": "2026-02-25",
-     "cash": 646,
+     "cash": 391,
      "burn": -4.7,
      "runway": null
     },
     {
      "end": "2026-03-31",
      "filed": "2026-05-06",
-     "cash": 682,
+     "cash": 421,
      "burn": 14.2,
-     "runway": 47.9
+     "runway": 29.5
     },
     {
      "end": "2026-06-30",
      "filed": "2026-08-05",
-     "cash": 824,
+     "cash": 561,
      "burn": 18.9,
-     "runway": 43.5
+     "runway": 29.6
     },
     {
      "end": "2026-09-30",
      "filed": "2026-11-03",
-     "cash": 670,
+     "cash": 500,
      "burn": 22.6,
-     "runway": 29.6
+     "runway": 22.1
     }
    ],
    "revQ": [
@@ -374854,7 +374916,8 @@
     "asOf": "2026-09-30",
     "cashParts": [
      "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "ShortTermInvestments",
+     "LongTermInvestments"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-10-30",
@@ -375051,7 +375114,7 @@
      "filed": "2025-11-04",
      "cash": 416,
      "burn": 9.1,
-     "runway": 45.8
+     "runway": 45.7
     },
     {
      "end": "2025-12-31",
@@ -376674,51 +376737,51 @@
     {
      "end": "2021-12-31",
      "filed": "2022-02-25",
-     "cash": 1021,
+     "cash": 788,
      "burn": 41.5,
-     "runway": 24.6
+     "runway": 19
     },
     {
      "end": "2022-03-31",
      "filed": "2022-05-05",
-     "cash": 892,
+     "cash": 633,
      "burn": 42.3,
-     "runway": 21.1
+     "runway": 15
     },
     {
      "end": "2022-06-30",
      "filed": "2022-08-04",
-     "cash": 946,
+     "cash": 689,
      "burn": 37.2,
-     "runway": 25.4
+     "runway": 18.5
     },
     {
      "end": "2022-09-30",
      "filed": "2022-11-03",
-     "cash": 1009,
+     "cash": 558,
      "burn": 38.3,
-     "runway": 26.3
+     "runway": 14.6
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-23",
-     "cash": 790,
+     "cash": 428,
      "burn": 35,
-     "runway": 22.6
+     "runway": 12.3
     },
     {
      "end": "2023-03-31",
      "filed": "2023-05-04",
-     "cash": 838,
+     "cash": 441,
      "burn": 33.6,
-     "runway": 24.9
+     "runway": 13.1
     },
     {
      "end": "2023-06-30",
      "filed": "2023-08-03",
-     "cash": 621,
+     "cash": 333,
      "burn": 40.5,
-     "runway": 15.3
+     "runway": 8.2
     },
     {
      "end": "2023-09-30",
@@ -376737,16 +376800,16 @@
     {
      "end": "2024-03-31",
      "filed": "2024-05-02",
-     "cash": 964,
+     "cash": 520,
      "burn": 50.2,
-     "runway": 19.2
+     "runway": 10.3
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-01",
-     "cash": 771,
+     "cash": 448,
      "burn": 34.6,
-     "runway": 22.3
+     "runway": 13
     },
     {
      "end": "2024-09-30",
@@ -376772,9 +376835,9 @@
     {
      "end": "2025-06-30",
      "filed": "2025-08-05",
-     "cash": 1135,
+     "cash": 757,
      "burn": 54.7,
-     "runway": 20.8
+     "runway": 13.8
     },
     {
      "end": "2025-09-30",
