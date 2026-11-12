@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-10T00:24:48.979Z",
+ "generatedAt": "2026-11-12T05:27:32.492Z",
  "fpsVersion": "1.1",
  "question": "Did the Financing Pressure Score flag biotechs before they sold stock?",
  "universe": "Every company with industry code 2834, 2836 or 8731 that reported R&D spending to the SEC, burned cash, and had under $50M of trailing revenue, at each balance sheet filed 2012–2025. Includes companies that later stopped filing.",
@@ -1594,6 +1594,88 @@
   },
   "adopt": false,
   "rule": "The tuned weights replace the published ones only if, on the later years the search never saw, they separate raisers from non-raisers better (AUC up by at least 0.01) and the safest-vs-riskiest return gap doesn't shrink."
+ },
+ "baseline": {
+  "score": {
+   "n": 23929,
+   "auc": 0.562,
+   "spread": 24
+  },
+  "runway": {
+   "n": 23929,
+   "auc": 0.522,
+   "spread": 29.9
+  },
+  "sizeGroups": [
+   {
+    "label": "Smallest third",
+    "upTo": 33,
+    "score": {
+     "n": 7031,
+     "auc": 0.55,
+     "spread": 25.2
+    },
+    "runway": {
+     "n": 7031,
+     "auc": 0.432,
+     "spread": 20.8
+    }
+   },
+   {
+    "label": "Middle third",
+    "upTo": 160,
+    "score": {
+     "n": 7031,
+     "auc": 0.596,
+     "spread": 16.7
+    },
+    "runway": {
+     "n": 7031,
+     "auc": 0.578,
+     "spread": 24.3
+    }
+   },
+   {
+    "label": "Largest third",
+    "upTo": 511316440,
+    "score": {
+     "n": 7032,
+     "auc": 0.584,
+     "spread": 13.5
+    },
+    "runway": {
+     "n": 7032,
+     "auc": 0.588,
+     "spread": 16.3
+    }
+   }
+  ],
+  "runwayGroups": [
+   {
+    "label": "Under 12 months",
+    "score": {
+     "n": 9766,
+     "auc": 0.557,
+     "spread": 14.2
+    }
+   },
+   {
+    "label": "12 to 24 months",
+    "score": {
+     "n": 5517,
+     "auc": 0.552,
+     "spread": 3
+    }
+   },
+   {
+    "label": "Over 24 months",
+    "score": {
+     "n": 8645,
+     "auc": 0.558,
+     "spread": 0.5
+    }
+   }
+  ]
  },
  "catalystTiming": {
   "filingsRead": 23925,
