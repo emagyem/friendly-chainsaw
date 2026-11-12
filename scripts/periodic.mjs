@@ -29,7 +29,8 @@ const CASH_WORDS = /\b(cash|capital resources|marketable securities|investments)
 const FUND_WORDS = /\b(sufficient|fund|enable us|support|finance|runway)\b/i;
 const OPS_WORDS = /\b(operat|capital expenditure|requirements|planned|runway|obligations)\b/i;
 const DOUBT = /\b(raises?d?|there is|exists?)\s+substantial doubt\s+(?:about|regarding|as to)\s+(?:the company's|our|its)\s+ability to continue as a going concern/i;
-const NOT_DOUBT = /\b(whether|evaluat|alleviat|mitigat|do(?:es)? not|did not|no longer|if (?:we|the)|could|may|would)\b/i;
+// A wrong going-concern flag would be a serious error, so anything hedged, negated or hypothetical is skipped.
+const NOT_DOUBT = /\b(no|not|whether|evaluat|alleviat|mitigat|if|could|may|might|would|unless|risk factors?|previously|prior year|was alleviated)\b/i;
 
 // Turn "into the second half of 2028" into the first day that phrase covers.
 function horizon(s, filed) {
@@ -50,11 +51,11 @@ function horizon(s, filed) {
     return { until, say: `${through ? "through" : "into"} ${part && !/end of/.test(part) ? part.replace("middle of", "mid") + " " : ""}${m[3]}` };
   }
   if ((m = s.match(/\bbeyond\s+(?:the\s+end\s+of\s+)?(20\d\d)\b/i))) return { until: iso(Number(m[1]) + 1, 1, 1), say: `beyond ${m[1]}` };
-  if ((m = s.match(/\b(?:at least|for)\s+(?:the\s+)?(?:next\s+)?(\d{2}|twelve|eighteen|twenty[- ]four|thirty|thirty[- ]six)\s+months\b/i))) {
+  if ((m = s.match(/\b(?:at least|for|over|beyond|more than|through)\s+(?:a period of\s+)?(?:at least\s+)?(?:the\s+)?(?:next\s+)?(\d{2}|twelve|eighteen|twenty[- ]four|thirty|thirty[- ]six)\s+months\b/i))) {
     const n = WORDNUM[m[1].toLowerCase()] || parseInt(m[1], 10);
     if (n >= 12 && n <= 60) return { until: addMonths(filed, n), say: `at least the next ${n} months`, floor: true };
   }
-  if ((m = s.match(/\bat least\s+(?:the\s+next\s+)?(one|two|three)\s+years?\b/i))) return { until: addMonths(filed, WORDNUM[m[1].toLowerCase()] * 12), say: `at least ${m[1].toLowerCase()} year${m[1].toLowerCase() === "one" ? "" : "s"}`, floor: true };
+  if ((m = s.match(/\b(?:at least|for)\s+(?:a period of\s+)?(?:at least\s+)?(?:the\s+next\s+)?(one|two|three)\s+years?\b/i))) return { until: addMonths(filed, WORDNUM[m[1].toLowerCase()] * 12), say: `at least ${m[1].toLowerCase()} year${m[1].toLowerCase() === "one" ? "" : "s"}`, floor: true };
   return null;
 }
 
@@ -78,7 +79,7 @@ function runwayGuidance(sents, filed) {
 const ATM_WORDS = /\b(at[- ]the[- ]market|ATM|sales agreement|sale agreement|equity distribution agreement|controlled equity|open market sale)\b/i;
 const SOLD = /\b(?:sold|issued and sold|issued)\s+(?:an aggregate of\s+|a total of\s+|approximately\s+)?([\d,]{4,}(?:\.\d+)?)\s*(million)?\s+(?:shares|ADSs|ordinary shares|American Depositary Shares)/i;
 const PROCEEDS = /\b(net|gross|aggregate)\s+proceeds(?:,[^,]{0,60},)?\s+of\s+(?:approximately\s+)?\$\s?([\d,]+(?:\.\d+)?)\s*(million|billion)?/i;
-const NONE_SOLD = /\b(no shares (?:have been|had been|were) (?:sold|issued)|(?:have|had|has) not (?:yet )?sold any|did not sell any|not sold any shares)\b/i;
+const NONE_SOLD = /\b(no shares (?:of common stock )?(?:have been|had been|were) (?:sold|issued)|(?:have|had|has) not (?:yet )?(?:sold|issued) any|did no\s?t (?:sell|issue) any|not sold any shares)\b/i;
 const PERIOD = /\b(?:during|for|in)\s+the\s+(three|six|nine|twelve)\s+months\s+ended\s+([A-Z][a-z]+ \d{1,2}, 20\d\d)|\b(?:during|for|in)\s+the\s+(?:fiscal\s+)?year\s+ended\s+([A-Z][a-z]+ \d{1,2}, 20\d\d)/i;
 
 function atmUse(sents) {
@@ -86,6 +87,7 @@ function atmUse(sents) {
   for (const s of sents) {
     if (!ATM_WORDS.test(s)) continue;
     const sold = s.match(SOLD), pr = s.match(PROCEEDS);
+    if (NONE_SOLD.test(s)) { if (!best) best = { used: false, text: clip(s) }; continue; }
     if (sold && pr) {
       const shares = parseFloat(sold[1].replace(/,/g, "")) * (sold[2] ? 1e6 : 1);
       const amt = dollars(pr[2], pr[3]);
@@ -94,8 +96,6 @@ function atmUse(sents) {
       const row = { used: true, amt: Math.round(amt * 10) / 10, shares: Math.round(shares), net: /net/i.test(pr[1]), months: per ? ({ three: 3, six: 6, nine: 9, twelve: 12 }[per[1]] || 12) : null, periodEnd: per ? per[2] || per[3] : null, text: clip(s) };
       // The most recent, shortest period is the most telling: "three months ended" beats "since inception".
       if (!best || !best.used || (row.months || 99) < (best.months || 99)) best = row;
-    } else if (!best && NONE_SOLD.test(s)) {
-      best = { used: false, text: clip(s) };
     }
   }
   return best;
@@ -103,20 +103,27 @@ function atmUse(sents) {
 
 /* ---- money that isn't a share sale ---- */
 
-const MONEY = /\$\s?([\d,]+(?:\.\d+)?)\s*(million|billion)/i;
+const AMT = "\\$\\s?([\\d,]+(?:\\.\\d+)?)\\s*(million|billion)";
 const OTHER = [
-  ["royalty", /\b(royalty (?:purchase|financing|monetization|interest|sale)|sale of (?:a portion of )?(?:our |its |future )?royalt|synthetic royalty)/i, /\b(received|receive|upfront|proceeds|payment)\b/i],
-  ["loan", /\b(term loan|loan (?:and security )?agreement|credit facility|loan facility|debt facility)\b/i, /\b(additional|remaining|up to|available)\b[^.]{0,120}\b(available|drawn|draw|tranche|borrow|at our option|upon (?:the )?achievement)\b/i],
-  ["partner", /\b(collaboration|license|licensing|option)\s+(?:and license\s+)?agreement\b/i, /\b(eligible to receive|entitled to receive|will receive|upfront payment|milestone payments?)\b/i],
+  // Cash already received for selling a share of future royalties.
+  ["royalty", new RegExp(`\\breceived\\s+(?:an? )?(?:upfront payment of\\s+|gross proceeds of\\s+|net proceeds of\\s+)?${AMT}[^.]{0,160}\\broyalt`, "i"), /interest expense/i],
+  // Loan money the company can still draw.
+  ["loan", new RegExp(`${AMT}[^.]{0,70}\\b(?:remains? available|available for draw|(?:that )?may be drawn|available to (?:be )?(?:drawn|borrow)|of additional (?:advances|term loans?|borrowings))`, "i"), /\b(repa(?:y|id)|terminat|expired|no longer available)\b/i],
+  // Payments a partner may still owe the company.
+  ["partner", new RegExp(`\\b(?:we|the company)\\s+(?:is|are|will be|may be|remains?|may become)\\s+(?:also\\s+)?(?:eligible|entitled)\\s+to\\s+receive\\b[^.]{0,140}?${AMT}`, "i"), /\b(tax|refund|reimburse)/i],
 ];
 
 function otherMoney(sents) {
   const out = [];
-  for (const [kind, a, b] of OTHER) {
-    const hit = sents.find((s) => a.test(s) && b.test(s) && MONEY.test(s) && !/\b(we|the company) (?:will|are required to|is required to|agreed to) pay\b/i.test(s));
-    if (!hit) continue;
-    const m = hit.match(MONEY);
-    out.push({ kind, amt: Math.round(dollars(m[1], m[2]) * 10) / 10, text: clip(hit) });
+  for (const [kind, want, skip] of OTHER) {
+    for (const s of sents) {
+      const m = s.match(want);
+      if (!m || skip.test(s)) continue;
+      const amt = Math.round(dollars(m[1], m[2]) * 10) / 10;
+      if (!(amt >= 1)) continue;
+      out.push({ kind, amt, text: clip(s) });
+      break;
+    }
   }
   return out;
 }
