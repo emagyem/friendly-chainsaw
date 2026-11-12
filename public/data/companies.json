@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-12T06:02:38.415Z",
+  "generatedAt": "2026-11-12T06:11:11.082Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -2074,7 +2074,11 @@
    "ClinicalTrials.gov API v2",
    "Yahoo Finance"
   ],
-  "warnings": [],
+  "warnings": [
+   "QURE: cash taken from the report's own words ($768.4M) because the balance-sheet data adds up to only $98.4M",
+   "XFOR: cash taken from the report's own words ($651.2M) because the balance-sheet data adds up to only $187.7M",
+   "OLMA: cash taken from the report's own words ($787.4M) because the balance-sheet data adds up to only $461.4M"
+  ],
   "leftCoverage": []
  },
  "companies": [
@@ -2794,7 +2798,11 @@
      "text": "As such, we believe our cash, cash equivalents, restricted cash and short-term investments will be sufficient to fund our operations through at least December 31, 2027, which is more than one year after the date of our filing of this Form 10-Q."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 960,
+     "text": "As of September 30, 2026, we had cash, cash equivalents, restricted cash and short-term investments of $960.0 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -5411,7 +5419,8 @@
       "amt": 16200,
       "text": "In total, the Company is eligible to receive up to $ 16.2 billion in additional developmental, regulatory and sales milestones based on programs that have been partnered, and may receive various royalties on net sales from its licensing and collaboration agreements, subject to the terms and conditions of those…"
      }
-    ]
+    ],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -7500,7 +7509,11 @@
      "text": "Based on the Company's current operating plan and its cash, cash equivalents, investments, including proceeds received from the PRV sale, the Company believes it has sufficient capital to fund operations into the second quarter of 2028. 11 Table of Contents In the longer term, the future viability of the Company is…"
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 283.7,
+     "text": "As of June 30, 2026, the Company had $ 283.7 million of cash, cash equivalents, and investments."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -9469,7 +9482,11 @@
      "periodEnd": "September 30, 2026",
      "text": "The Company sold 3,543,692 shares of its common stock under the ATM program during the nine months ended September 30, 2026 , generating net proceeds of $ 160.8 million."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 413.6,
+     "text": "Quantitative and Qualit ative Disclosures About Market Risk Interest Rate Risk As of September 30, 2026 and December 31, 2025, we had cash, cash equivalents, and marketable securities totaling $413.6 million and $367.6 million, respectively, which included bank deposits, money market funds, U.S. treasury obligations…"
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -12093,7 +12110,11 @@
      "periodEnd": "September 30, 2026",
      "text": "During the nine months ended September 30, 2026, the Company sold an aggregate of 1,196,423 shares of the Company's common stock for aggregate net proceeds of $ 32.9 million at a weighted average sales price of approximately $ 28.38 per share under the at-the-market offering pursuant to the January 2024 Sales…"
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 1150,
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents and marketable securities of approximately $ 1.15 billion."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -13924,7 +13945,11 @@
       "amt": 955,
       "text": "In connection with the IRAK4 program, the Company remains eligible to receive up to an additional $ 955 million in development and commercial milestones upon the achievement of certain developmental or regulatory events and upon the achievement of certain net sales thresholds."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 1646,
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents and marketable securities of $ 1,646 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -16108,7 +16133,11 @@
      "text": "We believe that our cash, cash equivalents and marketable securities as of September 30, 2026 will enable us to fund our operating expenses, debt service obligations and capital expenditure requirements into the second quarter of 2028."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 1134,
+     "text": "As of September 30, 2026 we had cash, cash equivalents and marketable securities of $1.134 billion."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -18141,7 +18170,11 @@
       "amt": 50,
       "text": "The 2025 Loan Agreement has a total borrowing capacity of up to $ 500.0 million, of which $ 75.0 million was funded at closing and $ 50.0 million remains available for draw at the Company's discretion until December 31, 2026."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 384,
+     "text": "The Company had cash, cash equivalents and marketable securities of $ 384.0 million as of September 30, 2026."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -20434,7 +20467,11 @@
      "text": "Based on current projections, management believes that its existing cash, cash equivalents and short and long-term investments, combined with anticipated collection of accounts receivable from the commercialization of Papzimeos (including future sales), will enable us to continue our operations for at least one year…"
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 51,
+     "text": "Interest rate risk We had cash, cash equivalents and short-term and long-term investments of $51.0 million and $100.4 million as of September 30, 2026 and December 31, 2025, respectively."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -22782,7 +22819,11 @@
       "amt": 1390,
       "text": "The Company will be eligible to receive up to $ 1.39 billion in future development, regulatory and ex-U.S. sales milestones, along with tiered, double-digit royalties on ex-U.S. net sales."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 901.3,
+     "text": "As of September 30, 2026, the Company had approximately $ 901.3 million in cash, cash equivalents, and investments, which the Company believes would be sufficient to fund its operations for a period through at least twelve months from the issuance date of these unaudited condensed consolidated financial statements."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -25073,7 +25114,11 @@
      "periodEnd": "March 31, 2026",
      "text": "During the three months ended March 31, 2026, the Company sold an aggregate of 4,690,532 shares of common stock for net proceeds of $ 147.9 million, after deducting offering expenses, fully utilizing the capacity under the 2025 Sales Agreement."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 700.5,
+     "text": "As of September 30, 2026, we had cash, cash equivalents and marketable securities of $700.5 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -27054,7 +27099,11 @@
      "text": "Our management concluded that our recurring losses from operations, existing unrestricted cash, and cash equivalents raise substantial doubt about our ability to continue as a going concern for the next twelve months after issuance of our financial statements included in this Quarterly Report on Form 10-Q."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 165.7,
+     "text": "As of September 30, 2026, we had unrestricted cash, cash equivalents and marketable securities of $165.7 million consisting of cash and investments."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -29020,7 +29069,8 @@
      "periodEnd": "September 30, 2026",
      "text": "During the three months ended September 30, 2026, the Company sold 660,492 shares of its common stock under the ATM at an average price per share of $ 34.45 for gross proceeds of $ 22.7 million and net proceeds of $ 22.3 million after deducting commissions and offering expenses of $ 0.4 million ."
     },
-    "other": []
+    "other": [],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -30434,8 +30484,8 @@
    "n": "uniQure",
    "area": "Pharmaceutical Preparations",
    "mcap": 1724.4,
-   "ev": 1676.3,
-   "cash": 98.4,
+   "ev": 1006.3,
+   "cash": 768.4,
    "debt": 50.3,
    "burn": 16.02,
    "rev": 19.6,
@@ -31424,7 +31474,11 @@
      "text": "We believe these resources will be sufficient to fund our projected operating expenses into 2030, including costs associated with the commercial launches and confirmatory study of ifezuntirgene inilparvovec, ongoing clinical trials of ifezuntirgene inilparvovec, AMT-191 and AMT-260, and potential investments to…"
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 768.4,
+     "text": "Except as provided for in the amendment, the terms of borrowing under the 2026 Amended Facility remain unchanged. 23 Table of Contents Financial Overview Key components of our results of operations include the following: Three months ended September 30, Nine months ended September 30, 2026 2025 2026 2025 (in…"
+    }
    },
    "debtDue24": 10.2,
    "raise": {
@@ -32828,7 +32882,7 @@
     "cik": "1590560",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashAndCashEquivalentsAtCarryingValue"
+     "Total stated in the report"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-02",
@@ -33781,7 +33835,11 @@
      "text": "We believe that our cash, cash equivalents, and available-for-sale securities as of September 30, 2026 will enable us to fund our operating expenses and capital expenditure requirements into the first half of 2028."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 348.9,
+     "text": "Liquidity Based upon its current operating plan, the Company expects that its cash, cash equivalents and available-for-sale securities of $ 348.9 million, excluding restricted cash of $ 1.3 million, as of September 30, 2026, will be sufficient to fund its operating expenses and capital expenditure requirements for at…"
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -35565,7 +35623,11 @@
      "periodEnd": "December 31, 2023",
      "text": "The Company issued 261,807 shares of common stock at a weighted average price of $ 12.49 for aggregate gross proceeds of $ 3.3 million during the year ended December 31, 2023 under the ATM. 9."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 297.2,
+     "text": "As of September 30, 2026, we had cash and cash equivalents and marketable securities of $297.2 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -37294,7 +37356,11 @@
      "text": "Based on our current operating plan, we estimate that our existing cash, cash equivalents, and marketable securities as of the filing date of this Quarterly Report will be sufficient to fund our operations and capital expenses through 2029."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 352.3,
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents, and marketable securities of $ 352.3 million, of which $ 68.7 million were long-term marketable securities."
+    }
    },
    "debtDue24": 2,
    "raise": {
@@ -39069,7 +39135,8 @@
       "amt": 630,
       "text": "We are eligible to receive $630.0 million in milestone payments upon the achievement of various development and regulatory milestones and sales thresholds for annual net sales of Nanoecapsulated Sirolimus plus Pegadricase, or NASP, and tiered royalty payments ranging from the low double digits on the lowest sales…"
      }
-    ]
+    ],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -40997,7 +41064,11 @@
      "periodEnd": null,
      "text": "In December 2025, the Company sold 3,928,571 shares of common stock under the Sales Agreement at a price of $1.40 per share, raising aggregate gross proceeds of $5.5 million before fees and expenses of $0.1 million."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 228.9,
+     "text": "As of September 30, 2026, the Company had an accumulated deficit of $ 1.3 billion and cash, cash equivalents and marketable securities of $ 228.9 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -43498,7 +43569,11 @@
       "amt": 495,
       "text": "Under the Sanofi Collaboration Agreement, the Company is eligible to receive milestone payments totaling up to approximately $ 495.0 million upon achievement of certain clinical, regulatory and sales milestone events for Peripheral Products, and variable royalties on worldwide net sales."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 1000,
+     "text": "Liquidity and Capital Resources Sources of Liquidity As of September 30, 2026, we had cash, cash equivalents and marketable securities in the amount of $1.0 billion."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -45895,7 +45970,8 @@
       "amt": 350,
       "text": "As of September 30, 2026, additional common shares having an aggregate offering price of up to $350.0 million remain available to be issued."
      }
-    ]
+    ],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -47947,7 +48023,11 @@
       "amt": 510,
       "text": "In addition, we are eligible to receive (i) up to $ 510.0 million in one-time milestone payments upon the first achievement by Novo Nordisk or its affiliates or sublicensees of each of the development and approval milestone events as set forth in the APLA, including $100.0 million in aggregate one-time milestone…"
      }
-    ]
+    ],
+    "cash": {
+     "amt": 132,
+     "text": "Financial Summary As of June 30, 2026, we had cash, cash equivalents and short-term investments of $132.0 million."
+    }
    },
    "debtDue24": 17.1,
    "raise": {
@@ -50222,7 +50302,8 @@
      "text": "We believe that our existing cash and cash equivalents, together with the anticipate d proceeds under our Convertible Grant Agreement wi th Wellcome, will be sufficient to fund our operating expenses and capital expenditure requirements for at least the next 12 months."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": null
    },
    "debtDue24": 4.5,
    "raise": {
@@ -52074,7 +52155,11 @@
      "periodEnd": "September 30, 2026",
      "text": "During the nine months ended September 30, 2026, we sold an aggregate of 3,140,522 shares of our 22 common stock pursuant to the ATM Program for aggregate net proceeds of approximately $37.1 million."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 208.6,
+     "text": "The Company had cash, cash equivalents and investment securities of $ 208.6 million as of September 30, 2026, and has not generated positive cash flow from operations."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -53872,7 +53957,11 @@
      "text": "We expect our current cash, cash equivalents and marketable securities to be sufficient to fund our planned operations for at least the next 12 months from the date of issuance of these condensed consolidated financial statements."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 43.5,
+     "text": "As of June 30, 2026, we had combined cash, cash equivalents and marketable securities of $ 43.5 million, working capital of $ 37.7 million and shareholders' equity of $ 38.3 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -55570,7 +55659,11 @@
      "used": false,
      "text": "As of September 30, 2026, no shares have been issued under the Sales Agreement."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 191.2,
+     "text": "We had $191.2 million in cash, cash equivalents and marketable securities at September 30, 2026."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -57434,7 +57527,11 @@
      "periodEnd": null,
      "text": "During the three and six months ended June 30, 2026, the Company sold 4,424,778 shares of its common stock under the ATM Program pursuant to the Sales Agreement with Leerink (each as defined below) at a volume-weighted average price of $ 5.65 per share, and received gross and net proceeds of $ 25.0 million and…"
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 234.2,
+     "text": "As of June 30, 2026, we had $234.2 million of cash, cash equivalents, and investments in U.S."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -59513,7 +59610,11 @@
      "used": false,
      "text": "During the three and nine months ended September 30, 2026, the Company did not sell any shares under the ATM Program."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 143.1,
+     "text": "The decrease was driven by a $0.5 million decrease in other income (expense) due to nonrecurring refundable tax credits received in the nine months ended September 30, 2025, offset by a $0.1 million increase in interest and investment income in the nine months ended September 30, 2026. 24 Liquidity and Capital…"
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -61419,7 +61520,11 @@
      "text": "Accordingly, these conditions raise substantial doubt about the Company's ability to continue as a going concern."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 51.2,
+     "text": "As of September 30, 2026, we had $51.2 million in cash, cash equivalents and marketable securities."
+    }
    },
    "debtDue24": 37.2,
    "raise": {
@@ -63523,7 +63628,8 @@
      "used": false,
      "text": "The Company has not sold any shares of common stock pursuant to the 2026 ATM to date."
     },
-    "other": []
+    "other": [],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -65401,7 +65507,11 @@
      "text": "Based on our current operating plan, we believe our available cash, cash equivalents, and short-term debt marketable securities will be sufficient to fund our operating expenses and capital expenditure requirements to mid-2028."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 498.5,
+     "text": "As of September 30, 2026, the Company had $ 498.5 million of cash and cash equivalents and short-term marketable debt securities."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -67660,7 +67770,11 @@
       "amt": 1100,
       "text": "The Company is also eligible to receive up to $ 1,100.0 million in potential future milestone payments, including (a) a potential milestone payment upon achieving U.S. marketing approval for sevasemten for Becker muscular dystrophy in the amount of (i) $ 200.0 10 Table of Contents million, in cash, payable in the…"
      }
-    ]
+    ],
+    "cash": {
+     "amt": 1743.9,
+     "text": "Liquidity and Capital Resources The Company has retained earnings of $ 513.4 million and cash, cash equivalents and marketable securities of $ 1,743.9 million as of September 30, 2026."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -69572,7 +69686,11 @@
      "text": "Although the Company has incurred recurring losses and expects to continue to incur losses for the foreseeable future, the Company expects the cash, cash equivalents and marketable securities to be sufficient to fund current operations for at least the next 12 months from the issuance of the financial statements. 2."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 1153.5,
+     "text": "As of September 30, 2026, we had cash and cash equivalents and marketable securities of $1,153.5 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -71468,7 +71586,11 @@
       "amt": 20,
       "text": "The second $ 20 million tranche is available for draw at the Company's option by no later than June 15, 2028, subject to the achievement of specified performance milestones and certain additional timing restrictions."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 183.2,
+     "text": "As of September 30, 2026 and December 31, 2025, total cash, cash equivalents, short-term investments and restricted cash were $183.2 million and $125.2 million, respectively."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -73305,7 +73427,11 @@
      "text": "These conditions raise substantial doubt about the Company's ability to continue as a going concern."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 156.3,
+     "text": "As of June 30, 2026, the Company had approximately $ 156.3 million of cash, cash equivalents and marketable securities available for use to fund its operations and capital requirements."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -75080,7 +75206,11 @@
      "used": false,
      "text": "As of June 30, 2026, the Company has not sold any shares under the Sales Agreement. 2025 Underwritten Offering On November 12, 2025, the Company entered into an underwriting agreement (the \"Underwriting Agreement\") with Leerink Partners, LLC, as representative of the several underwriters named therein (the…"
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 88.8,
+     "text": "As of June 30, 2026, the Company had cash and cash equivalents and short-term investments of $ 88.8 million, working capital of $ 81.3 million and an accumulated deficit of $ 471.9 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -77302,7 +77432,11 @@
     "url": "https://www.sec.gov/Archives/edgar/data/1372299/000162828026069835/ocgn-20260930.htm",
     "runway": null,
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 84.3,
+     "text": "As of September 30, 2026, the Company had an accumulated deficit of $ 455.7 million and cash and cash equivalents and short-term investments totaling $ 84.3 million."
+    }
    },
    "debtDue24": 29.8,
    "raise": {
@@ -79407,7 +79541,8 @@
      "periodEnd": null,
      "text": "As of June 30, 2026 , the Company has sold and issued 2,838,894 shares of common stock under the 2025 ATM Program, for total net proceeds of $ 24.2 million ."
     },
-    "other": []
+    "other": [],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -81397,7 +81532,11 @@
      "periodEnd": null,
      "text": "In September 2025, the Company sold 3,040,000 ADSs under the ATM Sales Agreement, for gross proceeds of approximately $ 58.5 million."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 1240,
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents and short-term investments of $ 1,240.0 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -82993,7 +83132,11 @@
      "text": "Based on our current operating plan, we expect that our cash, cash equivalents and marketable securities will enable us to fund our operating expenses and capital expenditure requirements into early 2029."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 481.6,
+     "text": "Liquidity and Capital Resources The Company expects that its existing cash, cash equivalents and marketable securities as of September 30, 2026 of $ 481.6 million will be sufficient to allow the Company to fund its current planned operations through at least a period of one year after the date the financial…"
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -84733,7 +84876,11 @@
      "periodEnd": "September 30, 2026",
      "text": "During the nine months ended September 30, 2026, the Company sold 237,500 shares of common stock under the Sales Agreement resulting in net proceeds of $1.5 million."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 104.8,
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents, and marketable securities of $ 104.8 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -86686,7 +86833,11 @@
       "amt": 200,
       "text": "As of June 30, 2026, $ 200.0 million remains available and unallocated under the 2026 Registration Statement and $ 96.3 million remains available and allocated for sale under the ATM Facility."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 199.4,
+     "text": "As of June 30, 2026, the Company had cash and cash equivalents and available-for-sale marketable securities of $ 199.4 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -88657,7 +88808,11 @@
      "text": "Management believes that the Company's current cash, cash equivalents, restricted cash and investments will provide sufficient funds to enable the Company to meet its obligations for at least twelve months from the filing date of this report. 2."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 216,
+     "text": "As of September 30, 2026, the Company had an accumulated deficit of $ 749.8 million and cash, cash equivalents, restricted cash and investments of $ 216.0 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -90653,7 +90808,11 @@
       "amt": 50,
       "text": "Other than up to $50.0 million of additional advances that may be drawn at our option until April 30, 2027 under the Hercules Loan Agreement, we do not have any committed external source of funds."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 682.8,
+     "text": "The Company expects that its existing cash, cash equivalents and marketable securities as of September 30, 2026 of $ 682.8 million will enable the Company to fund its planned operating expense and capital expenditure requirements for at least twelve months from the date of issuance of these condensed consolidated…"
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -92611,7 +92770,8 @@
      "text": "Based on our current business plans, we believe that our existing cash and cash equivalents should be sufficient to fund our operating expenses and capital requirements through at least the end of 2028."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -95044,7 +95204,8 @@
      "text": "Recursion believes that the Company's existing cash and cash equivalents will be sufficient to fund the Company's operating expenses and capital expenditures for at least the next 12 months from the issuance date of these financial statements."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -96917,7 +97078,11 @@
      "text": "The Company believes that its current capital resources, which consist of cash, cash equivalents and short-term investments, will be sufficient to fund operations through at least the next twelve months from the date the accompanying financial statements are issued based on its expected cash needs."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 416.9,
+     "text": "Liquidity and Capital Resources As of September 30, 2026, the Company had approximately $ 403.8 million of cash, cash equivalents and short-term investments and working capital of approximately $ 416.9 million ."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -99231,7 +99396,11 @@
      "periodEnd": null,
      "text": "During the three and nine months ended September 30, 2026, the Company sold 3,842,191 shares under the August 2021 ATM for net proceeds of approximately $ 28.8 million after deducting commissions and other offering expenses."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 172.8,
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents, and investments of $ 172.8 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -101340,7 +101509,11 @@
      "text": "We expect our current cash, cash equivalents and investments will be sufficient to fund our current operating plan into the second half of 2028."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 387.6,
+     "text": "As of June 30, 2026, we had cash, cash equivalents and investments of $387.6 million, consisting of interest-bearing money market funds, certificates of deposit, securities issued by the U.S."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -103161,7 +103334,11 @@
       "amt": 75,
       "text": "The First Amendment amended the Loan Agreement to provide that upon achievement of the Approval Milestone, the Company may borrow up to $ 75 million of additional term loans, as follows: Up to $ 45 million through the earlier of (i) 120 days following the Approval Milestone or (ii) June 30, 2027 (the \"First…"
      }
-    ]
+    ],
+    "cash": {
+     "amt": 129.6,
+     "text": "As of September 30, 2026, we had cash, cash equivalents, and short-term investments of approximately $129.6 million."
+    }
    },
    "debtDue24": 11.4,
    "raise": {
@@ -105148,7 +105325,11 @@
      "used": false,
      "text": "During the nine months ended September 30, 2026, the Company did no t sell any shares of common stock under its at-the-market offering program."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 202.9,
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents and marketable securities of $ 202.9 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -106987,7 +107168,11 @@
      "text": "Assuming no additional fund raising, the Company's forecasted cash required to fund operations indicates that the Company has sufficient funds to support operations through at least the one-year period from the issuance date of these condensed consolidated financial statements. 6 Table of Contents Note 2."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 236.7,
+     "text": "At September 30, 2026, the Company had an accumulated deficit of $ 197.7 million and cash and cash equivalents and short-term investments of $ 236.7 million ."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -109027,7 +109212,11 @@
      "used": false,
      "text": "No shares were sold under the ATM Sales Agreement during the nine months ended September 30, 2026."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 299.4,
+     "text": "As of September 30, 2026, we had cash, cash equivalents and marketable securities of $299.4 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -111013,7 +111202,11 @@
      "periodEnd": "September 30, 2026",
      "text": "In October 2026, we sold 1,010,000 shares of our common stock under the ATM Program at a price of $10.00 per share, resulting in gross proceeds of approximately $10.1 million. 24 Cash Flows The following table sets forth our cash flows (in thousands): Nine Months Ended September 30, 2026 2025 Net cash used in…"
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 227.6,
+     "text": "Cash, cash equivalents and marketable securities were $ 227.6 million as of September 30, 2026."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -113096,7 +113289,8 @@
       "amt": 130,
       "text": "In addition, with respect to the PS Products, the Company will be eligible to receive potential additional payments of up to $ 130 million upon achieving certain specified regulatory or net sales milestones, with the first milestone payment of $ 10 million already made following approval by the FDA of PS for reversal…"
      }
-    ]
+    ],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -114925,7 +115119,11 @@
      "periodEnd": null,
      "text": "In January 2026, the Company issued 501,861 shares of common stock under the Sales Agreement for gross proceeds of $ 5.1 million, before deducting offering expenses of approximately $ 0.1 million. 9."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 124.8,
+     "text": "The Company expects that its existing cash, cash equivalents and marketable securities as of September 30, 2026 of $ 124.8 million will enable the Company to fund its planned operating expenses and capital expenditure requirements for at least 12 months from the date of issuance of these consolidated financial…"
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -117254,7 +117452,11 @@
      "text": "The Company expects such cash resources will fund operating expenses and capital expenditure requirements into 2028. 2."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 163,
+     "text": "As of September 30, 2026, the total of cash, cash equivalents and marketable securities was $ 163 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -119427,7 +119629,11 @@
      "text": "The Company expects that its existing cash, cash equivalents and marketable securities will be sufficient to fund its operations for at least the next twelve months from the issuance date of these financial statements."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 431,
+     "text": "As of September 30, 2026 , the Company had cash, cash equivalents and marketable securities of $ 431.0 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -120867,8 +121073,8 @@
    "n": "X4 Pharmaceuticals",
    "area": "Biological Products, (No Diagnostic Substances)",
    "mcap": 329.8,
-   "ev": 217.1,
-   "cash": 187.7,
+   "ev": -246.4,
+   "cash": 651.2,
    "debt": 75,
    "burn": 6.34,
    "rev": 9.8,
@@ -121280,7 +121486,11 @@
      "text": "Based on its current operating plan, the Company believes (a) that its current cash, cash equivalents and short-term marketable securities will be sufficient to fund its operations and debt obligations for at least the next 12 months and (b) it will continue to comply with all covenants under its loan agreements, as…"
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 651.2,
+     "text": "As of September 30, 2026, the Company had $ 187.7 million of cash, cash equivalents and short-term marketable securities, and an accumulated deficit of $ 651.2 million."
+    }
    },
    "debtDue24": 76.7,
    "raise": {
@@ -122590,8 +122800,7 @@
     "cik": "1501697",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashAndCashEquivalentsAtCarryingValue",
-     "MarketableSecurities"
+     "Total stated in the report"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-02",
@@ -123206,7 +123415,11 @@
      "periodEnd": null,
      "text": "As of September 30, 2026, we have sold 239,797 shares of common stock under the ATM Program for aggregate net proceeds of approximately $2.1 million, after deducting approximately $0.1 million of commissions paid to the Sales Agent."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 207.4,
+     "text": "As of September 30, 2026 , the Company's cash, cash equivalents and short-term investments were $ 207.4 million. 15 Upstream Bio, Inc."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -125085,7 +125298,11 @@
       "amt": 37.5,
       "text": "The Company is eligible to receive two additional payments of $ 37.5 million each (together, the \"Earnout Payments\")."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 83.6,
+     "text": "Liquidity and Capital Resources As of September 30, 2026, the Company had cash, cash equivalents and marketable securities that totaled $ 83.6 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -126964,7 +127181,11 @@
     "url": "https://www.sec.gov/Archives/edgar/data/1326190/000132619026000052/alt-20260630x10q.htm",
     "runway": null,
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 326.3,
+     "text": "Our cash, cash equivalents, restricted cash and short-term investments were $326.3 million as of June 30, 2026."
+    }
    },
    "debtDue24": 23.3,
    "raise": {
@@ -129126,7 +129347,11 @@
       "amt": 2100,
       "text": "Pursuant to the 2024 Novartis Agreement, the Company is entitled to receive from Novartis up to $ 2.1 billion in development, regulatory, and sales milestones, beginning upon initiation of Phase 2 studies including (a) potential development and regulatory milestone payments, exceeding $ 1.5 billion if multiple…"
      }
-    ]
+    ],
+    "cash": {
+     "amt": 577.7,
+     "text": "The Company currently expects that its cash, cash equivalents, and marketable securities of $ 577.7 million as of September 30, 2026 will be sufficient to fund operating expenses and capital requirements for at least 12 months from the date the third quarter interim condensed consolidated financial statements are…"
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -131080,7 +131305,11 @@
       "amt": 60,
       "text": "Under the Maruho Japan Agreement, we are eligible to receive up to $60.0 million in upfront and customary milestone payments and royalty payments on future sales of EVO756 in Japan."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 288,
+     "text": "As of June 30, 2026, we maintained $288.0 million in cash, cash equivalents and investments."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -133208,7 +133437,8 @@
      "text": "As of the date of this report, Management believes that the Company's existing cash and cash equivalents and short-term investments will enable it to fund operating expenses and capital expenditure requirements for at least 12 months from the issuance of these unaudited condensed consolidated financial statements."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -135180,7 +135410,11 @@
      "text": "Based on the Company's current level of operating expenses, existing resources will be sufficient to cover operating cash needs for at least one year from the date these condensed consolidated financial statements are issued ."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 205.3,
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents, and short-term and long-term investments of $ 205.3 million ."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -136901,7 +137135,11 @@
      "used": false,
      "text": "During the three and nine months ended September 30, 2026 and 2025, the Company did no t sell any shares of common stock under the ATM offering program."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 55.6,
+     "text": "As of September 30, 2026, the Company had an accumulated deficit of $ 511.8 million and cash, cash equivalents, and marketable debt securities of $ 55.6 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -138706,7 +138944,11 @@
      "periodEnd": "September 30, 2026",
      "text": "During the three months ended September 30, 2026 , the Company sold 548,723 shares of its common stock at a weighted average price of $ 27.42 per share for net proceeds of $ 14.4 million pursuant to the 2026 Sale Agreement, after deducting sales commission and offering costs."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 477,
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents and marketable securities of $ 477.0 million ."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -140811,7 +141053,11 @@
       "amt": 30,
       "text": "If Notch subsequently out-licenses any of the Released Targets (whether through an out-license, partnership, sale, or other transaction), we will be entitled to receive a percentage of upfront and/or milestone payments associated therewith up to a set cap of $30.0 million, and will be entitled to a low, single-digit…"
      }
-    ]
+    ],
+    "cash": {
+     "amt": 388.9,
+     "text": "The Company had cash, cash equivalents and investments of $ 388.9 million as of September 30, 2026."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -142932,7 +143178,11 @@
      "text": "In light of these factors, management believes that there is substantial doubt about the Company's ability to continue as a going concern beyond the fourth quarter of 2027."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 48.4,
+     "text": "Working Capital and Liquidity As of September 30, 2026, we had cash, cash equivalents and short-term investments of $48.4 million and a working capital deficit of $38.0 million, compared with cash, cash equivalents and short-term investments of $58.5 million and positive working capital of $17.5 million as of…"
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -144750,7 +145000,11 @@
      "text": "We believe our existing cash, cash equivalents and marketable securities will be sufficient to fund 20 our operating expenses and capital expenditure requirements into 2029."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 481.6,
+     "text": "As of September 30, 2026, the Company has an accumulated deficit of $ 347.5 million and cash, cash equivalents and marketable securities of $ 481.6 million ."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -146519,7 +146773,11 @@
      "used": false,
      "text": "No shares of common stock were sold under the ATM Offering Program during the three and nine months ended September 30, 2026."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 319.1,
+     "text": "As of September 30, 2026, the Company has $ 319.1 million in cash, cash equivalents and short-term investments."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -148302,7 +148560,11 @@
       "amt": 308,
       "text": "Additionally, to the extent Tenacia commercializes any licensed products containing RAP-219, the Company is eligible to receive up 23 to $ 308.0 million in contingent sales-based milestone payments and tiered royalty payments ranging from the mid-single digits to the mid-teens based on a percentage of net sales,…"
      }
-    ]
+    ],
+    "cash": {
+     "amt": 395,
+     "text": "The Company had cash, cash equivalents and short-term investments, excluding restricted cash, of $ 395.0 million as of September 30, 2026."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -150374,7 +150636,11 @@
      "periodEnd": null,
      "text": "In December 2025, the Company issued 1,604,000 shares of common stock with par value of $ 0.0001 per share through the ATM Program and raised net proceeds of $ 29.5 million."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 442.3,
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents and marketable securities of $ 442.3 million and an accumulated deficit of $ 541.9 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -152369,7 +152635,11 @@
      "text": "The Company believes its cash, cash equivalents, and marketable securities as of June 30, 2026 , together with the net proceeds of $ 593.5 million received from the Company's underwritten offering, which closed in July 2026, will be sufficient for the Company to fund operations for at least one year from the issuance…"
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 384.3,
+     "text": "As of June 30, 2026, the Company had $ 384.3 million in cash, cash equivalents, and marketable securities."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -154422,7 +154692,11 @@
       "amt": 485,
       "text": "The Company is also eligible to receive up to $ 485.0 million in regulatory and commercial milestone payments, as well as tiered royalties."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 848.6,
+     "text": "We believe our cash, cash equivalents, and investments of $848.6 million as of September 30, 2026 will enable us to fund our operating expenses and capital expenditure requirements into 2029."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -156609,7 +156883,11 @@
      "periodEnd": "September 30, 2026",
      "text": "During the nine months ended September 30, 2026, we sold 65,092 shares of our common stock under the Sales Agreement for net proceeds of approximately $1.7 million."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 194,
+     "text": "As of September 30, 2026, we had $194.0 million in cash, cash equivalents and marketable securities excluding restricted cash."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -158814,7 +159092,11 @@
       "amt": 125,
       "text": "Pursuant to the Royalty Pharma Agreement, we received an upfront payment of $ 125.0 million, or the Purchase Price, in exchange for which Royalty Pharma obtained the right, or the Revenue Participation Right, to receive certain amounts calculated as a percentage of future U.S. net sales of RYTELO for each calendar…"
      }
-    ]
+    ],
+    "cash": {
+     "amt": 339.4,
+     "text": "As of September 30, 2026, we had approximately $339.4 million in cash, cash equivalents, restricted cash and marketable securities."
+    }
    },
    "debtDue24": 24.1,
    "raise": {
@@ -160943,7 +161225,11 @@
       "amt": 410,
       "text": "Under the 2015 Collaboration Agreement and subsequent amendments, the Company is eligible to receive up to $ 410.0 million in additional development, regulatory and commercial milestones and royalties on net product sales for each of the three collaboration targets that Vertex licensed in 2019."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 2276.6,
+     "text": "As of September 30, 2026, we had $2,276.6 million in cash, cash equivalents and marketable securities, of which approximately $308.6 million was held outside of the United States, and an accumulated deficit of $2,273.1 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -162961,7 +163247,11 @@
      "periodEnd": null,
      "text": "This registration statement covers (i) an aggregate of $100.0 million in shares of common stock that we may issue and sell pursuant to the Sales Agreement, of which we have sold 4,590,101 shares of common stock for $16.0 million in gross proceeds and $84.0 million is available for future sale as of June 30, 2026, and…"
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 201.1,
+     "text": "Liquidity and Capital Resources Overview As of June 30, 2026, we had $201.1 million of cash, cash equivalents and marketable securities."
+    }
    },
    "debtDue24": 0.2,
    "raise": {
@@ -164980,7 +165270,11 @@
       "amt": 86,
       "text": "Pursuant to the Kayak Agreement, the Company is also eligible to receive future payments contingent upon the achievement of specified development, regulatory, and commercial milestones of up to $ 86.0 million, and tiered royalties on net sales of any commercialized products subject to the Kayak Agreement in the low…"
      }
-    ]
+    ],
+    "cash": {
+     "amt": 196.3,
+     "text": "Management believes that the Company's cash and cash equivalents and short-term investments of $ 196.3 million as of September 30, 2026 are sufficient to fund projected operations of the Company for at least the next twelve months following the date these financial statements are issued. 2."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -166733,7 +167027,8 @@
      "periodEnd": "December 31, 2025",
      "text": "During the year ended December 31, 2025, we sold 4,160,176 shares pursuant to the 2025 ATM Program for net proceeds of $10.2 million."
     },
-    "other": []
+    "other": [],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -168730,7 +169025,11 @@
      "used": false,
      "text": "As of the date of this Quarterly Report, we have not sold any shares under the ATM Program."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 174.8,
+     "text": "The Company expects that its cash, cash equivalents and marketable securities as of September 30, 2026 of $ 174.8 million will be sufficient to fund its operations for at least the next twelve months from the date of issuance of these financial statements ."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -170799,7 +171098,8 @@
      "used": false,
      "text": "To date, the Company has not sold any shares under the ATM Program."
     },
-    "other": []
+    "other": [],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -173159,7 +173459,11 @@
      "periodEnd": "September 30, 2026",
      "text": "During the three months ended September 30, 2026 , the Company sold 2,801,602 shares of common stock under the ATM program for gross proceeds of $ 8.0 million and net proceeds of $ 7.6 million, after deducting commissions and issuance costs."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 139.1,
+     "text": "The Company expects that its cash, cash equivalents and short-term investments as of September 30, 2026 of $ 139.1 million will be sufficient to fund its operations for at least the next twelve months from the date of issuance of these condensed consolidated financial statements."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -174938,7 +175242,8 @@
      "periodEnd": null,
      "text": "In April 2022, we sold 2,000,000 shares of common stock pursuant to the Sales Agreement and received net proceeds of $11.6 million."
     },
-    "other": []
+    "other": [],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -176924,7 +177229,8 @@
       "amt": 123.8,
       "text": "As of September 30, 2026, approximately $ 123.8 million remain available for future sales under the February 27, 2025 Sales Agreement."
      }
-    ]
+    ],
+    "cash": null
    },
    "debtDue24": 1.4,
    "raise": {
@@ -178925,7 +179231,11 @@
      "text": "We believe our existing cash, cash equivalents, and investments will be sufficient to fund our operating expenses and capital expenditure requirements into 2027."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 95.1,
+     "text": "As of June 30, 2026, the Company maintains cash, cash equivalents, and short-term investments of $ 95.1 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -180710,7 +181020,11 @@
      "periodEnd": "September 30, 2026",
      "text": "During the nine months ended September 30, 2026, the Company sold 889,054 shares of its common stock under the Sales Agreement, and received net proceeds of $ 31.8 million after deducting commissions and other offering expenses."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 359.7,
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents and short-term investments of approximately $ 359.7 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -182147,8 +182461,8 @@
    "n": "Olema Pharmaceuticals",
    "area": "Pharmaceutical Preparations",
    "mcap": 704.4,
-   "ev": 243,
-   "cash": 461.4,
+   "ev": -83,
+   "cash": 787.4,
    "debt": 0,
    "burn": 14.78,
    "rev": 0,
@@ -182770,7 +183084,11 @@
      "periodEnd": "September 30, 2026",
      "text": "During the nine months ended September 30, 2026, we issued 1,712,739 shares of our common stock under the 2025 Sales Agreement at a weighted-average price of $24.92 for net proceeds of $41.9 million after deducting related issuance costs."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 787.4,
+     "text": "As of September 30, 2026, we had $413.8 million in cash, cash equivalents and marketable securities and accumulated deficit of $787.4 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -184179,8 +184497,7 @@
     "cik": "1750284",
     "asOf": "2026-09-30",
     "cashParts": [
-     "CashAndCashEquivalentsAtCarryingValue",
-     "AvailableForSaleSecuritiesDebtSecurities"
+     "Total stated in the report"
     ],
     "burnHow": "last fiscal year + current year-to-date − prior year-to-date",
     "sharesAsOf": "2026-11-05",
@@ -184884,7 +185201,11 @@
       "amt": 10,
       "text": "Pursuant to the terms of an asset purchase agreement with a third-party, the Company is eligible to receive two potential milestones, one for $ 10.0 million and a second for $ 50.0 million."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 884.4,
+     "text": "The Company currently expects that its cash, cash equivalents and marketable securities of $ 884.4 million as of September 30, 2026 will be sufficient to fund operating expenses and capital requirements for at least 12 months from the date the unaudited condensed consolidated financial statements are issued."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -187323,7 +187644,11 @@
      "text": "The Company expects that its cash, cash equivalents, and short-term investments of $ 289.6 million , and long-term investments and interest receivable of $ 24.2 million as of September 30, 2026, will be sufficient to fund its operating expenses and capital expenditure requirements through the next twelve months from…"
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 289.6,
+     "text": "The Company expects that its cash, cash equivalents, and short-term investments of $ 289.6 million , and long-term investments and interest receivable of $ 24.2 million as of September 30, 2026, will be sufficient to fund its operating expenses and capital expenditure requirements through the next twelve months from…"
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -189387,7 +189712,11 @@
      "periodEnd": "June 30, 2026",
      "text": "ATM Facility During the six months ended June 30, 2026, we sold 1,319,738 shares of common stock under our at the market offering program (\"ATM Offering\") for gross proceeds of $29.9 million less issuance costs of $0.6 million."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 461.2,
+     "text": "The Company expects that its existing cash and cash equivalents, and investments of $ 461.2 million as of June 30, 2026 , are sufficient to fund its planned operating expenses and capital expenditure requirements for at least twelve months from the date these unaudited condensed consolidated financial statements were…"
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -191537,7 +191866,11 @@
       "amt": 80.6,
       "text": "Under the ARR-002 License Agreement, the Company is eligible to receive payments totaling up to $ 80.6 million, comprised of a one-time upfront payment of $ 5.0 million and additional payments of $ 75.6 million upon the achievement of certain development, regulatory and sales milestones, as well as tiered royalties…"
      }
-    ]
+    ],
+    "cash": {
+     "amt": 393.2,
+     "text": "The Company has concluded that the aggregate balance of cash and cash equivalents and short-term investments of $ 393.2 million as of September 30, 2026 is sufficient to sustain planned operations through at least twelve months from the issuance date of these financial statements."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -193506,7 +193839,11 @@
      "text": "We have identified conditions that raise substantial doubt about our ability to continue as a going concern."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 193,
+     "text": "The Company expects that its cash, cash equivalents and marketable securities of $ 193.0 million as of September 30, 2026 will be sufficient to fund its operations and capital expenditure requirements into the fourth quarter of 2027."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -195958,7 +196295,11 @@
      "text": "Although we have incurred recurring losses and expect to continue to incur losses for the foreseeable future, we expect our cash, cash equivalents and marketable securities to be sufficient to fund current operations for at least the next twelve months from the issuance of the financial statements."
     },
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 907,
+     "text": "We base our estimates on historical experience and on various other assumptions that we believe are reasonable, the results of which form the basis for making judgments about the carrying values of assets, liabilities and equity and the amount of revenues and expenses. 8 Table of Contents Liquidity As of September…"
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -197793,7 +198134,11 @@
      "periodEnd": "September 30, 2026",
      "text": "During the nine months ended September 30, 2026 , the Company issued and sold 1,692,768 shares of common stock under the 2026 ATM Offering, resulting in net proceeds of $ 8.0 million, after deducting commissions and offering costs."
     },
-    "other": []
+    "other": [],
+    "cash": {
+     "amt": 80.2,
+     "text": "The Company anticipates incurring additional losses until such time, if ever, that it can generate significant sales of its product candidates currently in development. 8 As of September 30, 2026, the Company had cash, cash equivalents, and investments of $ 80.2 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -199969,7 +200314,11 @@
       "amt": 5,
       "text": "Under the DRI Agreement, DRI is purchasing up to 100 % of certain future fixed and sales-based annual license fees that the Company is entitled to receive under the Vertex License Agreement, which fees range from $ 5.0 million to $ 40.0 million per year, including increases based on sales."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 190.2,
+     "text": "As of September 30, 2026, the Company had cash, cash equivalents, and marketable securities of $ 190.2 million."
+    }
    },
    "debtDue24": 7.5,
    "raise": {
@@ -202080,7 +202429,11 @@
       "amt": 47.5,
       "text": "In addition, the Company is eligible to receive development and regulatory milestone payments up to $ 47.5 million and double-digit royalty payments based on net sales."
      }
-    ]
+    ],
+    "cash": {
+     "amt": 193.3,
+     "text": "At September 30, 2026, we had cash, cash equivalents and marketable securities of $193.3 million."
+    }
    },
    "debtDue24": 0,
    "raise": {
@@ -203601,7 +203954,8 @@
     "url": "https://www.sec.gov/Archives/edgar/data/2130606/000119312526352381/obx-20260630.htm",
     "runway": null,
     "atm": null,
-    "other": []
+    "other": [],
+    "cash": null
    },
    "debtDue24": 0,
    "raise": {
@@ -319049,11 +319403,11 @@
    "n": "Sanofi",
    "area": "Immunology & vaccines",
    "mcap": 118113.7,
-   "ev": 129477,
-   "cash": 9366,
-   "debt": 20729.3,
+   "ev": 129476,
+   "cash": 9365.1,
+   "debt": 20727.4,
    "burn": 0.1,
-   "rev": 48355.1,
+   "rev": 48350.7,
    "shares": 1219.43,
    "own": null,
    "emp": null,
@@ -321114,136 +321468,136 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-16",
-     "cash": 10154,
+     "cash": 10153,
      "burn": -765.7,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-16",
-     "cash": 11421,
-     "burn": -724,
+     "cash": 11420,
+     "burn": -723.9,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-16",
-     "cash": 11518,
-     "burn": -681.6,
+     "cash": 11517,
+     "burn": -681.5,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-08",
      "cash": 7896,
-     "burn": -512.4,
+     "burn": -512.3,
      "runway": null
     },
     {
      "end": "2019-06-30",
      "filed": "2020-07-29",
-     "cash": 7473,
-     "burn": -595.9,
+     "cash": 7472,
+     "burn": -595.8,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-05",
-     "cash": 10921,
-     "burn": -712.6,
+     "cash": 10920,
+     "burn": -712.5,
      "runway": null
     },
     {
      "end": "2020-06-30",
      "filed": "2020-07-29",
-     "cash": 17700,
-     "burn": -781.6,
+     "cash": 17698,
+     "burn": -781.5,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-04",
-     "cash": 16421,
-     "burn": -685.2,
+     "cash": 16419,
+     "burn": -685.1,
      "runway": null
     },
     {
      "end": "2021-06-30",
      "filed": "2021-07-29",
-     "cash": 10776,
-     "burn": -759.2,
+     "cash": 10775,
+     "burn": -759.1,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-23",
-     "cash": 12361,
-     "burn": -971.9,
+     "cash": 12360,
+     "burn": -971.8,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-07-28",
-     "cash": 7647,
-     "burn": -888.6,
+     "cash": 7646,
+     "burn": -888.5,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-24",
-     "cash": 14690,
-     "burn": -972.3,
+     "cash": 14688,
+     "burn": -972.2,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-07-28",
      "cash": 8859,
-     "burn": -948.1,
+     "burn": -948,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-23",
-     "cash": 9829,
-     "burn": -947.5,
+     "cash": 9828,
+     "burn": -947.4,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-07-25",
-     "cash": 7532,
+     "cash": 7531,
      "burn": -749.7,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-13",
-     "cash": 8659,
-     "burn": -838.8,
+     "cash": 8658,
+     "burn": -838.7,
      "runway": null
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-31",
-     "cash": 17024,
-     "burn": -1035.8,
+     "cash": 17022,
+     "burn": -1035.7,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-17",
-     "cash": 9366,
+     "cash": 9365,
      "burn": -992.9,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -838.78,
+   "burnPrior": -838.71,
    "burnQ": null,
    "said": null,
-   "debtDue24": 4812.7,
+   "debtDue24": 4812.2,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -322453,7 +322807,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 11915,
+   "ocf": 11914,
    "group": "big-pharma",
    "src": {
     "cik": "1121404",
@@ -322463,8 +322817,8 @@
      "MarketableSecuritiesCurrent"
     ],
     "currency": "EUR",
-    "fx": 1.1084,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1084 USD per EUR",
+    "fx": 1.1083,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1083 USD per EUR",
     "adr": 0.5,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -322491,11 +322845,11 @@
    "n": "GSK",
    "area": "Vaccines & respiratory",
    "mcap": 109180.8,
-   "ev": 124179.1,
-   "cash": 4504.4,
-   "debt": 19502.8,
+   "ev": 124178,
+   "cash": 4504.1,
+   "debt": 19501.3,
    "burn": 0.1,
-   "rev": 43316.4,
+   "rev": 43313.2,
    "shares": 4315.45,
    "own": null,
    "emp": null,
@@ -324506,7 +324860,7 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-20",
-     "cash": 7731,
+     "cash": 7730,
      "burn": -283.9,
      "runway": null
     },
@@ -324520,7 +324874,7 @@
     {
      "end": "2017-12-31",
      "filed": "2018-03-20",
-     "cash": 5083,
+     "cash": 5082,
      "burn": -764.4,
      "runway": null
     },
@@ -324535,13 +324889,13 @@
      "end": "2019-12-31",
      "filed": "2020-03-06",
      "cash": 6346,
-     "burn": -886.2,
+     "burn": -886.1,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-12",
-     "cash": 8447,
+     "cash": 8446,
      "burn": -932.7,
      "runway": null
     },
@@ -324549,13 +324903,13 @@
      "end": "2021-12-31",
      "filed": "2022-03-08",
      "cash": 5748,
-     "burn": -878.7,
+     "burn": -878.6,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-10",
-     "cash": 5026,
+     "cash": 5025,
      "burn": -818,
      "runway": null
     },
@@ -324563,13 +324917,13 @@
      "end": "2023-12-31",
      "filed": "2024-03-05",
      "cash": 3949,
-     "burn": -747.9,
+     "burn": -747.8,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-03",
-     "cash": 5132,
+     "cash": 5131,
      "burn": -724.2,
      "runway": null
     },
@@ -324577,13 +324931,13 @@
      "end": "2025-12-31",
      "filed": "2026-03-06",
      "cash": 4504,
-     "burn": -855.4,
+     "burn": -855.3,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -724.22,
+   "burnPrior": -724.16,
    "burnQ": null,
    "said": null,
    "debtDue24": 0,
@@ -325732,7 +326086,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 10265,
+   "ocf": 10264,
    "group": "big-pharma",
    "src": {
     "cik": "1131399",
@@ -325741,8 +326095,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.326,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3260 USD per GBP",
+    "fx": 1.3259,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3259 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -341410,11 +341764,11 @@
    "n": "Haleon",
    "area": "Over-the-counter consumer health",
    "mcap": 40733.2,
-   "ev": 50393.1,
-   "cash": 1755.6,
-   "debt": 11415.5,
+   "ev": 50392.4,
+   "cash": 1755.5,
+   "debt": 11414.7,
    "burn": 0.1,
-   "rev": 14625.8,
+   "rev": 14624.7,
    "shares": 8952.35,
    "own": null,
    "emp": null,
@@ -341473,7 +341827,7 @@
      "end": "2022-12-31",
      "filed": "2023-03-20",
      "cash": 907,
-     "burn": -228,
+     "burn": -227.9,
      "runway": null
     },
     {
@@ -341500,21 +341854,21 @@
     {
      "end": "2024-12-31",
      "filed": "2025-03-20",
-     "cash": 2984,
-     "burn": -254.3,
+     "cash": 2983,
+     "burn": -254.2,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-13",
-     "cash": 1756,
-     "burn": -291.1,
+     "cash": 1755,
+     "burn": -291,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -254.26,
+   "burnPrior": -254.24,
    "burnQ": null,
    "said": null,
    "debtDue24": 1108.5,
@@ -342679,7 +343033,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 3493,
+   "ocf": 3492,
    "group": "otc",
    "src": {
     "cik": "1900304",
@@ -342688,8 +343042,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.326,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3260 USD per GBP",
+    "fx": 1.3259,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3259 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2026-03-13",
@@ -360511,10 +360865,10 @@
    "area": "Rare endocrine diseases",
    "mcap": 16069.5,
    "ev": 16185,
-   "cash": 682.8,
-   "debt": 798.3,
+   "cash": 682.7,
+   "debt": 798.2,
    "burn": 0.1,
-   "rev": 798.2,
+   "rev": 798.1,
    "shares": 61.98,
    "own": null,
    "emp": null,
@@ -361226,7 +361580,7 @@
     {
      "end": "2022-03-31",
      "filed": "2022-05-11",
-     "cash": 838,
+     "cash": 837,
      "burn": 43.1,
      "runway": 19.4
     },
@@ -361304,7 +361658,7 @@
      "end": "2024-09-30",
      "filed": "2024-11-14",
      "cash": 693,
-     "burn": 24.2,
+     "burn": 24.1,
      "runway": 28.7
     },
     {
@@ -361331,7 +361685,7 @@
     {
      "end": "2025-09-30",
      "filed": "2025-11-12",
-     "cash": 598,
+     "cash": 597,
      "burn": 9.9,
      "runway": 60.6
     },
@@ -361374,7 +361728,7 @@
     ],
     [
      "2024-12-31",
-     192.8
+     192.7
     ],
     [
      "2025-03-31",
@@ -361382,11 +361736,11 @@
     ],
     [
      "2025-06-30",
-     175.2
+     175.1
     ],
     [
      "2025-09-30",
-     236.8
+     236.7
     ],
     [
      "2025-12-31",
@@ -362616,8 +362970,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "EUR",
-    "fx": 1.1084,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1084 USD per EUR",
+    "fx": 1.1082,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1082 USD per EUR",
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
     "filing": {
@@ -362819,7 +363173,7 @@
      "filed": "2020-07-31",
      "cash": 1345,
      "burn": 20.9,
-     "runway": 64.2
+     "runway": 64.3
     },
     {
      "end": "2020-12-31",
