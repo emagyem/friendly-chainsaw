@@ -12,7 +12,7 @@
 import { toText } from "./guidance.mjs";
 
 // Bump when the reading rules change, so reports read under older rules are read again.
-export const PERIODIC_PARSER = 4;
+export const PERIODIC_PARSER = 5;
 
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 const WORDNUM = { twelve: 12, eighteen: 18, "twenty-four": 24, "twenty four": 24, thirty: 30, "thirty-six": 36, "thirty six": 36, one: 1, two: 2, three: 3 };
@@ -113,7 +113,8 @@ function statedCash(sents, asOf) {
       const hit = s.match(re);
       if (!hit || /\b(deficit|loss|borrow|facility|debt|notes)\b/i.test(hit[0])) continue;
       const amt = dollars(hit[1], hit[2]);
-      if (amt >= 5 && amt < 50000) return { amt: Math.round(amt * 10) / 10, text: clip(s) };
+      // "short-term investments" leaves out long-term holdings, so that total is a floor, not the whole.
+      if (amt >= 5 && amt < 50000) return { amt: Math.round(amt * 10) / 10, text: clip(s), partial: /short-term|current\b/i.test(hit[0]) || undefined };
     }
   }
   return null;

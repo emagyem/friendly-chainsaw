@@ -228,13 +228,15 @@ function companyQuarters(facts, filings, atmDates) {
     const cashS = series(facts, CASH, filed, { instant: true });
     const cashRow = cashS?.rows.find((r) => r.end === end);
     if (!cashRow) continue;
-    // Same rule as the live site: try each way companies report investments and use the largest total.
-    const lt = instantAt(facts, LT_INV, end, filed);
-    const cash = M(Math.max(
-      cashRow.val + instantAt(facts, ST_INV, end, filed) + lt,
-      cashRow.val + instantAt(facts, UNSPLIT_INV, end, filed),
-      instantAt(facts, ["CashCashEquivalentsAndShortTermInvestments"], end, filed) + lt,
-      instantAt(facts, ["InvestmentsAndCash"], end, filed)));
+// Same rule as the live site: split current and long-term lines first; an unsplit line or a
+    // combined total only when those are missing, taking the smallest so nothing is counted twice.
+    const stv = instantAt(facts, ST_INV, end, filed), ltv = instantAt(facts, LT_INV, end, filed);
+    let liquid = cashRow.val + stv + ltv;
+    if (!stv && !ltv) {
+      const alts = [cashRow.val + instantAt(facts, UNSPLIT_INV, end, filed), instantAt(facts, ["CashCashEquivalentsAndShortTermInvestments"], end, filed), instantAt(facts, ["InvestmentsAndCash"], end, filed)].filter((v) => v > cashRow.val * 1.02);
+      if (alts.length) liquid = Math.min(...alts);
+    }
+    const cash = M(liquid);
     const ocfS = series(facts, OCF, filed);
     const ocf = ttm(ocfS, end);
     if (ocf == null) continue;

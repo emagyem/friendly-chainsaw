@@ -288,19 +288,23 @@ function latestQuarter(s) {
 // combined total), so each reading is tried and the largest is used: each is a total the company
 // itself reported, and the smaller ones are simply missing a line.
 const UNSPLIT_INV = ["MarketableSecurities", "AvailableForSaleSecuritiesDebtSecurities", "Investments", "AvailableForSaleSecurities", "DebtSecuritiesAvailableForSaleExcludingAccruedInterest"];
+// Cash plus investments on a balance-sheet date. Most companies split investments into current and
+// long-term lines. Some report one unsplit line or only a combined total; those are used only when
+// the split lines are missing, and the smallest is taken, because combined totals can overlap
+// cash equivalents and would count them twice.
 function liquidAt(facts, date, cashRow, ST_INV, LT_INV) {
   const st = valueAt(facts, ST_INV, date), lt = valueAt(facts, LT_INV, date);
+  if (st || lt) return { total: cashRow.val + (st?.val || 0) + (lt?.val || 0), parts: [cashRow.tag, st?.tag, lt?.tag].filter(Boolean) };
   const un = valueAt(facts, UNSPLIT_INV, date);
   const cashSt = valueAt(facts, ["CashCashEquivalentsAndShortTermInvestments"], date);
   const all = valueAt(facts, ["InvestmentsAndCash"], date);
   const options = [
-    { total: cashRow.val + (st?.val || 0) + (lt?.val || 0), parts: [cashRow.tag, st?.tag, lt?.tag] },
-    { total: cashRow.val + (un?.val || 0), parts: [cashRow.tag, un?.tag] },
-    { total: (cashSt?.val || 0) + (lt?.val || 0), parts: [cashSt?.tag, lt?.tag] },
-    { total: all?.val || 0, parts: [all?.tag] },
-  ];
-  const best = options.reduce((a, b) => (b.total > a.total ? b : a));
-  return { total: best.total, parts: best.parts.filter(Boolean) };
+    un && { total: cashRow.val + un.val, parts: [cashRow.tag, un.tag] },
+    cashSt && { total: cashSt.val, parts: [cashSt.tag] },
+    all && { total: all.val, parts: [all.tag] },
+  ].filter((o) => o && o.total > cashRow.val * 1.02);
+  if (!options.length) return { total: cashRow.val, parts: [cashRow.tag] };
+  return options.reduce((x, y) => (y.total < x.total ? y : x));
 }
 
 function financialsFromFacts(facts) {
@@ -1026,12 +1030,17 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
     }
   }
 
-  // If the report states a cash-and-investments total well above what the balance-sheet data adds
-  // up to, some investments are filed under a label of the company's own: use the stated total.
-  if (said?.cash && said.cash.amt > fin.cash * 1.3 && said.cash.amt - fin.cash > 20) {
-    warn(`${ticker}: cash taken from the report's own words ($${said.cash.amt}M) because the balance-sheet data adds up to only $${round(fin.cash, 1)}M`);
-    fin.cash = said.cash.amt;
-    fin.cashParts = ["Total stated in the report"];
+  // Management's own total for the same balance-sheet date is the figure analysts use. Where it
+  // differs from the balance-sheet data by more than 10%, it wins: higher means investments filed
+  // under a label of the company's own; lower means the data counted something twice. A total that
+  // covers only short-term investments can raise the figure but not lower it.
+  if (said?.cash) {
+    const gap = said.cash.amt / fin.cash - 1;
+    if (gap > 0.1 || (gap < -0.1 && !said.cash.partial)) {
+      warn(`${ticker}: cash set to the $${said.cash.amt}M the report states (balance-sheet data added up to $${round(fin.cash, 1)}M)`);
+      fin.cash = said.cash.amt;
+      fin.cashParts = ["Total stated in the report"];
+    }
   }
 
   const mergedFinancings = (a.financings?.length ? a.financings : await readOfferings(financings, fin.shares, ticker))
