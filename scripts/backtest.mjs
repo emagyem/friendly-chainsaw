@@ -420,6 +420,24 @@ function weightTest(rows) {
   };
 }
 
+/* --------------------------- baseline test ---------------------------
+   Does the score beat the obvious? Compare it with ranking companies by
+   months of cash alone, then check it still works among companies of
+   similar size and among companies with similar runway. */
+
+function baselineTest(rows) {
+  const asScore = (set, f) => set.map((r) => ({ y12: r.y12, x12: r.x12, s: f(r) }));
+  const evalSet = (set, f) => { const sc = asScore(set, f); return { n: set.length, auc: r3(auc(sc, "s")), spread: spreadOf(sc) }; };
+  const byScore = (r) => r.score, byRunway = (r) => -Math.min(r.runway ?? 120, 120);
+  const sized = rows.filter((r) => r.mcap > 0).sort((a, b) => a.mcap - b.mcap);
+  const t = Math.floor(sized.length / 3);
+  const sizeGroups = [["Smallest third", sized.slice(0, t)], ["Middle third", sized.slice(t, 2 * t)], ["Largest third", sized.slice(2 * t)]]
+    .map(([label, g]) => ({ label, upTo: Math.round(g.at(-1)?.mcap || 0), score: evalSet(g, byScore), runway: evalSet(g, byRunway) }));
+  const runwayGroups = [["Under 12 months", 0, 12], ["12 to 24 months", 12, 24], ["Over 24 months", 24, 1e9]]
+    .map(([label, a, b]) => ({ label, score: evalSet(rows.filter((r) => r.runway >= a && r.runway < b), byScore) }));
+  return { score: evalSet(rows, byScore), runway: evalSet(rows, byRunway), sizeGroups, runwayGroups };
+}
+
 /* -------------------------------- main -------------------------------- */
 
 /* ------------------------- share-price returns -------------------------
@@ -565,6 +583,7 @@ async function main() {
       // Score again with the company's own guided catalyst dates (point-in-time: from the filing itself).
       const guided = await guidanceAt(co.cik, co.filings, q.filed);
       const c = { ...q._c, catalysts: guided.map((e) => ({ date: e.date, kind: e.kind, label: "Company-guided event" })) };
+      q.mcap = q._c.mcap || null;
       delete q._c;
       const g = computeFPS(c, toDate(q.filed));
       q.scoreNoCat = q.score; q.bandNoCat = q.band; q.partsNoCat = q.parts;
@@ -600,6 +619,8 @@ async function main() {
   result.examples = examples;
   console.log("Testing other score weights…");
   result.weightTest = weightTest(rows);
+  result.baseline = baselineTest(rows);
+  console.log(JSON.stringify(result.baseline));
   console.log(JSON.stringify(result.weightTest));
   // Catalyst timing: how much the company-guided dates add.
   const nc = evaluate(rows.map((r) => ({ ...r, score: r.scoreNoCat, band: r.bandNoCat, parts: r.partsNoCat })), companies);
