@@ -12,7 +12,7 @@
 import { toText } from "./guidance.mjs";
 
 // Bump when the reading rules change, so reports read under older rules are read again.
-export const PERIODIC_PARSER = 3;
+export const PERIODIC_PARSER = 4;
 
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 const WORDNUM = { twelve: 12, eighteen: 18, "twenty-four": 24, "twenty four": 24, thirty: 30, "thirty-six": 36, "thirty six": 36, one: 1, two: 2, three: 3 };
@@ -69,7 +69,11 @@ function horizon(s, filed) {
 }
 
 function runwayGuidance(sents, filed) {
-  const doubt = sents.find((s) => DOUBT.test(s) && !NOT_DOUBT.test(s));
+  // A real going-concern warning is about the next 12 months and is repeated through the report
+  // (notes, liquidity section, risk factors). One stray sentence, or one about "the long term", isn't enough.
+  const doubts = sents.filter((s) => DOUBT.test(s) && !NOT_DOUBT.test(s) && !/\blong[- ]term\b/i.test(s));
+  const timed = doubts.find((s) => /\b(twelve months|12 months|one year|next year)\b/i.test(s));
+  const doubt = timed || (doubts.length >= 2 ? doubts[0] : null);
   if (doubt) return { kind: "doubt", say: "there is substantial doubt about its ability to keep operating", until: null, text: clip(doubt) };
   const short = sents.find((s) => CASH_WORDS.test(s) && NOT_ENOUGH.test(s) && OPS_WORDS.test(s) && /\b(twelve months|12 months|one[- ]year)\b/i.test(s) && !/\b(may|could|might|if we|whether)\b/i.test(s));
   if (short) return { kind: "doubt", say: "its cash won't cover the next 12 months without new funding", until: null, text: clip(short) };
@@ -91,19 +95,25 @@ function runwayGuidance(sents, filed) {
 // "cash, cash equivalents and marketable securities of $848.6 million as of September 30, 2026".
 // Used as a cross-check on the figure worked out from the balance-sheet data, and only when the
 // sentence names the same balance-sheet date.
+// The amount must sit right next to the words: "$187.7 million of cash, cash equivalents and
+// marketable securities", or "...marketable securities of $848.6 million". Anything looser picks
+// up the accumulated deficit or a loan amount from the same sentence.
+const KINDS = "(?:marketable securities|short-term investments|investments|securities)";
 const STATED = [
-  /\bcash(?:, cash equivalents)?(?:,| and)[^.$]{0,90}?(?:marketable securities|investments|securities)[^.$]{0,60}?\s(?:of|totaling|totaled|were|was)\s+(?:approximately\s+)?\$\s?([\d,]+(?:\.\d+)?)\s*(million|billion)/i,
-  /\$\s?([\d,]+(?:\.\d+)?)\s*(million|billion)\s+(?:of|in)\s+cash(?:, cash equivalents)?(?:,| and)[^.$]{0,70}?(?:marketable securities|investments|securities)/i,
+  new RegExp(`\\$\\s?([\\d,]+(?:\\.\\d+)?)\\s*(million|billion)\\s+(?:of|in)\\s+(?:unrestricted\\s+)?cash(?:, cash equivalents)?(?:,| and)\\s[^.$;]{0,60}?${KINDS}`, "i"),
+  new RegExp(`\\bcash(?:, cash equivalents)?(?:,| and)\\s[^.$;]{0,60}?${KINDS}\\s+(?:of|totaling|totaled|were|was)\\s+(?:approximately\\s+)?\\$\\s?([\\d,]+(?:\\.\\d+)?)\\s*(million|billion)`, "i"),
 ];
 function statedCash(sents, asOf) {
   if (!asOf) return null;
   const [y, m, d] = asOf.split("-").map(Number);
   const dateWords = new RegExp(`\\b${MONTHS[m - 1]}\\s+${d},\\s+${y}\\b`, "i");
   for (const s of sents) {
-    if (!dateWords.test(s) || /\b(pro forma|as adjusted|would have|net proceeds)\b/i.test(s)) continue;
+    if (s.length > 420 || !dateWords.test(s) || /\b(pro forma|as adjusted|would have|net proceeds|table of contents)\b/i.test(s)) continue;
     for (const re of STATED) {
       const hit = s.match(re);
-      if (hit) { const amt = dollars(hit[1], hit[2]); if (amt >= 5 && amt < 50000) return { amt: Math.round(amt * 10) / 10, text: clip(s) }; }
+      if (!hit || /\b(deficit|loss|borrow|facility|debt|notes)\b/i.test(hit[0])) continue;
+      const amt = dollars(hit[1], hit[2]);
+      if (amt >= 5 && amt < 50000) return { amt: Math.round(amt * 10) / 10, text: clip(s) };
     }
   }
   return null;
