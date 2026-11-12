@@ -283,6 +283,26 @@ function latestQuarter(s) {
   return prev ? { val: cur.val - prev.val, end } : null;
 }
 
+// Cash plus investments on a balance-sheet date. Companies label their investments in different
+// ways (split into current and long-term, as one "marketable securities" line, or only as a
+// combined total), so each reading is tried and the largest is used: each is a total the company
+// itself reported, and the smaller ones are simply missing a line.
+const UNSPLIT_INV = ["MarketableSecurities", "AvailableForSaleSecuritiesDebtSecurities", "Investments", "AvailableForSaleSecurities", "DebtSecuritiesAvailableForSaleExcludingAccruedInterest"];
+function liquidAt(facts, date, cashRow, ST_INV, LT_INV) {
+  const st = valueAt(facts, ST_INV, date), lt = valueAt(facts, LT_INV, date);
+  const un = valueAt(facts, UNSPLIT_INV, date);
+  const cashSt = valueAt(facts, ["CashCashEquivalentsAndShortTermInvestments"], date);
+  const all = valueAt(facts, ["InvestmentsAndCash"], date);
+  const options = [
+    { total: cashRow.val + (st?.val || 0) + (lt?.val || 0), parts: [cashRow.tag, st?.tag, lt?.tag] },
+    { total: cashRow.val + (un?.val || 0), parts: [cashRow.tag, un?.tag] },
+    { total: (cashSt?.val || 0) + (lt?.val || 0), parts: [cashSt?.tag, lt?.tag] },
+    { total: all?.val || 0, parts: [all?.tag] },
+  ];
+  const best = options.reduce((a, b) => (b.total > a.total ? b : a));
+  return { total: best.total, parts: best.parts.filter(Boolean) };
+}
+
 function financialsFromFacts(facts) {
   const CASH = ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", "Cash"];
   const ST_INV = ["ShortTermInvestments", "MarketableSecuritiesCurrent", "AvailableForSaleSecuritiesDebtSecuritiesCurrent", "HeldToMaturitySecuritiesCurrent"];
@@ -293,8 +313,7 @@ function financialsFromFacts(facts) {
   if (!cashS) return null;
   const asOf = cashS.rows.at(-1).end;
   const cashOnly = cashS.rows.at(-1).val;
-  const st = valueAt(facts, ST_INV, asOf);
-  const lt = valueAt(facts, LT_INV, asOf);
+  const liquid = liquidAt(facts, asOf, { val: cashOnly, tag: cashS.tag }, ST_INV, LT_INV);
   const debt = valueAt(facts, DEBT, asOf);
 
   const ocfS = pickSeries(facts, ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"]);
@@ -325,7 +344,7 @@ function financialsFromFacts(facts) {
     if (old && old.val > 0) dil24 = ((sharesNow.val / old.val) - 1) * 100;
   }
 
-  const cash = cashOnly + (st?.val || 0) + (lt?.val || 0);
+  const cash = liquid.total;
   const ocfM = ocf ? M(ocf.val) : null;
 
   // Runway as it stood at each past balance sheet, dated by when that figure was FIRST filed,
@@ -339,7 +358,7 @@ function financialsFromFacts(facts) {
   for (const r of cashS.rows.slice(-20)) {
     const t = trailing12(ocfS, r.end);
     if (!t || !near(t.end, r.end, 20)) continue;
-    const total = r.val + (valueAt(facts, ST_INV, r.end)?.val || 0) + (valueAt(facts, LT_INV, r.end)?.val || 0);
+    const total = liquidAt(facts, r.end, { val: r.val, tag: cashS.tag }, ST_INV, LT_INV).total;
     const burnM = -M(t.val) / 12;
     runwayHist.push({ end: r.end, filed: firstFiled.get(r.end) || r.filed, cash: Math.round(M(total)), burn: Math.round(burnM * 10) / 10,
       runway: burnM > 0 ? Math.round((M(total) / burnM) * 10) / 10 : null });
@@ -347,7 +366,7 @@ function financialsFromFacts(facts) {
   return {
     asOf,
     cash: M(cash),
-    cashParts: [cashS.tag, st?.tag, lt?.tag].filter(Boolean),
+    cashParts: liquid.parts,
     debt: M(debt?.val || 0),
     burn: ocfM == null ? null : Math.max(0.1, -ocfM / 12),
     cashFlowPositive: ocfM != null && ocfM > 0,
@@ -994,7 +1013,7 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
   if (lastPeriodic && !a.segment) {
     let p = PERIODIC_CACHE[lastPeriodic.url];
     if (!p || p.v !== PERIODIC_PARSER) {
-      p = readPeriodic(await secText(lastPeriodic.url), lastPeriodic.date, TODAY_ISO) || { v: PERIODIC_PARSER, unread: true };
+      p = readPeriodic(await secText(lastPeriodic.url), lastPeriodic.date, TODAY_ISO, name) || { v: PERIODIC_PARSER, unread: true };
       PERIODIC_CACHE[lastPeriodic.url] = { ...p, filed: lastPeriodic.date };
     }
     if (!p.unread) {

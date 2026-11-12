@@ -1,14 +1,14 @@
 {
-  "_readme": "How Helixora chooses which companies to cover. scripts/universe.mjs re-runs the screen monthly. Turnover policy (approved 2026-11-06, replacing the 2026-11-04 policy of 30 selected companies): coverage is 100 companies, the original companies plus those chosen by the rules; a selected company stays while it still qualifies; open places are filled in order of soonest Phase II/III completion. A company that is bought is removed from the site once the deal closes, whoever the buyer. Every change is logged in 'changes'.",
-  "approved": "2026-11-04",
+  "_readme": "How Helixora chooses which companies to cover. scripts/universe.mjs re-runs the screen monthly. Coverage policy (approved 2026-11-11, replacing the 2026-11-06 policy of 100 companies with a $100M to $5B market value and a Phase II or III trial): every company that meets the rules is covered, up to 250; a company stays while it still qualifies; if more than 250 qualify, places go in order of soonest trial completion. A company that is bought is removed from the site once the deal closes, whoever the buyer. Every change is logged in 'changes'.",
+  "approved": "2026-11-11",
   "rules": [
     "Listed on Nasdaq, NYSE or NYSE American (no OTC)",
     "Burned more than $20M of operating cash in the latest fiscal year",
     "Clinical stage: revenue under $50M, or under a quarter of cash burned",
     "SEC industry code for drug developers (2834, 2836, 8731)",
-    "Market value $100M to $5B",
+    "Market value $50M to $20B",
     "Trades at least $1M a day (3-month average)",
-    "At least one active, company-sponsored Phase II or III trial",
+    "At least one active, company-sponsored clinical trial (Phase I, II or III)",
     "Not acquired or being acquired: no tender offer or merger vote under way"
   ],
   "selection": "Up to 100 companies in all: the original companies plus the qualifying companies whose next Phase II or III trial finishes soonest.",
@@ -158,9 +158,9 @@
     "VERA"
   ],
   "policy": {
-    "total": 100,
+    "total": 250,
     "keepRank": null,
-    "approved": "2026-11-06"
+    "approved": "2026-11-11"
   },
   "changes": [
     {

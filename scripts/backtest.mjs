@@ -145,6 +145,7 @@ async function atmFilings() {
 
 const CASH = ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", "Cash"];
 const ST_INV = ["ShortTermInvestments", "MarketableSecuritiesCurrent", "AvailableForSaleSecuritiesDebtSecuritiesCurrent", "AvailableForSaleSecuritiesCurrent", "HeldToMaturitySecuritiesCurrent"];
+const UNSPLIT_INV = ["MarketableSecurities", "AvailableForSaleSecuritiesDebtSecurities", "Investments", "AvailableForSaleSecurities", "DebtSecuritiesAvailableForSaleExcludingAccruedInterest"];
 const LT_INV = ["LongTermInvestments", "MarketableSecuritiesNoncurrent", "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent", "AvailableForSaleSecuritiesNoncurrent", "HeldToMaturitySecuritiesNoncurrent"];
 const OCF = ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"];
 const REV = ["Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax", "RevenueFromContractWithCustomerIncludingAssessedTax", "SalesRevenueNet"];
@@ -227,7 +228,13 @@ function companyQuarters(facts, filings, atmDates) {
     const cashS = series(facts, CASH, filed, { instant: true });
     const cashRow = cashS?.rows.find((r) => r.end === end);
     if (!cashRow) continue;
-    const cash = M(cashRow.val + instantAt(facts, ST_INV, end, filed) + instantAt(facts, LT_INV, end, filed));
+    // Same rule as the live site: try each way companies report investments and use the largest total.
+    const lt = instantAt(facts, LT_INV, end, filed);
+    const cash = M(Math.max(
+      cashRow.val + instantAt(facts, ST_INV, end, filed) + lt,
+      cashRow.val + instantAt(facts, UNSPLIT_INV, end, filed),
+      instantAt(facts, ["CashCashEquivalentsAndShortTermInvestments"], end, filed) + lt,
+      instantAt(facts, ["InvestmentsAndCash"], end, filed)));
     const ocfS = series(facts, OCF, filed);
     const ocf = ttm(ocfS, end);
     if (ocf == null) continue;

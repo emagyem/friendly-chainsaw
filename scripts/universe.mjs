@@ -61,7 +61,7 @@ for (const r of c) {
   const adv = dv.length ? dv.reduce((a, b) => a + b, 0) / dv.length : 0;
   priced.push({ ...r, price: px, mcap: px * shares / 1e6, adv: adv / 1e6, cash: (cash.get(r.cik) || 0) / 1e6, burn: -ocf.get(r.cik) / 12e6 });
 }
-c = priced.filter((r) => r.mcap >= 100 && r.mcap <= 5000); funnel.push(["Market value $100M to $5B", c.length]);
+c = priced.filter((r) => r.mcap >= 50 && r.mcap <= 20000); funnel.push(["Market value $50M to $20B", c.length]);
 c = c.filter((r) => r.adv >= 1); funnel.push(["Trades at least $1M a day", c.length]);
 const today = new Date().toISOString().slice(0, 10);
 const norm = (s) => s.toLowerCase().replace(/[.,]/g, " ").replace(/\b(inc|corp|corporation|ltd|limited|llc|plc|co|holdings|sa|ag|nv)\b/g, "").replace(/\s+/g, " ").trim();
@@ -70,7 +70,7 @@ for (const r of c) {
   const u = new URL("https://clinicaltrials.gov/api/v2/studies");
   u.searchParams.set("query.spons", r.sponsor);
   u.searchParams.set("filter.overallStatus", "RECRUITING,ACTIVE_NOT_RECRUITING,NOT_YET_RECRUITING,ENROLLING_BY_INVITATION");
-  u.searchParams.set("filter.advanced", "AREA[Phase](PHASE2 OR PHASE3)");
+  u.searchParams.set("filter.advanced", "AREA[Phase](PHASE1 OR PHASE2 OR PHASE3)");
   u.searchParams.set("fields", "NCTId,LeadSponsorName,Phase,PrimaryCompletionDate,Condition");
   u.searchParams.set("pageSize", "100");
   const j = await get(u.toString()); await sleep(250);
@@ -82,7 +82,7 @@ for (const r of c) {
   const conds = [...new Set(own.flatMap((p) => p.conditionsModule?.conditions || []))].slice(0, 2);
   withTrials.push({ ...r, trials: own.length, phase3: p3, next: dates[0] || null, conds });
 }
-c = withTrials; funnel.push(["Has an active company-sponsored Phase II or III trial", c.length]);
+c = withTrials; funnel.push(["Has an active company-sponsored clinical trial (Phase I, II or III)", c.length]);
 c.sort((a, b) => (a.next || "9999") < (b.next || "9999") ? -1 : 1);
 const out = { asOf: today, funnel, qualified: c.length, ranked: c.map((r) => ({ t: r.ticker, n: r.name, mcap: Math.round(r.mcap), adv: Math.round(r.adv * 10) / 10, trials: r.trials, phase3: r.phase3, next: r.next, conds: r.conds })) };
 const { writeFile, readFile } = await import("node:fs/promises");
@@ -115,13 +115,13 @@ if (c.length < MIN_QUALIFIED) {
   const keep = (uni.selected || []).filter((t) => {
     if (broken.has(t)) { removed.push({ t, why: `its data couldn't be built (${broken.get(t).why})` }); return false; }
     if (!rank.has(t)) { removed.push({ t, why: "no longer meets the coverage rules" }); return false; }
-    if (rank.get(t) >= KEEP_RANK) { removed.push({ t, why: `next Phase II/III completion now ranks ${rank.get(t) + 1} of ${c.length}` }); return false; }
+    if (rank.get(t) >= KEEP_RANK) { removed.push({ t, why: `next trial completion now ranks ${rank.get(t) + 1} of ${c.length}` }); return false; }
     return true;
   });
   for (const r of c) {
     if (keep.length >= TARGET) break;
     if (keep.includes(r.ticker) || original.has(r.ticker) || broken.has(r.ticker)) continue;
-    keep.push(r.ticker); added.push({ t: r.ticker, why: `ranks ${rank.get(r.ticker) + 1} of ${c.length} by soonest Phase II/III completion` });
+    keep.push(r.ticker); added.push({ t: r.ticker, why: `ranks ${rank.get(r.ticker) + 1} of ${c.length} by soonest trial completion` });
   }
   uni.funnel = funnel; uni.screenedOn = today; uni.selected = keep;
   if (added.length || removed.length) {

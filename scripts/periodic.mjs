@@ -12,7 +12,7 @@
 import { toText } from "./guidance.mjs";
 
 // Bump when the reading rules change, so reports read under older rules are read again.
-export const PERIODIC_PARSER = 1;
+export const PERIODIC_PARSER = 2;
 
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 const WORDNUM = { twelve: 12, eighteen: 18, "twenty-four": 24, "twenty four": 24, thirty: 30, "thirty-six": 36, "thirty six": 36, one: 1, two: 2, three: 3 };
@@ -148,12 +148,28 @@ const FDA_EVENTS = [
   ["adcom", /\b(advisory committee|AdCom)\b[^.]{0,80}\b(meeting|scheduled|convene|to be held)\b/i, "FDA advisory committee meeting"],
 ];
 
-function fdaEvents(sents, today) {
+// A report also mentions rivals' FDA dates and the law's own renewal date. Only the company's own
+// applications count: the sentence, or the one before it, must speak in the first person, and
+// nothing nearby may read like a description of someone else.
+const OWN = /\b(our|we|the Company's|the Company)\b/i;
+const OWN_FILING = /\b(?:our|the Company's)\s+(?:\w+\s+){0,3}(?:BLA|NDA|sNDA|sBLA|MAA|application|submission|resubmission)\b|\bwe (?:re)?submitted\b/i;
+const NOT_OWN = /\b(compet\w*|aware of|other companies|such as|being developed by|marketed by|expires?|reauthoriz\w*|announced that their|is pursuing|is developing|are developing)\b|\(PDUFA/i;
+// "Capricor's BLA", "Sarepta submitted": someone else's application (case matters here).
+const THEIR_FILING = /\b(?!The\b|Our\b|Company\b)[A-Z][A-Za-z]+(?:\s[A-Z][A-Za-z]+)?['’]s?\s+(?:BLA|NDA|sNDA|sBLA|MAA)\b|\b(?!We\b|The\b)[A-Z][a-z]+ (?:submitted|filed) (?:an? )?s?(?:BLA|NDA)/;
+const OTHER_CO = /\b[A-Z][A-Za-z-]+(?:\s[A-Z][A-Za-z-]+)?\s(?:Therapeutics|Pharmaceuticals?|Pharma|Biosciences|Biotherapeutics|Biopharma|Sciences|Biotech|Inc\.?|Corp\.?|Ltd\.?|AG|plc)\b/g;
+
+function fdaEvents(sents, today, ownName = "") {
   const out = [];
-  for (const s of sents) {
+  const own = ownName.toLowerCase().split(/\s+/)[0] || "\u0000";
+  sents.forEach((s, i) => {
     for (const [kind, re, label] of FDA_EVENTS) {
       const hit = s.match(re);
       if (!hit) continue;
+      const before = `${sents[i - 4] || ""} ${sents[i - 3] || ""} ${sents[i - 2] || ""} ${sents[i - 1] || ""}`;
+      if (!OWN.test(s) && !OWN_FILING.test(sents[i - 1] || "")) continue;
+      if (NOT_OWN.test(s) || THEIR_FILING.test(s) || /\b(compet\w*|aware of|other companies|being developed by)\b/i.test(before)) continue;
+      const others = (`${sents[i - 1] || ""} ${s}`.match(OTHER_CO) || []).filter((n) => !n.toLowerCase().startsWith(own));
+      if (others.length) continue;
       DATE.lastIndex = 0;
       let m, best = null;
       while ((m = DATE.exec(s))) {
@@ -163,13 +179,13 @@ function fdaEvents(sents, today) {
       }
       if (best && !out.some((e) => e.kind === kind && e.date === best.date)) out.push({ kind, date: best.date, label, text: clip(s, 260) });
     }
-  }
-  return out.sort((a, b) => (a.date < b.date ? -1 : 1)).slice(0, 4);
+  });
+  return out.sort((a, b) => (a.date < b.date ? -1 : 1)).slice(0, 3);
 }
 
-export function readPeriodic(html, filed, today = new Date().toISOString().slice(0, 10)) {
+export function readPeriodic(html, filed, today = new Date().toISOString().slice(0, 10), ownName = "") {
   if (!html) return null;
   const sents = sentences(toText(html).replace(/&#x2019;|&#8217;|’/g, "'").replace(/&#160;|&nbsp;/g, " "));
   if (sents.length < 50) return null;
-  return { v: PERIODIC_PARSER, runway: runwayGuidance(sents, filed), atm: atmUse(sents), other: otherMoney(sents), events: fdaEvents(sents, today) };
+  return { v: PERIODIC_PARSER, runway: runwayGuidance(sents, filed), atm: atmUse(sents), other: otherMoney(sents), events: fdaEvents(sents, today, ownName) };
 }

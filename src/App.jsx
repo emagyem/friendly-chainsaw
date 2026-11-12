@@ -150,6 +150,78 @@ function guessedParts(c) {
   };
 }
 
+// "Randomized, double-blind, against placebo, 60 patients planned, 12 sites in 3 countries"
+function trialDesignLine(t) {
+  const MASK = { NONE: "open-label (everyone knows who gets the drug)", SINGLE: "single-blind", DOUBLE: "double-blind", TRIPLE: "blinded (patients, doctors and assessors)", QUADRUPLE: "fully blinded" };
+  const arms = t.arms || [];
+  const vs = arms.includes("PLACEBO_COMPARATOR") ? "against placebo" : arms.includes("ACTIVE_COMPARATOR") ? "against an existing treatment" : arms.includes("NO_INTERVENTION") ? "against no treatment" : arms.length <= 1 || t.model === "SINGLE_GROUP" ? "no comparison group" : null;
+  return [
+    t.alloc === "RANDOMIZED" ? "Randomized" : t.alloc === "NON_RANDOMIZED" ? "Not randomized" : t.model === "SINGLE_GROUP" ? "Single group" : null,
+    MASK[t.masking] || null, vs,
+    t.n ? `${num(t.n, 0)} patients ${t.nType === "ACTUAL" ? "enrolled" : "planned"}` : null,
+    t.sites ? `${t.sites} site${t.sites === 1 ? "" : "s"}${t.countries?.length > 1 ? ` in ${t.countries.length} countries` : t.countries?.length === 1 ? ` in ${t.countries[0]}` : ""}` : null,
+    t.primaryCount > 1 ? `${t.primaryCount} primary endpoints` : null,
+  ].filter(Boolean).join(", ");
+}
+
+// Months from today until a date (negative if past).
+const monthsTo = (iso) => (new Date(iso + "T00:00:00") - TODAY) / (30.44 * 864e5);
+const monthYear = (iso) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { month: "short", year: "numeric" });
+// Three readings of the same question: how long does the cash last?
+function runwayViews(c) {
+  if (c.cashFlowPositive) return null;
+  const year = Math.min(c.cash / c.burn, 120);
+  const quarter = c.burnQ > 0 ? Math.min(c.cash / c.burnQ, 120) : null;
+  const g = c.said?.runway || null;
+  const mgmt = g?.until ? monthsTo(g.until) : null;
+  // Management's "at least 12 months" is a legal minimum, not a forecast, so it can't contradict a longer figure.
+  const gap = g?.kind === "dated" && mgmt != null ? year - mgmt : null;
+  return { year, quarter, g, mgmt, gap, disagree: gap != null && Math.abs(gap) >= 9 && Math.abs(gap) / Math.max(mgmt, 6) >= 0.3 };
+}
+const RUN_TAG = (run) => (run >= 20 ? ["From strength", "up"] : run <= -20 ? ["Under pressure", "warn"] : ["Steady", ""]);
+
+function SaidPanel({ c }) {
+  const v = runwayViews(c), said = c.said;
+  if (!v && !said) return null;
+  const src = said ? <ExtLink href={said.url}>{said.form} filed {fmtDate(said.date)}</ExtLink> : null;
+  const OTHER_LABEL = { royalty: "Royalty deal", loan: "Loan it can still draw", partner: "Partner payments it may earn" };
+  return (
+    <section className="panel">
+      <header className="ph"><h2>How long the cash lasts: three readings</h2>
+        <span className="ph-note">Helixora's arithmetic next to what management says in its own report.</span></header>
+      {v && (
+        <div className="metrics three">
+          <div className="metric"><span>At the past year's spending</span><b className="mono">{fmtRunway(v.year, "months")}</b><em>{money(c.burn)} a month. This is the figure the score uses.</em></div>
+          <div className="metric"><span>At last quarter's spending</span><b className={"mono " + (v.quarter != null && v.quarter < v.year * 0.75 ? "warn" : "")}>{v.quarter != null ? fmtRunway(v.quarter, "months") : "—"}</b><em>{c.burnQ > 0 ? `${money(c.burnQ)} a month${c.burnQ > c.burn * 1.25 ? ": spending has picked up" : c.burnQ < c.burn * 0.8 ? ": spending has slowed" : ""}` : "The latest quarter brought cash in, or isn't reported separately"}</em></div>
+          <div className="metric"><span>Management says</span><b className={"mono " + (v.g?.kind === "doubt" ? "warn" : "")}>{!v.g ? "Not stated" : v.g.kind === "doubt" ? "Going-concern warning" : v.g.kind === "floor" ? "At least 12 months" : monthYear(v.g.until)}</b><em>{!v.g ? "No runway statement found in the latest report" : v.g.kind === "floor" ? "The standard legal minimum, not a forecast" : v.g.kind === "doubt" ? "See the company's words below" : `Cash lasts ${v.g.say}`}</em></div>
+        </div>
+      )}
+      {v?.g && <blockquote className="said">"{v.g.text}" <cite>{src}</cite></blockquote>}
+      {v?.disagree && <p className="callout">{v.gap > 0
+        ? `Helixora's figure runs about ${Math.round(v.gap)} months past management's. Management usually knows about spending increases that haven't shown up in past cash flow yet, such as a Phase III trial starting, so treat its date as the better guide.`
+        : `Management expects the cash to last about ${Math.round(-v.gap)} months longer than past spending implies. It may be counting on lower spending or on money it expects to receive, such as partner payments.`}</p>}
+      {said?.atm && (
+        <>
+          <h3 className="subhead">Stock actually sold through its ATM</h3>
+          <p className="prose">{said.atm.used
+            ? <>The report says it sold {num(said.atm.shares, 0)} shares for {money(said.atm.amt)} {said.atm.net ? "after fees" : "before fees"}{said.atm.months ? ` in the ${{ 3: "three", 6: "six", 9: "nine", 12: "twelve" }[said.atm.months]} months to ${said.atm.periodEnd}` : ""}. An ATM in use means dilution is already happening in small steps.</>
+            : <>The report says no shares have been sold through the ATM so far. The program is ready but unused.</>}</p>
+          <blockquote className="said">"{said.atm.text}" <cite>{src}</cite></blockquote>
+        </>
+      )}
+      {said?.other?.length > 0 && (
+        <>
+          <h3 className="subhead">Money that doesn't come from selling shares</h3>
+          <ul className="said-list">
+            {said.other.map((o) => <li key={o.kind}><b>{OTHER_LABEL[o.kind]}: {money(o.amt)}.</b> <span>"{o.text}"</span></li>)}
+          </ul>
+          <p className="colnote">These can extend the runway without dilution, but partner payments depend on hitting milestones and loans must be repaid. They aren't counted in the runway figures above. Source: {src}.</p>
+        </>
+      )}
+    </section>
+  );
+}
+
 function scoreParts(c) {
   const r = runway(c);
   const financial = Math.max(0, Math.min(100,
@@ -209,6 +281,9 @@ function alertsFor(c) {
   if (atm) out.push({ sev: "med", text: `It has had an at-the-market program since ${fmtDate(atm.date)}, so it can sell new shares quietly, without announcing a deal.` });
   const dil = shareGrowth(c);
   if (dil > 25) out.push({ sev: "med", text: `The number of shares has grown about ${num(dil, 0)}% ${dilutionPhrase(c)}, which shrinks each existing holder's slice.` });
+  if (c.said?.runway?.kind === "doubt") out.push({ sev: "high", text: `In its latest report, management says ${c.said.runway.say} (a "going concern" warning).` });
+  { const v = runwayViews(c); if (v?.disagree && v.gap > 0) out.push({ sev: "med", text: `Management says its cash lasts ${v.g.say}, about ${Math.round(v.gap)} months less than past spending implies.` }); }
+  if (c.said?.atm?.used && c.said.atm.months && c.said.atm.amt >= 5) out.push({ sev: "low", text: `It sold ${money(c.said.atm.amt)} of stock through its ATM in the ${{ 3: "three", 6: "six", 9: "nine", 12: "twelve" }[c.said.atm.months]} months to ${c.said.atm.periodEnd}.` });
   if (c.short?.pct >= 20) out.push({ sev: "med", text: `${num(c.short.pct, 0)}% of its shares are sold short${c.short.dtc ? `, about ${num(c.short.dtc, 0)} days of normal trading to buy back` : ""}. Short sellers often build positions when they expect a share sale.` });
   if (c.insiders?.bought90 >= 0.25) out.push({ sev: "low", text: `Officers or directors bought ${usdSmall(c.insiders.bought90)} of stock on the open market in the last 90 days.` });
   if (c.insiders?.sold90 >= 1) out.push({ sev: "low", text: `Officers or directors sold ${usdSmall(c.insiders.sold90)} of stock in the last 90 days outside pre-set trading plans and tax sales.` });
@@ -873,7 +948,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
         {tabs.map(([k, l]) => <button key={k} className={tab === k ? "on" : ""} onClick={() => setTab(k)}>{l}</button>)}
       </nav>
 
-      {tab === "pressure" && <div className="stack"><FpsPanel c={c} go={go} /><RunwaySimPanel c={c} /></div>}
+      {tab === "pressure" && <div className="stack"><FpsPanel c={c} go={go} /><SaidPanel c={c} /><RunwaySimPanel c={c} /></div>}
 
       {tab === "overview" && (
         <div className="two">
@@ -978,7 +1053,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
           <section className="panel">
             <header className="ph"><h2>Insider trades, last 12 months</h2>
               <span className="ph-note">Open-market buys and sales by officers and directors, from their Form 4 filings with the SEC. Stock grants and option exercises are left out.</span></header>
-            {!c.insiders ? <p className="empty">Insider trades are tracked for the 100 biotechs in coverage.</p> : (() => {
+            {!c.insiders ? <p className="empty">Insider trades are tracked for the biotechs in coverage.</p> : (() => {
               const ins = c.insiders;
               const net = ins.bought - ins.sold;
               return (<>
@@ -1065,13 +1140,14 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
             </section>
 
             <section className="panel">
-              <header className="ph"><h2>Financing history</h2><span className="ph-note">Offering filings from the past three years. Size and share impact are read from each prospectus's cover page; an ATM shows the most the company may sell.</span></header>
+              <header className="ph"><h2>Financing history</h2><span className="ph-note">Offering filings from the past three years. Size and share impact are read from each prospectus's cover page; an ATM shows the most the company may sell. "From strength" means the stock had risen 20% or more in the three months before the sale, usually after good news; "Under pressure" means it had fallen 20% or more.</span></header>
               <table className="grid plain">
-                <thead><tr><th>Date</th><th>Instrument</th><th className="r">Size</th><th className="r">Share count impact</th></tr></thead>
+                <thead><tr><th>Date</th><th>Instrument</th><th>Stock before the sale</th><th className="r">Size</th><th className="r">Share count impact</th></tr></thead>
                 <tbody>
-                  {c.financings.length === 0 && <tr><td colSpan="4" className="empty">No offering filings in the last three years.</td></tr>}
+                  {c.financings.length === 0 && <tr><td colSpan="5" className="empty">No offering filings in the last three years.</td></tr>}
                   {c.financings.map((f, i) => (
                     <tr key={i}><td className="mono">{fmtDate(f.date)}</td><td><ExtLink href={f.url}>{f.type}</ExtLink></td>
+                      <td>{f.run != null ? <><span className={"tagchip " + RUN_TAG(f.run)[1]}>{RUN_TAG(f.run)[0]}</span><span className="sub">{f.run > 0 ? "up" : "down"} {num(Math.abs(f.run), 0)}% in 3 months</span></> : <span className="sub inline">—</span>}</td>
                       <td className="r mono">{f.amt != null ? <>{f.upTo ? "up to " : ""}{money(f.amt)}</> : f.resale ? "None" : "—"}</td>
                       <td className="r mono">{f.dil ? <span title={f.dilApprox ? "Measured against today's share count, because the prospectus didn't state the count before the sale" : `${num(f.newShares, 1)}M new shares at $${num(f.price, 2)}`}>{f.dilApprox ? "about " : ""}+{num(f.dil)}%</span> : f.upTo ? <span className="sub inline">sold over time</span> : "—"}</td></tr>
                   ))}
@@ -1100,10 +1176,11 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
                   </div>
                   <PhaseTrack ph={p.ph} />
                   <dl className="facts small">
-                    <dt>Target</dt><dd>{p.tgt || "—"}</dd>
-                    <dt>Mechanism</dt><dd>{p.moa || "—"}</dd>
+                    {p.tgt && <><dt>Target</dt><dd>{p.tgt}</dd></>}
+                    {p.moa && <><dt>Mechanism</dt><dd>{p.moa}</dd></>}
                     <dt>Primary endpoint</dt><dd>{p.ep}</dd>
                     <dt>Enrollment</dt><dd className="mono">{p.n ? p.n : "—"}</dd>
+                    {p.trial && (p.trial.alloc || p.trial.masking) && <><dt>How it's run</dt><dd>{trialDesignLine(p.trial)}</dd></>}
                     <dt>Expected data</dt><dd className="mono">{p.window ? <>{fmtDate(p.window.lo)} to {fmtDate(p.window.hi)} <span className="sub">{p.window.stale ? "Registry date overdue, so a wide window" : `${windowConfidence(p.window)} window`}; registry date {fmtDate(p.ro)}{p.roType === "COMPANY GUIDANCE" ? " (company guidance)" : ""}</span></> : <>{fmtDate(p.ro)} <span className="sub inline">({days(p.ro)}d)</span></>}</dd>
                     {p.flags?.flags?.length ? <><dt>Trial design</dt><dd><div className="flagwrap">{p.flags.flags.map((f) => <span key={f.label} className={"flag " + ({ high: "flag-high", med: "flag-med", low: "flag-low", info: "flag-info" })[f.sev]} title={f.detail}>{f.label}</span>)}</div></dd></> : null}
                     {p.nct && <><dt>Registry</dt><dd className="mono"><ExtLink href={`https://clinicaltrials.gov/study/${p.nct}`}>{p.nct}</ExtLink>{p.trials > 1 ? <span className="sub inline"> +{p.trials - 1} more</span> : null}</dd></>}
@@ -1796,7 +1873,7 @@ function PressureReport({ go }) {
         <p className="kicker-static">The Financing Pressure Report, edition of {edition}</p>
         <h1 className="report-h">{high.length} of {ranked.length} companies {high.length === 1 ? "has" : "have"} high financing pressure</h1>
         <p className="lead-dek">{headline}</p>
-        <p className="byline">Built from SEC filings, ClinicalTrials.gov and market prices. Every figure links to its source on the company pages. <button className="linkish" onClick={downloadReportCsv}>Download this report (CSV)</button> · <button className="linkish" onClick={() => go("pro")}>Weekly reports and data for funds</button></p>
+        <p className="byline">Built from SEC filings, ClinicalTrials.gov and market prices. Every figure links to its source on the company pages. <button className="linkish" onClick={downloadReportCsv}>Download all data (CSV, opens in Excel)</button> · <button className="linkish" onClick={downloadHistoryCsv}>Score history (CSV)</button> · <button className="linkish" onClick={() => go("pro")}>Weekly reports and data for funds</button></p>
       </section>
 
       <div className="two wide-left">
@@ -2022,6 +2099,32 @@ function Backtest() {
           <p className="colnote">Share-count jumps catch money raised through at-the-market sales and private placements, which often don't get their own offering filing.</p>
         </div>
       )}
+
+      {bt.baseline && (() => {
+        const b = bt.baseline, f = (x) => (x == null ? "—" : x.toFixed(3)), sp = (x) => (x == null ? "—" : `${num(x, 1)} pts`);
+        const better = b.score.auc > b.runway.auc && (b.score.spread ?? -99) >= (b.runway.spread ?? 99);
+        return (
+          <div className="tablewrap">
+            <h3 className="subh">Does the score beat simply ranking companies by months of cash?</h3>
+            <p className="prose">Anyone can sort biotechs by cash runway. So we ran the same test on that simple ranking, then checked the score inside groups of similar-sized companies and groups with similar runway, where the simple ranking has little left to say.</p>
+            <table className="grid plain">
+              <thead><tr><th>Ranked by</th><th>Company-quarters</th><th className="num">Predicting a raise (AUC)</th><th className="num">Return gap, safest 30% vs riskiest 30%</th></tr></thead>
+              <tbody>
+                <tr><td><b>Financing Pressure Score</b></td><td>{b.score.n.toLocaleString()}</td><td className="num">{f(b.score.auc)}</td><td className="num">{sp(b.score.spread)}</td></tr>
+                <tr><td>Months of cash alone</td><td>{b.runway.n.toLocaleString()}</td><td className="num">{f(b.runway.auc)}</td><td className="num">{sp(b.runway.spread)}</td></tr>
+              </tbody>
+            </table>
+            <table className="grid plain" style={{ marginTop: 16 }}>
+              <thead><tr><th>Within</th><th>Company-quarters</th><th className="num">Score: AUC</th><th className="num">Score: return gap</th><th className="num">Cash alone: return gap</th></tr></thead>
+              <tbody>
+                {b.sizeGroups.map((g) => <tr key={g.label}><td>{g.label} by market value</td><td>{g.score.n.toLocaleString()}</td><td className="num">{f(g.score.auc)}</td><td className="num">{sp(g.score.spread)}</td><td className="num">{sp(g.runway.spread)}</td></tr>)}
+                {b.runwayGroups.map((g) => <tr key={g.label}><td>{g.label} of cash</td><td>{g.score.n.toLocaleString()}</td><td className="num">{f(g.score.auc)}</td><td className="num">{sp(g.score.spread)}</td><td className="num">—</td></tr>)}
+              </tbody>
+            </table>
+            <p className="colnote">AUC: 0.5 is a coin flip, 1.0 is perfect. Return gap: median 12-month return against XBI of the safest 30% minus the riskiest 30%, in percentage points. {better ? "The score beats the simple ranking on both measures." : b.score.auc > b.runway.auc ? "The score predicts raises better than cash alone, but cash alone separates later returns about as well or better. Most of the return gap comes from runway itself." : "On this test the score does not beat the simple ranking at predicting raises. Its use is in combining the checks on one page, not in out-predicting runway."} Market value is the public float reported in each annual report.</p>
+          </div>
+        );
+      })()}
 
       {bt.weightTest && (() => {
         const w = bt.weightTest, pc = (x) => `${Math.round(x * 100)}%`;
@@ -3067,12 +3170,13 @@ function About({ go, anchor }) {
           <dt>Raise-ready capacity</dt><dd>An at-the-market program is identified from a sales agreement disclosed in a prospectus supplement (424B5) or shelf registration (S-3) filed in the past three years. Each company page links to the filing used.</dd>
           <dt>Missing data</dt><dd>If a component can't be calculated from filings, it is left out and the remaining weights are scaled up. The company page says which components were used.</dd>
         </dl>
-        <p className="colnote">These weights are our best first guess. We'll test them against past offerings and log every change below.</p>
+        <p className="colnote">These weights were tested in November 2026 against every other mix, on years the search never saw, and kept. The test and its numbers are on the Track Record page.</p>
       </section>
 
       <div id="coverage" className="anchor"><CoveragePanel /></div>
       <div id="corrections" className="anchor"><CorrectionForm topic="data" /></div>
       <div id="track" className="anchor"><TrackRecord go={go} /></div>
+      <BandChangeLog go={go} />
 
       <section className="panel" id="roadmap">
         <header className="ph"><h2>Where Helixora is going</h2>
@@ -3114,7 +3218,7 @@ function About({ go, anchor }) {
         <ul className="watch">
           <li>Every figure carries two dates: what it describes, and when the public could first see it. Past studies use only what was public at the time.</li>
           <li>Every prediction is logged each day with the version of the model that made it, and never edited afterward. <a className="src" href="/data/predictions.json" target="_blank" rel="noreferrer">Download the prediction log</a></li>
-          <li>Coverage grows from {COMPANIES.length} companies to 50 to 100 U.S.-listed clinical-stage biotechs, picked by published rules, including companies that later fail or are bought so past results aren't flattered.</li>
+          <li>Coverage now takes in every U.S.-listed clinical-stage biotech that meets the published rules ({COMPANIES.length} today), including companies that later fail or are bought so past results aren't flattered.</li>
         </ul>
       </section>
 
@@ -3149,20 +3253,84 @@ const PLANS = [
 const PILOT_ROLES = ["Hedge or crossover fund", "Long-only or mutual fund", "Venture capital", "Investment bank", "Biotech company", "Consultant or advisor", "Individual investor", "Other"];
 
 // Today's Pressure Report as a spreadsheet-friendly CSV, made in the browser.
-function downloadReportCsv() {
-  const head = ["Ticker", "Company", "Financing Pressure Score", "Band", "Runway (months)", "Cash ($M)", "Monthly burn ($M)", "Market value ($M)", "Raise capacity", "Next trial result or FDA decision", "Expected date", "Figures as of"];
-  const esc = (v) => (v == null ? "" : /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
-  // The next trial result or FDA decision; routine quarterly reports are left out.
-  const nextEvent = (c) => nextMajorCatalyst(c, TODAY);
-  const rows = [...COMPANIES].map((c) => ({ c, f: fpsOf(c), n: nextEvent(c) })).sort((a, b) => b.f.score - a.f.score)
-    .map(({ c, f, n }) => [c.t, c.n, f.score, f.band, Math.round(runway(c) * 10) / 10, Math.round(c.cash), Math.round(c.burn * 10) / 10, Math.round(c.mcap), c.raise?.capacity || "", n ? shortLabel(n.label) : "None dated", n?.date || "", c.src?.asOf || ""]);
-  const csv = [head, ...rows].map((r) => r.map(esc).join(",")).join("\n");
-  const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+const csvEsc = (v) => (v == null ? "" : /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
+function saveCsv(rows, name) {
+  const url = URL.createObjectURL(new Blob(["\ufeff" + rows.map((r) => r.map(csvEsc).join(",")).join("\n")], { type: "text/csv" }));
   const a = document.createElement("a");
-  a.href = url; a.download = `helixora-financing-pressure-${(META.generatedAt || "").slice(0, 10) || "today"}.csv`;
+  a.href = url; a.download = name;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+const r1 = (x) => (x == null || !Number.isFinite(x) ? "" : Math.round(x * 10) / 10);
+
+// Every company and every figure behind the score, one row per company. Opens in Excel.
+function downloadReportCsv() {
+  const head = ["Ticker", "Company", "Financing Pressure Score", "Band", "Cash ($M)", "Monthly burn, past year ($M)", "Monthly burn, latest quarter ($M)",
+    "Runway at past-year burn (months)", "Runway at latest-quarter burn (months)", "Management's runway statement", "Management's runway ends", "Going-concern warning",
+    "Market value ($M)", "Debt due in 24 months ($M)", "Share growth, 2 years (%)", "Raise capacity", "ATM sold per latest report ($M)", "Latest stock sale", "Latest stock sale size ($M)",
+    "Next trial result or FDA decision", "Expected date", "Sold short (% of shares)", "Days to cover", "Insider buying, 12 months ($M)", "Insider selling by choice, 12 months ($M)",
+    "Figures as of", "Latest report"];
+  const rows = [...COMPANIES].map((c) => ({ c, f: fpsOf(c), n: nextMajorCatalyst(c, TODAY), v: runwayViews(c) })).sort((a, b) => b.f.score - a.f.score)
+    .map(({ c, f, n, v }) => {
+      const sale = (c.financings || []).find((x) => x.amt != null && !x.upTo);
+      return [c.t, c.n, f.score, f.band, Math.round(c.cash), r1(c.burn), r1(c.burnQ), c.cashFlowPositive ? "cash-flow positive" : r1(v?.year), r1(v?.quarter),
+        v?.g ? v.g.say : "", v?.g?.until || "", v?.g?.kind === "doubt" ? "yes" : "", Math.round(c.mcap), r1(c.debtDue24), r1(c.dil24), c.raise?.capacity || "",
+        c.said?.atm?.used ? c.said.atm.amt : c.said?.atm ? 0 : "", sale?.date || "", sale?.amt ?? "", n ? shortLabel(n.label) : "None dated", n?.date || "",
+        c.short?.pct ?? "", c.short?.dtc ?? "", c.insiders?.bought ?? "", c.insiders?.sold ?? "", c.src?.asOf || "", c.said?.url || c.src?.filing?.url || ""];
+    });
+  saveCsv([head, ...rows], `helixora-all-data-${(META.generatedAt || "").slice(0, 10) || "today"}.csv`);
   track("csv_download");
+}
+
+// Every score on every day since tracking began, so anyone can check the calls for themselves.
+function downloadHistoryCsv() {
+  const rows = [["Date", "Ticker", "Financing Pressure Score", "Band"]];
+  for (const snap of HISTORY.snapshots || []) for (const [t, v] of Object.entries(snap.scores || {})) rows.push([snap.date, t, v.fps, v.band]);
+  saveCsv(rows, "helixora-score-history.csv");
+  track("history_download");
+}
+
+// Each time a company moved from one band to another, newest first.
+function bandChanges() {
+  const last = {}, out = [];
+  for (const snap of HISTORY.snapshots || []) {
+    for (const [t, v] of Object.entries(snap.scores || {})) {
+      if (last[t] && v.band && last[t].band !== v.band) out.push({ date: snap.date, t, from: last[t].band, to: v.band, fromScore: last[t].fps, score: v.fps });
+      if (v.band) last[t] = v;
+    }
+  }
+  return out.reverse();
+}
+
+function BandChangeLog({ go }) {
+  const all = bandChanges();
+  const [more, setMore] = useState(false);
+  const RANK = { Low: 0, Elevated: 1, High: 2 };
+  return (
+    <section className="panel">
+      <header className="ph"><h2>Every change of band, dated</h2>
+        <span className="ph-note">Recorded daily since {fmtDate((HISTORY.snapshots || [])[0]?.date)} and never edited afterwards.</span></header>
+      {all.length === 0 ? <p className="empty">No company has changed band yet.</p> : (
+        <div className="tablewrap">
+          <table className="grid plain">
+            <thead><tr><th>Date</th><th>Company</th><th>Change</th><th className="r">Score</th></tr></thead>
+            <tbody>
+              {(more ? all : all.slice(0, 12)).map((x, i) => {
+                const c = COMPANIES.find((k) => k.t === x.t);
+                return (
+                  <tr key={i}><td className="mono">{fmtDate(x.date)}</td>
+                    <td>{c ? <button className="linkish" onClick={() => go("company", x.t)}>{c.n}</button> : x.t}<span className="sub inline"> {x.t}</span></td>
+                    <td><span className={"tagchip " + (RANK[x.to] > RANK[x.from] ? "warn" : "up")}>{x.from} to {x.to}</span></td>
+                    <td className="r mono">{x.fromScore} to {x.score}</td></tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <p className="colnote">{all.length > 12 && <><button className="linkish" onClick={() => setMore((m) => !m)}>{more ? "Show fewer" : `Show all ${all.length}`}</button> · </>}<button className="linkish" onClick={downloadHistoryCsv}>Download every daily score (CSV)</button> · <button className="linkish" onClick={downloadReportCsv}>Download today's data for all companies (CSV)</button></p>
+    </section>
+  );
 }
 
 function PilotForm({ plan, setPlan }) {
@@ -3882,7 +4050,7 @@ function CoveragePanel() {
       </div>
       <p className="prose" style={{ marginTop: 14 }}>{UNIVERSE.selection} The first {UNIVERSE.originalCoverage.length} companies stay unless they are bought{Object.keys(g).length ? <>, including {Object.keys(g).length} that sit outside today's rules: {Object.entries(g).map(([t, why]) => `${t} (${why.toLowerCase()})`).join(", ")}</> : null}. Companies are never dropped quietly; any change is listed here.</p>
       <p className="prose"><b>When a company is bought.</b> A company with a deal still pending stays, marked "Being acquired", until the deal closes. Once it closes, the company is removed from the site, whoever bought it, and the removal is listed below. The same goes for the drug-industry companies. Deals are read from each company's SEC filings every day.</p>
-      {UNIVERSE.policy && <p className="prose">Turnover (approved {fmtDate(UNIVERSE.policy.approved)}): the screen re-runs on the 3rd of each month. A selected company stays while it still qualifies{UNIVERSE.policy.keepRank ? ` and ranks in the top ${UNIVERSE.policy.keepRank} by soonest Phase II or III completion` : ""}; otherwise it leaves, and open places are filled in order of soonest Phase II or III completion until coverage reaches {UNIVERSE.policy.total ?? UNIVERSE.policy.target} companies. Companies that leave keep their full score history.</p>}
+      {UNIVERSE.policy && <p className="prose">Turnover (approved {fmtDate(UNIVERSE.policy.approved)}): the screen re-runs on the 3rd of each month. Every company that meets the rules is covered, up to {UNIVERSE.policy.total ?? UNIVERSE.policy.target}. A company stays while it still qualifies; otherwise it leaves. Companies that leave keep their full score history.</p>}
       {(UNIVERSE.changes || []).length > 0 && (
         <>
           <h3 className="subhead">Coverage changes</h3>
@@ -4011,10 +4179,11 @@ const NAV = [
   { k: "companies", l: "Companies", items: [["company", "Quotes"], ["compare", "Compare"], ["catalysts", "Catalyst Calendar"], ["outlook", "Trial Outlook"]] },
   { k: "ask", l: "Ask Helixora", items: [["ask", "Ask Helixora"]] },
   { k: "pro", l: "For Funds & Banks", items: [["pro", "For Funds & Banks"]] },
-  { k: "more", l: "More", items: [["industry", "Drug Industry"], ["marketdata", "Market Data"], ["trade", "Virtual Exchange"], ["calc", "Money Calculators"]] },
+  { k: "more", l: "More", items: [["industry", "Drug Industry"], ["marketdata", "Market Data"]] },
   { k: "about", l: "About us", items: [["about", "About us"]] },
 ];
-const groupOf = (v) => NAV.find((g) => g.items.some(([k]) => k === (v === "privacy" ? "about" : v))) || NAV[0];
+// The practice tools (Virtual Exchange, Money Calculators) are kept out of the main menu; they sit under More.
+const groupOf = (v) => NAV.find((g) => g.items.some(([k]) => k === (v === "privacy" ? "about" : v === "trade" || v === "calc" ? "marketdata" : v))) || NAV[0];
 
 const WATCH_KEY = "readout-watchlist";
 function loadWatch() {
@@ -4201,8 +4370,8 @@ export default function App() {
             <h3>Tools</h3>
             <button onClick={() => go("ask")}>Ask Helixora</button>
             <button onClick={() => go("marketdata")}>Market Data</button>
-            <button onClick={() => go("trade")}>Virtual Exchange</button>
-            <button onClick={() => go("calc")}>Money Calculators</button>
+            <button onClick={downloadReportCsv}>Download all data (CSV)</button>
+            <button onClick={downloadHistoryCsv}>Download score history (CSV)</button>
           </nav>
           <nav className="foot-col" aria-label="Helixora">
             <h3>Helixora</h3>
@@ -4236,6 +4405,7 @@ export default function App() {
             {asOf && <span>Data as of {asOf}</span>}
             <span className="foot-sp" />
             <button onClick={() => setLayout(layout === "side" ? "top" : "side")}>{layout === "side" ? "Show the menu on top" : "Show the menu on the side"}</button>
+            <span className="foot-practice">Practice tools: <button onClick={() => go("trade")}>Virtual Exchange</button>, <button onClick={() => go("calc")}>Money Calculators</button></span>
             <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Back to top</button>
           </div>
         </div>
@@ -4602,6 +4772,18 @@ button.tick:hover{color:var(--teal) !important;}
 /* metrics + trace */
 .metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .grid.trades{min-width:600px;}
+.metrics.three{grid-template-columns:repeat(3,1fr);}
+.metric em{display:block;margin-top:6px;font-style:normal;font-size:12.5px;line-height:1.45;color:var(--mut);}
+blockquote.said{margin:14px 0 4px;padding:10px 14px;border-left:3px solid var(--teal);background:var(--tint);font-size:14px;line-height:1.55;color:var(--ink2);}
+blockquote.said cite{display:block;margin-top:6px;font-style:normal;font-size:12.5px;color:var(--mut);}
+.said-list{margin:8px 0;padding-left:18px;font-size:14px;line-height:1.55;}
+.said-list li{margin:8px 0;}
+.said-list span{color:var(--ink2);}
+p.callout{margin:12px 0 0;padding:10px 14px;border:1px solid #E8D5A8;background:#FFF9EA;border-radius:6px;font-size:14px;line-height:1.55;}
+.tagchip{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;background:var(--tint);color:var(--ink2);}
+.tagchip.up{background:#E3F4EC;color:#0A6B45;}
+.tagchip.warn{background:#FCEBDD;color:#A4551A;}
+@media (max-width:720px){.metrics.three{grid-template-columns:1fr;}}
 .grid.trades td .sub{display:block;}
 .metrics.two-up{grid-template-columns:1fr 1fr;}
 .metric{background:var(--tint);border-radius:var(--r-md);padding:12px 14px;}
@@ -5137,7 +5319,7 @@ tr.noclick{cursor:default;}
   .app.v2 .foot-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px;padding-top:36px;padding-bottom:28px;}
   .app.v2 .foot-notes{grid-template-columns:1fr;gap:20px;}
   .app.v2 .foot-wrap{padding-left:16px;padding-right:16px;}
-  .app.v2 .foot-bottom button:first-of-type{display:none;}
+  .app.v2 .foot-bottom > .foot-wrap > button:first-of-type{display:none;}
 }
 @media (prefers-reduced-motion:reduce){.app.v2 *{scroll-behavior:auto;}}
 `;
