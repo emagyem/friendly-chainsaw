@@ -1,0 +1,14 @@
+name: Deal check (temporary)
+on:
+  push:
+    branches: [deal-check]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 22 }
+      - run: node scratch/probe.mjs
+        env:
+          SEC_USER_AGENT: "Helixora research ${{ vars.SEC_CONTACT_EMAIL }}"
