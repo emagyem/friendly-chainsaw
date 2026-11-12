@@ -15,15 +15,15 @@
   "funnel": [
     [
       "Listed on Nasdaq, NYSE or NYSE American",
-      6039
+      6035
     ],
     [
       "Burned over $20M in operating cash in 2025",
-      711
+      712
     ],
     [
       "Clinical stage (little revenue)",
-      453
+      454
     ],
     [
       "Drug developer industry code (2834, 2836, 8731)",
@@ -31,22 +31,22 @@
     ],
     [
       "Not acquired or being acquired",
-      244
+      246
     ],
     [
-      "Market value $100M to $5B",
-      145
+      "Market value $50M to $20B",
+      184
     ],
     [
       "Trades at least $1M a day",
-      140
+      166
     ],
     [
-      "Has an active company-sponsored Phase II or III trial",
-      109
+      "Has an active company-sponsored clinical trial (Phase I, II or III)",
+      134
     ]
   ],
-  "screenedOn": "2026-11-06",
+  "screenedOn": "2026-11-12",
   "selected": [
     "PGEN",
     "VIR",
@@ -139,7 +139,44 @@
     "ANTX",
     "EDIT",
     "IKT",
-    "OBX"
+    "OBX",
+    "CGON",
+    "IMUX",
+    "SYRE",
+    "PRAX",
+    "MANE",
+    "DTIL",
+    "KOD",
+    "AMLX",
+    "PCVX",
+    "COGT",
+    "IMVT",
+    "IMNM",
+    "MIST",
+    "HUMA",
+    "JANX",
+    "BBOT",
+    "TNYA",
+    "CYTK",
+    "ORKA",
+    "SANA",
+    "CAMP",
+    "CATX",
+    "WHWK",
+    "SMMT",
+    "PRLD",
+    "TENX",
+    "INBX",
+    "CCCC",
+    "VYGR",
+    "ZBIO",
+    "SPRB",
+    "MLYS",
+    "SLN",
+    "ACRS",
+    "ABEO",
+    "FHTX",
+    "ATYR"
   ],
   "grandfathered": {
     "ARWR": "Market value above $5B",
@@ -566,6 +603,160 @@
           "why": "its data couldn't be built (no active trials found for sponsor \"Outlook Therapeutics\" (set \"sponsor\" in assumptions.json))"
         }
       ]
+    },
+    {
+      "date": "2026-11-12",
+      "added": [
+        {
+          "t": "CGON",
+          "why": "ranks 1 of 134 by soonest trial completion"
+        },
+        {
+          "t": "IMUX",
+          "why": "ranks 5 of 134 by soonest trial completion"
+        },
+        {
+          "t": "SYRE",
+          "why": "ranks 6 of 134 by soonest trial completion"
+        },
+        {
+          "t": "PRAX",
+          "why": "ranks 14 of 134 by soonest trial completion"
+        },
+        {
+          "t": "MANE",
+          "why": "ranks 15 of 134 by soonest trial completion"
+        },
+        {
+          "t": "DTIL",
+          "why": "ranks 26 of 134 by soonest trial completion"
+        },
+        {
+          "t": "KOD",
+          "why": "ranks 41 of 134 by soonest trial completion"
+        },
+        {
+          "t": "AMLX",
+          "why": "ranks 42 of 134 by soonest trial completion"
+        },
+        {
+          "t": "PCVX",
+          "why": "ranks 45 of 134 by soonest trial completion"
+        },
+        {
+          "t": "COGT",
+          "why": "ranks 46 of 134 by soonest trial completion"
+        },
+        {
+          "t": "IMVT",
+          "why": "ranks 56 of 134 by soonest trial completion"
+        },
+        {
+          "t": "IMNM",
+          "why": "ranks 59 of 134 by soonest trial completion"
+        },
+        {
+          "t": "MIST",
+          "why": "ranks 63 of 134 by soonest trial completion"
+        },
+        {
+          "t": "HUMA",
+          "why": "ranks 70 of 134 by soonest trial completion"
+        },
+        {
+          "t": "JANX",
+          "why": "ranks 71 of 134 by soonest trial completion"
+        },
+        {
+          "t": "BBOT",
+          "why": "ranks 78 of 134 by soonest trial completion"
+        },
+        {
+          "t": "TNYA",
+          "why": "ranks 79 of 134 by soonest trial completion"
+        },
+        {
+          "t": "CYTK",
+          "why": "ranks 80 of 134 by soonest trial completion"
+        },
+        {
+          "t": "ORKA",
+          "why": "ranks 87 of 134 by soonest trial completion"
+        },
+        {
+          "t": "SANA",
+          "why": "ranks 94 of 134 by soonest trial completion"
+        },
+        {
+          "t": "CAMP",
+          "why": "ranks 96 of 134 by soonest trial completion"
+        },
+        {
+          "t": "CATX",
+          "why": "ranks 99 of 134 by soonest trial completion"
+        },
+        {
+          "t": "WHWK",
+          "why": "ranks 102 of 134 by soonest trial completion"
+        },
+        {
+          "t": "SMMT",
+          "why": "ranks 103 of 134 by soonest trial completion"
+        },
+        {
+          "t": "PRLD",
+          "why": "ranks 105 of 134 by soonest trial completion"
+        },
+        {
+          "t": "TENX",
+          "why": "ranks 107 of 134 by soonest trial completion"
+        },
+        {
+          "t": "INBX",
+          "why": "ranks 118 of 134 by soonest trial completion"
+        },
+        {
+          "t": "CCCC",
+          "why": "ranks 119 of 134 by soonest trial completion"
+        },
+        {
+          "t": "VYGR",
+          "why": "ranks 123 of 134 by soonest trial completion"
+        },
+        {
+          "t": "ZBIO",
+          "why": "ranks 127 of 134 by soonest trial completion"
+        },
+        {
+          "t": "SPRB",
+          "why": "ranks 128 of 134 by soonest trial completion"
+        },
+        {
+          "t": "MLYS",
+          "why": "ranks 129 of 134 by soonest trial completion"
+        },
+        {
+          "t": "SLN",
+          "why": "ranks 130 of 134 by soonest trial completion"
+        },
+        {
+          "t": "ACRS",
+          "why": "ranks 131 of 134 by soonest trial completion"
+        },
+        {
+          "t": "ABEO",
+          "why": "ranks 132 of 134 by soonest trial completion"
+        },
+        {
+          "t": "FHTX",
+          "why": "ranks 133 of 134 by soonest trial completion"
+        },
+        {
+          "t": "ATYR",
+          "why": "ranks 134 of 134 by soonest trial completion"
+        }
+      ],
+      "removed": []
     }
   ],
   "unbuildable": {
