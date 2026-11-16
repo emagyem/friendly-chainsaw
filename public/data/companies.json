@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-16T03:11:03.947Z",
+  "generatedAt": "2026-11-16T03:22:06.977Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -27311,7 +27311,8 @@
      "why": [
       "Regained compliance after its share price fell below the exchange's $1 minimum",
       "low"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -62435,14 +62436,15 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "low",
+     "sev": "high",
      "date": "2026-04-09",
-     "label": "Moved, or is moving, its listing to another exchange",
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
      "url": "https://www.sec.gov/Archives/edgar/data/1728117/000172811726000022/goss-20260408.htm",
      "why": [
-      "Moved, or is moving, its listing to another exchange",
-      "low"
-     ]
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 37.2,
@@ -72612,7 +72614,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -78643,7 +78646,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     },
     {
      "kind": "listing",
@@ -78654,7 +78658,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 29.8,
@@ -84468,7 +84473,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -92263,9 +92269,7 @@
      "text": "Funding As of September 30, 2026, we had cash, cash equivalents and marketable securities of $682.8 million."
     },
     "covenant": null,
-    "weakness": {
-     "text": "Although the material weakness did not result in any material misstatements in our consolidated financial statements for the periods presented and there were no changes to previously released financial results, our management concluded that these control deficiencies constituted a material weakness and that our internal control over financial reporting was not effective as of December 31, 2024."
-    },
+    "weakness": null,
     "alleviated": null
    },
    "acct": {
@@ -127326,14 +127330,15 @@
     },
     {
      "kind": "listing",
-     "sev": "low",
+     "sev": "high",
      "date": "2025-07-03",
-     "label": "Moved, or is moving, its listing to another exchange",
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
      "url": "https://www.sec.gov/Archives/edgar/data/1512762/000155837025009085/chrs-20250630x8k.htm",
      "why": [
-      "Moved, or is moving, its listing to another exchange",
-      "low"
-     ]
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -135609,14 +135614,15 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "low",
+     "sev": "high",
      "date": "2025-07-23",
-     "label": "Moved, or is moving, its listing to another exchange",
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
      "url": "https://www.sec.gov/Archives/edgar/data/1553643/000121390025066995/ea0249919-8k_relmada.htm",
      "why": [
-      "Moved, or is moving, its listing to another exchange",
-      "low"
-     ]
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ],
+     "whyV": 2
     },
     {
      "kind": "auditor",
@@ -135634,7 +135640,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -159429,14 +159436,15 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "low",
+     "sev": "high",
      "date": "2025-01-24",
-     "label": "Moved, or is moving, its listing to another exchange",
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
      "url": "https://www.sec.gov/Archives/edgar/data/1806952/000119312525012249/d884359d8k.htm",
      "why": [
-      "Moved, or is moving, its listing to another exchange",
-      "low"
-     ]
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -171751,7 +171759,8 @@
      "why": [
       "Regained compliance after its share price fell below the exchange's $1 minimum",
       "low"
-     ]
+     ],
+     "whyV": 2
     },
     {
      "kind": "listing",
@@ -171762,7 +171771,8 @@
      "why": [
       "Regained compliance after its share price fell below the exchange's $1 minimum",
       "low"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -173891,7 +173901,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -210399,12 +210410,13 @@
      "kind": "listing",
      "sev": "low",
      "date": "2026-01-06",
-     "label": "Moved, or is moving, its listing to another exchange",
+     "label": "Regained compliance after its share price fell below the exchange's $1 minimum",
      "url": "https://www.sec.gov/Archives/edgar/data/1280776/000119380526000011/e665076_8k-immunic.htm",
      "why": [
-      "Moved, or is moving, its listing to another exchange",
+      "Regained compliance after its share price fell below the exchange's $1 minimum",
       "low"
-     ]
+     ],
+     "whyV": 2
     },
     {
      "kind": "listing",
@@ -210415,7 +210427,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -233441,7 +233454,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -235565,7 +235579,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     },
     {
      "kind": "listing",
@@ -235576,7 +235591,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -241181,7 +241197,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     },
     {
      "kind": "listing",
@@ -241192,7 +241209,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -257592,7 +257610,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -269071,7 +269090,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     },
     {
      "kind": "listing",
@@ -269082,7 +269102,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     },
     {
      "kind": "late",
@@ -278707,7 +278728,8 @@
      "why": [
       "Exchange notice: board or audit-committee seats need filling",
       "low"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
@@ -280601,7 +280623,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     },
     {
      "kind": "listing",
@@ -280612,7 +280635,8 @@
      "why": [
       "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
       "high"
-     ]
+     ],
+     "whyV": 2
     }
    ],
    "debtDue24": 0,
