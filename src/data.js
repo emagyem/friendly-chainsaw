@@ -16,8 +16,6 @@ export let HISTORY = { snapshots: [] };
 // Drug-industry companies (big pharma, generics, over-the-counter, ingredients, compounding),
 // tracked for comparison and kept apart from the ranked coverage.
 export let INDUSTRY = [];
-// Markets: indexes, yields, commodities, currencies, crypto, funds (scripts/markets.mjs).
-export let MARKETS = { quotes: {}, meta: null };
 
 export async function loadData() {
   try {
@@ -28,10 +26,6 @@ export async function loadData() {
     COMPANIES = json.companies;
     INDUSTRY = Array.isArray(json.industry) ? json.industry : Array.isArray(json.bigPharma) ? json.bigPharma : [];
     META = { ...json.meta, live: true };
-    try {
-      const mk = await fetch(`${import.meta.env.BASE_URL}data/markets.json`, { cache: "no-cache" });
-      if (mk.ok) MARKETS = await mk.json();
-    } catch { /* no markets data yet */ }
     try {
       const h = await fetch(`${import.meta.env.BASE_URL}data/fps-history.json`, { cache: "no-cache" });
       if (h.ok) HISTORY = await h.json();

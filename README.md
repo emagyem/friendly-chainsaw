@@ -178,8 +178,3 @@ Acquisitions: every daily refresh checks each company's SEC filing list. A compa
 `scripts/backtest.mjs` also measures each company's share return over the 6 and 12 months after every balance sheet, against the XBI biotech ETF (`returns` in `backtest.json`): by band, by score decile and by year, with medians as the headline and means capped at the 5th/95th percentiles. Prices exist only for companies still listed, so these figures lean towards survivors; the raise test doesn't.
 
 
-## Markets, Virtual Exchange and Money Calculators
-
-- **Markets → Market Data:** major US and world indexes, biotech indexes and funds, Treasury yields, commodities, currencies and crypto, with charts and 52-week ranges. `scripts/markets.mjs` (in the daily refresh) writes a year of daily closes to `public/data/markets.json`; during the day the page tops up prices from `functions/api/quotes.js`, which serves delayed prices only for symbols on the site (`server/markets-list.js` plus the companies), with edge caching. Source: Yahoo Finance; for a paid product, switch to a licensed market-data provider.
-- **Tools → Virtual Exchange:** paper trading with $100,000 of pretend money in any company on the site or ten broad funds, at delayed prices, compared with the S&P 500 (SPY). Saved in the visitor's browser (`localStorage`); no accounts.
-- **Tools → Money Calculators:** retirement, 50/30/20 budget, mortgage and 2026 US federal income tax (IRS brackets and standard deduction for single and married filing jointly). Everything runs in the browser.
