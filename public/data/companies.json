@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generatedAt": "2026-11-16T02:57:23.521Z",
+  "generatedAt": "2026-11-16T03:11:03.947Z",
   "benchmark": {
    "symbol": "XBI",
    "name": "SPDR S&P Biotech ETF",
@@ -27304,10 +27304,14 @@
     },
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "low",
      "date": "2024-12-16",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1613780/000119312524279571/d891585d8k.htm"
+     "label": "Regained compliance after its share price fell below the exchange's $1 minimum",
+     "url": "https://www.sec.gov/Archives/edgar/data/1613780/000119312524279571/d891585d8k.htm",
+     "why": [
+      "Regained compliance after its share price fell below the exchange's $1 minimum",
+      "low"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -62431,10 +62435,14 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "low",
      "date": "2026-04-09",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1728117/000172811726000022/goss-20260408.htm"
+     "label": "Moved, or is moving, its listing to another exchange",
+     "url": "https://www.sec.gov/Archives/edgar/data/1728117/000172811726000022/goss-20260408.htm",
+     "why": [
+      "Moved, or is moving, its listing to another exchange",
+      "low"
+     ]
     }
    ],
    "debtDue24": 37.2,
@@ -72597,10 +72605,14 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2025-01-07",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1062822/000106282225000005/lxrx-20250103.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1062822/000106282225000005/lxrx-20250103.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -78624,17 +78636,25 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2025-07-01",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1372299/000110465925064695/tm2519606d1_8k.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1372299/000110465925064695/tm2519606d1_8k.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     },
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2025-01-03",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1372299/000110465925000827/tm251676d1_8k.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1372299/000110465925000827/tm251676d1_8k.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     }
    ],
    "debtDue24": 29.8,
@@ -84441,10 +84461,14 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2025-04-25",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1817229/000119312525096692/d898205d8k.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1817229/000119312525096692/d898205d8k.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -92240,7 +92264,7 @@
     },
     "covenant": null,
     "weakness": {
-     "text": "As described further below, we have previously identified a material weakness in our internal control over financial reporting."
+     "text": "Although the material weakness did not result in any material misstatements in our consolidated financial statements for the periods presented and there were no changes to previously released financial results, our management concluded that these control deficiencies constituted a material weakness and that our internal control over financial reporting was not effective as of December 31, 2024."
     },
     "alleviated": null
    },
@@ -98645,7 +98669,7 @@
     },
     "covenant": null,
     "weakness": {
-     "text": "Based on our management's evaluation (with the participation of our principal executive officer and our principal financial officer) of our disclosure controls and procedures as required by Rule 13a-15 under the Exchange Act and the material weaknesses previously identified and further discussed below, our principal…"
+     "text": "Based on our management's evaluation (with the participation of our principal executive officer and our principal financial officer) of our disclosure controls and procedures as required by Rule 13a-15 under the Exchange Act and the material weaknesses previously identified and further discussed below, our principal executive officer and our principal financial officer have concluded that our disclosure controls…"
     },
     "alleviated": null
    },
@@ -112982,7 +113006,7 @@
     },
     "covenant": null,
     "weakness": {
-     "text": "Based on our evaluation, our chief executive officer and chief financial officer have concluded that our disclosure controls and procedures (as such term is defined in Rules 13a-15(e) and 15d-15(e) under the Exchange Act) were not effective as of September 30, 2026 because of the material weaknesses in our internal…"
+     "text": "Based on our evaluation, our chief executive officer and chief financial officer have concluded that our disclosure controls and procedures (as such term is defined in Rules 13a-15(e) and 15d-15(e) under the Exchange Act) were not effective as of September 30, 2026 because of the material weaknesses in our internal control over financial reporting described below."
     },
     "alleviated": null
    },
@@ -127302,10 +127326,14 @@
     },
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "low",
      "date": "2025-07-03",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1512762/000155837025009085/chrs-20250630x8k.htm"
+     "label": "Moved, or is moving, its listing to another exchange",
+     "url": "https://www.sec.gov/Archives/edgar/data/1512762/000155837025009085/chrs-20250630x8k.htm",
+     "why": [
+      "Moved, or is moving, its listing to another exchange",
+      "low"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -135581,10 +135609,14 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "low",
      "date": "2025-07-23",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1553643/000121390025066995/ea0249919-8k_relmada.htm"
+     "label": "Moved, or is moving, its listing to another exchange",
+     "url": "https://www.sec.gov/Archives/edgar/data/1553643/000121390025066995/ea0249919-8k_relmada.htm",
+     "why": [
+      "Moved, or is moving, its listing to another exchange",
+      "low"
+     ]
     },
     {
      "kind": "auditor",
@@ -135595,10 +135627,14 @@
     },
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2025-01-27",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1553643/000121390025006727/ea0228747-8k_relmada.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1553643/000121390025006727/ea0228747-8k_relmada.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -159393,10 +159429,14 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "low",
      "date": "2025-01-24",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1806952/000119312525012249/d884359d8k.htm"
+     "label": "Moved, or is moving, its listing to another exchange",
+     "url": "https://www.sec.gov/Archives/edgar/data/1806952/000119312525012249/d884359d8k.htm",
+     "why": [
+      "Moved, or is moving, its listing to another exchange",
+      "low"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -161609,9 +161649,7 @@
      "text": "As of September 30, 2026, we had approximately $339.4 million in cash, cash equivalents, restricted cash and marketable securities."
     },
     "covenant": null,
-    "weakness": {
-     "text": "As described further below, we identified a material weakness in our internal control over financial reporting that existed as of September 30, 2025, which we remediated as of December 31, 2025."
-    },
+    "weakness": null,
     "alleviated": null
    },
    "acct": {
@@ -171706,17 +171744,25 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "low",
      "date": "2025-07-09",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1829802/000119312525157113/d64284d8k.htm"
+     "label": "Regained compliance after its share price fell below the exchange's $1 minimum",
+     "url": "https://www.sec.gov/Archives/edgar/data/1829802/000119312525157113/d64284d8k.htm",
+     "why": [
+      "Regained compliance after its share price fell below the exchange's $1 minimum",
+      "low"
+     ]
     },
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "low",
      "date": "2025-01-07",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1829802/000119312525002920/d909848d8k.htm"
+     "label": "Regained compliance after its share price fell below the exchange's $1 minimum",
+     "url": "https://www.sec.gov/Archives/edgar/data/1829802/000119312525002920/d909848d8k.htm",
+     "why": [
+      "Regained compliance after its share price fell below the exchange's $1 minimum",
+      "low"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -173838,10 +173884,14 @@
     },
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2024-12-26",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1253689/000155837024016472/glyc-20241219x8k.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1253689/000155837024016472/glyc-20241219x8k.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -210347,17 +210397,25 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "low",
      "date": "2026-01-06",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1280776/000119380526000011/e665076_8k-immunic.htm"
+     "label": "Moved, or is moving, its listing to another exchange",
+     "url": "https://www.sec.gov/Archives/edgar/data/1280776/000119380526000011/e665076_8k-immunic.htm",
+     "why": [
+      "Moved, or is moving, its listing to another exchange",
+      "low"
+     ]
     },
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2025-06-27",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1280776/000119380525000943/e664657_8k-immunic.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1280776/000119380525000943/e664657_8k-immunic.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -212527,9 +212585,7 @@
      "text": "As of September 30, 2026, Spyre had an accumulated deficit of $ 1.3 billion, and cash, cash equivalents, and marketable securities of $ 1.1 billion."
     },
     "covenant": null,
-    "weakness": {
-     "text": "For example, in the fourth quarter of 2024, we identified a material weakness in our internal control over financial reporting which resulted in restatements of our previously-issued financial statements to amend certain net loss per share disclosures."
-    },
+    "weakness": null,
     "alleviated": null
    },
    "acct": {
@@ -233378,10 +233434,14 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2026-10-28",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1408443/000110465926119669/tm2628459d1_8k.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1408443/000110465926119669/tm2628459d1_8k.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -235498,17 +235558,25 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2026-07-31",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1818382/000110465926089281/tm2621850d1_8k.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1818382/000110465926089281/tm2621850d1_8k.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     },
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2026-05-08",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1818382/000110465926057974/tm2614071d1_8k.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1818382/000110465926057974/tm2614071d1_8k.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -239178,9 +239246,7 @@
      "text": "As of September 30, 2026, the Company had a balance of cash, cash equivalents, and marketable securities of $ 315.3 million."
     },
     "covenant": null,
-    "weakness": {
-     "text": "We have in the past identified a material weakness in our internal controls over financial reporting."
-    },
+    "weakness": null,
     "alleviated": null
    },
    "acct": {
@@ -241108,17 +241174,25 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2026-01-30",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1858848/000119312526032017/tnya-20260126.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1858848/000119312526032017/tnya-20260126.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     },
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2025-04-18",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1858848/000095017025055927/tnya-20250415.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1858848/000095017025055927/tnya-20250415.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -257511,10 +257585,14 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2025-03-28",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1678660/000095017025046839/prld-20250327.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1678660/000095017025046839/prld-20250327.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -268986,17 +269064,25 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2025-06-12",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1683553/000095017025085144/sprb-20250609.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1683553/000095017025085144/sprb-20250609.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     },
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2025-04-25",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1683553/000095017025058863/sprb-20250421.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1683553/000095017025058863/sprb-20250421.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     },
     {
      "kind": "late",
@@ -278614,10 +278700,14 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "low",
      "date": "2025-01-24",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1822462/000162828025002466/fhtx-20250123.htm"
+     "label": "Exchange notice: board or audit-committee seats need filling",
+     "url": "https://www.sec.gov/Archives/edgar/data/1822462/000162828025002466/fhtx-20250123.htm",
+     "why": [
+      "Exchange notice: board or audit-committee seats need filling",
+      "low"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -280504,17 +280594,25 @@
    "flags": [
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2026-06-08",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1339970/000133997026000039/atyr-20260603.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1339970/000133997026000039/atyr-20260603.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     },
     {
      "kind": "listing",
-     "sev": "med",
+     "sev": "high",
      "date": "2025-12-05",
-     "label": "Received a notice about its stock-exchange listing, or moved exchanges",
-     "url": "https://www.sec.gov/Archives/edgar/data/1339970/000119312525309619/atyr-20251204.htm"
+     "label": "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1339970/000119312525309619/atyr-20251204.htm",
+     "why": [
+      "Exchange notice: share price below the $1 minimum (a reverse split often follows)",
+      "high"
+     ]
     }
    ],
    "debtDue24": 0,
@@ -323760,11 +323858,11 @@
    "n": "Sanofi",
    "area": "Immunology & vaccines",
    "mcap": 117967.4,
-   "ev": 129269.2,
-   "cash": 9315.3,
-   "debt": 20617.1,
+   "ev": 129267.1,
+   "cash": 9313.6,
+   "debt": 20613.3,
    "burn": 0.1,
-   "rev": 48093.3,
+   "rev": 48084.6,
    "shares": 1219.43,
    "own": null,
    "emp": null,
@@ -325845,138 +325943,138 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-16",
-     "cash": 10099,
-     "burn": -761.6,
+     "cash": 10097,
+     "burn": -761.4,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-16",
-     "cash": 11359,
-     "burn": -720.1,
+     "cash": 11357,
+     "burn": -719.9,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-16",
-     "cash": 11456,
-     "burn": -677.9,
+     "cash": 11454,
+     "burn": -677.8,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-08",
-     "cash": 7853,
-     "burn": -509.6,
+     "cash": 7852,
+     "burn": -509.5,
      "runway": null
     },
     {
      "end": "2019-06-30",
      "filed": "2020-07-29",
-     "cash": 7432,
-     "burn": -592.7,
+     "cash": 7431,
+     "burn": -592.5,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-05",
-     "cash": 10862,
-     "burn": -708.8,
+     "cash": 10860,
+     "burn": -708.6,
      "runway": null
     },
     {
      "end": "2020-06-30",
      "filed": "2020-07-29",
-     "cash": 17604,
-     "burn": -777.4,
+     "cash": 17601,
+     "burn": -777.2,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-04",
-     "cash": 16332,
-     "burn": -681.5,
+     "cash": 16329,
+     "burn": -681.3,
      "runway": null
     },
     {
      "end": "2021-06-30",
      "filed": "2021-07-29",
-     "cash": 10718,
-     "burn": -755.1,
+     "cash": 10716,
+     "burn": -754.9,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-02-23",
-     "cash": 12294,
-     "burn": -966.6,
+     "cash": 12292,
+     "burn": -966.4,
      "runway": null
     },
     {
      "end": "2022-06-30",
      "filed": "2022-07-28",
-     "cash": 7605,
-     "burn": -883.8,
+     "cash": 7604,
+     "burn": -883.6,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-02-24",
-     "cash": 14610,
-     "burn": -967,
+     "cash": 14607,
+     "burn": -966.8,
      "runway": null
     },
     {
      "end": "2023-06-30",
      "filed": "2023-07-28",
-     "cash": 8811,
-     "burn": -942.9,
+     "cash": 8810,
+     "burn": -942.7,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-02-23",
-     "cash": 9776,
-     "burn": -942.4,
+     "cash": 9774,
+     "burn": -942.2,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-07-25",
-     "cash": 7491,
-     "burn": -745.7,
+     "cash": 7489,
+     "burn": -745.5,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-02-13",
-     "cash": 8612,
-     "burn": -834.2,
+     "cash": 8610,
+     "burn": -834.1,
      "runway": null
     },
     {
      "end": "2025-06-30",
      "filed": "2025-07-31",
-     "cash": 16932,
-     "burn": -1030.2,
+     "cash": 16929,
+     "burn": -1030,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-02-17",
-     "cash": 9315,
-     "burn": -987.6,
+     "cash": 9314,
+     "burn": -987.4,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -834.24,
+   "burnPrior": -834.09,
    "burnQ": null,
    "said": null,
    "acct": null,
    "flags": [],
-   "debtDue24": 4786.6,
+   "debtDue24": 4785.8,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -327186,7 +327284,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 11851,
+   "ocf": 11849,
    "group": "big-pharma",
    "src": {
     "cik": "1121404",
@@ -327196,8 +327294,8 @@
      "MarketableSecuritiesCurrent"
     ],
     "currency": "EUR",
-    "fx": 1.1024,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1024 USD per EUR",
+    "fx": 1.1022,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1022 USD per EUR",
     "adr": 0.5,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -327224,11 +327322,11 @@
    "n": "GSK",
    "area": "Vaccines & respiratory",
    "mcap": 108857.1,
-   "ev": 123800.1,
-   "cash": 4487.8,
-   "debt": 19430.7,
+   "ev": 123796.7,
+   "cash": 4486.8,
+   "debt": 19426.3,
    "burn": 0.1,
-   "rev": 43156.4,
+   "rev": 43146.6,
    "shares": 4315.45,
    "own": null,
    "emp": null,
@@ -329239,84 +329337,84 @@
     {
      "end": "2015-12-31",
      "filed": "2018-03-20",
-     "cash": 7702,
+     "cash": 7700,
      "burn": -282.8,
      "runway": null
     },
     {
      "end": "2016-12-31",
      "filed": "2018-03-20",
-     "cash": 6469,
-     "burn": -715.3,
+     "cash": 6468,
+     "burn": -715.1,
      "runway": null
     },
     {
      "end": "2017-12-31",
      "filed": "2018-03-20",
-     "cash": 5064,
-     "burn": -761.6,
+     "cash": 5063,
+     "burn": -761.4,
      "runway": null
     },
     {
      "end": "2018-12-31",
      "filed": "2019-03-15",
-     "cash": 5229,
-     "burn": -927.1,
+     "cash": 5228,
+     "burn": -926.9,
      "runway": null
     },
     {
      "end": "2019-12-31",
      "filed": "2020-03-06",
-     "cash": 6323,
-     "burn": -882.9,
+     "cash": 6321,
+     "burn": -882.7,
      "runway": null
     },
     {
      "end": "2020-12-31",
      "filed": "2021-03-12",
-     "cash": 8415,
-     "burn": -929.3,
+     "cash": 8413,
+     "burn": -929.1,
      "runway": null
     },
     {
      "end": "2021-12-31",
      "filed": "2022-03-08",
-     "cash": 5727,
-     "burn": -875.4,
+     "cash": 5726,
+     "burn": -875.3,
      "runway": null
     },
     {
      "end": "2022-12-31",
      "filed": "2023-03-10",
-     "cash": 5007,
-     "burn": -815,
+     "cash": 5006,
+     "burn": -814.8,
      "runway": null
     },
     {
      "end": "2023-12-31",
      "filed": "2024-03-05",
-     "cash": 3934,
-     "burn": -745.1,
+     "cash": 3933,
+     "burn": -744.9,
      "runway": null
     },
     {
      "end": "2024-12-31",
      "filed": "2025-03-03",
-     "cash": 5113,
-     "burn": -721.5,
+     "cash": 5111,
+     "burn": -721.4,
      "runway": null
     },
     {
      "end": "2025-12-31",
      "filed": "2026-03-06",
-     "cash": 4488,
-     "burn": -852.2,
+     "cash": 4487,
+     "burn": -852,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -721.54,
+   "burnPrior": -721.38,
    "burnQ": null,
    "said": null,
    "acct": null,
@@ -330467,7 +330565,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 10227,
+   "ocf": 10224,
    "group": "big-pharma",
    "src": {
     "cik": "1131399",
@@ -330476,8 +330574,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3211,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3211 USD per GBP",
+    "fx": 1.3208,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3208 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
@@ -346166,11 +346264,11 @@
    "n": "Haleon",
    "area": "Over-the-counter consumer health",
    "mcap": 41046.5,
-   "ev": 50670.8,
-   "cash": 1749.1,
-   "debt": 11373.3,
+   "ev": 50668.6,
+   "cash": 1748.7,
+   "debt": 11370.8,
    "burn": 0.1,
-   "rev": 14571.7,
+   "rev": 14568.4,
    "shares": 8952.35,
    "own": null,
    "emp": null,
@@ -346228,7 +346326,7 @@
     {
      "end": "2022-12-31",
      "filed": "2023-03-20",
-     "cash": 904,
+     "cash": 903,
      "burn": -227.1,
      "runway": null
     },
@@ -346243,13 +346341,13 @@
      "end": "2023-12-31",
      "filed": "2024-03-15",
      "cash": 1379,
-     "burn": -231.2,
+     "burn": -231.1,
      "runway": null
     },
     {
      "end": "2024-06-30",
      "filed": "2024-08-01",
-     "cash": 702,
+     "cash": 701,
      "burn": -241.4,
      "runway": null
     },
@@ -346264,18 +346362,18 @@
      "end": "2025-12-31",
      "filed": "2026-03-13",
      "cash": 1749,
-     "burn": -290,
+     "burn": -289.9,
      "runway": null
     }
    ],
    "revQ": [],
    "rivals": [],
-   "burnPrior": -253.32,
+   "burnPrior": -253.26,
    "burnQ": null,
    "said": null,
    "acct": null,
    "flags": [],
-   "debtDue24": 1104.4,
+   "debtDue24": 1104.2,
    "raise": {
     "capacity": "none",
     "atm": null,
@@ -347437,7 +347535,7 @@
     }
    ],
    "cashFlowPositive": true,
-   "ocf": 3480,
+   "ocf": 3479,
    "group": "otc",
    "src": {
     "cik": "1900304",
@@ -347446,8 +347544,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "GBP",
-    "fx": 1.3211,
-    "fxNote": "Reported in GBP; converted at today's rate of 1.3211 USD per GBP",
+    "fx": 1.3208,
+    "fxNote": "Reported in GBP; converted at today's rate of 1.3208 USD per GBP",
     "adr": 2,
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2026-03-13",
@@ -365411,11 +365509,11 @@
    "n": "Ascendis Pharma",
    "area": "Rare endocrine diseases",
    "mcap": 17068,
-   "ev": 17182.9,
-   "cash": 679.1,
-   "debt": 794,
+   "ev": 17182.8,
+   "cash": 678.9,
+   "debt": 793.7,
    "burn": 0.1,
-   "rev": 793.9,
+   "rev": 793.6,
    "shares": 61.98,
    "own": null,
    "emp": null,
@@ -366141,8 +366239,8 @@
     {
      "end": "2022-09-30",
      "filed": "2022-11-02",
-     "cash": 671,
-     "burn": 43.9,
+     "cash": 670,
+     "burn": 43.8,
      "runway": 15.3
     },
     {
@@ -366162,14 +366260,14 @@
     {
      "end": "2023-03-31",
      "filed": "2023-04-27",
-     "cash": 553,
+     "cash": 552,
      "burn": 47,
      "runway": 11.7
     },
     {
      "end": "2023-06-30",
      "filed": "2023-09-05",
-     "cash": 435,
+     "cash": 434,
      "burn": 49.7,
      "runway": 8.7
     },
@@ -366191,7 +366289,7 @@
      "end": "2024-03-31",
      "filed": "2024-05-02",
      "cash": 353,
-     "burn": 38.8,
+     "burn": 38.7,
      "runway": 9.1
     },
     {
@@ -366204,7 +366302,7 @@
     {
      "end": "2024-09-30",
      "filed": "2024-11-14",
-     "cash": 690,
+     "cash": 689,
      "burn": 24,
      "runway": 28.7
     },
@@ -366225,8 +366323,8 @@
     {
      "end": "2025-06-30",
      "filed": "2025-08-07",
-     "cash": 545,
-     "burn": 15.2,
+     "cash": 544,
+     "burn": 15.1,
      "runway": 35.9
     },
     {
@@ -366240,7 +366338,7 @@
      "end": "2025-12-31",
      "filed": "2026-02-11",
      "cash": 679,
-     "burn": -5,
+     "burn": -4.9,
      "runway": null
     }
    ],
@@ -366255,11 +366353,11 @@
     ],
     [
      "2023-09-30",
-     53
+     52.9
     ],
     [
      "2023-12-31",
-     151.8
+     151.7
     ],
     [
      "2024-03-31",
@@ -366271,7 +366369,7 @@
     ],
     [
      "2024-09-30",
-     63.8
+     63.7
     ],
     [
      "2024-12-31",
@@ -366287,15 +366385,15 @@
     ],
     [
      "2025-09-30",
-     235.5
+     235.4
     ],
     [
      "2025-12-31",
-     272.8
+     272.7
     ]
    ],
    "rivals": [],
-   "burnPrior": 28.13,
+   "burnPrior": 28.12,
    "burnQ": null,
    "said": null,
    "acct": null,
@@ -367519,8 +367617,8 @@
      "CashAndCashEquivalentsAtCarryingValue"
     ],
     "currency": "EUR",
-    "fx": 1.1024,
-    "fxNote": "Reported in EUR; converted at today's rate of 1.1024 USD per EUR",
+    "fx": 1.102,
+    "fxNote": "Reported in EUR; converted at today's rate of 1.1020 USD per EUR",
     "burnHow": "fiscal year as reported",
     "sharesAsOf": "2025-12-31",
     "filing": {
