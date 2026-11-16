@@ -1013,6 +1013,10 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
   }
   for (const c of a.catalysts || []) catalysts.push({ drug: null, ...c });
 
+  // The accounting checks are extras: a company whose data trips them up still gets its page.
+  let acct = null;
+  if (!a.segment) { try { acct = accountingFromFacts(factsUsd, fin, { pickSeries, trailing12 }); } catch (e) { warn(`${ticker}: accounting checks skipped (${e.message})`); } }
+
   // What the latest quarterly or annual report says in words: management's runway, ATM sales,
   // other funding, and FDA dates the company has announced.
   let said = null;
@@ -1077,7 +1081,7 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
     burnPrior: round(fin.burnPrior, 2),
     burnQ: fin.burnQ == null ? null : round(fin.burnQ, 2),
     said,
-    acct: a.segment ? null : accountingFromFacts(factsUsd, fin, { pickSeries, trailing12 }),
+    acct,
     flags: filingFlags(sub, cik, TODAY_ISO),
     debtDue24: round(fin.debtDue24, 1),
     raise,
@@ -1201,7 +1205,7 @@ async function main() {
       companies.push(c);
       console.log(`  ${c.n}: cash $${c.cash}M, burn $${c.burn}M/mo, ${c.pipeline.length} programs, mcap $${c.mcap}M`);
     } catch (e) {
-      if (!listed && prevC && prevC.staleSince && prevC.staleSince <= shiftDays(TODAY_ISO, -5)) {
+      if (!cikByTicker.has(ticker) && prevC && prevC.staleSince && prevC.staleSince <= shiftDays(TODAY_ISO, -5)) {
         // Off the SEC's list of listed companies and no fresh data for five days: no longer trading.
         leaving.push({ t: ticker, n: prevC.n, why: "no longer listed" });
         warn(`${ticker}: no longer listed. Removed from coverage.`);

@@ -267,6 +267,153 @@ function bis(c) {
   return wsum > 0 ? Math.round(used.reduce((s, [, k, w]) => s + p[k] * w, 0) / wsum) : null;
 }
 
+/* ---------------- accounting checks ---------------- */
+
+// Everything on a company's accounting watch list, newest first: events in its filing list plus
+// warnings in its latest report.
+function acctFlags(c) {
+  const out = (c.flags || []).map((f) => ({ ...f }));
+  const said = c.said;
+  if (said?.runway?.kind === "doubt") out.push({ kind: "doubt", sev: "high", date: said.date, label: "Going-concern warning in its latest report", url: said.url, quote: said.runway.text });
+  if (said?.weakness) out.push({ kind: "weakness", sev: "med", date: said.date, label: "Reports a material weakness in its financial controls", url: said.url, quote: said.weakness.text });
+  return out.sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+// Cash left after the minimum a lender requires the company to keep.
+function usableCash(c) {
+  const hold = c.said?.covenant?.amt || 0;
+  return hold > 0 && hold < c.cash ? c.cash - hold : null;
+}
+// Share of covered companies with a lower value (0-100), for a "higher than X% of peers" line.
+function pctRank(value, all) {
+  const xs = all.filter((x) => x != null && Number.isFinite(x));
+  if (value == null || xs.length < 10) return null;
+  return Math.round((xs.filter((x) => x < value).length / xs.length) * 100);
+}
+const burnPerProgram = (c) => (!c.cashFlowPositive && c.pipeline?.length ? (c.burn * 12) / c.pipeline.length : null);
+
+function AccountingPanel({ c }) {
+  const a = c.acct, flags = acctFlags(c), said = c.said;
+  const usable = usableCash(c);
+  const coreBurn = a?.core?.burn > 0 ? a.core.burn : null;
+  const runNow = c.cashFlowPositive ? null : c.cash / c.burn;
+  const runAdj = c.cashFlowPositive ? null : (usable ?? c.cash) / (coreBurn ?? c.burn);
+  const adjusted = !c.cashFlowPositive && (usable != null || coreBurn != null);
+  const rdRank = pctRank(a?.spend?.rdShare, COMPANIES.map((x) => x.acct?.spend?.rdShare));
+  const bpp = burnPerProgram(c), bppRank = pctRank(bpp, COMPANIES.map(burnPerProgram));
+  const ohRank = pctRank(a?.overhang?.pct, COMPANIES.map((x) => x.acct?.overhang?.pct));
+  const src = said ? <ExtLink href={said.url}>{said.form} filed {fmtDate(said.date)}</ExtLink> : null;
+  return (
+    <div className="stack">
+      <section className="panel">
+        <header className="ph"><h2>Accounting red flags</h2>
+          <span className="ph-note">Events companies must report to the SEC within days, plus warnings in the latest report. Last 24 months.</span></header>
+        {flags.length === 0 ? <p className="empty">None found: no restatement, auditor change, late filing, listing notice, control weakness or going-concern warning.</p> : (
+          <ul className="flaglist">
+            {flags.map((f, i) => (
+              <li key={i} className={"flag " + f.sev}>
+                <span className="mono">{fmtDate(f.date)}</span>
+                <div><b>{f.label}</b> <ExtLink href={f.url}>Filing</ExtLink>{f.quote && <blockquote className="said">"{f.quote}"</blockquote>}</div>
+              </li>
+            ))}
+          </ul>
+        )}
+        {said?.alleviated && said?.runway?.kind !== "doubt" && <p className="colnote">The latest report mentions doubt about the company's ability to keep operating and says management's plans resolve it: "{said.alleviated.text}"</p>}
+        <p className="colnote">An auditor change or a listing notice isn't always bad news (companies switch auditors for cost, and some notices are about moving exchanges), so open the filing before drawing a conclusion.</p>
+      </section>
+
+      <section className="panel">
+        <header className="ph"><h2>Cash and burn, adjusted</h2>
+          <span className="ph-note">The reported figures next to the same figures with timing effects and locked-up cash taken out.</span></header>
+        {c.cashFlowPositive ? <p className="empty">This company brings in more cash than it spends, so these adjustments don't apply.</p> : (
+          <>
+            <div className="tablewrap">
+              <table className="grid plain">
+                <thead><tr><th></th><th className="r">As reported</th><th className="r">Adjusted</th><th>What changed</th></tr></thead>
+                <tbody>
+                  <tr><td><b>Cash</b></td><td className="r mono">{money(c.cash)}</td><td className="r mono">{usable != null ? money(usable) : "—"}</td>
+                    <td>{usable != null ? `Less ${money(said.covenant.amt)} a lender requires it to keep` : "No minimum-cash loan covenant found in the latest report"}</td></tr>
+                  <tr><td><b>Monthly burn</b></td><td className="r mono">{money(c.burn)}</td><td className="r mono">{coreBurn != null ? money(coreBurn) : "—"}</td>
+                    <td>{a?.core ? [a.core.upfront > 0 ? `${money(a.core.upfront)} of advance payments from partners removed` : null, a.core.payables > 0 ? `${money(a.core.payables)} of bills not yet paid removed` : a.core.payables < 0 ? `${money(-a.core.payables)} spent paying down old bills added back` : null].filter(Boolean).join("; ") || "No timing effects in the past year" : "The company doesn't report these items separately"}</td></tr>
+                  <tr><td><b>Runway</b></td><td className="r mono">{fmtRunway(Math.min(runNow, 120), "months")}</td><td className={"r mono " + (adjusted && runAdj < runNow * 0.8 ? "warn" : "")}>{adjusted ? fmtRunway(Math.min(runAdj, 120), "months") : "—"}</td>
+                    <td>{adjusted ? (runAdj < runNow * 0.8 ? "Shorter once the adjustments are made" : runAdj > runNow * 1.2 ? "Longer once the adjustments are made" : "Little changed") : ""}</td></tr>
+                </tbody>
+              </table>
+            </div>
+            {said?.covenant && <blockquote className="said">"{said.covenant.text}" <cite>{src}</cite></blockquote>}
+            <p className="colnote">The Financing Pressure Score uses the reported figures. Adjusted burn is operating cash flow over the past year, less cash received in advance from partners (a rise in deferred revenue) and less the change in payables and accrued bills. {a?.restricted ? `Restricted cash of ${money(a.restricted)} is reported separately and isn't counted in cash.` : ""}</p>
+          </>
+        )}
+      </section>
+
+      <div className="two">
+        <section className="panel">
+          <header className="ph"><h2>Dilution still to come</h2></header>
+          {!a?.overhang ? <p className="empty">The company doesn't report these share counts in its tagged data.</p> : (
+            <>
+              <div className="metrics">
+                <div className="metric"><span>Shares that could be created</span><b className="mono">{num(a.overhang.shares, 1)}M</b></div>
+                <div className="metric"><span>As a share of today's count</span><b className={"mono " + (a.overhang.pct >= 25 ? "warn" : "")}>+{num(a.overhang.pct, 0)}%</b></div>
+              </div>
+              <p className="prose">{[a.overhang.options ? `${num(a.overhang.options, 1)}M stock options` : null, a.overhang.awards ? `${num(a.overhang.awards, 1)}M unvested stock awards` : null, a.overhang.warrants ? `${num(a.overhang.warrants, 1)}M warrants` : null].filter(Boolean).join(", ") || "The company reports one total"}{a.overhang.basis === "total" ? ". The total is what the company left out of its loss-per-share figure, which also covers convertible notes." : "."}{ohRank != null ? ` More than ${ohRank}% of covered companies.` : ""}</p>
+              <p className="colnote">These become shares only if holders exercise or convert, and many options are priced above today's share price. Treat it as the ceiling, on top of any new stock sale.</p>
+            </>
+          )}
+        </section>
+        <section className="panel">
+          <header className="ph"><h2>Commitments that aren't debt</h2></header>
+          {!a?.lease && !a?.purchase ? <p className="empty">No lease or purchase commitments reported in its tagged data.</p> : (
+            <div className="metrics">
+              {a.lease != null && <div className="metric"><span>Lease obligations</span><b className="mono">{money(a.lease)}</b><em>Rent it has signed up to pay, mostly for labs and offices</em></div>}
+              {a.purchase != null && <div className="metric"><span>Purchase commitments</span><b className="mono">{money(a.purchase)}</b><em>Often contracts with drug manufacturers</em></div>}
+            </div>
+          )}
+          <p className="colnote">Milestone payments owed to licensors usually aren't tagged, so they aren't shown. They're in the commitments note of the annual report.</p>
+        </section>
+      </div>
+
+      <section className="panel">
+        <header className="ph"><h2>Where the money goes, against peers</h2>
+          <span className="ph-note">Compared with the {COMPANIES.length} biotechs in coverage, over the past 12 months.</span></header>
+        {!a?.spend && bpp == null ? <p className="empty">Not enough reported detail to compare.</p> : (
+          <div className="metrics three">
+            {a?.spend && <div className="metric"><span>Research share of spending</span><b className="mono">{num(a.spend.rdShare, 0)}%</b><em>{money(a.spend.rd)} on research, {money(a.spend.ga)} on overhead{rdRank != null ? `. Higher than ${rdRank}% of peers.` : ""}</em></div>}
+            {a?.spend && <div className="metric"><span>Overhead a year</span><b className="mono">{money(a.spend.ga)}</b><em>General and administrative costs: management, legal, finance, offices</em></div>}
+            {bpp != null && <div className="metric"><span>Yearly burn per drug program</span><b className="mono">{money(bpp)}</b><em>{c.pipeline.length} program{c.pipeline.length === 1 ? "" : "s"}{bppRank != null ? `. Higher than ${bppRank}% of peers.` : ""}</em></div>}
+          </div>
+        )}
+      </section>
+    </div>
+  );
+}
+
+// Every covered company with an accounting red flag, for the Pressure Report.
+function AccountingWatch({ go }) {
+  const rows = COMPANIES.flatMap((c) => acctFlags(c).map((f) => ({ c, f }))).sort((a, b) => (a.f.date < b.f.date ? 1 : -1));
+  const [more, setMore] = useState(false);
+  return (
+    <section className="panel" id="accounting-watch">
+      <header className="ph"><h2>Accounting watch</h2>
+        <span className="ph-note">Restatements, auditor changes, late filings, listing notices, control weaknesses and going-concern warnings across all {COMPANIES.length} companies, last 24 months.</span></header>
+      {rows.length === 0 ? <p className="empty">No accounting red flags in coverage.</p> : (
+        <div className="tablewrap">
+          <table className="grid plain">
+            <thead><tr><th>Date</th><th>Company</th><th>What happened</th><th className="r">Pressure score</th></tr></thead>
+            <tbody>
+              {(more ? rows : rows.slice(0, 12)).map(({ c, f }, i) => (
+                <tr key={i}><td className="mono">{fmtDate(f.date)}</td>
+                  <td><button className="linkish" onClick={() => go("company", c.t)}>{c.n}</button><span className="sub inline"> {c.t}</span></td>
+                  <td><span className={"tagchip " + (f.sev === "high" ? "warn" : "")}>{f.label}</span> <ExtLink href={f.url}>Filing</ExtLink></td>
+                  <td className="r mono">{fpsOf(c).score}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {rows.length > 12 && <p className="colnote"><button className="linkish" onClick={() => setMore((m) => !m)}>{more ? "Show fewer" : `Show all ${rows.length}`}</button></p>}
+    </section>
+  );
+}
+
 function alertsFor(c) {
   const out = [];
   const r = runway(c);
@@ -284,6 +431,10 @@ function alertsFor(c) {
   if (c.said?.runway?.kind === "doubt") out.push({ sev: "high", text: `In its latest report, management says ${c.said.runway.say} (a "going concern" warning).` });
   { const v = runwayViews(c); if (v?.disagree && v.gap > 0) out.push({ sev: "med", text: `Management says its cash lasts ${v.g.say}, about ${Math.round(v.gap)} months less than past spending implies.` }); }
   if (c.said?.atm?.used && c.said.atm.months && c.said.atm.amt >= 5) out.push({ sev: "low", text: `It sold ${money(c.said.atm.amt)} of stock through its ATM in the ${{ 3: "three", 6: "six", 9: "nine", 12: "twelve" }[c.said.atm.months]} months to ${c.said.atm.periodEnd}.` });
+  for (const f of (c.flags || []).filter((x) => days(x.date) > -365).slice(0, 2)) out.push({ sev: f.sev, text: `${f.label} (${fmtDate(f.date)}).` });
+  if (c.said?.weakness) out.push({ sev: "med", text: "Its latest report discloses a material weakness in its financial controls." });
+  if (c.said?.covenant && usableCash(c) != null && c.said.covenant.amt >= c.cash * 0.15) out.push({ sev: "med", text: `A lender requires it to keep ${money(c.said.covenant.amt)} in cash, so only ${money(usableCash(c))} of its ${money(c.cash)} is free to spend.` });
+  if (c.acct?.overhang?.pct >= 30) out.push({ sev: "low", text: `Options, stock awards and warrants could add ${num(c.acct.overhang.pct, 0)}% to its share count.` });
   if (c.short?.pct >= 20) out.push({ sev: "med", text: `${num(c.short.pct, 0)}% of its shares are sold short${c.short.dtc ? `, about ${num(c.short.dtc, 0)} days of normal trading to buy back` : ""}. Short sellers often build positions when they expect a share sale.` });
   if (c.insiders?.bought90 >= 0.25) out.push({ sev: "low", text: `Officers or directors bought ${usdSmall(c.insiders.bought90)} of stock on the open market in the last 90 days.` });
   if (c.insiders?.sold90 >= 1) out.push({ sev: "low", text: `Officers or directors sold ${usdSmall(c.insiders.sold90)} of stock in the last 90 days outside pre-set trading plans and tax sales.` });
@@ -891,7 +1042,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
     return { post, pct: newShares === 0 ? 0 : (newShares / post) * 100, proceeds: newShares * (c.mcap / c.shares) * 0.88 };
   }, [c, newShares]);
 
-  const tabs = [["overview", "Overview"], ["pressure", "Financing pressure"], ["financials", "Financials"], ["ownership", "Insiders & shorts"], ["pipeline", "Pipeline"], ["catalysts", "Catalysts"], ["valuation", "Valuation"], ["score", "Score"]];
+  const tabs = [["overview", "Overview"], ["pressure", "Financing pressure"], ["financials", "Financials"], ["accounting", "Accounting"], ["ownership", "Insiders & shorts"], ["pipeline", "Pipeline"], ["catalysts", "Catalysts"], ["valuation", "Valuation"], ["score", "Score"]];
 
   return (
     <div className="stack">
@@ -1020,6 +1171,8 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
         </div>
       )}
       {tab === "overview" && <AlertsPanel go={go} only={c.t} />}
+
+      {tab === "accounting" && <AccountingPanel c={c} />}
 
       {tab === "ownership" && (
         <div className="stack">
@@ -1366,6 +1519,9 @@ function Compare() {
     ["Monthly burn", (c) => (c.cashFlowPositive ? "Cash-generating" : `$${num(c.burn)}M`), 1],
     ["Runway", (c) => (c.cashFlowPositive ? "Not needed" : `${num(runway(c))} mo`), 1],
     ["Next catalyst", (c) => (nextCatalyst(c) ? `${days(nextCatalyst(c).date)}d` : "—"), 1],
+    ["Accounting red flags, 24 mo", (c) => (acctFlags(c).length ? acctFlags(c).length : "None"), 1],
+    ["Potential new shares", (c) => (c.acct?.overhang ? `+${num(c.acct.overhang.pct, 0)}%` : "—"), 1],
+    ["Research share of spending", (c) => (c.acct?.spend ? `${num(c.acct.spend.rdShare, 0)}%` : "—"), 1],
     ["Sold short", (c) => (c.short ? `${num(c.short.pct, 1)}%` : "—"), 1],
     ["Insider buying, 12 mo", (c) => (c.insiders ? usdSmall(c.insiders.bought) : "—"), 1],
     ["Insider selling by choice, 12 mo", (c) => (c.insiders ? usdSmall(c.insiders.sold) : "—"), 1],
@@ -1913,6 +2069,8 @@ function PressureReport({ go }) {
       </section>
 
       <SurvivalMonitor go={go} />
+      <AccountingWatch go={go} />
+
       {top && (<><h2 className="section-h">Company spotlight: {top.n}</h2><FpsPanel c={top} go={go} /></>)}
 
       <p className="disclaimer">This report is general research about companies' financing situations. It is not investment advice, is not tailored to any reader, and does not recommend buying or selling any security.</p>
@@ -3269,6 +3427,7 @@ function downloadReportCsv() {
     "Runway at past-year burn (months)", "Runway at latest-quarter burn (months)", "Management's runway statement", "Management's runway ends", "Going-concern warning",
     "Market value ($M)", "Debt due in 24 months ($M)", "Share growth, 2 years (%)", "Raise capacity", "ATM sold per latest report ($M)", "Latest stock sale", "Latest stock sale size ($M)",
     "Next trial result or FDA decision", "Expected date", "Sold short (% of shares)", "Days to cover", "Insider buying, 12 months ($M)", "Insider selling by choice, 12 months ($M)",
+    "Accounting red flags (24 months)", "Minimum cash required by lender ($M)", "Adjusted monthly burn ($M)", "Potential new shares (% of today's)", "Research spending, 12 months ($M)", "Overhead spending, 12 months ($M)", "Lease obligations ($M)",
     "Figures as of", "Latest report"];
   const rows = [...COMPANIES].map((c) => ({ c, f: fpsOf(c), n: nextMajorCatalyst(c, TODAY), v: runwayViews(c) })).sort((a, b) => b.f.score - a.f.score)
     .map(({ c, f, n, v }) => {
@@ -3276,7 +3435,8 @@ function downloadReportCsv() {
       return [c.t, c.n, f.score, f.band, Math.round(c.cash), r1(c.burn), r1(c.burnQ), c.cashFlowPositive ? "cash-flow positive" : r1(v?.year), r1(v?.quarter),
         v?.g ? v.g.say : "", v?.g?.until || "", v?.g?.kind === "doubt" ? "yes" : "", Math.round(c.mcap), r1(c.debtDue24), r1(c.dil24), c.raise?.capacity || "",
         c.said?.atm?.used ? c.said.atm.amt : c.said?.atm ? 0 : "", sale?.date || "", sale?.amt ?? "", n ? shortLabel(n.label) : "None dated", n?.date || "",
-        c.short?.pct ?? "", c.short?.dtc ?? "", c.insiders?.bought ?? "", c.insiders?.sold ?? "", c.src?.asOf || "", c.said?.url || c.src?.filing?.url || ""];
+        c.short?.pct ?? "", c.short?.dtc ?? "", c.insiders?.bought ?? "", c.insiders?.sold ?? "",
+        acctFlags(c).map((f) => `${f.date} ${f.label}`).join("; "), c.said?.covenant?.amt ?? "", c.acct?.core?.burn ?? "", c.acct?.overhang?.pct ?? "", c.acct?.spend?.rd ?? "", c.acct?.spend?.ga ?? "", c.acct?.lease ?? "", c.src?.asOf || "", c.said?.url || c.src?.filing?.url || ""];
     });
   saveCsv([head, ...rows], `helixora-all-data-${(META.generatedAt || "").slice(0, 10) || "today"}.csv`);
   track("csv_download");
@@ -4772,6 +4932,12 @@ button.tick:hover{color:var(--teal) !important;}
 /* metrics + trace */
 .metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .grid.trades{min-width:600px;}
+.flaglist{list-style:none;margin:0;padding:0;}
+.flaglist .flag{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:12px 0 12px 12px;border-left:3px solid #E0A23B;border-bottom:1px solid var(--rule);font-size:14.5px;line-height:1.5;}
+.flaglist .flag.high{border-left-color:#B4232A;}
+.flaglist .flag:last-child{border-bottom:0;}
+.flaglist .flag > span{color:var(--mut);font-size:13px;padding-top:2px;}
+@media (max-width:720px){.flaglist .flag{grid-template-columns:1fr;gap:2px;}}
 .metrics.three{grid-template-columns:repeat(3,1fr);}
 .metric em{display:block;margin-top:6px;font-style:normal;font-size:12.5px;line-height:1.45;color:var(--mut);}
 blockquote.said{margin:14px 0 4px;padding:10px 14px;border-left:3px solid var(--teal);background:var(--tint);font-size:14px;line-height:1.55;color:var(--ink2);}
