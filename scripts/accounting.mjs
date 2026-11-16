@@ -41,15 +41,18 @@ export function filingFlags(sub, cik, today, months = 24) {
 }
 
 // What a listing notice (8-K item 3.01) is about, read from the filing's text.
+// A share-price notice often mentions "transferring" to a lower tier of the same exchange, so the
+// specific problems are checked before a plain move between exchanges.
+export const LISTING_RULES = 2;
 export function listingReason(text) {
   const t = (text || "").slice(0, 60000);
-  if (/\b(transfer(?:ring)? (?:the |its )?listing|voluntar(?:y|ily) (?:delist|transfer|withdraw)|approved for listing on)\b/i.test(t)) return ["Moved, or is moving, its listing to another exchange", "low"];
   if (/\bminimum bid price\b|\$\s?1\.00 per share|bid price (?:of|requirement)/i.test(t)) {
     return /\bregained compliance\b/i.test(t) ? ["Regained compliance after its share price fell below the exchange's $1 minimum", "low"] : ["Exchange notice: share price below the $1 minimum (a reverse split often follows)", "high"];
   }
   if (/\b(stockholders'? equity|market value of (?:listed|publicly held)|minimum value of listed securities)\b/i.test(t)) return ["Exchange notice: below the exchange's minimum size or equity requirement", "high"];
-  if (/\b(timely file|failure to file|delinquen|periodic report|Form 10-[KQ])\b/i.test(t) && /\bnot(?:ice| in compliance)\b/i.test(t)) return ["Exchange notice: a required financial report is overdue", "high"];
+  if (/\b(timely file|failure to file|delinquen|periodic report)\b/i.test(t) && /\bnot(?:ice| in compliance)\b/i.test(t)) return ["Exchange notice: a required financial report is overdue", "high"];
   if (/\b(audit committee|independent directors?|majority (?:of )?independent|board (?:of directors )?composition|compensation committee)\b/i.test(t)) return ["Exchange notice: board or audit-committee seats need filling", "low"];
+  if (/\b(transfer(?:ring)? (?:the |its )?listing|voluntar(?:y|ily) (?:delist|transfer|withdraw)|approved for listing on)\b/i.test(t)) return ["Moved, or is moving, its listing to another exchange", "low"];
   if (/\bregained compliance\b/i.test(t)) return ["Regained compliance with exchange listing rules", "low"];
   return null;
 }

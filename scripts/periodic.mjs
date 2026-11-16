@@ -12,7 +12,7 @@
 import { toText } from "./guidance.mjs";
 
 // Bump when the reading rules change, so reports read under older rules are read again.
-export const PERIODIC_PARSER = 7;
+export const PERIODIC_PARSER = 8;
 
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 const WORDNUM = { twelve: 12, eighteen: 18, "twenty-four": 24, "twenty four": 24, thirty: 30, "thirty-six": 36, "thirty six": 36, one: 1, two: 2, three: 3 };
@@ -142,8 +142,11 @@ function cashCovenant(sents) {
 // that a weakness has not yet been fixed. A weakness described as past or already fixed doesn't count.
 const WEAK_NOW = /\b(?:were|was|are|is) not effective\b|\bnot (?:yet )?(?:been )?(?:fully )?remediated\b|\bremains? unremediated\b|\bcontinues? to exist\b|\bremediation (?:efforts|plan|measures)? ?(?:is|are) ongoing\b/i;
 const WEAK_NOT = /\b(if we|we may|may identify|could|might|in the future|cannot assure|no material weakness|did not identify|fail(?:ure)? to|were to|would|has been (?:fully )?remediated|have been (?:fully )?remediated|was remediated|were remediated|we remediated|successfully remediated|there can be no assurance|in the past|for example)\b/i;
-function materialWeakness(sents) {
-  const hit = sents.find((s) => /\bmaterial weakness(?:es)?\b/i.test(s) && WEAK_NOW.test(s) && !WEAK_NOT.test(s));
+function materialWeakness(sents, filed) {
+  // A conclusion dated more than nine months before the report is history, not the current state.
+  const old = (s) => [...s.matchAll(new RegExp(`as of (${MONTHS.join("|")}) (\\d{1,2}), (20\\d\\d)`, "gi"))]
+    .some((m) => (new Date(filed) - new Date(iso(m[3], MONTHS.indexOf(m[1].toLowerCase()) + 1, m[2]))) / 864e5 > 275);
+  const hit = sents.find((s) => /\bmaterial weakness(?:es)?\b/i.test(s) && WEAK_NOW.test(s) && !WEAK_NOT.test(s) && !old(s));
   return hit ? { text: clip(hit, 420) } : null;
 }
 
@@ -254,5 +257,5 @@ export function readPeriodic(html, filed, today = new Date().toISOString().slice
   if (!html) return null;
   const sents = sentences(toText(html).replace(/&#x2019;|&#8217;|’/g, "'").replace(/&#160;|&nbsp;/g, " "));
   if (sents.length < 50) return null;
-  return { v: PERIODIC_PARSER, runway: runwayGuidance(sents, filed), cash: statedCash(sents, asOf), atm: atmUse(sents), other: otherMoney(sents), events: fdaEvents(sents, today, ownName), covenant: cashCovenant(sents), weakness: materialWeakness(sents), alleviated: doubtAlleviated(sents) };
+  return { v: PERIODIC_PARSER, runway: runwayGuidance(sents, filed), cash: statedCash(sents, asOf), atm: atmUse(sents), other: otherMoney(sents), events: fdaEvents(sents, today, ownName), covenant: cashCovenant(sents), weakness: materialWeakness(sents, filed), alleviated: doubtAlleviated(sents) };
 }

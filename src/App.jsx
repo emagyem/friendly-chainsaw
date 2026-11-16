@@ -310,7 +310,7 @@ function AccountingPanel({ c }) {
         {flags.length === 0 ? <p className="empty">None found: no restatement, auditor change, late filing, listing notice, control weakness or going-concern warning.</p> : (
           <ul className="flaglist">
             {flags.map((f, i) => (
-              <li key={i} className={"flag " + f.sev}>
+              <li key={i} className={"aflag " + f.sev}>
                 <span className="mono">{fmtDate(f.date)}</span>
                 <div><b>{f.label}</b> <ExtLink href={f.url}>Filing</ExtLink>{f.quote && <blockquote className="said">"{f.quote}"</blockquote>}</div>
               </li>
@@ -4933,11 +4933,11 @@ button.tick:hover{color:var(--teal) !important;}
 .metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .grid.trades{min-width:600px;}
 .flaglist{list-style:none;margin:0;padding:0;}
-.flaglist .flag{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:12px 0 12px 12px;border-left:3px solid #E0A23B;border-bottom:1px solid var(--rule);font-size:14.5px;line-height:1.5;}
-.flaglist .flag.high{border-left-color:#B4232A;}
-.flaglist .flag:last-child{border-bottom:0;}
-.flaglist .flag > span{color:var(--mut);font-size:13px;padding-top:2px;}
-@media (max-width:720px){.flaglist .flag{grid-template-columns:1fr;gap:2px;}}
+.flaglist .aflag{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:12px 0 12px 12px;border-left:3px solid #E0A23B;border-bottom:1px solid var(--rule);font-size:14.5px;line-height:1.5;}
+.flaglist .aflag.high{border-left-color:#B4232A;}
+.flaglist .aflag:last-child{border-bottom:0;}
+.flaglist .aflag > span{color:var(--mut);font-size:13px;padding-top:2px;}
+@media (max-width:720px){.flaglist .aflag{grid-template-columns:1fr;gap:2px;}}
 .metrics.three{grid-template-columns:repeat(3,1fr);}
 .metric em{display:block;margin-top:6px;font-style:normal;font-size:12.5px;line-height:1.45;color:var(--mut);}
 blockquote.said{margin:14px 0 4px;padding:10px 14px;border-left:3px solid var(--teal);background:var(--tint);font-size:14px;line-height:1.55;color:var(--ink2);}
