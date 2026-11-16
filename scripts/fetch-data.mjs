@@ -26,6 +26,7 @@ import { parseOffering, OFFERING_PARSER } from "./offering.mjs";
 import { form4Filings, parseForm4, summarizeInsiders } from "./insiders.mjs";
 import { shortInterest, summarizeShort } from "./shorts.mjs";
 import { readPeriodic, PERIODIC_PARSER } from "./periodic.mjs";
+import { filingFlags, accountingFromFacts } from "./accounting.mjs";
 import { pathToFileURL } from "node:url";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
 import { runwaySim, QUANT_VERSION } from "../src/quant.js";
@@ -375,6 +376,7 @@ function financialsFromFacts(facts) {
     burn: ocfM == null ? null : Math.max(0.1, -ocfM / 12),
     cashFlowPositive: ocfM != null && ocfM > 0,
     ocf: ocfM,
+    ocfEnd: ocf?.end || null,
     burnHow: ocf?.how || null,
     burnPrior: ocfPrior ? -M(ocfPrior.val) / 12 : null,
     // Monthly burn in the latest quarter alone (null when that quarter brought cash in).
@@ -1021,7 +1023,8 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
       PERIODIC_CACHE[lastPeriodic.url] = { ...p, filed: lastPeriodic.date };
     }
     if (!p.unread) {
-      said = { form: lastPeriodic.form, date: lastPeriodic.date, url: lastPeriodic.url, runway: p.runway || null, atm: p.atm || null, other: p.other || [], cash: p.cash || null };
+      said = { form: lastPeriodic.form, date: lastPeriodic.date, url: lastPeriodic.url, runway: p.runway || null, atm: p.atm || null, other: p.other || [], cash: p.cash || null,
+        covenant: p.covenant || null, weakness: p.weakness || null, alleviated: p.alleviated || null };
       for (const e of p.events || []) {
         if (e.date < TODAY_ISO) continue;
         if (catalysts.some((x) => x.kind === "regulatory" && Math.abs((toDate(x.date) - toDate(e.date)) / DAY) < 15)) continue;
@@ -1074,6 +1077,8 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
     burnPrior: round(fin.burnPrior, 2),
     burnQ: fin.burnQ == null ? null : round(fin.burnQ, 2),
     said,
+    acct: a.segment ? null : accountingFromFacts(factsUsd, fin, { pickSeries, trailing12 }),
+    flags: filingFlags(sub, cik, TODAY_ISO),
     debtDue24: round(fin.debtDue24, 1),
     raise,
     short: summarizeShort(SHORTS[ticker], fin.shares, a.adr),

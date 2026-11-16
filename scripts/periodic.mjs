@@ -12,7 +12,7 @@
 import { toText } from "./guidance.mjs";
 
 // Bump when the reading rules change, so reports read under older rules are read again.
-export const PERIODIC_PARSER = 5;
+export const PERIODIC_PARSER = 6;
 
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 const WORDNUM = { twelve: 12, eighteen: 18, "twenty-four": 24, "twenty four": 24, thirty: 30, "thirty-six": 36, "thirty six": 36, one: 1, two: 2, three: 3 };
@@ -120,6 +120,38 @@ function statedCash(sents, asOf) {
   return null;
 }
 
+/* ---- accounting warnings in the report's own words ---- */
+
+// A loan that requires the company to keep a minimum amount of cash: that cash can't be spent.
+const COVENANT = /\b(?:maintain|maintaining|maintenance of|required to (?:hold|keep|have))\b[^.;]{0,160}?\b(?:minimum|at least|not less than|no less than)\b[^.;]{0,120}?\$\s?([\d,]+(?:\.\d+)?)\s*(million|billion)|\bminimum (?:unrestricted )?(?:cash|liquidity)[^.;]{0,80}?(?:covenant|requirement|balance)?[^.;]{0,60}?\bof\s+(?:at least\s+)?\$\s?([\d,]+(?:\.\d+)?)\s*(million|billion)/i;
+function cashCovenant(sents) {
+  for (const s of sents) {
+    if (!/\b(cash|liquidity)\b/i.test(s) || !/\b(loan|credit|covenant|lender|facility|notes?|agreement)\b/i.test(s)) continue;
+    if (/\b(no longer|terminated|repaid in full|was removed|waived|market capitalization|revenue)\b/i.test(s)) continue;
+    const m = s.match(COVENANT);
+    if (!m) continue;
+    const amt = dollars(m[1] || m[3], m[2] || m[4]);
+    if (amt >= 1 && amt <= 2000) return { amt: Math.round(amt * 10) / 10, text: clip(s) };
+  }
+  return null;
+}
+
+// A material weakness: the company's own controls over its financial reporting aren't reliable.
+// Only a statement that one exists now counts, not a risk-factor warning that one might arise.
+const WEAK_IS = /\b(?:identified|have|has|had|existence of|exists?|existed|continued? to (?:have|exist)|not (?:yet )?(?:been )?(?:fully )?remediated|were not effective|was not effective|not effective)\b/i;
+const WEAK_NOT = /\b(if we|we may|may identify|could|might|in the future|cannot assure|no material weakness|not identif\w+ any|did not identify|any material weakness|fail(?:ure)? to|were to|would|has been (?:fully )?remediated|have been (?:fully )?remediated|was remediated|were remediated|successfully remediated|there can be no assurance)\b/i;
+function materialWeakness(sents) {
+  const hits = sents.filter((s) => /\bmaterial weakness(?:es)?\b/i.test(s) && WEAK_IS.test(s) && !WEAK_NOT.test(s));
+  const strong = hits.find((s) => /\b(not effective|identified (?:a|the following|certain|one or more) material weakness|not (?:yet )?(?:been )?(?:fully )?remediated)\b/i.test(s));
+  return strong && hits.length >= 2 ? { text: clip(strong) } : null;
+}
+
+// Substantial doubt that management says its plans have resolved: worth knowing, but not a warning.
+function doubtAlleviated(sents) {
+  const s = sents.find((x) => /substantial doubt/i.test(x) && /\b(alleviat\w+|mitigat\w+)\b/i.test(x) && !/\b(not|cannot|no assurance|may not|outside of (?:its|our) control|not probable)\b/i.test(x));
+  return s ? { text: clip(s) } : null;
+}
+
 /* ---- at-the-market sales ---- */
 
 const ATM_WORDS = /\b(at[- ]the[- ]market|ATM|sales agreement|sale agreement|equity distribution agreement|controlled equity|open market sale)\b/i;
@@ -221,5 +253,5 @@ export function readPeriodic(html, filed, today = new Date().toISOString().slice
   if (!html) return null;
   const sents = sentences(toText(html).replace(/&#x2019;|&#8217;|’/g, "'").replace(/&#160;|&nbsp;/g, " "));
   if (sents.length < 50) return null;
-  return { v: PERIODIC_PARSER, runway: runwayGuidance(sents, filed), cash: statedCash(sents, asOf), atm: atmUse(sents), other: otherMoney(sents), events: fdaEvents(sents, today, ownName) };
+  return { v: PERIODIC_PARSER, runway: runwayGuidance(sents, filed), cash: statedCash(sents, asOf), atm: atmUse(sents), other: otherMoney(sents), events: fdaEvents(sents, today, ownName), covenant: cashCovenant(sents), weakness: materialWeakness(sents), alleviated: doubtAlleviated(sents) };
 }
