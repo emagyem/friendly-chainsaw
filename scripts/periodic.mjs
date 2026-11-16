@@ -12,7 +12,7 @@
 import { toText } from "./guidance.mjs";
 
 // Bump when the reading rules change, so reports read under older rules are read again.
-export const PERIODIC_PARSER = 6;
+export const PERIODIC_PARSER = 7;
 
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 const WORDNUM = { twelve: 12, eighteen: 18, "twenty-four": 24, "twenty four": 24, thirty: 30, "thirty-six": 36, "thirty six": 36, one: 1, two: 2, three: 3 };
@@ -138,12 +138,13 @@ function cashCovenant(sents) {
 
 // A material weakness: the company's own controls over its financial reporting aren't reliable.
 // Only a statement that one exists now counts, not a risk-factor warning that one might arise.
-const WEAK_IS = /\b(?:identified|have|has|had|existence of|exists?|existed|continued? to (?:have|exist)|not (?:yet )?(?:been )?(?:fully )?remediated|were not effective|was not effective|not effective)\b/i;
-const WEAK_NOT = /\b(if we|we may|may identify|could|might|in the future|cannot assure|no material weakness|not identif\w+ any|did not identify|any material weakness|fail(?:ure)? to|were to|would|has been (?:fully )?remediated|have been (?:fully )?remediated|was remediated|were remediated|successfully remediated|there can be no assurance)\b/i;
+// The test is the conclusion every report must state: whether controls "were not effective", or
+// that a weakness has not yet been fixed. A weakness described as past or already fixed doesn't count.
+const WEAK_NOW = /\b(?:were|was|are|is) not effective\b|\bnot (?:yet )?(?:been )?(?:fully )?remediated\b|\bremains? unremediated\b|\bcontinues? to exist\b|\bremediation (?:efforts|plan|measures)? ?(?:is|are) ongoing\b/i;
+const WEAK_NOT = /\b(if we|we may|may identify|could|might|in the future|cannot assure|no material weakness|did not identify|fail(?:ure)? to|were to|would|has been (?:fully )?remediated|have been (?:fully )?remediated|was remediated|were remediated|we remediated|successfully remediated|there can be no assurance|in the past|for example)\b/i;
 function materialWeakness(sents) {
-  const hits = sents.filter((s) => /\bmaterial weakness(?:es)?\b/i.test(s) && WEAK_IS.test(s) && !WEAK_NOT.test(s));
-  const strong = hits.find((s) => /\b(not effective|identified (?:a|the following|certain|one or more) material weakness|not (?:yet )?(?:been )?(?:fully )?remediated)\b/i.test(s));
-  return strong && hits.length >= 2 ? { text: clip(strong) } : null;
+  const hit = sents.find((s) => /\bmaterial weakness(?:es)?\b/i.test(s) && WEAK_NOW.test(s) && !WEAK_NOT.test(s));
+  return hit ? { text: clip(hit, 420) } : null;
 }
 
 // Substantial doubt that management says its plans have resolved: worth knowing, but not a warning.

@@ -26,7 +26,10 @@ import { parseOffering, OFFERING_PARSER } from "./offering.mjs";
 import { form4Filings, parseForm4, summarizeInsiders } from "./insiders.mjs";
 import { shortInterest, summarizeShort } from "./shorts.mjs";
 import { readPeriodic, PERIODIC_PARSER } from "./periodic.mjs";
-import { filingFlags, accountingFromFacts } from "./accounting.mjs";
+import { toText } from "./guidance.mjs";
+import { filingFlags, accountingFromFacts, listingReason } from "./accounting.mjs";
+// What each listing notice was about, by filing URL (read once; a filing never changes).
+const LISTING_WHY = new Map();
 import { pathToFileURL } from "node:url";
 import { computeFPS, FPS_VERSION } from "../src/fps.js";
 import { runwaySim, QUANT_VERSION } from "../src/quant.js";
@@ -1017,6 +1020,13 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
   let acct = null;
   if (!a.segment) { try { acct = accountingFromFacts(factsUsd, fin, { pickSeries, trailing12 }); } catch (e) { warn(`${ticker}: accounting checks skipped (${e.message})`); } }
 
+  const flags = filingFlags(sub, cik, TODAY_ISO);
+  for (const f of flags.filter((x) => x.kind === "listing")) {
+    if (!LISTING_WHY.has(f.url)) { let why = null; try { why = listingReason(toText(await secText(f.url) || "")); } catch { /* keep the general label */ } LISTING_WHY.set(f.url, why); }
+    const why = LISTING_WHY.get(f.url);
+    if (why) { f.label = why[0]; f.sev = why[1]; f.why = why; }
+  }
+
   // What the latest quarterly or annual report says in words: management's runway, ATM sales,
   // other funding, and FDA dates the company has announced.
   let said = null;
@@ -1082,7 +1092,7 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
     burnQ: fin.burnQ == null ? null : round(fin.burnQ, 2),
     said,
     acct,
-    flags: filingFlags(sub, cik, TODAY_ISO),
+    flags,
     debtDue24: round(fin.debtDue24, 1),
     raise,
     short: summarizeShort(SHORTS[ticker], fin.shares, a.adr),
@@ -1162,6 +1172,7 @@ async function main() {
     const prev = JSON.parse(await readFile(OUT_FILE, "utf8"));
     for (const c of [...(prev.companies || []), ...(prev.industry || prev.bigPharma || [])]) previous[c.t] = c;
     previous.__meta = prev.meta;
+    for (const c of Object.values(previous)) for (const f of c?.flags || []) if (f.kind === "listing" && f.why) LISTING_WHY.set(f.url, f.why);
     for (const c of Object.values(previous)) for (const f of c?.financings || []) if (f.url && f.parsed?.v === OFFERING_PARSER && f.parsed.kind !== "unread") OFFER_CACHE.set(f.url, f.parsed);
   } catch { /* first run */ }
 

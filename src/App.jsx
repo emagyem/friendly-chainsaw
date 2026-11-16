@@ -355,7 +355,7 @@ function AccountingPanel({ c }) {
                 <div className="metric"><span>As a share of today's count</span><b className={"mono " + (a.overhang.pct >= 25 ? "warn" : "")}>+{num(a.overhang.pct, 0)}%</b></div>
               </div>
               <p className="prose">{[a.overhang.options ? `${num(a.overhang.options, 1)}M stock options` : null, a.overhang.awards ? `${num(a.overhang.awards, 1)}M unvested stock awards` : null, a.overhang.warrants ? `${num(a.overhang.warrants, 1)}M warrants` : null].filter(Boolean).join(", ") || "The company reports one total"}{a.overhang.basis === "total" ? ". The total is what the company left out of its loss-per-share figure, which also covers convertible notes." : "."}{ohRank != null ? ` More than ${ohRank}% of covered companies.` : ""}</p>
-              <p className="colnote">These become shares only if holders exercise or convert, and many options are priced above today's share price. Treat it as the ceiling, on top of any new stock sale.</p>
+              <p className="colnote">These become shares only if holders exercise or convert, and many options are priced above today's share price. Treat it as the ceiling, on top of any new stock sale.{a.overhang.pct > 60 ? " A figure this large usually means many warrants or convertible notes; a recent reverse split can also distort it, so check the share-count note in the latest report." : ""}</p>
             </>
           )}
         </section>
