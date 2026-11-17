@@ -125,7 +125,10 @@ export async function disableAlerts() {
 
 /* ---- app chrome ---- */
 
-export async function initApp(onBack) {
+// helixora://company/SRRK/accounting, helixora://report, ... → ["company", "SRRK", "accounting"]
+export const parseAppLink = (url) => String(url || "").replace(/^helixora:\/\//i, "").replace(/^https:\/\/helixora\.pages\.dev\/#?/i, "").split(/[/?#]/).filter(Boolean).map(decodeURIComponent);
+
+export async function initApp(onBack, onLink) {
   if (!IS_APP) return;
   document.documentElement.classList.add("in-app", `in-app-${PLATFORM}`);
   try {
@@ -134,6 +137,7 @@ export async function initApp(onBack) {
   } catch { /* not available on every platform */ }
   try {
     const { App } = await import("@capacitor/app");
+    App.addListener("appUrlOpen", ({ url }) => onLink(parseAppLink(url)));
     App.addListener("backButton", ({ canGoBack }) => { if (!onBack()) { if (canGoBack) window.history.back(); else App.minimizeApp(); } });
   } catch { /* iOS has no back button */ }
   try { const { SplashScreen } = await import("@capacitor/splash-screen"); await SplashScreen.hide(); } catch { /* ignore */ }

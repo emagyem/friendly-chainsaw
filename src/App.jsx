@@ -3964,7 +3964,10 @@ export default function App() {
   backRef.current = () => { if (navOpen) { setNavOpen(false); return true; } if (view !== "home") { go("home"); return true; } return false; };
   useEffect(() => {
     if (!IS_APP) return;
-    initApp(() => backRef.current());
+    initApp(() => backRef.current(), ([v, t, tab]) => {
+      if (v === "company" && t && findCo(t.toUpperCase())) go("company", t.toUpperCase(), tab);
+      else if (v && NAV.some((g) => g.items.some(([k]) => k === v))) go(v);
+    });
     resumeAlerts(watch, (t) => go("company", t, "pressure"));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const toggleWatch = (t) => setWatch((w) => { if (!w.includes(t)) track("watch_add"); return w.includes(t) ? w.filter((x) => x !== t) : [...w, t]; });

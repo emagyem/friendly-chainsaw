@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- helixora://company/SRRK opens that company's page in the app. -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.helixora.app</string>
+			<key>CFBundleURLSchemes</key>
+			<array><string>helixora</string></array>
+		</dict>
+	</array>
 	<!-- The app only uses standard HTTPS, so it's exempt from US export-compliance paperwork. -->
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>

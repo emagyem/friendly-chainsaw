@@ -1,0 +1,45 @@
+# Runs the iOS app in the iPhone Simulator and saves App Store screenshots
+# (Artifacts → app-screenshots). Run it from the Actions tab whenever the app changes.
+name: App screenshots
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ios:
+    runs-on: macos-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run app:build
+      - name: Build for the simulator
+        run: |
+          xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' -derivedDataPath "$RUNNER_TEMP/dd" CODE_SIGNING_ALLOWED=NO build | tail -5
+      - name: Run the app and take screenshots
+        run: |
+          # The largest iPhone available: App Store Connect asks for 6.9-inch screenshots.
+          DEVICE=$(xcrun simctl list devices available -j | node -e '
+            const d = JSON.parse(require("fs").readFileSync(0)).devices;
+            const all = Object.entries(d).filter(([r]) => /iOS/.test(r)).flatMap(([, l]) => l);
+            const pick = all.find((x) => /Pro Max/.test(x.name)) || all.find((x) => /Plus/.test(x.name)) || all.find((x) => /iPhone/.test(x.name));
+            console.log(pick.udid); console.error(pick.name);')
+          xcrun simctl boot "$DEVICE"; xcrun simctl bootstatus "$DEVICE" -b
+          xcrun simctl status_bar "$DEVICE" override --time 9:41 --batteryState charged --batteryLevel 100 --cellularBars 4 --wifiBars 3
+          xcrun simctl install "$DEVICE" "$RUNNER_TEMP/dd/Build/Products/Debug-iphonesimulator/App.app"
+          mkdir -p shots
+          xcrun simctl launch "$DEVICE" com.helixora.app; sleep 25
+          xcrun simctl io "$DEVICE" screenshot shots/1-home.png
+          shoot() { xcrun simctl openurl "$DEVICE" "$1"; sleep 6; xcrun simctl io "$DEVICE" screenshot "shots/$2.png"; }
+          shoot "helixora://report" 2-pressure-report
+          shoot "helixora://company/SRRK" 3-company
+          shoot "helixora://company/SRRK/pressure" 4-financing-pressure
+          shoot "helixora://company/GOSS/accounting" 5-accounting
+          shoot "helixora://company/SRRK/ownership" 6-insiders
+          shoot "helixora://catalysts" 7-catalysts
+          xcrun simctl spawn "$DEVICE" log show --last 5m --predicate 'process == "App"' --style compact | grep -iE "error|exception|⚡️" | tail -40 || true
+      - uses: actions/upload-artifact@v6
+        with: { name: app-screenshots, path: shots/ }
