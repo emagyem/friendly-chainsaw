@@ -38,9 +38,12 @@ export function makeLimiter(limit, windowMs) {
 }
 
 // Refuse browser requests that come from another website.
+// Where the iOS app (capacitor://localhost) and Android app (https://localhost) serve their pages from.
+export const APP_ORIGINS = ["capacitor://localhost", "https://localhost", "http://localhost"];
+
 export function sameOrigin(request) {
   const from = request.headers.get("origin");
-  return !from || from === new URL(request.url).origin;
+  return !from || from === new URL(request.url).origin || APP_ORIGINS.includes(from);
 }
 
 export function buildFacts(dataFile, today = new Date()) {

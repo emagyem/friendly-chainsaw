@@ -12,6 +12,8 @@
 # The data file changes every weekday; browsers should always check for a new one.
 /data/*
   Cache-Control: public, max-age=0, must-revalidate
+  # Public data, also read by the iOS and Android app.
+  Access-Control-Allow-Origin: *
 
 # Server responses are never cached.
 /api/*

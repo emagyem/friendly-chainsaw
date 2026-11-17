@@ -1,0 +1,108 @@
+# Builds the iOS and Android apps.
+#
+# Every run makes test builds anyone can try:
+#   - Android: an .apk to install on a phone (Artifacts → helixora-android)
+#   - iOS: a build for the iPhone Simulator, proving the project compiles
+#
+# Store builds are made when the secrets below exist (Settings → Secrets and variables → Actions):
+#   Android (Google Play .aab): ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS,
+#     ANDROID_KEY_PASSWORD; and GOOGLE_SERVICES_JSON (from Firebase) for push alerts.
+#   iOS (uploaded to App Store Connect / TestFlight): ASC_KEY_P8, ASC_KEY_ID, ASC_ISSUER_ID (an App Store
+#     Connect API key with the App Manager role) and APPLE_TEAM_ID. Signing is handled by Apple.
+name: Build apps
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["src/**", "android/**", "ios/**", "capacitor.config.json", "package.json", "package-lock.json", "index.html", "public/*", "public/icons/**", ".github/workflows/app.yml", "scripts/app-bundle.mjs"]
+
+concurrency:
+  group: build-apps
+  cancel-in-progress: true
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 22, cache: npm }
+      - uses: actions/setup-java@v5
+        with: { distribution: temurin, java-version: 21, cache: gradle }
+      - run: npm ci
+      - run: npm run app:build
+
+      - name: Firebase settings for push alerts
+        env: { GOOGLE_SERVICES_JSON: "${{ secrets.GOOGLE_SERVICES_JSON }}" }
+        if: env.GOOGLE_SERVICES_JSON != ''
+        run: printf '%s' "$GOOGLE_SERVICES_JSON" > android/app/google-services.json
+
+      - name: Test build (.apk)
+        working-directory: android
+        env: { APP_BUILD_NUMBER: "${{ github.run_number }}" }
+        run: ./gradlew --no-daemon assembleDebug
+
+      - name: Store build (.aab), when the signing key is set
+        working-directory: android
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          APP_BUILD_NUMBER: ${{ github.run_number }}
+        if: env.KEYSTORE_B64 != ''
+        run: |
+          echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/release.keystore"
+          ANDROID_KEYSTORE_PATH="$RUNNER_TEMP/release.keystore" ./gradlew --no-daemon bundleRelease
+
+      - uses: actions/upload-artifact@v6
+        with:
+          name: helixora-android
+          path: |
+            android/app/build/outputs/apk/debug/*.apk
+            android/app/build/outputs/bundle/release/*.aab
+          if-no-files-found: warn
+
+  ios:
+    runs-on: macos-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run app:build
+
+      - name: Simulator build (checks the project compiles)
+        run: |
+          xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug \
+            -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath "$RUNNER_TEMP/dd" CODE_SIGNING_ALLOWED=NO build | tail -30
+
+      - name: App Store build, uploaded to TestFlight, when the API key is set
+        env:
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        if: env.ASC_KEY_P8 != ''
+        run: |
+          KEY="$RUNNER_TEMP/AuthKey_$ASC_KEY_ID.p8"; printf '%s' "$ASC_KEY_P8" > "$KEY"
+          AUTH=(-allowProvisioningUpdates -authenticationKeyPath "$KEY" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID")
+          xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/Helixora.xcarchive" DEVELOPMENT_TEAM="$APPLE_TEAM_ID" CURRENT_PROJECT_VERSION="${{ github.run_number }}" \
+            "${AUTH[@]}" archive | tail -20
+          cat > "$RUNNER_TEMP/export.plist" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>app-store-connect</string>
+            <key>destination</key><string>upload</string>
+            <key>teamID</key><string>$APPLE_TEAM_ID</string>
+            <key>signingStyle</key><string>automatic</string>
+          </dict></plist>
+          PLIST
+          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/Helixora.xcarchive" -exportOptionsPlist "$RUNNER_TEMP/export.plist" \
+            -exportPath "$RUNNER_TEMP/export" "${AUTH[@]}" | tail -20

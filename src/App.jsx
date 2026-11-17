@@ -4,8 +4,10 @@ import {
   ScatterChart, Scatter, ZAxis, ReferenceLine, BarChart, Bar, Cell, AreaChart, Area, ComposedChart
 } from "recharts";
 import { COMPANIES, META, HISTORY, INDUSTRY } from "./data.js";
+import { IS_APP, apiUrl, openSite, shareCompany, enableAlerts, disableAlerts, resumeAlerts, syncWatchlist, alertsWanted, initApp } from "./native.js";
 // Count a page view or key action (daily totals only; see functions/api/event.js).
 function track(name) {
+  if (IS_APP) return; // the app doesn't count page views
   try {
     const body = JSON.stringify({ name });
     if (navigator.sendBeacon) navigator.sendBeacon("/api/event", new Blob([body], { type: "application/json" }));
@@ -702,6 +704,37 @@ function Kicker({ c, go }) {
   return <button className="kicker" onClick={() => go("company", c.t)}>{c.n} <span className="kicker-t">{c.t}</span></button>;
 }
 
+function ShareButton({ c }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button className="watchbtn sharebtn" onClick={async () => { if ((await shareCompany(c)) === "copied") { setCopied(true); setTimeout(() => setCopied(false), 2000); } }}>
+      {copied ? "Link copied" : "Share"}
+    </button>
+  );
+}
+
+// Phone app: push alerts for the watchlist.
+function AlertSwitch({ watch, go }) {
+  const [on, setOn] = useState(alertsWanted());
+  const [state, setState] = useState("");
+  const flip = async () => {
+    setState("Working…");
+    if (on) { await disableAlerts(); setOn(false); setState("Alerts are off. Your phone's push address was deleted from our server."); return; }
+    try {
+      const r = await enableAlerts(watch, (t) => go("company", t, "pressure"));
+      if (r === "on") { setOn(true); setState(""); }
+      else if (r === "denied") setState("Notifications are turned off for Helixora. Turn them on in your phone's Settings, then try again.");
+      else setState(r);
+    } catch (e) { setState(e.message || "Couldn't turn on alerts. Try again."); }
+  };
+  return (
+    <div className="alertswitch">
+      <label><input type="checkbox" role="switch" checked={on} onChange={flip} /> <span>Alert me about these companies</span></label>
+      <p className="colnote">{state || (on ? "You'll get a notification when one of them changes band, files for a stock sale or gets an accounting red flag." : "A notification when a company here changes band, files for a stock sale or gets an accounting red flag.")}</p>
+    </div>
+  );
+}
+
 function Home({ go, watch, toggleWatch }) {
   const stories = useMemo(() => briefs(), []);
   const feed = useMemo(() => wire(), []);
@@ -832,6 +865,7 @@ function Home({ go, watch, toggleWatch }) {
           <section aria-labelledby="wl-h">
             <h2 id="wl-h" className="colhead">Your watchlist</h2>
             {watch.length === 0 && <p className="colnote">Star a company on its quote page to follow it here.</p>}
+            {IS_APP && <AlertSwitch watch={watch} go={go} />}
             <ul className="wl">
               {watch.map((t) => findCo(t)).filter(Boolean).map((c) => (
                 <li key={c.t}>
@@ -1055,6 +1089,7 @@ function Company({ ticker, go, watch, toggleWatch, initialTab = "overview" }) {
           <button className={"watchbtn " + (watch.includes(c.t) ? "on" : "")} aria-pressed={watch.includes(c.t)} onClick={() => toggleWatch(c.t)}>
             {watch.includes(c.t) ? "★ On your watchlist" : "☆ Add to watchlist"}
           </button>
+          <ShareButton c={c} />
         </div>
         {segLabel(c.group) && <p className="bp-note">Part of the wider drug industry, tracked for comparison and not ranked with the biotechs. {c.n} {c.cashFlowPositive ? "generates cash from its business, so the financing-pressure measures on this page mostly don't apply" : "is spending more cash than it brings in"}. {c.pipeline.length ? "Its pipeline here shows only its own active Phase III trials." : "It has no active Phase III trials of its own."}{c.src?.fxNote ? ` ${c.src.fxNote}.` : ""}</p>}
         {c.quote ? (
@@ -1564,6 +1599,22 @@ function Compare() {
 }
 
 function Ask() {
+  if (IS_APP) return <OnWebsite title="Ask Helixora" text="Ask questions about any company in plain English. Answers are written from the same figures as the app, with sources. It opens the Helixora website inside the app." hash="#ask" label="Open Ask Helixora" />;
+  return <AskOnSite />;
+}
+
+// In the phone app, features that need the website's human check open it in the in-app browser.
+function OnWebsite({ title, text, hash, label }) {
+  return (
+    <section className="panel onweb">
+      <header className="ph"><h2>{title}</h2></header>
+      <p className="prose">{text}</p>
+      <button className="btn" onClick={() => openSite(hash)}>{label}</button>
+    </section>
+  );
+}
+
+function AskOnSite() {
   const [q, setQ] = useState("");
   const [log, setLog] = useState([]);
   const [busy, setBusy] = useState(false);
@@ -1607,7 +1658,7 @@ function Ask() {
     setBusy(true);
     try {
       // The API key lives in the serverless function (api/ask.js), never in the browser.
-      const res = await fetch("/api/ask", {
+      const res = await fetch(apiUrl("/api/ask"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // Only the question is sent; the server builds the data from the published data file.
@@ -1858,7 +1909,7 @@ let TS_KEY; // undefined = not looked up yet, null = off
 let TS_SCRIPT;
 async function turnstileKey() {
   if (TS_KEY === undefined) {
-    try { TS_KEY = ((await (await fetch("/api/config")).json()).turnstileSiteKey || "").trim() || null; } catch { TS_KEY = null; }
+    try { TS_KEY = ((await (await fetch(apiUrl("/api/config"))).json()).turnstileSiteKey || "").trim() || null; } catch { TS_KEY = null; }
   }
   return TS_KEY;
 }
@@ -1910,7 +1961,7 @@ function Waitlist({ compact, band }) {
     setState("sending");
     try {
       // Sign-ups are stored in Cloudflare D1 by functions/api/waitlist.js.
-      const res = await fetch("/api/waitlist", {
+      const res = await fetch(apiUrl("/api/waitlist"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, role, botField: "", turnstileToken: tsToken }),
@@ -3503,7 +3554,7 @@ function PilotForm({ plan, setPlan }) {
     if (!ready) return;
     setState("sending"); setErr("");
     try {
-      const r = await fetch("/api/pilot", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...f, plan, botField: "", turnstileToken: token }) });
+      const r = await fetch(apiUrl("/api/pilot"), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...f, plan, botField: "", turnstileToken: token }) });
       used();
       if (r.ok) { setState("done"); track(`pilot_request_${plan}`); }
       else { setState("error"); setErr((await r.json().catch(() => ({}))).error || "That didn't go through."); }
@@ -3596,7 +3647,12 @@ function ForFunds({ go }) {
   );
 }
 
-function CorrectionForm({ ticker, topic = "other" }) {
+function CorrectionForm(props) {
+  if (IS_APP) return <OnWebsite title="Report a correction" text="Spotted a figure, date or classification that's wrong? The form is on the Helixora website." hash="#corrections" label="Open the correction form" />;
+  return <CorrectionFormOnSite {...props} />;
+}
+
+function CorrectionFormOnSite({ ticker, topic = "other" }) {
   const [msg, setMsg] = useState("");
   const [email, setEmail] = useState("");
   const [state, setState] = useState("idle");
@@ -3606,7 +3662,7 @@ function CorrectionForm({ ticker, topic = "other" }) {
     if (!ready) return;
     setState("sending");
     try {
-      const res = await fetch("/api/correction", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ticker, topic, message: msg, email, botField: "", turnstileToken: token }) });
+      const res = await fetch(apiUrl("/api/correction"), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ticker, topic, message: msg, email, botField: "", turnstileToken: token }) });
       used();
       if (res.ok) track("correction_sent");
       setState(res.ok ? "done" : "error");
@@ -3728,6 +3784,11 @@ function CoveragePanel() {
 }
 
 function RemoveMe() {
+  if (IS_APP) return <OnWebsite title="Remove your email" text="To delete your email address from the report list, pilot requests and correction reports, use the form on the Helixora website." hash="#privacy" label="Open the removal form" />;
+  return <RemoveMeOnSite />;
+}
+
+function RemoveMeOnSite() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState("idle");
   const { mount: tsMount, token: tsToken, ready: tsReady, used: tsUsed } = useHumanCheck();
@@ -3736,7 +3797,7 @@ function RemoveMe() {
     if (!tsReady) return;
     setState("sending");
     try {
-      const res = await fetch("/api/waitlist", {
+      const res = await fetch(apiUrl("/api/waitlist"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "remove", email, turnstileToken: tsToken }),
@@ -3778,6 +3839,7 @@ function Privacy() {
               <tr><td><b>You use Ask Helixora</b></td><td>Your question, sent to Anthropic's API to write the answer</td><td>To answer it. Helixora doesn't store questions.</td><td>Not kept by Helixora; Anthropic handles API data under its own terms</td></tr>
               <tr><td><b>You submit a form</b></td><td>A one-way scrambled code made from your IP address and the date; Cloudflare Turnstile may check your browser</td><td>To limit abuse and stop bots</td><td>Codes expire within a day</td></tr>
               <tr><td><b>You change a setting</b></td><td>Your watchlist and menu layout, stored in your own browser</td><td>To remember your choices</td><td>Until you clear your browser data; never sent to us</td></tr>
+              <tr><td><b>You turn on alerts in the phone app</b></td><td>Your phone's push address (a random code from Apple or Google), whether it's an iPhone or Android phone, and the tickers on your watchlist</td><td>To send you a notification when one of those companies changes</td><td>Until you turn alerts off (which deletes them at once), or until Apple or Google tells us the address no longer works</td></tr>
             </tbody>
           </table>
         </div>
@@ -3832,7 +3894,7 @@ function Wordmark({ underline = false }) {
 
 // Sections and their pages, grouped the way a financial news site groups them.
 // One product up front: biotech financing risk. Everything else sits under More.
-const NAV = [
+const NAV_ALL = [
   { k: "risk", l: "Financing Risk", items: [["home", "Overview"], ["report", "Pressure Report"], ["screen", "Screener"], ["research", "Track Record"]] },
   { k: "companies", l: "Companies", items: [["company", "Quotes"], ["compare", "Compare"], ["catalysts", "Catalyst Calendar"], ["outlook", "Trial Outlook"]] },
   { k: "ask", l: "Ask Helixora", items: [["ask", "Ask Helixora"]] },
@@ -3840,6 +3902,8 @@ const NAV = [
   { k: "industry", l: "Drug Industry", items: [["industry", "Drug Industry"]] },
   { k: "about", l: "About us", items: [["about", "About us"]] },
 ];
+// The store apps don't show prices or ways to buy; the funds-and-banks page stays on the website.
+const NAV = IS_APP ? NAV_ALL.filter((g) => g.k !== "pro") : NAV_ALL;
 const groupOf = (v) => NAV.find((g) => g.items.some(([k]) => k === (v === "privacy" ? "about" : v))) || NAV[0];
 
 const WATCH_KEY = "readout-watchlist";
@@ -3869,7 +3933,7 @@ export default function App() {
   const [layout, setLayout] = useState(() => { try { return localStorage.getItem("helixora-layout") === "side" ? "side" : "top"; } catch { return "top"; } });
   useEffect(() => { try { localStorage.setItem("helixora-layout", layout); } catch { /* ignore */ } }, [layout]);
 
-  useEffect(() => { try { localStorage.setItem(WATCH_KEY, JSON.stringify(watch)); } catch { /* ignore */ } }, [watch]);
+  useEffect(() => { try { localStorage.setItem(WATCH_KEY, JSON.stringify(watch)); } catch { /* ignore */ } syncWatchlist(watch); }, [watch]);
 
   const [companyTab, setCompanyTab] = useState("overview");
   // "method" (the old Methodology page) now opens the About us page at the score section.
@@ -3880,14 +3944,29 @@ export default function App() {
     if (t) setTicker(t); setCompanyTab(tab || "overview"); setAnchor(a); setView(v);
     if (!a) window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  // helixora.pages.dev/#privacy opens the Privacy page (linked from the waitlist form).
+  // Links into the site: #privacy, #ask, #corrections, #signup and #company/TICKER (shared company links).
   useEffect(() => {
-    const fromHash = () => { if (window.location.hash === "#privacy") { setView("privacy"); window.scrollTo({ top: 0 }); } };
+    const fromHash = () => {
+      const h = decodeURIComponent(window.location.hash.slice(1));
+      if (h === "privacy") { setView("privacy"); window.scrollTo({ top: 0 }); }
+      else if (h === "ask") go("ask");
+      else if (h === "corrections") go("corrections");
+      else if (h === "signup") setTimeout(() => document.getElementById("signup")?.scrollIntoView(), 300);
+      else if (h.startsWith("company/")) { const t = h.slice(8).toUpperCase(); if (findCo(t)) go("company", t); }
+    };
     fromHash();
     window.addEventListener("hashchange", fromHash);
     return () => window.removeEventListener("hashchange", fromHash);
   }, []);
   useEffect(() => { if (view !== "privacy" && window.location.hash === "#privacy") history.replaceState(null, "", window.location.pathname); }, [view]);
+  // Phone app: hide the splash screen, wire the Android back button, re-register push alerts.
+  const backRef = useRef(null);
+  backRef.current = () => { if (navOpen) { setNavOpen(false); return true; } if (view !== "home") { go("home"); return true; } return false; };
+  useEffect(() => {
+    if (!IS_APP) return;
+    initApp(() => backRef.current());
+    resumeAlerts(watch, (t) => go("company", t, "pressure"));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const toggleWatch = (t) => setWatch((w) => { if (!w.includes(t)) track("watch_add"); return w.includes(t) ? w.filter((x) => x !== t) : [...w, t]; });
 
   const matches = omni.trim()
@@ -3905,6 +3984,7 @@ export default function App() {
       <style>{CSS}</style>
       <a className="skip" href="#main">Skip to content</a>
 
+      {META.offline && <div className="offline-bar" role="status">You're offline. Showing the data saved on this phone, as of {new Date(META.generatedAt).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}.</div>}
       <header className="mast">
         <div className="mast-in">
           <button className="wordmark" onClick={() => go("home")} aria-label="Helixora home">
@@ -3976,7 +4056,7 @@ export default function App() {
         {view === "catalysts" && <Catalysts go={go} />}
         {view === "compare" && <Compare />}
         {(view === "industry" || view === "bigpharma") && <Industry go={go} />}
-        {view === "pro" && <ForFunds go={go} />}
+        {view === "pro" && !IS_APP && <ForFunds go={go} />}
         {view === "ask" && <Ask />}
         {view === "research" && <Research go={go} />}
         {view === "about" && <About key={anchor || "top"} go={go} anchor={anchor} />}
@@ -3991,7 +4071,7 @@ export default function App() {
             <h2 id="cta-h">Get the Financing Pressure Report by email</h2>
             <p>A short note when the Raise List changes, with every number linked to its filing. No hype, no stock picks.</p>
           </div>
-          <Waitlist band />
+          {IS_APP ? <button className="btn" onClick={() => openSite("#signup")}>Sign up on the website</button> : <Waitlist band />}
         </div>
       </section>
       <footer className="foot">
@@ -4323,6 +4403,17 @@ a.src:hover{color:var(--teal);}
 .q-id h1{font-family:var(--display);font-size:clamp(30px,3.2vw,42px);font-weight:700;font-stretch:86%;margin:0;letter-spacing:-.022em;line-height:1.05;}
 .q-tk{font-size:14px;font-weight:700;color:var(--teal-d);background:#E3F2EF;padding:2px 9px;border-radius:999px;letter-spacing:.02em;}
 .q-area{font-size:13.5px;color:var(--mut);}
+.sharebtn{margin-left:8px;}
+.alertswitch{margin:10px 0 4px;}
+.alertswitch label{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:600;cursor:pointer;}
+.alertswitch input{width:20px;height:20px;accent-color:var(--teal);}
+.onweb .btn{margin-top:8px;}
+.offline-bar{background:#FFF4D6;color:#5C4300;font-size:13.5px;padding:8px 16px;text-align:center;border-bottom:1px solid #EBD9A6;}
+/* Phone app: keep the header clear of the notch and status bar, and the footer clear of the home bar. */
+.in-app .mast{padding-top:env(safe-area-inset-top);}
+.in-app .offline-bar{padding-top:calc(8px + env(safe-area-inset-top));}
+.in-app .foot{padding-bottom:env(safe-area-inset-bottom);}
+.in-app .mast-cta{display:none !important;}
 .watchbtn{background:#fff;border:1px solid var(--rule);padding:8px 14px;font-size:13.5px;font-weight:600;border-radius:999px;transition:border-color .15s,background .15s;}
 .watchbtn:hover{border-color:var(--teal);}
 .watchbtn.on{background:#E3F2EF;border-color:#9CCAC3;color:var(--teal-d) !important;}

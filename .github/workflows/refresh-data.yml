@@ -29,6 +29,10 @@ jobs:
         with:
           node-version: 22
 
+      # Kept for the phone-app alerts, which compare today's data with the last run's.
+      - name: Keep the previous data
+        run: cp public/data/companies.json "$RUNNER_TEMP/previous-companies.json" || true
+
       - name: Fetch latest data
         env:
           # The SEC requires a name and contact email on automated requests.
@@ -51,3 +55,16 @@ jobs:
           # Code may have been pushed while this ran; this run's data wins any clash.
           git pull --rebase -X theirs
           git push
+
+      # Phone-app push alerts for watched companies that changed. Skips itself until the
+      # PUSH_KEY, APNS_* and FCM_SERVICE_ACCOUNT secrets are set (see scripts/push-alerts.mjs).
+      - name: Send app alerts
+        continue-on-error: true
+        env:
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          APNS_KEY: ${{ secrets.APNS_KEY }}
+          APNS_KEY_ID: ${{ secrets.APNS_KEY_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APNS_ENV: ${{ vars.APNS_ENV }}
+          FCM_SERVICE_ACCOUNT: ${{ secrets.FCM_SERVICE_ACCOUNT }}
+        run: node scripts/push-alerts.mjs "$RUNNER_TEMP/previous-companies.json" public/data/companies.json

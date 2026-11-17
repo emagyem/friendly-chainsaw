@@ -1,4 +1,5 @@
 import { SAMPLE_COMPANIES } from "./sampleData.js";
+import { fetchData } from "./native.js";
 
 /* ------------------------------------------------------------------
    Data loading. The app reads public/data/companies.json, which the
@@ -19,17 +20,13 @@ export let INDUSTRY = [];
 
 export async function loadData() {
   try {
-    const res = await fetch(`${import.meta.env.BASE_URL}data/companies.json`, { cache: "no-cache" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
+    const { json, offline } = await fetchData("companies.json");
     if (!Array.isArray(json.companies) || json.companies.length === 0) throw new Error("no companies in file");
     COMPANIES = json.companies;
     INDUSTRY = Array.isArray(json.industry) ? json.industry : Array.isArray(json.bigPharma) ? json.bigPharma : [];
-    META = { ...json.meta, live: true };
-    try {
-      const h = await fetch(`${import.meta.env.BASE_URL}data/fps-history.json`, { cache: "no-cache" });
-      if (h.ok) HISTORY = await h.json();
-    } catch { /* no history yet */ }
+    // offline: the phone app couldn't reach the server and is showing the copy it saved last time.
+    META = { ...json.meta, live: true, offline };
+    try { HISTORY = (await fetchData("fps-history.json")).json; } catch { /* no history yet */ }
   } catch (e) {
     COMPANIES = SAMPLE_COMPANIES;
     META = { live: false, reason: e.message };
