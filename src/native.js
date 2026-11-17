@@ -25,13 +25,19 @@ export const dataUrl = (file) => (IS_APP ? `${SITE}/data/${file}` : `${import.me
 
 /* ---- offline copy ---- */
 
+// Startup progress, shown in place of "Loading Helixora…" until the first screen appears.
+export function stage(text) { const el = document.getElementById("boot-stage"); if (el) el.textContent = text; }
+
 const CACHE_DIR = "CACHE";
 async function fs() { return (await import("@capacitor/filesystem")).Filesystem; }
 
 // Fetch a data file; in the app, save it on the phone and fall back to the saved copy when offline.
 export async function fetchData(file) {
   try {
-    const res = await fetch(dataUrl(file), { cache: "no-cache" });
+    // Don't wait forever on a weak connection: after 20 seconds use the copy on the phone.
+    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), IS_APP ? 20000 : 60000);
+    stage(`Downloading ${file}…`);
+    const res = await fetch(dataUrl(file), { cache: "no-cache", signal: ctl.signal }).finally(() => clearTimeout(timer));
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const text = await res.text();
     if (IS_APP) {
@@ -40,6 +46,7 @@ export async function fetchData(file) {
     return { json: JSON.parse(text), offline: false };
   } catch (e) {
     if (!IS_APP) throw e;
+    stage(`Offline (${e.name === "AbortError" ? "timed out" : e.message}); using the saved copy…`);
     try {
       const saved = await (await fs()).readFile({ path: `helixora-${file}`, directory: CACHE_DIR, encoding: "utf8" });
       return { json: JSON.parse(saved.data), offline: true };

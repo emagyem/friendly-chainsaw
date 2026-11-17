@@ -5,6 +5,7 @@ import '@fontsource-variable/instrument-sans/wdth.css'
 import '@fontsource-variable/source-serif-4/opsz.css'
 import './index.css'
 import { loadData } from './data.js'
+import { stage } from './native.js'
 
 // Load the dataset first, then the app, so every view (and every module-level
 // constant in App.jsx) sees the same, complete data.
@@ -19,7 +20,7 @@ function showStartupError(e) {
 window.addEventListener('error', (ev) => { if (!document.getElementById('root').childElementCount) showStartupError(ev.error || ev.message) })
 
 loadData()
-  .then(() => import('./App.jsx'))
+  .then(() => { stage('Starting…'); return import('./App.jsx') })
   .then(({ default: App }) => {
     createRoot(document.getElementById('root')).render(
       <StrictMode>
