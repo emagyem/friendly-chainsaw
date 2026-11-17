@@ -5,6 +5,9 @@ name: App screenshots
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   ios:
     runs-on: macos-latest
@@ -41,5 +44,10 @@ jobs:
           shoot "helixora://company/SRRK/ownership" 6-insiders
           shoot "helixora://catalysts" 7-catalysts
           xcrun simctl spawn "$DEVICE" log show --last 5m --predicate 'process == "App"' --style compact | grep -iE "error|exception|⚡️" | tail -40 || true
-      - uses: actions/upload-artifact@v6
-        with: { name: app-screenshots, path: shots/ }
+      - name: Save the screenshots in the repository (store/screenshots/ios)
+        run: |
+          mkdir -p store/screenshots/ios && cp shots/*.png store/screenshots/ios/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add store/screenshots/ios
+          git diff --cached --quiet || { git commit -m "App Store screenshots $(date -u +%Y-%m-%d)"; git pull --rebase -X theirs; git push; }
