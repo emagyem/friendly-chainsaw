@@ -65,6 +65,18 @@ try {
   else ok("Waitlist (D1 database)", false, `HTTP ${r.status} ${(await r.json().catch(() => ({}))).error || ""}`);
 } catch (e) { ok("Waitlist (D1 database)", false, e.message); }
 
+// The phone app: it reads data from the site and registers for alerts from its own origin.
+try {
+  const d = await get("/data/fps-history.json", { headers: { origin: "https://localhost" } });
+  ok("App can read the data", d.status === 200 && d.headers.get("access-control-allow-origin") === "*", `HTTP ${d.status}, allow-origin ${d.headers.get("access-control-allow-origin")}`);
+  const pre = await get("/api/devices", { method: "OPTIONS", headers: { origin: "capacitor://localhost", "access-control-request-method": "POST" } });
+  ok("App can reach the alerts service", pre.status === 204 && pre.headers.get("access-control-allow-origin") === "capacitor://localhost", `HTTP ${pre.status}`);
+  const bad = await get("/api/devices", { method: "POST", headers: { origin: "https://localhost", "content-type": "application/json" }, body: JSON.stringify({ action: "register", token: "x", platform: "android", tickers: [] }) });
+  ok("Alerts service refuses a malformed push address", bad.status === 400, `HTTP ${bad.status}`);
+  const list = await get("/api/devices");
+  ok("Device list is private", list.status === 403, `HTTP ${list.status}`);
+} catch (e) { ok("Phone app access", false, e.message); }
+
 // Usage counting accepts known events only, and the pilot form refuses other websites.
 try {
   const r = await post("/api/event", { name: "view_home" });
