@@ -3952,7 +3952,8 @@ export default function App() {
       else if (h === "ask") go("ask");
       else if (h === "corrections") go("corrections");
       else if (h === "signup") setTimeout(() => document.getElementById("signup")?.scrollIntoView(), 300);
-      else if (h.startsWith("company/")) { const t = h.slice(8).toUpperCase(); if (findCo(t)) go("company", t); }
+      else if (h.startsWith("company/")) { const [t, tab] = h.slice(8).split("/"); if (findCo(t.toUpperCase())) go("company", t.toUpperCase(), tab); }
+      else if (NAV.some((g) => g.items.some(([k]) => k === h))) go(h);
     };
     fromHash();
     window.addEventListener("hashchange", fromHash);

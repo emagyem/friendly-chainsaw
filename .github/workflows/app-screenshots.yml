@@ -34,15 +34,24 @@ jobs:
           xcrun simctl status_bar "$DEVICE" override --time 9:41 --batteryState charged --batteryLevel 100 --cellularBars 4 --wifiBars 3
           xcrun simctl install "$DEVICE" "$RUNNER_TEMP/dd/Build/Products/Debug-iphonesimulator/App.app"
           mkdir -p shots
-          xcrun simctl launch "$DEVICE" com.helixora.app; sleep 25
-          xcrun simctl io "$DEVICE" screenshot shots/1-home.png
-          shoot() { xcrun simctl openurl "$DEVICE" "$1"; sleep 6; xcrun simctl io "$DEVICE" screenshot "shots/$2.png"; }
-          shoot "helixora://report" 2-pressure-report
-          shoot "helixora://company/SRRK" 3-company
-          shoot "helixora://company/SRRK/pressure" 4-financing-pressure
-          shoot "helixora://company/GOSS/accounting" 5-accounting
-          shoot "helixora://company/SRRK/ownership" 6-insiders
-          shoot "helixora://catalysts" 7-catalysts
+          # Each screen is opened by its web link (#company/SRRK and so on): the app reads the link
+          # when it starts, so the bundled page is given the link before each launch.
+          APP_DIR=$(xcrun simctl get_app_container "$DEVICE" com.helixora.app app)
+          cp "$APP_DIR/public/index.html" "$RUNNER_TEMP/index.html"
+          shoot() {
+            xcrun simctl terminate "$DEVICE" com.helixora.app 2>/dev/null || true
+            sed "s#<head>#<head><script>location.hash='$1'</script>#" "$RUNNER_TEMP/index.html" > "$APP_DIR/public/index.html"
+            xcrun simctl launch "$DEVICE" com.helixora.app; sleep "$3"
+            xcrun simctl io "$DEVICE" screenshot "shots/$2.png"
+          }
+          shoot "" 1-home 30
+          shoot "report" 2-pressure-report 15
+          shoot "company/SRRK" 3-company 15
+          shoot "company/SRRK/pressure" 4-financing-pressure 15
+          shoot "company/GOSS/accounting" 5-accounting 15
+          shoot "company/SRRK/ownership" 6-insiders 15
+          shoot "catalysts" 7-catalysts 15
+          cp "$RUNNER_TEMP/index.html" "$APP_DIR/public/index.html"
           xcrun simctl spawn "$DEVICE" log show --last 5m --predicate 'process == "App"' --style compact | grep -iE "error|exception|⚡️" | tail -40 || true
       - name: Save the screenshots in the repository (store/screenshots/ios)
         run: |

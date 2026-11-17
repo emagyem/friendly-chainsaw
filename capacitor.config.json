@@ -3,10 +3,26 @@
   "appName": "Helixora",
   "webDir": "dist",
   "backgroundColor": "#ffffff",
-  "ios": { "contentInset": "never", "scheme": "Helixora" },
-  "android": { "allowMixedContent": false },
+  "ios": {
+    "contentInset": "never",
+    "scheme": "Helixora"
+  },
+  "android": {
+    "allowMixedContent": false
+  },
   "plugins": {
-    "SplashScreen": { "launchAutoHide": false, "backgroundColor": "#0E2A2E", "showSpinner": false },
-    "PushNotifications": { "presentationOptions": ["badge", "sound", "alert"] }
+    "SplashScreen": {
+      "launchAutoHide": true,
+      "launchShowDuration": 1500,
+      "backgroundColor": "#0E2A2E",
+      "showSpinner": false
+    },
+    "PushNotifications": {
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ]
+    }
   }
 }
