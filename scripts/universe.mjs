@@ -54,6 +54,8 @@ async function latestAnnual(cik, concepts) {
 }
 
 const funnel = [];
+const failed = new Map(); // ticker → the first rule it failed
+const failAt = (before, after, rule) => { const keep = new Set(after.map((r) => r.ticker)); for (const r of before) if (!keep.has(r.ticker) && !failed.has(r.ticker)) failed.set(r.ticker, rule); };
 const tk = await get("https://www.sec.gov/files/company_tickers_exchange.json", true);
 const rows = tk.data.map(([cik, name, ticker, exchange]) => ({ cik, name, ticker, exchange }));
 let c = rows.filter((r) => ["Nasdaq", "NYSE", "NYSE American"].includes(r.exchange));
@@ -67,7 +69,7 @@ const subs = await pool(c, 8, async (r) => {
   const lastReport = (rec.form || []).map((f, i) => /^(10-[QK]|20-F|40-F)(\/A)?$/.test(f) ? rec.filingDate[i] : null).filter(Boolean).sort().at(-1) || null;
   return { ...r, sic: s.sic, deal: dealStatus(s), lastReport, sponsor: (s.name || r.name).replace(/,?\s+(inc|corp|corporation|ltd|limited|plc|n\.v|s\.a)\.?$/i, "").trim() };
 });
-c = subs.filter(Boolean); funnel.push(["Drug developer industry code (2834, 2836, 8731)", c.length]);
+failAt(c, subs.filter(Boolean), "industry code is not a drug developer"); c = subs.filter(Boolean); funnel.push(["Drug developer industry code (2834, 2836, 8731)", c.length]);
 const died = [];
 c = c.filter((r) => {
   if (r.deal && r.deal.status !== "pending") { died.push({ t: r.ticker, why: r.deal.status }); return false; }
@@ -85,9 +87,9 @@ const withFin = await pool(c, 8, async (r) => {
   const rv = rev && rev.unit === ocf.unit && rev.end >= ocf.end ? rev.val : rev && !rev.unit.startsWith("USD") ? null : rev?.val || 0;
   return { ...r, ocf: ocf.val, unit: ocf.unit, fy: ocf.end, rev: rv ?? 0 };
 });
-c = withFin.filter(Boolean); funnel.push(["Burning cash in its latest fiscal year", c.length]);
+failAt(c, withFin.filter(Boolean), "not burning cash in its latest fiscal year"); c = withFin.filter(Boolean); funnel.push(["Burning cash in its latest fiscal year", c.length]);
 // $50M only applies to figures in dollars; for other currencies the share-of-burn test decides.
-c = c.filter((r) => (r.unit.startsWith("USD") && r.rev < 50e6) || r.rev < -r.ocf / 4);
+{ const before = c; c = c.filter((r) => (r.unit.startsWith("USD") && r.rev < 50e6) || r.rev < -r.ocf / 4); failAt(before, c, "revenue too high to count as pre-revenue"); }
 funnel.push(["Pre-revenue (revenue under $50M, or under a quarter of cash burned)", c.length]);
 
 const priced = await pool(c, 4, async (r) => {
@@ -98,7 +100,7 @@ const priced = await pool(c, 4, async (r) => {
   const dv = vol.map((v, i) => (v && cl[i] ? v * cl[i] : null)).filter(Boolean);
   return { ...r, price: px, adv: dv.length ? dv.reduce((a, b) => a + b, 0) / dv.length / 1e6 : 0 };
 });
-c = priced.filter(Boolean); funnel.push(["Still trading (has a current stock price)", c.length]);
+failAt(c, priced.filter(Boolean), "no current stock price"); c = priced.filter(Boolean); funnel.push(["Still trading (has a current stock price)", c.length]);
 
 // Trials are shown for context and used for ordering only; they no longer decide coverage.
 const norm = (s) => s.toLowerCase().replace(/[.,]/g, " ").replace(/\b(inc|corp|corporation|ltd|limited|llc|plc|co|holdings|sa|ag|nv)\b/g, "").replace(/\s+/g, " ").trim();
@@ -150,7 +152,7 @@ if (c.length < MIN_QUALIFIED) {
     if (broken.has(t)) { removed.push({ t, why: `its data couldn't be built (${broken.get(t).why})` }); return false; }
     if (!rank.has(t)) {
       const d = died.find((x) => x.t === t);
-      removed.push({ t, why: d ? ({ acquired: "bought", delisted: "delisted" }[d.why] || d.why) : "no longer meets the coverage rules" });
+      removed.push({ t, why: d ? ({ acquired: "bought", delisted: "delisted" }[d.why] || d.why) : `no longer meets the coverage rules (${failed.get(t) || "not on the listed-companies list"})` });
       return false;
     }
     if (rank.get(t) >= KEEP_RANK) { removed.push({ t, why: `next trial completion now ranks ${rank.get(t) + 1} of ${c.length}` }); return false; }

@@ -2360,10 +2360,6 @@
     }
   ],
   "unbuildable": {
-    "OTLK": {
-      "date": "2026-11-06",
-      "why": "no active trials found for sponsor \"Outlook Therapeutics\" (set \"sponsor\" in assumptions.json)"
-    },
     "VTVT": {
       "date": "2026-11-18",
       "why": "no shares outstanding figure"
