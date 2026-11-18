@@ -4418,6 +4418,8 @@ a.src:hover{color:var(--teal);}
 .in-app .offline-bar{padding-top:calc(8px + env(safe-area-inset-top));}
 .in-app .foot{padding-bottom:env(safe-area-inset-bottom);}
 .in-app .mast-cta{display:none !important;}
+.in-app body::before{content:"";position:fixed;left:0;right:0;top:0;height:env(safe-area-inset-top);background:rgba(255,255,255,.97);z-index:1000;pointer-events:none;}
+.in-app [id],.in-app .tabs{scroll-margin-top:calc(env(safe-area-inset-top) + 8px);}
 .watchbtn{background:#fff;border:1px solid var(--rule);padding:8px 14px;font-size:13.5px;font-weight:600;border-radius:999px;transition:border-color .15s,background .15s;}
 .watchbtn:hover{border-color:var(--teal);}
 .watchbtn.on{background:#E3F2EF;border-color:#9CCAC3;color:var(--teal-d) !important;}
