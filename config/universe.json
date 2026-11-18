@@ -14,39 +14,31 @@
   "selection": "Every listed, cash-burning, pre-revenue drug developer that is still standing is covered; there is no cap and no size, trading-volume or trial filter. Companies that went bankrupt, were delisted or were bought are left out of today's list but stay in the historical backtest.",
   "funnel": [
     [
-      "Listed on Nasdaq, NYSE or NYSE American",
-      6035
-    ],
-    [
-      "Burned over $20M in operating cash in 2025",
-      712
-    ],
-    [
-      "Clinical stage (little revenue)",
-      454
+      "Listed today on Nasdaq, NYSE or NYSE American",
+      6022
     ],
     [
       "Drug developer industry code (2834, 2836, 8731)",
-      250
+      679
     ],
     [
-      "Not acquired or being acquired",
-      246
+      "Still standing (not bought, delisted or wound down; still filing reports)",
+      668
     ],
     [
-      "Market value $50M to $20B",
-      184
+      "Burning cash in its latest fiscal year",
+      535
     ],
     [
-      "Trades at least $1M a day",
-      166
+      "Pre-revenue (revenue under $50M, or under a quarter of cash burned)",
+      446
     ],
     [
-      "Has an active company-sponsored clinical trial (Phase I, II or III)",
-      134
+      "Still trading (has a current stock price)",
+      446
     ]
   ],
-  "screenedOn": "2026-11-12",
+  "screenedOn": "2026-11-18",
   "selected": [
     "PGEN",
     "VIR",
@@ -61,11 +53,9 @@
     "ZNTL",
     "DNLI",
     "BHVN",
-    "OMER",
     "ANRO",
     "DSGN",
     "DMAC",
-    "AVIR",
     "LXEO",
     "TARA",
     "GOSS",
@@ -107,7 +97,6 @@
     "RLMD",
     "SABS",
     "PYXS",
-    "MAZE",
     "ALLO",
     "INO",
     "MBX",
@@ -139,7 +128,6 @@
     "ANTX",
     "EDIT",
     "IKT",
-    "OBX",
     "CGON",
     "IMUX",
     "SYRE",
@@ -176,7 +164,317 @@
     "ACRS",
     "ABEO",
     "FHTX",
-    "ATYR"
+    "ATYR",
+    "SKYE",
+    "ABVX",
+    "ACIU",
+    "BCDA",
+    "DWTX",
+    "EPRX",
+    "GNLX",
+    "INAB",
+    "LTRN",
+    "MNPR",
+    "NVCT",
+    "PMN",
+    "PMVP",
+    "TRAW",
+    "ENSC",
+    "QNRX",
+    "TCRX",
+    "CMND",
+    "FBLG",
+    "MNOV",
+    "RVMD",
+    "SGMT",
+    "XBIT",
+    "CELZ",
+    "TTRX",
+    "SER",
+    "SXTP",
+    "ALGS",
+    "ALLR",
+    "BMEA",
+    "MSLE",
+    "TLSA",
+    "CNSY",
+    "COYA",
+    "EQ",
+    "IXHL",
+    "LONA",
+    "VRCA",
+    "CRDF",
+    "BOLT",
+    "IBIO",
+    "OKYO",
+    "TELO",
+    "TVRD",
+    "ACRV",
+    "ANNX",
+    "CGTX",
+    "APRE",
+    "IMMP",
+    "IMRX",
+    "INKT",
+    "PHVS",
+    "ADAG",
+    "BLTE",
+    "CLRB",
+    "ELOX",
+    "IMNN",
+    "INDP",
+    "ALVO",
+    "ALZN",
+    "AZTR",
+    "CRIS",
+    "MESO",
+    "NCNA",
+    "NGEN",
+    "HCWB",
+    "ONCY",
+    "ESLA",
+    "MAIA",
+    "TOVX",
+    "LCTX",
+    "KPRX",
+    "LPCN",
+    "RADX",
+    "CANF",
+    "IMTX",
+    "KTTA",
+    "RZLT",
+    "ACXP",
+    "RNTX",
+    "APVO",
+    "PALI",
+    "VERU",
+    "MPLT",
+    "ALMS",
+    "ANVS",
+    "BCTX",
+    "CRBU",
+    "EDSA",
+    "GNPX",
+    "INTS",
+    "NERV",
+    "YARW",
+    "NXTC",
+    "MRKR",
+    "IRLA",
+    "KYNB",
+    "CTNM",
+    "CNTX",
+    "ATOS",
+    "GANX",
+    "MOLN",
+    "TPST",
+    "PLYX",
+    "ATNM",
+    "BYSI",
+    "ACTU",
+    "ATHE",
+    "MBRX",
+    "ALDX",
+    "DMRA",
+    "PLRX",
+    "BNTC",
+    "GLSI",
+    "AARD",
+    "ABOS",
+    "ABUS",
+    "ABVC",
+    "ACET",
+    "ACOG",
+    "ADXN",
+    "AEMD",
+    "AEON",
+    "AIM",
+    "AKTX",
+    "ALEC",
+    "ALXO",
+    "ANIX",
+    "ANL",
+    "APLM",
+    "APUS",
+    "AQST",
+    "ARMP",
+    "ARTL",
+    "ASBP",
+    "AVTX",
+    "AVXL",
+    "AZR",
+    "BDRX",
+    "BFRG",
+    "BFRI",
+    "BGM",
+    "BHST",
+    "BIAF",
+    "BIVI",
+    "BKHA",
+    "BLRX",
+    "BOLD",
+    "CALC",
+    "CAPR",
+    "CDT",
+    "CELU",
+    "CING",
+    "CLDI",
+    "CLNN",
+    "CMMB",
+    "CNSP",
+    "CNTB",
+    "COCP",
+    "CRBP",
+    "CRDL",
+    "CRVO",
+    "CTOR",
+    "CTXR",
+    "CUE",
+    "CURX",
+    "CVKD",
+    "CVM",
+    "DARE",
+    "DCOY",
+    "DNTH",
+    "DRMA",
+    "DRUG",
+    "DYAI",
+    "ELAB",
+    "ELTX",
+    "ELUT",
+    "ENGN",
+    "ENTX",
+    "ENVB",
+    "EOCN",
+    "ERNA",
+    "EVAX",
+    "EXOZ",
+    "FENC",
+    "FLNA",
+    "FULC",
+    "GALT",
+    "GDTC",
+    "GELS",
+    "GHRS",
+    "GOVX",
+    "GRI",
+    "GRML",
+    "GTBP",
+    "HELP",
+    "HIND",
+    "HOWL",
+    "HRTX",
+    "HURA",
+    "IBAC",
+    "IBO",
+    "IFRX",
+    "IGC",
+    "IMA",
+    "IMMX",
+    "INMB",
+    "IPHA",
+    "ISPC",
+    "IVA",
+    "JAGX",
+    "JSPR",
+    "JUNS",
+    "KALA",
+    "KAPA",
+    "KLRS",
+    "KRSA",
+    "KZIA",
+    "LENZ",
+    "LEXX",
+    "LGVN",
+    "LIMN",
+    "LSTA",
+    "MBIO",
+    "MDCX",
+    "MENS",
+    "MGX",
+    "MIRA",
+    "MREO",
+    "MTNB",
+    "MTRI",
+    "MTVA",
+    "MXCT",
+    "NAMS",
+    "NBP",
+    "NCEL",
+    "NEUP",
+    "NMAD",
+    "NMRA",
+    "NNVC",
+    "NRSN",
+    "NRXP",
+    "NTHI",
+    "NXTS",
+    "OABI",
+    "OCS",
+    "OGEN",
+    "OKUR",
+    "ONCO",
+    "ONMD",
+    "ORMP",
+    "OSTX",
+    "OVID",
+    "PASG",
+    "PBM",
+    "PCSA",
+    "PDSB",
+    "PHIO",
+    "PLUR",
+    "PMCB",
+    "PPBT",
+    "PPCB",
+    "PRE",
+    "PRFX",
+    "PRQR",
+    "PRTA",
+    "PTHS",
+    "PTN",
+    "PULM",
+    "QNTM",
+    "QUCY",
+    "RANI",
+    "RDHL",
+    "REPL",
+    "REVB",
+    "RFL",
+    "RKTO",
+    "RLYB",
+    "RNAZ",
+    "ROIV",
+    "SBFM",
+    "SCNI",
+    "SCNX",
+    "SCYX",
+    "SHPH",
+    "SILO",
+    "SION",
+    "SLXN",
+    "SNGX",
+    "SNTI",
+    "SPRC",
+    "SRZN",
+    "SXTC",
+    "TCRT",
+    "TIL",
+    "TLPH",
+    "TNXP",
+    "TVGN",
+    "TWST",
+    "UNCY",
+    "VBIO",
+    "VIVS",
+    "VRDN",
+    "VTGN",
+    "XBIO",
+    "XCUR",
+    "XLO",
+    "XRTX",
+    "XTLB",
+    "ZVRA"
   ],
   "grandfathered": {
     "ARWR": "Market value above $5B",
@@ -758,12 +1056,1329 @@
         }
       ],
       "removed": []
+    },
+    {
+      "date": "2026-11-18",
+      "added": [
+        {
+          "t": "SKYE",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ABVX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ACIU",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BCDA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "DWTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "EPRX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "GNLX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "INAB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "LTRN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MNPR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NVCT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PMN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PMVP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TRAW",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ENSC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "QNRX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TCRX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CMND",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "FBLG",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MNOV",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "RVMD",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SGMT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "XBIT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CELZ",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TTRX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SER",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SXTP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ALGS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ALLR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BMEA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MSLE",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TLSA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CNSY",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "COYA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "EQ",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IXHL",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "LONA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "VRCA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "VTVT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CRDF",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BOLT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IBIO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "OKYO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TELO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TVRD",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ACRV",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ANNX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CGTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "APRE",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IMMP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IMRX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "INKT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PHVS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ADAG",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BLTE",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CLRB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ELOX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IMNN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "INDP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ALVO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ALZN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "AZTR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CRIS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MESO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NCNA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NGEN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "HCWB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ONCY",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ESLA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MAIA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TOVX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "LCTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "KPRX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "LPCN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "RADX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CANF",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IMTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "KTTA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "RZLT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ACXP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "RNTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "APVO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PALI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "VERU",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MPLT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ALMS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ANVS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BCTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CRBU",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "EDSA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "GNPX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "INTS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NERV",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "YARW",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NXTC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MRKR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IRLA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "KYNB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CTNM",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CNTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ATOS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "GANX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MOLN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TPST",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PLYX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ATNM",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BYSI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ACTU",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ATHE",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MBRX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ALDX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PROK",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "DMRA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PLRX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BNTC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "GLSI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "AARD",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ABOS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ABUS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ABVC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ACET",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ACOG",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ADXN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "AEMD",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "AEON",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "AIM",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "AKTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ALEC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ALXO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ANIX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ANL",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "APLM",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "APUS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "AQST",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ARMP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ARTL",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ASBP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "AVTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "AVXL",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "AZR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BDRX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BFRG",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BFRI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BGM",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BHST",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BIAF",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BIVI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BKHA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BLRX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "BOLD",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CALC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CAPR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CDT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CELU",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CING",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CLDI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CLNN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CMMB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CNSP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CNTB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "COCP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CRBP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CRDL",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CRVO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CTOR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CTXR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CUE",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CURX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CVKD",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "CVM",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "DARE",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "DCOY",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "DNTH",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "DRMA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "DRUG",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "DYAI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ELAB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ELTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ELUT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ENGN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ENTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ENVB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "EOCN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ERNA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "EVAX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "EXOZ",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "FENC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "FLNA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "FULC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "GALT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "GDTC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "GELS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "GHRS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "GOVX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "GRI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "GRML",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "GTBP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "HELP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "HIND",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "HOWL",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "HRTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "HURA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IBAC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IBO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IFRX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IGC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IMA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IMMX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "INMB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IPHA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ISPC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "IVA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "JAGX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "JSPR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "JUNS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "KALA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "KAPA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "KLRS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "KRSA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "KZIA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "LENZ",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "LEXX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "LGVN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "LIMN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "LSTA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MBIO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MDCX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MENS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MGX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MIRA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MREO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MTNB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MTRI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MTVA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "MXCT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NAMS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NBP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NCEL",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NEUP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NMAD",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NMRA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NNVC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NRSN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NRXP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NTHI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "NXTS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "OABI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "OCS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "OGEN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "OKUR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ONCO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ONMD",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ORMP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "OSTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "OVID",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PASG",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PBM",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PCSA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PDSB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PHIO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PLUR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PMCB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PPBT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PPCB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PRE",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PRFX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PRQR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PRTA",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PTHS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PTN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "PULM",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "QNTM",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "QUCY",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "RANI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "RDHL",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "REPL",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "REVB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "RFL",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "RKTO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "RLYB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "RMTI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "RNAZ",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ROIV",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SAEN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SBFM",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SCNI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SCNX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SCYX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SHPH",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SILO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SION",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SLXN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SNGX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SNTI",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SPRC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SRZN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "SXTC",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TCRT",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TIL",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TLPH",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TNXP",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TVGN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "TWST",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "UNCY",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "VBIO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "VIVS",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "VRDN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "VTGN",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "XBIO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "XCUR",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "XLO",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "XRTX",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "XTLB",
+          "why": "meets the coverage rules"
+        },
+        {
+          "t": "ZVRA",
+          "why": "meets the coverage rules"
+        }
+      ],
+      "removed": [
+        {
+          "t": "OMER",
+          "why": "no longer meets the coverage rules"
+        },
+        {
+          "t": "AVIR",
+          "why": "no longer meets the coverage rules"
+        },
+        {
+          "t": "MAZE",
+          "why": "no longer meets the coverage rules"
+        },
+        {
+          "t": "OBX",
+          "why": "no longer meets the coverage rules"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-18",
+      "added": [],
+      "removed": [
+        {
+          "t": "VTVT",
+          "why": "its data couldn't be built (no shares outstanding figure)"
+        },
+        {
+          "t": "PROK",
+          "why": "its data couldn't be built (no shares outstanding figure)"
+        },
+        {
+          "t": "RMTI",
+          "why": "its data couldn't be built (no shares outstanding figure)"
+        },
+        {
+          "t": "SAEN",
+          "why": "its data couldn't be built (no operating cash flow in XBRL data)"
+        }
+      ]
     }
   ],
   "unbuildable": {
     "OTLK": {
       "date": "2026-11-06",
       "why": "no active trials found for sponsor \"Outlook Therapeutics\" (set \"sponsor\" in assumptions.json)"
+    },
+    "VTVT": {
+      "date": "2026-11-18",
+      "why": "no shares outstanding figure"
+    },
+    "PROK": {
+      "date": "2026-11-18",
+      "why": "no shares outstanding figure"
+    },
+    "RMTI": {
+      "date": "2026-11-18",
+      "why": "no shares outstanding figure"
+    },
+    "SAEN": {
+      "date": "2026-11-18",
+      "why": "no operating cash flow in XBRL data"
     }
   }
 }
