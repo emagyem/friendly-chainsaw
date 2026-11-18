@@ -366,7 +366,6 @@
     "HRTX",
     "HURA",
     "IBAC",
-    "IBO",
     "IFRX",
     "IGC",
     "IMA",
@@ -2355,6 +2354,16 @@
         {
           "t": "SAEN",
           "why": "its data couldn't be built (no operating cash flow in XBRL data)"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-18",
+      "added": [],
+      "removed": [
+        {
+          "t": "IBO",
+          "why": "acquired; delisted 2026-11-18"
         }
       ]
     }
