@@ -967,7 +967,9 @@ async function buildCompany(ticker, a, cikByTicker, cls = {}, trialHist = {}, du
       .sort((x, y) => (x.ro || "9") < (y.ro || "9") ? -1 : 1).slice(0, 20);
   }
   // Industry companies (generics, ingredient makers, compounders) often run no late-stage trials of their own.
-  if (!pipeline.length && !a.segment) throw new Error(`no active trials found for sponsor "${sponsor}" (set "sponsor" in assumptions.json)`);
+  // A covered company with no active registered trials (preclinical, or trials run by partners) is kept:
+  // the score then uses its standard assumption for time to the next catalyst.
+  if (!pipeline.length && !a.segment) warn(`${ticker}: no active trials found for sponsor "${sponsor}"; scored with the standard catalyst assumption`);
 
   // Classification for the drug-development models, then timing, design and odds per program.
   for (const p of pipeline) {

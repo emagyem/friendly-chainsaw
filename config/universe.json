@@ -11,7 +11,7 @@
     "At least one active, company-sponsored clinical trial (Phase I, II or III)",
     "Not acquired or being acquired: no tender offer or merger vote under way"
   ],
-  "selection": "Up to 100 companies in all: the original companies plus the qualifying companies whose next Phase II or III trial finishes soonest.",
+  "selection": "Every listed, cash-burning, pre-revenue drug developer that is still standing is covered; there is no cap and no size, trading-volume or trial filter. Companies that went bankrupt, were delisted or were bought are left out of today's list but stay in the historical backtest.",
   "funnel": [
     [
       "Listed on Nasdaq, NYSE or NYSE American",
@@ -195,9 +195,10 @@
     "VERA"
   ],
   "policy": {
-    "total": 250,
+    "total": null,
     "keepRank": null,
-    "approved": "2026-11-11"
+    "approved": "2026-11-17",
+    "rule": "Every listed pre-revenue drug developer that is still standing."
   },
   "changes": [
     {

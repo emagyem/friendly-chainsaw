@@ -3764,7 +3764,7 @@ function CoveragePanel() {
       </div>
       <p className="prose" style={{ marginTop: 14 }}>{UNIVERSE.selection} The first {UNIVERSE.originalCoverage.length} companies stay unless they are bought{Object.keys(g).length ? <>, including {Object.keys(g).length} that sit outside today's rules: {Object.entries(g).map(([t, why]) => `${t} (${why.toLowerCase()})`).join(", ")}</> : null}. Companies are never dropped quietly; any change is listed here.</p>
       <p className="prose"><b>When a company is bought.</b> A company with a deal still pending stays, marked "Being acquired", until the deal closes. Once it closes, the company is removed from the site, whoever bought it, and the removal is listed below. The same goes for the drug-industry companies. Deals are read from each company's SEC filings every day.</p>
-      {UNIVERSE.policy && <p className="prose">Turnover (approved {fmtDate(UNIVERSE.policy.approved)}): the screen re-runs on the 3rd of each month. Every company that meets the rules is covered, up to {UNIVERSE.policy.total ?? UNIVERSE.policy.target}. A company stays while it still qualifies; otherwise it leaves. Companies that leave keep their full score history.</p>}
+      {UNIVERSE.policy && <p className="prose">Turnover (approved {fmtDate(UNIVERSE.policy.approved)}): the screen re-runs on the 3rd of each month. Every company that meets the rules is covered{UNIVERSE.policy.total ? `, up to ${UNIVERSE.policy.total}` : ", with no cap"}. A company stays while it still qualifies; otherwise it leaves. Companies that leave keep their full score history.</p>}
       {(UNIVERSE.changes || []).length > 0 && (
         <>
           <h3 className="subhead">Coverage changes</h3>
