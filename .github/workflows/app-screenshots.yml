@@ -34,6 +34,7 @@ jobs:
           xcrun simctl status_bar "$DEVICE" override --time 9:41 --batteryState charged --batteryLevel 100 --cellularBars 4 --wifiBars 3
           xcrun simctl install "$DEVICE" "$RUNNER_TEMP/dd/Build/Products/Debug-iphonesimulator/App.app"
           mkdir -p shots
+          python3 -m pip install --quiet --break-system-packages pillow || python3 -m pip install --quiet pillow || true
           curl -sS -o /dev/null -w "Host check: HTTP %{http_code}, %{size_download} bytes in %{time_total}s\n" -H "Origin: capacitor://localhost" https://helixora.pages.dev/data/companies.json || true
           # Each screen is opened by its web link (#company/SRRK and so on): the app reads the link
           # when it starts, so the bundled page is given the link before each launch.
@@ -44,6 +45,12 @@ jobs:
             sed "s#<head>#<head><script>location.hash='$1'</script>#" "$RUNNER_TEMP/index.html" > "$APP_DIR/public/index.html"
             xcrun simctl launch "$DEVICE" com.helixora.app; sleep "$3"
             xcrun simctl io "$DEVICE" screenshot "shots/$2.png"
+            # A black frame means the app hadn't drawn yet: wait and take it again (up to 3 times).
+            for try in 1 2 3; do
+              dark=$(python3 -c "from PIL import Image; im=Image.open('shots/$2.png').convert('L').resize((40,80)); print(int(sum(im.getdata())/3200 < 20))" 2>/dev/null || echo 0)
+              [ "$dark" = "1" ] || break
+              sleep 15; xcrun simctl io "$DEVICE" screenshot "shots/$2.png"
+            done
           }
           shoot "" 1-home 30
           shoot "report" 2-pressure-report 15
