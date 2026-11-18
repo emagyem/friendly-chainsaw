@@ -6,6 +6,17 @@
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#0E2A2E" />
+    <script>
+      // Shows a startup failure on screen (the phone app has no visible console).
+      window.addEventListener("error", function (e) {
+        var el = document.getElementById("boot-stage");
+        if (el && document.getElementById("root").childElementCount <= 1) el.textContent = "Error: " + (e.message || (e.target && (e.target.src || e.target.href)) || "unknown") + (e.filename ? " (" + e.filename.split("/").pop() + ":" + e.lineno + ")" : "");
+      }, true);
+      window.addEventListener("unhandledrejection", function (e) {
+        var el = document.getElementById("boot-stage");
+        if (el) el.textContent = "Error: " + (e.reason && (e.reason.message || e.reason));
+      });
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Helixora — know who has to raise, before they do</title>
     <meta name="description" content="The platform that tells you who has to raise money, and when. Financing Pressure Scores for clinical-stage biotechs, with every number traced to its SEC filing." />
