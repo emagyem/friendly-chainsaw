@@ -29,7 +29,9 @@ export const dataUrl = (file) => (IS_APP ? `${SITE}/data/${file}` : `${import.me
 export function stage(text) { const el = document.getElementById("boot-stage"); if (el) el.textContent = text; }
 
 const CACHE_DIR = "CACHE";
-async function fs() { return (await import("@capacitor/filesystem")).Filesystem; }
+// Returns the module, not the plugin: returning a Capacitor plugin from an async function makes
+// JavaScript call plugin.then(), which the plugin treats as an unknown native method.
+const fsModule = () => import("@capacitor/filesystem");
 
 // Fetch a data file; in the app, save it on the phone and fall back to the saved copy when offline.
 export async function fetchData(file) {
@@ -41,14 +43,14 @@ export async function fetchData(file) {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const text = await res.text();
     if (IS_APP) {
-      try { (await fs()).writeFile({ path: `helixora-${file}`, data: text, directory: CACHE_DIR, encoding: "utf8" }); } catch { /* saving is best-effort */ }
+      try { (await fsModule()).Filesystem.writeFile({ path: `helixora-${file}`, data: text, directory: CACHE_DIR, encoding: "utf8" }); } catch { /* saving is best-effort */ }
     }
     return { json: JSON.parse(text), offline: false };
   } catch (e) {
     if (!IS_APP) throw e;
     stage(`Offline (${e.name === "AbortError" ? "timed out" : e.message}); using the saved copy…`);
     try {
-      const saved = await (await fs()).readFile({ path: `helixora-${file}`, directory: CACHE_DIR, encoding: "utf8" });
+      const saved = await (await fsModule()).Filesystem.readFile({ path: `helixora-${file}`, directory: CACHE_DIR, encoding: "utf8" });
       return { json: JSON.parse(saved.data), offline: true };
     } catch {
       // First launch with no connection: the copy bundled with the app.
