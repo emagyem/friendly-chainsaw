@@ -41,7 +41,19 @@ export async function fetchData(file) {
     stage(`Downloading ${file}…`);
     const res = await fetch(dataUrl(file), { cache: "no-cache", signal: ctl.signal }).finally(() => clearTimeout(timer));
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const text = await res.text();
+    // Read in pieces so the loading screen can show progress on a slow connection.
+    let text = "";
+    if (res.body && res.body.getReader) {
+      const reader = res.body.getReader(), dec = new TextDecoder();
+      let got = 0;
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        got += value.length; text += dec.decode(value, { stream: true });
+        stage(`Downloading ${file}… ${(got / 1e6).toFixed(1)} MB`);
+      }
+      text += dec.decode();
+    } else text = await res.text();
     if (IS_APP) {
       try { (await fsModule()).Filesystem.writeFile({ path: `helixora-${file}`, data: text, directory: CACHE_DIR, encoding: "utf8" }); } catch { /* saving is best-effort */ }
     }
