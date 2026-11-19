@@ -3454,7 +3454,7 @@ function About({ go, anchor }) {
 
 // Plans and prices live here so they're easy to change.
 const PLANS = [
-  { k: "free", name: "Research", price: "Free", status: "Available now", for: "Anyone following small biotech stocks", items: ["Financing Pressure Report and score for 100 clinical-stage biotechs", "Company pages with every figure linked to its SEC filing", "Catalyst calendar and trial outlook", "Ask Helixora (fair-use limit)", "Today's report as a CSV download"], cta: null },
+  { k: "free", name: "Research", price: "Free", status: "Available now", for: "Anyone following small biotech stocks", items: ["Financing Pressure Report and score for every covered pre-revenue biotech", "Company pages with every figure linked to its SEC filing", "Catalyst calendar and trial outlook", "Ask Helixora (fair-use limit)", "Today's report as a CSV download"], cta: null },
   { k: "professional", name: "Professional", price: "$49 a month", status: "Coming soon: join the list", for: "Independent analysts, advisers and active investors", items: ["Everything in Research", "Email alerts when a company's band, runway or next catalyst changes", "Full score history for every company", "Downloads of every table", "Unlimited Ask Helixora"], cta: "professional" },
   { k: "institutional", name: "Institutional", price: "From $12,000 a year", status: "30-day pilots open now", for: "Hedge and crossover funds, healthcare funds, ECM and biotech bankers", items: ["Weekly Financing Pressure Report for your coverage list", "Data feed (CSV or JSON) with point-in-time history since 2010", "Custom universes: your watchlists, your thresholds", "Backtest and method walk-through with your team", "A monthly call with the analyst"], cta: "institutional-pilot" },
 ];
