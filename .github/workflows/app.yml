@@ -57,7 +57,7 @@ jobs:
           echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/release.keystore"
           ANDROID_KEYSTORE_PATH="$RUNNER_TEMP/release.keystore" ./gradlew --no-daemon bundleRelease
 
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: helixora-android
           path: |
