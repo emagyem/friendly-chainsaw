@@ -530,7 +530,8 @@ function TickerStrip({ go }) {
   const half2 = Array.from({ length: reps }, (_, i) => row(reps + i));
   return (
     <div className="strip" aria-label="Latest prices">
-      <div className="strip-track">
+      {/* Speed follows the number of tickers: about 2.5 seconds per ticker, a calm reading pace however many companies are covered. */}
+      <div className="strip-track" style={{ animationDuration: `${Math.round(COMPANIES.length * reps * 2.5)}s` }}>
         <div className="strip-half">{half}</div>
         <div className="strip-half" aria-hidden="true">{half2}</div>
       </div>
